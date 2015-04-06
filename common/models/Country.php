@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "Country".
+ * This is the model class for table "country".
  *
  * @property integer $country_id
  * @property string $country_name_en
@@ -25,7 +25,7 @@ class Country extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'Country';
+        return 'country';
     }
 
     /**
