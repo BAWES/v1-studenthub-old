@@ -35,6 +35,17 @@ use Yii;
  */
 class Job extends \yii\db\ActiveRecord
 {
+    //Options for `job_pay` column
+    //Specifies if the job pays or not
+    const PAY_PAID = 1;
+    const PAY_NOT_PAID = 0;
+    
+    //Options for `job_status` column
+    //Job status affects the visibility of the job (draft,open, or closed)
+    const STATUS_DRAFT = 0;
+    const STATUS_OPEN = 1;
+    const STATUS_CLOSED = 2;
+    
     /**
      * @inheritdoc
      */
