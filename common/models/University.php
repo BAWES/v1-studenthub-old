@@ -18,6 +18,11 @@ use Yii;
  */
 class University extends \yii\db\ActiveRecord
 {
+    //Values available for `university_require_verify`
+    //This tells us if the students within the university require verification by ID
+    const VERIFICATION_REQUIRED = 1;
+    const VERIFICATION_NOT_REQUIRED = 0;
+    
     /**
      * @inheritdoc
      */
