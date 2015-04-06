@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 06, 2015 at 11:44 AM
+-- Generation Time: Apr 06, 2015 at 11:53 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -404,22 +404,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Khalid', 'wXdMD0681gDZ-RjrH3ZvroMRW6J--CDt', '$2y$13$TsAOR9eXiqBwaUhaVtbWSOz482OlnR4TfNUmFUYIn1dgmkYx.b5dK', 'RnjeLgtzNjv1vKetaWaeUHpiR3pcNbDS_1428315691', 'khalid@bawes.net', 10, 1428314763, 1428315691);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `voucher`
---
-
-CREATE TABLE IF NOT EXISTS `voucher` (
-  `voucher_id` int(11) unsigned NOT NULL,
-  `voucher_code` varchar(8) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Unique',
-  `voucher_money_amount` decimal(10,0) NOT NULL,
-  `voucher_valid` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'False (0), True(1)',
-  `voucher_creation_datetime` datetime NOT NULL,
-  `voucher_expire_datetime` datetime NOT NULL,
-  `voucher_comment` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'To know who we give the voucher to'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 --
 -- Indexes for dumped tables
 --
@@ -569,12 +553,6 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `voucher`
---
-ALTER TABLE `voucher`
-  ADD PRIMARY KEY (`voucher_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -673,11 +651,6 @@ ALTER TABLE `university`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `voucher`
---
-ALTER TABLE `voucher`
-  MODIFY `voucher_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
