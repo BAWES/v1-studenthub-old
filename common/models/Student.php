@@ -50,6 +50,32 @@ use Yii;
  */
 class Student extends \yii\db\ActiveRecord
 {
+    //Status values for `student_status`
+    const STATUS_FULL_TIME = 1;
+    const STATUS_PART_TIME = 0;
+    
+    //Gender values for `student_gender`
+    const GENDER_MALE = 1;
+    const GENDER_FEMALE = 0;
+    
+    //Email verification values for `student_email_verification`
+    const EMAIL_VERIFIED = 1;
+    const EMAIL_NOT_VERIFIED = 0;
+    
+    //ID verification values for `student_id_verification`
+    //If this students university doesn ot require ID verification, this will automatically be set to ID_VERIFIED
+    const ID_VERIFIED = 1;
+    const ID_NOT_VERIFIED = 0;
+    
+    //Email notification preference values for `student_email_preference`
+    const NOTIFICATION_OFF = 0;
+    const NOTIFICATION_DAILY = 1;
+    const NOTIFICATION_WEEKLY = 2;
+    
+    //Transportation options for `student_transportation`
+    const TRANSPORTATION_AVAILABLE = 1;
+    const TRANSPORTATION_NOT_AVAILABLE = 0;
+    
     /**
      * @inheritdoc
      */
