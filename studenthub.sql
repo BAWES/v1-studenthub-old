@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 06, 2015 at 11:37 AM
+-- Generation Time: Apr 06, 2015 at 11:44 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -286,18 +286,6 @@ CREATE TABLE IF NOT EXISTS `payment_type` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sport`
---
-
-CREATE TABLE IF NOT EXISTS `sport` (
-  `sport_id` int(11) unsigned NOT NULL,
-  `sport_name_en` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `sport_name_ar` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `student`
 --
 
@@ -359,17 +347,6 @@ CREATE TABLE IF NOT EXISTS `student_job_application` (
 
 CREATE TABLE IF NOT EXISTS `student_language` (
   `language_id` int(11) unsigned NOT NULL,
-  `student_id` int(11) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `student_sport`
---
-
-CREATE TABLE IF NOT EXISTS `student_sport` (
-  `sport_id` int(11) unsigned NOT NULL,
   `student_id` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -556,12 +533,6 @@ ALTER TABLE `payment_type`
   ADD PRIMARY KEY (`payment_type_id`);
 
 --
--- Indexes for table `sport`
---
-ALTER TABLE `sport`
-  ADD PRIMARY KEY (`sport_id`);
-
---
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
@@ -578,12 +549,6 @@ ALTER TABLE `student_job_application`
 --
 ALTER TABLE `student_language`
   ADD PRIMARY KEY (`language_id`,`student_id`), ADD KEY `student_id` (`student_id`);
-
---
--- Indexes for table `student_sport`
---
-ALTER TABLE `student_sport`
-  ADD PRIMARY KEY (`sport_id`,`student_id`), ADD KEY `student_id` (`student_id`);
 
 --
 -- Indexes for table `transaction`
@@ -683,11 +648,6 @@ ALTER TABLE `payment`
 --
 ALTER TABLE `payment_type`
   MODIFY `payment_type_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sport`
---
-ALTER TABLE `sport`
-  MODIFY `sport_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `student`
 --
@@ -815,13 +775,6 @@ ADD CONSTRAINT `student_job_application_ibfk_2` FOREIGN KEY (`job_id`) REFERENCE
 ALTER TABLE `student_language`
 ADD CONSTRAINT `student_language_ibfk_1` FOREIGN KEY (`language_id`) REFERENCES `language` (`language_id`),
 ADD CONSTRAINT `student_language_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`);
-
---
--- Constraints for table `student_sport`
---
-ALTER TABLE `student_sport`
-ADD CONSTRAINT `student_sport_ibfk_1` FOREIGN KEY (`sport_id`) REFERENCES `sport` (`sport_id`),
-ADD CONSTRAINT `student_sport_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`);
 
 --
 -- Constraints for table `transaction`
