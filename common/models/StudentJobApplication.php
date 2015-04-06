@@ -20,6 +20,11 @@ use Yii;
  */
 class StudentJobApplication extends \yii\db\ActiveRecord
 {
+    //Options for `application_hidden` column
+    //This option allows employers to hide or show an applicant
+    const HIDDEN_TRUE = 1;
+    const HIDDEN_FALSE = 0;
+    
     /**
      * @inheritdoc
      */
