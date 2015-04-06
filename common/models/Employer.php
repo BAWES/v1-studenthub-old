@@ -34,6 +34,11 @@ use Yii;
  */
 class Employer extends \yii\db\ActiveRecord
 {
+    //Email notification preference values for `employer_email_preference`
+    const NOTIFICATION_OFF = 0;
+    const NOTIFICATION_DAILY = 1;
+    const NOTIFICATION_WEEKLY = 2;
+    
     /**
      * @inheritdoc
      */
