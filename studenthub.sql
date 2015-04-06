@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 06, 2015 at 11:53 AM
+-- Generation Time: Apr 06, 2015 at 12:40 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -334,9 +334,8 @@ CREATE TABLE IF NOT EXISTS `student_job_application` (
   `job_id` int(11) unsigned NOT NULL,
   `application_answer_1` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `application_answer_2` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `application_date_apply` date NOT NULL,
-  `application_unlocked` tinyint(4) NOT NULL DEFAULT '0' COMMENT '(0) Locked, (1) Unlocked',
-  `application_hidden` int(11) NOT NULL
+  `application_hidden` tinyint(11) NOT NULL,
+  `application_date_apply` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
