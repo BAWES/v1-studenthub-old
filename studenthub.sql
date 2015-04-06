@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 06, 2015 at 12:40 PM
+-- Generation Time: Apr 06, 2015 at 12:48 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -236,12 +236,13 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `notification_employer` (
-  `notification_employer_id` int(11) unsigned NOT NULL,
+  `notification_id` int(11) unsigned NOT NULL,
   `employer_id` int(11) unsigned NOT NULL,
   `student_id` int(11) unsigned NOT NULL,
   `job_id` int(11) unsigned NOT NULL,
-  `notification_datetime` datetime NOT NULL,
-  `notication_sent` tinyint(11) NOT NULL DEFAULT '0' COMMENT 'False (0), True (1)'
+  `notication_sent` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'False (0), True (1)',
+  `notification_viewed` tinyint(4) NOT NULL,
+  `notification_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -251,11 +252,12 @@ CREATE TABLE IF NOT EXISTS `notification_employer` (
 --
 
 CREATE TABLE IF NOT EXISTS `notification_student` (
-  `notification_student_id` int(11) unsigned NOT NULL,
+  `notification_id` int(11) unsigned NOT NULL,
   `student_id` int(11) unsigned NOT NULL,
   `job_id` int(11) unsigned NOT NULL,
-  `notification_datetime` date NOT NULL,
-  `notification_sent` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'False (0), True (1)'
+  `notification_sent` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'False (0), True (1)',
+  `notification_viewed` tinyint(4) NOT NULL,
+  `notification_datetime` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -495,13 +497,13 @@ ALTER TABLE `migration`
 -- Indexes for table `notification_employer`
 --
 ALTER TABLE `notification_employer`
-  ADD PRIMARY KEY (`notification_employer_id`), ADD KEY `employer_id` (`employer_id`), ADD KEY `student_id` (`student_id`), ADD KEY `job_id` (`job_id`);
+  ADD PRIMARY KEY (`notification_id`), ADD KEY `employer_id` (`employer_id`), ADD KEY `student_id` (`student_id`), ADD KEY `job_id` (`job_id`);
 
 --
 -- Indexes for table `notification_student`
 --
 ALTER TABLE `notification_student`
-  ADD PRIMARY KEY (`notification_student_id`), ADD KEY `student_id` (`student_id`), ADD KEY `job_id` (`job_id`);
+  ADD PRIMARY KEY (`notification_id`), ADD KEY `student_id` (`student_id`), ADD KEY `job_id` (`job_id`);
 
 --
 -- Indexes for table `payment`
@@ -609,12 +611,12 @@ ALTER TABLE `major`
 -- AUTO_INCREMENT for table `notification_employer`
 --
 ALTER TABLE `notification_employer`
-  MODIFY `notification_employer_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `notification_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `notification_student`
 --
 ALTER TABLE `notification_student`
-  MODIFY `notification_student_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `notification_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `payment`
 --
