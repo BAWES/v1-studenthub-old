@@ -47,6 +47,7 @@ AppAsset::register($this);
                         'items' => [
                             ['label' => 'Industries', 'url' => ['/industry/index']],
                             ['label' => 'Degrees', 'url' => ['/degree/index']],
+                            ['label' => 'Majors', 'url' => ['/major/index']],
                             ['label' => 'Languages', 'url' => ['/language/index']],
                             ['label' => 'Countries', 'url' => ['/country/index']],
                             ['label' => 'Cities', 'url' => ['/city/index']],
