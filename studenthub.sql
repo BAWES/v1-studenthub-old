@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 07, 2015 at 11:21 AM
+-- Generation Time: Apr 07, 2015 at 12:48 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -554,7 +554,18 @@ CREATE TABLE IF NOT EXISTS `jobtype` (
   `jobtype_id` int(11) unsigned NOT NULL,
   `jobtype_name_ar` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `jobtype_name_en` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `jobtype`
+--
+
+INSERT INTO `jobtype` (`jobtype_id`, `jobtype_name_ar`, `jobtype_name_en`) VALUES
+(1, 'متدرب', 'Intern'),
+(2, 'متطوع', 'Volunteer'),
+(3, 'وظيفة بدوام واحد', 'One-time Job'),
+(4, 'وظيفة بدوام جزئي', 'Part-time Job'),
+(5, 'وظيفة بدوام كامل', 'Full-time Job');
 
 -- --------------------------------------------------------
 
@@ -2735,7 +2746,7 @@ ALTER TABLE `job`
 -- AUTO_INCREMENT for table `jobtype`
 --
 ALTER TABLE `jobtype`
-  MODIFY `jobtype_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `jobtype_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `language`
 --
