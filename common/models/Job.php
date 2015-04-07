@@ -64,7 +64,14 @@ class Job extends \yii\db\ActiveRecord
             [['jobtype_id', 'employer_id', 'job_pay', 'job_max_applicants', 'job_current_num_applicants', 'job_status'], 'integer'],
             [['job_startdate', 'job_created_datetime'], 'safe'],
             [['job_price_per_applicant'], 'number'],
-            [['job_title', 'job_responsibilites', 'job_other_quilifications', 'job_desired_skill', 'job_compensation', 'job_question_1', 'job_question_2'], 'string', 'max' => 255]
+            [['job_title', 'job_responsibilites', 'job_other_quilifications', 'job_desired_skill', 'job_compensation', 'job_question_1', 'job_question_2'], 'string', 'max' => 255],
+            
+            //`job_status` rules
+            ['job_status', 'default', 'value' => self::STATUS_DRAFT],
+            ['job_status', 'in', 'range' => [self::STATUS_DRAFT, self::STATUS_OPEN, self::STATUS_CLOSED]],
+            
+            //`job_pay` rules
+            ['job_pay', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
         ];
     }
 
