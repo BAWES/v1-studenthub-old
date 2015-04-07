@@ -28,6 +28,7 @@ use Yii;
  * @property string $student_skill
  * @property string $student_hobby
  * @property string $student_club
+ * @property string $student_sport 
  * @property string $student_verfication_attachment
  * @property integer $student_email_verfication
  * @property integer $student_id_verfication
@@ -90,7 +91,7 @@ class Student extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['degree_id', 'major_id', 'country_id', 'university_id', 'student_lastname', 'student_dob', 'student_status', 'student_enrolment_year', 'student_graduating_year', 'student_gpa', 'student_gender', 'student_contact_number', 'student_interestingfacts', 'student_cv', 'student_skill', 'student_hobby', 'student_club', 'student_verfication_attachment', 'student_email_preference', 'student_email', 'student_auth_key', 'student_datetime'], 'required'],
+            [['degree_id', 'major_id', 'country_id', 'university_id', 'student_lastname', 'student_dob', 'student_status', 'student_enrolment_year', 'student_sport', 'student_graduating_year', 'student_gpa', 'student_gender', 'student_contact_number', 'student_interestingfacts', 'student_cv', 'student_skill', 'student_hobby', 'student_club', 'student_verfication_attachment', 'student_email_preference', 'student_email', 'student_auth_key', 'student_datetime'], 'required'],
             [['degree_id', 'major_id', 'country_id', 'university_id', 'student_status', 'student_gender', 'student_transportation', 'student_email_verfication', 'student_id_verfication', 'student_email_preference'], 'integer'],
             [['student_dob', 'student_enrolment_year', 'student_graduating_year', 'student_datetime'], 'safe'],
             [['student_gpa'], 'number'],
@@ -140,6 +141,7 @@ class Student extends \yii\db\ActiveRecord
             'student_skill' => Yii::t('app', 'Student Skill'),
             'student_hobby' => Yii::t('app', 'Student Hobby'),
             'student_club' => Yii::t('app', 'Student Club'),
+            'student_sport' => Yii::t('app', 'Student Sport'),
             'student_verfication_attachment' => Yii::t('app', 'Student Verfication Attachment'),
             'student_email_verfication' => Yii::t('app', 'Student Email Verfication'),
             'student_id_verfication' => Yii::t('app', 'Student Id Verfication'),
