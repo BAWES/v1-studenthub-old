@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 06, 2015 at 12:48 PM
+-- Generation Time: Apr 07, 2015 at 06:01 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -19,6 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `studenthub`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `admin_id` int(11) NOT NULL,
+  `admin_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `admin_auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `admin_password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `admin_password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `admin_datetime` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -313,6 +328,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_skill` text COLLATE utf8_unicode_ci NOT NULL,
   `student_hobby` text COLLATE utf8_unicode_ci NOT NULL,
   `student_club` text COLLATE utf8_unicode_ci NOT NULL,
+  `student_sport` text COLLATE utf8_unicode_ci NOT NULL,
   `student_verfication_attachment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `student_email_verfication` tinyint(4) NOT NULL DEFAULT '0',
   `student_id_verfication` tinyint(255) NOT NULL DEFAULT '0',
@@ -360,10 +376,10 @@ CREATE TABLE IF NOT EXISTS `student_language` (
 CREATE TABLE IF NOT EXISTS `transaction` (
   `transaction_id` int(11) unsigned NOT NULL,
   `job_id` int(11) unsigned NOT NULL,
-  `transaction_price_total` decimal(11,0) NOT NULL,
   `transaction_number_of_applicants` int(11) NOT NULL,
-  `transaction_datetime` datetime NOT NULL,
-  `transaction_price_per_transaction` decimal(10,0) NOT NULL
+  `transaction_price_per_applicant` decimal(10,0) NOT NULL,
+  `transaction_price_total` decimal(11,0) NOT NULL,
+  `transaction_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -380,34 +396,15 @@ CREATE TABLE IF NOT EXISTS `university` (
   `university_id_template` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'A photo to define what verification we require'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` smallint(6) NOT NULL DEFAULT '10',
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Khalid', 'wXdMD0681gDZ-RjrH3ZvroMRW6J--CDt', '$2y$13$TsAOR9eXiqBwaUhaVtbWSOz482OlnR4TfNUmFUYIn1dgmkYx.b5dK', 'RnjeLgtzNjv1vKetaWaeUHpiR3pcNbDS_1428315691', 'khalid@bawes.net', 10, 1428314763, 1428315691);
-
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`);
 
 --
 -- Indexes for table `city`
@@ -548,15 +545,14 @@ ALTER TABLE `university`
   ADD PRIMARY KEY (`university_id`);
 
 --
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `city`
 --
@@ -647,11 +643,6 @@ ALTER TABLE `transaction`
 --
 ALTER TABLE `university`
   MODIFY `university_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
