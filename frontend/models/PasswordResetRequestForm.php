@@ -37,7 +37,6 @@ class PasswordResetRequestForm extends Model
     {
         /* @var $admin Admin */
         $admin = Admin::findOne([
-            'status' => Admin::STATUS_ACTIVE,
             'email' => $this->email,
         ]);
 
