@@ -22,7 +22,6 @@ class PasswordResetRequestForm extends Model
             ['email', 'email'],
             ['email', 'exist',
                 'targetClass' => '\common\models\Admin',
-                'filter' => ['status' => Admin::STATUS_ACTIVE],
                 'message' => 'There is no admin with such email.'
             ],
         ];
