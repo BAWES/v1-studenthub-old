@@ -43,7 +43,7 @@ AppAsset::register($this);
                     ['label' => 'Home', 'url' => ['/site/index']],
                     ['label' => 'Admins', 'url' => ['/admin/index']],
                     [
-                        'label' => 'Controls',
+                        'label' => 'Pre-set Controls',
                         'items' => [
                             ['label' => 'Countries', 'url' => ['/country/index']],
                             ['label' => 'Cities', 'url' => ['/city/index']],
