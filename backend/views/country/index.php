@@ -29,7 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'country_nationality_name_en',
             'country_nationality_name_ar',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}',
+            ],
         ],
     ]); ?>
 
