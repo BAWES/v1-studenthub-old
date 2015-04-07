@@ -35,6 +35,7 @@ class Admin extends ActiveRecord implements IdentityInterface {
     public function rules() {
         return [
             [['admin_name' ,'admin_email', 'admin_password_hash'], 'required'],
+            [['admin_email'], 'email'],
         ];
     }
 
@@ -58,7 +59,7 @@ class Admin extends ActiveRecord implements IdentityInterface {
             'admin_name' => Yii::t('app', 'Admin Name'), 
             'admin_email' => Yii::t('app', 'Admin Email'),
             'admin_auth_key' => Yii::t('app', 'Admin Auth Key'),
-            'admin_password_hash' => Yii::t('app', 'Admin Password Hash'),
+            'admin_password_hash' => Yii::t('app', 'Admin Password'),
             'admin_password_reset_token' => Yii::t('app', 'Admin Password Reset Token'),
             'admin_datetime' => Yii::t('app', 'Admin Datetime'),
         ];
