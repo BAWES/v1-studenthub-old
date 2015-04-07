@@ -39,9 +39,19 @@ AppAsset::register($this);
             } else {
                 $menuItems = 
                 [
+                    
                     ['label' => 'Home', 'url' => ['/site/index']],
                     ['label' => 'Admins', 'url' => ['/admin/index']],
-                    ['label' => 'Countries', 'url' => ['/country/index']],
+                    [
+                        'label' => 'Controls',
+                        'items' => [
+                            ['label' => 'Countries', 'url' => ['/country/index']],
+                            ['label' => 'Cities', 'url' => ['/city/index']],
+                            ['label' => 'Degrees', 'url' => ['/degree/index']],
+                        ],
+                    ],
+                    
+                    
                     [
                         'label' => 'Logout (' . Yii::$app->user->identity->admin_name . ')',
                         'url' => ['/site/logout'],
