@@ -40,8 +40,8 @@ AppAsset::register($this);
                 $menuItems = 
                 [
                     ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'Admin', 'url' => ['/admin/index']],
-                    ['label' => 'Country', 'url' => ['/country/index']],
+                    ['label' => 'Admins', 'url' => ['/admin/index']],
+                    ['label' => 'Countries', 'url' => ['/country/index']],
                     [
                         'label' => 'Logout (' . Yii::$app->user->identity->admin_name . ')',
                         'url' => ['/site/logout'],
