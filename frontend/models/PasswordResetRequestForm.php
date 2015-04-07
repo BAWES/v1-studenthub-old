@@ -1,7 +1,7 @@
 <?php
 namespace frontend\models;
 
-use common\models\User;
+use common\models\Admin;
 use yii\base\Model;
 
 /**
@@ -21,9 +21,9 @@ class PasswordResetRequestForm extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'exist',
-                'targetClass' => '\common\models\User',
-                'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'There is no user with such email.'
+                'targetClass' => '\common\models\Admin',
+                'filter' => ['status' => Admin::STATUS_ACTIVE],
+                'message' => 'There is no admin with such email.'
             ],
         ];
     }
@@ -35,19 +35,19 @@ class PasswordResetRequestForm extends Model
      */
     public function sendEmail()
     {
-        /* @var $user User */
-        $user = User::findOne([
-            'status' => User::STATUS_ACTIVE,
+        /* @var $admin Admin */
+        $admin = Admin::findOne([
+            'status' => Admin::STATUS_ACTIVE,
             'email' => $this->email,
         ]);
 
-        if ($user) {
-            if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
-                $user->generatePasswordResetToken();
+        if ($admin) {
+            if (!Admin::isPasswordResetTokenValid($admin->password_reset_token)) {
+                $admin->generatePasswordResetToken();
             }
 
-            if ($user->save()) {
-                return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['user' => $user])
+            if ($admin->save()) {
+                return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['user' => $admin])
                     ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name . ' robot'])
                     ->setTo($this->email)
                     ->setSubject('Password reset for ' . \Yii::$app->name)
