@@ -40,6 +40,7 @@ AppAsset::register($this);
                 $menuItems = 
                 [
                     ['label' => 'Home', 'url' => ['/site/index']],
+                    ['label' => 'Country', 'url' => ['/country/index']],
                     [
                         'label' => 'Logout (' . Yii::$app->user->identity->admin_name . ')',
                         'url' => ['/site/logout'],
@@ -66,8 +67,8 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left">&copy; BAWES <?= date('Y') ?></p>
+        <p class="pull-right">Built Awesome</p>
         </div>
     </footer>
 
