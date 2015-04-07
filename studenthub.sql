@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 07, 2015 at 08:04 AM
+-- Generation Time: Apr 07, 2015 at 11:21 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -34,14 +34,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `admin_password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `admin_password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `admin_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_email`, `admin_auth_key`, `admin_password_hash`, `admin_password_reset_token`, `admin_datetime`) VALUES
-(3, 'Khalid', 'khalid@bawes.net', 'CT7I0NqtWqYJD1idnQbf1ErsCf_IEfHi', '$2y$13$k6SWBu4ITVbf0MhECQbB/ucCtizr0QKjauz5/PDiLckwftNaGh3z.', 'DFSK02Nc368H_cNfLPBN3KH_dBWakIEh_1428392873', '2015-04-07 09:45:54');
+(3, 'Khalid', 'khalid@bawes.net', 'CT7I0NqtWqYJD1idnQbf1ErsCf_IEfHi', '$2y$13$19xvlFkaK.V35y98MhDjP.FSJLSZpJGXN3YUzY9i6OE0IjSRIbuui', '25bm_z6lZ_VGLlwPCxyMMgg0z2ixFKZb_1428396173', '2015-04-07 09:45:54');
 
 -- --------------------------------------------------------
 
@@ -378,6 +378,8 @@ CREATE TABLE IF NOT EXISTS `employer` (
   `city_id` int(11) unsigned NOT NULL,
   `employer_company_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `employer_logo` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `employer_background_image` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `employer_background_color` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `employer_website` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `employer_company_desc` text COLLATE utf8_unicode_ci NOT NULL,
   `employer_num_employees` int(11) NOT NULL,
@@ -2532,7 +2534,9 @@ CREATE TABLE IF NOT EXISTS `university` (
   `university_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `university_domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'Example: @gust.edu.kw',
   `university_require_verify` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'Require Verification (0); Does not require verification (1)',
-  `university_id_template` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'A photo to define what verification we require'
+  `university_id_template` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'A photo to define what verification we require',
+  `university_logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `university_graphic` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -2691,7 +2695,7 @@ ALTER TABLE `university`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `city`
 --
