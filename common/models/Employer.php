@@ -59,9 +59,10 @@ class Employer extends \yii\db\ActiveRecord
             [['employer_credit'], 'number'],
             [['employer_datetime'], 'safe'],
             [['employer_company_name', 'employer_website', 'employer_contact_firstname', 'employer_contact_lastname', 'employer_email', 'employer_password_hash', 'employer_password_reset_token'], 'string', 'max' => 255],
-            [['employer_logo'], 'string', 'max' => 128],
-            [['employer_contact_number'], 'string', 'max' => 64],
-            [['employer_auth_key'], 'string', 'max' => 32]
+            
+            //Email preference rules
+            ['employer_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
+            ['employer_email_preference', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
         ];
     }
 
