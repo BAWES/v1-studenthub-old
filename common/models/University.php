@@ -12,6 +12,9 @@ use Yii;
  * @property string $university_domain
  * @property integer $university_require_verify
  * @property string $university_id_template
+ * @property string $university_logo 
+ * @property string $university_graphic 
+
  *
  * @property Filter[] $filters
  * @property Student[] $students
@@ -57,6 +60,8 @@ class University extends \yii\db\ActiveRecord
             'university_domain' => Yii::t('app', 'University Domain'),
             'university_require_verify' => Yii::t('app', 'University Require Verify'),
             'university_id_template' => Yii::t('app', 'University Id Template'),
+            'university_logo' => Yii::t('app', 'University Logo'), 
+            'university_graphic' => Yii::t('app', 'University Graphic'), 
         ];
     }
 
