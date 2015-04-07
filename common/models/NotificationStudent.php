@@ -45,7 +45,15 @@ class NotificationStudent extends \yii\db\ActiveRecord
         return [
             [['student_id', 'job_id', 'notification_viewed', 'notification_datetime'], 'required'],
             [['student_id', 'job_id', 'notification_sent', 'notification_viewed'], 'integer'],
-            [['notification_datetime'], 'safe']
+            [['notification_datetime'], 'safe'],
+            
+            //Rules for notification viewed
+            ['notification_viewed', 'default', 'value' => self::VIEWED_FALSE],
+            ['notification_viewed', 'in', 'range' => [self::VIEWED_TRUE, self::VIEWED_TRUE]],
+            
+            //Rules for notification sent
+            ['notification_sent', 'default', 'value' => self::SENT_FALSE],
+            ['notification_sent', 'in', 'range' => [self::SENT_TRUE, self::SENT_FALSE]],
         ];
     }
 
