@@ -45,6 +45,7 @@ AppAsset::register($this);
                     [
                         'label' => 'Pre-set Controls',
                         'items' => [
+                            ['label' => 'Job Types', 'url' => ['/jobtype/index']],
                             ['label' => 'Industries', 'url' => ['/industry/index']],
                             ['label' => 'Degrees', 'url' => ['/degree/index']],
                             ['label' => 'Majors', 'url' => ['/major/index']],
