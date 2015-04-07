@@ -97,7 +97,19 @@ class Student extends \yii\db\ActiveRecord
             [['student_interestingfacts', 'student_skill', 'student_hobby', 'student_club'], 'string'],
             [['student_firstname', 'student_lastname', 'student_photo', 'student_cv', 'student_verfication_attachment', 'student_email', 'student_password_hash', 'student_password_reset_token'], 'string', 'max' => 255],
             [['student_contact_number'], 'string', 'max' => 64],
-            [['student_auth_key'], 'string', 'max' => 32]
+            [['student_auth_key'], 'string', 'max' => 32],
+            
+            //Default values
+            ['student_id_verification', 'default', 'value' => self::ID_NOT_VERIFIED],
+            ['student_email_verification', 'default', 'value' => self::NOTIFICATION_DAILY],
+            
+            //Constant options
+            ['student_status', 'in', 'range' => [self::STATUS_FULL_TIME, self::STATUS_PART_TIME]],
+            ['student_gender', 'in', 'range' => [self::GENDER_MALE, self::GENDER_FEMALE]],
+            ['student_email_verification', 'in', 'range' => [self::EMAIL_VERIFIED, self::EMAIL_NOT_VERIFIED]],
+            ['student_transportation', 'in', 'range' => [self::TRANSPORTATION_AVAILABLE, self::TRANSPORTATION_NOT_AVAILABLE]],
+            ['student_id_verification', 'in', 'range' => [self::ID_VERIFIED, self::ID_NOT_VERIFIED]],
+            ['student_email_preference', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
         ];
     }
 
