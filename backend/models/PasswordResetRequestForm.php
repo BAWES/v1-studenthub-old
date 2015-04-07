@@ -22,6 +22,7 @@ class PasswordResetRequestForm extends Model
             ['email', 'email'],
             ['email', 'exist',
                 'targetClass' => '\common\models\Admin',
+                'targetAttribute' => 'admin_email',
                 'message' => 'There is no admin with such email.'
             ],
         ];
@@ -40,12 +41,12 @@ class PasswordResetRequestForm extends Model
         ]);
 
         if ($admin) {
-            if (!Admin::isPasswordResetTokenValid($admin->password_reset_token)) {
+            if (!Admin::isPasswordResetTokenValid($admin->admin_password_reset_token)) {
                 $admin->generatePasswordResetToken();
             }
 
             if ($admin->save()) {
-                return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['user' => $admin])
+                return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['admin' => $admin])
                     ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name . ' robot'])
                     ->setTo($this->email)
                     ->setSubject('Password reset for ' . \Yii::$app->name)

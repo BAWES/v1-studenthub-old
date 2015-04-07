@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 07, 2015 at 07:35 AM
+-- Generation Time: Apr 07, 2015 at 08:04 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_email`, `admin_auth_key`, `admin_password_hash`, `admin_password_reset_token`, `admin_datetime`) VALUES
-(3, 'Khalid', 'khalid@bawes.net', 'CT7I0NqtWqYJD1idnQbf1ErsCf_IEfHi', '$2y$13$k6SWBu4ITVbf0MhECQbB/ucCtizr0QKjauz5/PDiLckwftNaGh3z.', NULL, '2015-04-07 09:45:54');
+(3, 'Khalid', 'khalid@bawes.net', 'CT7I0NqtWqYJD1idnQbf1ErsCf_IEfHi', '$2y$13$k6SWBu4ITVbf0MhECQbB/ucCtizr0QKjauz5/PDiLckwftNaGh3z.', 'DFSK02Nc368H_cNfLPBN3KH_dBWakIEh_1428392873', '2015-04-07 09:45:54');
 
 -- --------------------------------------------------------
 
@@ -354,7 +354,17 @@ CREATE TABLE IF NOT EXISTS `degree` (
   `degree_id` int(11) unsigned NOT NULL,
   `degree_name_en` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `degree_name_ar` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `degree`
+--
+
+INSERT INTO `degree` (`degree_id`, `degree_name_en`, `degree_name_ar`) VALUES
+(1, 'Diploma', 'شهادة دبلوم'),
+(2, 'Bachelor', 'البكالوريوس'),
+(3, 'Masters', 'الماجستير'),
+(4, 'PhD', 'الدكتوراه');
 
 -- --------------------------------------------------------
 
@@ -2696,7 +2706,7 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT for table `degree`
 --
 ALTER TABLE `degree`
-  MODIFY `degree_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `degree_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `employer`
 --

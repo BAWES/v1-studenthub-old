@@ -100,7 +100,7 @@ class Admin extends ActiveRecord implements IdentityInterface {
         }
 
         return static::findOne([
-                    'password_reset_token' => $token,
+                    'admin_password_reset_token' => $token,
         ]);
     }
 
