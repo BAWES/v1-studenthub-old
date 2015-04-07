@@ -42,7 +42,11 @@ class StudentJobApplication extends \yii\db\ActiveRecord
             [['student_id', 'job_id', 'application_hidden', 'application_date_apply'], 'required'],
             [['student_id', 'job_id', 'application_hidden'], 'integer'],
             [['application_date_apply'], 'safe'],
-            [['application_answer_1', 'application_answer_2'], 'string', 'max' => 255]
+            [['application_answer_1', 'application_answer_2'], 'string', 'max' => 255],
+            
+            //Rules hiding of applications
+            ['application_hidden', 'default', 'value' => self::HIDDEN_FALSE],
+            ['application_hidden', 'in', 'range' => [self::HIDDEN_FALSE, self::HIDDEN_TRUE]],
         ];
     }
 
