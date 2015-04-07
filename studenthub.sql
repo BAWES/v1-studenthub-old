@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 07, 2015 at 06:01 AM
+-- Generation Time: Apr 07, 2015 at 06:46 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -28,12 +28,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `admin` (
   `admin_id` int(11) NOT NULL,
+  `admin_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `admin_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `admin_auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `admin_password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `admin_password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `admin_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_email`, `admin_auth_key`, `admin_password_hash`, `admin_password_reset_token`, `admin_datetime`) VALUES
+(3, 'Khalid', 'khalid@bawes.net', 'CT7I0NqtWqYJD1idnQbf1ErsCf_IEfHi', '$2y$13$k6SWBu4ITVbf0MhECQbB/ucCtizr0QKjauz5/PDiLckwftNaGh3z.', NULL, '2015-04-07 09:45:54');
 
 -- --------------------------------------------------------
 
@@ -552,7 +560,7 @@ ALTER TABLE `university`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `city`
 --
