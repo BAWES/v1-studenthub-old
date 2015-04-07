@@ -45,9 +45,10 @@ AppAsset::register($this);
                     [
                         'label' => 'Pre-set Controls',
                         'items' => [
+                            ['label' => 'Industries', 'url' => ['/industry/index']],
+                            ['label' => 'Degrees', 'url' => ['/degree/index']],
                             ['label' => 'Countries', 'url' => ['/country/index']],
                             ['label' => 'Cities', 'url' => ['/city/index']],
-                            ['label' => 'Degrees', 'url' => ['/degree/index']],
                         ],
                     ],
                     
