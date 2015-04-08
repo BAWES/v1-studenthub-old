@@ -96,9 +96,16 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             [['student_firstname', 'student_lastname', 'student_photo', 'student_cv', 'student_verfication_attachment', 'student_email', 'student_password_hash', 'student_password_reset_token'], 'string', 'max' => 255],
             [['student_contact_number'], 'string', 'max' => 64],
             [['student_auth_key'], 'string', 'max' => 32],
+            
+            //Unique emails
+            ['student_email', 'filter', 'filter' => 'trim'],
+            ['student_email', 'email'],
+            ['student_email', 'unique', 'targetClass' => '\common\models\Student', 'message' => 'This email address has already been taken.'],
+            
             //Default values
             ['student_id_verification', 'default', 'value' => self::ID_NOT_VERIFIED],
             ['student_email_verification', 'default', 'value' => self::NOTIFICATION_DAILY],
+            
             //Constant options
             ['student_status', 'in', 'range' => [self::STATUS_FULL_TIME, self::STATUS_PART_TIME]],
             ['student_gender', 'in', 'range' => [self::GENDER_MALE, self::GENDER_FEMALE]],
@@ -157,6 +164,32 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_password_reset_token' => Yii::t('app', 'Student Password Reset Token'),
             'student_datetime' => Yii::t('app', 'Student Datetime'),
         ];
+    }
+    
+    /**
+     * Signs user up.
+     *
+     * @return User|null the saved model or null if saving fails
+     */
+    public function signup()
+    {
+        //This signup code was taken when we were using RegisterForm model for signnup
+        //It used to have the logic for creation of students within that model
+        //now that our data is within the same activerecord model, signup might aswell trigger save for itself
+        //then return an instance of itself (static)
+        
+        /*if ($this->validate()) {
+            $admin = new Admin();
+            $admin->admin_name = $this->name;
+            $admin->admin_email = $this->email;
+            $admin->setPassword($this->password);
+            $admin->generateAuthKey();
+            if ($admin->save()) {
+                return $admin;
+            }
+        }*/
+        
+        return null;
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 namespace frontend\models;
 
-use common\models\Admin;
+use common\models\Student;
 use yii\base\Model;
 
 /**
@@ -21,8 +21,9 @@ class PasswordResetRequestForm extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'exist',
-                'targetClass' => '\common\models\Admin',
-                'message' => 'There is no admin with such email.'
+                'targetClass' => '\common\models\Student',
+                'targetAttribute' => 'student_email',
+                'message' => 'There is no student with such email.'
             ],
         ];
     }
@@ -34,19 +35,19 @@ class PasswordResetRequestForm extends Model
      */
     public function sendEmail()
     {
-        /* @var $admin Admin */
-        $admin = Admin::findOne([
-            'admin_email' => $this->email,
+        /* @var $student Student */
+        $student = Student::findOne([
+            'student_email' => $this->email,
         ]);
 
-        if ($admin) {
-            if (!Admin::isPasswordResetTokenValid($admin->password_reset_token)) {
-                $admin->generatePasswordResetToken();
+        if ($student) {
+            if (!Student::isPasswordResetTokenValid($student->student_password_reset_token)) {
+                $student->generatePasswordResetToken();
             }
 
-            if ($admin->save()) {
-                return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['user' => $admin])
-                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name . ' robot'])
+            if ($student->save()) {
+                return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['user' => $student])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                     ->setTo($this->email)
                     ->setSubject('Password reset for ' . \Yii::$app->name)
                     ->send();

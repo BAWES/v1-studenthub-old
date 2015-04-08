@@ -3,7 +3,7 @@ namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
-use common\models\Admin;
+use common\models\Student;
 
 /**
  * Login form
@@ -14,7 +14,10 @@ class LoginForm extends Model
     public $password;
     public $rememberMe = true;
 
-    private $_admin = false;
+    /**
+     * @var \common\models\Student
+     */
+    private $_student = false;
 
 
     /**
@@ -44,38 +47,38 @@ class LoginForm extends Model
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            $admin = $this->getAdmin();
-            if (!$admin || !$admin->validatePassword($this->password)) {
+            $student = $this->getStudent();
+            if (!$student || !$student->validatePassword($this->password)) {
                 $this->addError($attribute, 'Incorrect email or password.');
             }
         }
     }
 
     /**
-     * Logs in a admin using the provided email and password.
+     * Logs in a student using the provided email and password.
      *
-     * @return boolean whether the admin is logged in successfully
+     * @return boolean whether the student is logged in successfully
      */
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getAdmin(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+            return Yii::$app->user->login($this->getStudent(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         } else {
             return false;
         }
     }
 
     /**
-     * Finds admin by [[username]]
+     * Finds student by email
      *
-     * @return Admin|null
+     * @return Student|null
      */
-    public function getAdmin()
+    public function getStudent()
     {
-        if ($this->_admin === false) {
-            $this->_admin = Admin::findByEmail($this->email);
+        if ($this->_student === false) {
+            $this->_student = Student::findByEmail($this->email);
         }
 
-        return $this->_admin;
+        return $this->_student;
     }
 }
