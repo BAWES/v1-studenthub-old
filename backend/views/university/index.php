@@ -23,10 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'university_id',
-            'university_name',
+            'university_name_en',
+            'university_name_ar',
             'university_domain',
             'university_require_verify',
-            'university_id_template',
+            // 'university_id_template',
             // 'university_logo',
             // 'university_graphic',
 

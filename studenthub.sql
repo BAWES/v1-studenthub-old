@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 07, 2015 at 12:48 PM
+-- Generation Time: Apr 08, 2015 at 07:33 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -2542,13 +2542,21 @@ CREATE TABLE IF NOT EXISTS `transaction` (
 
 CREATE TABLE IF NOT EXISTS `university` (
   `university_id` int(11) unsigned NOT NULL,
-  `university_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `university_name_en` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `university_name_ar` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `university_domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'Example: @gust.edu.kw',
   `university_require_verify` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'Require Verification (0); Does not require verification (1)',
   `university_id_template` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'A photo to define what verification we require',
   `university_logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `university_graphic` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `university`
+--
+
+INSERT INTO `university` (`university_id`, `university_name_en`, `university_name_ar`, `university_domain`, `university_require_verify`, `university_id_template`, `university_logo`, `university_graphic`) VALUES
+(1, 'Khalid', '0', '', 1, 'a', '', '');
 
 --
 -- Indexes for dumped tables
@@ -2796,7 +2804,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `university`
 --
 ALTER TABLE `university`
-  MODIFY `university_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `university_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --

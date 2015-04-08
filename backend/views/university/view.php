@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\University */
 
-$this->title = $model->university_id;
+$this->title = $model->university_name_en;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Universities'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -29,7 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'university_id',
-            'university_name',
+            'university_name_en',
+            'university_name_ar',
             'university_domain',
             'university_require_verify',
             'university_id_template',

@@ -13,7 +13,9 @@ use kartik\switchinput\SwitchInput;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'university_name')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'university_name_en')->textInput(['maxlength' => 255]) ?>
+
+    <?= $form->field($model, 'university_name_ar')->textInput(['maxlength' => 255]) ?>
 
     <?= $form->field($model, 'university_domain')->textInput(['maxlength' => 255]) ?>
 
