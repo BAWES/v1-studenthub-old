@@ -41,6 +41,7 @@ class University extends \yii\db\ActiveRecord
     {
         return [
             [['university_name', 'university_id_template'], 'required'],
+            [['university_logo', 'university_graphic'], 'safe'],
             [['university_require_verify'], 'integer'],
             [['university_name', 'university_domain', 'university_id_template'], 'string', 'max' => 255],
             
