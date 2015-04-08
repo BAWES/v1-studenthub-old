@@ -21,10 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
 
-            'university_id',
+            //'university_id',
             'university_name_en',
             'university_domain',
-            'university_require_verify',
+            'isVerificationRequired',
             // 'university_id_template',
             // 'university_logo',
             // 'university_graphic',

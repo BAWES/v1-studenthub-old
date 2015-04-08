@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'university_name_en',
             'university_name_ar',
             'university_domain',
-            'university_require_verify',
+            'isVerificationRequired',
             'university_id_template',
             'university_logo',
             'university_graphic',
