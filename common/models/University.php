@@ -73,7 +73,7 @@ class University extends \yii\db\ActiveRecord {
         }
     }
 
-    /*
+    /**
      * Deletes the images associated with this record
      */
 
@@ -101,7 +101,7 @@ class University extends \yii\db\ActiveRecord {
         }
     }
     
-    /*
+    /**
      * Get if verification is required or not
      * @return string text saying if required or not
      */
