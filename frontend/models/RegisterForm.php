@@ -6,9 +6,9 @@ use yii\base\Model;
 use Yii;
 
 /**
- * Signup form
+ * Register form
  */
-class SignupForm extends Model
+class RegisterForm extends Model
 {
     public $name;
     public $email;
