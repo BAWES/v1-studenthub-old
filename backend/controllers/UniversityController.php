@@ -74,9 +74,9 @@ class UniversityController extends Controller
         $model = new University();
         
         if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post())) {
-            $model->university_logo = UploadedFile::getInstance($model, 'university_logo');
-            $model->university_graphic = UploadedFile::getInstance($model, 'university_graphic');
-            $model->university_id_template = UploadedFile::getInstance($model, 'university_id_template');
+            $model->uploadFileToAttribute('university_logo', UploadedFile::getInstance($model, 'university_logo'));
+            $model->uploadFileToAttribute('university_graphic', UploadedFile::getInstance($model, 'university_graphic'));
+            $model->uploadFileToAttribute('university_id_template', UploadedFile::getInstance($model, 'university_id_template'));
             
             if($model->save()){
                 //Update university model beforeSave and beforeDelete to delete their images on update and delete
@@ -102,9 +102,9 @@ class UniversityController extends Controller
         $model = $this->findModel($id);
         
         if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post())) {
-            $model->uploadFileAttribute('university_logo', UploadedFile::getInstance($model, 'university_logo'));
-            $model->uploadFileAttribute('university_graphic', UploadedFile::getInstance($model, 'university_graphic'));
-            $model->uploadFileAttribute('university_id_template', UploadedFile::getInstance($model, 'university_id_template'));
+            $model->uploadFileToAttribute('university_logo', UploadedFile::getInstance($model, 'university_logo'));
+            $model->uploadFileToAttribute('university_graphic', UploadedFile::getInstance($model, 'university_graphic'));
+            $model->uploadFileToAttribute('university_id_template', UploadedFile::getInstance($model, 'university_id_template'));
             
             
             if($model->save()){

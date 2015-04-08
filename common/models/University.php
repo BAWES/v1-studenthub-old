@@ -41,28 +41,30 @@ class University extends \yii\db\ActiveRecord {
         return [
             [['university_require_verify'], 'integer'],
             [['university_name_en', 'university_name_ar', 'university_domain'], 'string', 'max' => 255],
-            [['university_id_template', 'university_logo', 'university_graphic'], 'file'],
+            [['!university_id_template', '!university_logo', '!university_graphic'], 'file'],
             //Rule for university verification requirement
             ['university_require_verify', 'in', 'range' => [self::VERIFICATION_NOT_REQUIRED, self::VERIFICATION_REQUIRED]],
         ];
     }
 
-
-    
-
     
     /**
-     * Uploads file to directory and defines it within the model attribute if it has succeeded
+     * Uploads file to directory and defines it within the model attribute if it has succeeded in uploading
      * @param string $attribute attribute of this model that will be updated if the file is successfully uploaded
      * @param UploadedFile $uploadedFile instance of yii\web\UploadedFile that will be uploaded into the attribute
      */
-    public function uploadFileAttribute($attribute, $uploadedFile) {
-        
+    public function uploadFileToAttribute($attribute, $uploadedFile) {
         if ($uploadedFile) {
             $filename = Yii::$app->security->generateRandomString() . "." . $uploadedFile->extension;
             $uploadPath = Yii::getAlias('@universityImages');
 
             $uploadedFile->saveAs($uploadPath . "/" . $filename);
+            
+            //Delete old file that was stored within the attribute if exists
+            $oldFile = $uploadPath . "/" .  $this[$attribute];
+            if (file_exists($oldFile)) {
+                unlink($oldFile);
+            }
             
             //Set this models attribute to the new filename
             $this[$attribute] = $filename;
