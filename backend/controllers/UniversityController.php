@@ -79,7 +79,6 @@ class UniversityController extends Controller
             $model->uploadFileToAttribute('university_id_template', UploadedFile::getInstance($model, 'university_id_template'));
             
             if($model->save()){
-                //Update university model beforeSave and beforeDelete to delete their images on update and delete
                 return $this->redirect(['view', 'id' => $model->university_id]);
             }
         }

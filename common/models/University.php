@@ -41,13 +41,13 @@ class University extends \yii\db\ActiveRecord {
         return [
             [['university_require_verify'], 'integer'],
             [['university_name_en', 'university_name_ar', 'university_domain'], 'string', 'max' => 255],
-            [['!university_id_template', '!university_logo', '!university_graphic'], 'file'],
+            [['university_name_en', 'university_name_ar', 'university_domain'], 'required'],
+            [['university_id_template', 'university_logo', 'university_graphic'], 'file', 'extensions' => 'png, gif, jpg'],
             //Rule for university verification requirement
             ['university_require_verify', 'in', 'range' => [self::VERIFICATION_NOT_REQUIRED, self::VERIFICATION_REQUIRED]],
         ];
     }
 
-    
     /**
      * Uploads file to directory and defines it within the model attribute if it has succeeded in uploading
      * @param string $attribute attribute of this model that will be updated if the file is successfully uploaded
@@ -59,52 +59,42 @@ class University extends \yii\db\ActiveRecord {
             $uploadPath = Yii::getAlias('@universityImages');
 
             $uploadedFile->saveAs($uploadPath . "/" . $filename);
-            
+
             //Delete old file that was stored within the attribute if exists
-            $oldFile = $uploadPath . "/" .  $this[$attribute];
-            if (file_exists($oldFile)) {
+            $oldFile = $uploadPath . "/" . $this[$attribute];
+            if ($this[$attribute] && file_exists($oldFile)) {
                 unlink($oldFile);
             }
-            
+
             //Set this models attribute to the new filename
             $this[$attribute] = $filename;
+            
+            //Do not re-use this function, as it does not validate
         }
     }
 
     /*
-     * Deletes university logo image
+     * Deletes the images associated with this record
      */
 
-    public function deleteUniversityLogo() {
-        unlink(Yii::getAlias('@universityImages') . "/" . $this->university_logo);
+    public function deleteImages() {
+        if ($this->university_logo)
+            unlink(Yii::getAlias('@universityImages') . "/" . $this->university_logo);
+        if ($this->university_id_template)
+            unlink(Yii::getAlias('@universityImages') . "/" . $this->university_id_template);
+        if ($this->university_graphic)
+            unlink(Yii::getAlias('@universityImages') . "/" . $this->university_graphic);
     }
 
-    /*
-     * Deletes university id template image
-     */
-
-    public function deleteUniversityIdTemplate() {
-        unlink(Yii::getAlias('@universityImages') . "/" . $this->university_id_template);
-    }
-
-    /*
-     * Deletes university graphic image
-     */
-
-    public function deleteUniversityGraphic() {
-        unlink(Yii::getAlias('@universityImages') . "/" . $this->university_graphic);
-    }
-    
     /*
      * Function called before delete of this model entry
      */
+
     public function beforeDelete() {
         if (parent::beforeDelete()) {
             //Get rid of all image files related to this University
-            $this->deleteUniversityLogo();
-            $this->deleteUniversityIdTemplate();
-            $this->deleteUniversityGraphic();
-            
+            $this->deleteImages();
+
             return true;
         } else {
             return false;
