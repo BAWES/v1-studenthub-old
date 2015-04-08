@@ -9,6 +9,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * UniversityController implements the CRUD actions for University model.
@@ -71,14 +72,23 @@ class UniversityController extends Controller
     public function actionCreate()
     {
         $model = new University();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->university_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        
+        if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post())) {
+            $model->university_logo = UploadedFile::getInstance($model, 'university_logo');
+            $model->university_graphic = UploadedFile::getInstance($model, 'university_graphic');
+            $model->university_id_template = UploadedFile::getInstance($model, 'university_id_template');
+            
+            if($model->save()){
+                //Update university model beforeSave and beforeDelete to delete their images on update and delete
+                return $this->redirect(['view', 'id' => $model->university_id]);
+            }
         }
+        
+        
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+        
     }
 
     /**
