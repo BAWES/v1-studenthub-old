@@ -3,6 +3,10 @@
 namespace common\models;
 
 use Yii;
+use yii\base\NotSupportedException;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "student".
@@ -49,47 +53,40 @@ use Yii;
  * @property StudentLanguage[] $studentLanguages
  * @property Language[] $languages
  */
-class Student extends \yii\db\ActiveRecord
-{
+class Student extends \yii\db\ActiveRecord implements IdentityInterface {
+
     //Status values for `student_status`
     const STATUS_FULL_TIME = 1;
     const STATUS_PART_TIME = 0;
-    
     //Gender values for `student_gender`
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 0;
-    
     //Email verification values for `student_email_verification`
     const EMAIL_VERIFIED = 1;
     const EMAIL_NOT_VERIFIED = 0;
-    
     //ID verification values for `student_id_verification`
     //If this students university doesn ot require ID verification, this will automatically be set to ID_VERIFIED
     const ID_VERIFIED = 1;
     const ID_NOT_VERIFIED = 0;
-    
     //Email notification preference values for `student_email_preference`
     const NOTIFICATION_OFF = 0;
     const NOTIFICATION_DAILY = 1;
     const NOTIFICATION_WEEKLY = 2;
-    
     //Transportation options for `student_transportation`
     const TRANSPORTATION_AVAILABLE = 1;
     const TRANSPORTATION_NOT_AVAILABLE = 0;
-    
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'student';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['degree_id', 'major_id', 'country_id', 'university_id', 'student_lastname', 'student_dob', 'student_status', 'student_enrolment_year', 'student_sport', 'student_graduating_year', 'student_gpa', 'student_gender', 'student_contact_number', 'student_interestingfacts', 'student_cv', 'student_skill', 'student_hobby', 'student_club', 'student_verfication_attachment', 'student_email_preference', 'student_email', 'student_auth_key', 'student_datetime'], 'required'],
             [['degree_id', 'major_id', 'country_id', 'university_id', 'student_status', 'student_gender', 'student_transportation', 'student_email_verfication', 'student_id_verfication', 'student_email_preference'], 'integer'],
@@ -99,11 +96,9 @@ class Student extends \yii\db\ActiveRecord
             [['student_firstname', 'student_lastname', 'student_photo', 'student_cv', 'student_verfication_attachment', 'student_email', 'student_password_hash', 'student_password_reset_token'], 'string', 'max' => 255],
             [['student_contact_number'], 'string', 'max' => 64],
             [['student_auth_key'], 'string', 'max' => 32],
-            
             //Default values
             ['student_id_verification', 'default', 'value' => self::ID_NOT_VERIFIED],
             ['student_email_verification', 'default', 'value' => self::NOTIFICATION_DAILY],
-            
             //Constant options
             ['student_status', 'in', 'range' => [self::STATUS_FULL_TIME, self::STATUS_PART_TIME]],
             ['student_gender', 'in', 'range' => [self::GENDER_MALE, self::GENDER_FEMALE]],
@@ -113,12 +108,22 @@ class Student extends \yii\db\ActiveRecord
             ['student_email_preference', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
         ];
     }
+    
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'student_datetime',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'student_id' => Yii::t('app', 'Student ID'),
             'degree_id' => Yii::t('app', 'Degree ID'),
@@ -157,72 +162,186 @@ class Student extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNotificationEmployers()
-    {
+    public function getNotificationEmployers() {
         return $this->hasMany(NotificationEmployer::className(), ['student_id' => 'student_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNotificationStudents()
-    {
+    public function getNotificationStudents() {
         return $this->hasMany(NotificationStudent::className(), ['student_id' => 'student_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDegree()
-    {
+    public function getDegree() {
         return $this->hasOne(Degree::className(), ['degree_id' => 'degree_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMajor()
-    {
+    public function getMajor() {
         return $this->hasOne(Major::className(), ['major_id' => 'major_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUniversity()
-    {
+    public function getUniversity() {
         return $this->hasOne(University::className(), ['university_id' => 'university_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCountry()
-    {
+    public function getCountry() {
         return $this->hasOne(Country::className(), ['country_id' => 'country_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getStudentJobApplications()
-    {
+    public function getStudentJobApplications() {
         return $this->hasMany(StudentJobApplication::className(), ['student_id' => 'student_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getStudentLanguages()
-    {
+    public function getStudentLanguages() {
         return $this->hasMany(StudentLanguage::className(), ['student_id' => 'student_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLanguages()
-    {
+    public function getLanguages() {
         return $this->hasMany(Language::className(), ['language_id' => 'language_id'])->viaTable('student_language', ['student_id' => 'student_id']);
     }
+    
+    
+    /*
+     * Start Identity Code
+     */
+    
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentity($id) {
+        return static::findOne(['student_id' => $id]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentityByAccessToken($token, $type = null) {
+        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+    }
+
+    /**
+     * Finds student by email
+     *
+     * @param string $email
+     * @return static|null
+     */
+    public static function findByEmail($email) {
+        return static::findOne(['student_email' => $email]);
+    }
+
+    /**
+     * Finds student by password reset token
+     *
+     * @param string $token password reset token
+     * @return static|null
+     */
+    public static function findByPasswordResetToken($token) {
+        if (!static::isPasswordResetTokenValid($token)) {
+            return null;
+        }
+
+        return static::findOne([
+                    'student_password_reset_token' => $token,
+        ]);
+    }
+
+    /**
+     * Finds out if password reset token is valid
+     *
+     * @param string $token password reset token
+     * @return boolean
+     */
+    public static function isPasswordResetTokenValid($token) {
+        if (empty($token)) {
+            return false;
+        }
+        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
+        $parts = explode('_', $token);
+        $timestamp = (int) end($parts);
+        return $timestamp + $expire >= time();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getId() {
+        return $this->getPrimaryKey();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getAuthKey() {
+        return $this->student_auth_key;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function validateAuthKey($authKey) {
+        return $this->getAuthKey() === $authKey;
+    }
+
+    /**
+     * Validates password
+     *
+     * @param string $password password to validate
+     * @return boolean if password provided is valid for current user
+     */
+    public function validatePassword($password) {
+        return Yii::$app->security->validatePassword($password, $this->student_password_hash);
+    }
+
+    /**
+     * Generates password hash from password and sets it to the model
+     *
+     * @param string $password
+     */
+    public function setPassword($password) {
+        $this->student_password_hash = Yii::$app->security->generatePasswordHash($password);
+    }
+
+    /**
+     * Generates "remember me" authentication key
+     */
+    public function generateAuthKey() {
+        $this->student_auth_key = Yii::$app->security->generateRandomString();
+    }
+
+    /**
+     * Generates new password reset token
+     */
+    public function generatePasswordResetToken() {
+        $this->student_password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+    }
+
+    /**
+     * Removes password reset token
+     */
+    public function removePasswordResetToken() {
+        $this->student_password_reset_token = null;
+    }
+
 }
