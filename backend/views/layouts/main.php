@@ -42,6 +42,7 @@ AppAsset::register($this);
                     
                     ['label' => 'Home', 'url' => ['/site/index']],
                     ['label' => 'Admins', 'url' => ['/admin/index']],
+                    ['label' => 'Universities', 'url' => ['/university/index']],
                     [
                         'label' => 'Pre-set Controls',
                         'items' => [
