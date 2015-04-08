@@ -40,7 +40,6 @@ class University extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['university_require_verify'], 'integer'],
-            [['university_id_template', 'university_logo', 'university_graphic'], 'required'],
             [['university_name_en', 'university_name_ar', 'university_domain'], 'string', 'max' => 255],
             [['university_id_template', 'university_logo', 'university_graphic'], 'file'],
             //Rule for university verification requirement
@@ -49,43 +48,65 @@ class University extends \yii\db\ActiveRecord {
     }
 
 
-    public function beforeSave($insert) {
-        if (parent::beforeSave($insert)) {
-            //Upload files if they are set to files
-            $this->university_logo = $this->uploadFile($this->university_logo);
-            $this->university_graphic = $this->uploadFile($this->university_graphic);
-            $this->university_id_template = $this->uploadFile($this->university_id_template);
+    
+
+    
+    /**
+     * Uploads file to directory and defines it within the model attribute if it has succeeded
+     * @param string $attribute attribute of this model that will be updated if the file is successfully uploaded
+     * @param UploadedFile $uploadedFile instance of yii\web\UploadedFile that will be uploaded into the attribute
+     */
+    public function uploadFileAttribute($attribute, $uploadedFile) {
+        
+        if ($uploadedFile) {
+            $filename = Yii::$app->security->generateRandomString() . "." . $uploadedFile->extension;
+            $uploadPath = Yii::getAlias('@universityImages');
+
+            $uploadedFile->saveAs($uploadPath . "/" . $filename);
             
-            //Get the dirty/old attributes and values, then delete the files
-            
+            //Set this models attribute to the new filename
+            $this[$attribute] = $filename;
+        }
+    }
+
+    /*
+     * Deletes university logo image
+     */
+
+    public function deleteUniversityLogo() {
+        unlink(Yii::getAlias('@universityImages') . "/" . $this->university_logo);
+    }
+
+    /*
+     * Deletes university id template image
+     */
+
+    public function deleteUniversityIdTemplate() {
+        unlink(Yii::getAlias('@universityImages') . "/" . $this->university_id_template);
+    }
+
+    /*
+     * Deletes university graphic image
+     */
+
+    public function deleteUniversityGraphic() {
+        unlink(Yii::getAlias('@universityImages') . "/" . $this->university_graphic);
+    }
+    
+    /*
+     * Function called before delete of this model entry
+     */
+    public function beforeDelete() {
+        if (parent::beforeDelete()) {
+            //Get rid of all image files related to this University
+            $this->deleteUniversityLogo();
+            $this->deleteUniversityIdTemplate();
+            $this->deleteUniversityGraphic();
             
             return true;
         } else {
             return false;
         }
-    }
-    
-    /**
-     * Uploads image file to respective directory if the file is an instance of yii\web\UploadedFile
-     * @param mixed $uploadedFile a variable that will be uploaded if it is an instance of yii\web\UploadedFile
-     * @return string Either new filename or old filename to be stored in that attribute
-     */
-    private function uploadFile($uploadedFile){
-        //If $uploadedFile is not an instance of yii\web\UploadedFile, return it
-        if (!$uploadedFile instanceof UploadedFile) {
-            return $uploadedFile;
-        }
-        
-        
-        if($uploadedFile) {
-            $filename = Yii::$app->security->generateRandomString().".".$uploadedFile->extension;
-            $uploadPath = Yii::getAlias('@universityImages');
-            
-            $uploadedFile->saveAs($uploadPath.$filename);
-            return $filename;
-        }
-        
-        return $uploadedFile;
     }
 
     /**
