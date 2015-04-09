@@ -8,8 +8,8 @@
 		{
 			"id":"states",
 			"title":"States",
-			"map":"assets/img/map_svg.svg",
-			"minimap":"assets/img/us-small.jpg",
+			"map":"assets/images/map_svg.svg",
+			"minimap":"assets/images/us-small.jpg",
 			"locations":[
 				{
 					"id":"ca",

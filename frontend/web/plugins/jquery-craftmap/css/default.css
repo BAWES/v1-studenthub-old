@@ -47,7 +47,7 @@ text-decoration:none;
 
 
 .preloader {
-background:url(../img/loader.gif) no-repeat center #fff;
+background:url(../images/loader.gif) no-repeat center #fff;
 }
 
 
@@ -94,7 +94,7 @@ background:url(../img/loader.gif) no-repeat center #fff;
 	height:61px;
 	outline:none;
 	background:url(../images/marker.html) no-repeat;
-	background:url(../img/mapMarker.png) no-repeat;
+	background:url(../images/mapMarker.png) no-repeat;
 	cursor:pointer;
 }
 .popup .close {
@@ -106,7 +106,7 @@ background:url(../img/loader.gif) no-repeat center #fff;
 	width:16px;
 	height:16px;
 	outline:none;
-	background:url(../img/close.gif) no-repeat;
+	background:url(../images/close.gif) no-repeat;
 	cursor:pointer;
 }
 
