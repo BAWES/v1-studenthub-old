@@ -15,29 +15,11 @@ TemplateAsset::register($this);
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <meta charset="utf-8" />
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
 
-    <!-- BEGIN PLUGIN CSS -->
-    <link href="plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen"/>
-    <!-- END PLUGIN CSS -->
-    <!-- BEGIN CORE CSS FRAMEWORK -->
-    <link href="plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="plugins/boostrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-    <link href="plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
-    <link href="css/animate.min.css" rel="stylesheet" type="text/css"/>
-    <link href="plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css"/>
-    <!-- END CORE CSS FRAMEWORK -->
-    <!-- BEGIN CSS TEMPLATE -->
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
-    <link href="css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
-    <!-- END CSS TEMPLATE -->
     <?php $this->head() ?>
 </head>
 <!-- END HEAD -->
