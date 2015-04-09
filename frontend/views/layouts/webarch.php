@@ -42,7 +42,7 @@ TemplateAsset::register($this);
                     <ul class="nav pull-right notifcation-center">	
                         <li class="dropdown" id="header_task_bar"> <a href="index.html" class="dropdown-toggle active" data-toggle=""> <div class="iconset top-home"></div> </a> </li>
                         <li class="dropdown" id="header_inbox_bar" > <a href="email.html" class="dropdown-toggle" > <div class="iconset top-messages"></div>  <span class="badge" id="msgs-badge">2</span> </a></li>
-                        <li class="dropdown" id="portrait-chat-toggler" style="display:none"> <a href="#sidr" class="chat-menu-toggle"> <div class="iconset top-chat-white "></div> </a> </li>        
+                            
                     </ul>
                 </div>
                 <!-- END RESPONSIVE MENU TOGGLER --> 
@@ -157,18 +157,6 @@ TemplateAsset::register($this);
                                 </ul>
                             </li> 
                             <li class="quicklinks"> <span class="h-seperate"></span></li> 
-                            <li class="quicklinks"> 	
-                                <a id="chat-menu-toggle" href="#sidr" class="chat-menu-toggle" ><div class="iconset top-chat-dark "><span class="badge badge-important hide" id="chat-message-count">1</span></div>
-                                </a> 
-                                <div class="simple-chat-popup chat-menu-toggle hide" >
-                                    <div class="simple-chat-popup-arrow"></div><div class="simple-chat-popup-inner">
-                                        <div style="width:100px">
-                                            <div class="semi-bold">David Nester</div>
-                                            <div class="message">Hey you there </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li> 
                         </ul>
                     </div>
                     <!-- END CHAT TOGGLER -->
@@ -285,70 +273,12 @@ TemplateAsset::register($this);
                                 </li>
                             </ul>
                         </li>
-                        <li class="hidden-lg hidden-md hidden-xs" id="more-widgets" > <a href="javascript:;"> <i class="fa fa-plus"></i></a> 
-                            <ul class="sub-menu">
-                                <li class="side-bar-widgets">
-                                    <p class="menu-title">FOLDER <span class="pull-right"><a href="#" class="create-folder"><i class="icon-plus"></i></a></span></p>
-                                    <ul class="folders" >
-                                        <li><a href="#"><div class="status-icon green"></div> My quick tasks </a> </li>
-                                        <li><a href="#"><div class="status-icon red"></div> To do list </a> </li>
-                                        <li><a href="#"><div class="status-icon blue"></div> Projects </a> </li>
-                                        <li class="folder-input" style="display:none"><input type="text" placeholder="Name of folder" class="no-boarder folder-name" name="" id="folder-name"></li>
-                                    </ul>
-                                    <p class="menu-title">PROJECTS </p>
-                                    <div class="status-widget">
-                                        <div class="status-widget-wrapper">
-                                            <div class="title">Freelancer<a href="#" class="remove-widget"><i class="icon-custom-cross"></i></a></div>
-                                            <p>Redesign home page</p>
-                                        </div>
-                                    </div>
-                                    <div class="status-widget">
-                                        <div class="status-widget-wrapper">
-                                            <div class="title">envato<a href="#" class="remove-widget"><i class="icon-custom-cross"></i></a></div>
-                                            <p>Statistical report</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>    
                     </ul>
-                    <div class="side-bar-widgets">
-                        <p class="menu-title">FOLDER <span class="pull-right"><a href="#" class="create-folder"> <i class="fa fa-plus"></i></a></span></p>
-                        <ul class="folders" >
-                            <li><a href="#"><div class="status-icon green"></div> My quick tasks </a> </li>
-                            <li><a href="#"><div class="status-icon red"></div> To do list </a> </li>
-                            <li><a href="#"><div class="status-icon blue"></div> Projects </a> </li>
-                            <li class="folder-input" style="display:none"><input type="text" placeholder="Name of folder" class="no-boarder folder-name" name="" ></li>
-                        </ul>
-                        <p class="menu-title">PROJECTS </p>
-                        <div class="status-widget">
-                            <div class="status-widget-wrapper">
-                                <div class="title">Freelancer<a href="#" class="remove-widget"><i class="icon-custom-cross"></i></a></div>
-                                <p>Redesign home page</p>
-                            </div>
-                        </div>
-                        <div class="status-widget">
-                            <div class="status-widget-wrapper">
-                                <div class="title">envato<a href="#" class="remove-widget"><i class="icon-custom-cross"></i></a></div>
-                                <p>Statistical report</p>
-                            </div>
-                        </div>
-                    </div>	
                     <div class="clearfix"></div>
                     <!-- END SIDEBAR MENU --> 
                 </div>
             </div>
             <a href="#" class="scrollup">Scroll</a>
-            <div class="footer-widget">		
-                <div class="progress transparent progress-small no-radius no-margin">
-                    <div data-percentage="79%" class="progress-bar progress-bar-success animate-progress-bar" ></div>		
-                </div>
-                <div class="pull-right">
-                    <div class="details-status">
-                        <span data-animation-duration="560" data-value="86" class="animate-number"></span>%
-                    </div>	
-                    <a href="lockscreen.html"><i class="fa fa-power-off"></i></a></div>
-            </div>
             <!-- END SIDEBAR --> 
             
             <!-- BEGIN PAGE CONTENT-->

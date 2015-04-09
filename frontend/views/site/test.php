@@ -4,10 +4,6 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
-Yii::$app->session->setFlash('warning', 'There was an error sending email.');
-Yii::$app->session->setFlash('error', 'There was an error sending email.');
-Yii::$app->session->setFlash('info', 'There was an error sending email.');
-
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
