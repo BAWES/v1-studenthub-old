@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\web\View;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\MainAsset;
 use common\widgets\Alert;
@@ -10,7 +11,20 @@ use common\widgets\Alert;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+//MainAsset includes yii.js and depends on TemplateAsset
 MainAsset::register($this);
+
+//Include Modernizr in head section
+$this->registerJsFile('plugins/modernizr/modernizr.min.js', ['position' => View::POS_HEAD]);
+
+//Initialize on Document Ready (via jQuery)
+$jsInclude = "
+$(document).ready(function () {
+    Pleasure.init();
+    Layout.init();
+});
+";
+$this->registerJs($jsInclude, View::POS_END, 'my-options');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -25,28 +39,17 @@ MainAsset::register($this);
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
 
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="description" content="StudentHub Recruitment Platform">
+        <meta name="author" content="BAWES - Built Awesome">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        <!-- BEGIN CORE CSS -->
-        <link rel="stylesheet" href="css/admin1.css">
-        <link rel="stylesheet" href="css/elements.css">
-        <!-- END CORE CSS -->
-
-        <!-- BEGIN PLUGINS CSS -->
-        <link rel="stylesheet" href="css/plugins.css">
-        <!-- END PLUGINS CSS -->
-
         <!-- BEGIN SHORTCUT AND TOUCH ICONS -->
         <link rel="shortcut icon" href="img/icons/favicon.ico">
         <link rel="apple-touch-icon" href="img/icons/apple-touch-icon.png">
         <!-- END SHORTCUT AND TOUCH ICONS -->
-
-        <script src="plugins/modernizr/modernizr.min.js"></script>
         
         <?php $this->head() ?>
     </head>
@@ -305,9 +308,6 @@ MainAsset::register($this);
                             <li><a href="email-invoice.html" target="_blank">Invoice Template</a></li>
                             <li><a href="email-list.html" target="_blank">List Template</a></li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="http://themeforest.net/item/pleasure-material-design-responsive-admin-panel/10579013">Buy Pleasure</a>
                     </li>
                 </ul>
             </div><!--.menu-layer-->
@@ -875,30 +875,6 @@ MainAsset::register($this);
             <!-- END OF USER LAYER -->
 
         </div><!--.layer-container-->
-
-        <!-- BEGIN GLOBAL AND THEME VENDORS -->
-        <script src="js/global-vendors.js"></script>
-        <!-- END GLOBAL AND THEME VENDORS -->
-
-        <!-- BEGIN PLUGINS AREA -->
-        <!-- END PLUGINS AREA -->
-
-        <!-- PLUGINS INITIALIZATION AND SETTINGS -->
-        <!-- END PLUGINS INITIALIZATION AND SETTINGS -->
-
-        <!-- PLEASURE -->
-        <script src="js/pleasure.js"></script>
-        <!-- ADMIN 1 -->
-        <script src="js/layout.js"></script>
-
-        <!-- BEGIN INITIALIZATION-->
-        <script>
-            $(document).ready(function () {
-                Pleasure.init();
-                Layout.init();
-            });
-        </script>
-        <!-- END INITIALIZATION-->
 
     <?php $this->endBody() ?>
     </body>
