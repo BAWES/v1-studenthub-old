@@ -137,32 +137,32 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'major_id' => Yii::t('app', 'Major ID'),
             'country_id' => Yii::t('app', 'Country ID'),
             'university_id' => Yii::t('app', 'University ID'),
-            'student_firstname' => Yii::t('app', 'Student Firstname'),
-            'student_lastname' => Yii::t('app', 'Student Lastname'),
-            'student_dob' => Yii::t('app', 'Student Dob'),
-            'student_status' => Yii::t('app', 'Student Status'),
-            'student_enrolment_year' => Yii::t('app', 'Student Enrolment Year'),
-            'student_graduating_year' => Yii::t('app', 'Student Graduating Year'),
-            'student_gpa' => Yii::t('app', 'Student Gpa'),
-            'student_gender' => Yii::t('app', 'Student Gender'),
-            'student_transportation' => Yii::t('app', 'Student Transportation'),
-            'student_contact_number' => Yii::t('app', 'Student Contact Number'),
-            'student_interestingfacts' => Yii::t('app', 'Student Interestingfacts'),
-            'student_photo' => Yii::t('app', 'Student Photo'),
-            'student_cv' => Yii::t('app', 'Student Cv'),
-            'student_skill' => Yii::t('app', 'Student Skill'),
-            'student_hobby' => Yii::t('app', 'Student Hobby'),
-            'student_club' => Yii::t('app', 'Student Club'),
-            'student_sport' => Yii::t('app', 'Student Sport'),
-            'student_verfication_attachment' => Yii::t('app', 'Student Verfication Attachment'),
-            'student_email_verfication' => Yii::t('app', 'Student Email Verfication'),
-            'student_id_verfication' => Yii::t('app', 'Student Id Verfication'),
-            'student_email_preference' => Yii::t('app', 'Student Email Preference'),
-            'student_email' => Yii::t('app', 'Student Email'),
-            'student_auth_key' => Yii::t('app', 'Student Auth Key'),
-            'student_password_hash' => Yii::t('app', 'Student Password Hash'),
-            'student_password_reset_token' => Yii::t('app', 'Student Password Reset Token'),
-            'student_datetime' => Yii::t('app', 'Student Datetime'),
+            'student_firstname' => Yii::t('app', 'First Name'),
+            'student_lastname' => Yii::t('app', 'Last Name'),
+            'student_dob' => Yii::t('app', 'Date of Birth'),
+            'student_status' => Yii::t('app', 'Status'),
+            'student_enrolment_year' => Yii::t('app', 'University Enrolment Year'),
+            'student_graduating_year' => Yii::t('app', 'University Graduating Year'),
+            'student_gpa' => Yii::t('app', 'GPA'),
+            'student_gender' => Yii::t('app', 'Gender'),
+            'student_transportation' => Yii::t('app', 'Transportation'),
+            'student_contact_number' => Yii::t('app', 'Mobile Number'),
+            'student_interestingfacts' => Yii::t('app', 'Interesting facts'),
+            'student_photo' => Yii::t('app', 'Photo'),
+            'student_cv' => Yii::t('app', 'CV'),
+            'student_skill' => Yii::t('app', 'Skills'),
+            'student_hobby' => Yii::t('app', 'Hobbies'),
+            'student_club' => Yii::t('app', 'Clubs'),
+            'student_sport' => Yii::t('app', 'Sports'),
+            'student_verfication_attachment' => Yii::t('app', 'Verfication Attachment'),
+            'student_email_verfication' => Yii::t('app', 'Email Verfication'),
+            'student_id_verfication' => Yii::t('app', 'Id Verfication'),
+            'student_email_preference' => Yii::t('app', 'Email Preference'),
+            'student_email' => Yii::t('app', 'Email'),
+            'student_auth_key' => Yii::t('app', 'Auth Key'),
+            'student_password_hash' => Yii::t('app', 'Password'),
+            'student_password_reset_token' => Yii::t('app', 'Password Reset Token'),
+            'student_datetime' => Yii::t('app', 'Created on'),
         ];
     }
     
@@ -173,7 +173,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function signup()
     {
-        //This signup code was taken when we were using RegisterForm model for signnup
+        //This signup code was taken when we were using RegisterForm model for signup
         //It used to have the logic for creation of students within that model
         //now that our data is within the same activerecord model, signup might aswell trigger save for itself
         //then return an instance of itself (static)
