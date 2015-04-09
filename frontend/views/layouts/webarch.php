@@ -3,13 +3,13 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\AppAsset;
+use frontend\assets\TemplateAsset;
 use common\widgets\Alert;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-AppAsset::register($this);
+TemplateAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -617,23 +617,7 @@ AppAsset::register($this);
      </div>
     <!-- END CONTAINER --> 
 
-    <!-- END CONTAINER -->
-    <!-- BEGIN CORE JS FRAMEWORK--> 
-    <script src="plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
-    <script src="plugins/boostrapv3/js/bootstrap.min.js" type="text/javascript"></script> 
-    <script src="plugins/breakpoints.js" type="text/javascript"></script> 
-    <script src="plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script> 
-    <script src="plugins/jquery-scrollbar/jquery.scrollbar.min.js" type="text/javascript"></script>
-    <!-- END CORE JS FRAMEWORK --> 
-    <!-- BEGIN PAGE LEVEL JS --> 
-    <script src="plugins/pace/pace.min.js" type="text/javascript"></script>  
-    <script src="plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL PLUGINS --> 	
-
-    <!-- BEGIN CORE TEMPLATE JS --> 
-    <script src="js/core.js" type="text/javascript"></script> 
-    <script src="js/chat.js" type="text/javascript"></script> 
-    <!-- END CORE TEMPLATE JS --> 
+    <!-- END CONTAINER --> 
     <?php $this->endBody() ?>
 </body>
 </html>
