@@ -123,6 +123,7 @@ $this->registerJs($jsInclude, View::POS_END, 'my-options');
             </div><!--.page-header-->
 
             <!-- content -->
+            <?= Alert::widget() ?>
             <?= $content ?>
             <!-- content -->
 
