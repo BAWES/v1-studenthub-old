@@ -115,13 +115,6 @@ use common\widgets\Alert;
                             'tag' => 'ol',
                             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                         ]) ?>
-                        <!--
-                        <ol class="breadcrumb">
-                            <li><a href="#"><i class="ion-home"></i></a></li>
-                            <li><a href="#">Pages</a></li>
-                            <li><a href="#" class="active">Blank Page</a></li>
-                        </ol>
-                        -->
                     </div><!--.col-->
                 </div><!--.row-->
             </div><!--.page-header-->
