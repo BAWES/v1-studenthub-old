@@ -84,6 +84,14 @@ class SiteController extends Controller
             ]);
         }
     }
+    
+    //Testing the new layout
+    public function actionTest()
+    {
+        $this->layout = "webarch";
+        
+        return $this->render('test');
+    }
 
     public function actionLogout()
     {
