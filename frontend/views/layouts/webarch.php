@@ -283,15 +283,6 @@ TemplateAsset::register($this);
             
             <!-- BEGIN PAGE CONTENT-->
             <div class="page-content">
-                <div id="portlet-config" class="modal hide">
-                    <div class="modal-header">
-                        <button data-dismiss="modal" class="close" type="button"></button>
-                        <h3>Widget Settings</h3>
-                    </div>
-                    <div class="modal-body"> Widget settings form goes here </div>
-                </div>
-                <div class="clearfix"></div>
-
                 <div class="content">
                     <?=
                     Breadcrumbs::widget([
