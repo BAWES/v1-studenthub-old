@@ -1,11 +1,9 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
 
 namespace common\widgets;
+
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 
 /**
  * Alert widget renders a message from session flash. All flash messages are displayed
@@ -23,8 +21,7 @@ namespace common\widgets;
  * \Yii::$app->getSession()->setFlash('error', ['Error 1', 'Error 2']);
  * ```
  *
- * @author Kartik Visweswaran <kartikv2@gmail.com>
- * @author Alexander Makarov <sam@rmcreative.ru>
+ * @author Khalid Al-Mutawa <khalid@bawes.net>
  */
 class Alert extends \yii\bootstrap\Widget
 {
@@ -35,12 +32,14 @@ class Alert extends \yii\bootstrap\Widget
      * - $value is the bootstrap alert type (i.e. danger, success, info, warning)
      */
     public $alertTypes = [
-        'error'   => 'alert-danger',
-        'danger'  => 'alert-danger',
+        'error'   => 'alert-error',
+        'danger'  => 'alert-error',
         'success' => 'alert-success',
         'info'    => 'alert-info',
-        'warning' => 'alert-warning'
+        'warning' => ''
     ];
+    
+    public $body;
 
     /**
      * @var array the options for rendering the close button tag.
@@ -50,6 +49,10 @@ class Alert extends \yii\bootstrap\Widget
     public function init()
     {
         parent::init();
+        
+        $this->initOptions();
+
+        
 
         $session = \Yii::$app->getSession();
         $flashes = $session->getAllFlashes();
@@ -64,16 +67,82 @@ class Alert extends \yii\bootstrap\Widget
 
                     /* assign unique id to each alert box */
                     $this->options['id'] = $this->getId() . '-' . $type . '-' . $i;
+                    
+                    $this->body = $message;
 
-                    echo \yii\bootstrap\Alert::widget([
-                        'body' => $message,
-                        'closeButton' => $this->closeButton,
-                        'options' => $this->options,
-                    ]);
+                    echo Html::beginTag('div', $this->options) . "\n";
+                    echo $this->renderBodyBegin() . "\n";
+                    echo "\n" . $this->renderBodyEnd();
+                    echo "\n" . Html::endTag('div');
                 }
 
                 $session->removeFlash($type);
             }
+        }
+        
+        
+    }
+    
+    /**
+     * Renders the widget.
+     */
+    public function run()
+    {
+    }
+
+    /**
+     * Renders the close button if any before rendering the content.
+     * @return string the rendering result
+     */
+    protected function renderBodyBegin()
+    {
+        return $this->renderCloseButton();
+    }
+
+    /**
+     * Renders the alert body (if any).
+     * @return string the rendering result
+     */
+    protected function renderBodyEnd()
+    {
+        return $this->body . "\n";
+    }
+
+    /**
+     * Renders the close button.
+     * @return string the rendering result
+     */
+    protected function renderCloseButton()
+    {
+        if ($this->closeButton !== false) {
+            $tag = ArrayHelper::remove($this->closeButton, 'tag', 'button');
+            $label = ArrayHelper::remove($this->closeButton, 'label', '&times;');
+            if ($tag === 'button' && !isset($this->closeButton['type'])) {
+                $this->closeButton['type'] = 'button';
+            }
+
+            return Html::tag($tag, $label, $this->closeButton);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Initializes the widget options.
+     * This method sets the default values for various options.
+     */
+    protected function initOptions()
+    {
+        Html::addCssClass($this->options, 'alert');
+        Html::addCssClass($this->options, 'fade');
+        Html::addCssClass($this->options, 'in');
+
+        if ($this->closeButton !== false) {
+            $this->closeButton = array_merge([
+                'data-dismiss' => 'alert',
+                'aria-hidden' => 'true',
+                'class' => 'close',
+            ], $this->closeButton);
         }
     }
 }
