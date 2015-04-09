@@ -12,6 +12,7 @@ class MainAsset extends YiiAsset
 {
     //Depends on jQuery which is part of frontend\assets\TemplateAsset
     public $depends = [
+        'yii\web\JqueryAsset',
         'frontend\assets\TemplateAsset',
     ];
 }

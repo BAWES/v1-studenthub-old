@@ -5,14 +5,14 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\web\View;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\MainAsset;
+use frontend\assets\TemplateAsset;
 use common\widgets\Alert;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-//MainAsset includes yii.js and depends on TemplateAsset
-MainAsset::register($this);
+//TemplateAsset includes YiiAsset (jQuery) and this templates core assets
+TemplateAsset::register($this);
 
 //Include Modernizr in head section
 $this->registerJsFile('plugins/modernizr/modernizr.min.js', ['position' => View::POS_HEAD]);
