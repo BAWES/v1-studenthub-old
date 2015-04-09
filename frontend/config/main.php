@@ -28,6 +28,11 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'assetManager' => [
+            'assetMap' => [
+                'jquery.js' => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
+            ],
+        ],
     ],
     'params' => $params,
 ];
