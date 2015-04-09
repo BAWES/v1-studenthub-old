@@ -88,7 +88,7 @@ class SiteController extends Controller
     //Testing the new layout
     public function actionTest()
     {
-        $this->layout = "webarch";
+        $this->layout = "pleasure";
         
         return $this->render('test');
     }
