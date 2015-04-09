@@ -12474,7 +12474,7 @@ h6 {
 .page-header .breadcrumb li:nth-child(1):before {
   display: none;
 }
-.page-header .breadcrumb li:last-child a {
+.page-header .breadcrumb li:last-child {
   color: #ffffff;
 }
 .page-header .breadcrumb > li + li:before {

@@ -106,11 +106,22 @@ use common\widgets\Alert;
                         <h1>Blank Page <small>short description</small></h1>
                     </div><!--.col-->
                     <div class="col-sm-6">
+                        <?= Breadcrumbs::widget([
+                            'homeLink' => [
+                                'label' => '<i class="ion-home"></i>',
+                                'encode' => false,
+                                'url' => \Yii::$app->getHomeUrl(),
+                            ],
+                            'tag' => 'ol',
+                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        ]) ?>
+                        <!--
                         <ol class="breadcrumb">
                             <li><a href="#"><i class="ion-home"></i></a></li>
                             <li><a href="#">Pages</a></li>
                             <li><a href="#" class="active">Blank Page</a></li>
                         </ol>
+                        -->
                     </div><!--.col-->
                 </div><!--.row-->
             </div><!--.page-header-->
