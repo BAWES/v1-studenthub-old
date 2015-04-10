@@ -8128,7 +8128,7 @@ select[data-style="btn-blue-grey"] + .bootstrap-select li.selected a {
 .modal .modal-backdrop {
   visibility: hidden;
   opacity: 0;
-  cursor: url('../../globals/img/cursor-close.png'), auto;
+  cursor: url('../../../img/cursor-close.png'), auto;
   -webkit-transition: visibility 0s linear, opacity 500ms cubic-bezier(0.35, 0, 0.25, 1) 250ms;
           transition: visibility 0s linear, opacity 500ms cubic-bezier(0.35, 0, 0.25, 1) 250ms;
 }
@@ -13584,7 +13584,7 @@ pre .hljs {
   margin: 0;
 }
 .bg-lock-screen .bg-blur:before {
-  background: url('../../globals/img/picjumbo/large/29.jpg') fixed no-repeat;
+  background: url('../../../img/picjumbo/large/29.jpg') fixed no-repeat;
   background-size: cover;
 }
 .bg-lock-screen .lock-screen {
@@ -13645,7 +13645,7 @@ pre .hljs {
   margin: 0;
 }
 .bg-login .bg-blur:before {
-  background: url('../../globals/img/picjumbo/large/29.jpg') fixed no-repeat;
+  background: url('../../../img/picjumbo/large/29.jpg') fixed no-repeat;
   background-size: cover;
 }
 .bg-login .login-screen {
@@ -13981,10 +13981,10 @@ pre .hljs {
   background-size: cover;
 }
 .http-error-outside .error-bg.error-bg1 {
-  background-image: url('../../globals/img/picjumbo/large/1.jpg');
+  background-image: url('../../../img/picjumbo/large/1.jpg');
 }
 .http-error-outside .error-bg.error-bg2 {
-  background-image: url('../../globals/img/picjumbo/large/2.jpg');
+  background-image: url('../../../img/picjumbo/large/2.jpg');
   opacity: .5;
 }
 .http-error-outside .error-number {
@@ -14974,120 +14974,120 @@ pre .hljs {
   opacity: 1;
 }
 .sample-bg-image1:before {
-  background-image: url('../../globals/img/picjumbo/1.jpg');
+  background-image: url('../../../img/picjumbo/1.jpg');
 }
 .sample-bg-image2:before {
-  background-image: url('../../globals/img/picjumbo/2.jpg');
+  background-image: url('../../../img/picjumbo/2.jpg');
 }
 .sample-bg-image3:before {
-  background-image: url('../../globals/img/picjumbo/3.jpg');
+  background-image: url('../../../img/picjumbo/3.jpg');
 }
 .sample-bg-image4:before {
-  background-image: url('../../globals/img/picjumbo/4.jpg');
+  background-image: url('../../../img/picjumbo/4.jpg');
 }
 .sample-bg-image5:before {
-  background-image: url('../../globals/img/picjumbo/5.jpg');
+  background-image: url('../../../img/picjumbo/5.jpg');
 }
 .sample-bg-image6:before {
-  background-image: url('../../globals/img/picjumbo/6.jpg');
+  background-image: url('../../../img/picjumbo/6.jpg');
 }
 .sample-bg-image7:before {
-  background-image: url('../../globals/img/picjumbo/7.jpg');
+  background-image: url('../../../img/picjumbo/7.jpg');
 }
 .sample-bg-image8:before {
-  background-image: url('../../globals/img/picjumbo/8.jpg');
+  background-image: url('../../../img/picjumbo/8.jpg');
 }
 .sample-bg-image9:before {
-  background-image: url('../../globals/img/picjumbo/9.jpg');
+  background-image: url('../../../img/picjumbo/9.jpg');
 }
 .sample-bg-image10:before {
-  background-image: url('../../globals/img/picjumbo/10.jpg');
+  background-image: url('../../../img/picjumbo/10.jpg');
 }
 .sample-bg-image11:before {
-  background-image: url('../../globals/img/picjumbo/11.jpg');
+  background-image: url('../../../img/picjumbo/11.jpg');
 }
 .sample-bg-image12:before {
-  background-image: url('../../globals/img/picjumbo/12.jpg');
+  background-image: url('../../../img/picjumbo/12.jpg');
   background-position: center;
 }
 .sample-bg-image13:before {
-  background-image: url('../../globals/img/picjumbo/13.jpg');
+  background-image: url('../../../img/picjumbo/13.jpg');
 }
 .sample-bg-image14:before {
-  background-image: url('../../globals/img/picjumbo/14.jpg');
+  background-image: url('../../../img/picjumbo/14.jpg');
   background-position: center;
 }
 .sample-bg-image15:before {
-  background-image: url('../../globals/img/picjumbo/15.jpg');
+  background-image: url('../../../img/picjumbo/15.jpg');
 }
 .sample-bg-image16:before {
-  background-image: url('../../globals/img/picjumbo/16.jpg');
+  background-image: url('../../../img/picjumbo/16.jpg');
 }
 .sample-bg-image17:before {
-  background-image: url('../../globals/img/picjumbo/17.jpg');
+  background-image: url('../../../img/picjumbo/17.jpg');
 }
 .sample-bg-image18:before {
-  background-image: url('../../globals/img/picjumbo/18.jpg');
+  background-image: url('../../../img/picjumbo/18.jpg');
 }
 .sample-bg-image19:before {
-  background-image: url('../../globals/img/picjumbo/19.jpg');
+  background-image: url('../../../img/picjumbo/19.jpg');
 }
 .sample-bg-image24:before {
-  background-image: url('../../globals/img/picjumbo/24.jpg');
+  background-image: url('../../../img/picjumbo/24.jpg');
 }
 .sample-bg-image29:before {
-  background-image: url('../../globals/img/picjumbo/29.jpg');
+  background-image: url('../../../img/picjumbo/29.jpg');
 }
 .sample-user {
-  background-image: url('../../globals/img/faces/14.jpg');
+  background-image: url('../../../img/faces/14.jpg');
 }
 .sample-member1 {
-  background-image: url('../../globals/img/faces/1.jpg');
+  background-image: url('../../../img/faces/1.jpg');
 }
 .sample-member2 {
-  background-image: url('../../globals/img/faces/2.jpg');
+  background-image: url('../../../img/faces/2.jpg');
 }
 .sample-member3 {
-  background-image: url('../../globals/img/faces/3.jpg');
+  background-image: url('../../../img/faces/3.jpg');
 }
 .sample-member4 {
-  background-image: url('../../globals/img/faces/4.jpg');
+  background-image: url('../../../img/faces/4.jpg');
 }
 .sample-member4l {
-  background-image: url('../../globals/img/faces/large/4.jpg');
+  background-image: url('../../../img/faces/large/4.jpg');
 }
 .sample-member5 {
-  background-image: url('../../globals/img/faces/5.jpg');
+  background-image: url('../../../img/faces/5.jpg');
 }
 .sample-member5l {
-  background-image: url('../../globals/img/faces/large/5.jpg');
+  background-image: url('../../../img/faces/large/5.jpg');
 }
 .sample-member6 {
-  background-image: url('../../globals/img/faces/6.jpg');
+  background-image: url('../../../img/faces/6.jpg');
 }
 .sample-member6l {
-  background-image: url('../../globals/img/faces/large/6.jpg');
+  background-image: url('../../../img/faces/large/6.jpg');
 }
 .sample-member7 {
-  background-image: url('../../globals/img/faces/7.jpg');
+  background-image: url('../../../img/faces/7.jpg');
 }
 .sample-member7l {
-  background-image: url('../../globals/img/faces/large/7.jpg');
+  background-image: url('../../../img/faces/large/7.jpg');
 }
 .sample-member8 {
-  background-image: url('../../globals/img/faces/8.jpg');
+  background-image: url('../../../img/faces/8.jpg');
 }
 .sample-member9 {
-  background-image: url('../../globals/img/faces/large/8.jpg');
+  background-image: url('../../../img/faces/large/8.jpg');
 }
 .sample-bg1 {
-  background-image: url('../../globals/img/picjumbo/large/1.jpg');
+  background-image: url('../../../img/picjumbo/large/1.jpg');
 }
 .sample-bg2 {
-  background-image: url('../../globals/img/picjumbo/large/2.jpg');
+  background-image: url('../../../img/picjumbo/large/2.jpg');
 }
 .sample-bg3 {
-  background-image: url('../../globals/img/picjumbo/large/3.jpg');
+  background-image: url('../../../img/picjumbo/large/3.jpg');
 }
 /*
 30 - Mobile
