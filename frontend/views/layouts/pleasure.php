@@ -19,12 +19,10 @@ $this->registerJsFile('plugins/modernizr/modernizr.min.js', ['position' => View:
 
 //Initialize on Document Ready (via jQuery)
 $jsInclude = "
-$(document).ready(function () {
-    Pleasure.init();
-    Layout.init();
-});
+Pleasure.init();
+Layout.init();
 ";
-$this->registerJs($jsInclude, View::POS_END, 'my-options');
+$this->registerJs($jsInclude, View::POS_READY, 'my-options');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
