@@ -167,7 +167,8 @@ class Navigation extends Widget
         }
 
         if ($this->activateItems && $active) {
-            Html::addCssClass($options, 'active');
+            Html::addCssClass($options, 'open');
+            $linkOptions['data-open-after'] = 'true';
         }
 
         return Html::tag('li', Html::a($label, $url, $linkOptions) . $items, $options);
