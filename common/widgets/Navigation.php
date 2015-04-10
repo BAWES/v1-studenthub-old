@@ -70,7 +70,7 @@ class Navigation extends Widget
     /**
      * @var boolean whether to activate parent menu items when one of the corresponding child menu items is active.
      */
-    public $activateParents = false;
+    public $activateParents = true;
     /**
      * @var string the route used to determine if a menu item is active or not.
      * If not set, it will use the route of the current request.
@@ -203,6 +203,7 @@ class Navigation extends Widget
         foreach ($items as $i => $child) {
             if (ArrayHelper::remove($items[$i], 'active', false) || $this->isItemActive($child)) {
                 Html::addCssClass($items[$i]['options'], 'active');
+                $items[$i]['linkOptions']['data-open-after'] = 'true';
                 if ($this->activateParents) {
                     $active = true;
                 }

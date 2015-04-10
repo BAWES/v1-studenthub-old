@@ -88,7 +88,6 @@ class SiteController extends Controller
     //Testing the new layout
     public function actionTest()
     {
-        $this->layout = "pleasure";
         Yii::$app->getSession()->setFlash('success', 'New password was saved.');
         
         return $this->render('test');
