@@ -11,6 +11,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>This is a test page</p>
     
-    <?= Yii::$app->language ?>
+    <?= $this->params['isArabic']?'is Arabic':'is English' ?>
     
 </div>

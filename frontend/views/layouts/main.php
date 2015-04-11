@@ -5,13 +5,22 @@ use common\widgets\Navigation;
 use yii\web\View;
 use yii\widgets\Breadcrumbs;
 use common\assets\TemplateAsset;
+use common\assets\ArabicAsset;
 use common\widgets\Alert;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-//TemplateAsset includes YiiAsset (jQuery) and this templates core assets
-TemplateAsset::register($this);
+
+//RTL Settings
+if($this->params['isArabic']){
+    //ArabicAsset depends on TemplateAsset - adds some css fixes
+    ArabicAsset::register($this);
+}
+else{
+    //TemplateAsset includes YiiAsset (jQuery) and this templates core assets
+    TemplateAsset::register($this);
+}
 
 //Include Modernizr in head section
 $this->registerJsFile('plugins/modernizr/modernizr.min.js', ['position' => View::POS_HEAD]);
@@ -22,6 +31,8 @@ Pleasure.init();
 Layout.init();
 ";
 $this->registerJs($jsInclude, View::POS_READY, 'my-options');
+
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -50,7 +61,7 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
         
         <?php $this->head() ?>
     </head>
-    <body>
+    <body class="<?= $this->params['isArabic']?"layout-rtl":"" ?>">
         <?php $this->beginBody() ?>
 
         <div class="nav-bar-container">
@@ -98,7 +109,7 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
 
         </div><!--.nav-bar-container-->
 
-        <div class="content">
+        <div class="content" <?= $this->params['isArabic']?'style="direction:rtl"':'' ?>>
 
             <div class="page-header full-content">
                 <div class="row">
