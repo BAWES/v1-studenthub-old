@@ -128,7 +128,8 @@ class SiteController extends Controller
             'value' => 'en-US',
         ]));
         
-        return $this->goHome();
+        //return to previous page before language selection
+        return $this->redirect(Yii::$app->request->referrer);
     }
     
     //set language to Arabic
@@ -141,7 +142,8 @@ class SiteController extends Controller
             'value' => 'ar-KW',
         ]));
         
-        return $this->goHome();
+        //return to previous page before language selection
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionAbout()
