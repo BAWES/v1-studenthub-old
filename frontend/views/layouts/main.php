@@ -160,6 +160,8 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                     ];
                 }
                 
+                $menuItems[] = ['label' => 'العربية', 'url' => '#'];
+                
                 echo Navigation::widget(['items' => $menuItems]);
                 ?>
             </div><!--.menu-layer-->
