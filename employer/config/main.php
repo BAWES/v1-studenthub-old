@@ -10,7 +10,7 @@ return [
     'id' => 'app-employer',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'employer\controllers',
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log','common\components\LanguageSetting'],
     'modules' => [],
     'components' => [
         'user' => [

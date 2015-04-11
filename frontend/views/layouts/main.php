@@ -132,9 +132,9 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
             <div class="menu-layer">
                 <?php
                 $menuItems = [
-                    ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'About', 'url' => ['/site/about']],
-                    ['label' => 'Contact', 'url' => ['/site/contact']],
+                    ['label' => Yii::t('frontend','Home'), 'url' => ['/site/index']],
+                    ['label' => Yii::t('frontend','About'), 'url' => ['/site/about']],
+                    ['label' => Yii::t('frontend','Contact'), 'url' => ['/site/contact']],
                     [
                         'label' => 'Test',
                         'items' => [
@@ -150,17 +150,19 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                     ],
                 ];
                 if (Yii::$app->user->isGuest) {
-                    $menuItems[] = ['label' => 'Register', 'url' => ['/site/register']];
-                    $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+                    $menuItems[] = ['label' => Yii::t('frontend','Register'), 'url' => ['/site/register']];
+                    $menuItems[] = ['label' => Yii::t('frontend','Login'), 'url' => ['/site/login']];
                 } else {
                     $menuItems[] = [
-                        'label' => 'Logout (' . Yii::$app->user->identity->admin_name . ')',
+                        'label' => Yii::t('frontend','Logout'),
                         'url' => ['/site/logout'],
                         'linkOptions' => ['data-method' => 'post']
                     ];
                 }
                 
-                $menuItems[] = ['label' => 'العربية', 'url' => '#'];
+                if(Yii::$app->language == 'en-US'){
+                    $menuItems[] = ['label' => 'العربية', 'url' => ['/site/arabic']];
+                }else $menuItems[] = ['label' => 'English', 'url' => ['/site/english']];
                 
                 echo Navigation::widget(['items' => $menuItems]);
                 ?>
