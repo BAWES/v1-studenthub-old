@@ -3,12 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-$this->title = 'Test Page';
+$this->title = Yii::t('app','Test Page');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>This is a test page</p>
-
+    
+    <?= Yii::$app->language ?>
+    
 </div>

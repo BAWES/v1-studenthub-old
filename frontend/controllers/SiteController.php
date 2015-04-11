@@ -117,6 +117,32 @@ class SiteController extends Controller
             ]);
         }
     }
+    
+    //set language to English
+    public function actionEnglish()
+    {
+        $cookies = Yii::$app->response->cookies;
+        $cookies->remove('language');
+        $cookies->add(new \yii\web\Cookie([
+            'name' => 'language',
+            'value' => 'en-US',
+        ]));
+        
+        return $this->goHome();
+    }
+    
+    //set language to Arabic
+    public function actionArabic()
+    {
+        $cookies = Yii::$app->response->cookies;
+        $cookies->remove('language');
+        $cookies->add(new \yii\web\Cookie([
+            'name' => 'language',
+            'value' => 'ar-KW',
+        ]));
+        
+        return $this->goHome();
+    }
 
     public function actionAbout()
     {

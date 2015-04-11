@@ -7,4 +7,7 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
     ],
+    'bootstrap' => [
+        'common\components\LanguageSetting', //Sets language based on session
+    ]
 ];
