@@ -51,11 +51,11 @@ $this->beginBlock('header-tabs');
 					</div><!--.card-body-->
 
 					<div class="clickable-button">
-						<div class="layer bg-red"></div>
-						<a class="btn btn-floating btn-red initial-position floating-open btn-ripple"><i class="ion-android-more-horizontal"></i><span class="ripple _26 animate" style="height: 48px; width: 48px; top: -8px; left: -14px;"></span><span class="ripple _28 animate" style="height: 48px; width: 48px; top: 11px; left: 16px;"></span></a>
+						<div class="layer bg-blue"></div>
+						<a class="btn btn-floating btn-blue initial-position floating-open btn-ripple"><i class="ion-android-more-horizontal"></i><span class="ripple _26 animate" style="height: 48px; width: 48px; top: -8px; left: -14px;"></span><span class="ripple _28 animate" style="height: 48px; width: 48px; top: 11px; left: 16px;"></span></a>
 					</div>
 
-					<div class="layered-content bg-red">
+					<div class="layered-content bg-blue">
 						<div class="overflow-content">
 							<h4>Young Professionals London</h4>
 							<p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
