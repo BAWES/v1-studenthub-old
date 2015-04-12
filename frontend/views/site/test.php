@@ -11,7 +11,7 @@ $css = "
 .inputer{width:250px; float:left; margin-left:10px; margin-right:10px;}
 .input-wrapper{width:250px;}
 
-.bootstrap-select{margin-left:8px !important; margin-right:5px !important;}
+.bootstrap-select{margin-left:4px !important; margin-right:5px !important;}
 
 .studentRegistration p{margin-top:35px; margin-bottom:0; float:left;}
         ";
