@@ -53,7 +53,6 @@ $this->registerCss($css);
 
                 <p> and I am a 
                     <select class="selectpicker" data-width="130px">
-                        <option selected disabled>Status</option>
                         <option>Full-time</option>
                         <option>Part-time</option>
                     </select>
