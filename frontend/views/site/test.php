@@ -1,12 +1,11 @@
 <?php
 
-use yii\helpers\Html;
-
 /* @var $this yii\web\View */
 $this->title = Yii::t('app', 'Registration');
 $this->params['breadcrumbs'][] = "Registration";
 
-//$this->registerJsFile('plugins/jquery-bootpag/lib/jquery.bootpag.min.js');
+
+
 $css = "
 .inputer{width:250px; float:left; margin-left:10px; margin-right:10px;}
 .input-wrapper{width:250px;}
@@ -17,6 +16,7 @@ $css = "
         ";
 
 
+
 $this->registerCss($css);
 ?>
 <div class="panel">
@@ -25,66 +25,47 @@ $this->registerCss($css);
     </div>
 
     <div class="panel-body studentRegistration">
-        <div>
-            My email notification preferences: 
-            <select class="selectpicker" data-width="auto">
-                <option>Daily when new jobs are posted</option>
-                <option>Weekly</option>
-            </select>
-        </div>
-        
-        <div>
-            <p style="width:100px;">My name is</p>
-            
-            <div class="inputer floating-label">
-                <div class="input-wrapper">
-                    <input type="text" class="form-control" id="exampleInput1">
-                    <label for="exampleInput1">First Name</label>
-                </div>
-            </div>
-            
-            <div class="inputer floating-label">
-                <div class="input-wrapper">
-                    <input type="text" class="form-control" id="exampleInput1">
-                    <label for="exampleInput1">Last Name</label>
-                </div>
-            </div>
-            
-            <p> and I am a 
-                <select class="selectpicker" data-width="130px">
-                    <option selected disabled>Status</option>
-                    <option>Full-time</option>
-                    <option>Part-time</option>
+        <form action="#">
+            <div>
+                My email notification preferences: 
+                <select class="selectpicker" data-width="auto">
+                    <option>Daily when new jobs are posted</option>
+                    <option>Weekly</option>
                 </select>
-                student.
-            </p>
+            </div>
 
-        </div>
-        <div>
-            <p>
-                Random content
-            </p>
-            <p>
-                Random content
-            </p>
-            <p>
-                Random content
-            </p>
-            <p>
-                Random content
-            </p>
-            <p>
-                Random content
-            </p>
-            <p>
-                Random content
-            </p>
-            <p>
-                Random content
-            </p>
-            <p>
-                Random content
-            </p>
-        </div>
+            <div>
+                <p style="width:100px;">My name is</p>
+                
+                <div class="inputer floating-label">
+                    <div class="input-wrapper">
+                        <input type="text" class="form-control" required>
+                        <label for="exampleInput1">First Name</label>
+                    </div>
+                </div>
+
+                <div class="inputer floating-label">
+                    <div class="input-wrapper">
+                        <input type="text" class="form-control" required>
+                        <label for="exampleInput1">Last Name</label>
+                    </div>
+                </div>
+
+                <p> and I am a 
+                    <select class="selectpicker" data-width="130px">
+                        <option selected disabled>Status</option>
+                        <option>Full-time</option>
+                        <option>Part-time</option>
+                    </select>
+                    student.
+                </p>
+                
+                
+                <!-- form submit button -->
+                <br style="clear:both"/><br/>
+                <input type="submit"/>
+        </form>
+        
     </div>
+</div>
 </div>
