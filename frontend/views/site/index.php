@@ -34,6 +34,77 @@ $this->beginBlock('header-tabs');
                                data-toastr-notification="You have applied for the job!" href="#">Don't click this</a>
                         </p>
                         
+                        <div class="row">
+                            <div class="col-md-6">
+				<div class="card card-event card-clickable">
+
+					<div class="card-heading bg-image sample-bg-image13">
+					</div><!--.card-heading-->
+
+					<div class="card-body">
+						<div class="calendar">
+							<div class="month">November</div>
+							<div class="date">27</div>
+						</div><!--.calendar-->
+						<h4>Click Floating Button</h4>
+						<p>A Social Networking group with an International mix of Young Professionals interested in meeting other like minded people for friendship / networking / partying at exclusive Members Clubs, Lounges &amp; Bars. Recommended age range is 21+.</p>
+					</div><!--.card-body-->
+
+					<div class="clickable-button">
+						<div class="layer bg-red"></div>
+						<a class="btn btn-floating btn-red initial-position floating-open btn-ripple"><i class="ion-android-more-horizontal"></i><span class="ripple _26 animate" style="height: 48px; width: 48px; top: -8px; left: -14px;"></span><span class="ripple _28 animate" style="height: 48px; width: 48px; top: 11px; left: 16px;"></span></a>
+					</div>
+
+					<div class="layered-content bg-red">
+						<div class="overflow-content">
+							<h4>Young Professionals London</h4>
+							<p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+							<p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
+							<p>Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
+						</div><!--.overflow-content-->
+						<div class="clickable-close-button">
+							<a class="btn btn-floating initial-position floating-close btn-ripple"><i class="ion-android-close"></i><span class="ripple _27 animate" style="height: 48px; width: 48px; top: 1px; left: -11px;"></span><span class="ripple _29 animate" style="height: 48px; width: 48px; top: -12px; left: -1px;"></span></a>
+						</div>
+					</div>
+
+				</div><!--.card-->
+			</div>
+                            
+                            <div class="col-md-6">
+				<div class="card card-event card-clickable">
+
+					<div class="card-heading bg-image sample-bg-image13">
+					</div><!--.card-heading-->
+
+					<div class="card-body">
+						<div class="calendar">
+							<div class="month">November</div>
+							<div class="date">27</div>
+						</div><!--.calendar-->
+						<h4>Click Floating Button</h4>
+						<p>A Social Networking group with an International mix of Young Professionals interested in meeting other like minded people for friendship / networking / partying at exclusive Members Clubs, Lounges &amp; Bars. Recommended age range is 21+.</p>
+					</div><!--.card-body-->
+
+					<div class="clickable-button">
+						<div class="layer bg-red"></div>
+						<a class="btn btn-floating btn-red initial-position floating-open btn-ripple"><i class="ion-android-more-horizontal"></i><span class="ripple _26 animate" style="height: 48px; width: 48px; top: -8px; left: -14px;"></span><span class="ripple _28 animate" style="height: 48px; width: 48px; top: 11px; left: 16px;"></span></a>
+					</div>
+
+					<div class="layered-content bg-red">
+						<div class="overflow-content">
+							<h4>Young Professionals London</h4>
+							<p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+							<p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
+							<p>Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
+						</div><!--.overflow-content-->
+						<div class="clickable-close-button">
+							<a class="btn btn-floating initial-position floating-close btn-ripple"><i class="ion-android-close"></i><span class="ripple _27 animate" style="height: 48px; width: 48px; top: 1px; left: -11px;"></span><span class="ripple _29 animate" style="height: 48px; width: 48px; top: -12px; left: -1px;"></span></a>
+						</div>
+					</div>
+
+				</div><!--.card-->
+			</div>
+                        </div>
                         
                     </div><!--tab-pane-->
                     
