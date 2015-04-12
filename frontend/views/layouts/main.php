@@ -111,7 +111,7 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
 
         <div class="content" <?= $this->params['isArabic']?'style="direction:rtl"':'' ?>>
 
-            <div class="page-header full-content">
+            <div class="page-header full-content" style="<?= isset($this->blocks['header-tabs'])?'min-height: 141px;':'' ?>">
                 <div class="row">
                     <div class="col-sm-6">
                         <h1><?= Html::encode($this->title) ?></h1>
@@ -128,6 +128,12 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                         ]) ?>
                     </div><!--.col-->
                 </div><!--.row-->
+                
+                <?php
+                if (isset($this->blocks['header-tabs'])){
+                    echo $this->blocks['header-tabs'];
+                }
+                ?>
             </div><!--.page-header-->
 
             <!-- content -->
