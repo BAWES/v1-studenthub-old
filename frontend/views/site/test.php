@@ -8,9 +8,8 @@ $css = "
 .inputer{width:250px; float:left; margin-left:10px; margin-right:10px;}
 .input-wrapper{width:250px;}
 
-.inputer.big, .input-wrapper.big{width:300px;}
-
-.input-wrapper.year, .inputer.year{width:80px}
+.input-wrapper.huge, .inputer.huge{width:300px;}
+.input-wrapper.baby, .inputer.baby{width:80px}
 
 .bootstrap-select{margin-left:4px !important; margin-right:5px !important;}
 .selecter{width:300px !important;}
@@ -84,6 +83,7 @@ $this->registerJs($js);
                     <select class="selectpicker" data-width="auto">
                         <option>Daily as jobs are posted</option>
                         <option>Weekly summary</option>
+                        <option>Off</option>
                     </select>
                 </p>
                 <br class="clear"/>
@@ -184,7 +184,18 @@ $this->registerJs($js);
 
             <!-- Question #6 -->
 
-            <!--gpa-->
+            <div class="questionRow">
+                <p style="width:145px;">My current GPA is </p>
+
+                <div class="inputer floating-label ">
+                    <div class="input-wrapper baby">
+                        <input type="text" class="form-control baby" required>
+                        <label for="exampleInput5">GPA</label>
+                    </div>
+                </div>
+                
+                <br class="clear"/>
+            </div>
 
             <!-- Question #7 -->
             <div class="questionRow">
