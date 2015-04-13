@@ -137,19 +137,19 @@ $this->registerJs($js);
             <div class="questionRow">
                 <br/>
                 I enrolled in
-                
+
                 <select class="selectpicker" data-width="130px">
                     <option value='' selected disabled>Year</option>
                     <?php
                     $currentYear = date("Y");
                     $numberOfYears = 7;
-                    for($i=0;$i<$numberOfYears;$i++){
-                        $yearOption = $currentYear-$i;
+                    for ($i = 0; $i < $numberOfYears; $i++) {
+                        $yearOption = $currentYear - $i;
                         echo "<option value='$yearOption'>$yearOption</option>";
                     }
                     ?>
                 </select>
-                
+
                 and will graduate in 
 
                 <select class="selectpicker" data-width="130px">
@@ -157,8 +157,8 @@ $this->registerJs($js);
                     <?php
                     $currentYear = date("Y") - 1;
                     $numberOfYears = 11;
-                    for($i=0;$i<$numberOfYears;$i++){
-                        $yearOption = $currentYear+$i;
+                    for ($i = 0; $i < $numberOfYears; $i++) {
+                        $yearOption = $currentYear + $i;
                         echo "<option value='$yearOption'>$yearOption</option>";
                     }
                     ?>
@@ -175,8 +175,8 @@ $this->registerJs($js);
                     <option value="">Select a major</option>
                     <?php
                     $majorList = \common\models\Major::find()->all();
-                    foreach($majorList as $major){
-                        echo "<option value='".$major->major_id."'>".$major->major_name_en."</option>";
+                    foreach ($majorList as $major) {
+                        echo "<option value='" . $major->major_id . "'>" . $major->major_name_en . "</option>";
                     }
                     ?>
                 </select>
@@ -193,7 +193,7 @@ $this->registerJs($js);
                         <label for="exampleInput5">GPA</label>
                     </div>
                 </div>
-                
+
                 <br class="clear"/>
             </div>
 
@@ -227,6 +227,21 @@ $this->registerJs($js);
                 <br class="clear"/>
             </div>
 
+            <!-- Question -->
+            <div class="questionRow">
+                <br/>
+                <div class="radioer form-inline">
+                    <input type="radio" name="transport" id="transport1" value="yes">
+                    <label for="transport1">I have</label>
+                </div>
+                <div class="radioer form-inline">
+                    <input type="radio" name="transport" id="transport2" value="no">
+                    <label for="transport2">I do not have</label>
+                </div>
+                a method of transportation.
+                <br class="clear"/>
+            </div>
+
 
             <!-- Question -->
             <div class="questionRow">
@@ -248,19 +263,31 @@ $this->registerJs($js);
                 <br class="clear"/>
             </div>
 
-            content</br>
-            content</br>
-            content</br>
-            content</br>
-            content</br>
-            content</br>
-            content</br>
-            content</br>
-            content</br>
+            <!-- Question -->
+            <div class='questionRow'>
+                <br/>
+                <p style="width:200px; margin-top:5px;">A fun fact about me is</p>
+                <div class="inputer" style='width:70%; margin-left:0;'>
+                    <div class="input-wrapper" style='width:100%;'>
+                        <textarea class="form-control js-auto-size" rows="1" placeholder="I like to travel"></textarea>
+                    </div>
+                </div>
+                
+                <br class='clear'/>
+            </div>
+
             
-                  <input type="file" name="fileToUpload" id="fileToUpload"  accept="image/*" capture="camera" />
-            <br/><br/>
-            <input type='file'/>
+            <!-- ADDITIONAL CONTENT PLACEHOLDER -->
+            <br/><br/>content</br>
+            content</br>
+            content</br>
+            content</br>
+            content</br>
+            content</br>
+            content</br>
+            content</br>
+            content</br>
+
 
 
             <!-- form submit button -->
