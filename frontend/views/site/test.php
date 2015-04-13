@@ -31,7 +31,14 @@ $('.radioer input:radio').change(function(){
     }
 });
 
+$('.selectize-majors').selectize({
+    selectOnTab: true,
+});
+
 ";
+
+//Selectize plugin for multi-select
+\frontend\assets\SelectizeAsset::register($this);
 
 $this->registerCss($css);
 $this->registerJs($js);
@@ -125,6 +132,25 @@ $this->registerJs($js);
 
             <!-- Question #5 -->
             <div class="questionRow">
+                <br/>
+                I'm majoring in 
+                <select multiple class="selectize-majors" placeholder="Majors (type and select from list)">
+                    <option value="">Select a major</option>
+                    <?php
+                    $majorList = \common\models\Major::find()->all();
+                    foreach($majorList as $major){
+                        echo "<option value='".$major->major_id."'>".$major->major_name_en."</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <!-- Question #6 -->
+
+            <!--gpa-->
+
+            <!-- Question #7 -->
+            <div class="questionRow">
                 <p>
                     I am 
                     <select class="selectpicker" data-width="auto">
@@ -136,7 +162,7 @@ $this->registerJs($js);
                 <br class="clear"/>
             </div>
 
-            <!-- Question #6 -->
+            <!-- Question #8 -->
             <div class="questionRow">
                 <br/>
                 I speak
@@ -154,7 +180,7 @@ $this->registerJs($js);
             </div>
 
 
-            <!-- Question #7 -->
+            <!-- Question #9 -->
             <div class="questionRow">
                 <br/>
                 <div class="radioer form-inline">
@@ -176,10 +202,10 @@ $this->registerJs($js);
                         </div>
                     </div>
                 </div>
-                
+
                 <br class="clear"/>
             </div>
-            
+
             content</br>
             content</br>
             content</br>
