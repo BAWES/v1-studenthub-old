@@ -13,7 +13,6 @@ use yii\web\IdentityInterface;
  *
  * @property integer $student_id
  * @property integer $degree_id
- * @property integer $major_id
  * @property integer $country_id
  * @property integer $university_id
  * @property string $student_firstname
@@ -32,10 +31,13 @@ use yii\web\IdentityInterface;
  * @property string $student_skill
  * @property string $student_hobby
  * @property string $student_club
- * @property string $student_sport 
+ * @property string $student_sport
+ * @property string $student_experience_company
+ * @property string $student_experience_position
  * @property string $student_verfication_attachment
  * @property integer $student_email_verfication
  * @property integer $student_id_verfication
+ * @property string $student_id_number
  * @property integer $student_email_preference
  * @property string $student_email
  * @property string $student_auth_key
@@ -52,6 +54,8 @@ use yii\web\IdentityInterface;
  * @property StudentJobApplication[] $studentJobApplications
  * @property StudentLanguage[] $studentLanguages
  * @property Language[] $languages
+ * @property StudentMajor[] $studentMajors
+ * @property Major[] $majors
  */
 class Student extends \yii\db\ActiveRecord implements IdentityInterface {
 
@@ -88,8 +92,8 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function rules() {
         return [
-            [['degree_id', 'major_id', 'country_id', 'university_id', 'student_lastname', 'student_dob', 'student_status', 'student_enrolment_year', 'student_sport', 'student_graduating_year', 'student_gpa', 'student_gender', 'student_contact_number', 'student_interestingfacts', 'student_cv', 'student_skill', 'student_hobby', 'student_club', 'student_verfication_attachment', 'student_email_preference', 'student_email', 'student_auth_key', 'student_datetime'], 'required'],
-            [['degree_id', 'major_id', 'country_id', 'university_id', 'student_status', 'student_gender', 'student_transportation', 'student_email_verfication', 'student_id_verfication', 'student_email_preference'], 'integer'],
+            [['degree_id', 'country_id', 'university_id', 'student_lastname', 'student_dob', 'student_status', 'student_enrolment_year', 'student_sport', 'student_graduating_year', 'student_gpa', 'student_gender', 'student_contact_number', 'student_interestingfacts', 'student_cv', 'student_skill', 'student_hobby', 'student_club', 'student_verfication_attachment', 'student_email_preference', 'student_email', 'student_auth_key', 'student_datetime'], 'required'],
+            [['degree_id', 'country_id', 'university_id', 'student_status', 'student_gender', 'student_transportation', 'student_email_verfication', 'student_id_verfication', 'student_email_preference'], 'integer'],
             [['student_dob', 'student_enrolment_year', 'student_graduating_year', 'student_datetime'], 'safe'],
             [['student_gpa'], 'number'],
             [['student_interestingfacts', 'student_skill', 'student_hobby', 'student_club'], 'string'],
@@ -134,7 +138,6 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         return [
             'student_id' => Yii::t('app', 'Student ID'),
             'degree_id' => Yii::t('app', 'Degree ID'),
-            'major_id' => Yii::t('app', 'Major ID'),
             'country_id' => Yii::t('app', 'Country ID'),
             'university_id' => Yii::t('app', 'University ID'),
             'student_firstname' => Yii::t('app', 'First Name'),
@@ -154,6 +157,8 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_hobby' => Yii::t('app', 'Hobbies'),
             'student_club' => Yii::t('app', 'Clubs'),
             'student_sport' => Yii::t('app', 'Sports'),
+            'student_experience_company' => Yii::t('app', 'Student Experience Company'),
+            'student_experience_position' => Yii::t('app', 'Student Experience Position'),
             'student_verfication_attachment' => Yii::t('app', 'Verfication Attachment'),
             'student_email_verfication' => Yii::t('app', 'Email Verfication'),
             'student_id_verfication' => Yii::t('app', 'Id Verfication'),
@@ -216,8 +221,17 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMajor() {
-        return $this->hasOne(Major::className(), ['major_id' => 'major_id']);
+    public function getStudentMajors()
+    {
+        return $this->hasMany(StudentMajor::className(), ['student_id' => 'student_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMajors()
+    {
+        return $this->hasMany(Major::className(), ['major_id' => 'major_id'])->viaTable('student_major', ['student_id' => 'student_id']);
     }
 
     /**

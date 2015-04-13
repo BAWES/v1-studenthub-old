@@ -13,6 +13,7 @@ use Yii;
  *
  * @property FilterMajor[] $filterMajors
  * @property Filter[] $filters
+ * @property StudentMajor[] $studentMajors
  * @property Student[] $students
  */
 class Major extends \yii\db\ActiveRecord
@@ -67,8 +68,16 @@ class Major extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getStudentMajors()
+    {
+        return $this->hasMany(StudentMajor::className(), ['major_id' => 'major_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getStudents()
     {
-        return $this->hasMany(Student::className(), ['major_id' => 'major_id']);
+        return $this->hasMany(Student::className(), ['student_id' => 'student_id'])->viaTable('student_major', ['major_id' => 'major_id']);
     }
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 08, 2015 at 07:33 AM
+-- Generation Time: Apr 13, 2015 at 11:26 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `admin_password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `admin_password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `admin_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `admin`
@@ -2461,7 +2461,6 @@ CREATE TABLE IF NOT EXISTS `payment_type` (
 CREATE TABLE IF NOT EXISTS `student` (
   `student_id` int(11) unsigned NOT NULL,
   `degree_id` int(11) unsigned NOT NULL,
-  `major_id` int(11) unsigned NOT NULL,
   `country_id` int(11) unsigned NOT NULL,
   `university_id` int(11) unsigned NOT NULL,
   `student_firstname` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
@@ -2481,9 +2480,12 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_hobby` text COLLATE utf8_unicode_ci NOT NULL,
   `student_club` text COLLATE utf8_unicode_ci NOT NULL,
   `student_sport` text COLLATE utf8_unicode_ci NOT NULL,
+  `student_experience_company` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `student_experience_position` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `student_verfication_attachment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `student_email_verfication` tinyint(4) NOT NULL DEFAULT '0',
   `student_id_verfication` tinyint(255) NOT NULL DEFAULT '0',
+  `student_id_number` varchar(128) COLLATE utf8_unicode_ci DEFAULT '' COMMENT 'University ID Number to keep track of duplicates',
   `student_email_preference` tinyint(4) NOT NULL COMMENT 'Off(0), Daily(1), Weekly(2)',
   `student_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `student_auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
@@ -2522,6 +2524,17 @@ CREATE TABLE IF NOT EXISTS `student_language` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `student_major`
+--
+
+CREATE TABLE IF NOT EXISTS `student_major` (
+  `student_id` int(11) unsigned NOT NULL,
+  `major_id` int(11) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `transaction`
 --
 
@@ -2546,17 +2559,18 @@ CREATE TABLE IF NOT EXISTS `university` (
   `university_name_ar` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `university_domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'Example: @gust.edu.kw',
   `university_require_verify` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'Require Verification (0); Does not require verification (1)',
-  `university_id_template` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'A photo to define what verification we require',
-  `university_logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `university_graphic` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `university_id_template` varchar(255) COLLATE utf8_unicode_ci DEFAULT '' COMMENT 'A photo to define what verification we require',
+  `university_logo` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
+  `university_graphic` varchar(255) COLLATE utf8_unicode_ci DEFAULT ''
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `university`
 --
 
 INSERT INTO `university` (`university_id`, `university_name_en`, `university_name_ar`, `university_domain`, `university_require_verify`, `university_id_template`, `university_logo`, `university_graphic`) VALUES
-(1, 'Khalid', '0', '', 1, 'a', '', '');
+(12, 'Gulf University for Science and Technology', 'جامعة الخليج', 'gust.edu.kw', 0, '', '', ''),
+(13, 'Kuwait University', 'جامعة الكويت', '', 1, '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -2680,7 +2694,7 @@ ALTER TABLE `payment_type`
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`student_id`), ADD KEY `degree_id` (`degree_id`), ADD KEY `major_id` (`major_id`), ADD KEY `university_id` (`university_id`), ADD KEY `country_id` (`country_id`);
+  ADD PRIMARY KEY (`student_id`), ADD KEY `degree_id` (`degree_id`), ADD KEY `university_id` (`university_id`), ADD KEY `country_id` (`country_id`);
 
 --
 -- Indexes for table `student_job_application`
@@ -2693,6 +2707,12 @@ ALTER TABLE `student_job_application`
 --
 ALTER TABLE `student_language`
   ADD PRIMARY KEY (`language_id`,`student_id`), ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `student_major`
+--
+ALTER TABLE `student_major`
+  ADD PRIMARY KEY (`student_id`,`major_id`), ADD KEY `major_id` (`major_id`);
 
 --
 -- Indexes for table `transaction`
@@ -2714,7 +2734,7 @@ ALTER TABLE `university`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `city`
 --
@@ -2804,7 +2824,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `university`
 --
 ALTER TABLE `university`
-  MODIFY `university_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `university_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- Constraints for dumped tables
 --
@@ -2885,7 +2905,6 @@ ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`payment_type_id`) REFERENCES `paym
 --
 ALTER TABLE `student`
 ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`degree_id`) REFERENCES `degree` (`degree_id`),
-ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`major_id`) REFERENCES `major` (`major_id`),
 ADD CONSTRAINT `student_ibfk_4` FOREIGN KEY (`university_id`) REFERENCES `university` (`university_id`),
 ADD CONSTRAINT `student_ibfk_5` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`);
 
@@ -2902,6 +2921,13 @@ ADD CONSTRAINT `student_job_application_ibfk_2` FOREIGN KEY (`job_id`) REFERENCE
 ALTER TABLE `student_language`
 ADD CONSTRAINT `student_language_ibfk_1` FOREIGN KEY (`language_id`) REFERENCES `language` (`language_id`),
 ADD CONSTRAINT `student_language_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`);
+
+--
+-- Constraints for table `student_major`
+--
+ALTER TABLE `student_major`
+ADD CONSTRAINT `student_major_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
+ADD CONSTRAINT `student_major_ibfk_2` FOREIGN KEY (`major_id`) REFERENCES `major` (`major_id`);
 
 --
 -- Constraints for table `transaction`
