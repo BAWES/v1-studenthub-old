@@ -43,7 +43,7 @@ $('.radioer input:radio').change(function(){
 //Animate to dropdown
 $('.studentRegistration').on('click','.bootstrap-select',function(){
     $('html, body').animate({
-    scrollTop: $(this).offset().top
+    scrollTop: $(this).offset().top-25
     }, 800);
 });
 
