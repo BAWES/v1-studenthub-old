@@ -12,6 +12,7 @@ $css = "
 
 .input-wrapper.huge, .inputer.huge{width:300px;}
 .input-wrapper.baby, .inputer.baby{width:80px}
+.input-wrapper.medz, .inputer.medz{width:150px}
 
 .bootstrap-select{margin-left:4px !important; margin-right:5px !important;}
 .selecter{width:300px !important;}
@@ -285,7 +286,50 @@ $this->registerJs($js);
 
             <!-- Question -->
             <div class='questionRow'>
+                <p style="width:285px;">
+                    My favorite work experience was at 
+                </p>
+                
+                <div class="inputer floating-label medz">
+                    <div class="input-wrapper medz">
+                        <input type="text" class="form-control">
+                        <label for="exampleInput5">Company</label>
+                    </div>
+                </div>
+                
+                <p style="width:105px;">
+                    working as a  
+                </p>
+                
+                <div class="inputer floating-label medz">
+                    <div class="input-wrapper medz">
+                        <input type="text" class="form-control">
+                        <label for="exampleInput5">Position</label>
+                    </div>
+                </div>
+
+                <br class='clear'/>
+            </div>
+            
+            <!-- Question -->
+            <div class='questionRow'>
                 <br/>
+                I have skills in 
+                <input type="text" placeholder='Teamwork, time management, and photoshop' class="form-control selectize-text">
+
+                <br class='clear'/>
+            </div>
+
+            <!-- Question -->
+            <div class='questionRow'>
+                My favorite hobbies are
+                <input type="text" placeholder='Cooking, playing guitar, and hiking' class="form-control selectize-text">
+
+                <br class='clear'/>
+            </div>
+            
+            <!-- Question -->
+            <div class='questionRow'>
                 <p style="width:200px; margin-top:5px;">A fun fact about me is</p>
                 <div class="inputer" style='width:70%; margin-left:0;'>
                     <div class="input-wrapper" style='width:100%;'>
@@ -296,36 +340,25 @@ $this->registerJs($js);
                 <br class='clear'/>
             </div>
 
-            <!-- Question -->
-            <div class='questionRow'>
-                <br/>
-                My favorite hobbies are
-                <input type="text" placeholder='Cooking, playing guitar, and hiking' class="form-control selectize-text">
-
-                <br class='clear'/>
-            </div>
-
 
             <!-- ADDITIONAL CONTENT PLACEHOLDER -->
-            <div class="note note-primary note-top-striped">
+            <div class="note note-primary note-top-striped" style="margin-top:50px;">
                 <h4>Student ID Verification</h4>
                 <p>
                     As your university does not provide you with student emails, please upload a photo of your student ID card
                 </p>
-                
-                    <div class="btn-group btn-group-justified">
-                        <div class="btn-group">
-                            <a class="btn btn-blue btn-ripple" style="color:white; text-decoration: none;">
-                                <span class="glyphicon glyphicon-camera"></span> Camera</a>
-                        </div><!--.btn-group-->
-                        <div class="btn-group">
-                            <a class="btn btn-red btn-ripple" style="color:white; text-decoration: none;">
-                                <span class="glyphicon glyphicon-upload"></span> Upload</a>
-                        </div><!--.btn-group-->
-                    </div>
-                
-            </div>
 
+                <div class="btn-group btn-group-justified">
+                    <div class="btn-group">
+                        <a class="btn btn-blue btn-ripple" style="color:white; text-decoration: none;">
+                            <span class="glyphicon glyphicon-camera"></span> Camera</a>
+                    </div><!--.btn-group-->
+                    <div class="btn-group">
+                        <a class="btn btn-red btn-ripple" style="color:white; text-decoration: none;">
+                            <span class="glyphicon glyphicon-upload"></span> Upload</a>
+                    </div><!--.btn-group-->
+                </div>
+            </div>
 
 
             <!-- form submit button -->
