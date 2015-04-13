@@ -45,7 +45,7 @@ $('.selectize-majors').selectize({
 });
 $('.selectize-text').selectize({
     delimiter: ',',
-    persist: false,
+    persist: true,
     create: function(input) {
         return {
             value: input,
