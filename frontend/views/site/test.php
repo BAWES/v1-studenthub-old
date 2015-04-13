@@ -217,14 +217,12 @@ $this->registerJs($js);
                 <br/>
                 I speak
                 <select multiple class="selecter" title='Language(s)'>
-                    <option>English</option>
-                    <option>Arabic</option>
-                    <option>French</option>
-                    <option>Spanish</option>
-                    <option>German</option>
-                    <option>Hindi</option>
-                    <option>Urdu</option>
-                    <option>Farsi</option>
+                    <?php
+                    $languageList = \common\models\Language::find()->all();
+                    foreach ($languageList as $language) {
+                        echo "<option value='" . $language->language_id . "'>" . $language->language_name_en . "</option>";
+                    }
+                    ?>
                 </select>
                 <br class="clear"/>
             </div>
