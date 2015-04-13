@@ -122,6 +122,7 @@ $this->registerJs($js);
             <div class="questionRow">
                 I am pursuing a 
                 <select class="selectpicker" data-width="130px">
+                    <option value='' selected disabled>Degree</option>
                     <option>Diploma</option>
                     <option>Bachelors</option>
                     <option>Masters</option>
@@ -134,25 +135,34 @@ $this->registerJs($js);
 
             <!-- Questions #4 -->
             <div class="questionRow">
-                <p style="width:100px;">I enrolled in</p>
+                <br/>
+                I enrolled in
+                
+                <select class="selectpicker" data-width="130px">
+                    <option value='' selected disabled>Year</option>
+                    <?php
+                    $currentYear = date("Y");
+                    $numberOfYears = 7;
+                    for($i=0;$i<$numberOfYears;$i++){
+                        $yearOption = $currentYear-$i;
+                        echo "<option value='$yearOption'>$yearOption</option>";
+                    }
+                    ?>
+                </select>
+                
+                and will graduate in 
 
-                <div class="inputer floating-label year">
-                    <div class="input-wrapper year">
-                        <input type="text" class="form-control" required>
-                        <label for="exampleInput1">Year</label>
-                    </div>
-                </div>
-
-                <p>
-                    and will graduate in 
-                </p>
-
-                <div class="inputer floating-label year">
-                    <div class="input-wrapper year">
-                        <input type="text" class="form-control" required>
-                        <label for="exampleInput1">Year</label>
-                    </div>
-                </div>
+                <select class="selectpicker" data-width="130px">
+                    <option value='' selected disabled>Year</option>
+                    <?php
+                    $currentYear = date("Y") - 1;
+                    $numberOfYears = 11;
+                    for($i=0;$i<$numberOfYears;$i++){
+                        $yearOption = $currentYear+$i;
+                        echo "<option value='$yearOption'>$yearOption</option>";
+                    }
+                    ?>
+                </select>
 
                 <br class="clear"/>
             </div>
@@ -180,8 +190,8 @@ $this->registerJs($js);
             <div class="questionRow">
                 <p>
                     I am 
-                    <select class="selectpicker" data-width="auto">
-                        <option value="" selected="selected" disabled>Gender</option>
+                    <select class="selectpicker" data-width="auto" title='Genderz'>
+                        <option value="" selected disabled>Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                     </select>
@@ -193,7 +203,7 @@ $this->registerJs($js);
             <div class="questionRow">
                 <br/>
                 I speak
-                <select multiple class="selecter">
+                <select multiple class="selecter" title='Language(s)'>
                     <option>English</option>
                     <option>Arabic</option>
                     <option>French</option>
