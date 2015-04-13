@@ -43,6 +43,16 @@ $('.radioer input:radio').change(function(){
 $('.selectize-majors').selectize({
     selectOnTab: true,
 });
+$('.selectize-text').selectize({
+    delimiter: ',',
+    persist: false,
+    create: function(input) {
+        return {
+            value: input,
+            text: input
+        }
+    }
+});
 
 ";
 
@@ -203,13 +213,7 @@ $this->registerJs($js);
                 sports.
 
                 <div class="additional">
-
-                    <div class="inputer floating-label big" >
-                        <div class="input-wrapper big">
-                            <input type="text" class="form-control" required>
-                            <label for="exampleInput1">Sport(s) I play</label>
-                        </div>
-                    </div>
+                    <input type="text" placeholder='Sports I play' class="form-control selectize-text" required>
                 </div>
 
                 <br class="clear"/>
