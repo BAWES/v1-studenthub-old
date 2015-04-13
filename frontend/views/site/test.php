@@ -16,7 +16,7 @@ $css = "
 .bootstrap-select{margin-left:4px !important; margin-right:5px !important;}
 .selecter{width:300px !important;}
 
-.studentRegistration p{margin-top:35px; margin-bottom:0; float:left;}
+.questionRow p{margin-top:35px; margin-bottom:0; float:left;}
 
 .additional{display:none; clear:both;}
 br.clear{clear:both;}
@@ -243,7 +243,7 @@ $this->registerJs($js);
                 a method of transportation.
                 <br class="clear"/>
             </div>
-            
+
             <!-- Question -->
             <div class="questionRow">
                 <br/>
@@ -294,30 +294,39 @@ $this->registerJs($js);
                         <textarea maxlength="200" class="form-control js-auto-size" rows="1" placeholder="I like to travel"></textarea>
                     </div>
                 </div>
-                
+
                 <br class='clear'/>
             </div>
-            
+
             <!-- Question -->
             <div class='questionRow'>
                 <br/>
                 My favorite hobbies are
                 <input type="text" placeholder='Cooking, playing guitar, and hiking' class="form-control selectize-text">
-                
+
                 <br class='clear'/>
             </div>
 
-            
+
             <!-- ADDITIONAL CONTENT PLACEHOLDER -->
-            <br/><br/>content</br>
-            content</br>
-            content</br>
-            content</br>
-            content</br>
-            content</br>
-            content</br>
-            content</br>
-            content</br>
+            <div class="note note-primary note-top-striped">
+                <h4>Student ID Verification</h4>
+                <p>
+                    As your university does not provide you with student emails, please upload a photo of your student ID card
+                </p>
+                
+                    <div class="btn-group btn-group-justified">
+                        <div class="btn-group">
+                            <a class="btn btn-blue btn-ripple" style="color:white; text-decoration: none;">
+                                <span class="glyphicon glyphicon-camera"></span> Camera</a>
+                        </div><!--.btn-group-->
+                        <div class="btn-group">
+                            <a class="btn btn-red btn-ripple" style="color:white; text-decoration: none;">
+                                <span class="glyphicon glyphicon-upload"></span> Upload</a>
+                        </div><!--.btn-group-->
+                    </div>
+                
+            </div>
 
 
 
