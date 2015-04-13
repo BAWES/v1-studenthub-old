@@ -45,7 +45,8 @@ $('.selectize-majors').selectize({
 });
 $('.selectize-text').selectize({
     delimiter: ',',
-    persist: true,
+    persist: false,
+    createOnBlur: true,
     create: function(input) {
         return {
             value: input,
@@ -74,8 +75,8 @@ $this->registerJs($js);
                 <p>
                     My email notification preferences: 
                     <select class="selectpicker" data-width="auto">
-                        <option>Daily when new jobs are posted</option>
-                        <option>Weekly summary of available jobs</option>
+                        <option>Daily as jobs are posted</option>
+                        <option>Weekly summary</option>
                     </select>
                 </p>
                 <br class="clear"/>
