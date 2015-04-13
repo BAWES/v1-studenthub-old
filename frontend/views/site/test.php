@@ -191,7 +191,7 @@ $this->registerJs($js);
 
                 <div class="inputer floating-label ">
                     <div class="input-wrapper baby">
-                        <input type="text" class="form-control baby" required>
+                        <input type="number" step="0.01" min="0.1" max="4" class="form-control baby" required>
                         <label for="exampleInput5">GPA</label>
                     </div>
                 </div>
