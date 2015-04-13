@@ -5,6 +5,8 @@ $this->params['breadcrumbs'][] = "Registration";
 
 
 $css = "
+    .radioer input[type='radio'] + label { margin-right:10px !important; margin-top:0 !important;}
+        
 .inputer{width:250px; float:left; margin-left:10px; margin-right:10px;}
 .input-wrapper{width:250px;}
 
@@ -241,6 +243,26 @@ $this->registerJs($js);
                 a method of transportation.
                 <br class="clear"/>
             </div>
+            
+            <!-- Question -->
+            <div class="questionRow">
+                <br/>
+                <div class="radioer form-inline">
+                    <input type="radio" name="club" id="club1" value="yes">
+                    <label for="club1">I am</label>
+                </div>
+                <div class="radioer form-inline">
+                    <input type="radio" name="club" id="club2" value="no">
+                    <label for="club2">I am not</label>
+                </div>
+                in a club.
+
+                <div class="additional">
+                    <input type="text" placeholder='Clubs im in' class="form-control selectize-text" required>
+                </div>
+
+                <br class="clear"/>
+            </div>
 
 
             <!-- Question -->
@@ -269,9 +291,18 @@ $this->registerJs($js);
                 <p style="width:200px; margin-top:5px;">A fun fact about me is</p>
                 <div class="inputer" style='width:70%; margin-left:0;'>
                     <div class="input-wrapper" style='width:100%;'>
-                        <textarea class="form-control js-auto-size" rows="1" placeholder="I like to travel"></textarea>
+                        <textarea maxlength="200" class="form-control js-auto-size" rows="1" placeholder="I like to travel"></textarea>
                     </div>
                 </div>
+                
+                <br class='clear'/>
+            </div>
+            
+            <!-- Question -->
+            <div class='questionRow'>
+                <br/>
+                My favorite hobbies are
+                <input type="text" placeholder='Cooking, playing guitar, and hiking' class="form-control selectize-text">
                 
                 <br class='clear'/>
             </div>
