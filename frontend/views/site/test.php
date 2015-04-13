@@ -76,7 +76,7 @@ $this->registerJs($js);
 
     <div class="panel-body studentRegistration">
         <form action="#">
-            <!-- Questions #1 -->
+            <!-- Question -->
             <div class="questionRow">
                 <p>
                     My email notification preferences: 
@@ -89,7 +89,7 @@ $this->registerJs($js);
                 <br class="clear"/>
             </div>
 
-            <!-- Questions #2 -->
+            <!-- Question -->
             <div class="questionRow">
                 <p style="width:100px;">My name is</p>
 
@@ -117,7 +117,7 @@ $this->registerJs($js);
                 <br class="clear"/>
             </div>
 
-            <!-- Questions #3 -->
+            <!-- Question -->
             <br/>
             <div class="questionRow">
                 I am pursuing a 
@@ -133,7 +133,7 @@ $this->registerJs($js);
                 <br class="clear"/>
             </div>
 
-            <!-- Questions #4 -->
+            <!-- Question -->
             <div class="questionRow">
                 <br/>
                 I enrolled in
@@ -167,7 +167,7 @@ $this->registerJs($js);
                 <br class="clear"/>
             </div>
 
-            <!-- Question #5 -->
+            <!-- Question -->
             <div class="questionRow">
                 <br/>
                 I'm majoring in 
@@ -182,7 +182,7 @@ $this->registerJs($js);
                 </select>
             </div>
 
-            <!-- Question #6 -->
+            <!-- Question -->
 
             <div class="questionRow">
                 <p style="width:145px;">My current GPA is </p>
@@ -197,7 +197,7 @@ $this->registerJs($js);
                 <br class="clear"/>
             </div>
 
-            <!-- Question #7 -->
+            <!-- Question -->
             <div class="questionRow">
                 <p>
                     I am 
@@ -228,7 +228,7 @@ $this->registerJs($js);
             </div>
 
 
-            <!-- Question #9 -->
+            <!-- Question -->
             <div class="questionRow">
                 <br/>
                 <div class="radioer form-inline">
@@ -257,6 +257,11 @@ $this->registerJs($js);
             content</br>
             content</br>
             content</br>
+            
+                  <input type="file" name="fileToUpload" id="fileToUpload"  accept="image/*" capture="camera" />
+            <br/><br/>
+            <input type='file'/>
+
 
             <!-- form submit button -->
             <br class="clear"/><br/>
