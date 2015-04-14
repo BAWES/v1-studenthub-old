@@ -41,14 +41,6 @@ if(isMobile()){
     $(".selectpicker").selectpicker("mobile");
 }
 
-//Bind form input
-$(".studentRegistration").on("keyup", ".inputer", function () {
-			var $formControl = $(this).find(".form-control");
-			if($formControl.val().length > 0)
-				$formControl.addClass("valid");
-			else
-				$formControl.removeClass("valid");
-		});
 
 //Ajax Tests
 $("#formStep").click(function () {
