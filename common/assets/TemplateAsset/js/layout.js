@@ -381,7 +381,7 @@ var Layout = {
 
 	listenInputs: function () {
 		// Find input and textarea elements with "inputer" class
-		$('.inputer').on('keyup', function () {
+		$('body').on('keyup', '.inputer', function () {
 			var $formControl = $(this).find('.form-control');
 			if($formControl.val().length > 0)
 				$formControl.addClass('valid');
