@@ -3,6 +3,8 @@
 namespace frontend\controllers;
 
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+
 
 class RegisterController extends \yii\web\Controller
 {
@@ -21,6 +23,12 @@ class RegisterController extends \yii\web\Controller
                     ],
                 ],
             ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
         ];
     }
 
@@ -36,10 +44,23 @@ class RegisterController extends \yii\web\Controller
         ];
     }
     
+    //returns the profile form
+    public function actionForm(){
+        
+        return $this->renderAjax('_form');
+    }
+    
     
     public function actionIndex()
     {
         return $this->render('index');
+    }
+    
+    
+    //Renders the previous form backup for testing
+    public function actionBackup()
+    {
+        return $this->render('backup');
     }
 
 }
