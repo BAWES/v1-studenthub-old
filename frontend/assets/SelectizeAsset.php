@@ -15,7 +15,7 @@ class SelectizeAsset extends AssetBundle
         'plugins/selectize/dist/css/selectize.bootstrap3.css',
     ];
     public $js = [
-        'plugins/selectize/dist/js/standalone/selectize.min.js',
+        'plugins/selectize/dist/js/standalone/selectize.js',
     ];
     public $depends = [
         'common\assets\TemplateAsset',
