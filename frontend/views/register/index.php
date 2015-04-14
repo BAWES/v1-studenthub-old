@@ -55,6 +55,9 @@ $("#formStep").click(function () {
         }
     }).done(function (data) {
         $(".panel-body form").hide().html(data).slideDown(1000);
+        $(".panel-title h4").text("Complete your profile");
+        $("#step1 a").removeClass("btn-primary").addClass("btn-white");
+        $("#step2 a").removeClass("btn-white").addClass("btn-primary");
         
         //hide loader
         par.find(".refresh-container").fadeOut(500, function () {
@@ -84,12 +87,12 @@ $this->registerJs($js);
 <div class="panel">
     <div class="panel-heading">
         <div class="panel-title">
-            <h4>Complete your profile to find a job today!</h4>
+            <h4>Sign up and find a job today!</h4>
             <div class="steps-pull-right">
                 <ul class="wizard-steps">
-                    <li class="step"><a href="#firstStep" class="btn btn-primary btn-ripple">1</a></li>
-                    <li class="step"><a href="#secondStep" class="btn btn-white btn-ripple">2</a></li>
-                    <li class="step"><a href="#thirdStep" class="btn btn-white btn-ripple">3</a></li>
+                    <li class="step" id="step1"><a href="#firstStep" class="btn btn-primary btn-ripple">1</a></li>
+                    <li class="step" id="step2"><a href="#secondStep" class="btn btn-white btn-ripple">2</a></li>
+                    <li class="step" id="step3"><a href="#thirdStep" class="btn btn-white btn-ripple">3</a></li>
                 </ul>
             </div>
         </div>
