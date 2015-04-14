@@ -86,15 +86,15 @@ class SiteController extends Controller
         }
     }
     
-    //Testing the new layout
+    //Test function - for testing random things
     public function actionTest()
     {
         //Yii::$app->getSession()->setFlash('success', 'New password was saved.');
-        $model = new RegisterForm();
+        //$model = new RegisterForm();
         
         
         
-        return $this->render('test');
+        //return $this->render('test');
     }
 
     public function actionLogout()
