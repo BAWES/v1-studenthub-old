@@ -37,9 +37,8 @@ $('.selectize-text').selectize({
 
 //Refresh select pickers
 $('.selectpicker').selectpicker('refresh');
+$('select.selecter').selectpicker('refresh');
 ";
-
-
 
 
 $this->registerCss($css);
