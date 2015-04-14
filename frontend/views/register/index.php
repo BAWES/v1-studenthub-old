@@ -99,10 +99,57 @@ $this->registerJs($js);
     </div>
 
     <div class="panel-body studentRegistration">
-        
+
         <form method="post">
             
-            
+                    <?php
+                    /*
+                    $universities = \common\models\University::find()->all();
+                    foreach ($universities as $university) {
+                        echo "<option value='" . $university->university_id . "'>" . $university->university_name_en . "</option>";
+                    }
+                     * 
+                     */
+                    ?>
+            <h3>Select your University</h3>
+
+            <ul class="list-material has-hidden">
+                <li class="has-action-left">
+                    <a href="#" class="hidden"><i class="ion-chevron-right"></i></a>
+                    <a href="#" class="visible">
+                        <div class="list-action-left">
+                            <img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+                        </div>
+                        <div class="list-content">
+                            <span class="title">Gulf University for Science and Technology</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="has-action-left">
+                    <a href="#" class="hidden"><i class="ion-chevron-right"></i></a>
+                    <a href="#" class="visible">
+                        <div class="list-action-left">
+                            <img src="../../assets/globals/img/faces/2.jpg" class="face-radius" alt="">
+                        </div>
+                        <div class="list-content">
+                            <span class="title">Jason Bryant</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="has-action-left">
+                    <a href="#" class="hidden"><i class="ion-chevron-right"></i></a>
+                    <a href="#" class="visible">
+                        <div class="list-action-left">
+                            <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
+                        </div>
+                        <div class="list-content">
+                            <span class="title">Pari Subramanium</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+
             <a href="#" id='formStep'>Test Ajax Loading</a>
         </form>
     </div>
