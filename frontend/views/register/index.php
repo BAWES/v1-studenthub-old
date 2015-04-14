@@ -54,13 +54,12 @@ $("#formStep").click(function () {
             par.find(".alert").remove();
         }
     }).done(function (data) {
+        $(".panel-body form").hide().html(data).slideDown(1000);
+        
+        //hide loader
         par.find(".refresh-container").fadeOut(500, function () {
             par.find(".refresh-container").remove();
         });
-
-       
-        $(".panel-body form").hide().html(data).slideDown(1000);
-        
 
         //toastr.success("The content successfully loaded.");
 
