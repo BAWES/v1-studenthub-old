@@ -38,6 +38,10 @@ $('.selectize-text').selectize({
 //Refresh select pickers
 $('.selectpicker').selectpicker('refresh');
 $('select.selecter').selectpicker('refresh');
+if(isMobile()){
+    $('.selectpicker').selectpicker('mobile');
+    $('select.selecter').selectpicker('mobile');
+}
 ";
 
 
