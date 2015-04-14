@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use frontend\models\RegisterForm;
 use frontend\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
@@ -89,6 +90,9 @@ class SiteController extends Controller
     public function actionTest()
     {
         //Yii::$app->getSession()->setFlash('success', 'New password was saved.');
+        $model = new RegisterForm();
+        
+        
         
         return $this->render('test');
     }

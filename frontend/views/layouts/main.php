@@ -157,7 +157,7 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                         'items' => [
                             [
                                 'label' => 'Student Registration',
-                                'url' => ['/site/test'],
+                                'url' => ['/register/index'],
                             ],
                         ]
                     ],
