@@ -3,7 +3,9 @@
 $this->title = Yii::t('app', 'Registration');
 $this->params['breadcrumbs'][] = "Registration";
 
+use yii\helpers\Html;
 use yii\helpers\Url;
+
 ?>
 <div class="panel" id="mainPanel">
     <div class="panel-heading">
@@ -20,31 +22,27 @@ use yii\helpers\Url;
     </div>
 
     <div class="panel-body studentRegistration">
-
-        <form method="post">
-
-
-
+        <form method="post" action="<?= Url::to(['register/register']) ?>">
+            
             <ul class="list-material has-hidden">
-
                 <?php
                 $universities = \common\models\University::find()->all();
                 foreach ($universities as $university) {
-                    //echo "<option value='" . $university->university_id . "'>" . $university->university_name_en . "</option>";
-                ?>
-                
-                <li class="has-action-left">
-                    <a href="#" class="hidden"><i class="ion-chevron-right"></i></a>
-                    <a href="#" class="visible">
-                        <div class="list-action-left">
-                            <img src="<?= Url::to('@web/images/universities/'.$university->university_logo) ?>" class="face-radius" alt="">
-                        </div>
-                        <div class="list-content">
-                            <span class="title"><?= $university->university_name_en ?></span>
-                        </div>
-                    </a>
-                </li>
-                
+                    $universityLink = Url::to(['register/register', 'university'=>$university->university_id]);
+                    ?>
+
+                    <li class="has-action-left">
+                        <a href="<?= $universityLink ?>" class="hidden"><i class="ion-chevron-right"></i></a>
+                        <a href="<?= $universityLink ?>" class="visible">
+                            <div class="list-action-left">
+                                <img src="<?= Url::to('@web/images/universities/' . $university->university_logo) ?>" class="face-radius" alt="">
+                            </div>
+                            <div class="list-content">
+                                <span class="title"><?= $university->university_name_en ?></span>
+                            </div>
+                        </a>
+                    </li>
+
                 <?php } ?>
             </ul>
 

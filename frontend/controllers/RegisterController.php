@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use common\models\University;
 
 
 class RegisterController extends \yii\web\Controller
@@ -55,11 +56,17 @@ class RegisterController extends \yii\web\Controller
     
     /**
      * Renders Registration form + ID upload if this university requires
-     * @param int $id University ID 
+     * @param int $university University ID 
      */
-    public function actionRegister()
+    public function actionRegister($university)
     {
-        return $this->render('register');
+        $university = (int) $university;
+        $university = University::findOne($university);
+        
+        
+        return $this->render('register',[
+            'university' => $university,
+        ]);
     }
     
     

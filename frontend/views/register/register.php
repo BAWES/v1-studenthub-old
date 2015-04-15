@@ -1,5 +1,7 @@
 <?php
 /* @var $this yii\web\View */
+/* @var $university common\models\University */
+
 $this->title = Yii::t('app', 'Registration');
 $this->params['breadcrumbs'][] = "Registration";
 
@@ -56,8 +58,8 @@ function loadPage(page){
         //Show new content
         $(".panel-body form").hide().html(data).slideDown(1000);
         $(".panel-title h4").text("Complete your profile");
-        $("#step1 a").removeClass("btn-primary").addClass("btn-white");
-        $("#step2 a").removeClass("btn-white").addClass("btn-primary");
+        $("#step2 a").removeClass("btn-primary").addClass("btn-white");
+        $("#step3 a").removeClass("btn-white").addClass("btn-primary");
         
         //hide loader
         panel.find(".refresh-container").fadeOut(500, function () {
@@ -97,8 +99,8 @@ $this->registerJs($js);
             <h4>Sign up and find a job today!</h4>
             <div class="steps-pull-right">
                 <ul class="wizard-steps">
-                    <li class="step" id="step1"><a href="#firstStep" class="btn btn-primary btn-ripple">1</a></li>
-                    <li class="step" id="step2"><a href="#secondStep" class="btn btn-white btn-ripple">2</a></li>
+                    <li class="step" id="step1"><a href="#firstStep" class="btn btn-white btn-ripple">1</a></li>
+                    <li class="step" id="step2"><a href="#secondStep" class="btn btn-primary btn-ripple">2</a></li>
                     <li class="step" id="step3"><a href="#thirdStep" class="btn btn-white btn-ripple">3</a></li>
                 </ul>
             </div>
@@ -109,8 +111,10 @@ $this->registerJs($js);
 
         <form method="post">
             <h3>Registration</h3>
-
-
+            
+            <h4><?= $university->university_name_en ?></h4>
+            
+            
             <a href="#" id='formStep'>Test Ajax Loading</a>
         </form>
     </div>
