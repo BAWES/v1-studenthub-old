@@ -80,7 +80,13 @@ function loadPage(page){
 
 
 //Ajax Click Test
-$("#formStep").click(function () {
+$("#nextStep").click(function () {
+    var $myForm = $("#registerForm");
+    //Trigger browser-based validation
+    if(!$myForm[0].checkValidity()){
+        $($myForm).find(":submit").click();
+    }
+    
     loadPage(step1);
     
     return false;
@@ -109,13 +115,61 @@ $this->registerJs($js);
 
     <div class="panel-body studentRegistration">
 
-        <form method="post">
-            <h3>Registration</h3>
+        <form method="post" id="registerForm">
+            <h3><?= $university->university_name_en ?></h3>
             
-            <h4><?= $university->university_name_en ?></h4>
+            <?php
+            //Check if the university requires verification
+            $requiresVerification = false;
+            if ($university->university_require_verify == \common\models\University::VERIFICATION_REQUIRED) {
+                $requiresVerification = true;
+            }
+            
+            $emailLabel = $requiresVerification? "email@mydomain.com":"email@".$university->university_domain;
+            ?>
             
             
-            <a href="#" id='formStep'>Test Ajax Loading</a>
+            <input type="hidden" name="university" value="<?= $university->university_id ?>"/>
+            
+            <div class="questionRow">
+                <p style="width:180px;">My university email is</p>
+
+                <div class="inputer floating-label">
+                    <div class="input-wrapper">
+                        <input type="text" class="form-control" required>
+                        <label for="email"><?= $emailLabel ?></label>
+                    </div>
+                </div>
+                <br class="clear"/>
+            </div>
+            
+            <div class="questionRow">
+                <p style="width:215px;">I'd like my password to be</p>
+
+                <div class="inputer floating-label">
+                    <div class="input-wrapper">
+                        <input type="password" class="form-control" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <br class="clear"/>
+            </div>
+            
+            <div class="questionRow">
+                <p style="width:170px;">My phone number is</p>
+
+                <div class="inputer floating-label">
+                    <div class="input-wrapper">
+                        <input type="tel" class="form-control" required>
+                        <label for="phone">Phone Number</label>
+                    </div>
+                </div>
+                <br class="clear"/>
+            </div>
+
+
+            
+            <input id="nextStep" type="submit" class="btn btn-primary btn-ripple pull-right" value="Next Step"/>
         </form>
     </div>
 </div>
