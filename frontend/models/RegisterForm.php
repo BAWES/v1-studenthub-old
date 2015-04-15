@@ -10,7 +10,11 @@ use yii\base\Model;
  */
 class RegisterForm extends Model
 {
+    public $step = 1; //this will be used for scenario / limit the validation
     public $university;
+    public $email;
+    public $password;
+    public $phone;
     
 
     /**
@@ -19,8 +23,12 @@ class RegisterForm extends Model
     public function rules()
     {
         return [
-            //[['name', 'email', 'subject', 'body'], 'required'],
-            //['email', 'email'],
+            [['university', 'email', 'password', 'phone'], 'required'],
+            
+            //Email Validation (unique included)
+            ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'email'],
+            ['email', 'unique', 'targetClass' => '\common\models\Student', 'targetAttribute'=>'student_email', 'message' => 'This email address has already been taken.'],
             
             //University existence validation
             ['university', 'exist',

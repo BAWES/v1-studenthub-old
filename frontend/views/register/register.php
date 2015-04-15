@@ -26,12 +26,10 @@ br.clear{clear:both;}
         ";
 
 
-$step0 = Yii::$app->urlManager->createUrl('register/index');
+$formLink = Yii::$app->urlManager->createUrl('register/validate');
 $step1 = Yii::$app->urlManager->createUrl('register/form');
 $js = "
 var step1 = '$step1';
-var step2 = 'step1url';
-var step3 = 'step1url';
 ";
 
 $js .= '
@@ -44,15 +42,16 @@ if(isMobile()){
     $(".selectpicker").selectpicker("mobile");
 }
 
-//AJAX load page into panel
+
 var panel = $("#mainPanel");
+
+//AJAX load page into panel
 function loadPage(page){
     $.ajax({
         cache: false,
         url: page,
         beforeSend: function () {
-            panel.find(".panel-body").append("<div class=\"refresh-container\"><div class=\"loading-bar indeterminate\"></div></div>");
-            panel.find(".alert").remove();
+            showLoading();
         }
     }).done(function (data) {
         //Show new content
@@ -62,19 +61,26 @@ function loadPage(page){
         $("#step3 a").removeClass("btn-white").addClass("btn-primary");
         
         //hide loader
-        panel.find(".refresh-container").fadeOut(500, function () {
-            panel.find(".refresh-container").remove();
-        });
+        hideLoading();
 
         //toastr.success("The content successfully loaded.");
 
     }).fail(function (jqXHR, textStatus) {
-        panel.find(".refresh-container").fadeOut(500, function () {
-            panel.find(".refresh-container").remove();
-        });
+        hideLoading();
 
         // Handle notification types
         toastr.error("There was a problem while loading the content.");       
+    });
+}
+
+function showLoading(){
+    panel.find(".panel-body").append("<div class=\"refresh-container\"><div class=\"loading-bar indeterminate\"></div></div>");
+    panel.find(".alert").remove();
+}
+
+function hideLoading(){
+    panel.find(".refresh-container").fadeOut(500, function () {
+        panel.find(".refresh-container").remove();
     });
 }
 
@@ -82,15 +88,70 @@ function loadPage(page){
 //Ajax Click Test
 $("#nextStep").click(function () {
     var $myForm = $("#registerForm");
+    
+    /*
     //Trigger browser-based validation
     if(!$myForm[0].checkValidity()){
         $($myForm).find(":submit").click();
     }
+    */
     
-    loadPage(step1);
+    //Submit the form for validation
+    validateForm($myForm);
+    
+
+    //loadPage(step1);
+    
     
     return false;
 });
+
+
+//Submit form
+function validateForm(form){
+    var validationUrl = form.attr("action");
+    
+    console.log(form.serialize());
+    
+    $.ajax({
+        type: "POST",
+        cache: false,
+        url: validationUrl,
+        data: form.serialize(),
+        beforeSend: function () {
+            showLoading();
+        }
+    }).done(function (response) {
+        //Show new content
+        
+        //If there are errors, show them on top
+        if(response.errors){
+            var errors = response.errors;
+            
+            $.each(errors, function() {
+                $.each(this, function(key, value) {
+                    $(".panel-body form").prepend("<div class=\"alert alert-danger\" role=\"alert\">"
+                    + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">"
+                    + "<span aria-hidden=\"true\">×</span><span class=\"sr-only\">Close</span></button>"
+                    + value 
+                    + "</div>");
+                });
+            });
+        }
+        
+
+        console.log(response);
+
+        //hide loader
+        hideLoading();
+
+        //toastr.success("The content successfully loaded.");
+
+    }).fail(function (jqXHR, textStatus) {
+        hideLoading();
+        toastr.error("There was a problem while submitting the form.");       
+    });
+}
 ';
 
 //Selectize plugin for multi-select
@@ -115,52 +176,52 @@ $this->registerJs($js);
 
     <div class="panel-body studentRegistration">
 
-        <form method="post" id="registerForm">
+        <form method="post" action="<?= $formLink ?>" id="registerForm">
             <h3><?= $university->university_name_en ?></h3>
-            
+
             <?php
             //Check if the university requires verification
             $requiresVerification = false;
             if ($university->university_require_verify == \common\models\University::VERIFICATION_REQUIRED) {
                 $requiresVerification = true;
             }
-            
-            $emailLabel = $requiresVerification? "email@mydomain.com":"email@".$university->university_domain;
+
+            $emailLabel = $requiresVerification ? "email@mydomain.com" : "email@" . $university->university_domain;
             ?>
-            
-            
+
+            <input type="hidden" name="step" value="1"/>
             <input type="hidden" name="university" value="<?= $university->university_id ?>"/>
-            
+
             <div class="questionRow">
                 <p style="width:180px;">My university email is</p>
 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
-                        <input type="text" class="form-control" required>
+                        <input type="email" name="email" class="form-control" required>
                         <label for="email"><?= $emailLabel ?></label>
                     </div>
                 </div>
                 <br class="clear"/>
             </div>
-            
+
             <div class="questionRow">
                 <p style="width:215px;">I'd like my password to be</p>
 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
-                        <input type="password" class="form-control" required>
+                        <input type="password" name="password" class="form-control" required>
                         <label for="password">Password</label>
                     </div>
                 </div>
                 <br class="clear"/>
             </div>
-            
+
             <div class="questionRow">
                 <p style="width:170px;">My phone number is</p>
 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
-                        <input type="tel" class="form-control" required>
+                        <input type="tel" name="phone" class="form-control" required>
                         <label for="phone">Phone Number</label>
                     </div>
                 </div>
@@ -168,7 +229,7 @@ $this->registerJs($js);
             </div>
 
 
-            
+
             <input id="nextStep" type="submit" class="btn btn-primary btn-ripple pull-right" value="Next Step"/>
         </form>
     </div>
