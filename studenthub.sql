@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 13, 2015 at 11:34 AM
+-- Generation Time: Apr 15, 2015 at 06:40 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -2386,15 +2386,24 @@ CREATE TABLE IF NOT EXISTS `university` (
   `university_id_template` varchar(255) COLLATE utf8_unicode_ci DEFAULT '' COMMENT 'A photo to define what verification we require',
   `university_logo` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `university_graphic` varchar(255) COLLATE utf8_unicode_ci DEFAULT ''
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `university`
 --
 
 INSERT INTO `university` (`university_id`, `university_name_en`, `university_name_ar`, `university_domain`, `university_require_verify`, `university_id_template`, `university_logo`, `university_graphic`) VALUES
-(12, 'Gulf University for Science and Technology', 'جامعة الخليج', 'gust.edu.kw', 0, '', '', ''),
-(13, 'Kuwait University', 'جامعة الكويت', '', 1, '', '', '');
+(1, 'Gulf University for Science and Technology', 'جامعة الخليج للعلوم والتكنولوجيا', 'gust.edu.kw', 0, '', 'qUAt0IwPfBTbl9idqErSAnx2vmpvwozo.jpg', ''),
+(2, 'Kuwait University', 'جامعة الكويت‎', '', 1, 'xr0g0UNj4zL13GP79iAFv6oUOfe6mcr4.jpg', 'J_ldXRaXJzUZU3XtKNxk9AqrtTNvEXBF.jpg', ''),
+(3, 'Arab Open University', 'الجامعة العربية المفتوحة', '', 1, 'JE9jUQPJggoG3x1sRVUtjU4WYI1-bmFT.jpg', 'wsZ3G0i_VYJ4F0YveBMFcZwmypZY0YsM.jpg', ''),
+(4, 'American University of Kuwait', 'الجامعة الأمريكية في الكويت', 'auk.edu.kw', 0, '', 'O0dIA6cvKyQem3BuOxoNmCDg40E5vtdC.jpg', ''),
+(5, 'Australian College of Kuwait', 'الكلية الأسترالية في الكويت', 'go.ack.edu.kw', 0, '', 'R_WppSNgGrtxJhMxKG-g2pwjc0dM7mFJ.jpg', ''),
+(6, 'American University of the Middle East', 'جامعة الشرق الأوسط الأميركية', 'aum.edu.kw', 0, '', 'qmLYygvyTXmhWpqthmlO1MoRfYpC1fb5.jpg', ''),
+(7, 'American College of the Middle East', 'كلية الشرق الأوسط الأميركية', 'acm.edu.kw', 0, '', 'WlZBHhBDbkC3rrnv4JDItlCcQtuPXcxW.jpg', ''),
+(8, 'Kuwait Maastricht Business School', 'كلية كويت - ماسترخت لإدارة الأعمـال', 'kmbs.edu.kw', 0, '', '0TAm5biJGCIvCbLCUBq18hMGwnhCq1a4.jpg', ''),
+(9, 'Box Hill College Kuwait', 'كلية بوكسهل', 'bhck.edu.kw', 0, '', 'rPY-R1mNxDhgMXNsZFu8ml9t1hMhmqVi.jpg', ''),
+(10, 'Kuwait International Law School', 'كلية القانون الكويتية العالمية', 'killaw.edu.kw', 0, '', 'rbitcXx-CcFTG2W14ZxBjyTwb2tPAlkZ.jpg', ''),
+(11, 'Public Authority for Applied Education and Training ', 'الهيئة العامة للتعليم التطبيقي والتدريب', '', 1, '-eLcPm0VBr-maVC9AKD0EbX-dN9sJbHU.jpg', '_0-iJE4dU4LKDrKhcVKntH1gVxCvh-El.jpg', '');
 
 --
 -- Indexes for dumped tables
@@ -2648,7 +2657,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `university`
 --
 ALTER TABLE `university`
-  MODIFY `university_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `university_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --
