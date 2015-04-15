@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use common\models\University;
+use yii\web\NotFoundHttpException;
 
 
 class RegisterController extends \yii\web\Controller
@@ -61,7 +62,7 @@ class RegisterController extends \yii\web\Controller
     public function actionRegister($university)
     {
         $university = (int) $university;
-        $university = University::findOne($university);
+        $university = $this->findUniversity($university);
         
         
         return $this->render('register',[
@@ -76,6 +77,23 @@ class RegisterController extends \yii\web\Controller
     public function actionForm(){
         
         return $this->renderAjax('_form');
+    }
+    
+    
+    /**
+     * Finds the University model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Major the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findUniversity($id)
+    {
+        if (($model = University::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
     
 
