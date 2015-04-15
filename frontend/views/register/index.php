@@ -24,6 +24,7 @@ br.clear{clear:both;}
         ";
 
 
+$step0 = Yii::$app->urlManager->createUrl('register/index');
 $step1 = Yii::$app->urlManager->createUrl('register/form');
 $js = "
 var step1 = '$step1';
@@ -41,40 +42,46 @@ if(isMobile()){
     $(".selectpicker").selectpicker("mobile");
 }
 
-
-//Ajax Tests
-$("#formStep").click(function () {
-    var par = $(this).parent().parent().parent();
-    
+//AJAX load page into panel
+var panel = $("#mainPanel");
+function loadPage(page){
     $.ajax({
         cache: false,
-        url: step1,
+        url: page,
         beforeSend: function () {
-            par.find(".panel-body").append("<div class=\"refresh-container\"><div class=\"loading-bar indeterminate\"></div></div>");
-            par.find(".alert").remove();
+            panel.find(".panel-body").append("<div class=\"refresh-container\"><div class=\"loading-bar indeterminate\"></div></div>");
+            panel.find(".alert").remove();
         }
     }).done(function (data) {
+        //Show new content
         $(".panel-body form").hide().html(data).slideDown(1000);
         $(".panel-title h4").text("Complete your profile");
         $("#step1 a").removeClass("btn-primary").addClass("btn-white");
         $("#step2 a").removeClass("btn-white").addClass("btn-primary");
         
         //hide loader
-        par.find(".refresh-container").fadeOut(500, function () {
-            par.find(".refresh-container").remove();
+        panel.find(".refresh-container").fadeOut(500, function () {
+            panel.find(".refresh-container").remove();
         });
 
         //toastr.success("The content successfully loaded.");
 
     }).fail(function (jqXHR, textStatus) {
-        par.find(".refresh-container").fadeOut(500, function () {
-            par.find(".refresh-container").remove();
+        panel.find(".refresh-container").fadeOut(500, function () {
+            panel.find(".refresh-container").remove();
         });
 
         // Handle notification types
         toastr.error("There was a problem while loading the content.");       
     });
+}
 
+
+//Ajax Tests
+$("#formStep").click(function () {
+    loadPage(step1);
+    
+    return false;
 });
 ';
 
@@ -84,7 +91,7 @@ $("#formStep").click(function () {
 $this->registerCss($css);
 $this->registerJs($js);
 ?>
-<div class="panel">
+<div class="panel" id="mainPanel">
     <div class="panel-heading">
         <div class="panel-title">
             <h4>Sign up and find a job today!</h4>
