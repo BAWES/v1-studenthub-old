@@ -107,7 +107,7 @@ $("#nextStep").click(function () {
 function validateForm(form){
     var validationUrl = form.attr("action");
     
-    console.log(form.serialize());
+    //console.log(form.serialize());
     
     $.ajax({
         type: "POST",
@@ -142,8 +142,6 @@ function validateForm(form){
             }
         }
         
-
-        console.log(response);
 
         //hide loader
         hideLoading();
