@@ -3,6 +3,7 @@
 $this->title = Yii::t('app', 'Registration');
 $this->params['breadcrumbs'][] = "Registration";
 
+use yii\helpers\Url;
 ?>
 <div class="panel" id="mainPanel">
     <div class="panel-heading">
@@ -21,53 +22,32 @@ $this->params['breadcrumbs'][] = "Registration";
     <div class="panel-body studentRegistration">
 
         <form method="post">
-            
-                    <?php
-                    /*
-                    $universities = \common\models\University::find()->all();
-                    foreach ($universities as $university) {
-                        echo "<option value='" . $university->university_id . "'>" . $university->university_name_en . "</option>";
-                    }
-                     * 
-                     */
-                    ?>
+
+
 
             <ul class="list-material has-hidden">
+
+                <?php
+                $universities = \common\models\University::find()->all();
+                foreach ($universities as $university) {
+                    //echo "<option value='" . $university->university_id . "'>" . $university->university_name_en . "</option>";
+                ?>
+                
                 <li class="has-action-left">
                     <a href="#" class="hidden"><i class="ion-chevron-right"></i></a>
                     <a href="#" class="visible">
                         <div class="list-action-left">
-                            <img src="../../assets/globals/img/faces/1.jpg" class="face-radius" alt="">
+                            <img src="<?= Url::to('@web/images/universities/'.$university->university_logo) ?>" class="face-radius" alt="">
                         </div>
                         <div class="list-content">
-                            <span class="title">Gulf University for Science and Technology</span>
+                            <span class="title"><?= $university->university_name_en ?></span>
                         </div>
                     </a>
                 </li>
-                <li class="has-action-left">
-                    <a href="#" class="hidden"><i class="ion-chevron-right"></i></a>
-                    <a href="#" class="visible">
-                        <div class="list-action-left">
-                            <img src="../../assets/globals/img/faces/2.jpg" class="face-radius" alt="">
-                        </div>
-                        <div class="list-content">
-                            <span class="title">Jason Bryant</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="has-action-left">
-                    <a href="#" class="hidden"><i class="ion-chevron-right"></i></a>
-                    <a href="#" class="visible">
-                        <div class="list-action-left">
-                            <img src="../../assets/globals/img/faces/3.jpg" class="face-radius" alt="">
-                        </div>
-                        <div class="list-content">
-                            <span class="title">Pari Subramanium</span>
-                        </div>
-                    </a>
-                </li>
+                
+                <?php } ?>
             </ul>
-            
+
         </form>
     </div>
 </div>

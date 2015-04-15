@@ -44,21 +44,28 @@ class RegisterController extends \yii\web\Controller
         ];
     }
     
-    //Renders University Selection (Step 1);
+    /**
+     * Renders University Selection (Step 1);
+     */
     public function actionIndex()
     {
         return $this->render('index');
     }
     
     
-    //Renders Registration form + ID upload (Step 2);
+    /**
+     * Renders Registration form + ID upload if this university requires
+     * @param int $id University ID 
+     */
     public function actionRegister()
     {
         return $this->render('register');
     }
     
     
-    //Renders Profile Form (Step 3)
+    /**
+     * Renders Profile Form via AJAX (Step 3)
+     */
     public function actionForm(){
         
         return $this->renderAjax('_form');
