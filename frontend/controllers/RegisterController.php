@@ -75,6 +75,7 @@ class RegisterController extends \yii\web\Controller {
         $response = [
             'valid' => false,
             'errors' => [],
+            'goToNextStep' => false,
         ];
         
         
@@ -89,6 +90,11 @@ class RegisterController extends \yii\web\Controller {
             //All data is valid
             $response['valid'] = true;
             $response['errors'] = false;
+            
+            //If step 1, tell to go next step
+            if($model->step == 1){
+                $response['goToNextStep'] = true;
+            }
         }
         
         return $response;

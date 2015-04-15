@@ -86,21 +86,17 @@ function hideLoading(){
 
 
 //Ajax Click Test
+var goToNextStep = false;
 $("#nextStep").click(function () {
     var $myForm = $("#registerForm");
     
-    /*
     //Trigger browser-based validation
     if(!$myForm[0].checkValidity()){
         $($myForm).find(":submit").click();
     }
-    */
     
     //Submit the form for validation
     validateForm($myForm);
-    
-
-    //loadPage(step1);
     
     
     return false;
@@ -137,6 +133,13 @@ function validateForm(form){
                     + "</div>");
                 });
             });
+        }
+        
+        if(response.valid){
+            //Go to next step
+            if(response.goToNextStep){
+                loadPage(step1);
+            }
         }
         
 
