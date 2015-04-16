@@ -4,18 +4,23 @@ namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
+use common\models\University;
 
 /**
  * Registration form step 1
  */
 class RegisterForm extends Model
 {
+    //Step 1 Requirements:
     public $step; //this will be used for scenario / limit the validation
     public $university;
     public $email;
     public $password;
     public $phone;
-    public $idUpload; //Student ID verification in the case university requires verification
+    public $idUpload; //Student ID verification image in the case university requires verification
+    
+    //Step 2 Requirements: (create scenario for this)
+    //Make sure to pass values from step 1 to hidden fields in step 2
     
 
     /**
@@ -27,14 +32,21 @@ class RegisterForm extends Model
             //Always required
             [['step', 'university', 'email', 'password', 'phone'], 'required'],
             
-            /*
-             * //Student ID verification in the case university requires verification
-             * 
-            ['idUpload', 'required', 'when' => function($model) {
-                return $model->country == 'USA';
+            //ID upload only required when university requires verification
+            ['idUpload', 'required', 'message' => 'Please upload a photo of your University Id card',
+                'when' => function($model) {
+                if(isset($model->university)){
+                    $univId = (int) $model->university;
+                    $university = University::findOne($univId);
+                    if($university){
+                        if($university->university_require_verify == University::VERIFICATION_REQUIRED){
+                            return true;
+                        }
+                    }
+                }
+                
+                return false;
             }],
-             * 
-             */
             
             //Required on second step / Account registration
             [['step', 'university', 'email', 'password', 'phone'], 'required', 'on'=>'registerAccount'],

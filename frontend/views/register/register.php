@@ -79,8 +79,8 @@ function loadPage(page){
 }
 
 function showLoading(){
-    panel.find(".panel-body").append("<div class=\"refresh-container\"><div class=\"loading-bar indeterminate\"></div></div>");
     panel.find(".alert").remove();
+    panel.find(".panel-body").append("<div class=\"refresh-container\"><div class=\"loading-bar indeterminate\"></div></div>");
 }
 
 function hideLoading(){
@@ -92,7 +92,7 @@ function hideLoading(){
 //File upload monitor
 var $fileUpload = $("#fileUpload");
 var requiresIdUpload = $fileUpload.length?true:false;
-var notUploaded = true;
+var notUploaded = false;
 var file; //html5 storage of the file on selection
 
 if(requiresIdUpload){
@@ -107,11 +107,16 @@ if(requiresIdUpload){
 //Form Submit Step 1
 $("#nextStep").click(function () {
     var $myForm = $("#registerForm");
-    
+
     //Trigger browser-based validation
     if(!$myForm[0].checkValidity()){
         $($myForm).find(":submit").click();
     }
+    
+    //Scroll to top and start loading
+    $("html, body").animate({
+        scrollTop: 0
+    }, 250);
     
     //If form requires id upload, upload and validate it before the rest of form
     if (requiresIdUpload && notUploaded){
@@ -124,6 +129,9 @@ $("#nextStep").click(function () {
             type: "POST",
             data: data,
             cache: false,
+            beforeSend: function () {
+                showLoading();
+            },
             dataType: "json",
             processData: false,
             contentType: false,
@@ -165,7 +173,6 @@ $("#nextStep").click(function () {
     else{
         //file upload not required, proceed with validation
         validateForm($myForm);
-        
 
         
     }
@@ -317,7 +324,7 @@ $this->registerJs($js);
                             <span class="btn btn-default btn-file btn-ripple">
                                 <span class="fileinput-new">Select image</span>
                                 <span class="fileinput-exists">Change</span>
-                                <input type="file" id="fileUpload" name="fileUpload">
+                                <input type="file" id="fileUpload" name="fileUpload"/>
                                 <input type="hidden" id="idUpload" name="idUpload"/>
                             </span>
                             <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput">Remove</a>
