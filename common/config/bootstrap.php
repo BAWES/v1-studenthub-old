@@ -11,3 +11,4 @@ Yii::setAlias('universityImages','@frontend/web/images/universities');
 //Amazon S3 Alias
 Yii::setAlias('s3','https://studenthub.s3.amazonaws.com');
 Yii::setAlias('temporary','@s3/temporary');
+Yii::setAlias('studentID','@s3/student-identification');
