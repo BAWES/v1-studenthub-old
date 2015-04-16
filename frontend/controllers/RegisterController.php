@@ -132,9 +132,9 @@ class RegisterController extends \yii\web\Controller {
         if($model->step == 1){
             $model->scenario = "firstStep";
         }else if($model->step == 2){
-            $model->scenario = "secondStep";
+            $model->scenario = "default";
         }
-        //Create separate validation rules for each scenario
+        
         
         if (!$model->validate()) {
             //Errors available in submitted data
@@ -148,10 +148,12 @@ class RegisterController extends \yii\web\Controller {
             //If step 1, tell to go next step
             if($model->step == 1){
                 $response['goToNextStep'] = true;
-                
-                
             }
             
+            
+            //If validation succeeds on all model attributes + step==2 -> save record
+            //Create a method within RegisterForm.php that will create the student record
+            //Make sure to update Student model with matching validation rules shown in RegisterForm.php
             /*
              * Make sure to move item from temporary to student-identification folder
              */

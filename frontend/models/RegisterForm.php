@@ -43,7 +43,7 @@ class RegisterForm extends Model
     public $hobbies;
     public $funfact;
     
-
+    
     /**
      * @inheritdoc
      */
@@ -51,7 +51,7 @@ class RegisterForm extends Model
     {
         return [
             //Always required
-            [['step', 'university', 'email', 'password', 'phone'], 'required'],
+            [['step', 'university', 'email', 'password', 'phone', 'firstName'], 'required'],
             
             //ID upload only required when university requires verification
             ['idUpload', 'required', 'message' => 'Please upload a photo of your University Id card',
@@ -68,9 +68,6 @@ class RegisterForm extends Model
                 
                 return false;
             }],
-            
-            //Required on second step / Account registration
-            [['step', 'university', 'email', 'password', 'phone'], 'required', 'on'=>'registerAccount'],
             
             [['phone','university'], 'integer'],
             
@@ -97,6 +94,19 @@ class RegisterForm extends Model
             ['step', 'in', 'range' => [1, 2]],
             
         ];
+    }
+    
+    /**
+     * Scenarios for validation, we have two scenarios
+     * 1) firstStep scenario - validates a limited number of items for the first step
+     * 2) default scenario - validates all attributes
+     */
+    public function scenarios() {
+        $scenarios = parent::scenarios();
+        //Validate only these values on firstStep
+        $scenarios['firstStep'] = ['step', 'university', 'email', 'password', 'phone', 'idUpload'];
+        
+        return $scenarios;
     }
 
     /**
