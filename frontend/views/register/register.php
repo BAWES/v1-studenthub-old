@@ -29,9 +29,12 @@ br.clear{clear:both;}
 
 
 $formLink = Yii::$app->urlManager->createUrl('register/validate');
+$idLink = Yii::$app->urlManager->createUrl('register/id-upload');
 $step1 = Yii::$app->urlManager->createUrl('register/form');
+
 $js = "
 var step1 = '$step1';
+var idLink = '$idLink';
 ";
 
 $js .= '
@@ -86,9 +89,22 @@ function hideLoading(){
     });
 }
 
+//File upload monitor
+var $fileUpload = $("#fileUpload");
+var requiresIdUpload = $fileUpload.length?true:false;
+var notUploaded = true;
+var file; //html5 storage of the file on selection
 
-//Ajax Click Test
-var goToNextStep = false;
+if(requiresIdUpload){
+    //Store file in variable
+    $fileUpload.on("change", function(event){
+        file = event.target.files[0];
+        notUploaded = true;
+    });
+}
+
+
+//Form Submit Step 1
 $("#nextStep").click(function () {
     var $myForm = $("#registerForm");
     
@@ -97,6 +113,55 @@ $("#nextStep").click(function () {
         $($myForm).find(":submit").click();
     }
     
+    //If form requires id upload, upload and validate it before the rest of form
+    if (requiresIdUpload && notUploaded){
+        //Upload and validate file
+        var data = new FormData();
+        data.append("idUpload", file);
+        
+        $.ajax({
+            url: idLink,
+            type: "POST",
+            data: data,
+            cache: false,
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            success: function(response, textStatus, jqXHR)
+            {
+                console.log(response);
+                
+                //If there are errors, show on top
+                if(response.errors){
+                    var errors = response.errors;
+
+                    $.each(errors, function() {
+                        $.each(this, function(key, value) {
+                            $(".panel-body form").prepend("<div class=\"alert alert-danger\" role=\"alert\">"
+                            + "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">"
+                            + "<span aria-hidden=\"true\">×</span><span class=\"sr-only\">Close</span></button>"
+                            + value 
+                            + "</div>");
+                        });
+                    });
+                }else if(response.file){
+                    console.log(response.file);
+                    //Set hidden field to have url to uploaded file
+                    
+                    //file sent to S3, put url in form
+                }
+                
+                //On upload success set notUploaded to false
+                //This way we will not repeat the upload unless the file is changed
+                notUploaded = false;
+            },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+                console.log(textStatus);
+            }
+        });
+    }
+
     //Submit the form for validation
     validateForm($myForm);
     
@@ -247,7 +312,8 @@ $this->registerJs($js);
                             <span class="btn btn-default btn-file btn-ripple">
                                 <span class="fileinput-new">Select image</span>
                                 <span class="fileinput-exists">Change</span>
-                                <input type="file" name="...">
+                                <input type="file" id="fileUpload" name="fileUpload">
+                                <input type="hidden" name="idUpload"/>
                             </span>
                             <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput">Remove</a>
                         </div>

@@ -5,10 +5,11 @@ namespace frontend\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-use yii\helpers\Json;
 use common\models\University;
 use yii\web\NotFoundHttpException;
 use frontend\models\RegisterForm;
+use yii\web\UploadedFile;
+use yii\base\DynamicModel;
 
 class RegisterController extends \yii\web\Controller {
 
@@ -30,6 +31,7 @@ class RegisterController extends \yii\web\Controller {
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'validate' => ['post'],
+                    'id-upload' => ['post'],
                 ],
             ],
         ];
@@ -52,6 +54,8 @@ class RegisterController extends \yii\web\Controller {
     public function actionIndex() {
         return $this->render('index');
     }
+    
+    
 
     /**
      * Renders Registration form + ID upload if this university requires
@@ -65,6 +69,46 @@ class RegisterController extends \yii\web\Controller {
         return $this->render('register', [
                     'university' => $university,
         ]);
+    }
+    
+    /**
+     * AJAX: Validates and uploads ID card image
+     */
+    public function actionIdUpload() {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $response = [
+            'valid' => false,
+            'errors' => [],
+            'file' => false,
+        ];
+        
+        $uploadedFile = UploadedFile::getInstanceByName("idUpload");
+        
+        if($uploadedFile){
+            $model = DynamicModel::validateData(compact('uploadedFile'), [
+                [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png, gif, pdf', 'maxSize' => 10000000],
+            ]);
+
+            if ($model->hasErrors()) {
+                // validation fails
+                $response['errors'] = $model->errors;
+            } else {
+                //file upload is valid
+                
+                //Upload file to amazon S3
+                $filename = Yii::$app->security->generateRandomString() . "." . $uploadedFile->extension;
+                
+                //Save to S3 Temporary folder
+                $awsResult = Yii::$app->resourceManager->save($uploadedFile, "temporary/".$filename);
+                $response['valid'] = true;
+                $response['errors'] = false;
+                $response['file'] = $awsResult;
+                
+            }
+            
+        }
+        
+        return $response;
     }
 
     /**

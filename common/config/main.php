@@ -3,6 +3,12 @@ return [
     'name' => 'StudentHub',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'resourceManager' => [
+            'class' => 'common\components\AmazonS3UpdatedResourceManager',
+            'key' => 'AKIAJY4NMGYUSUMTVTZA',
+            'secret' => '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',
+            'bucket' => 'studenthub'
+        ],
         'assetManager' => [
             //append time stamps to assets for cache busting
             'appendTimestamp' => true,

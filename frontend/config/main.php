@@ -33,7 +33,7 @@ return [
                 //Template suggests we use version 1.11.1 of jQuery incase one of the validation plugins fails
                 //'jquery.js' => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
             ],
-        ],
+        ]
     ],
     'params' => $params,
 ];
