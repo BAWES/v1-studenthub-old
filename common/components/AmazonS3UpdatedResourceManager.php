@@ -27,8 +27,9 @@ class AmazonS3UpdatedResourceManager extends AmazonS3ResourceManager {
                     'Bucket' => $this->bucket,
                     'Key' => $name,
                     'SourceFile' => $file->tempName,
-                    'ACL' => CannedAcl::PUBLIC_READ // default to ACL public read
-                        ], $options);
+                    'ACL' => CannedAcl::PUBLIC_READ, // default to ACL public read
+                    'ContentType' => $file->type,
+                ], $options);
 
         return $this->getClient()->putObject($options);
     }

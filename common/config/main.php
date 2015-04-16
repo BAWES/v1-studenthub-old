@@ -8,6 +8,11 @@ return [
             'key' => 'AKIAJY4NMGYUSUMTVTZA',
             'secret' => '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',
             'bucket' => 'studenthub'
+            /**
+             * You can access the bucket with:
+             * https://studenthub.s3.amazonaws.com/
+             * https://studenthub.s3.amazonaws.com/folderName/fileName.jpg
+             */
         ],
         'assetManager' => [
             //append time stamps to assets for cache busting

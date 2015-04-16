@@ -99,10 +99,11 @@ class RegisterController extends \yii\web\Controller {
                 $filename = Yii::$app->security->generateRandomString() . "." . $uploadedFile->extension;
                 
                 //Save to S3 Temporary folder
-                $awsResult = Yii::$app->resourceManager->save($uploadedFile, "temporary/".$filename);
-                $response['valid'] = true;
-                $response['errors'] = false;
-                $response['file'] = $awsResult;
+                if($awsResult = Yii::$app->resourceManager->save($uploadedFile, "temporary/".$filename)){
+                    $response['valid'] = true;
+                    $response['errors'] = false;
+                    $response['file'] = $filename;
+                }
                 
             }
             

@@ -128,9 +128,7 @@ $("#nextStep").click(function () {
             processData: false,
             contentType: false,
             success: function(response, textStatus, jqXHR)
-            {
-                console.log(response);
-                
+            {                
                 //If there are errors, show on top
                 if(response.errors){
                     var errors = response.errors;
@@ -145,10 +143,13 @@ $("#nextStep").click(function () {
                         });
                     });
                 }else if(response.file){
-                    console.log(response.file);
-                    //Set hidden field to have url to uploaded file
+                    //console.log(response.file);
+                    //file uploaded
+                    $("#idUpload").val(response.file);
                     
-                    //file sent to S3, put url in form
+                    //validate form after file uploaded
+                    //Submit the form for validation
+                    validateForm($myForm);
                 }
                 
                 //On upload success set notUploaded to false
@@ -161,9 +162,13 @@ $("#nextStep").click(function () {
             }
         });
     }
+    else{
+        //file upload not required, proceed with validation
+        validateForm($myForm);
+        
 
-    //Submit the form for validation
-    validateForm($myForm);
+        
+    }
     
     
     return false;
@@ -313,7 +318,7 @@ $this->registerJs($js);
                                 <span class="fileinput-new">Select image</span>
                                 <span class="fileinput-exists">Change</span>
                                 <input type="file" id="fileUpload" name="fileUpload">
-                                <input type="hidden" name="idUpload"/>
+                                <input type="hidden" id="idUpload" name="idUpload"/>
                             </span>
                             <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput">Remove</a>
                         </div>
