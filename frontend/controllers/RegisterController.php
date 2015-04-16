@@ -127,11 +127,14 @@ class RegisterController extends \yii\web\Controller {
         $model = new RegisterForm;
         $model->attributes = Yii::$app->request->post();
         
-        //Set Scenario Here based on current step (before validation)
-        //if $model->step is 1, then its default scenario
-        //if $model->step is 2, then its full registration scenario
-        //If validation succeeds while $model->step is 2, create a new student with form details
-        //Send activation email on successful registration
+        //Set Scenario based on current step
+        if(!$model->step) $model->step = 1;
+        if($model->step == 1){
+            $model->scenario = "firstStep";
+        }else if($model->step == 2){
+            $model->scenario = "secondStep";
+        }
+        //Create separate validation rules for each scenario
         
         if (!$model->validate()) {
             //Errors available in submitted data
