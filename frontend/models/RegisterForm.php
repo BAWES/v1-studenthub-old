@@ -39,21 +39,13 @@ class RegisterForm extends Model
             //Required on second step / Account registration
             [['step', 'university', 'email', 'password', 'phone'], 'required', 'on'=>'registerAccount'],
             
+            [['phone','university'], 'integer'],
             
             //Phone Requirements
             ['phone', 'string', 'length' => 8],
-            ['phone', 'integer'],
             
             //Password Requirements
             ['password', 'string', 'length' => [4, 32]],
-            
-            //Email Validation (unique included)
-            ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'email'],
-            ['email', 'unique', 'targetClass' => '\common\models\Student', 'targetAttribute'=>'student_email', 'message' => 'This email address has already been taken.'],
-            
-            //Step Validation, only 1 and 2
-            ['step', 'in', 'range' => [1, 2]],
             
             //University existence validation
             ['university', 'exist',
@@ -61,6 +53,16 @@ class RegisterForm extends Model
                 'targetAttribute' => 'university_id',
                 'message' => 'This university does not exist.'
             ],
+            
+            //Email Validation (unique included)
+            ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'email'],
+            ['email', '\frontend\components\UniversityEmailValidator', 'universityAttribute'=>'university'],
+            ['email', 'unique', 'targetClass' => '\common\models\Student', 'targetAttribute'=>'student_email', 'message' => 'This email address has already been taken.'],
+            
+            //Step Validation, only 1 and 2
+            ['step', 'in', 'range' => [1, 2]],
+            
         ];
     }
 

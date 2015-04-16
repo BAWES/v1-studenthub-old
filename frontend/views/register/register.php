@@ -198,7 +198,7 @@ $this->registerJs($js);
 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
-                        <input type="email" name="email" class="form-control" required>
+                        <input type="email" name="email" class="form-control" maxlength="96" required>
                         <label for="email"><?= $emailLabel ?></label>
                     </div>
                 </div>
@@ -210,7 +210,7 @@ $this->registerJs($js);
 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
-                        <input type="password" name="password" class="form-control" required>
+                        <input type="password" name="password" class="form-control" maxlength="32" required>
                         <label for="password">Password</label>
                     </div>
                 </div>
@@ -222,7 +222,7 @@ $this->registerJs($js);
 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
-                        <input type="tel" name="phone" class="form-control" required>
+                        <input type="tel" name="phone" class="form-control" maxlength="8" required>
                         <label for="phone">Phone Number</label>
                     </div>
                 </div>
