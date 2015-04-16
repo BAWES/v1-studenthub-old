@@ -169,7 +169,7 @@ $this->registerJs($js);
 
     <div class="inputer floating-label ">
         <div class="input-wrapper baby">
-            <input type="number" step="any" min="0.1" max="4" inputmode="numeric" pattern="[0-9]*" class="form-control baby" required>
+            <input type="number" step="any" min="0.1" max="4" inputmode="numeric" class="form-control baby" required>
             <label for="exampleInput5">GPA</label>
         </div>
     </div>
