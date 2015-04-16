@@ -138,7 +138,13 @@ class RegisterController extends \yii\web\Controller {
             //If step 1, tell to go next step
             if($model->step == 1){
                 $response['goToNextStep'] = true;
+                
+                
             }
+            
+            /*
+             * Make sure to move item from temporary to student-identification folder
+             */
         }
         
         return $response;

@@ -1,8 +1,10 @@
 <?php
+
 namespace common\components;
 
 use Aws\S3\Enum\CannedAcl;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use dosamigos\resourcemanager\AmazonS3ResourceManager;
 
 /**
@@ -29,6 +31,24 @@ class AmazonS3UpdatedResourceManager extends AmazonS3ResourceManager {
                         ], $options);
 
         return $this->getClient()->putObject($options);
+    }
+
+    /**
+     * Creates a copy of a file from old key to new key
+     * @param string $oldFile old file name / path that you wish to copy
+     * @param string $newFile target destination for file name / path
+     * @param array $options
+     */
+    public function copy($oldFile, $newFile, $options = []) {
+        
+        $options = ArrayHelper::merge([
+                    'Bucket' => $this->bucket,
+                    'Key' => $newFile,
+                    'CopySource' => Html::encode($this->bucket."/".$oldFile),
+                    ], $options);
+
+        return $this->getClient()->copyObject($options);
+                        
     }
 
 }

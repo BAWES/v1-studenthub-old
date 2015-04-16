@@ -92,7 +92,12 @@ class SiteController extends Controller
         //Yii::$app->getSession()->setFlash('success', 'New password was saved.');
         //$model = new RegisterForm();
         
-        
+        //Test moving file from old bucket to new bucket
+        /*
+        $awsResult = Yii::$app->resourceManager->copy("temporary/8vjakguvjxQF4SX_4ZwP9VwQmsPvIdfQ.png", "student-identification/another-version.png");
+        print_r($awsResult);
+         * 
+         */
         
         //return $this->render('test');
     }
