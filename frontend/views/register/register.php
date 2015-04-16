@@ -150,6 +150,7 @@ $("#nextStep").click(function () {
                             + "</div>");
                         });
                     });
+                    hideLoading();
                 }else if(response.file){
                     //console.log(response.file);
                     //file uploaded
