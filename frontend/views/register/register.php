@@ -217,7 +217,7 @@ $this->registerJs($js);
                 <br class="clear"/>
             </div>
 
-            <div class="questionRow">
+            <div class="questionRow" style="margin-bottom:15px;">
                 <p style="width:170px;">My phone number is</p>
 
                 <div class="inputer floating-label">
@@ -228,6 +228,16 @@ $this->registerJs($js);
                 </div>
                 <br class="clear"/>
             </div>
+            
+            <?php if($requiresVerification){ ?>
+            <!-- Verification details -->
+            <div class="note note-primary note-top-striped" style="margin-top:35px;">
+                <h4>Student ID Verification</h4>
+                <p>
+                    As your university does not provide you with student emails, please upload a photo of your student ID card
+                </p>
+            </div>
+            <?php } ?>
 
 
 

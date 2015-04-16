@@ -15,6 +15,7 @@ class RegisterForm extends Model
     public $email;
     public $password;
     public $phone;
+    public $idUpload; //Student ID verification in the case university requires verification
     
 
     /**
@@ -25,13 +26,34 @@ class RegisterForm extends Model
         return [
             //Always required
             [['step', 'university', 'email', 'password', 'phone'], 'required'],
+            
+            /*
+             * //Student ID verification in the case university requires verification
+             * 
+            ['idUpload', 'required', 'when' => function($model) {
+                return $model->country == 'USA';
+            }],
+             * 
+             */
+            
             //Required on second step / Account registration
             [['step', 'university', 'email', 'password', 'phone'], 'required', 'on'=>'registerAccount'],
+            
+            
+            //Phone Requirements
+            ['phone', 'string', 'length' => 8],
+            ['phone', 'integer'],
+            
+            //Password Requirements
+            ['password', 'string', 'length' => [4, 32]],
             
             //Email Validation (unique included)
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'email'],
             ['email', 'unique', 'targetClass' => '\common\models\Student', 'targetAttribute'=>'student_email', 'message' => 'This email address has already been taken.'],
+            
+            //Step Validation, only 1 and 2
+            ['step', 'in', 'range' => [1, 2]],
             
             //University existence validation
             ['university', 'exist',

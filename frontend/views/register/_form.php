@@ -318,26 +318,6 @@ $this->registerJs($js);
 </div>
 
 
-<!-- ADDITIONAL CONTENT PLACEHOLDER -->
-<div class="note note-primary note-top-striped" style="margin-top:50px;">
-    <h4>Student ID Verification</h4>
-    <p>
-        As your university does not provide you with student emails, please upload a photo of your student ID card
-    </p>
-
-    <div class="btn-group btn-group-justified">
-        <div class="btn-group">
-            <a class="btn btn-blue btn-ripple" style="color:white; text-decoration: none;">
-                <span class="glyphicon glyphicon-camera"></span> Camera</a>
-        </div><!--.btn-group-->
-        <div class="btn-group">
-            <a class="btn btn-red btn-ripple" style="color:white; text-decoration: none;">
-                <span class="glyphicon glyphicon-upload"></span> Upload</a>
-        </div><!--.btn-group-->
-    </div>
-</div>
-
-
 <!-- form submit button -->
 <br class="clear"/><br/>
 <input type="submit"/>
