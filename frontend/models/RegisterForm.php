@@ -21,6 +21,27 @@ class RegisterForm extends Model
     
     //Step 2 Requirements: (create scenario for this)
     //Make sure to pass values from step 1 to hidden fields in step 2
+    public $notificationPreference;
+    public $firstName;
+    public $lastName;
+    public $status; //fulltime or parttime
+    public $degree;
+    public $yearEnrollment;
+    public $yearGraduating;
+    public $majors = []; //list of majors
+    public $gpa;
+    public $gender;
+    public $languages = [];
+    public $transportation;
+    
+    //All below are optional (default validator to null)
+    public $clubs;
+    public $sports;
+    public $experienceCompany;
+    public $experiencePosition;
+    public $skills;
+    public $hobbies;
+    public $funfact;
     
 
     /**

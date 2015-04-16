@@ -220,6 +220,10 @@ $this->registerJs($js);
     <br class="clear"/>
 </div>
 
+<blockquote class="blockquote-primary" style="margin-top:2em">
+    The following questions are optional but will increase your chances of being contacted by employers
+</blockquote>
+
 <!-- Question -->
 <div class="questionRow">
     <br/>
