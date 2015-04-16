@@ -2,6 +2,8 @@
 /* @var $this yii\web\View */
 /* @var $university common\models\University */
 
+use yii\helpers\Url;
+
 $this->title = Yii::t('app', 'Registration');
 $this->params['breadcrumbs'][] = "Registration";
 
@@ -106,14 +108,13 @@ $("#nextStep").click(function () {
 //Submit form
 function validateForm(form){
     var validationUrl = form.attr("action");
-    
-    //console.log(form.serialize());
+    var formData = form.serialize();
     
     $.ajax({
         type: "POST",
         cache: false,
         url: validationUrl,
-        data: form.serialize(),
+        data: formData,
         beforeSend: function () {
             showLoading();
         }
@@ -156,7 +157,7 @@ function validateForm(form){
 ';
 
 //Selectize plugin for multi-select
-\frontend\assets\SelectizeAsset::register($this);
+\frontend\assets\RegistrationAsset::register($this);
 
 $this->registerCss($css);
 $this->registerJs($js);
@@ -228,16 +229,32 @@ $this->registerJs($js);
                 </div>
                 <br class="clear"/>
             </div>
-            
-            <?php if($requiresVerification){ ?>
-            <!-- Verification details -->
-            <div class="note note-primary note-top-striped" style="margin-top:35px;">
-                <h4>Student ID Verification</h4>
-                <p>
-                    As your university does not provide you with student emails, please upload a photo of your student ID card
-                </p>
-            </div>
-            <?php } ?>
+
+<?php if ($requiresVerification) { ?>
+                <!-- Verification details -->
+                <div class="note note-primary note-top-striped" style="margin-top:35px;">
+                    <h4>Student ID Verification</h4>
+                    <p>
+                        As your university does not provide you with student emails, please upload a photo of your student ID card<br/><br/>
+                    </p>
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="fileinput-new thumbnail" data-trigger="fileinput" style="width: 250px; height: 200px;">
+                            <img data-src="<?= Url::to('@web/images/universities/' . $university->university_id_template) ?>" src="<?= Url::to('@web/images/universities/' . $university->university_id_template) ?>" alt="...">
+                        </div>
+                        
+                        <div class="fileinput-preview fileinput-exists thumbnail" data-trigger="fileinput" style="max-width: 250px; max-height: 200px;"></div>
+                        <div>
+                            <span class="btn btn-default btn-file btn-ripple">
+                                <span class="fileinput-new">Select image</span>
+                                <span class="fileinput-exists">Change</span>
+                                <input type="file" name="...">
+                            </span>
+                            <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput">Remove</a>
+                        </div>
+                    </div>
+
+                </div>
+<?php } ?>
 
 
 
