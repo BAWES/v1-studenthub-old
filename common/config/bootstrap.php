@@ -7,5 +7,7 @@ Yii::setAlias('console', dirname(dirname(__DIR__)) . '/console');
 
 //Image Upload Paths
 Yii::setAlias('universityImages','@frontend/web/images/universities');
-Yii::setAlias('studentImages','@frontend/web/images/students');
-Yii::setAlias('employerImages','@frontend/web/images/employers');
+
+//Amazon S3 Alias
+Yii::setAlias('s3','https://studenthub.s3.amazonaws.com');
+Yii::setAlias('temporary','@s3/temporary');
