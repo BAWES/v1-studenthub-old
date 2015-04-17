@@ -10,6 +10,9 @@ use dosamigos\resourcemanager\AmazonS3ResourceManager;
 /**
  *
  * Adjustments to the resource manager
+ * 
+ * @author Khalid Al-Mutawa <khalid@bawes.net>
+ * @link http://www.bawes.net
  */
 class S3ResourceManager extends AmazonS3ResourceManager {
 
