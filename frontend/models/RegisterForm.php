@@ -68,8 +68,9 @@ class RegisterForm extends Model
                 
                 return false;
             }],
-            
-            //Create S3FileExistValidator component, takes S3ResourceManager component instance and filename/path
+            //Check if uploaded id image exists in resourceManager bucket filePath
+            ['idUpload', '\common\components\S3FileExistValidator', 'filePath'=>'temporary/',
+                'resourceManager' => Yii::$app->resourceManager],
             
             [['phone','university'], 'integer'],
             

@@ -39,6 +39,7 @@ class S3ResourceManager extends AmazonS3ResourceManager {
      * @param string $oldFile old file name / path that you wish to copy
      * @param string $newFile target destination for file name / path
      * @param array $options
+     * @return \Guzzle\Service\Resource\Model
      */
     public function copy($oldFile, $newFile, $options = []) {
         
