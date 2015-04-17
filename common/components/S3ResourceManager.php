@@ -11,7 +11,7 @@ use dosamigos\resourcemanager\AmazonS3ResourceManager;
  *
  * Adjustments to the resource manager
  */
-class AmazonS3UpdatedResourceManager extends AmazonS3ResourceManager {
+class S3ResourceManager extends AmazonS3ResourceManager {
 
     /**
      * Saves a file

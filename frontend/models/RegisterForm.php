@@ -69,6 +69,8 @@ class RegisterForm extends Model
                 return false;
             }],
             
+            //Create S3FileExistValidator component, takes S3ResourceManager component instance and filename/path
+            
             [['phone','university'], 'integer'],
             
             //Phone Requirements

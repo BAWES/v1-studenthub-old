@@ -4,7 +4,7 @@ return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'resourceManager' => [
-            'class' => 'common\components\AmazonS3UpdatedResourceManager',
+            'class' => 'common\components\S3ResourceManager',
             'key' => 'AKIAJY4NMGYUSUMTVTZA',
             'secret' => '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',
             'bucket' => 'studenthub'
