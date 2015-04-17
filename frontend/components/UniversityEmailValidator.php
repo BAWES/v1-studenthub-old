@@ -47,7 +47,7 @@ class UniversityEmailValidator extends Validator
                     }
                 }else{
                     //If university requires ID verification, make sure their email domain doesn't belong to another university
-                    $universityExists = University::find()->where(['university_domain'=>$emailDomain])->one();
+                    $universityExists = University::find()->where('university_domain = :emailDomain',[':emailDomain'=>$emailDomain])->one();
                     if($universityExists){
                         $errorMsg = \Yii::t('frontend', "This email belongs to {universityName}", [
                             'universityName' => \Yii::$app->view->params['isArabic']?$universityExists->university_name_ar:$universityExists->university_name_en,

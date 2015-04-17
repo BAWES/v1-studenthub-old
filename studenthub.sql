@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.3
+-- version 4.3.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 15, 2015 at 06:40 AM
--- Server version: 5.6.22
+-- Generation Time: Apr 17, 2015 at 10:47 AM
+-- Server version: 5.6.23
 -- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -2386,7 +2386,7 @@ CREATE TABLE IF NOT EXISTS `university` (
   `university_id_template` varchar(255) COLLATE utf8_unicode_ci DEFAULT '' COMMENT 'A photo to define what verification we require',
   `university_logo` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `university_graphic` varchar(255) COLLATE utf8_unicode_ci DEFAULT ''
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `university`
@@ -2403,7 +2403,8 @@ INSERT INTO `university` (`university_id`, `university_name_en`, `university_nam
 (8, 'Kuwait Maastricht Business School', 'كلية كويت - ماسترخت لإدارة الأعمـال', 'kmbs.edu.kw', 0, '', '0TAm5biJGCIvCbLCUBq18hMGwnhCq1a4.jpg', ''),
 (9, 'Box Hill College Kuwait', 'كلية بوكسهل', 'bhck.edu.kw', 0, '', 'rPY-R1mNxDhgMXNsZFu8ml9t1hMhmqVi.jpg', ''),
 (10, 'Kuwait International Law School', 'كلية القانون الكويتية العالمية', 'killaw.edu.kw', 0, '', 'rbitcXx-CcFTG2W14ZxBjyTwb2tPAlkZ.jpg', ''),
-(11, 'Public Authority for Applied Education and Training ', 'الهيئة العامة للتعليم التطبيقي والتدريب', '', 1, '-eLcPm0VBr-maVC9AKD0EbX-dN9sJbHU.jpg', '_0-iJE4dU4LKDrKhcVKntH1gVxCvh-El.jpg', '');
+(11, 'Public Authority for Applied Education and Training ', 'الهيئة العامة للتعليم التطبيقي والتدريب', '', 1, '-eLcPm0VBr-maVC9AKD0EbX-dN9sJbHU.jpg', '_0-iJE4dU4LKDrKhcVKntH1gVxCvh-El.jpg', ''),
+(12, 'Other', 'اخرى', '', 1, 'zmVWxUv27GyG0ij69jPHIRSvD5KMh5O0.jpg', '', '');
 
 --
 -- Indexes for dumped tables
@@ -2657,7 +2658,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `university`
 --
 ALTER TABLE `university`
-  MODIFY `university_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `university_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- Constraints for dumped tables
 --

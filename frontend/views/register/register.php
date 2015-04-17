@@ -313,7 +313,7 @@ $this->registerJs($js);
                 <div class="note note-primary note-top-striped" style="margin-top:35px;">
                     <h4>Student ID Verification</h4>
                     <p>
-                        As your university does not provide you with student emails, please upload a photo of your student ID card<br/><br/>
+                        Please upload a photo of your student ID card<br/><br/>
                     </p>
                     <div class="fileinput fileinput-new" data-provides="fileinput">
                         <div class="fileinput-new thumbnail" data-trigger="fileinput" style="width: 250px; height: 200px;">
