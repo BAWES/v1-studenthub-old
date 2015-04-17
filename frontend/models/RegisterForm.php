@@ -54,7 +54,7 @@ class RegisterForm extends Model
             [['step', 'university', 'email', 'password', 'phone', 'firstName'], 'required'],
             
             //ID upload only required when university requires verification
-            ['idUpload', 'required', 'message' => 'Please upload a photo of your University Id card',
+            ['idUpload', 'required', 'message' => \Yii::t('frontend','Please upload a photo of your university id card'),
                 'when' => function($model) {
                 if(isset($model->university)){
                     $univId = (int) $model->university;
@@ -81,14 +81,15 @@ class RegisterForm extends Model
             ['university', 'exist',
                 'targetClass' => '\common\models\University',
                 'targetAttribute' => 'university_id',
-                'message' => 'This university does not exist.'
+                'message' => \Yii::t('frontend','This university does not exist.')
             ],
             
             //Email Validation (unique included)
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'email'],
             ['email', '\frontend\components\UniversityEmailValidator', 'universityAttribute'=>'university'],
-            ['email', 'unique', 'targetClass' => '\common\models\Student', 'targetAttribute'=>'student_email', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\Student', 'targetAttribute'=>'student_email', 
+                'message' => \Yii::t('frontend','This email address is already registered.')],
             
             //Step Validation, only 1 and 2
             ['step', 'in', 'range' => [1, 2]],
