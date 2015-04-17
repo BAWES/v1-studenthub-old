@@ -1,6 +1,7 @@
 <?php
 namespace frontend\components;
 
+use Yii;
 use yii\validators\Validator;
 use common\models\University;
 
@@ -27,19 +28,34 @@ class UniversityEmailValidator extends Validator
             $universityID = (int) $model[$this->universityAttribute];
             
             if (($university = University::findOne($universityID)) !== null) {
-                //If university does not require ID verification, it requires a valid university email - otherwise no validation required
+                $emailSplit = explode("@", $model->$attribute);
+                $emailName = $emailSplit[0];
+                $emailDomain = $emailSplit[1];
+                
+                //If university does not require ID verification, it requires a valid university email
                 if ($university->university_require_verify == \common\models\University::VERIFICATION_NOT_REQUIRED) {
-                    $emailSplit = explode("@", $model->$attribute);
-                    $emailName = $emailSplit[0];
-                    $emailDomain = $emailSplit[1];
                     $universityDomain = $university->university_domain;
                     
                     //Email domain does not match the university domain
                     if($emailDomain !== $universityDomain){
-                        $this->addError($model, $attribute, "Please use your university email eg: $emailName@$universityDomain");
+                        $errorMsg = \Yii::t('frontend', "Please use your university email eg: {emailName}@{universityDomain}", [
+                            'emailName' => $emailName,
+                            'universityDomain' => $universityDomain,
+                        ]);
+                        
+                        $this->addError($model, $attribute, $errorMsg);
+                    }
+                }else{
+                    //If university requires ID verification, make sure their email domain doesn't belong to another university
+                    $universityExists = University::find()->where(['university_domain'=>$emailDomain])->one();
+                    if($universityExists){
+                        $errorMsg = \Yii::t('frontend', "This email belongs to {universityName}", [
+                            'universityName' => \Yii::$app->view->params['isArabic']?$universityExists->university_name_ar:$universityExists->university_name_en,
+                        ]);
+                        $this->addError($model, $attribute, $errorMsg);
                     }
                 }
-            }else $this->addError($model, $attribute, "University does not exist");
+            }else $this->addError($model, $attribute, \Yii::t('frontend',"University does not exist"));
         }else $this->addError($model, $attribute, "No university attribute");
     }
 }
