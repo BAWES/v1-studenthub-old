@@ -32,6 +32,7 @@ class RegisterForm extends Model
     public $gpa;
     public $gender;
     public $languages = [];
+    public $englishLevel;
     public $transportation;
     
     //All below are optional (default validator to null)

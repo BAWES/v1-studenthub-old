@@ -56,7 +56,7 @@ $this->registerJs($js);
 <div class="questionRow">
     <p>
         My email notification preferences: 
-        <select class="selectpicker" data-width="auto">
+        <select class="selectpicker" data-width="auto" name="notificationPreference">
             <option>Daily as jobs are posted</option>
             <option>Weekly summary</option>
             <option>Off</option>
@@ -71,22 +71,22 @@ $this->registerJs($js);
 
     <div class="inputer floating-label">
         <div class="input-wrapper">
-            <input type="text" class="form-control" required>
-            <label for="exampleInput1">First Name</label>
+            <input type="text" id="lastName" name="firstName" class="form-control" required>
+            <label for="firstName">First Name</label>
         </div>
     </div>
 
     <div class="inputer floating-label">
         <div class="input-wrapper">
-            <input type="text" class="form-control" required>
-            <label for="exampleInput1">Last Name</label>
+            <input type="text" id="lastName" name="lastName" class="form-control" required>
+            <label for="lastName">Last Name</label>
         </div>
     </div>
 
     <p> and I am a 
-        <select class="selectpicker" data-width="130px">
-            <option>Full-time</option>
-            <option>Part-time</option>
+        <select class="selectpicker" name="status" data-width="130px">
+            <option value="fulltime">Full-time</option>
+            <option value="parttime">Part-time</option>
         </select>
         student.
     </p>
@@ -97,12 +97,12 @@ $this->registerJs($js);
 <br/>
 <div class="questionRow">
     I am pursuing a 
-    <select class="selectpicker" data-width="130px">
+    <select class="selectpicker" name="degree" data-width="130px">
         <option value='' selected disabled>Degree</option>
-        <option>Diploma</option>
-        <option>Bachelors</option>
-        <option>Masters</option>
-        <option>PhD</option>
+        <option value="diploma">Diploma</option>
+        <option value="bachelors">Bachelors</option>
+        <option value="masters">Masters</option>
+        <option value="phd">PhD</option>
     </select>
     degree at Gulf University for Science and Technology.
 
@@ -114,7 +114,7 @@ $this->registerJs($js);
     <br/>
     I enrolled in
 
-    <select class="selectpicker" data-width="130px">
+    <select class="selectpicker" name="yearEnrollment" data-width="130px">
         <option value='' selected disabled>Year</option>
         <?php
         $currentYear = date("Y");
@@ -128,7 +128,7 @@ $this->registerJs($js);
 
     and will graduate in 
 
-    <select class="selectpicker" data-width="130px">
+    <select class="selectpicker" name="yearGraduating" data-width="130px">
         <option value='' selected disabled>Year</option>
         <?php
         $currentYear = date("Y") - 1;
@@ -147,7 +147,7 @@ $this->registerJs($js);
 <div class="questionRow">
     <br/>
     I'm majoring in 
-    <select multiple class="selectize-majors" placeholder="Majors (type and select from list)">
+    <select multiple class="selectize-majors" name="majors" placeholder="Majors (type and select from list)">
         <option value="">Select a major</option>
         <?php
         $majorList = \common\models\Major::find()->all();
@@ -165,8 +165,8 @@ $this->registerJs($js);
 
     <div class="inputer floating-label ">
         <div class="input-wrapper baby">
-            <input type="number" step="any" min="0.1" max="4" inputmode="numeric" class="form-control baby" required>
-            <label for="exampleInput5">GPA</label>
+            <input name="gpa" id="gpa" type="number" step="any" min="0.1" max="4" inputmode="numeric" class="form-control baby" required>
+            <label for="gpa">GPA</label>
         </div>
     </div>
 
@@ -177,7 +177,7 @@ $this->registerJs($js);
 <div class="questionRow">
     <br/>
     I am 
-    <select class="selectpicker" data-width="auto" title='Genderz'>
+    <select class="selectpicker" name="gender" data-width="auto" title='Genderz'>
         <option value="" selected disabled>Gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
@@ -189,7 +189,7 @@ $this->registerJs($js);
 <div class="questionRow">
     <br/>
     I speak
-    <select multiple class="selecter" title='Language(s)'>
+    <select multiple class="selecter" name="languages" title='Language(s)'>
         <?php
         $languageList = \common\models\Language::find()->all();
         foreach ($languageList as $language) {
@@ -204,7 +204,7 @@ $this->registerJs($js);
 <div class="questionRow">
     <br/>
     My English language level is
-    <select class="selectpicker" data-width="auto" title='Levelz'>
+    <select class="selectpicker" name="englishLevel" data-width="auto" title='Levelz'>
         <option value="" selected disabled>Level</option>
         <option value="poor">Poor</option>
         <option value="fair">Fair</option>
@@ -217,11 +217,11 @@ $this->registerJs($js);
 <div class="questionRow">
     <br/>
     <div class="radioer form-inline">
-        <input type="radio" name="transport" id="transport1" value="yes">
+        <input type="radio" name="transportation" id="transport1" value="yes">
         <label for="transport1">I have</label>
     </div>
     <div class="radioer form-inline">
-        <input type="radio" name="transport" id="transport2" value="no">
+        <input type="radio" name="transportation" id="transport2" value="no">
         <label for="transport2">I do not have</label>
     </div>
     a method of transportation.
@@ -246,7 +246,7 @@ $this->registerJs($js);
     in a club.
 
     <div class="additional">
-        <input type="text" placeholder='Clubs im in' class="form-control selectize-text" required>
+        <input type="text" name="clubs" placeholder='Clubs im in' class="form-control selectize-text">
     </div>
 
     <br class="clear"/>
@@ -257,17 +257,17 @@ $this->registerJs($js);
 <div class="questionRow">
     <br/>
     <div class="radioer form-inline">
-        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="yes">
-        <label for="inlineRadio1">I play</label>
+        <input type="radio" name="sport" id="sport1" value="yes">
+        <label for="sport1">I play</label>
     </div>
     <div class="radioer form-inline">
-        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="no">
-        <label for="inlineRadio2">I do not play</label>
+        <input type="radio" name="sport" id="sport2" value="no">
+        <label for="sport2">I do not play</label>
     </div>
     sports.
 
     <div class="additional">
-        <input type="text" placeholder='Sports I play' class="form-control selectize-text" required>
+        <input type="text" name="sports" placeholder='Sports I play' class="form-control selectize-text">
     </div>
 
     <br class="clear"/>
@@ -281,8 +281,8 @@ $this->registerJs($js);
 
     <div class="inputer floating-label medz">
         <div class="input-wrapper medz">
-            <input type="text" class="form-control">
-            <label for="exampleInput5">Company</label>
+            <input type="text" name="experienceCompany" id="experienceCompany" class="form-control">
+            <label for="experienceCompany">Company</label>
         </div>
     </div>
 
@@ -292,8 +292,8 @@ $this->registerJs($js);
 
     <div class="inputer floating-label medz">
         <div class="input-wrapper medz">
-            <input type="text" class="form-control">
-            <label for="exampleInput5">Position</label>
+            <input type="text" name="experiencePosition" id="experiencePosition" class="form-control">
+            <label for="experiencePosition">Position</label>
         </div>
     </div>
 
@@ -304,7 +304,7 @@ $this->registerJs($js);
 <div class='questionRow'>
     <br/>
     I have skills in 
-    <input type="text" placeholder='Teamwork, time management, and photoshop' class="form-control selectize-text">
+    <input type="text" name="skills" placeholder='Teamwork, time management, and photoshop' class="form-control selectize-text">
 
     <br class='clear'/>
 </div>
@@ -312,7 +312,7 @@ $this->registerJs($js);
 <!-- Question -->
 <div class='questionRow'>
     My favorite hobbies are
-    <input type="text" placeholder='Cooking, playing guitar, and hiking' class="form-control selectize-text">
+    <input type="text" name="hobbies" placeholder='Cooking, playing guitar, and hiking' class="form-control selectize-text">
 
     <br class='clear'/>
 </div>
@@ -322,7 +322,7 @@ $this->registerJs($js);
     <p style="width:200px; margin-top:5px;">A fun fact about me is</p>
     <div class="inputer" style='width:70%; margin-left:0;'>
         <div class="input-wrapper" style='width:100%;'>
-            <textarea maxlength="200" class="form-control js-auto-size" rows="1" placeholder="I like to travel"></textarea>
+            <textarea name="funfact" maxlength="200" class="form-control js-auto-size" rows="1" placeholder="I like to travel"></textarea>
         </div>
     </div>
 
