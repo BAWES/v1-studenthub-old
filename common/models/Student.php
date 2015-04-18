@@ -97,13 +97,13 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function rules() {
         return [
             //Required
-            [['degree_id', 'country_id', 'university_id', 'student_lastname', 'student_english_level', 'student_dob', 
-                'student_status', 'student_enrolment_year', 'student_sport', 'student_graduating_year', 'student_gpa', 
-                'student_gender', 'student_contact_number', 'student_email_preference', 'student_email', 'student_auth_key', 
-                'student_datetime', 'student_password_hash'], 'required'],
+            [['degree_id', 'country_id', 'university_id', 'student_firstname', 'student_lastname', 'student_english_level', 
+                'student_dob', 'student_status', 'student_enrolment_year', 'student_graduating_year', 'student_gpa', 
+                'student_gender', 'student_contact_number', 'student_email_preference', 'student_email', 
+                'student_password_hash'], 'required'],
             //Optional (for massive assignment)
             [['student_interestingfacts', 'student_skill', 'student_hobby', 'student_club', 'student_cv',
-                'student_verfication_attachment'], 'safe'],
+                'student_verfication_attachment', 'student_sport'], 'safe'],
             
             
             [['degree_id', 'country_id', 'university_id', 'student_status', 'student_gender', 'student_transportation', 
