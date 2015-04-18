@@ -53,7 +53,7 @@ if (!Modernizr.touch || !Modernizr.inputtypes.date) {
             // Consistent format with the HTML5 picker
             showDropdowns: true,
             singleDatePicker: true,
-            format: "YY-MM-DD"
+            format: "MM/DD/YYYY"
         });
 }
 
@@ -306,11 +306,11 @@ $this->registerJs($js);
             </div>
 
             <div class="questionRow">
-                <p>I was born on <i class="ion-android-calendar"></i></p>
+                <p>I was born on </p>
                 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
-                        <input type="date" id="birthday" name="student_dob" class="form-control" placeholder="dd/mm/yyyy">
+                        <input type="date" id="birthday" name="student_dob" class="form-control" placeholder="mm/dd/yyyy">
                     </div>
                 </div>
                 <br class="clear"/>
