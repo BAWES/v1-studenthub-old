@@ -84,6 +84,10 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     //Ban options for `student_banned`
     const BAN_STUDENT_BANNED = 1;
     const BAN_STUDENT_NOT_BANNED = 0;
+    //English level options for `student_english_level`
+    const ENGLISH_WEAK = 0;
+    const ENGLISH_FAIR = 1;
+    const ENGLISH_GOOD = 2;
 
     /**
      * @inheritdoc
@@ -105,6 +109,9 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             //Optional (for massive assignment)
             [['student_interestingfacts', 'student_skill', 'student_hobby', 'student_club', 'student_cv',
                 'student_verfication_attachment', 'student_sport'], 'safe'],
+            //Default values
+            ['student_id_verification', 'default', 'value' => self::ID_NOT_VERIFIED],
+            ['student_email_verification', 'default', 'value' => self::NOTIFICATION_DAILY],
             
             //ID upload only required when university requires verification
             ['student_verfication_attachment', 'required', 'message' => \Yii::t('frontend','Please upload a photo of your university id card'),
@@ -128,14 +135,14 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             
             //Numeric Validation
             [['student_contact_number', 'degree_id', 'country_id', 'university_id'], 'integer'],
-            [['student_gpa'], 'number'],
+            [['student_gpa'], 'number', 'min' => 0.1, 'max' => 4],
+                    
+            //Date Validation
+            [['student_enrolment_year', 'student_graduating_year'], 'date', 'format' => 'yyyy'],
+            [['student_dob'], 'date', 'format' => 'MM/dd/yyyy'],
             
             //Phone Requirements
             ['student_contact_number', 'string', 'length' => 8],
-                    
-            //Default values
-            ['student_id_verification', 'default', 'value' => self::ID_NOT_VERIFIED],
-            ['student_email_verification', 'default', 'value' => self::NOTIFICATION_DAILY],
                     
             //University existence validation
             ['university_id', 'exist',
@@ -159,6 +166,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             ['student_id_verification', 'in', 'range' => [self::ID_VERIFIED, self::ID_NOT_VERIFIED]],
             ['student_banned', 'in', 'range' => [self::BAN_STUDENT_BANNED, self::BAN_STUDENT_NOT_BANNED]],
             ['student_email_preference', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
+            ['student_english_level', 'in', 'range' => [self::ENGLISH_WEAK, self::ENGLISH_GOOD, self::ENGLISH_FAIR]],
         ];
     }
     
