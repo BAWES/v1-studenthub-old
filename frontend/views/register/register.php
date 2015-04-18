@@ -270,14 +270,14 @@ $this->registerJs($js);
             ?>
 
             <input type="hidden" name="step" value="1"/>
-            <input type="hidden" name="university" value="<?= $university->university_id ?>"/>
+            <input type="hidden" name="university_id" value="<?= $university->university_id ?>"/>
 
             <div class="questionRow">
                 <p style="width:180px;">My university email is</p>
 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
-                        <input type="email" name="email" class="form-control" maxlength="96" required>
+                        <input type="email" id="email" name="student_email" class="form-control" maxlength="96" required>
                         <label for="email"><?= $emailLabel ?></label>
                     </div>
                 </div>
@@ -289,7 +289,7 @@ $this->registerJs($js);
 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
-                        <input type="password" name="password" class="form-control" maxlength="32" required>
+                        <input type="password" id="password" name="student_password_hash" class="form-control" maxlength="32" required>
                         <label for="password">Password</label>
                     </div>
                 </div>
@@ -301,7 +301,7 @@ $this->registerJs($js);
 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
-                        <input type="tel" name="phone" class="form-control" maxlength="8" required>
+                        <input type="tel" id="phone" name="student_contact_number" class="form-control" maxlength="8" required>
                         <label for="phone">Phone Number</label>
                     </div>
                 </div>
@@ -326,7 +326,7 @@ $this->registerJs($js);
                                 <span class="fileinput-new">Select image</span>
                                 <span class="fileinput-exists">Change</span>
                                 <input type="file" id="fileUpload" name="fileUpload"/>
-                                <input type="hidden" id="idUpload" name="idUpload"/>
+                                <input type="hidden" id="idUpload" name="student_verfication_attachment"/>
                             </span>
                             <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput">Remove</a>
                         </div>

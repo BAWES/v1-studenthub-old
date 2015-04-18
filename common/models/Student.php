@@ -7,6 +7,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use yii\web\IdentityInterface;
+use common\models\University;
 
 /**
  * This is the model class for table "student".
@@ -105,19 +106,50 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             [['student_interestingfacts', 'student_skill', 'student_hobby', 'student_club', 'student_cv',
                 'student_verfication_attachment', 'student_sport'], 'safe'],
             
+            //ID upload only required when university requires verification
+            ['student_verfication_attachment', 'required', 'message' => \Yii::t('frontend','Please upload a photo of your university id card'),
+                'when' => function($model) {
+                if(isset($model->university_id)){
+                    $univId = (int) $model->university_id;
+                    $university = University::findOne($univId);
+                    if($university){
+                        if($university->university_require_verify == University::VERIFICATION_REQUIRED){
+                            return true;
+                        }
+                    }
+                }
+                
+                return false;
+            }],
+            //Check if uploaded id image exists in resourceManager bucket filePath
+            ['student_verfication_attachment', '\common\components\S3FileExistValidator', 'filePath'=>'temporary/',
+                'resourceManager' => Yii::$app->resourceManager],
             
-            [['degree_id', 'country_id', 'university_id', 'student_status', 'student_gender', 'student_transportation', 
-                'student_email_verfication', 'student_id_verfication', 'student_email_preference'], 'integer'],
+            
+            //Numeric Validation
+            [['student_contact_number', 'degree_id', 'country_id', 'university_id'], 'integer'],
             [['student_gpa'], 'number'],
+            
+            //Phone Requirements
+            ['student_contact_number', 'string', 'length' => 8],
+                    
+            //Default values
+            ['student_id_verification', 'default', 'value' => self::ID_NOT_VERIFIED],
+            ['student_email_verification', 'default', 'value' => self::NOTIFICATION_DAILY],
+                    
+            //University existence validation
+            ['university_id', 'exist',
+                'targetClass' => '\common\models\University',
+                'targetAttribute' => 'university_id',
+                'message' => \Yii::t('frontend','This university does not exist.')
+            ],
             
             //Unique emails
             ['student_email', 'filter', 'filter' => 'trim'],
             ['student_email', 'email'],
-            ['student_email', 'unique', 'targetClass' => '\common\models\Student', 'message' => 'This email address has already been taken.'],
-            
-            //Default values
-            ['student_id_verification', 'default', 'value' => self::ID_NOT_VERIFIED],
-            ['student_email_verification', 'default', 'value' => self::NOTIFICATION_DAILY],
+            ['student_email', 'unique', 'targetClass' => '\common\models\Student', 
+                'message' => \Yii::t('frontend','This email address is already registered.')],
+            ['student_email', '\common\components\UniversityEmailValidator', 'universityAttribute'=>'university_id'],
             
             //Constant options
             ['student_status', 'in', 'range' => [self::STATUS_FULL_TIME, self::STATUS_PART_TIME]],
@@ -183,31 +215,6 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         ];
     }
     
-    /**
-     * Signs user up.
-     *
-     * @return User|null the saved model or null if saving fails
-     */
-    public function signup()
-    {
-        //This signup code was taken when we were using RegisterForm model for signup
-        //It used to have the logic for creation of students within that model
-        //now that our data is within the same activerecord model, signup might aswell trigger save for itself
-        //then return an instance of itself (static)
-        
-        /*if ($this->validate()) {
-            $admin = new Admin();
-            $admin->admin_name = $this->name;
-            $admin->admin_email = $this->email;
-            $admin->setPassword($this->password);
-            $admin->generateAuthKey();
-            if ($admin->save()) {
-                return $admin;
-            }
-        }*/
-        
-        return null;
-    }
 
     /**
      * @return \yii\db\ActiveQuery

@@ -7,9 +7,9 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use common\models\University;
 use yii\web\NotFoundHttpException;
-use frontend\models\RegisterForm;
 use yii\web\UploadedFile;
 use yii\base\DynamicModel;
+use frontend\models\Student;
 
 class RegisterController extends \yii\web\Controller {
 
@@ -62,12 +62,12 @@ class RegisterController extends \yii\web\Controller {
      * @param int $university University ID 
      */
     public function actionRegister($university) {
-        $university = (int) $university;
-        $university = $this->findUniversity($university);
+        $universityID = (int) $university;
+        $universityModel = $this->findUniversity($universityID);
 
 
         return $this->render('register', [
-                    'university' => $university,
+                    'university' => $universityModel,
         ]);
     }
     
@@ -124,13 +124,13 @@ class RegisterController extends \yii\web\Controller {
         ];
         
         
-        $model = new RegisterForm;
+        $model = new Student();
         $model->attributes = Yii::$app->request->post();
         
         //Set Scenario based on current step
         if(!$model->step) $model->step = 1;
         if($model->step == 1){
-            $model->scenario = "firstStep";
+            $model->scenario = "registrationFirstStep";
         }else if($model->step == 2){
             $model->scenario = "default";
         }
