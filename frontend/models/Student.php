@@ -40,7 +40,8 @@ class Student extends \common\models\Student
     public function scenarios() {
         $scenarios = parent::scenarios();
         //Validate only these attributes on firstStep
-        $scenarios['registrationFirstStep'] = ['step', 'university_id', 'student_email', 'student_password_hash', 'student_contact_number', 'student_verfication_attachment'];
+        $scenarios['registrationFirstStep'] = ['step', 'university_id', 'student_email', 'student_password_hash', 
+                                        'student_dob', 'student_contact_number', 'student_verfication_attachment'];
         
         return $scenarios;
     }

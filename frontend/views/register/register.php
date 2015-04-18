@@ -46,7 +46,16 @@ function isMobile(){
 if(isMobile()){
     $(".selectpicker").selectpicker("mobile");
 }
-
+if (!Modernizr.touch || !Modernizr.inputtypes.date) {
+    $("input[type=date]")
+        .attr("type", "text")
+        .daterangepicker({
+            // Consistent format with the HTML5 picker
+            showDropdowns: true,
+            singleDatePicker: true,
+            format: "YY-MM-DD"
+        });
+}
 
 var panel = $("#mainPanel");
 
@@ -296,6 +305,17 @@ $this->registerJs($js);
                 <br class="clear"/>
             </div>
 
+            <div class="questionRow">
+                <p>I was born on <i class="ion-android-calendar"></i></p>
+                
+                <div class="inputer floating-label">
+                    <div class="input-wrapper">
+                        <input type="date" id="birthday" name="student_dob" class="form-control" placeholder="dd/mm/yyyy">
+                    </div>
+                </div>
+                <br class="clear"/>
+            </div>
+
             <div class="questionRow" style="margin-bottom:15px;">
                 <p style="width:170px;">My phone number is</p>
 
@@ -308,7 +328,7 @@ $this->registerJs($js);
                 <br class="clear"/>
             </div>
 
-<?php if ($requiresVerification) { ?>
+            <?php if ($requiresVerification) { ?>
                 <!-- Verification details -->
                 <div class="note note-primary note-top-striped" style="margin-top:35px;">
                     <h4>Student ID Verification</h4>
@@ -319,7 +339,7 @@ $this->registerJs($js);
                         <div class="fileinput-new thumbnail" data-trigger="fileinput" style="width: 250px; height: 200px;">
                             <img data-src="<?= Url::to('@web/images/universities/' . $university->university_id_template) ?>" src="<?= Url::to('@web/images/universities/' . $university->university_id_template) ?>" alt="...">
                         </div>
-                        
+
                         <div class="fileinput-preview fileinput-exists thumbnail" data-trigger="fileinput" style="max-width: 250px; max-height: 200px;"></div>
                         <div>
                             <span class="btn btn-default btn-file btn-ripple">
@@ -333,7 +353,7 @@ $this->registerJs($js);
                     </div>
 
                 </div>
-<?php } ?>
+            <?php } ?>
 
 
 
