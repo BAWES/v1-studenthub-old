@@ -96,14 +96,19 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function rules() {
         return [
-            [['degree_id', 'country_id', 'university_id', 'student_lastname', 'student_english_level', 'student_dob', 'student_status', 'student_enrolment_year', 'student_sport', 'student_graduating_year', 'student_gpa', 'student_gender', 'student_contact_number', 'student_interestingfacts', 'student_cv', 'student_skill', 'student_hobby', 'student_club', 'student_verfication_attachment', 'student_email_preference', 'student_email', 'student_auth_key', 'student_datetime'], 'required'],
-            [['degree_id', 'country_id', 'university_id', 'student_status', 'student_gender', 'student_transportation', 'student_email_verfication', 'student_id_verfication', 'student_email_preference'], 'integer'],
-            [['student_dob', 'student_enrolment_year', 'student_graduating_year', 'student_datetime'], 'safe'],
+            //Required
+            [['degree_id', 'country_id', 'university_id', 'student_lastname', 'student_english_level', 'student_dob', 
+                'student_status', 'student_enrolment_year', 'student_sport', 'student_graduating_year', 'student_gpa', 
+                'student_gender', 'student_contact_number', 'student_email_preference', 'student_email', 'student_auth_key', 
+                'student_datetime', 'student_password_hash'], 'required'],
+            //Optional (for massive assignment)
+            [['student_interestingfacts', 'student_skill', 'student_hobby', 'student_club', 'student_cv',
+                'student_verfication_attachment'], 'safe'],
+            
+            
+            [['degree_id', 'country_id', 'university_id', 'student_status', 'student_gender', 'student_transportation', 
+                'student_email_verfication', 'student_id_verfication', 'student_email_preference'], 'integer'],
             [['student_gpa'], 'number'],
-            [['student_interestingfacts', 'student_skill', 'student_hobby', 'student_club'], 'string'],
-            [['student_firstname', 'student_lastname', 'student_photo', 'student_cv', 'student_verfication_attachment', 'student_email', 'student_password_hash', 'student_password_reset_token'], 'string', 'max' => 255],
-            [['student_contact_number'], 'string', 'max' => 64],
-            [['student_auth_key'], 'string', 'max' => 32],
             
             //Unique emails
             ['student_email', 'filter', 'filter' => 'trim'],
