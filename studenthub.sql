@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 17, 2015 at 10:47 AM
+-- Generation Time: Apr 18, 2015 at 07:29 AM
 -- Server version: 5.6.23
 -- PHP Version: 5.6.7
 
@@ -2294,6 +2294,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_enrolment_year` year(4) NOT NULL,
   `student_graduating_year` year(4) NOT NULL,
   `student_gpa` decimal(10,2) NOT NULL,
+  `student_english_level` tinyint(4) NOT NULL,
   `student_gender` tinyint(4) NOT NULL COMMENT 'Male (1) Female (0)',
   `student_transportation` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'true (1), false (0)',
   `student_contact_number` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -2315,6 +2316,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `student_password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `student_password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
+  `student_banned` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 - for banned',
   `student_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

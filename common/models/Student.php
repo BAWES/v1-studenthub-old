@@ -22,6 +22,7 @@ use yii\web\IdentityInterface;
  * @property string $student_enrolment_year
  * @property string $student_graduating_year
  * @property string $student_gpa
+ * @property integer $student_english_level 
  * @property integer $student_gender
  * @property integer $student_transportation
  * @property string $student_contact_number
@@ -43,12 +44,12 @@ use yii\web\IdentityInterface;
  * @property string $student_auth_key
  * @property string $student_password_hash
  * @property string $student_password_reset_token
+ * @property integer $student_banned 
  * @property string $student_datetime
  *
  * @property NotificationEmployer[] $notificationEmployers
  * @property NotificationStudent[] $notificationStudents
  * @property Degree $degree
- * @property Major $major
  * @property University $university
  * @property Country $country
  * @property StudentJobApplication[] $studentJobApplications
@@ -79,6 +80,9 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     //Transportation options for `student_transportation`
     const TRANSPORTATION_AVAILABLE = 1;
     const TRANSPORTATION_NOT_AVAILABLE = 0;
+    //Ban options for `student_banned`
+    const BAN_STUDENT_BANNED = 1;
+    const BAN_STUDENT_NOT_BANNED = 0;
 
     /**
      * @inheritdoc
@@ -92,7 +96,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function rules() {
         return [
-            [['degree_id', 'country_id', 'university_id', 'student_lastname', 'student_dob', 'student_status', 'student_enrolment_year', 'student_sport', 'student_graduating_year', 'student_gpa', 'student_gender', 'student_contact_number', 'student_interestingfacts', 'student_cv', 'student_skill', 'student_hobby', 'student_club', 'student_verfication_attachment', 'student_email_preference', 'student_email', 'student_auth_key', 'student_datetime'], 'required'],
+            [['degree_id', 'country_id', 'university_id', 'student_lastname', 'student_english_level', 'student_dob', 'student_status', 'student_enrolment_year', 'student_sport', 'student_graduating_year', 'student_gpa', 'student_gender', 'student_contact_number', 'student_interestingfacts', 'student_cv', 'student_skill', 'student_hobby', 'student_club', 'student_verfication_attachment', 'student_email_preference', 'student_email', 'student_auth_key', 'student_datetime'], 'required'],
             [['degree_id', 'country_id', 'university_id', 'student_status', 'student_gender', 'student_transportation', 'student_email_verfication', 'student_id_verfication', 'student_email_preference'], 'integer'],
             [['student_dob', 'student_enrolment_year', 'student_graduating_year', 'student_datetime'], 'safe'],
             [['student_gpa'], 'number'],
@@ -116,6 +120,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             ['student_email_verification', 'in', 'range' => [self::EMAIL_VERIFIED, self::EMAIL_NOT_VERIFIED]],
             ['student_transportation', 'in', 'range' => [self::TRANSPORTATION_AVAILABLE, self::TRANSPORTATION_NOT_AVAILABLE]],
             ['student_id_verification', 'in', 'range' => [self::ID_VERIFIED, self::ID_NOT_VERIFIED]],
+            ['student_banned', 'in', 'range' => [self::BAN_STUDENT_BANNED, self::BAN_STUDENT_NOT_BANNED]],
             ['student_email_preference', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
         ];
     }
@@ -147,6 +152,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_enrolment_year' => Yii::t('app', 'University Enrolment Year'),
             'student_graduating_year' => Yii::t('app', 'University Graduating Year'),
             'student_gpa' => Yii::t('app', 'GPA'),
+            'student_english_level' => Yii::t('app', 'Student English Level'),
             'student_gender' => Yii::t('app', 'Gender'),
             'student_transportation' => Yii::t('app', 'Transportation'),
             'student_contact_number' => Yii::t('app', 'Mobile Number'),
@@ -167,6 +173,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_auth_key' => Yii::t('app', 'Auth Key'),
             'student_password_hash' => Yii::t('app', 'Password'),
             'student_password_reset_token' => Yii::t('app', 'Password Reset Token'),
+            'student_banned' => Yii::t('app', 'Student Banned'),
             'student_datetime' => Yii::t('app', 'Created on'),
         ];
     }

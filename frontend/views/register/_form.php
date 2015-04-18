@@ -1,8 +1,4 @@
 <?php
-$css = "
-
-";
-
 
 $js = "
 $('.radioer input:radio').change(function(){
@@ -179,18 +175,17 @@ $this->registerJs($js);
 
 <!-- Question -->
 <div class="questionRow">
-    <p>
-        I am 
-        <select class="selectpicker" data-width="auto" title='Genderz'>
-            <option value="" selected disabled>Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select>
-    </p>
+    <br/>
+    I am 
+    <select class="selectpicker" data-width="auto" title='Genderz'>
+        <option value="" selected disabled>Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
     <br class="clear"/>
 </div>
 
-<!-- Question #8 -->
+<!-- Question -->
 <div class="questionRow">
     <br/>
     I speak
@@ -201,6 +196,19 @@ $this->registerJs($js);
             echo "<option value='" . $language->language_id . "'>" . $language->language_name_en . "</option>";
         }
         ?>
+    </select>
+    <br class="clear"/>
+</div>
+
+<!-- Question -->
+<div class="questionRow">
+    <br/>
+    My English language level is
+    <select class="selectpicker" data-width="auto" title='Levelz'>
+        <option value="" selected disabled>Level</option>
+        <option value="poor">Poor</option>
+        <option value="fair">Fair</option>
+        <option value="good">Good</option>
     </select>
     <br class="clear"/>
 </div>
