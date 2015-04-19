@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 19, 2015 at 08:06 AM
+-- Generation Time: Apr 19, 2015 at 09:29 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -251,9 +251,7 @@ INSERT INTO `country` (`country_id`, `country_name_en`, `country_name_ar`, `coun
 (87, 'Lebanon', 'لبنان', 'Lebanese', 'لبناني'),
 (88, 'Liberia', 'ليبيريا', 'Liberian', 'ليبيريا'),
 (89, 'Libya', 'ليبيا', 'Libyan', 'ليبي'),
-(90, 'Liechtenstein', 'ليختنشتاين', '-', '-'),
 (91, 'Lithuania', 'ليتوانيا', 'Lithuanian', 'اللتوانية'),
-(92, 'Luxembourg', 'لوكسمبورغ', '-', '-'),
 (93, 'Macedonia', 'مقدونيا', 'Macedonian', 'المقدونية'),
 (94, 'Madagascar', 'مدغشقر', 'Madagascan', 'مدغشقر'),
 (95, 'Malawi', 'ملاوي', 'Malawian', 'مالاوى'),
@@ -270,7 +268,6 @@ INSERT INTO `country` (`country_id`, `country_name_en`, `country_name_ar`, `coun
 (106, 'Montenegro', 'الجبل الأسود', 'Montenegrin', 'الجبل الأسود'),
 (107, 'Morocco', 'بلاد المغرب', 'Moroccan', 'مغربي'),
 (108, 'Mozambique', 'موزمبيق', 'Mozambican', 'موزمبيق'),
-(109, 'Myanmar see Burma', 'ميانمار نرى بورما', '-', '-'),
 (110, 'Namibia', 'ناميبيا', 'Namibian', 'الناميبي'),
 (111, 'Nepal', 'نيبال', 'Nepalese', 'النيبالي'),
 (112, 'Netherlands, the (see Holland)', 'هولندا، و(انظر هولندا)', 'Dutch', 'اللغة الهولندية'),
@@ -302,7 +299,6 @@ INSERT INTO `country` (`country_id`, `country_name_en`, `country_name_ar`, `coun
 (138, 'Singapore', 'سنغافورة', 'Singaporean', 'سنغافورة'),
 (139, 'Slovakia', 'سلوفاكيا', 'Slovak', 'السلوفاكية'),
 (140, 'Slovenia', 'سلوفينيا', 'Slovenian', 'سلوفيني'),
-(141, 'Solomon Islands', 'جزر سليمان', '-', '-'),
 (142, 'Somalia', 'الصومال', 'Somali', 'الصومالية'),
 (143, 'South Africa', 'جنوب أفريقيا', 'South African', 'جنوب أفريقيا'),
 (144, 'South Korea', 'كوريا الجنوبية', 'South Korean', 'كوريا الجنوبية'),
@@ -333,7 +329,6 @@ INSERT INTO `country` (`country_id`, `country_name_en`, `country_name_ar`, `coun
 (169, 'Uruguay', 'أوروغواي', 'Uruguayan', 'عرفي'),
 (170, 'Uzbekistan', 'أوزبكستان', 'Uzbek', 'الأوزبكي'),
 (171, 'Vanuatu', 'فانواتو', 'Vanuatuan', 'فانواتو'),
-(172, 'Vatican City', 'مدينة الفاتيكان', '-', '-'),
 (173, 'Venezuela', 'فنزويلا', 'Venezuelan', 'الفنزويلي'),
 (174, 'Vietnam', 'فيتنام', 'Vietnamese', 'الفيتنامية'),
 (175, 'Wales', 'ويلز', 'Welsh', 'ويلزي'),
