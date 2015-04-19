@@ -1,6 +1,19 @@
 <?php
+/* @var $university \common\models\University */
 
 $js = "
+if (!Modernizr.touch || !Modernizr.inputtypes.date) {
+    $('input[type=date]')
+        .attr('type', 'text')
+        .daterangepicker({
+            // Consistent format with the HTML5 picker
+            showDropdowns: true,
+            singleDatePicker: true,
+            format: 'MM/DD/YYYY'
+        });
+}    
+
+
 $('.radioer input:radio').change(function(){
     if($(this).val() == 'yes'){
        $(this).parent().parent().find('.additional').show();
@@ -83,28 +96,38 @@ $this->registerJs($js);
         </div>
     </div>
 
-    <p> and I am a 
-        <select class="selectpicker" name="student_status" data-width="130px">
-            <option value="fulltime">Full-time</option>
-            <option value="parttime">Part-time</option>
-        </select>
-        student.
-    </p>
+    <p> and I was born on </p>
+    <div class="inputer floating-label" style="width:120px;">
+        <div class="input-wrapper" style="width:120px;">
+            <input type="date" id="birthday" name="student_dob" class="form-control" value="<?= date("m/d/Y") ?>">
+        </div>
+    </div>
+
     <br class="clear"/>
 </div>
 
 <!-- Question -->
-<br/>
 <div class="questionRow">
-    I am pursuing a 
-    <select class="selectpicker" name="degree_id" data-width="130px">
-        <option value='' selected disabled>Degree</option>
-        <option value="diploma">Diploma</option>
-        <option value="bachelors">Bachelors</option>
-        <option value="masters">Masters</option>
-        <option value="phd">PhD</option>
-    </select>
-    degree at Gulf University for Science and Technology.
+    <p>
+        I am currently a 
+
+        <select class="selectpicker" name="student_status" data-width="130px">
+            <option value="fulltime">Full-time</option>
+            <option value="parttime">Part-time</option>
+        </select>
+
+        student pursuing a 
+
+        <select class="selectpicker" name="degree_id" data-width="130px">
+            <option value='' selected disabled>Degree</option>
+            <option value="diploma">Diploma</option>
+            <option value="bachelors">Bachelors</option>
+            <option value="masters">Masters</option>
+            <option value="phd">PhD</option>
+        </select>
+
+        degree at <?= $university->university_name_en ?>.
+    </p>
 
     <br class="clear"/>
 </div>

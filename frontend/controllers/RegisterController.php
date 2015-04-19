@@ -172,9 +172,11 @@ class RegisterController extends \yii\web\Controller {
     /**
      * Renders Profile Form via AJAX (Step 3)
      */
-    public function actionForm() {
-
-        return $this->renderAjax('_form');
+    public function actionForm($id) {
+        $id = (int) $id;
+        $university = $this->findUniversity($id);
+        
+        return $this->renderAjax('_form',['university'=>$university]);
     }
 
     /**

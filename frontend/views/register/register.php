@@ -46,24 +46,15 @@ function isMobile(){
 if(isMobile()){
     $(".selectpicker").selectpicker("mobile");
 }
-if (!Modernizr.touch || !Modernizr.inputtypes.date) {
-    $("input[type=date]")
-        .attr("type", "text")
-        .daterangepicker({
-            // Consistent format with the HTML5 picker
-            showDropdowns: true,
-            singleDatePicker: true,
-            format: "MM/DD/YYYY"
-        });
-}
 
 var panel = $("#mainPanel");
 
 //AJAX load page into panel
-function loadPage(page){
+function loadPage(page, data){
     $.ajax({
         cache: false,
         url: page,
+        data: data,
         beforeSend: function () {
             showLoading();
         }
@@ -237,7 +228,9 @@ function validateForm(form){
                 $("#currentStep").val(2);
                 step1FormData = form.serialize();
                 
-                loadPage(step1);
+                var universityId = $("#univId").val();
+                
+                loadPage(step1,"id="+universityId);
             }
             
             //Add a new response message eg: response.completed to finalize registration/redirect to thank you page
@@ -296,7 +289,7 @@ $this->registerJs($js);
             ?>
 
             <input type="hidden" id="currentStep" name="step" value="1"/>
-            <input type="hidden" name="university_id" value="<?= $university->university_id ?>"/>
+            <input type="hidden" id="univId" name="university_id" value="<?= $university->university_id ?>"/>
 
             <div class="questionRow">
                 <p style="width:180px;">My university email is</p>
@@ -321,18 +314,7 @@ $this->registerJs($js);
                 </div>
                 <br class="clear"/>
             </div>
-
-            <div class="questionRow">
-                <p>I was born on </p>
-                
-                <div class="inputer floating-label">
-                    <div class="input-wrapper">
-                        <input type="date" id="birthday" name="student_dob" class="form-control" value="<?= date("m/d/Y") ?>">
-                    </div>
-                </div>
-                <br class="clear"/>
-            </div>
-
+            
             <div class="questionRow" style="margin-bottom:15px;">
                 <p style="width:170px;">My phone number is</p>
 
