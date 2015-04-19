@@ -2,7 +2,7 @@
 /* @var $university \common\models\University */
 
 $js = "
-if (touchDate) {
+if ($('body').hasClass('touchDate')) {
     $('input[type=date]')
         .attr('type', 'text')
         .daterangepicker({

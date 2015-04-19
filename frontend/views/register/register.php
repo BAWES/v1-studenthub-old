@@ -46,9 +46,9 @@ function isMobile(){
 if(isMobile()){
     $(".selectpicker").selectpicker("mobile");
 }
-var touchDate = false;
+
 if (!Modernizr.touch || !Modernizr.inputtypes.date) {
-    touchDate = true;
+    $("body").addClass("touchDate");
 }
 
 var panel = $("#mainPanel");
