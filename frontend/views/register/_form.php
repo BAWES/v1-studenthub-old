@@ -35,6 +35,7 @@ $('.selectize-text').selectize({
 //Refresh select pickers
 
 $('.selectpicker').selectpicker('refresh');
+$('.selectpickerNoMobile').selectpicker('refresh');
 $('select.selecter').selectpicker('refresh');
 
 function isMobile(){
@@ -99,7 +100,7 @@ $this->registerJs($js);
     <p>
         I a(n) 
 
-        <select class="selectpicker" name="country_id" data-live-search="true" data-width="auto">
+        <select class="selectpickerNoMobile" name="country_id" data-live-search="true" data-width="auto">
             <option value="" disabled selected>Nationality</option>
             <?php
             $countryList = \common\models\Country::find()->all();
@@ -159,7 +160,7 @@ $this->registerJs($js);
 
     and will graduate in 
 
-    <select class="selectpicker" name="student_graduation_year" data-width="130px">
+    <select class="selectpicker" name="student_graduating_year" data-width="130px">
         <option value='' selected disabled>Year</option>
         <?php
         $currentYear = date("Y") - 1;
@@ -196,7 +197,7 @@ $this->registerJs($js);
 
     <div class="inputer floating-label ">
         <div class="input-wrapper baby">
-            <input name="student_gpa" id="gpa" type="number" step="any" min="0.1" max="4" inputmode="numeric" class="form-control baby" required>
+            <input type="number" step="any" min="0.1" max="4" name="student_gpa" id="gpa"  class="form-control baby" required>
             <label for="gpa">GPA</label>
         </div>
     </div>
