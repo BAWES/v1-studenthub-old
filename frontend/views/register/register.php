@@ -114,7 +114,7 @@ if(requiresIdUpload){
 
 
 //Form Submit Step 1
-$("#nextStep").click(function () {
+$("body").on("click","#nextStep",function () {
     var $myForm = $("#registerForm");
 
     //Trigger browser-based validation
@@ -192,11 +192,18 @@ $("#nextStep").click(function () {
 });
 
 
+var step1FormData = false;
+
 //Submit form
 function validateForm(form){
     var validationUrl = form.attr("action");
     var formData = form.serialize();
     
+    //If there is form data from previous step, add it to current form data
+    if(step1FormData){
+        formData = formData+"&"+step1FormData;
+    }
+        
     $.ajax({
         type: "POST",
         cache: false,
@@ -226,8 +233,18 @@ function validateForm(form){
         if(response.valid){
             //Go to next step
             if(response.goToNextStep){
+                //Store previous step values to sent together with next step values
+                $("#currentStep").val(2);
+                step1FormData = form.serialize();
+                
                 loadPage(step1);
             }
+            
+            //Add a new response message eg: response.completed to finalize registration/redirect to thank you page
+            
+
+
+            //Redirection here
         }
         
 
@@ -278,7 +295,7 @@ $this->registerJs($js);
             $emailLabel = $requiresVerification ? "email@mydomain.com" : "email@" . $university->university_domain;
             ?>
 
-            <input type="hidden" name="step" value="1"/>
+            <input type="hidden" id="currentStep" name="step" value="1"/>
             <input type="hidden" name="university_id" value="<?= $university->university_id ?>"/>
 
             <div class="questionRow">

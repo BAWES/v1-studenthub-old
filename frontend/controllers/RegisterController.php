@@ -121,6 +121,7 @@ class RegisterController extends \yii\web\Controller {
             'valid' => false,
             'errors' => [],
             'goToNextStep' => false,
+            'complete' => false,
         ];
         
         
@@ -135,7 +136,7 @@ class RegisterController extends \yii\web\Controller {
             $model->scenario = "default";
         }
         
-        
+                
         if (!$model->validate()) {
             //Errors available in submitted data
             $response['errors'] = $model->errors;

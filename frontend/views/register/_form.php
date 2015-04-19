@@ -331,5 +331,4 @@ $this->registerJs($js);
 
 
 <!-- form submit button -->
-<br class="clear"/><br/>
-<input type="submit"/>
+<input id="nextStep" type="submit" class="btn btn-primary btn-ripple pull-right" style="margin-top:1.8em;" value="Next Step"/>

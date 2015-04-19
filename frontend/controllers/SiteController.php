@@ -98,7 +98,7 @@ class SiteController extends Controller
         print_r($awsResult);
          * 
          */
-        
+                
         //return $this->render('test');
     }
 

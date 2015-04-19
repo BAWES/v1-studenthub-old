@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.9
+-- version 4.3.3
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 18, 2015 at 07:29 AM
--- Server version: 5.6.23
+-- Generation Time: Apr 19, 2015 at 08:06 AM
+-- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -2308,8 +2308,8 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_experience_company` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `student_experience_position` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `student_verfication_attachment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `student_email_verfication` tinyint(4) NOT NULL DEFAULT '0',
-  `student_id_verfication` tinyint(255) NOT NULL DEFAULT '0',
+  `student_email_verification` tinyint(4) NOT NULL DEFAULT '0',
+  `student_id_verification` tinyint(4) NOT NULL DEFAULT '0',
   `student_id_number` varchar(128) COLLATE utf8_unicode_ci DEFAULT '' COMMENT 'University ID Number to keep track of duplicates',
   `student_email_preference` tinyint(4) NOT NULL COMMENT 'Off(0), Daily(1), Weekly(2)',
   `student_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -2318,7 +2318,14 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `student_banned` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 - for banned',
   `student_datetime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`student_id`, `degree_id`, `country_id`, `university_id`, `student_firstname`, `student_lastname`, `student_dob`, `student_status`, `student_enrolment_year`, `student_graduating_year`, `student_gpa`, `student_english_level`, `student_gender`, `student_transportation`, `student_contact_number`, `student_interestingfacts`, `student_photo`, `student_cv`, `student_skill`, `student_hobby`, `student_club`, `student_sport`, `student_experience_company`, `student_experience_position`, `student_verfication_attachment`, `student_email_verification`, `student_id_verification`, `student_id_number`, `student_email_preference`, `student_email`, `student_auth_key`, `student_password_hash`, `student_password_reset_token`, `student_banned`, `student_datetime`) VALUES
+(1, 1, 1, 1, 'New Khalid', 'km', '2015-04-01', 1, 2015, 2016, '4.00', 1, 1, 1, '99811042', '', '', '', '', '', '', '', '', '', '', 1, 1, '1', 1, 'test@gust.edu.kw', 'dwad', 'dwad', 'dwad', 0, '2015-04-19 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -2645,7 +2652,7 @@ ALTER TABLE `payment_type`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `student_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `student_job_application`
 --

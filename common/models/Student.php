@@ -60,7 +60,6 @@ use common\models\University;
  * @property Major[] $majors
  */
 class Student extends \yii\db\ActiveRecord implements IdentityInterface {
-
     //Status values for `student_status`
     const STATUS_FULL_TIME = 1;
     const STATUS_PART_TIME = 0;
@@ -71,7 +70,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     const EMAIL_VERIFIED = 1;
     const EMAIL_NOT_VERIFIED = 0;
     //ID verification values for `student_id_verification`
-    //If this students university doesn ot require ID verification, this will automatically be set to ID_VERIFIED
+    //If this students university does not require ID verification, this will automatically be set to ID_VERIFIED
     const ID_VERIFIED = 1;
     const ID_NOT_VERIFIED = 0;
     //Email notification preference values for `student_email_preference`
@@ -212,7 +211,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_experience_company' => Yii::t('app', 'Student Experience Company'),
             'student_experience_position' => Yii::t('app', 'Student Experience Position'),
             'student_verfication_attachment' => Yii::t('app', 'Verfication Attachment'),
-            'student_email_verfication' => Yii::t('app', 'Email Verfication'),
+            'student_email_verification' => Yii::t('app', 'Email Verfication'),
             'student_id_verfication' => Yii::t('app', 'Id Verfication'),
             'student_email_preference' => Yii::t('app', 'Email Preference'),
             'student_email' => Yii::t('app', 'Email'),
