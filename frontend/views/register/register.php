@@ -107,6 +107,10 @@ if(requiresIdUpload){
     });
 }
 
+//submission fix
+$("#registerForm").submit(function(){
+    return false;
+});
 
 //Form Submit Step 1
 $("body").on("click","#nextStep",function () {
@@ -181,7 +185,6 @@ $("body").on("click","#nextStep",function () {
 
         
     }
-    
     
     return false;
 });
