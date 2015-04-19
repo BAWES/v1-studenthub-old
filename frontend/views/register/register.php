@@ -47,9 +47,7 @@ if(isMobile()){
     $(".selectpicker").selectpicker("mobile");
 }
 
-if (!Modernizr.touch || !Modernizr.inputtypes.date) {
-    $("body").addClass("touchDate");
-}
+
 
 var panel = $("#mainPanel");
 
@@ -68,6 +66,17 @@ function loadPage(page, data){
         $(".panel-title h4").text("Complete your profile");
         $("#step2 a").removeClass("btn-primary").addClass("btn-white");
         $("#step3 a").removeClass("btn-white").addClass("btn-primary");
+        
+        if (!Modernizr.touch || !Modernizr.inputtypes.date) {
+            $("input[type=date]")
+                .attr("type", "text")
+                .daterangepicker({
+                    // Consistent format with the HTML5 picker
+                    showDropdowns: true,
+                    singleDatePicker: true,
+                    format: "MM/DD/YYYY"
+                });
+        }
         
         //hide loader
         hideLoading();
