@@ -7,6 +7,7 @@ use yii\widgets\Breadcrumbs;
 use common\assets\TemplateAsset;
 use common\assets\ArabicAsset;
 use common\widgets\Alert;
+use yii\helpers\Url;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -23,7 +24,7 @@ else{
 }
 
 //Include Modernizr in head section
-$this->registerJsFile('plugins/modernizr/modernizr.min.js', ['position' => View::POS_HEAD]);
+$this->registerJsFile(Url::to('@web').'plugins/modernizr/modernizr.min.js', ['position' => View::POS_HEAD]);
 
 //Initialize on Document Ready (via jQuery)
 $jsInclude = "
