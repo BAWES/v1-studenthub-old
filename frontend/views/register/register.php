@@ -310,7 +310,7 @@ $this->registerJs($js);
                 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
-                        <input type="date" id="birthday" name="student_dob" class="form-control" placeholder="mm/dd/yyyy">
+                        <input type="date" id="birthday" name="student_dob" class="form-control" value="<?= date("m/d/Y") ?>">
                     </div>
                 </div>
                 <br class="clear"/>
