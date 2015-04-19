@@ -2,18 +2,6 @@
 /* @var $university \common\models\University */
 
 $js = "
-if ($('body').hasClass('touchDate')) {
-    $('input[type=date]')
-        .attr('type', 'text')
-        .daterangepicker({
-            // Consistent format with the HTML5 picker
-            showDropdowns: true,
-            singleDatePicker: true,
-            format: 'MM/DD/YYYY'
-        });
-}    
-
-
 $('.radioer input:radio').change(function(){
     if($(this).val() == 'yes'){
        $(this).parent().parent().find('.additional').show();
@@ -102,6 +90,19 @@ $this->registerJs($js);
             <input type="date" id="birthday" name="student_dob" class="form-control" value="<?= date("m/d/Y") ?>">
         </div>
     </div>
+    
+    <script>
+        if ($('body').hasClass('touchDate')) {
+            $('input[type=date]')
+                .attr('type', 'text')
+                .daterangepicker({
+                    // Consistent format with the HTML5 picker
+                    showDropdowns: true,
+                    singleDatePicker: true,
+                    format: 'MM/DD/YYYY'
+                });
+        }    
+    </script>
 
     <br class="clear"/>
 </div>
