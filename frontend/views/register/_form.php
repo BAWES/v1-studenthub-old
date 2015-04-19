@@ -2,7 +2,7 @@
 /* @var $university \common\models\University */
 
 $js = "
-if (!Modernizr.touch || !Modernizr.inputtypes.date) {
+if (touchDate) {
     $('input[type=date]')
         .attr('type', 'text')
         .daterangepicker({

@@ -46,6 +46,10 @@ function isMobile(){
 if(isMobile()){
     $(".selectpicker").selectpicker("mobile");
 }
+var touchDate = false;
+if (!Modernizr.touch || !Modernizr.inputtypes.date) {
+    touchDate = true;
+}
 
 var panel = $("#mainPanel");
 
