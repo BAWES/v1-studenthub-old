@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 use yii\base\DynamicModel;
 use frontend\models\Student;
+use DateTime;
 
 class RegisterController extends \yii\web\Controller {
 
@@ -127,6 +128,13 @@ class RegisterController extends \yii\web\Controller {
         
         $model = new Student();
         $model->attributes = Yii::$app->request->post();
+        
+        //Date of birth format adjustment
+        if($model->student_dob){
+            $date = new DateTime($model->student_dob);
+            $formattedDate = $date->format('m/d/Y');
+            $model->student_dob = $formattedDate;
+        }
         
         //Set Scenario based on current step
         if(!$model->step) $model->step = 1;
