@@ -17,6 +17,10 @@ class Student extends \common\models\Student
     //Step 1 Requirements:
     public $step; //this will be used for scenario / limit the validation
     
+    //majors and languages selected during registration
+    public $majorsSelected;
+    public $languagesSelected;
+    
     
     /**
      * @inheritdoc
