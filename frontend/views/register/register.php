@@ -107,13 +107,9 @@ if(requiresIdUpload){
     });
 }
 
-//submission fix
-$("#registerForm").submit(function(){
-    return false;
-});
 
 //Form Submit Step 1
-$("body").on("click","#nextStep",function () {
+$("#nextStep").click(function () {
     var $myForm = $("#registerForm");
 
     //Trigger browser-based validation
@@ -360,10 +356,8 @@ $this->registerJs($js);
 
                 </div>
             <?php } ?>
-
-
-
-            <input id="nextStep" type="submit" class="btn btn-primary btn-ripple pull-right" value="Next Step"/>
         </form>
+        
+        <input id="nextStep" type="submit" class="btn btn-primary btn-ripple pull-right" value="Next Step"/>
     </div>
 </div>
