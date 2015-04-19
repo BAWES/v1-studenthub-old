@@ -68,6 +68,7 @@ function loadPage(page, data){
         $("#step3 a").removeClass("btn-white").addClass("btn-primary");
         
         if (!Modernizr.touch || !Modernizr.inputtypes.date) {
+            alert("works");
             $("input[type=date]")
                 .attr("type", "text")
                 .daterangepicker({
