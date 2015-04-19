@@ -1,4 +1,5 @@
 <?php
+use frontend\models\Student;
 /* @var $university \common\models\University */
 
 $js = "
@@ -103,7 +104,7 @@ $this->registerJs($js);
         <select class="selectpickerNoMobile" name="country_id" data-live-search="true" data-width="auto">
             <option value="" disabled selected>Nationality</option>
             <?php
-            $countryList = \common\models\Country::find()->all();
+            $countryList = \common\models\Country::find()->orderBy("country_nationality_name_en")->all();
             foreach ($countryList as $country) {
                 echo "<option value='" . $country->country_id . "'>" . $country->country_nationality_name_en . "</option>";
             }
@@ -121,18 +122,20 @@ $this->registerJs($js);
         I am currently a 
 
         <select class="selectpicker" name="student_status" data-width="130px">
-            <option value="fulltime">Full-time</option>
-            <option value="parttime">Part-time</option>
+            <option value="<?= Student::STATUS_FULL_TIME ?>">Full-time</option>
+            <option value="<?= Student::STATUS_PART_TIME ?>">Part-time</option>
         </select>
 
         student pursuing a 
 
         <select class="selectpicker" name="degree_id" data-width="130px">
             <option value='' selected disabled>Degree</option>
-            <option value="diploma">Diploma</option>
-            <option value="bachelors">Bachelors</option>
-            <option value="masters">Masters</option>
-            <option value="phd">PhD</option>
+            <?php
+            $degreeList = \common\models\Degree::find()->all();
+            foreach ($degreeList as $degree) {
+                echo "<option value='" . $degree->degree_id . "'>" . $degree->degree_name_en . "</option>";
+            }
+            ?>
         </select>
 
         degree at <?= $university->university_name_en ?>.
@@ -211,8 +214,8 @@ $this->registerJs($js);
     I am 
     <select class="selectpicker" name="student_gender" data-width="auto" title='Genderz'>
         <option value="" selected disabled>Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
+        <option value="<?= Student::GENDER_MALE ?>">Male</option>
+        <option value="<?= Student::GENDER_FEMALE ?>">Female</option>
     </select>
     <br class="clear"/>
 </div>
@@ -238,9 +241,9 @@ $this->registerJs($js);
     My English language level is
     <select class="selectpicker" name="student_english_level" data-width="auto" title='Levelz'>
         <option value="" selected disabled>Level</option>
-        <option value="poor">Poor</option>
-        <option value="fair">Fair</option>
-        <option value="good">Good</option>
+        <option value="<?= Student::ENGLISH_WEAK ?>">Weak</option>
+        <option value="<?= Student::ENGLISH_FAIR ?>">Fair</option>
+        <option value="<?= Student::ENGLISH_GOOD ?>">Good</option>
     </select>
     <br class="clear"/>
 </div>
