@@ -46,15 +46,6 @@ class Student extends \common\models\Student
         return $scenarios;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            //'verifyCode' => 'Verification Code',
-        ];
-    }
     
     /**
      * Signs user up.

@@ -109,6 +109,26 @@ $this->registerJs($js);
 <!-- Question -->
 <div class="questionRow">
     <p>
+        I a(n) 
+
+        <select class="selectpicker" name="country_id" data-live-search="true" data-width="auto">
+            <option value="" disabled selected>Nationality</option>
+            <?php
+            $countryList = \common\models\Country::find()->all();
+            foreach ($countryList as $country) {
+                echo "<option value='" . $country->country_id . "'>" . $country->country_nationality_name_en . "</option>";
+            }
+            ?>
+        </select>
+    </p>
+
+    <br class="clear"/>
+</div>
+
+
+<!-- Question -->
+<div class="questionRow">
+    <p>
         I am currently a 
 
         <select class="selectpicker" name="student_status" data-width="130px">

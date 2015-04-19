@@ -141,8 +141,9 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             [['student_dob'], 'date', 'format' => 'MM/dd/yyyy', 'message' => \Yii::t('frontend','The format of your date of birth is invalid, should be mm/dd/yyyy')],
             [['student_dob'], '\common\components\AgeValidator', 'min' => 16 ],
             
-            //Phone Requirements
+            //Length Requirements
             ['student_contact_number', 'string', 'length' => 8],
+            ['student_password_hash', 'string', 'length' => [4, 128]],
                     
             //University existence validation
             ['university_id', 'exist',
