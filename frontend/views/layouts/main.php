@@ -24,7 +24,7 @@ else{
 }
 
 //Include Modernizr in head section
-$this->registerJsFile(Url::to('@web').'plugins/modernizr/modernizr.min.js', ['position' => View::POS_HEAD]);
+$this->registerJsFile(Url::to('@web/plugins/modernizr/modernizr.min.js'), ['position' => View::POS_HEAD]);
 
 //Initialize on Document Ready (via jQuery)
 $jsInclude = "
