@@ -31,6 +31,15 @@ class Student extends \common\models\Student
             //Always required
             [['step', 'majorsSelected', 'languagesSelected'], 'required'],
             
+            //Check if uploaded id image exists in temporarybucket filePath (ONLY if new record)
+            ['student_verfication_attachment', '\common\components\S3FileExistValidator', 'filePath'=>'temporary/',
+                'resourceManager' => Yii::$app->resourceManager, 
+                'when' => function($model){
+                if($model->isNewRecord){
+                    return true;
+                }
+            }],
+            
             //Validate Major and Language selections (if selected)
             ['majorsSelected', '\common\components\ArrayValidator',
                 'rule'=>['exist', 

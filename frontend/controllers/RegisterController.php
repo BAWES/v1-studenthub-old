@@ -159,22 +159,26 @@ class RegisterController extends \yii\web\Controller {
                 $response['goToNextStep'] = true;
             }
             
-            
+            if($model->step == 2){
+                $response['complete'] = true;
+                
+                //Save Student Record (method within frontend student model)
+                
+                //Send Verification Email for account activation
+                
+                //
+                
+                //Student creation complete -> redirect to thank you page / Tell them to verify email
+                return $this->redirect(["register/thanks"]);
+            }
             //If validation succeeds on all model attributes + step==2 -> save record
-            //Create a method within RegisterForm.php that will create the student record
-            //Make sure to update Student model with matching validation rules shown in RegisterForm.php
+            //Create a method within frontend\models\Student that will create the student record
             /*
              * Make sure to move item from temporary to student-identification folder
              */
         }
         
         return $response;
-        
-        /*If step is 1, there will be a scenario to only validate attributes related to step 1
-         * If Step is 2, all attributes will be validated
-         * Form will not create a student record UNLESS step is 2. Dont allow users to manually change to step 1
-         * to ignore rest of validation
-         */
     }
 
     /**
@@ -185,6 +189,11 @@ class RegisterController extends \yii\web\Controller {
         $university = $this->findUniversity($id);
         
         return $this->renderAjax('_form',['university'=>$university]);
+    }
+    
+    public function actionThanks(){
+        //Maybe render different thank you page based on university
+        return $this->render('thanks');
     }
 
     /**

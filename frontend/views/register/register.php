@@ -244,12 +244,7 @@ function validateForm(form){
                 
                 loadPage(step1,"id="+universityId);
             }
-            
-            //Add a new response message eg: response.completed to finalize registration/redirect to thank you page
-            
-
-
-            //Redirection here
+            //Otherwise if response fully validated, xheader will redirect to thank you page
         }
         
 
@@ -258,9 +253,6 @@ function validateForm(form){
 
         //toastr.success("The content successfully loaded.");
 
-    }).fail(function (jqXHR, textStatus) {
-        hideLoading();
-        toastr.error("There was a problem while submitting the form.");       
     });
 }
 ';
