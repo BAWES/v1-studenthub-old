@@ -47,9 +47,6 @@ class Student extends \common\models\Student
                     ]
                 ],
             
-            //Maybe create custom validator for array and model
-            //Checks that all IDs within an array belong to a specified model / primary key
-            
             
             //Step Validation, only 1 and 2
             ['step', 'in', 'range' => [1, 2]],
