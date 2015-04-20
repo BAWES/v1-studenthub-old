@@ -109,6 +109,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             [['student_interestingfacts', 'student_skill', 'student_hobby', 'student_club', 'student_cv',
                 'student_verfication_attachment', 'student_sport'], 'safe'],
             //Default values
+            [['student_cv','student_photo'], 'default'],
             ['student_id_verification', 'default', 'value' => self::ID_NOT_VERIFIED],
             ['student_email_verification', 'default', 'value' => self::NOTIFICATION_DAILY],
             

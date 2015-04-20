@@ -67,6 +67,33 @@ class Employer extends \yii\db\ActiveRecord
             ['employer_email_preference', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
         ];
     }
+    
+    
+    /**
+     * Signs user up.
+     *
+     * @return User|null the saved model or null if saving fails
+     */
+    public function signup()
+    {
+        //This signup code was taken when we were using RegisterForm model for signup
+        //It used to have the logic for creation of students within that model
+        //now that our data is within the same activerecord model, signup might aswell trigger save for itself
+        //then return an instance of itself (static)
+        
+        /*if ($this->validate()) {
+            $admin = new Admin();
+            $admin->admin_name = $this->name;
+            $admin->admin_email = $this->email;
+            $admin->setPassword($this->password);
+            $admin->generateAuthKey();
+            if ($admin->save()) {
+                return $admin;
+            }
+        }*/
+        
+        return null;
+    }
 
     /**
      * @inheritdoc

@@ -163,19 +163,15 @@ class RegisterController extends \yii\web\Controller {
                 $response['complete'] = true;
                 
                 //Save Student Record (method within frontend student model)
+                //Make sure to move item from temporary to student-identification folder on beforeSave if new record
+                $model->signup();
                 
                 //Send Verification Email for account activation
                 
-                //
                 
                 //Student creation complete -> redirect to thank you page / Tell them to verify email
                 return $this->redirect(["register/thanks"]);
             }
-            //If validation succeeds on all model attributes + step==2 -> save record
-            //Create a method within frontend\models\Student that will create the student record
-            /*
-             * Make sure to move item from temporary to student-identification folder
-             */
         }
         
         return $response;
