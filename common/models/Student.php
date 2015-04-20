@@ -104,7 +104,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             [['degree_id', 'country_id', 'university_id', 'student_firstname', 'student_lastname', 'student_english_level', 
                 'student_dob', 'student_status', 'student_enrolment_year', 'student_graduating_year', 'student_gpa', 
                 'student_gender', 'student_contact_number', 'student_email_preference', 'student_email', 
-                'student_password_hash'], 'required'],
+                'student_password_hash', 'student_transportation'], 'required'],
             //Optional (for massive assignment)
             [['student_interestingfacts', 'student_skill', 'student_hobby', 'student_club', 'student_cv',
                 'student_verfication_attachment', 'student_sport'], 'safe'],

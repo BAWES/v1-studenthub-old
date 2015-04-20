@@ -29,7 +29,27 @@ class Student extends \common\models\Student
     {
         return array_merge(parent::rules(),[
             //Always required
-            [['step'], 'required'],
+            [['step', 'majorsSelected', 'languagesSelected'], 'required'],
+            
+            //Validate Major and Language selections (if selected)
+            ['majorsSelected', '\common\components\ArrayValidator',
+                'rule'=>['exist', 
+                    'targetClass' => '\common\models\Major',
+                    'targetAttribute' => 'major_id',
+                    'message' => \Yii::t('frontend','Selected major does not exist.')
+                    ]
+                ],
+            ['languagesSelected', '\common\components\ArrayValidator',
+                'rule'=>['exist', 
+                    'targetClass' => '\common\models\Language',
+                    'targetAttribute' => 'language_id',
+                    'message' => \Yii::t('frontend','Selected language does not exist.')
+                    ]
+                ],
+            
+            //Maybe create custom validator for array and model
+            //Checks that all IDs within an array belong to a specified model / primary key
+            
             
             //Step Validation, only 1 and 2
             ['step', 'in', 'range' => [1, 2]],
@@ -48,6 +68,14 @@ class Student extends \common\models\Student
                                         'student_contact_number', 'student_verfication_attachment'];
         
         return $scenarios;
+    }
+    
+    public function attributeLabels() {
+        return array_merge(parent::attributeLabels(),[
+            'majorsSelected' => Yii::t('app', 'Majors selected'),
+            'languagesSelected' => Yii::t('app', 'Languages selected'),
+            'step' => Yii::t('app', 'Step'),
+        ]);
     }
 
     

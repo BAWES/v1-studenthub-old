@@ -182,7 +182,7 @@ $this->registerJs($js);
 <div class="questionRow">
     <br/>
     I'm majoring in 
-    <select multiple class="selectize-majors" name="majorsSelected" placeholder="Majors (type and select from list)">
+    <select multiple class="selectize-majors" name="majorsSelected[]" placeholder="Majors (type and select from list)">
         <option value="">Select a major</option>
         <?php
         $majorList = \common\models\Major::find()->all();
@@ -224,7 +224,7 @@ $this->registerJs($js);
 <div class="questionRow">
     <br/>
     I speak
-    <select multiple class="selecter" name="languagesSelected" title='Language(s)'>
+    <select multiple class="selecter" name="languagesSelected[]" title='Language(s)'>
         <?php
         $languageList = \common\models\Language::find()->all();
         foreach ($languageList as $language) {
