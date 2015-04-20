@@ -105,11 +105,9 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 'student_dob', 'student_status', 'student_enrolment_year', 'student_graduating_year', 'student_gpa', 
                 'student_gender', 'student_contact_number', 'student_email_preference', 'student_email', 
                 'student_password_hash', 'student_transportation'], 'required'],
-            //Optional (for massive assignment)
-            [['student_interestingfacts', 'student_skill', 'student_hobby', 'student_club', 'student_cv',
-                'student_verfication_attachment', 'student_sport'], 'safe'],
-            //Default values
-            [['student_cv','student_photo'], 'default'],
+            //Default values / optional fields for massive assignment
+            [['student_cv','student_photo','student_verfication_attachment','student_club','student_interestingfacts', 'student_id_number',
+                'student_skill', 'student_hobby', 'student_sport', 'student_experience_company', 'student_experience_position'], 'default'],
             ['student_id_verification', 'default', 'value' => self::ID_NOT_VERIFIED],
             ['student_email_verification', 'default', 'value' => self::NOTIFICATION_DAILY],
             
@@ -145,7 +143,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     
             //Date Validation
             [['student_enrolment_year', 'student_graduating_year'], 'date', 'format' => 'yyyy'],
-            [['student_dob'], 'date', 'format' => 'MM/dd/yyyy', 'message' => \Yii::t('frontend','The format of your date of birth is invalid, should be mm/dd/yyyy')],
+            [['student_dob'], 'date', 'format' => 'yyyy/MM/dd', 'message' => \Yii::t('frontend','The format of your date of birth is invalid, should be mm/dd/yyyy')],
             [['student_dob'], '\common\components\AgeValidator', 'min' => 16 ],
             
             //Length Requirements

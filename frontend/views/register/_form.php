@@ -89,7 +89,7 @@ $this->registerJs($js);
     <p> and I was born on </p>
     <div class="inputer floating-label" style="width:120px;">
         <div class="input-wrapper" style="width:120px;">
-            <input type="date" id="birthday" name="student_dob" class="form-control" value="<?= date("m/d/Y") ?>">
+            <input type="date" id="birthday" name="student_dob" class="form-control" value="<?= date("Y/m/d") ?>">
         </div>
     </div>
 

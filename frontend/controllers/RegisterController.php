@@ -132,7 +132,7 @@ class RegisterController extends \yii\web\Controller {
         //Date of birth format adjustment
         if($model->student_dob){
             $date = new DateTime($model->student_dob);
-            $formattedDate = $date->format('m/d/Y');
+            $formattedDate = $date->format('Y/m/d');
             $model->student_dob = $formattedDate;
         }
         

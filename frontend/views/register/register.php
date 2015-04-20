@@ -74,7 +74,7 @@ function loadPage(page, data){
                     // Consistent format with the HTML5 picker
                     showDropdowns: true,
                     singleDatePicker: true,
-                    format: "MM/DD/YYYY"
+                    format: "YYYY/MM/DD"
                 });
         }
         

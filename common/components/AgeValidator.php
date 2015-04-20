@@ -20,7 +20,7 @@ class AgeValidator extends Validator {
     public function validateAttribute($model, $attribute) {
         $date = $model->$attribute;
         $tz = new DateTimeZone('Asia/Kuwait');
-        $age = DateTime::createFromFormat('d/m/Y', $date, $tz)
+        $age = DateTime::createFromFormat('Y/m/d', $date, $tz)
                         ->diff(new DateTime('now', $tz))->y;
 
         if ($age < $this->min) {
