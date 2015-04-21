@@ -252,11 +252,11 @@ $this->registerJs($js);
 <div class="questionRow">
     <br/>
     <div class="radioer form-inline">
-        <input type="radio" name="student_transportation" id="transport1" value="yes">
+        <input type="radio" name="student_transportation" id="transport1" value="<?= Student::TRANSPORTATION_AVAILABLE ?>">
         <label for="transport1">I have</label>
     </div>
     <div class="radioer form-inline">
-        <input type="radio" name="student_transportation" id="transport2" value="no">
+        <input type="radio" name="student_transportation" id="transport2" value="<?= Student::TRANSPORTATION_NOT_AVAILABLE ?>">
         <label for="transport2">I do not have</label>
     </div>
     a method of transportation.
