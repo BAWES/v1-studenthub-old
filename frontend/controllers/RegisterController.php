@@ -166,7 +166,7 @@ class RegisterController extends \yii\web\Controller {
                 //Make sure to move item from temporary to student-identification folder on beforeSave if new record
                 $model->signup();
                 
-                //Send Verification Email for account activation
+                //Send Verification Email for account activation (also within the model as part of signup()
                 
                 
                 //Student creation complete -> redirect to thank you page / Tell them to verify email

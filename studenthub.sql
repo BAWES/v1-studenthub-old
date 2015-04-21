@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 20, 2015 at 01:44 PM
+-- Generation Time: Apr 21, 2015 at 07:58 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -2133,14 +2133,15 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `student_banned` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 - for banned',
   `student_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `student`
 --
 
 INSERT INTO `student` (`student_id`, `degree_id`, `country_id`, `university_id`, `student_firstname`, `student_lastname`, `student_dob`, `student_status`, `student_enrolment_year`, `student_graduating_year`, `student_gpa`, `student_english_level`, `student_gender`, `student_transportation`, `student_contact_number`, `student_interestingfacts`, `student_photo`, `student_cv`, `student_skill`, `student_hobby`, `student_club`, `student_sport`, `student_experience_company`, `student_experience_position`, `student_verfication_attachment`, `student_email_verification`, `student_id_verification`, `student_id_number`, `student_email_preference`, `student_email`, `student_auth_key`, `student_password_hash`, `student_password_reset_token`, `student_banned`, `student_datetime`) VALUES
-(2, 2, 182, 2, 'dwad', 'dwadawd', '1988-04-20', 1, 2013, 2016, '3.00', 1, 1, 0, '99811042', 'dwadawdw', NULL, NULL, 'dwadwa,dwadawdw,dwdad', 'dwada,dwadwad,dwadaw,dwa', 'dwadawd,dwad', 'dwadwa,dwadwad,dwadawdawd', '', '', '4NzChvwRL5KrcJ4zGzhi5bhwuTX28Bqu.png', 1, 0, '', 0, 'dwad@dwad.com', 'JAZbmlKlfc0DGjUTLnWuVHFUgzc0nB6b', '$2y$13$7fGKB4oFDrLH51JQYB9Gy.NVADzVIQAW8b1Ii2EnTMMrf05sVed/W', '', 0, '2015-04-20 16:37:24');
+(2, 2, 182, 2, 'dwad', 'dwadawd', '1988-04-20', 1, 2013, 2016, '3.00', 1, 1, 0, '99811042', 'dwadawdw', NULL, NULL, 'dwadwa,dwadawdw,dwdad', 'dwada,dwadwad,dwadaw,dwa', 'dwadawd,dwad', 'dwadwa,dwadwad,dwadawdawd', '', '', '4NzChvwRL5KrcJ4zGzhi5bhwuTX28Bqu.png', 1, 0, '', 0, 'dwad@dwad.com', 'JAZbmlKlfc0DGjUTLnWuVHFUgzc0nB6b', '$2y$13$7fGKB4oFDrLH51JQYB9Gy.NVADzVIQAW8b1Ii2EnTMMrf05sVed/W', '', 0, '2015-04-20 16:37:24'),
+(3, 2, 84, 2, 'Khalid', 'Mutawa', '1988-04-20', 0, 2014, 2017, '3.20', 1, 1, 0, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'bawes', 'animal', 'nXMiNv-XoDmFENsXsUuh021YtEyCROPP.png', 1, 0, NULL, 0, 'fesfse@gust.edu', '65cVEVI6ibGT9xNoRGykmjQDycrQJhFD', '$2y$13$3v3grjICbon/DnqLkJpkJOsMTjDmDik5NWXME8hRbWVIGOwJlF7Ku', '', 0, '2015-04-21 10:54:05');
 
 -- --------------------------------------------------------
 
@@ -2165,9 +2166,18 @@ CREATE TABLE IF NOT EXISTS `student_job_application` (
 --
 
 CREATE TABLE IF NOT EXISTS `student_language` (
-  `language_id` int(11) unsigned NOT NULL,
-  `student_id` int(11) unsigned NOT NULL
+  `student_id` int(11) unsigned NOT NULL,
+  `language_id` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `student_language`
+--
+
+INSERT INTO `student_language` (`student_id`, `language_id`) VALUES
+(3, 1),
+(3, 2),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -2179,6 +2189,14 @@ CREATE TABLE IF NOT EXISTS `student_major` (
   `student_id` int(11) unsigned NOT NULL,
   `major_id` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `student_major`
+--
+
+INSERT INTO `student_major` (`student_id`, `major_id`) VALUES
+(3, 2),
+(3, 340);
 
 -- --------------------------------------------------------
 
@@ -2467,7 +2485,7 @@ ALTER TABLE `payment_type`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `student_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `student_job_application`
 --

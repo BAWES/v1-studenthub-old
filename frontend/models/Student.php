@@ -9,7 +9,7 @@ use Yii;
  * It extends from \common\models\Student but with custom functionality for front-end
  * 
  * Scenarios Include:
- * - firstStep -> for first step of registration
+ * - registrationFirstStep -> for first step of registration
  * 
  */
 class Student extends \common\models\Student {
@@ -88,20 +88,54 @@ class Student extends \common\models\Student {
                 Yii::$app->resourceManager->copy("temporary/$filename", "student-identification/$filename");
             }
 
-
             return true;
+        }
+    }
+    
+    public function afterSave($insert, $changedAttributes) {
+        parent::afterSave($insert, $changedAttributes);
+        
+        //Linking selected majors to student
+        if(is_array($this->majorsSelected)){
+            //Unlink all majors from this Student
+            $this->unlinkAll('majors');
+            
+            //Link the new majors to this Student
+            foreach($this->majorsSelected as $majorId){
+                $major = \common\models\Major::findOne((int) $majorId);
+                if($major){
+                    $this->link('majors', $major);
+                }
+            }
+        }
+        
+        //Linking selected languages to student
+        if(is_array($this->languagesSelected)){
+            //Unlink all languages from this Student
+            $this->unlinkAll('languages');
+            
+            //Link the new majors to this Student
+            foreach($this->languagesSelected as $languageId){
+                $language = \common\models\Language::findOne((int) $languageId);
+                if($language){
+                    $this->link('languages', $language);
+                }
+            }
         }
     }
 
     /**
      * Signs user up.
-     *
+     * @param boolean $validate - whether to validate before Signing up
      * @return static|null the saved model or null if saving fails
      */
-    public function signup() {
+    public function signup($validate = false) {
         $this->setPassword($this->student_password_hash);
         $this->generateAuthKey();
-        if ($this->save()) {
+        if ($this->save(false)) {
+            //send activation email here
+            
+            
             return $this;
         }
 
