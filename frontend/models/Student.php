@@ -27,14 +27,32 @@ class Student extends \common\models\Student {
         return array_merge(parent::rules(), [
             //Always required
             [['step', 'majorsSelected', 'languagesSelected'], 'required'],
-            //Check if uploaded id image exists in temporarybucket filePath (ONLY if new record)
-            ['student_verfication_attachment', '\common\components\S3FileExistValidator', 'filePath' => 'temporary/',
+            //Check if uploaded files exists in temporarybucket filePath (ONLY if new record)
+            [['student_verfication_attachment'], '\common\components\S3FileExistValidator', 'filePath' => 'temporary/',
+                'message' => Yii::t("frontend", "Please upload a photo of your university id card"),
                 'resourceManager' => Yii::$app->resourceManager,
                 'when' => function($model) {
                     if ($model->isNewRecord) {
                         return true;
                     }
                 }],
+            [['student_cv'], '\common\components\S3FileExistValidator', 'filePath' => 'temporary/',
+                'message' => Yii::t("frontend", "Your CV upload is invalid"),
+                'resourceManager' => Yii::$app->resourceManager,
+                'when' => function($model) {
+                    if ($model->isNewRecord) {
+                        return true;
+                    }
+                }],
+            [['student_photo'], '\common\components\S3FileExistValidator', 'filePath' => 'temporary/',
+                'message' => Yii::t("frontend", "Your photo upload is invalid"),
+                'resourceManager' => Yii::$app->resourceManager,
+                'when' => function($model) {
+                    if ($model->isNewRecord) {
+                        return true;
+                    }
+                }],
+                        
             //Validate Major and Language selections (if selected)
             ['majorsSelected', '\common\components\ArrayValidator',
                 'rule' => ['exist',

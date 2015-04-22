@@ -125,7 +125,7 @@ class RegisterController extends \yii\web\Controller {
         if($uploadedFile){
             $model = DynamicModel::validateData(compact('uploadedFile'), [
                 [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf, doc, docx', 'maxSize' => 10000000,
-                    'message' => Yii::t('register', 'Your CV must be cool')],
+                    'message' => Yii::t('register', 'Your CV must be cool')], // fix this
             ]);
 
             if ($model->hasErrors()) {

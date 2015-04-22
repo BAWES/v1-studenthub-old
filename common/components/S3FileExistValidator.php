@@ -23,13 +23,18 @@ class S3FileExistValidator extends Validator
      */
     public $filePath = "";
     
+    /**
+     * @var string the error message to be shown if validation fails
+     */
+    public $message = "Uploaded file does not exist";
+    
     public function validateAttribute($model, $attribute)
     {
         $filename = $model->$attribute;
         if($filename && $this->resourceManager){
             //check if this file exists within this resourceManager bucket
             if(!$this->resourceManager->fileExists($this->filePath.$filename)){
-                $this->addError($model, $attribute, Yii::t("frontend", "Please upload a photo of your university id card"));
+                $this->addError($model, $attribute, $this->message);
             }
         }
     }

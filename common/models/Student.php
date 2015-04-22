@@ -136,6 +136,22 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     return true;
                 }
             }],
+            //Check if uploaded cv exists in resourceManager bucket filePath (only if old record)
+            ['student_cv', '\common\components\S3FileExistValidator', 'filePath'=>'student-cv/',
+                'resourceManager' => Yii::$app->resourceManager, 
+                'when' => function($model){
+                if(!$model->isNewRecord){
+                    return true;
+                }
+            }],
+            //Check if uploaded photo exists in resourceManager bucket filePath (only if old record)
+            ['student_photo', '\common\components\S3FileExistValidator', 'filePath'=>'student-photo/',
+                'resourceManager' => Yii::$app->resourceManager, 
+                'when' => function($model){
+                if(!$model->isNewRecord){
+                    return true;
+                }
+            }],
             
             
             //Numeric Validation

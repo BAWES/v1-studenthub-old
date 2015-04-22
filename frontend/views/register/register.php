@@ -68,8 +68,11 @@ var photoFile; //Html5 storage of the photo file
 if(requiresIdUpload){
     //Store file in variable
     $fileUpload.on("change", function(event){
-        file = event.target.files[0];
-        notUploaded = true;
+        var files = event.target.files;
+        if(files && files.length > 0){
+            file = event.target.files[0];
+            notUploaded = true;
+        }
     });
 }
 
@@ -152,10 +155,6 @@ function uploadToServer(fileData, requestUrl, theForm, targetHiddenInput, upload
                     //file uploaded
                     targetHiddenInput.val(response.file);
                     
-                    //validate form after file uploaded
-                    //Submit the form for validation
-                    validateForm(theForm);
-                    
                     //On upload success set notUploaded to false
                     //This way we will not repeat the upload unless the file is changed
                     switch(uploadRef){
@@ -169,6 +168,9 @@ function uploadToServer(fileData, requestUrl, theForm, targetHiddenInput, upload
                             notUploadedPhoto = false;
                             break;
                     }
+                    
+                    //validate form after file uploaded
+                    validateForm(theForm);
                 }
                 
             },
@@ -273,12 +275,18 @@ function loadPage(page, data){
         
         //File upload listeners on new form
         $("#photoUpload").on("change", function(event){
-            photoFile = event.target.files[0];
-            notUploadedPhoto = true;
+            var files = event.target.files;
+            if(files && files.length > 0){
+                photoFile = event.target.files[0];
+                notUploadedPhoto = true;
+            }
         });
         $("#cvUpload").on("change", function(event){
-            cvFile = event.target.files[0];
-            notUploadedCV = true;
+            var files = event.target.files;
+            if(files && files.length > 0){
+                cvFile = event.target.files[0];
+                notUploadedCV = true;
+            }
         });
         
         //hide loader
