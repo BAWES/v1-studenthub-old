@@ -46,6 +46,7 @@ use common\models\University;
  * @property string $student_password_hash
  * @property string $student_password_reset_token
  * @property integer $student_banned 
+ * @property string $student_updated_datetime
  * @property string $student_datetime
  *
  * @property NotificationEmployer[] $notificationEmployers
@@ -181,7 +182,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'student_datetime',
-                'updatedAtAttribute' => false,
+                'updatedAtAttribute' => 'student_updated_datetime',
                 'value' => new Expression('NOW()'),
             ],
         ];
@@ -225,6 +226,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_password_hash' => Yii::t('app', 'Password'),
             'student_password_reset_token' => Yii::t('app', 'Password Reset Token'),
             'student_banned' => Yii::t('app', 'Student Banned'),
+            'student_updated_datetime' => Yii::t('app', 'Updated on'),
             'student_datetime' => Yii::t('app', 'Created on'),
         ];
     }
