@@ -87,7 +87,8 @@ class RegisterController extends \yii\web\Controller {
         
         if($uploadedFile){
             $model = DynamicModel::validateData(compact('uploadedFile'), [
-                [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png, gif, pdf', 'maxSize' => 10000000],
+                [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png, gif, pdf', 'maxSize' => 10000000,
+                    'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for ID: {extensions}')],
             ]);
 
             if ($model->hasErrors()) {
@@ -125,7 +126,7 @@ class RegisterController extends \yii\web\Controller {
         if($uploadedFile){
             $model = DynamicModel::validateData(compact('uploadedFile'), [
                 [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf, doc, docx', 'maxSize' => 10000000,
-                    'wrongExtension' => Yii::t('register', 'Your CV must be of {extensions} formats')], // fix this
+                    'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for CV: {extensions}')],
             ]);
 
             if ($model->hasErrors()) {
@@ -162,7 +163,8 @@ class RegisterController extends \yii\web\Controller {
         
         if($uploadedFile){
             $model = DynamicModel::validateData(compact('uploadedFile'), [
-                [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png, gif', 'maxSize' => 10000000],
+                [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png, gif', 'maxSize' => 10000000,
+                    'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for your Photo: {extensions}')],
             ]);
 
             if ($model->hasErrors()) {
