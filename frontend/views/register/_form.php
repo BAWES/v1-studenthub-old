@@ -381,7 +381,7 @@ $this->registerJs($js);
                     <span class="fileinput-new">Upload Photo (optional)</span>
                     <span class="fileinput-exists">Change</span>
                     <input type="file" id="photoUpload" name="photoUpload"/>
-                    <input type="hidden" id="idUpload" name="student_photo"/>
+                    <input type="hidden" id="photoData" name="student_photo"/>
                 </span>
                 <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput">Remove</a>
             </div>
@@ -401,7 +401,7 @@ $this->registerJs($js);
                     <span class="fileinput-new">Upload CV (optional)</span>
                     <span class="fileinput-exists">Change</span>
                     <input type="file" id="cvUpload" name="cvUpload"/>
-                    <input type="hidden" id="idUpload" name="student_cv"/>
+                    <input type="hidden" id="cvData" name="student_cv"/>
                 </span>
                 <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput">Remove</a>
             </div>

@@ -120,11 +120,49 @@ class RegisterController extends \yii\web\Controller {
             'file' => false,
         ];
         
-        $uploadedFile = UploadedFile::getInstanceByName("idUpload");
+        $uploadedFile = UploadedFile::getInstanceByName("cvUpload");
         
         if($uploadedFile){
             $model = DynamicModel::validateData(compact('uploadedFile'), [
-                [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf, doc, docx', 'maxSize' => 10000000],
+                [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf, doc, docx', 'maxSize' => 10000000,
+                    'message' => Yii::t('register', 'Your CV must be cool')],
+            ]);
+
+            if ($model->hasErrors()) {
+                // validation fails
+                $response['errors'] = $model->errors;
+            } else {
+                //file upload is valid - Upload file to amazon S3
+                $filename = Yii::$app->security->generateRandomString() . "." . $uploadedFile->extension;
+                
+                //Save to S3 Temporary folder
+                if($awsResult = Yii::$app->resourceManager->save($uploadedFile, "temporary/".$filename)){
+                    $response['valid'] = true;
+                    $response['errors'] = false;
+                    $response['file'] = $filename;
+                } 
+            }
+        }
+        
+        return $response;
+    }
+    
+    /**
+     * AJAX: Validates and uploads Photo upload (10 MB size limit)
+     */
+    public function actionPhotoUpload() {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $response = [
+            'valid' => false,
+            'errors' => [],
+            'file' => false,
+        ];
+        
+        $uploadedFile = UploadedFile::getInstanceByName("photoUpload");
+        
+        if($uploadedFile){
+            $model = DynamicModel::validateData(compact('uploadedFile'), [
+                [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png, gif', 'maxSize' => 10000000],
             ]);
 
             if ($model->hasErrors()) {

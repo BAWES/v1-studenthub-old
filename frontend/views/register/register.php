@@ -30,11 +30,15 @@ br.clear{clear:both;}
 
 $formLink = Yii::$app->urlManager->createUrl('register/validate');
 $idLink = Yii::$app->urlManager->createUrl('register/id-upload');
+$cvUploadLink = Yii::$app->urlManager->createUrl('register/cv-upload');
+$photoUploadLink = Yii::$app->urlManager->createUrl('register/photo-upload');
 $step1 = Yii::$app->urlManager->createUrl('register/form');
 
 $js = "
 var step1 = '$step1';
 var idLink = '$idLink';
+var cvLink = '$cvUploadLink';
+var photoLink = '$photoUploadLink';
 ";
 
 $js .= '
@@ -84,7 +88,7 @@ $("#nextStep").click(function () {
         scrollTop: 0
     }, 250);
     
-    //If form requires id upload, upload and validate it before the rest of form
+    //If form requires upload, upload and validate it before the rest of form
     if (requiresIdUpload && notUploaded){
         //Upload and validate file
         var data = new FormData();
@@ -94,15 +98,21 @@ $("#nextStep").click(function () {
     }
     else if(notUploadedCV){
         //Replicate ID upload thingy for CV
+        var data = new FormData();
+        data.append("cvUpload", cvFile);
+        
+        uploadToServer(data, cvLink, $myForm, $("#cvData"), 2);
     }
     else if(notUploadedPhoto){
         //Replicate ID upload thingy for Photo
+        var data = new FormData();
+        data.append("photoUpload", photoFile);
+        
+        uploadToServer(data, photoLink, $myForm, $("#photoData"), 3);
     }
     else{
-        //ID file upload not required, proceed with validation
+        //file upload not required, proceed with validation
         validateForm($myForm);
-
-        
     }
     
     return false;
@@ -145,21 +155,22 @@ function uploadToServer(fileData, requestUrl, theForm, targetHiddenInput, upload
                     //validate form after file uploaded
                     //Submit the form for validation
                     validateForm(theForm);
+                    
+                    //On upload success set notUploaded to false
+                    //This way we will not repeat the upload unless the file is changed
+                    switch(uploadRef){
+                        case 1:
+                            notUploaded = false;
+                            break;
+                        case 2:
+                            notUploadedCV = false;
+                            break;
+                        case 3:
+                            notUploadedPhoto = false;
+                            break;
+                    }
                 }
                 
-                //On upload success set notUploaded to false
-                //This way we will not repeat the upload unless the file is changed
-                switch(uploadRef){
-                    case 1:
-                        notUploaded = false;
-                        break;
-                    case 2:
-                        notUploadedCV = false;
-                        break;
-                    case 3:
-                        notUploadedPhoto = false;
-                        break;
-                }
             },
             error: function(jqXHR, textStatus, errorThrown)
             {
