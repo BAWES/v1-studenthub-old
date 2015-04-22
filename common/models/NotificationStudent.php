@@ -43,9 +43,8 @@ class NotificationStudent extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['student_id', 'job_id', 'notification_viewed', 'notification_datetime'], 'required'],
+            [['student_id', 'job_id', 'notification_viewed'], 'required'],
             [['student_id', 'job_id', 'notification_sent', 'notification_viewed'], 'integer'],
-            [['notification_datetime'], 'safe'],
             
             //Rules for notification viewed
             ['notification_viewed', 'default', 'value' => self::VIEWED_FALSE],
@@ -54,6 +53,17 @@ class NotificationStudent extends \yii\db\ActiveRecord
             //Rules for notification sent
             ['notification_sent', 'default', 'value' => self::SENT_FALSE],
             ['notification_sent', 'in', 'range' => [self::SENT_TRUE, self::SENT_FALSE]],
+        ];
+    }
+    
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'notification_datetime',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 

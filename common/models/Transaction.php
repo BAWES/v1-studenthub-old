@@ -32,10 +32,20 @@ class Transaction extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['job_id', 'transaction_number_of_applicants', 'transaction_price_per_applicant', 'transaction_price_total', 'transaction_datetime'], 'required'],
+            [['job_id', 'transaction_number_of_applicants', 'transaction_price_per_applicant', 'transaction_price_total'], 'required'],
             [['job_id', 'transaction_number_of_applicants'], 'integer'],
             [['transaction_price_per_applicant', 'transaction_price_total'], 'number'],
-            [['transaction_datetime'], 'safe']
+        ];
+    }
+    
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'transaction_datetime',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 

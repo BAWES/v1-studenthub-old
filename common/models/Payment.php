@@ -32,10 +32,20 @@ class Payment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['employer_id', 'payment_type_id', 'payment_datetime', 'payment_amount'], 'required'],
+            [['employer_id', 'payment_type_id', 'payment_amount'], 'required'],
             [['employer_id', 'payment_type_id'], 'integer'],
-            [['payment_datetime'], 'safe'],
             [['payment_amount'], 'number']
+        ];
+    }
+    
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'payment_datetime',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 

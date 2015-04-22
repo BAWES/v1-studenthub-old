@@ -55,16 +55,26 @@ class Employer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['industry_id', 'city_id', 'employer_company_desc', 'employer_num_employees', 'employer_contact_firstname', 'employer_contact_lastname', 'employer_email_preference', 'employer_email', 'employer_auth_key', 'employer_datetime'], 'required'],
+            [['industry_id', 'city_id', 'employer_company_desc', 'employer_num_employees', 'employer_contact_firstname', 'employer_contact_lastname', 'employer_email_preference', 'employer_email', 'employer_auth_key'], 'required'],
             [['industry_id', 'city_id', 'employer_num_employees', 'employer_email_preference'], 'integer'],
             [['employer_company_desc'], 'string'],
             [['employer_credit'], 'number'],
-            [['employer_datetime'], 'safe'],
             [['employer_company_name', 'employer_website', 'employer_contact_firstname', 'employer_contact_lastname', 'employer_email', 'employer_password_hash', 'employer_password_reset_token'], 'string', 'max' => 255],
             
             //Email preference rules
             ['employer_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
             ['employer_email_preference', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
+        ];
+    }
+    
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'employer_datetime',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
     

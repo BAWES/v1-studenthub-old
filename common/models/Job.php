@@ -60,9 +60,9 @@ class Job extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['jobtype_id', 'employer_id', 'job_title', 'job_pay', 'job_startdate', 'job_responsibilites', 'job_other_quilifications', 'job_desired_skill', 'job_question_1', 'job_question_2', 'job_max_applicants', 'job_current_num_applicants', 'job_status', 'job_created_datetime', 'job_price_per_applicant'], 'required'],
+            [['jobtype_id', 'employer_id', 'job_title', 'job_pay', 'job_startdate', 'job_responsibilites', 'job_other_quilifications', 'job_desired_skill', 'job_question_1', 'job_question_2', 'job_max_applicants', 'job_current_num_applicants', 'job_status', 'job_price_per_applicant'], 'required'],
             [['jobtype_id', 'employer_id', 'job_pay', 'job_max_applicants', 'job_current_num_applicants', 'job_status'], 'integer'],
-            [['job_startdate', 'job_created_datetime'], 'safe'],
+            [['job_startdate'], 'safe'],
             [['job_price_per_applicant'], 'number'],
             [['job_title', 'job_responsibilites', 'job_other_quilifications', 'job_desired_skill', 'job_compensation', 'job_question_1', 'job_question_2'], 'string', 'max' => 255],
             
@@ -72,6 +72,17 @@ class Job extends \yii\db\ActiveRecord
             
             //`job_pay` rules
             ['job_pay', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
+        ];
+    }
+    
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'job_created_datetime',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 
