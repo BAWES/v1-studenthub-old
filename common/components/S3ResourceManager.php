@@ -50,6 +50,7 @@ class S3ResourceManager extends AmazonS3ResourceManager {
                     'Bucket' => $this->bucket,
                     'Key' => $newFile,
                     'CopySource' => Html::encode($this->bucket."/".$oldFile),
+                    'ACL' => CannedAcl::PUBLIC_READ, // default to ACL public read - allows public to open file
                     ], $options);
 
         return $this->getClient()->copyObject($options);
