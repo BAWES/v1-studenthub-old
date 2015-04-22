@@ -346,7 +346,7 @@ $this->registerJs($js);
                         <div class="fileinput-preview fileinput-exists thumbnail" data-trigger="fileinput" style="max-width: 250px; max-height: 200px;"></div>
                         <div>
                             <span class="btn btn-default btn-file btn-ripple">
-                                <span class="fileinput-new">Select image</span>
+                                <span class="fileinput-new">Upload ID Card</span>
                                 <span class="fileinput-exists">Change</span>
                                 <input type="file" id="fileUpload" name="fileUpload"/>
                                 <input type="hidden" id="idUpload" name="student_verfication_attachment"/>

@@ -1,5 +1,8 @@
 <?php
+
 use frontend\models\Student;
+use yii\helpers\Url;
+
 /* @var $university \common\models\University */
 
 $js = "
@@ -364,3 +367,44 @@ $this->registerJs($js);
     <br class='clear'/>
 </div>
 
+<div class="row">
+    <!-- First File Upload (Photo) -->
+    <div class="col-md-6"  style="margin-top: 1.5em;">
+        <div class="fileinput fileinput-new" data-provides="fileinput">
+            <div class="fileinput-new thumbnail" data-trigger="fileinput" style="width: 250px; height: 200px;">
+                <img data-src="<?= Url::to('@web/images/pic.jpg') ?>" src="<?= Url::to('@web/images/pic.jpg') ?>" alt="Photo">
+            </div>
+
+            <div class="fileinput-preview fileinput-exists thumbnail" data-trigger="fileinput" style="max-width: 250px; max-height: 200px;"></div>
+            <div>
+                <span class="btn btn-default btn-file btn-ripple">
+                    <span class="fileinput-new">Upload Photo (optional)</span>
+                    <span class="fileinput-exists">Change</span>
+                    <input type="file" id="fileUpload" name="photoUpload"/>
+                    <input type="hidden" id="idUpload" name="student_photo"/>
+                </span>
+                <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput">Remove</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Second File Upload (CV) -->
+    <div class="col-md-6"  style="margin-top: 1.5em;">
+        <div class="fileinput fileinput-new" data-provides="fileinput">
+            <div class="fileinput-new thumbnail" data-trigger="fileinput" style="width: 250px; height: 200px;">
+                <img data-src="<?= Url::to('@web/images/cv.jpg') ?>" src="<?= Url::to('@web/images/cv.jpg') ?>" alt="CV">
+            </div>
+
+            <div class="fileinput-preview fileinput-exists thumbnail" data-trigger="fileinput" style="max-width: 250px; max-height: 200px;"></div>
+            <div>
+                <span class="btn btn-default btn-file btn-ripple">
+                    <span class="fileinput-new">Upload CV (optional)</span>
+                    <span class="fileinput-exists">Change</span>
+                    <input type="file" id="fileUpload" name="cvUpload"/>
+                    <input type="hidden" id="idUpload" name="student_cv"/>
+                </span>
+                <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput">Remove</a>
+            </div>
+        </div>
+    </div>
+</div>
