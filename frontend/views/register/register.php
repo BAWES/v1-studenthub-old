@@ -72,7 +72,7 @@ if(requiresIdUpload){
         if(files && files.length > 0){
             file = event.target.files[0];
             notUploaded = true;
-        }
+        }else notUploaded = false;
     });
 }
 
@@ -99,19 +99,27 @@ $("#nextStep").click(function () {
         
         uploadToServer(data, idLink, $myForm, $("#idUpload"), 1);
     }
+    else if(notUploadedCV && notUploadedPhoto){
+        //Upload both CV and Photo together
+        var data = new FormData();
+        data.append("cvUpload", cvFile);
+        data.append("photoUpload", photoFile);
+        
+        uploadToServer(data, cvLink, $myForm, $("#cvData"), 2);
+    }
     else if(notUploadedCV){
         //Replicate ID upload thingy for CV
         var data = new FormData();
         data.append("cvUpload", cvFile);
         
-        uploadToServer(data, cvLink, $myForm, $("#cvData"), 2);
+        uploadToServer(data, cvLink, $myForm, $("#cvData"), 3);
     }
     else if(notUploadedPhoto){
         //Replicate ID upload thingy for Photo
         var data = new FormData();
         data.append("photoUpload", photoFile);
         
-        uploadToServer(data, photoLink, $myForm, $("#photoData"), 3);
+        uploadToServer(data, photoLink, $myForm, $("#photoData"), 4);
     }
     else{
         //file upload not required, proceed with validation
@@ -163,8 +171,12 @@ function uploadToServer(fileData, requestUrl, theForm, targetHiddenInput, upload
                             break;
                         case 2:
                             notUploadedCV = false;
+                            notUploadedPhoto = false;
                             break;
                         case 3:
+                            notUploadedCV = false;
+                            break;
+                        case 4:
                             notUploadedPhoto = false;
                             break;
                     }
@@ -279,14 +291,14 @@ function loadPage(page, data){
             if(files && files.length > 0){
                 photoFile = event.target.files[0];
                 notUploadedPhoto = true;
-            }
+            }else notUploadedPhoto = false;
         });
         $("#cvUpload").on("change", function(event){
             var files = event.target.files;
             if(files && files.length > 0){
                 cvFile = event.target.files[0];
                 notUploadedCV = true;
-            }
+            }else notUploadedCV = false;
         });
         
         //hide loader

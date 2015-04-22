@@ -100,10 +100,22 @@ class Student extends \common\models\Student {
 
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
-            if ($insert && $this->student_verfication_attachment) {
+            if ($insert) {
                 //Move verification attachment from `temporary` bucket to `student-identification`
-                $filename = $this->student_verfication_attachment;
-                Yii::$app->resourceManager->copy("temporary/$filename", "student-identification/$filename");
+                if($this->student_verfication_attachment){
+                    $filename = $this->student_verfication_attachment;
+                    Yii::$app->resourceManager->copy("temporary/$filename", "student-identification/$filename");
+                }
+                //Move CV from `temporary` bucket to `student-cv`
+                if($this->student_cv){
+                    $filename = $this->student_cv;
+                    Yii::$app->resourceManager->copy("temporary/$filename", "student-cv/$filename");
+                }
+                //Move photo from `temporary` bucket to `student-photo`
+                if($this->student_photo){
+                    $filename = $this->student_photo;
+                    Yii::$app->resourceManager->copy("temporary/$filename", "student-photo/$filename");
+                }
             }
 
             return true;
