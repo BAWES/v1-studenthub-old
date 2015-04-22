@@ -101,25 +101,30 @@ $("#nextStep").click(function () {
     }
     else if(notUploadedCV && notUploadedPhoto){
         //Upload both CV and Photo together
-        var data = new FormData();
-        data.append("cvUpload", cvFile);
-        data.append("photoUpload", photoFile);
+        var cvData = new FormData();
+        cvData.append("cvUpload", cvFile);
         
-        uploadToServer(data, cvLink, $myForm, $("#cvData"), 2);
+        var photoData = new FormData();
+        photoData.append("photoUpload", photoFile);
+        
+        //Upload photo without validation
+        uploadToServer(photoData, photoLink, $myForm, $("#photoData"), 3, false);
+        //Upload cv with validation
+        uploadToServer(cvData, cvLink, $myForm, $("#cvData"), 2);
     }
     else if(notUploadedCV){
         //Replicate ID upload thingy for CV
         var data = new FormData();
         data.append("cvUpload", cvFile);
         
-        uploadToServer(data, cvLink, $myForm, $("#cvData"), 3);
+        uploadToServer(data, cvLink, $myForm, $("#cvData"), 2);
     }
     else if(notUploadedPhoto){
         //Replicate ID upload thingy for Photo
         var data = new FormData();
         data.append("photoUpload", photoFile);
         
-        uploadToServer(data, photoLink, $myForm, $("#photoData"), 4);
+        uploadToServer(data, photoLink, $myForm, $("#photoData"), 3);
     }
     else{
         //file upload not required, proceed with validation
@@ -130,14 +135,18 @@ $("#nextStep").click(function () {
 });
 
 //File Upload Function
-function uploadToServer(fileData, requestUrl, theForm, targetHiddenInput, uploadRef){
+function uploadToServer(fileData, requestUrl, theForm, targetHiddenInput, uploadRef, validate){
+    if (typeof validate === "undefined") { validate = true; } //set default param value
+    
     $.ajax({
             url: requestUrl,
             type: "POST",
             data: fileData,
             cache: false,
             beforeSend: function () {
-                showLoading();
+                if(validate){
+                    showLoading();
+                }
             },
             dataType: "json",
             processData: false,
@@ -171,18 +180,16 @@ function uploadToServer(fileData, requestUrl, theForm, targetHiddenInput, upload
                             break;
                         case 2:
                             notUploadedCV = false;
-                            notUploadedPhoto = false;
                             break;
                         case 3:
-                            notUploadedCV = false;
-                            break;
-                        case 4:
                             notUploadedPhoto = false;
                             break;
                     }
                     
                     //validate form after file uploaded
-                    validateForm(theForm);
+                    if(validate){
+                        validateForm(theForm);
+                    }
                 }
                 
             },
