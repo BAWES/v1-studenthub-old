@@ -174,6 +174,17 @@ class RegisterController extends \yii\web\Controller {
                 //file upload is valid - Upload file to amazon S3
                 $filename = Yii::$app->security->generateRandomString() . "." . $uploadedFile->extension;
                 
+                //Resize file using imagine
+                $newTmpName = $uploadedFile->tempName . "." . $uploadedFile->extension;
+                
+                $imagine = new \Imagine\Gd\Imagine();
+                $image = $imagine->open($uploadedFile->tempName);
+                $image->resize($image->getSize()->widen(500));
+                $image->save($newTmpName);
+                
+                //Overwrite old filename for S3 uploading
+                $uploadedFile->tempName = $newTmpName;
+                
                 //Save to S3 Temporary folder
                 if($awsResult = Yii::$app->resourceManager->save($uploadedFile, "temporary/".$filename)){
                     $response['valid'] = true;
