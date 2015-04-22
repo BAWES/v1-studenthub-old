@@ -94,9 +94,7 @@ class RegisterController extends \yii\web\Controller {
                 // validation fails
                 $response['errors'] = $model->errors;
             } else {
-                //file upload is valid
-                
-                //Upload file to amazon S3
+                //file upload is valid - Upload file to amazon S3
                 $filename = Yii::$app->security->generateRandomString() . "." . $uploadedFile->extension;
                 
                 //Save to S3 Temporary folder
@@ -104,10 +102,45 @@ class RegisterController extends \yii\web\Controller {
                     $response['valid'] = true;
                     $response['errors'] = false;
                     $response['file'] = $filename;
-                }
-                
+                } 
             }
-            
+        }
+        
+        return $response;
+    }
+    
+    /**
+     * AJAX: Validates and uploads CV upload (10 MB size limit)
+     */
+    public function actionCvUpload() {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $response = [
+            'valid' => false,
+            'errors' => [],
+            'file' => false,
+        ];
+        
+        $uploadedFile = UploadedFile::getInstanceByName("idUpload");
+        
+        if($uploadedFile){
+            $model = DynamicModel::validateData(compact('uploadedFile'), [
+                [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf, doc, docx', 'maxSize' => 10000000],
+            ]);
+
+            if ($model->hasErrors()) {
+                // validation fails
+                $response['errors'] = $model->errors;
+            } else {
+                //file upload is valid - Upload file to amazon S3
+                $filename = Yii::$app->security->generateRandomString() . "." . $uploadedFile->extension;
+                
+                //Save to S3 Temporary folder
+                if($awsResult = Yii::$app->resourceManager->save($uploadedFile, "temporary/".$filename)){
+                    $response['valid'] = true;
+                    $response['errors'] = false;
+                    $response['file'] = $filename;
+                } 
+            }
         }
         
         return $response;

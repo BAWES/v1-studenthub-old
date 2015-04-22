@@ -48,65 +48,18 @@ if(isMobile()){
 }
 
 
-
-var panel = $("#mainPanel");
-
-//AJAX load page into panel
-function loadPage(page, data){
-    $.ajax({
-        cache: false,
-        url: page,
-        data: data,
-        beforeSend: function () {
-            showLoading();
-        }
-    }).done(function (data) {
-        //Show new content
-        $(".panel-body form").hide().html(data).slideDown(1000);
-        $(".panel-title h4").text("Complete your profile");
-        $("#step2 a").removeClass("btn-primary").addClass("btn-white");
-        $("#step3 a").removeClass("btn-white").addClass("btn-primary");
-        
-        if (!isMobile()) {
-            $("input[type=date]")
-                .attr("type", "text")
-                .daterangepicker({
-                    // Consistent format with the HTML5 picker
-                    showDropdowns: true,
-                    singleDatePicker: true,
-                    format: "YYYY/MM/DD"
-                });
-        }
-        
-        //hide loader
-        hideLoading();
-
-        //toastr.success("The content successfully loaded.");
-
-    }).fail(function (jqXHR, textStatus) {
-        hideLoading();
-
-        // Handle notification types
-        toastr.error("There was a problem while loading the content.");       
-    });
-}
-
-function showLoading(){
-    panel.find(".alert").remove();
-    panel.find(".panel-body").append("<div class=\"refresh-container\"><div class=\"loading-bar indeterminate\"></div></div>");
-}
-
-function hideLoading(){
-    panel.find(".refresh-container").fadeOut(500, function () {
-        panel.find(".refresh-container").remove();
-    });
-}
-
-//File upload monitor
+//File upload monitor for ID uploads
 var $fileUpload = $("#fileUpload");
 var requiresIdUpload = $fileUpload.length?true:false;
+
+//Boolean values, will be set to true if any requires to be uploaded (changed by upload monitor)
 var notUploaded = false;
-var file; //html5 storage of the file on selection
+var notUploadedCV = false;
+var notUploadedPhoto = false;
+
+var file; //html5 storage of the ID file on selection
+var cvFile; //Html5 storage of the CV file
+var photoFile; //Html5 storage of the photo file
 
 if(requiresIdUpload){
     //Store file in variable
@@ -137,10 +90,30 @@ $("#nextStep").click(function () {
         var data = new FormData();
         data.append("idUpload", file);
         
-        $.ajax({
-            url: idLink,
+        uploadToServer(data, idLink, $myForm, $("#idUpload"), 1);
+    }
+    else if(notUploadedCV){
+        //Replicate ID upload thingy for CV
+    }
+    else if(notUploadedPhoto){
+        //Replicate ID upload thingy for Photo
+    }
+    else{
+        //ID file upload not required, proceed with validation
+        validateForm($myForm);
+
+        
+    }
+    
+    return false;
+});
+
+//File Upload Function
+function uploadToServer(fileData, requestUrl, theForm, targetHiddenInput, uploadRef){
+    $.ajax({
+            url: requestUrl,
             type: "POST",
-            data: data,
+            data: fileData,
             cache: false,
             beforeSend: function () {
                 showLoading();
@@ -167,32 +140,33 @@ $("#nextStep").click(function () {
                 }else if(response.file){
                     //console.log(response.file);
                     //file uploaded
-                    $("#idUpload").val(response.file);
+                    targetHiddenInput.val(response.file);
                     
                     //validate form after file uploaded
                     //Submit the form for validation
-                    validateForm($myForm);
+                    validateForm(theForm);
                 }
                 
                 //On upload success set notUploaded to false
                 //This way we will not repeat the upload unless the file is changed
-                notUploaded = false;
+                switch(uploadRef){
+                    case 1:
+                        notUploaded = false;
+                        break;
+                    case 2:
+                        notUploadedCV = false;
+                        break;
+                    case 3:
+                        notUploadedPhoto = false;
+                        break;
+                }
             },
             error: function(jqXHR, textStatus, errorThrown)
             {
                 console.log(textStatus);
             }
         });
-    }
-    else{
-        //file upload not required, proceed with validation
-        validateForm($myForm);
-
-        
-    }
-    
-    return false;
-});
+}
 
 
 var step1FormData = false;
@@ -253,6 +227,70 @@ function validateForm(form){
 
         //toastr.success("The content successfully loaded.");
 
+    });
+}
+
+var panel = $("#mainPanel");
+
+//AJAX load page into panel
+function loadPage(page, data){
+    $.ajax({
+        cache: false,
+        url: page,
+        data: data,
+        beforeSend: function () {
+            showLoading();
+        }
+    }).done(function (data) {
+        //Show new content
+        $(".panel-body form").hide().html(data).slideDown(1000);
+        $(".panel-title h4").text("Complete your profile");
+        $("#step2 a").removeClass("btn-primary").addClass("btn-white");
+        $("#step3 a").removeClass("btn-white").addClass("btn-primary");
+        
+        //Mobile Date selection fix for new form
+        if (!isMobile()) {
+            $("input[type=date]")
+                .attr("type", "text")
+                .daterangepicker({
+                    // Consistent format with the HTML5 picker
+                    showDropdowns: true,
+                    singleDatePicker: true,
+                    format: "YYYY/MM/DD"
+                });
+        }
+        
+        //File upload listeners on new form
+        $("#photoUpload").on("change", function(event){
+            photoFile = event.target.files[0];
+            notUploadedPhoto = true;
+        });
+        $("#cvUpload").on("change", function(event){
+            cvFile = event.target.files[0];
+            notUploadedCV = true;
+        });
+        
+        //hide loader
+        hideLoading();
+
+        //toastr.success("The content successfully loaded.");
+
+    }).fail(function (jqXHR, textStatus) {
+        hideLoading();
+
+        // Handle notification types
+        toastr.error("There was a problem while loading the content.");       
+    });
+}
+
+function showLoading(){
+    panel.find(".alert").remove();
+    panel.find(".panel-body").append("<div class=\"refresh-container\"><div class=\"loading-bar indeterminate\"></div></div>");
+}
+
+function hideLoading(){
+    panel.find(".refresh-container").fadeOut(500, function () {
+        panel.find(".refresh-container").remove();
     });
 }
 ';
