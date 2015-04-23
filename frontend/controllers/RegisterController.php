@@ -24,7 +24,7 @@ class RegisterController extends \yii\web\Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['?'], //only allow unauthenticated users to register
+                        'roles' => ['?'], //only allow unauthenticated users to register actions
                     ],
                 ],
             ],
@@ -50,13 +50,45 @@ class RegisterController extends \yii\web\Controller {
     }
 
     /**
+     * Email verification by clicking on link in email which includes the code that will verify
+     * @param string $code Verification key that will verify your account
+     * @throws NotFoundHttpException if the code is invalid
+     */
+    public function actionEmailVerify($code) {
+        //Code is his auth key, check if code is valid
+        $student = Student::findOne(['student_auth_key'=>$code]);
+        if($student){
+            //If not verified
+            if($student->student_email_verification == Student::EMAIL_NOT_VERIFIED){
+                //Verify this students email
+                $student->student_email_verification = Student::EMAIL_VERIFIED;
+                $student->save(false);
+                
+                //Log him in (if his ID is verified)
+                if($student->student_id_verification == Student::ID_VERIFIED){
+                    Yii::$app->user->login($student, 0);
+                }
+            }
+            
+            
+            if($student->student_id_verification == Student::ID_VERIFIED){
+                return $this->render('verified', ['idVerified' => true]);
+            } else {
+                return $this->render('verified', ['idVerified' => false]);
+            }
+            
+        } else {
+            //inserted code is invalid
+            throw new \yii\web\BadRequestHttpException(Yii::t('register', 'Invalid email verification code'));
+        }
+    }
+    
+    /**
      * Renders University Selection (Step 1);
      */
     public function actionIndex() {
         return $this->render('index');
     }
-    
-    
 
     /**
      * Renders Registration form + ID upload if this university requires
