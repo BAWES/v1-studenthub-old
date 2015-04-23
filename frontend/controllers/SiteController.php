@@ -89,17 +89,12 @@ class SiteController extends Controller
     //Test function - for testing random things
     public function actionTest()
     {
-        //Yii::$app->getSession()->setFlash('success', 'New password was saved.');
-        //$model = new RegisterForm();
-        
-        //Test moving file from old bucket to new bucket
-        /*
-        $awsResult = Yii::$app->resourceManager->copy("temporary/8vjakguvjxQF4SX_4ZwP9VwQmsPvIdfQ.png", "student-identification/another-version.png");
-        print_r($awsResult);
-         * 
-         */
-                
-        //return $this->render('test');
+        //Test activation email
+        Yii::$app->mailer->compose('verificationEmail-html') // a view rendering result becomes the message body here
+        ->setFrom('contact@studenthub.co')
+        ->setTo('you@domain.com')
+        ->setSubject('[StudentHub] Email Verification')
+        ->send();
     }
 
     public function actionLogout()

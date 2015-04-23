@@ -272,6 +272,7 @@ class RegisterController extends \yii\web\Controller {
     }
     
     public function actionThanks(){
+        Yii::$app->getSession()->setFlash('success', 'Account created - you will receive verification email.');
         //Maybe render different thank you page based on university
         return $this->render('thanks');
     }
