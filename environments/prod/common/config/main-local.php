@@ -11,7 +11,7 @@ return [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
-            'htmlLayout' => 'studenthub-html',
+            'htmlLayout' => 'layouts/studenthub-html',
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
