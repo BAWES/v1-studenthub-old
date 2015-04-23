@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = Yii::t('register', 'Thank You!');
 
     <div class="panel-body">
 
-        <h3>Thanks for signing up, blabla email will arrive - please activate</h3>
+        <h3>Thanks for signing up, please click on the link sent to you by email to verify your account</h3>
         
         <p>Meanwhile, you may watch this video explaining how to use StudentHub</p>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/mJAjL_fTwHA" frameborder="0" allowfullscreen></iframe>

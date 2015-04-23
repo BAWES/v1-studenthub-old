@@ -90,11 +90,16 @@ class SiteController extends Controller
     public function actionTest()
     {
         //Test activation email
-        Yii::$app->mailer->compose('verificationEmail-html') // a view rendering result becomes the message body here
+        /*
+        Yii::$app->mailer->compose('verificationEmail-html', [
+            'student' => $student
+        ])
         ->setFrom('contact@studenthub.co')
-        ->setTo('you@domain.com')
+        ->setTo('khalid@bawes.net')
         ->setSubject('[StudentHub] Email Verification')
         ->send();
+         * 
+         */
     }
 
     public function actionLogout()

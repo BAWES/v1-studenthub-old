@@ -861,7 +861,7 @@ use yii\helpers\Url;
                                                     <table class="twelve columns">
                                                         <tr>
                                                             <td class="six sub-columns">
-                                                                <a href="#"><img src="<?= $message->embed(Url::to("@web/img/email/studenthub-logo.png", true)); ?>" alt=""></a>
+                                                                <a href="<?= Url::home('http') ?>"><img src="<?= $message->embed(Url::to("@web/img/email/studenthub-logo.png", true)); ?>" alt=""></a>
                                                             </td>
                                                             <td class="six sub-columns last" style="text-align:right; vertical-align:middle;">
                                                                 <!--<a href="#" class="white-link">Empowering Students with Technology</a>-->

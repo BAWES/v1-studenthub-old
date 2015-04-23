@@ -32,27 +32,26 @@ class Student extends \common\models\Student {
                 'message' => Yii::t("frontend", "Please upload a photo of your university id card"),
                 'resourceManager' => Yii::$app->resourceManager,
                 'when' => function($model) {
-                    if ($model->isNewRecord) {
-                        return true;
-                    }
-                }],
+            if ($model->isNewRecord) {
+                return true;
+            }
+        }],
             [['student_cv'], '\common\components\S3FileExistValidator', 'filePath' => 'temporary/',
                 'message' => Yii::t("frontend", "Your CV upload is invalid"),
                 'resourceManager' => Yii::$app->resourceManager,
                 'when' => function($model) {
-                    if ($model->isNewRecord) {
-                        return true;
-                    }
-                }],
+            if ($model->isNewRecord) {
+                return true;
+            }
+        }],
             [['student_photo'], '\common\components\S3FileExistValidator', 'filePath' => 'temporary/',
                 'message' => Yii::t("frontend", "Your photo upload is invalid"),
                 'resourceManager' => Yii::$app->resourceManager,
                 'when' => function($model) {
-                    if ($model->isNewRecord) {
-                        return true;
-                    }
-                }],
-                        
+            if ($model->isNewRecord) {
+                return true;
+            }
+        }],
             //Validate Major and Language selections (if selected)
             ['majorsSelected', '\common\components\ArrayValidator',
                 'rule' => ['exist',
@@ -102,17 +101,17 @@ class Student extends \common\models\Student {
         if (parent::beforeSave($insert)) {
             if ($insert) {
                 //Move verification attachment from `temporary` bucket to `student-identification`
-                if($this->student_verification_attachment){
+                if ($this->student_verification_attachment) {
                     $filename = $this->student_verification_attachment;
                     Yii::$app->resourceManager->copy("temporary/$filename", "student-identification/$filename");
                 }
                 //Move CV from `temporary` bucket to `student-cv`
-                if($this->student_cv){
+                if ($this->student_cv) {
                     $filename = $this->student_cv;
                     Yii::$app->resourceManager->copy("temporary/$filename", "student-cv/$filename");
                 }
                 //Move photo from `temporary` bucket to `student-photo`
-                if($this->student_photo){
+                if ($this->student_photo) {
                     $filename = $this->student_photo;
                     Yii::$app->resourceManager->copy("temporary/$filename", "student-photo/$filename");
                 }
@@ -121,37 +120,54 @@ class Student extends \common\models\Student {
             return true;
         }
     }
-    
+
     public function afterSave($insert, $changedAttributes) {
         parent::afterSave($insert, $changedAttributes);
-        
+
         //Linking selected majors to student
-        if(is_array($this->majorsSelected)){
+        if (is_array($this->majorsSelected)) {
             //Unlink all majors from this Student
             $this->unlinkAll('majors');
-            
+
             //Link the new majors to this Student
-            foreach($this->majorsSelected as $majorId){
+            foreach ($this->majorsSelected as $majorId) {
                 $major = \common\models\Major::findOne((int) $majorId);
-                if($major){
+                if ($major) {
                     $this->link('majors', $major);
                 }
             }
         }
-        
+
         //Linking selected languages to student
-        if(is_array($this->languagesSelected)){
+        if (is_array($this->languagesSelected)) {
             //Unlink all languages from this Student
             $this->unlinkAll('languages');
-            
+
             //Link the new majors to this Student
-            foreach($this->languagesSelected as $languageId){
+            foreach ($this->languagesSelected as $languageId) {
                 $language = \common\models\Language::findOne((int) $languageId);
-                if($language){
+                if ($language) {
                     $this->link('languages', $language);
                 }
             }
         }
+    }
+
+    /**
+     * Sends an email requesting a user to verify his email address
+     * @return boolean whether the email was sent
+     */
+    public function sendVerificationEmail() {
+        return Yii::$app->mailer->compose([
+                            'html' => 'verificationEmail-html',
+                            'text' => 'verificationEmail-text',
+                                ], [
+                            'student' => $this
+                        ])
+                        ->setFrom('contact@studenthub.co')
+                        ->setTo('khalid@bawes.net')
+                        ->setSubject('[StudentHub] Email Verification')
+                        ->send();
     }
 
     /**
@@ -162,29 +178,12 @@ class Student extends \common\models\Student {
     public function signup($validate = false) {
         $this->setPassword($this->student_password_hash);
         $this->generateAuthKey();
-        if ($this->save(false)) {
-            //send activation email here
-            
-            
+        if ($this->save($validate)) {
+            $this->sendVerificationEmail();
             return $this;
         }
 
         return null;
-    }
-
-    /**
-     * Sends an email to the specified email address using the information collected by this model.
-     *
-     * @param  string  $email the target email address
-     * @return boolean whether the email was sent
-     */
-    public function sendEmail($email) {
-        return Yii::$app->mailer->compose()
-                        ->setTo($email)
-                        ->setFrom([$this->email => $this->name])
-                        ->setSubject($this->subject)
-                        ->setTextBody($this->body)
-                        ->send();
     }
 
 }
