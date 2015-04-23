@@ -28,7 +28,7 @@ class Student extends \common\models\Student {
             //Always required
             [['step', 'majorsSelected', 'languagesSelected'], 'required'],
             //Check if uploaded files exists in temporarybucket filePath (ONLY if new record)
-            [['student_verfication_attachment'], '\common\components\S3FileExistValidator', 'filePath' => 'temporary/',
+            [['student_verification_attachment'], '\common\components\S3FileExistValidator', 'filePath' => 'temporary/',
                 'message' => Yii::t("frontend", "Please upload a photo of your university id card"),
                 'resourceManager' => Yii::$app->resourceManager,
                 'when' => function($model) {
@@ -82,7 +82,7 @@ class Student extends \common\models\Student {
         $scenarios = parent::scenarios();
         //Validate only these attributes on firstStep
         $scenarios['registrationFirstStep'] = ['step', 'university_id', 'student_email', 'student_password_hash',
-            'student_contact_number', 'student_verfication_attachment'];
+            'student_contact_number', 'student_verification_attachment'];
 
         return $scenarios;
     }
@@ -102,8 +102,8 @@ class Student extends \common\models\Student {
         if (parent::beforeSave($insert)) {
             if ($insert) {
                 //Move verification attachment from `temporary` bucket to `student-identification`
-                if($this->student_verfication_attachment){
-                    $filename = $this->student_verfication_attachment;
+                if($this->student_verification_attachment){
+                    $filename = $this->student_verification_attachment;
                     Yii::$app->resourceManager->copy("temporary/$filename", "student-identification/$filename");
                 }
                 //Move CV from `temporary` bucket to `student-cv`
