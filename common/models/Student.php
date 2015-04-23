@@ -36,9 +36,9 @@ use common\models\University;
  * @property string $student_sport
  * @property string $student_experience_company
  * @property string $student_experience_position
- * @property string $student_verfication_attachment
+ * @property string $student_verification_attachment
  * @property integer $student_email_verification
- * @property integer $student_id_verfication
+ * @property integer $student_id_verification
  * @property string $student_id_number
  * @property integer $student_email_preference
  * @property string $student_email
@@ -107,7 +107,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 'student_gender', 'student_contact_number', 'student_email_preference', 'student_email', 
                 'student_password_hash', 'student_transportation'], 'required'],
             //Default values / optional fields for massive assignment
-            [['student_cv','student_photo','student_verfication_attachment','student_club','student_interestingfacts', 'student_id_number',
+            [['student_cv','student_photo','student_verification_attachment','student_club','student_interestingfacts', 'student_id_number',
                 'student_skill', 'student_hobby', 'student_sport', 'student_experience_company', 'student_experience_position'], 'default'],
             ['student_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
             ['student_email_verification', 'default', 'value' => self::EMAIL_NOT_VERIFIED],
@@ -127,7 +127,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             }],
             
             //ID upload only required when university requires verification
-            ['student_verfication_attachment', 'required', 'message' => \Yii::t('frontend','Please upload a photo of your university id card'),
+            ['student_verification_attachment', 'required', 'message' => \Yii::t('frontend','Please upload a photo of your university id card'),
                 'when' => function($model) {
                 if(isset($model->university_id)){
                     $univId = (int) $model->university_id;
@@ -143,7 +143,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             }],
                     
             //Check if uploaded id image exists in resourceManager bucket filePath (only if old record)
-            ['student_verfication_attachment', '\common\components\S3FileExistValidator', 'filePath'=>'student-identification/',
+            ['student_verification_attachment', '\common\components\S3FileExistValidator', 'filePath'=>'student-identification/',
                 'resourceManager' => Yii::$app->resourceManager, 
                 'when' => function($model){
                 if(!$model->isNewRecord){
@@ -247,9 +247,9 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_sport' => Yii::t('app', 'Sports'),
             'student_experience_company' => Yii::t('app', 'Company Experienced'),
             'student_experience_position' => Yii::t('app', 'Position Experienced'),
-            'student_verfication_attachment' => Yii::t('app', 'Verfication Attachment'),
+            'student_verification_attachment' => Yii::t('app', 'Verfication Attachment'),
             'student_email_verification' => Yii::t('app', 'Email Verfication'),
-            'student_id_verfication' => Yii::t('app', 'Id Verfication'),
+            'student_id_verification' => Yii::t('app', 'Id Verfication'),
             'student_email_preference' => Yii::t('app', 'Email Preference'),
             'student_email' => Yii::t('app', 'Email'),
             'student_auth_key' => Yii::t('app', 'Auth Key'),
