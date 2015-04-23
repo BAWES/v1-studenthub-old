@@ -425,7 +425,7 @@ $this->registerJs($js);
                                 <span class="fileinput-new">Upload ID Card</span>
                                 <span class="fileinput-exists">Change</span>
                                 <input type="file" id="fileUpload" name="fileUpload"/>
-                                <input type="hidden" id="idUpload" name="student_verfication_attachment"/>
+                                <input type="hidden" id="idUpload" name="student_verification_attachment"/>
                             </span>
                             <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput">Remove</a>
                         </div>
