@@ -1,13 +1,13 @@
 <?php
 /* @var $this yii\web\View */
-$this->title = Yii::t('frontend', 'Thanks');
-$this->params['breadcrumbs'][] = Yii::t('frontend', 'Thanks');
+$this->title = Yii::t('register', 'Thank You!');
+$this->params['breadcrumbs'][] = Yii::t('register', 'Thank You!');
 
 ?>
 <div class="panel">
     <div class="panel-heading">
         <div class="panel-title">
-            <h4>Thank You!</h4>
+            <h4><?= Yii::t('register', 'Thank You!') ?></h4>
         </div>
     </div>
 
