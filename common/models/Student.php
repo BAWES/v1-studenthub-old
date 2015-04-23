@@ -109,8 +109,22 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             //Default values / optional fields for massive assignment
             [['student_cv','student_photo','student_verfication_attachment','student_club','student_interestingfacts', 'student_id_number',
                 'student_skill', 'student_hobby', 'student_sport', 'student_experience_company', 'student_experience_position'], 'default'],
-            ['student_id_verification', 'default', 'value' => self::ID_NOT_VERIFIED],
-            ['student_email_verification', 'default', 'value' => self::NOTIFICATION_DAILY],
+            ['student_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
+            ['student_email_verification', 'default', 'value' => self::EMAIL_NOT_VERIFIED],
+            ['student_id_verification', 'default', 'value' => self::ID_VERIFIED,
+                'when' => function($model){
+                //Set Student to ID verified should his university not require verification
+                if(isset($model->university_id)){
+                    $univId = (int) $model->university_id;
+                    $university = University::findOne($univId);
+                    if($university){
+                        //If verification is not required - let student ID be auto verified
+                        if($university->university_require_verify == University::VERIFICATION_NOT_REQUIRED){
+                            return true;
+                        }
+                    }
+                }
+            }],
             
             //ID upload only required when university requires verification
             ['student_verfication_attachment', 'required', 'message' => \Yii::t('frontend','Please upload a photo of your university id card'),
