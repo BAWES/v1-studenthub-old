@@ -37,7 +37,7 @@ use common\models\University;
  * @property string $student_experience_company
  * @property string $student_experience_position
  * @property string $student_verfication_attachment
- * @property integer $student_email_verfication
+ * @property integer $student_email_verification
  * @property integer $student_id_verfication
  * @property string $student_id_number
  * @property integer $student_email_preference
