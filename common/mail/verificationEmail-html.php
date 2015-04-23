@@ -6,7 +6,7 @@ $verificationUrl = Yii::$app->urlManager->createAbsoluteUrl(['register/email-ver
 ?>
 <tr>
     <td>
-        <h1>Hi, <?= $student->student_firstname." ".$student->student_lastname ?></h1>
+        <h1>Hi, <?= $student->student_firstname ?></h1>
         <p class="lead">Thanks for joining <strong>StudentHub</strong>. Please click the following link to verify your email.</p>
     </td>
     <td class="expander"></td>
