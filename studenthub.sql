@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.3
+-- version 4.3.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 22, 2015 at 11:11 AM
--- Server version: 5.6.22
+-- Generation Time: Apr 23, 2015 at 06:00 PM
+-- Server version: 5.6.23
 -- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -2122,7 +2122,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_sport` text COLLATE utf8_unicode_ci,
   `student_experience_company` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `student_experience_position` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
-  `student_verfication_attachment` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
+  `student_verification_attachment` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `student_email_verification` tinyint(4) NOT NULL DEFAULT '0',
   `student_id_verification` tinyint(4) NOT NULL DEFAULT '0',
   `student_id_number` varchar(128) COLLATE utf8_unicode_ci DEFAULT '' COMMENT 'University ID Number to keep track of duplicates',
@@ -2134,15 +2134,17 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_banned` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 - for banned',
   `student_updated_datetime` datetime NOT NULL,
   `student_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_id`, `degree_id`, `country_id`, `university_id`, `student_firstname`, `student_lastname`, `student_dob`, `student_status`, `student_enrolment_year`, `student_graduating_year`, `student_gpa`, `student_english_level`, `student_gender`, `student_transportation`, `student_contact_number`, `student_interestingfacts`, `student_photo`, `student_cv`, `student_skill`, `student_hobby`, `student_club`, `student_sport`, `student_experience_company`, `student_experience_position`, `student_verfication_attachment`, `student_email_verification`, `student_id_verification`, `student_id_number`, `student_email_preference`, `student_email`, `student_auth_key`, `student_password_hash`, `student_password_reset_token`, `student_banned`, `student_updated_datetime`, `student_datetime`) VALUES
-(7, 1, 5, 2, 'Khalid', 'Mutawa', '1978-04-05', 0, 2012, 2016, '3.00', 1, 1, 1, '99811042', 'dwadwad', 'OioRFLTJ1YKy-h3_hkqgljVgJy9H6slc.png', 'ZKJZduQ5oVH2oTNl0M1ur2Hh6xmBJF7J.pdf', 'dwadaw,dwadawdw,dwadwad', 'dwadwad,dwadawdwas,dwadwsaa', 'dwadwa,dwadawd,dwadaw', 'dwadawd,dwad', 'dwadaw', 'dwadaw', 'RnppT1tkiiPuCeO2uioKS1ONl4K2KIFA.png', 1, 0, NULL, 0, 'dwadwa@gust.com', 'HBSZNrF1NAewFXdMsa3DzNYeeSzfpQIV', '$2y$13$V0Fi.pv4xAGNC1PnBx3e7uqgZrJnYlCHX0o2UhGVx2el9s0O7U88i', '', 0, '2015-04-22 12:40:22', '2015-04-22 12:40:22'),
-(8, 2, 84, 1, 'dwadaw', 'dwadawd', '1995-04-13', 0, 2013, 2017, '3.00', 2, 1, 1, '99811042', 'dwadaw', 'C_1bgZBoJJMMWfYhoJOYYfV-TGimu2DP.png', 'i5VRLp8GPew-juTlcB43PKvNT-0MO2zo.pdf', 'dwadawd,dwadwa,dwadaw', 'dwadwa,dwadaw,dwadw', 'dwdawdwa,dwadwada,dwadawd', 'dwadwad,dwadawsw,feadwa', 'dwad', 'dwada', NULL, 1, 0, NULL, 0, 'dwada@gust.edu.kw', 'RHuy_sw9vkbgLtrQ94pw4vJ9pi7VJrHS', '$2y$13$eR.AQxASkeYJwrizFqbl4.YXNdYbh8ZOEhffFcY.NvkJhWGuxehVi', '', 0, '2015-04-22 13:01:58', '2015-04-22 13:01:58');
+INSERT INTO `student` (`student_id`, `degree_id`, `country_id`, `university_id`, `student_firstname`, `student_lastname`, `student_dob`, `student_status`, `student_enrolment_year`, `student_graduating_year`, `student_gpa`, `student_english_level`, `student_gender`, `student_transportation`, `student_contact_number`, `student_interestingfacts`, `student_photo`, `student_cv`, `student_skill`, `student_hobby`, `student_club`, `student_sport`, `student_experience_company`, `student_experience_position`, `student_verification_attachment`, `student_email_verification`, `student_id_verification`, `student_id_number`, `student_email_preference`, `student_email`, `student_auth_key`, `student_password_hash`, `student_password_reset_token`, `student_banned`, `student_updated_datetime`, `student_datetime`) VALUES
+(9, 3, 84, 1, 'Khalid', 'Mutawa', '1991-04-19', 0, 2014, 2018, '3.00', 2, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, 0, 'gust@gust.edu.kw', 'sGaBY5aMORSx_vk1GF4HJTWYL29wmSgJ', '$2y$13$vflvQ93dwTWre4d96ZRlOuvnXxJSvafLu.HeaiSYxGDU1Ylm54ZfK', '', 0, '2015-04-23 17:17:58', '2015-04-23 17:17:58'),
+(10, 2, 1, 5, 'Khalid', 'Mutawa', '1990-04-04', 1, 2015, 2015, '3.00', 1, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, 0, 'ack@go.ack.edu.kw', '_ZSPODzmbapSA6xiStkoff2B-qw2KJ2l', '$2y$13$mHEZ/dkQ5qBxnlrIVOve8eTUQE2E/w8n.CtUYngUuefj9FVCv39za', '', 0, '2015-04-23 17:25:10', '2015-04-23 17:25:10'),
+(11, 2, 84, 2, 'KU test', 'test email', '1990-04-04', 0, 2013, 2021, '3.00', 2, 1, 1, '53973593', NULL, NULL, NULL, NULL, NULL, 'Science club', NULL, NULL, NULL, 'wDR6WvISoVKtZk4UfKGoAMtgKtuHdRz5.png', 1, 0, NULL, 0, 'KU@ku.com', '9aCSRqjELMFLxw38pAEwBrr-e42eAbQN', '$2y$13$olmhLA7Vnr6sH2fR1osBN.rS0Y6wyqcbA4OAPtUQcdbw8.p10uT5a', '', 0, '2015-04-23 18:10:55', '2015-04-23 17:26:44'),
+(12, 3, 84, 1, 'Khalid', 'Mutawa', '1988-04-06', 1, 2012, 2018, '3.00', 1, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 0, 'khalid@gust.edu.kw', 'U3lRxI7C87AUvfYIyxu7KVJpWTjHVsMg', '$2y$13$n4JXA70XyzLSBN3CT/cbbOP7/aVlFXzMkPQkT295EktE0Ksk9NBWK', '', 0, '2015-04-23 20:57:48', '2015-04-23 20:57:36');
 
 -- --------------------------------------------------------
 
@@ -2176,11 +2178,14 @@ CREATE TABLE IF NOT EXISTS `student_language` (
 --
 
 INSERT INTO `student_language` (`student_id`, `language_id`) VALUES
-(7, 3),
-(7, 4),
-(8, 2),
-(8, 3),
-(8, 5);
+(9, 2),
+(9, 4),
+(10, 1),
+(11, 1),
+(11, 2),
+(12, 1),
+(12, 2),
+(12, 6);
 
 -- --------------------------------------------------------
 
@@ -2198,8 +2203,10 @@ CREATE TABLE IF NOT EXISTS `student_major` (
 --
 
 INSERT INTO `student_major` (`student_id`, `major_id`) VALUES
-(7, 274),
-(8, 340);
+(10, 4),
+(11, 6),
+(12, 271),
+(9, 274);
 
 -- --------------------------------------------------------
 
@@ -2488,7 +2495,7 @@ ALTER TABLE `payment_type`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `student_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `student_job_application`
 --
