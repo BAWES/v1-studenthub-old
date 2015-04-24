@@ -301,9 +301,11 @@ class RegisterController extends \yii\web\Controller {
         return $this->renderAjax('_form',['university'=>$university]);
     }
     
+    /**
+     * Registration Thank You Page
+     */
     public function actionThanks(){
-        Yii::$app->getSession()->setFlash('success', 'Account created - you will receive verification email.');
-        //Maybe render different thank you page based on university
+        
         return $this->render('thanks');
     }
 
