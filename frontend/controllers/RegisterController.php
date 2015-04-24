@@ -52,11 +52,12 @@ class RegisterController extends \yii\web\Controller {
     /**
      * Email verification by clicking on link in email which includes the code that will verify
      * @param string $code Verification key that will verify your account
+     * @param int $verify Student ID to verify
      * @throws NotFoundHttpException if the code is invalid
      */
-    public function actionEmailVerify($code) {
+    public function actionEmailVerify($code, $verify) {
         //Code is his auth key, check if code is valid
-        $student = Student::findOne(['student_auth_key'=>$code]);
+        $student = Student::findOne(['student_auth_key'=>$code, 'student_id' => (int) $verify]);
         if($student){
             //If not verified
             if($student->student_email_verification == Student::EMAIL_NOT_VERIFIED){

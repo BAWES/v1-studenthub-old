@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 /* @var $student common\models\Student */
 
-$verificationUrl = Yii::$app->urlManager->createAbsoluteUrl(['register/email-verify', 'code' => $student->student_auth_key]);
+$verificationUrl = Yii::$app->urlManager->createAbsoluteUrl(['register/email-verify', 'code' => $student->student_auth_key, 'verify' => $student->student_id]);
 ?>
 <tr>
     <td>
