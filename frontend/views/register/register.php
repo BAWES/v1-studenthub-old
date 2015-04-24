@@ -342,12 +342,12 @@ $this->registerJs($js);
 <div class="panel" id="mainPanel">
     <div class="panel-heading">
         <div class="panel-title">
-            <h4>Sign up and find a job today!</h4>
+            <h4><?= Yii::t('register', 'Sign up and find a job today!') ?></h4>
             <div class="steps-pull-right">
                 <ul class="wizard-steps">
-                    <li class="step" id="step1"><a href="#firstStep" class="btn btn-white btn-ripple">1</a></li>
-                    <li class="step" id="step2"><a href="#secondStep" class="btn btn-primary btn-ripple">2</a></li>
-                    <li class="step" id="step3"><a href="#thirdStep" class="btn btn-white btn-ripple">3</a></li>
+                    <li class="step" id="step1"><a href="#firstStep" class="btn btn-white btn-ripple"><?= Yii::$app->formatter->asInteger(1); ?></a></li>
+                    <li class="step" id="step2"><a href="#secondStep" class="btn btn-primary btn-ripple"><?= Yii::$app->formatter->asInteger(2); ?></a></li>
+                    <li class="step" id="step3"><a href="#thirdStep" class="btn btn-white btn-ripple"><?= Yii::$app->formatter->asInteger(3); ?></a></li>
                 </ul>
             </div>
         </div>
@@ -356,7 +356,7 @@ $this->registerJs($js);
     <div class="panel-body studentRegistration">
 
         <form method="post" action="<?= $formLink ?>" id="registerForm">
-            <h3><?= $university->university_name_en ?></h3>
+            <h3><?= $this->params['isArabic']? $university->university_name_ar : $university->university_name_en ?></h3>
 
             <?php
             //Check if the university requires verification
@@ -372,7 +372,7 @@ $this->registerJs($js);
             <input type="hidden" id="univId" name="university_id" value="<?= $university->university_id ?>"/>
 
             <div class="questionRow">
-                <p style="width:180px;">My university email is</p>
+                <p style="width:180px;"><?= Yii::t('register', 'My university email is') ?></p>
 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
@@ -384,24 +384,24 @@ $this->registerJs($js);
             </div>
 
             <div class="questionRow">
-                <p style="width:215px;">I'd like my password to be</p>
+                <p style="width:215px;"><?= Yii::t('register', "I'd like my password to be") ?></p>
 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
                         <input type="password" id="password" name="student_password_hash" class="form-control" maxlength="32" required>
-                        <label for="password">Password</label>
+                        <label for="password"><?= Yii::t('register', "Password") ?></label>
                     </div>
                 </div>
                 <br class="clear"/>
             </div>
             
             <div class="questionRow" style="margin-bottom:15px;">
-                <p style="width:170px;">My phone number is</p>
+                <p style="width:170px;"><?= Yii::t('register', "My phone number is") ?></p>
 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
                         <input type="tel" id="phone" name="student_contact_number" class="form-control" maxlength="8" required>
-                        <label for="phone">Phone Number</label>
+                        <label for="phone"><?= Yii::t('register', "Phone Number") ?></label>
                     </div>
                 </div>
                 <br class="clear"/>
@@ -410,9 +410,9 @@ $this->registerJs($js);
             <?php if ($requiresVerification) { ?>
                 <!-- Verification details -->
                 <div class="note note-primary note-top-striped" style="margin-top:35px;">
-                    <h4>Student ID Verification</h4>
+                    <h4><?= Yii::t('register', "Student ID Verification") ?></h4>
                     <p>
-                        Please upload a photo of your student ID card<br/><br/>
+                        <?= Yii::t('register', "Please upload a photo of your student ID card") ?><br/><br/>
                     </p>
                     <div class="fileinput fileinput-new" data-provides="fileinput">
                         <div class="fileinput-new thumbnail" data-trigger="fileinput" style="width: 250px; height: 200px;">
@@ -422,12 +422,12 @@ $this->registerJs($js);
                         <div class="fileinput-preview fileinput-exists thumbnail" data-trigger="fileinput" style="max-width: 250px; max-height: 200px;"></div>
                         <div>
                             <span class="btn btn-default btn-file btn-ripple">
-                                <span class="fileinput-new">Upload ID Card</span>
-                                <span class="fileinput-exists">Change</span>
+                                <span class="fileinput-new"><?= Yii::t('register', "Upload ID Card") ?></span>
+                                <span class="fileinput-exists"><?= Yii::t('register', "Change") ?></span>
                                 <input type="file" id="fileUpload" name="fileUpload"/>
                                 <input type="hidden" id="idUpload" name="student_verification_attachment"/>
                             </span>
-                            <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput">Remove</a>
+                            <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput"><?= Yii::t('register', "Remove") ?></a>
                         </div>
                     </div>
 
@@ -435,6 +435,6 @@ $this->registerJs($js);
             <?php } ?>
         </form>
         
-        <input id="nextStep" type="submit" class="btn btn-primary btn-ripple pull-right" value="Next Step"/>
+        <input id="nextStep" type="submit" class="btn btn-primary btn-ripple pull-right" value="<?= Yii::t('register', "Next Step") ?>"/>
     </div>
 </div>

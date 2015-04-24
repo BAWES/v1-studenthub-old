@@ -17,6 +17,19 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Invalid input for {attribute}' => '',
+    'Please upload a photo of your university id card' => '',
+    'Please use your university email eg: {emailName}@{universityDomain}' => '',
+    'Selected language does not exist.' => '',
+    'Selected major does not exist.' => '',
+    'The format of your date of birth is invalid, should be mm/dd/yyyy' => '',
+    'This email address is already registered.' => '',
+    'This email belongs to {universityName}' => '',
+    'This university does not exist.' => '',
+    'University does not exist' => '',
+    'You must be at least {age} years old' => '',
+    'Your CV upload is invalid' => '',
+    'Your photo upload is invalid' => '',
     'About' => 'من نحن',
     'Contact' => 'إتصل بنا',
     'Home' => 'الرئيسية',

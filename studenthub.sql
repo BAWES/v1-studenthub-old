@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.9
+-- version 4.3.3
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 23, 2015 at 06:00 PM
--- Server version: 5.6.23
+-- Generation Time: Apr 24, 2015 at 11:08 AM
+-- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -2144,7 +2144,7 @@ INSERT INTO `student` (`student_id`, `degree_id`, `country_id`, `university_id`,
 (9, 3, 84, 1, 'Khalid', 'Mutawa', '1991-04-19', 0, 2014, 2018, '3.00', 2, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, 0, 'gust@gust.edu.kw', 'sGaBY5aMORSx_vk1GF4HJTWYL29wmSgJ', '$2y$13$vflvQ93dwTWre4d96ZRlOuvnXxJSvafLu.HeaiSYxGDU1Ylm54ZfK', '', 0, '2015-04-23 17:17:58', '2015-04-23 17:17:58'),
 (10, 2, 1, 5, 'Khalid', 'Mutawa', '1990-04-04', 1, 2015, 2015, '3.00', 1, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, 0, 'ack@go.ack.edu.kw', '_ZSPODzmbapSA6xiStkoff2B-qw2KJ2l', '$2y$13$mHEZ/dkQ5qBxnlrIVOve8eTUQE2E/w8n.CtUYngUuefj9FVCv39za', '', 0, '2015-04-23 17:25:10', '2015-04-23 17:25:10'),
 (11, 2, 84, 2, 'KU test', 'test email', '1990-04-04', 0, 2013, 2021, '3.00', 2, 1, 1, '53973593', NULL, NULL, NULL, NULL, NULL, 'Science club', NULL, NULL, NULL, 'wDR6WvISoVKtZk4UfKGoAMtgKtuHdRz5.png', 1, 0, NULL, 0, 'KU@ku.com', '9aCSRqjELMFLxw38pAEwBrr-e42eAbQN', '$2y$13$olmhLA7Vnr6sH2fR1osBN.rS0Y6wyqcbA4OAPtUQcdbw8.p10uT5a', '', 0, '2015-04-23 18:10:55', '2015-04-23 17:26:44'),
-(12, 3, 84, 1, 'Khalid', 'Mutawa', '1988-04-06', 1, 2012, 2018, '3.00', 1, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 0, 'khalid@gust.edu.kw', 'U3lRxI7C87AUvfYIyxu7KVJpWTjHVsMg', '$2y$13$n4JXA70XyzLSBN3CT/cbbOP7/aVlFXzMkPQkT295EktE0Ksk9NBWK', '', 0, '2015-04-23 20:57:48', '2015-04-23 20:57:36');
+(12, 3, 84, 1, 'Khalid', 'Mutawa', '1988-04-06', 1, 2012, 2018, '3.00', 1, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 0, 'khalid@gust.edu.kw', 'U3lRxI7C87AUvfYIyxu7KVJpWTjHVsMg', '$2y$13$n4JXA70XyzLSBN3CT/cbbOP7/aVlFXzMkPQkT295EktE0Ksk9NBWK', '', 0, '2015-04-24 13:13:16', '2015-04-23 20:57:36');
 
 -- --------------------------------------------------------
 
@@ -2250,8 +2250,8 @@ INSERT INTO `university` (`university_id`, `university_name_en`, `university_nam
 (3, 'Arab Open University', 'الجامعة العربية المفتوحة', '', 1, 'JE9jUQPJggoG3x1sRVUtjU4WYI1-bmFT.jpg', 'wsZ3G0i_VYJ4F0YveBMFcZwmypZY0YsM.jpg', ''),
 (4, 'American University of Kuwait', 'الجامعة الأمريكية في الكويت', 'auk.edu.kw', 0, '', 'O0dIA6cvKyQem3BuOxoNmCDg40E5vtdC.jpg', ''),
 (5, 'Australian College of Kuwait', 'الكلية الأسترالية في الكويت', 'go.ack.edu.kw', 0, '', 'R_WppSNgGrtxJhMxKG-g2pwjc0dM7mFJ.jpg', ''),
-(6, 'American University of the Middle East', 'جامعة الشرق الأوسط الأميركية', 'aum.edu.kw', 0, '', 'qmLYygvyTXmhWpqthmlO1MoRfYpC1fb5.jpg', ''),
-(7, 'American College of the Middle East', 'كلية الشرق الأوسط الأميركية', 'acm.edu.kw', 0, '', 'WlZBHhBDbkC3rrnv4JDItlCcQtuPXcxW.jpg', ''),
+(6, 'American University of the Middle East', 'جامعة الشرق الأوسط الأمريكية', 'aum.edu.kw', 0, '', 'qmLYygvyTXmhWpqthmlO1MoRfYpC1fb5.jpg', ''),
+(7, 'American College of the Middle East', 'كلية الشرق الأوسط الأمريكية', 'acm.edu.kw', 0, '', 'WlZBHhBDbkC3rrnv4JDItlCcQtuPXcxW.jpg', ''),
 (8, 'Kuwait Maastricht Business School', 'كلية كويت - ماسترخت لإدارة الأعمـال', 'kmbs.edu.kw', 0, '', '0TAm5biJGCIvCbLCUBq18hMGwnhCq1a4.jpg', ''),
 (9, 'Box Hill College Kuwait', 'كلية بوكسهل', 'bhck.edu.kw', 0, '', 'rPY-R1mNxDhgMXNsZFu8ml9t1hMhmqVi.jpg', ''),
 (10, 'Kuwait International Law School', 'كلية القانون الكويتية العالمية', 'killaw.edu.kw', 0, '', 'rbitcXx-CcFTG2W14ZxBjyTwb2tPAlkZ.jpg', ''),

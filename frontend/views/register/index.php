@@ -8,7 +8,9 @@ use yii\helpers\Url;
 <div class="panel" id="mainPanel">
     <div class="panel-heading">
         <div class="panel-title">
-            <h4>Select your University</h4>
+            <?php if(!$this->params['isArabic']){ ?>
+            <h4><?= Yii::t('register', 'Select your University') ?></h4>
+            <?php } ?>
             <div class="steps-pull-right">
                 <ul class="wizard-steps">
                     <li class="step" id="step1"><a href="#firstStep" class="btn btn-primary btn-ripple"><?= Yii::$app->formatter->asInteger(1); ?></a></li>
@@ -16,6 +18,9 @@ use yii\helpers\Url;
                     <li class="step" id="step3"><a href="#thirdStep" class="btn btn-white btn-ripple"><?= Yii::$app->formatter->asInteger(3); ?></a></li>
                 </ul>
             </div>
+            <?php if($this->params['isArabic']){ ?>
+            <h4><?= Yii::t('register', 'Select your University') ?></h4>
+            <?php } ?>
         </div>
     </div>
 
@@ -36,7 +41,7 @@ use yii\helpers\Url;
                             <img src="<?= Url::to('@web/images/universities/' . $university->university_logo) ?>" class="face-radius" alt="">
                         </div>
                         <div class="list-content">
-                            <span class="title"><?= $university->university_name_en ?></span>
+                            <span class="title"><?= $this->params['isArabic']? $university->university_name_ar : $university->university_name_en ?></span>
                         </div>
                     </a>
                 </li>
@@ -45,11 +50,11 @@ use yii\helpers\Url;
         </ul>
 
         <div class="note note-primary note-top-striped" style="margin-top:1.5em">
-            <h4>University not listed?</h4>
+            <h4><?= Yii::t('register', 'University not listed?') ?></h4>
             <p style="margin-bottom:1em;">
-                You may still sign up and our agents will get in touch with you for account activation.
+                <?= Yii::t('register', 'You may still sign up and our agents will get in touch with you for account activation.') ?>
             </p>
-            <a href="<?= Url::to(['register/register', 'university' => $othersId]) ?>" class="btn btn-primary btn-lg btn-block btn-ripple" style="color:white; text-decoration:none;">Sign Up</a>
+            <a href="<?= Url::to(['register/register', 'university' => $othersId]) ?>" class="btn btn-primary btn-lg btn-block btn-ripple" style="color:white; text-decoration:none;"><?= Yii::t('register', 'Sign Up') ?></a>
         </div>
 
     </div>
