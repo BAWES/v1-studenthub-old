@@ -134,7 +134,7 @@ return [
     'Notification ID' => '',
     'Notification Sent' => '',
     'Notification Viewed' => '',
-    'Password' => '',
+    'Password' => 'ArabicPW',
     'Password Reset Token' => '',
     'Payment Amount' => '',
     'Payment Datetime' => '',
@@ -174,8 +174,6 @@ return [
     'Update {modelClass}: ' => '',
     'Updated on' => '',
     'Verfication Attachment' => '',
-    'Test Page' => '@@@@',
-    'University Enrolment Year' => '@@@@',
     'Email' => 'البريد الإلكتروني',
     'Mobile Number' => 'رقم الهاتف',
 ];
