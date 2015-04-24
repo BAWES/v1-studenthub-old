@@ -61,7 +61,6 @@ return [
     'Degree Name En' => '',
     'Degrees' => '',
     'Delete' => '',
-    'Email' => '',
     'Email Preference' => '',
     'Email Verfication' => '',
     'Employer Auth Key' => '',
@@ -129,7 +128,6 @@ return [
     'Major Name En' => '',
     'Majors' => '',
     'Majors selected' => '',
-    'Mobile Number' => '',
     'Nationality' => '',
     'Notication Sent' => '',
     'Notification Datetime' => '',
@@ -178,4 +176,6 @@ return [
     'Verfication Attachment' => '',
     'Test Page' => '@@@@',
     'University Enrolment Year' => '@@@@',
+    'Email' => 'البريد الإلكتروني',
+    'Mobile Number' => 'رقم الهاتف',
 ];

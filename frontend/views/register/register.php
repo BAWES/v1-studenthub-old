@@ -435,6 +435,6 @@ $this->registerJs($js);
             <?php } ?>
         </form>
         
-        <input id="nextStep" type="submit" class="btn btn-primary btn-ripple pull-right" value="<?= Yii::t('register', "Next Step") ?>"/>
+        <input id="nextStep" type="submit" class="btn btn-primary btn-ripple <?= $this->params["isArabic"]? "pull-left" : "pull-right"?>" value="<?= Yii::t('register', "Next Step") ?>"/>
     </div>
 </div>

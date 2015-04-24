@@ -179,7 +179,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             
             //Length Requirements
             ['student_contact_number', 'string', 'length' => 8],
-            ['student_password_hash', 'string', 'length' => [4, 128]],
+            ['student_password_hash', 'string', 'length' => [5]],
                     
             //University existence validation
             ['university_id', 'exist',
