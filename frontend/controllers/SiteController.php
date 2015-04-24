@@ -89,12 +89,12 @@ class SiteController extends Controller
     //Test function - for testing random things
     public function actionTest()
     {
-        //Test activation email
         /*
+        //Test activation email
         Yii::$app->mailer->compose('verificationEmail-html', [
-            'student' => $student
+            'student' => \common\models\Student::findOne(12),
         ])
-        ->setFrom('contact@studenthub.co')
+        ->setFrom(['verify@studenthub.co' => 'StudentHub Support'])
         ->setTo('khalid@bawes.net')
         ->setSubject('[StudentHub] Email Verification')
         ->send();
