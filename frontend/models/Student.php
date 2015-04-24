@@ -164,7 +164,7 @@ class Student extends \common\models\Student {
                                 ], [
                             'student' => $this
                         ])
-                        ->setFrom('contact@studenthub.co')
+                        ->setFrom('verify@studenthub.co')
                         ->setTo($this->student_email)
                         ->setSubject('[StudentHub] Email Verification')
                         ->send();
