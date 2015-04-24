@@ -4,8 +4,8 @@
 
 use yii\helpers\Url;
 
-$this->title = Yii::t('app', 'Registration');
-$this->params['breadcrumbs'][] = "Registration";
+$this->title = Yii::t('register', 'Registration');
+$this->params['breadcrumbs'][] = Yii::t('register', 'Registration');
 
 
 $css = "

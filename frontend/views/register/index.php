@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
-$this->title = Yii::t('frontend', 'Registration');
-$this->params['breadcrumbs'][] = Yii::t('frontend', 'Registration');
+$this->title = Yii::t('register', 'Registration');
+$this->params['breadcrumbs'][] = Yii::t('register', 'Registration');
 
 use yii\helpers\Url;
 ?>
@@ -11,9 +11,9 @@ use yii\helpers\Url;
             <h4>Select your University</h4>
             <div class="steps-pull-right">
                 <ul class="wizard-steps">
-                    <li class="step" id="step1"><a href="#firstStep" class="btn btn-primary btn-ripple">1</a></li>
-                    <li class="step" id="step2"><a href="#secondStep" class="btn btn-white btn-ripple">2</a></li>
-                    <li class="step" id="step3"><a href="#thirdStep" class="btn btn-white btn-ripple">3</a></li>
+                    <li class="step" id="step1"><a href="#firstStep" class="btn btn-primary btn-ripple"><?= Yii::$app->formatter->asInteger(1); ?></a></li>
+                    <li class="step" id="step2"><a href="#secondStep" class="btn btn-white btn-ripple"><?= Yii::$app->formatter->asInteger(2); ?></a></li>
+                    <li class="step" id="step3"><a href="#thirdStep" class="btn btn-white btn-ripple"><?= Yii::$app->formatter->asInteger(3); ?></a></li>
                 </ul>
             </div>
         </div>
