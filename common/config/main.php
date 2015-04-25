@@ -33,6 +33,11 @@ return [
                     'basePath' => '@common/messages',
                     'sourceLanguage' => 'en',
                 ],
+                'yii' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                    'sourceLanguage' => 'en',
+                ],
             ],
         ],
     ],
