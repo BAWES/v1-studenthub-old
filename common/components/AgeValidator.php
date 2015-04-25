@@ -26,7 +26,7 @@ class AgeValidator extends Validator {
         if ($age < $this->min) {
 
             $this->addError($model, $attribute, Yii::t("frontend", "You must be at least {age} years old"),[
-                'age' => $this->min
+                'age' => Yii::$app->formatter->asInteger($this->min)
             ]);
         }
     }

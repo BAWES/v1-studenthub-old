@@ -8,6 +8,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use yii\web\IdentityInterface;
 use common\models\University;
+use yii\validators\RequiredValidator;
 
 /**
  * This is the model class for table "student".
