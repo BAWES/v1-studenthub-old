@@ -27,9 +27,11 @@ return [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@common/messages',
                     'sourceLanguage' => 'en',
-                    'fileMap' => [
-                        //'main' => 'main.php',
-                    ],
+                ],
+                'app' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                    'sourceLanguage' => 'en',
                 ],
             ],
         ],
