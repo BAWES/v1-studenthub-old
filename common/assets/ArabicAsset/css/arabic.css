@@ -24,7 +24,11 @@ body{font-family: 'Droid Arabic Kufi', serif !important;}
 /**
  *   Frontend/Register/Index
  */
+.dropdown-menu{text-align:right;}
+.bootstrap-select.btn-group .btn .caret{right:auto; left: 14px;}
+.bootstrap-select.btn-group .btn .filter-option{text-align:right;}
 .panel .steps-pull-right{ float: left;}
+.bootstrap-select > .btn{padding-left:25px;}
 .questionRow p{float:right !important;}
 .inputer{float:right !important;}
 .inputer label{left:auto; right:0;}

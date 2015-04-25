@@ -37,10 +37,10 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="<?= Yii::$app->language ?>" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="<?= Yii::$app->language ?>" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="<?= Yii::$app->language ?>" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="<?= Yii::$app->language ?>" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="<?= Yii::$app->language ?>" class="no-js lt-ie9 lt-ie8 lt-ie7" <?= $this->params['isArabic']?"dir='rtl'":"" ?>> <![endif]-->
+<!--[if IE 7]>         <html lang="<?= Yii::$app->language ?>" class="no-js lt-ie9 lt-ie8" <?= $this->params['isArabic']?"dir='rtl'":"" ?>> <![endif]-->
+<!--[if IE 8]>         <html lang="<?= Yii::$app->language ?>" class="no-js lt-ie9" <?= $this->params['isArabic']?"dir='rtl'":"" ?>> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="<?= Yii::$app->language ?>" class="no-js" <?= $this->params['isArabic']?"dir='rtl'":"" ?>> <!--<![endif]-->
     <head>
         <meta charset="<?= Yii::$app->charset ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -14,6 +14,12 @@ $('.radioer input:radio').change(function(){
     }
 });
 
+//Animate to dropdown
+$('.studentRegistration').on('click','.bootstrap-select',function(){
+    $('html, body').animate({
+    scrollTop: $(this).offset().top-75
+    }, 400);
+});
 
 $('.selectize-majors').selectize({
     selectOnTab: true,
@@ -50,16 +56,18 @@ if(isMobile()){
 
 //$this->registerCss($css);
 $this->registerJs($js);
+
+Yii::$app->formatter->thousandSeparator = "";
 ?>
 
 <!-- Question -->
 <div class="questionRow">
     <p>
-        My email notification preferences: 
+        <?= Yii::t('register', 'My email notification preferences:') ?> 
         <select class="selectpicker" data-width="auto" name="student_email_preference">
-            <option>Daily as jobs are posted</option>
-            <option>Weekly summary</option>
-            <option>Off</option>
+            <option><?= Yii::t('register', 'Daily as jobs are posted') ?></option>
+            <option><?= Yii::t('register', 'Weekly summary') ?></option>
+            <option><?= Yii::t('register', 'Off') ?></option>
         </select>
     </p>
     <br class="clear"/>
@@ -67,19 +75,19 @@ $this->registerJs($js);
 
 <!-- Question -->
 <div class="questionRow">
-    <p style="width:100px;">My name is</p>
+    <p style="width:100px;"><?= Yii::t('register', 'My name is') ?></p>
 
     <div class="inputer floating-label">
         <div class="input-wrapper">
             <input type="text" id="lastName" name="student_firstname" class="form-control" required>
-            <label for="firstName">First Name</label>
+            <label for="firstName"><?= Yii::t('register', 'First Name') ?></label>
         </div>
     </div>
 
     <div class="inputer floating-label">
         <div class="input-wrapper">
             <input type="text" id="lastName" name="student_lastname" class="form-control" required>
-            <label for="lastName">Last Name</label>
+            <label for="lastName"><?= Yii::t('register', 'Last Name') ?></label>
         </div>
     </div>
 
@@ -99,11 +107,15 @@ $this->registerJs($js);
         I am a(n) 
 
         <select class="selectpickerNoMobile" name="country_id" data-live-search="true" data-width="auto">
-            <option value="" disabled selected>Nationality</option>
+            <option value="" disabled selected><?= Yii::t('register', 'Nationality') ?></option>
             <?php
             $countryList = \common\models\Country::find()->orderBy("country_nationality_name_en")->all();
             foreach ($countryList as $country) {
-                echo "<option value='" . $country->country_id . "'>" . $country->country_nationality_name_en . "</option>";
+                if($this->params['isArabic']){
+                    echo "<option value='" . $country->country_id . "'>" . $country->country_nationality_name_ar . "</option>";
+                }else{
+                    echo "<option value='" . $country->country_id . "'>" . $country->country_nationality_name_en . "</option>";
+                }
             }
             ?>
         </select>
@@ -119,8 +131,8 @@ $this->registerJs($js);
         I am currently a 
 
         <select class="selectpicker" name="student_status" data-width="130px">
-            <option value="<?= Student::STATUS_FULL_TIME ?>">Full-time</option>
-            <option value="<?= Student::STATUS_PART_TIME ?>">Part-time</option>
+            <option value="<?= Student::STATUS_FULL_TIME ?>"><?= Yii::t('register', 'Full-time') ?></option>
+            <option value="<?= Student::STATUS_PART_TIME ?>"><?= Yii::t('register', 'Part-time') ?></option>
         </select>
 
         student pursuing a 
@@ -130,7 +142,11 @@ $this->registerJs($js);
             <?php
             $degreeList = \common\models\Degree::find()->all();
             foreach ($degreeList as $degree) {
-                echo "<option value='" . $degree->degree_id . "'>" . $degree->degree_name_en . "</option>";
+                if($this->params['isArabic']){
+                    echo "<option value='" . $degree->degree_id . "'>" . $degree->degree_name_ar . "</option>";
+                }else{
+                    echo "<option value='" . $degree->degree_id . "'>" . $degree->degree_name_en . "</option>";
+                }
             }
             ?>
         </select>
@@ -147,13 +163,13 @@ $this->registerJs($js);
     I enrolled in
 
     <select class="selectpicker" name="student_enrolment_year" data-width="130px">
-        <option value='' selected disabled>Year</option>
+        <option value='' selected disabled><?= Yii::t('register', 'Year') ?></option>
         <?php
         $currentYear = date("Y");
         $numberOfYears = 7;
         for ($i = 0; $i < $numberOfYears; $i++) {
             $yearOption = $currentYear - $i;
-            echo "<option value='$yearOption'>$yearOption</option>";
+            echo "<option value='$yearOption'>".Yii::$app->formatter->asInteger($yearOption)."</option>";
         }
         ?>
     </select>
@@ -161,13 +177,13 @@ $this->registerJs($js);
     and will graduate in 
 
     <select class="selectpicker" name="student_graduating_year" data-width="130px">
-        <option value='' selected disabled>Year</option>
+        <option value='' selected disabled><?= Yii::t('register', 'Year') ?></option>
         <?php
         $currentYear = date("Y") - 1;
         $numberOfYears = 11;
         for ($i = 0; $i < $numberOfYears; $i++) {
             $yearOption = $currentYear + $i;
-            echo "<option value='$yearOption'>$yearOption</option>";
+            echo "<option value='$yearOption'>".Yii::$app->formatter->asInteger($yearOption)."</option>";
         }
         ?>
     </select>
@@ -180,11 +196,15 @@ $this->registerJs($js);
     <br/>
     I'm majoring in 
     <select multiple class="selectize-majors" name="majorsSelected[]" placeholder="Majors (type and select from list)">
-        <option value="">Select a major</option>
+        <option value=""><?= Yii::t('register', 'Select a major') ?></option>
         <?php
         $majorList = \common\models\Major::find()->all();
         foreach ($majorList as $major) {
-            echo "<option value='" . $major->major_id . "'>" . $major->major_name_en . "</option>";
+            if($this->params['isArabic']){
+                echo "<option value='" . $major->major_id . "'>" . $major->major_name_ar . "</option>";
+            }else{
+                echo "<option value='" . $major->major_id . "'>" . $major->major_name_en . "</option>";
+            }
         }
         ?>
     </select>
@@ -198,7 +218,7 @@ $this->registerJs($js);
     <div class="inputer floating-label ">
         <div class="input-wrapper baby">
             <input type="number" step="any" min="0.1" max="4" name="student_gpa" id="gpa"  class="form-control baby" required>
-            <label for="gpa">GPA</label>
+            <label for="gpa"><?= Yii::t('register', 'GPA') ?></label>
         </div>
     </div>
 
@@ -210,9 +230,9 @@ $this->registerJs($js);
     <br/>
     I am 
     <select class="selectpicker" name="student_gender" data-width="auto" title='Genderz'>
-        <option value="" selected disabled>Gender</option>
-        <option value="<?= Student::GENDER_MALE ?>">Male</option>
-        <option value="<?= Student::GENDER_FEMALE ?>">Female</option>
+        <option value="" selected disabled><?= Yii::t('register', 'Gender') ?></option>
+        <option value="<?= Student::GENDER_MALE ?>"><?= Yii::t('register', 'Male') ?></option>
+        <option value="<?= Student::GENDER_FEMALE ?>"><?= Yii::t('register', 'Female') ?></option>
     </select>
     <br class="clear"/>
 </div>
@@ -221,11 +241,15 @@ $this->registerJs($js);
 <div class="questionRow">
     <br/>
     I speak
-    <select multiple class="selecter" name="languagesSelected[]" title='Language(s)'>
+    <select multiple class="selecter" name="languagesSelected[]" title='<?= Yii::t('register', 'Language(s)') ?>'>
         <?php
         $languageList = \common\models\Language::find()->all();
         foreach ($languageList as $language) {
-            echo "<option value='" . $language->language_id . "'>" . $language->language_name_en . "</option>";
+            if($this->params['isArabic']){
+                echo "<option value='" . $language->language_id . "'>" . $language->language_name_ar . "</option>";
+            }else{
+                echo "<option value='" . $language->language_id . "'>" . $language->language_name_en . "</option>";
+            }
         }
         ?>
     </select>
@@ -237,10 +261,10 @@ $this->registerJs($js);
     <br/>
     My English language level is
     <select class="selectpicker" name="student_english_level" data-width="auto" title='Levelz'>
-        <option value="" selected disabled>Level</option>
-        <option value="<?= Student::ENGLISH_WEAK ?>">Weak</option>
-        <option value="<?= Student::ENGLISH_FAIR ?>">Fair</option>
-        <option value="<?= Student::ENGLISH_GOOD ?>">Good</option>
+        <option value="" selected disabled><?= Yii::t('register', 'Level') ?></option>
+        <option value="<?= Student::ENGLISH_WEAK ?>"><?= Yii::t('register', 'Weak') ?></option>
+        <option value="<?= Student::ENGLISH_FAIR ?>"><?= Yii::t('register', 'Fair') ?></option>
+        <option value="<?= Student::ENGLISH_GOOD ?>"><?= Yii::t('register', 'Good') ?></option>
     </select>
     <br class="clear"/>
 </div>
@@ -250,18 +274,18 @@ $this->registerJs($js);
     <br/>
     <div class="radioer form-inline">
         <input type="radio" name="student_transportation" id="transport1" value="<?= Student::TRANSPORTATION_AVAILABLE ?>">
-        <label for="transport1">I have</label>
+        <label for="transport1"><?= Yii::t('register', 'I have') ?></label>
     </div>
     <div class="radioer form-inline">
         <input type="radio" name="student_transportation" id="transport2" value="<?= Student::TRANSPORTATION_NOT_AVAILABLE ?>">
-        <label for="transport2">I do not have</label>
+        <label for="transport2"><?= Yii::t('register', 'I do not have') ?></label>
     </div>
     a method of transportation.
     <br class="clear"/>
 </div>
 
 <blockquote class="blockquote-primary" style="margin-top:2em">
-    The following questions are optional but will increase your chances of being contacted by employers
+    <?= Yii::t('register', 'The following questions are optional but will increase your chances of being contacted by employers') ?>
 </blockquote>
 
 <!-- Question -->
@@ -269,11 +293,11 @@ $this->registerJs($js);
     <br/>
     <div class="radioer form-inline">
         <input type="radio" name="club" id="club1" value="yes">
-        <label for="club1">I am</label>
+        <label for="club1"><?= Yii::t('register', 'I am') ?></label>
     </div>
     <div class="radioer form-inline">
         <input type="radio" name="club" id="club2" value="no">
-        <label for="club2">I am not</label>
+        <label for="club2"><?= Yii::t('register', 'I am not') ?></label>
     </div>
     in a club.
 

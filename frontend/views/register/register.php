@@ -276,7 +276,6 @@ function loadPage(page, data){
     }).done(function (data) {
         //Show new content
         $(".panel-body form").hide().html(data).slideDown(1000);
-        $(".panel-title h4").text("Complete your profile");
         $("#step2 a").removeClass("btn-primary").addClass("btn-white");
         $("#step3 a").removeClass("btn-white").addClass("btn-primary");
         
