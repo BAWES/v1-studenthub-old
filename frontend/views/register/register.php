@@ -9,7 +9,7 @@ $this->params['breadcrumbs'][] = Yii::t('register', 'Registration');
 
 
 $css = "
-    .radioer input[type='radio'] + label { margin-right:10px !important; margin-top:0 !important;}
+    .radioer input[type='radio'] + label { margin-top:0 !important;}
         
 .inputer{width:250px; float:left; margin-left:10px; margin-right:10px;}
 .input-wrapper{width:250px;}

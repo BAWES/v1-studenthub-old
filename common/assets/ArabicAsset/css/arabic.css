@@ -5,7 +5,7 @@
  *   Overall pages fix + fonts
  */
 @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
-body{font-family: 'Droid Arabic Kufi', serif !important;}
+body,.selectize-dropdown, .selectize-input, .selectize-input input{font-family: 'Droid Arabic Kufi', serif !important;}
 
 /*warning dialog close button fix*/
 .close { float:left !important; }
@@ -24,6 +24,9 @@ body{font-family: 'Droid Arabic Kufi', serif !important;}
 /**
  *   Frontend/Register/Index
  */
+.page-header .breadcrumb > li + li:before{content: '\f107';}
+.radioer input[type="radio"] + label{margin:5px 36px 15px 20px;}
+.radioer input[type="radio"] + label:before{left:auto; right: -36px;}
 .dropdown-menu{text-align:right;}
 .bootstrap-select.btn-group .btn .caret{right:auto; left: 14px;}
 .bootstrap-select.btn-group .btn .filter-option{text-align:right;}

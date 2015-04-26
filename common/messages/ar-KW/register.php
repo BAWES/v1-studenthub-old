@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'I am' => '',
+    'I am' => 'انا',
     'I am a(n) ' => '',
-    'I am not' => '',
+    'I am not' => 'انا لست',
     'I do not have' => '',
     'I do not play' => '',
     'I have' => '',
