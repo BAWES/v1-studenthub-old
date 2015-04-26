@@ -173,6 +173,9 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             [['student_contact_number', 'degree_id', 'country_id', 'university_id'], 'integer'],
             [['student_gpa'], 'number', 'min' => 0.1, 'max' => 4],
                     
+            //Convert Arabic Numeric Input to English
+            [['student_gpa'], '\common\components\ArabicNumberValidator'],
+                    
             //Date Validation
             [['student_enrolment_year', 'student_graduating_year'], 'date', 'format' => 'yyyy'],
             [['student_dob'], 'date', 'format' => 'yyyy/MM/dd', 'message' => \Yii::t('frontend','The format of your date of birth is invalid, should be mm/dd/yyyy')],

@@ -100,6 +100,15 @@ class SiteController extends Controller
         ->send();
          * 
          */
+        
+        $input = "١٢٣22٤٥";
+        
+        $arabicNumbers = array('٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩');
+        $num = range(0, 9);
+        
+        $output = str_replace($arabicNumbers, $num, $input);
+                
+        echo $output;
     }
 
     public function actionLogout()
