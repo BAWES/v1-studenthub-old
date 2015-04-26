@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.3
+-- version 4.3.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2015 at 07:40 AM
--- Server version: 5.6.22
+-- Generation Time: Apr 26, 2015 at 04:34 PM
+-- Server version: 5.6.23
 -- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -388,6 +388,7 @@ CREATE TABLE IF NOT EXISTS `employer` (
   `employer_auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `employer_password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `employer_password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
+  `employer_language_pref` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'en-US',
   `employer_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -2131,6 +2132,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `student_password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `student_password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
+  `student_language_pref` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'en-US',
   `student_banned` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 - for banned',
   `student_updated_datetime` datetime NOT NULL,
   `student_datetime` datetime NOT NULL

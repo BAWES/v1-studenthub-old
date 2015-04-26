@@ -46,6 +46,7 @@ use yii\validators\RequiredValidator;
  * @property string $student_auth_key
  * @property string $student_password_hash
  * @property string $student_password_reset_token
+ * @property string $student_language_pref
  * @property integer $student_banned 
  * @property string $student_updated_datetime
  * @property string $student_datetime
@@ -110,6 +111,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             //Default values / optional fields for massive assignment
             [['student_cv','student_photo','student_verification_attachment','student_club','student_interestingfacts', 'student_id_number',
                 'student_skill', 'student_hobby', 'student_sport', 'student_experience_company', 'student_experience_position'], 'default'],
+            ['student_language_pref', 'default', 'value' => 'en-US'],
             ['student_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
             ['student_email_verification', 'default', 'value' => self::EMAIL_NOT_VERIFIED],
             ['student_id_verification', 'default', 'value' => self::ID_VERIFIED,
@@ -259,6 +261,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_auth_key' => Yii::t('app', 'Auth Key'),
             'student_password_hash' => Yii::t('app', 'Password'),
             'student_password_reset_token' => Yii::t('app', 'Password Reset Token'),
+            'student_language_pref' => Yii::t('app', 'Language Preference'),
             'student_banned' => Yii::t('app', 'Student Banned'),
             'student_updated_datetime' => Yii::t('app', 'Updated on'),
             'student_datetime' => Yii::t('app', 'Created on'),

@@ -26,6 +26,7 @@ use Yii;
  * @property string $employer_auth_key
  * @property string $employer_password_hash
  * @property string $employer_password_reset_token
+ * @property string $employer_language_pref
  * @property string $employer_datetime
  *
  * @property Industry $industry
@@ -60,6 +61,9 @@ class Employer extends \yii\db\ActiveRecord
             [['employer_company_desc'], 'string'],
             [['employer_credit'], 'number'],
             [['employer_company_name', 'employer_website', 'employer_contact_firstname', 'employer_contact_lastname', 'employer_email', 'employer_password_hash', 'employer_password_reset_token'], 'string', 'max' => 255],
+            
+            //Default Values
+            ['employer_language_pref', 'default', 'value' => 'en-US'],
             
             //Email preference rules
             ['employer_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
@@ -130,6 +134,7 @@ class Employer extends \yii\db\ActiveRecord
             'employer_auth_key' => Yii::t('app', 'Employer Auth Key'),
             'employer_password_hash' => Yii::t('app', 'Employer Password Hash'),
             'employer_password_reset_token' => Yii::t('app', 'Employer Password Reset Token'),
+            'employer_language_pref' => Yii::t('app', 'Language Preference'), 
             'employer_datetime' => Yii::t('app', 'Employer Datetime'),
         ];
     }

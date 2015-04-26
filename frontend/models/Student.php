@@ -100,6 +100,9 @@ class Student extends \common\models\Student {
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
             if ($insert) {
+                //Set Language preference to current language
+                $this->student_language_pref = Yii::$app->language;
+                
                 //Move verification attachment from `temporary` bucket to `student-identification`
                 if ($this->student_verification_attachment) {
                     $filename = $this->student_verification_attachment;
