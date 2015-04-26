@@ -180,7 +180,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     
             //Date Validation
             [['student_enrolment_year', 'student_graduating_year'], 'date', 'format' => 'yyyy'],
-            [['student_dob'], 'date', 'format' => 'yyyy/MM/dd', 'message' => \Yii::t('frontend','The format of your date of birth is invalid, should be mm/dd/yyyy')],
+            [['student_dob'], 'date', 'format' => 'yyyy/MM/dd', 'message' => \Yii::t('frontend','The format of your date of birth is invalid, should be yyyy/mm/dd')],
             [['student_dob'], '\common\components\AgeValidator', 'min' => 16 ],
             
             //Length Requirements
@@ -266,6 +266,16 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_updated_datetime' => Yii::t('app', 'Updated on'),
             'student_datetime' => Yii::t('app', 'Created on'),
         ];
+    }
+    
+    public function beforeValidate() {
+        //Adjust date of birth to match validation
+        if($this->student_dob){
+            $date = new \DateTime($this->student_dob);
+            $this->student_dob = $date->format('Y/m/d');
+        }
+        
+        return parent::beforeValidate();
     }
     
 

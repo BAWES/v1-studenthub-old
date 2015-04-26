@@ -22,7 +22,7 @@ return [
     'Please use your university email eg: {emailName}@{universityDomain}' => 'الرجاء استخدام البريد الإلكتروني الجامعي الخاص بك على سبيل المثال: {emailName}@{universityDomain}',
     'Selected language does not exist.' => 'لا وجود اللغة المحددة',
     'Selected major does not exist.' => 'عدم وجود هذا التخصص',
-    'The format of your date of birth is invalid, should be mm/dd/yyyy' => 'شكل تاريخ ميلادك غير صالح، ينبغي أن يكون شهر / يوم / سنة',
+    'The format of your date of birth is invalid, should be yyyy/mm/dd' => 'شكل تاريخ ميلادك غير صالح، ينبغي أن يكون شهر / يوم / سنة',
     'This email address is already registered.' => 'هذا البريد الإلكتروني لديه حساب',
     'This email belongs to {universityName}' => 'هذا البريد الإلكتروني ينتمي إلى {universityName}',
     'This university does not exist.' => 'هذه الجامعة لا وجود لها',

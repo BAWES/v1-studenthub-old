@@ -146,6 +146,13 @@ class SiteController extends Controller
             'value' => 'en-US',
         ]));
         
+        //If User logged in, update his language preference
+        if (Yii::$app->user->id) {
+            $user = \common\models\Student::findOne((int) Yii::$app->user->id);
+            $user->student_language_pref = 'en-US';
+            $user->save();
+        }
+        
         //return to previous page before language selection
         return $this->redirect(Yii::$app->request->referrer);
     }
@@ -159,6 +166,13 @@ class SiteController extends Controller
             'name' => 'language',
             'value' => 'ar-KW',
         ]));
+        
+        //If User logged in, update his language preference
+        if (Yii::$app->user->id) {
+            $user = \common\models\Student::findOne((int) Yii::$app->user->id);
+            $user->student_language_pref = 'ar-KW';
+            $user->save();
+        }
         
         //return to previous page before language selection
         return $this->redirect(Yii::$app->request->referrer);
