@@ -17,13 +17,13 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Invalid input for {attribute}' => '',
-    'Please upload a photo of your university id card' => '',
+    'Invalid input for {attribute}' => 'إدخال غير صالح لل{attribute}',
+    'Please upload a photo of your university id card' => 'يرجى تحميل صورة من بطاقة الهوية جامعتك',
     'Please use your university email eg: {emailName}@{universityDomain}' => 'الرجاء استخدام البريد الإلكتروني الجامعي الخاص بك على سبيل المثال: {emailName}@{universityDomain}',
-    'Selected language does not exist.' => '',
-    'Selected major does not exist.' => '',
-    'The format of your date of birth is invalid, should be mm/dd/yyyy' => '',
-    'This email address is already registered.' => '',
+    'Selected language does not exist.' => 'لا وجود اللغة المحددة',
+    'Selected major does not exist.' => 'عدم وجود هذا التخصص',
+    'The format of your date of birth is invalid, should be mm/dd/yyyy' => 'شكل تاريخ ميلادك غير صالح، ينبغي أن يكون شهر / يوم / سنة',
+    'This email address is already registered.' => 'هذا البريد الإلكتروني لديه حساب',
     'This email belongs to {universityName}' => 'هذا البريد الإلكتروني ينتمي إلى {universityName}',
     'This university does not exist.' => 'هذه الجامعة لا وجود لها',
     'University does not exist' => 'الجامعة لا وجود لها',
