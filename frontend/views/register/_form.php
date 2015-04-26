@@ -91,7 +91,7 @@ Yii::$app->formatter->thousandSeparator = "";
         </div>
     </div>
 
-    <p> and I was born on </p>
+    <p> <?= Yii::t('register', 'and I was born on') ?> </p>
     <div class="inputer floating-label" style="width:120px;">
         <div class="input-wrapper" style="width:120px;">
             <input type="date" id="birthday" name="student_dob" class="form-control" value="<?= date("Y/m/d") ?>">
@@ -104,7 +104,7 @@ Yii::$app->formatter->thousandSeparator = "";
 <!-- Question -->
 <div class="questionRow">
     <p>
-        I am a(n) 
+        <?= Yii::t('register', 'I am a(n) ') ?>
 
         <select class="selectpickerNoMobile" name="country_id" data-live-search="true" data-width="auto">
             <option value="" disabled selected><?= Yii::t('register', 'Nationality') ?></option>
@@ -280,7 +280,7 @@ Yii::$app->formatter->thousandSeparator = "";
         <input type="radio" name="student_transportation" id="transport2" value="<?= Student::TRANSPORTATION_NOT_AVAILABLE ?>">
         <label for="transport2"><?= Yii::t('register', 'I do not have') ?></label>
     </div>
-    a method of transportation.
+    <?= Yii::t('register', 'a method of transportation.') ?>
     <br class="clear"/>
 </div>
 
@@ -299,10 +299,10 @@ Yii::$app->formatter->thousandSeparator = "";
         <input type="radio" name="club" id="club2" value="no">
         <label for="club2"><?= Yii::t('register', 'I am not') ?></label>
     </div>
-    in a club.
+    <?= Yii::t('register', 'in a club.') ?>
 
     <div class="additional">
-        <input type="text" name="student_club" placeholder='Clubs im in' class="form-control selectize-text">
+        <input type="text" name="student_club" placeholder='<?= Yii::t('register', 'Clubs im in') ?>' class="form-control selectize-text">
     </div>
 
     <br class="clear"/>
@@ -314,16 +314,16 @@ Yii::$app->formatter->thousandSeparator = "";
     <br/>
     <div class="radioer form-inline">
         <input type="radio" name="sport" id="sport1" value="yes">
-        <label for="sport1">I play</label>
+        <label for="sport1"><?= Yii::t('register', 'I play') ?></label>
     </div>
     <div class="radioer form-inline">
         <input type="radio" name="sport" id="sport2" value="no">
-        <label for="sport2">I do not play</label>
+        <label for="sport2"><?= Yii::t('register', 'I do not play') ?></label>
     </div>
-    sports.
+    <?= Yii::t('register', 'sports.') ?>
 
     <div class="additional">
-        <input type="text" name="student_sport" placeholder='Sports I play' class="form-control selectize-text">
+        <input type="text" name="student_sport" placeholder='<?= Yii::t('register', 'Sports I play') ?>' class="form-control selectize-text">
     </div>
 
     <br class="clear"/>
@@ -332,24 +332,24 @@ Yii::$app->formatter->thousandSeparator = "";
 <!-- Question -->
 <div class='questionRow'>
     <p style="width:285px;">
-        My favorite work experience was at 
+        <?= Yii::t('register', 'My favorite work experience was at') ?> 
     </p>
 
     <div class="inputer floating-label medz">
         <div class="input-wrapper medz">
             <input type="text" name="student_experience_company" id="experienceCompany" class="form-control">
-            <label for="experienceCompany">Company</label>
+            <label for="experienceCompany"><?= Yii::t('register', 'Company') ?></label>
         </div>
     </div>
 
     <p style="width:105px;">
-        working as a  
+        <?= Yii::t('register', 'working as a  ') ?>
     </p>
 
     <div class="inputer floating-label medz">
         <div class="input-wrapper medz">
             <input type="text" name="student_experience_position" id="experiencePosition" class="form-control">
-            <label for="experiencePosition">Position</label>
+            <label for="experiencePosition"><?= Yii::t('register', 'Position') ?></label>
         </div>
     </div>
 
@@ -359,26 +359,26 @@ Yii::$app->formatter->thousandSeparator = "";
 <!-- Question -->
 <div class='questionRow'>
     <br/>
-    I have skills in 
-    <input type="text" name="student_skill" placeholder='Teamwork, time management, and photoshop' class="form-control selectize-text">
+    <?= Yii::t('register', 'I have skills in ') ?>
+    <input type="text" name="student_skill" placeholder='<?= Yii::t('register', 'Teamwork, time management, and photoshop') ?>' class="form-control selectize-text">
 
     <br class='clear'/>
 </div>
 
 <!-- Question -->
 <div class='questionRow'>
-    My favorite hobbies are
-    <input type="text" name="student_hobby" placeholder='Cooking, playing guitar, and hiking' class="form-control selectize-text">
+    <?= Yii::t('register', 'My favorite hobbies are') ?>
+    <input type="text" name="student_hobby" placeholder='<?= Yii::t('register', 'Cooking, playing guitar, and hiking') ?>' class="form-control selectize-text">
 
     <br class='clear'/>
 </div>
 
 <!-- Question -->
 <div class='questionRow'>
-    <p style="width:200px; margin-top:5px;">A fun fact about me is</p>
+    <p style="width:200px; margin-top:5px;"><?= Yii::t('register', 'A fun fact about me is') ?></p>
     <div class="inputer" style='width:70%; margin-left:0;'>
         <div class="input-wrapper" style='width:100%;'>
-            <textarea name="student_interestingfacts" maxlength="200" class="form-control js-auto-size" rows="1" placeholder="I like to travel"></textarea>
+            <textarea name="student_interestingfacts" maxlength="200" class="form-control js-auto-size" rows="1" placeholder="<?= Yii::t('register', 'I like to travel') ?>"></textarea>
         </div>
     </div>
 
@@ -396,12 +396,12 @@ Yii::$app->formatter->thousandSeparator = "";
             <div class="fileinput-preview fileinput-exists thumbnail" data-trigger="fileinput" style="max-width: 250px; max-height: 200px;"></div>
             <div>
                 <span class="btn btn-default btn-file btn-ripple">
-                    <span class="fileinput-new">Upload Photo (optional)</span>
-                    <span class="fileinput-exists">Change</span>
+                    <span class="fileinput-new"><?= Yii::t('register', 'Upload Photo (optional)') ?></span>
+                    <span class="fileinput-exists"><?= Yii::t('register', 'Change') ?></span>
                     <input type="file" id="photoUpload" name="photoUpload"/>
                     <input type="hidden" id="photoData" name="student_photo"/>
                 </span>
-                <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput">Remove</a>
+                <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput"><?= Yii::t('register', 'Remove') ?></a>
             </div>
         </div>
     </div>
@@ -416,12 +416,12 @@ Yii::$app->formatter->thousandSeparator = "";
             <div class="fileinput-preview fileinput-exists thumbnail" data-trigger="fileinput" style="max-width: 250px; max-height: 200px;"></div>
             <div>
                 <span class="btn btn-default btn-file btn-ripple">
-                    <span class="fileinput-new">Upload CV (optional)</span>
-                    <span class="fileinput-exists">Change</span>
+                    <span class="fileinput-new"><?= Yii::t('register', 'Upload CV (optional)') ?></span>
+                    <span class="fileinput-exists"><?= Yii::t('register', 'Change') ?></span>
                     <input type="file" id="cvUpload" name="cvUpload"/>
                     <input type="hidden" id="cvData" name="student_cv"/>
                 </span>
-                <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput">Remove</a>
+                <a href="#" class="btn btn-default fileinput-exists btn-ripple" data-dismiss="fileinput"><?= Yii::t('register', 'Remove') ?></a>
             </div>
         </div>
     </div>
