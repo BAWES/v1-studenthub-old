@@ -33,7 +33,7 @@ body,.selectize-dropdown, .selectize-input, .selectize-input input{font-family: 
 .radioer input[type="radio"] + label{margin:5px 36px 15px 20px;}
 .radioer input[type="radio"] + label:before{left:auto; right: -36px;}
 
-
+blockquote{border-left:0; border-right:2px solid #f0f0f0;}
 .dropdown-menu{text-align:right;}
 .bootstrap-select.btn-group .btn .caret{right:auto; left: 14px;}
 .bootstrap-select.btn-group .btn .filter-option{text-align:right;}
