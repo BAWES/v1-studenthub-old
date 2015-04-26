@@ -34,6 +34,23 @@ $cvUploadLink = Yii::$app->urlManager->createUrl('register/cv-upload');
 $photoUploadLink = Yii::$app->urlManager->createUrl('register/photo-upload');
 $step1 = Yii::$app->urlManager->createUrl('register/form');
 
+//Set Datepicker Locale to AR if language selected
+$datePickerLocale = "";
+if($this->params['isArabic']){
+    $datePickerLocale = "
+   locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Cancel',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة','السبت'],
+            monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+            firstDay: 1
+        }     
+";
+}
+
 $js = "
 var step1 = '$step1';
 var idLink = '$idLink';
@@ -287,7 +304,8 @@ function loadPage(page, data){
                     // Consistent format with the HTML5 picker
                     showDropdowns: true,
                     singleDatePicker: true,
-                    format: "YYYY/MM/DD"
+                    format: "YYYY/MM/DD",
+                    '.$datePickerLocale.'
                 });
         }
         
