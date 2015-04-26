@@ -14,6 +14,8 @@ $('.radioer input:radio').change(function(){
     }
 });
 
+$('.js-auto-size').textareaAutoSize();
+
 //Animate to dropdown
 $('.studentRegistration').on('click','.bootstrap-select',function(){
     $('html, body').animate({
@@ -343,7 +345,7 @@ Yii::$app->formatter->thousandSeparator = "";
     </div>
 
     <p style="width:105px;">
-        <?= Yii::t('register', 'working as a  ') ?>
+        <?= Yii::t('register', 'working as a') ?>
     </p>
 
     <div class="inputer floating-label medz">
