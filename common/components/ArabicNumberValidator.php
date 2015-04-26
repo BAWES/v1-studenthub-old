@@ -16,7 +16,7 @@ class ArabicNumberValidator extends Validator {
         $arabicNumbers = array('٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩');
         $englishNumbers = range(0, 9);
         
-        $model->attribute = (int) str_replace($arabicNumbers, $englishNumbers, $numberInput);
+        $model->$attribute = (int) str_replace($arabicNumbers, $englishNumbers, $numberInput);
     }
 
 }
