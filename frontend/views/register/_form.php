@@ -160,7 +160,7 @@ Yii::$app->formatter->thousandSeparator = "";
 <!-- Question -->
 <div class="questionRow">
     <br/>
-    I enrolled in
+    <?= Yii::t('register', 'I enrolled in') ?>
 
     <select class="selectpicker" name="student_enrolment_year" data-width="130px">
         <option value='' selected disabled><?= Yii::t('register', 'Year') ?></option>
@@ -174,7 +174,7 @@ Yii::$app->formatter->thousandSeparator = "";
         ?>
     </select>
 
-    and will graduate in 
+    <?= Yii::t('register', 'and will graduate in') ?>
 
     <select class="selectpicker" name="student_graduating_year" data-width="130px">
         <option value='' selected disabled><?= Yii::t('register', 'Year') ?></option>
@@ -194,8 +194,8 @@ Yii::$app->formatter->thousandSeparator = "";
 <!-- Question -->
 <div class="questionRow">
     <br/>
-    I'm majoring in 
-    <select multiple class="selectize-majors" name="majorsSelected[]" placeholder="Majors (type and select from list)">
+    <?= Yii::t('register', "I'm majoring in") ?>
+    <select multiple class="selectize-majors" name="majorsSelected[]" placeholder="<?= Yii::t('register', "Majors (type and select from list)") ?>">
         <option value=""><?= Yii::t('register', 'Select a major') ?></option>
         <?php
         $majorList = \common\models\Major::find()->all();
@@ -213,7 +213,7 @@ Yii::$app->formatter->thousandSeparator = "";
 <!-- Question -->
 
 <div class="questionRow">
-    <p style="width:145px;">My current GPA is </p>
+    <p style="width:145px;"><?= Yii::t('register', "My current GPA is") ?></p>
 
     <div class="inputer floating-label ">
         <div class="input-wrapper baby">
@@ -228,7 +228,7 @@ Yii::$app->formatter->thousandSeparator = "";
 <!-- Question -->
 <div class="questionRow">
     <br/>
-    I am 
+    <?= Yii::t('register', "I am") ?>
     <select class="selectpicker" name="student_gender" data-width="auto" title='Genderz'>
         <option value="" selected disabled><?= Yii::t('register', 'Gender') ?></option>
         <option value="<?= Student::GENDER_MALE ?>"><?= Yii::t('register', 'Male') ?></option>
@@ -240,7 +240,7 @@ Yii::$app->formatter->thousandSeparator = "";
 <!-- Question -->
 <div class="questionRow">
     <br/>
-    I speak
+    <?= Yii::t('register', "I speak") ?>
     <select multiple class="selecter" name="languagesSelected[]" title='<?= Yii::t('register', 'Language(s)') ?>'>
         <?php
         $languageList = \common\models\Language::find()->all();
@@ -259,7 +259,7 @@ Yii::$app->formatter->thousandSeparator = "";
 <!-- Question -->
 <div class="questionRow">
     <br/>
-    My English language level is
+    <?= Yii::t('register', "My English language level is") ?>
     <select class="selectpicker" name="student_english_level" data-width="auto" title='Levelz'>
         <option value="" selected disabled><?= Yii::t('register', 'Level') ?></option>
         <option value="<?= Student::ENGLISH_WEAK ?>"><?= Yii::t('register', 'Weak') ?></option>
