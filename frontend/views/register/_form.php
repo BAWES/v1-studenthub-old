@@ -128,17 +128,17 @@ Yii::$app->formatter->thousandSeparator = "";
 <!-- Question -->
 <div class="questionRow">
     <p>
-        I am currently a 
+        <?= Yii::t('register', 'I am currently a ') ?>
 
-        <select class="selectpicker" name="student_status" data-width="130px">
+        <select class="selectpicker" name="student_status" data-width="140px">
             <option value="<?= Student::STATUS_FULL_TIME ?>"><?= Yii::t('register', 'Full-time') ?></option>
             <option value="<?= Student::STATUS_PART_TIME ?>"><?= Yii::t('register', 'Part-time') ?></option>
         </select>
 
-        student pursuing a 
+        <?= Yii::t('register', 'student pursuing a ') ?>
 
         <select class="selectpicker" name="degree_id" data-width="130px">
-            <option value='' selected disabled>Degree</option>
+            <option value='' selected disabled><?= Yii::t('register', 'Degree') ?></option>
             <?php
             $degreeList = \common\models\Degree::find()->all();
             foreach ($degreeList as $degree) {
@@ -151,7 +151,7 @@ Yii::$app->formatter->thousandSeparator = "";
             ?>
         </select>
 
-        degree at <?= $university->university_name_en ?>.
+        <?= Yii::t('register', 'degree at') ?> <?= $this->params['isArabic']? $university->university_name_ar : $university->university_name_en ?>.
     </p>
 
     <br class="clear"/>

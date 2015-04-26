@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2015 at 05:28 AM
+-- Generation Time: Apr 26, 2015 at 07:40 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -357,7 +357,7 @@ CREATE TABLE IF NOT EXISTS `degree` (
 --
 
 INSERT INTO `degree` (`degree_id`, `degree_name_en`, `degree_name_ar`) VALUES
-(1, 'Diploma', 'شهادة دبلوم'),
+(1, 'Diploma', 'دبلوم'),
 (2, 'Bachelor', 'البكالوريوس'),
 (3, 'Masters', 'الماجستير'),
 (4, 'PhD', 'الدكتوراه');
