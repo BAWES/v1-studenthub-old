@@ -180,7 +180,6 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     
             //Date Validation
             [['student_enrolment_year', 'student_graduating_year'], 'date', 'format' => 'yyyy'],
-            [['student_dob'], 'date', 'format' => 'yyyy/MM/dd', 'message' => \Yii::t('frontend','The format of your date of birth is invalid, should be mm/dd/yyyy')],
             [['student_dob'], '\common\components\AgeValidator', 'min' => 16 ],
             
             //Length Requirements
