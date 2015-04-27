@@ -89,26 +89,9 @@ class SiteController extends Controller
     //Test function - for testing random things
     public function actionTest()
     {
-        /*
         //Test activation email
-        Yii::$app->mailer->compose('verificationEmail-html', [
-            'student' => \common\models\Student::findOne(12),
-        ])
-        ->setFrom(['verify@studenthub.co' => 'StudentHub Support'])
-        ->setTo('khalid@bawes.net')
-        ->setSubject('[StudentHub] Email Verification')
-        ->send();
-         * 
-         */
-        
-        $input = "١٢٣22٤٥";
-        
-        $arabicNumbers = array('٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩');
-        $num = range(0, 9);
-        
-        $output = str_replace($arabicNumbers, $num, $input);
-                
-        echo $output;
+        $student = \frontend\models\Student::findOne(13);
+        $student->sendVerificationEmail();
     }
 
     public function actionLogout()

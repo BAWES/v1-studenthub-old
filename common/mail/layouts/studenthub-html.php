@@ -89,7 +89,7 @@ use yii\helpers\Url;
             table, tr, td {
                 padding: 0;
                 vertical-align: top;
-                text-align: left;
+                text-align: <?= Yii::$app->view->params['isArabic']?"right":"left" ?>;
             }
 
             hr {
@@ -334,7 +334,7 @@ use yii\helpers\Url;
                 font-weight: normal;
                 padding:0;
                 margin: 0;
-                text-align: left;
+                text-align: <?= Yii::$app->view->params['isArabic']?"right":"left" ?>;
                 line-height: 1.4;
             }
 

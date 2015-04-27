@@ -161,16 +161,35 @@ class Student extends \common\models\Student {
      * @return boolean whether the email was sent
      */
     public function sendVerificationEmail() {
-        return Yii::$app->mailer->compose([
-                            'html' => 'verificationEmail-html',
-                            'text' => 'verificationEmail-text',
-                                ], [
-                            'student' => $this
-                        ])
-                        ->setFrom(['contact@studenthub.co' => 'StudentHub'])
-                        ->setTo($this->student_email)
-                        ->setSubject('[StudentHub] Email Verification')
-                        ->send();
+        echo $this->student_language_pref;
+        if($this->student_language_pref == "en-US"){
+            //Send English Email
+            return Yii::$app->mailer->compose([
+                                'html' => 'verificationEmail-html',
+                                'text' => 'verificationEmail-text',
+                                    ], [
+                                'student' => $this
+                            ])
+                            ->setFrom(['contact@studenthub.co' => 'StudentHub'])
+                            ->setTo($this->student_email)
+                            ->setSubject('[StudentHub] Email Verification')
+                            ->send();
+        }else{
+            //Set language based on preference stored in DB
+            Yii::$app->view->params['isArabic'] = true;
+            
+            //Send Arabic Email
+            return Yii::$app->mailer->compose([
+                                'html' => 'verificationEmail-ar-html',
+                                'text' => 'verificationEmail-ar-text',
+                                    ], [
+                                'student' => $this
+                            ])
+                            ->setFrom(['contact@studenthub.co' => 'StudentHub'])
+                            ->setTo($this->student_email)
+                            ->setSubject('[StudentHub] التحقق من البريد الإلكتروني')
+                            ->send();
+        }
     }
 
     /**
