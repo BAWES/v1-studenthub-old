@@ -15,8 +15,11 @@ return [
              */
         ],
         'assetManager' => [
+            //Link assets -> create symbolic links to assets
+            'linkAssets' => true,
+            
             //append time stamps to assets for cache busting
-            'appendTimestamp' => true,
+            //'appendTimestamp' => true,
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
