@@ -16,8 +16,12 @@ $this->title = 'Employers';
                     <a class="btn btn-lg btn-danger toastr-notify" data-toastr-type="success" data-toastr-title="New Applicant!" 
                        data-toastr-notification="We found you the perfect applicant!" href="#">Don't click this</a>
                 </p>
-
-
+                
+                <?php
+                //Link to Student Front-end
+                $urlLink = Yii::$app->urlManagerFrontend->createUrl(["register/index"]);
+                echo "<a href='$urlLink' target='_blank'>$urlLink</a>";
+                ?>
             </div>
         </div><!-- panel-body -->
     </div><!--panel-->
