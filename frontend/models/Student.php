@@ -161,7 +161,6 @@ class Student extends \common\models\Student {
      * @return boolean whether the email was sent
      */
     public function sendVerificationEmail() {
-        echo $this->student_language_pref;
         if($this->student_language_pref == "en-US"){
             //Send English Email
             return Yii::$app->mailer->compose([
