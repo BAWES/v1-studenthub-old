@@ -1,5 +1,5 @@
 <?php
-namespace frontend\models;
+namespace employer\models;
 
 use Yii;
 use common\models\Employer;

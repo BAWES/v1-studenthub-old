@@ -1,5 +1,5 @@
 <?php
-namespace frontend\models;
+namespace employer\models;
 
 use common\models\Employer;
 use yii\base\InvalidParamException;
