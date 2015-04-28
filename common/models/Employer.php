@@ -177,7 +177,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds student by email
+     * Finds employer by email
      *
      * @param string $email
      * @return static|null
@@ -187,7 +187,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds student by password reset token
+     * Finds employer by password reset token
      *
      * @param string $token password reset token
      * @return static|null

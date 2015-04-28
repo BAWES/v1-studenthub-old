@@ -1,7 +1,8 @@
 <?php
 namespace frontend\models;
 
-use common\models\Student;
+use Yii;
+use common\models\Employer;
 use yii\base\Model;
 
 /**
@@ -21,9 +22,9 @@ class PasswordResetRequestForm extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'exist',
-                'targetClass' => '\common\models\Student',
-                'targetAttribute' => 'student_email',
-                'message' => Yii::t("student", 'There is no student with such email.')
+                'targetClass' => '\common\models\Employer',
+                'targetAttribute' => 'employer_email',
+                'message' => Yii::t("employer", 'There is no employer with such email.')
             ],
         ];
     }
@@ -31,22 +32,22 @@ class PasswordResetRequestForm extends Model
     /**
      * Sends an email with a link, for resetting the password.
      *
-     * @return boolean whether the email was send
+     * @return boolean whether the email was sent
      */
     public function sendEmail()
     {
-        /* @var $student Student */
-        $student = Student::findOne([
-            'student_email' => $this->email,
+        /* @var $employer Employer */
+        $employer = Employer::findOne([
+            'employer_email' => $this->email,
         ]);
 
-        if ($student) {
-            if (!Student::isPasswordResetTokenValid($student->student_password_reset_token)) {
-                $student->generatePasswordResetToken();
+        if ($employer) {
+            if (!Employer::isPasswordResetTokenValid($employer->employer_password_reset_token)) {
+                $employer->generatePasswordResetToken();
             }
 
-            if ($student->save()) {
-                return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['user' => $student])
+            if ($employer->save()) {
+                return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['user' => $employer])
                     ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                     ->setTo($this->email)
                     ->setSubject('Password reset for ' . \Yii::$app->name)
