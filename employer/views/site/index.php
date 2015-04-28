@@ -1,52 +1,58 @@
 <?php
 /* @var $this yii\web\View */
-
-$this->title = 'My Yii Application';
+$this->title = 'Welcome to StudentHub';
 ?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
+<?php
+//Define block for header navigation/scrollable tabs
+$this->beginBlock('header-tabs');
+?>
+<div class="header-tabs scrollable-tabs sticky">
+    <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+        <li class="active"><a href="#students" data-toggle="tab">Students</a></li>
+        <li><a href="#employers" data-toggle="tab">Employers</a></li>
+    </ul>
 </div>
+<?php $this->endBlock(); ?>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-body">
+
+                <div class="tab-content with-panel">
+                    
+                    <!-- Students Tab -->
+                    <div class="tab-pane active text-style" id="students">
+
+                        <h1>You're a Student!</h1>
+
+                        <p class="lead">This is where the magic happens! Find a job!</p>
+                        <p>
+                            <a class="btn btn-lg btn-danger toastr-notify" data-toastr-type="success" data-toastr-title="Applied!" 
+                               data-toastr-notification="You have applied for the job!" href="#">Don't click this</a>
+                        </p>
+                        
+                    </div><!--tab-pane-->
+                    
+                    <!-- Employers tab -->
+                    <div class="tab-pane text-style" id="employers">
+
+                        <h1>You're an Employer!</h1>
+
+                        <p class="lead">This is where you find the perfect candidate!</p>
+                        <p>
+                            <a class="btn btn-lg btn-danger toastr-notify" data-toastr-type="success" data-toastr-title="New Applicant!" 
+                               data-toastr-notification="We found you the perfect applicant!" href="#">Don't click this</a>
+                        </p>
+
+                    </div><!--tab-pane-->
+
+
+                </div>
+            </div><!-- panel-body -->
+        </div><!--panel-->
+        
+    </div><!--col-md-12-->
+</div><!--row-->
