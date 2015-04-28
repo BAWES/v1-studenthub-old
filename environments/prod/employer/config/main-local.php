@@ -7,7 +7,7 @@ return [
         ],
         'urlManagerFrontend' => [
             'class' => 'yii\web\UrlManager',
-            'baseUrl' => '/frontend/web',
+            'baseUrl' => '//studenthub.co',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
         ],
