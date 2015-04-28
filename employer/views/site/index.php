@@ -19,7 +19,7 @@ $this->title = 'Employers';
                 
                 <?php
                 //Link to Student Front-end
-                $urlLink = Yii::$app->urlManagerFrontend->createUrl(["register/index"]);
+                $urlLink = Yii::$app->urlManagerFrontend->createUrl(["site/index"]);
                 echo "<a href='$urlLink' target='_blank'>$urlLink</a>";
                 ?>
             </div>
