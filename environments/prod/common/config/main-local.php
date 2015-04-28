@@ -21,9 +21,5 @@ return [
                 'encryption' => 'tls',
             ],
         ],
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-        ],
     ],
 ];

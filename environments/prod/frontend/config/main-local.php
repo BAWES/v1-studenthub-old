@@ -8,6 +8,8 @@ return [
         'urlManagerEmployer' => [
             'class' => 'yii\web\UrlManager',
             'baseUrl' => '/employer/web',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
         ],
     ],
 ];
