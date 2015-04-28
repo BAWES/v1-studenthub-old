@@ -3,6 +3,10 @@
 namespace common\models;
 
 use Yii;
+use yii\base\NotSupportedException;
+use yii\web\IdentityInterface;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "employer".
@@ -35,7 +39,7 @@ use Yii;
  * @property NotificationEmployer[] $notificationEmployers
  * @property Payment[] $payments
  */
-class Employer extends \yii\db\ActiveRecord
+class Employer extends \yii\db\ActiveRecord implements IdentityInterface
 {
     //Email notification preference values for `employer_email_preference`
     const NOTIFICATION_OFF = 0;
@@ -82,32 +86,6 @@ class Employer extends \yii\db\ActiveRecord
         ];
     }
     
-    
-    /**
-     * Signs user up.
-     *
-     * @return User|null the saved model or null if saving fails
-     */
-    public function signup()
-    {
-        //This signup code was taken when we were using RegisterForm model for signup
-        //It used to have the logic for creation of students within that model
-        //now that our data is within the same activerecord model, signup might aswell trigger save for itself
-        //then return an instance of itself (static)
-        
-        /*if ($this->validate()) {
-            $admin = new Admin();
-            $admin->admin_name = $this->name;
-            $admin->admin_email = $this->email;
-            $admin->setPassword($this->password);
-            $admin->generateAuthKey();
-            if ($admin->save()) {
-                return $admin;
-            }
-        }*/
-        
-        return null;
-    }
 
     /**
      * @inheritdoc
@@ -177,5 +155,127 @@ class Employer extends \yii\db\ActiveRecord
     public function getPayments()
     {
         return $this->hasMany(Payment::className(), ['employer_id' => 'employer_id']);
+    }
+    
+    
+    /*
+     * Start Identity Code
+     */
+    
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentity($id) {
+        return static::findOne(['employer_id' => $id]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentityByAccessToken($token, $type = null) {
+        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+    }
+
+    /**
+     * Finds student by email
+     *
+     * @param string $email
+     * @return static|null
+     */
+    public static function findByEmail($email) {
+        return static::findOne(['employer_email' => $email]);
+    }
+
+    /**
+     * Finds student by password reset token
+     *
+     * @param string $token password reset token
+     * @return static|null
+     */
+    public static function findByPasswordResetToken($token) {
+        if (!static::isPasswordResetTokenValid($token)) {
+            return null;
+        }
+
+        return static::findOne([
+                    'employer_password_reset_token' => $token,
+        ]);
+    }
+
+    /**
+     * Finds out if password reset token is valid
+     *
+     * @param string $token password reset token
+     * @return boolean
+     */
+    public static function isPasswordResetTokenValid($token) {
+        if (empty($token)) {
+            return false;
+        }
+        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
+        $parts = explode('_', $token);
+        $timestamp = (int) end($parts);
+        return $timestamp + $expire >= time();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getId() {
+        return $this->getPrimaryKey();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getAuthKey() {
+        return $this->employer_auth_key;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function validateAuthKey($authKey) {
+        return $this->getAuthKey() === $authKey;
+    }
+
+    /**
+     * Validates password
+     *
+     * @param string $password password to validate
+     * @return boolean if password provided is valid for current user
+     */
+    public function validatePassword($password) {
+        return Yii::$app->security->validatePassword($password, $this->employer_password_hash);
+    }
+
+    /**
+     * Generates password hash from password and sets it to the model
+     *
+     * @param string $password
+     */
+    public function setPassword($password) {
+        $this->employer_password_hash = Yii::$app->security->generatePasswordHash($password);
+    }
+
+    /**
+     * Generates "remember me" authentication key
+     */
+    public function generateAuthKey() {
+        $this->employer_auth_key = Yii::$app->security->generateRandomString();
+    }
+
+    /**
+     * Generates new password reset token
+     */
+    public function generatePasswordResetToken() {
+        $this->employer_password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+    }
+
+    /**
+     * Removes password reset token
+     */
+    public function removePasswordResetToken() {
+        $this->employer_password_reset_token = null;
     }
 }
