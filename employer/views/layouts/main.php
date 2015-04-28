@@ -151,17 +151,6 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                 <?php
                 $menuItems = [
                     ['label' => Yii::t('frontend','Home'), 'url' => ['/site/index']],
-                    ['label' => Yii::t('frontend','About'), 'url' => ['/site/about']],
-                    ['label' => Yii::t('frontend','Contact'), 'url' => ['/site/contact']],
-                    [
-                        'label' => 'Test',
-                        'items' => [
-                            [
-                                'label' => 'Student Registration',
-                                'url' => ['/register/index'],
-                            ],
-                        ]
-                    ],
                 ];
                 if (Yii::$app->user->isGuest) {
                     $menuItems[] = ['label' => Yii::t('frontend','Register'), 'url' => ['/site/register']];
