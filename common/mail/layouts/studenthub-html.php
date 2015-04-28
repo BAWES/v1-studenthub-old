@@ -905,6 +905,7 @@ use yii\helpers\Url;
                                                         <td>
                                                             <table class="wrapper social-icons">
                                                                 <tr>
+                                                                    <td><a href="#"><img src="<?= $message->embed(Url::to("@web/img/email/icon-instagram.png", true)); ?>" alt="social icon"/></a></td>
                                                                     <td><a href="#"><img src="<?= $message->embed(Url::to("@web/img/email/icon-facebook.png", true)); ?>" alt="social icon"/></a></td>
                                                                     <td><a href="#"><img src="<?= $message->embed(Url::to("@web/img/email/icon-twitter.png", true)); ?>" alt="social icon"/></a></td>
                                                                     <td><a href="#"><img src="<?= $message->embed(Url::to("@web/img/email/icon-youtube.png", true)); ?>" alt="social icon"/></a></td>
