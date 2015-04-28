@@ -37,7 +37,7 @@ $this->beginBlock('header-tabs');
                         <?php
                 //Link to Employer Front-end
                 $urlLink = Yii::$app->urlManagerEmployer->createUrl(["site/index"]);
-                echo "<a href='$urlLink' target='_blank'>$urlLink</a>";
+                echo "<a href='$urlLink'>$urlLink</a>";
                 ?>
                         
                     </div><!--tab-pane-->
