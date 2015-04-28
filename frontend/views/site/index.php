@@ -34,6 +34,12 @@ $this->beginBlock('header-tabs');
                                data-toastr-notification="You have applied for the job!" href="#">Don't click this</a>
                         </p>
                         
+                        <?php
+                //Link to Employer Front-end
+                $urlLink = Yii::$app->urlManagerEmployer->createUrl(["site/index"]);
+                echo "<a href='$urlLink' target='_blank'>$urlLink</a>";
+                ?>
+                        
                     </div><!--tab-pane-->
                     
                     <!-- Employers tab -->
