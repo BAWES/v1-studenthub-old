@@ -2,7 +2,6 @@
 namespace frontend\controllers;
 
 use Yii;
-use frontend\models\RegisterForm;
 use frontend\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
