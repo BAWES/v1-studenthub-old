@@ -67,9 +67,9 @@ Yii::$app->formatter->thousandSeparator = "";
     <p>
         <?= Yii::t('register', 'My email notification preferences:') ?> 
         <select class="selectpicker" data-width="auto" name="student_email_preference">
-            <option><?= Yii::t('register', 'Daily as jobs are posted') ?></option>
-            <option><?= Yii::t('register', 'Weekly summary') ?></option>
-            <option><?= Yii::t('register', 'Off') ?></option>
+            <option value="<?= Student::NOTIFICATION_DAILY ?>"><?= Yii::t('register', 'Daily as jobs are posted') ?></option>
+            <option value="<?= Student::NOTIFICATION_WEEKLY ?>"><?= Yii::t('register', 'Weekly summary') ?></option>
+            <option value="<?= Student::NOTIFICATION_OFF ?>"><?= Yii::t('register', 'Off') ?></option>
         </select>
     </p>
     <br class="clear"/>
