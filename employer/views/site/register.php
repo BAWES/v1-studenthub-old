@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -46,6 +47,17 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'employer_contact_firstname') ?>
         <?= $form->field($model, 'employer_contact_lastname') ?>
         <?= $form->field($model, 'employer_email_preference') ?>
+        
+        <?= $form->field($model, 'city_id',[
+                'template' => "{label}\n{beginWrapper}\n"
+                                        . "<div class=''>\n<div class=''>\n"
+                                        . "{input}"
+                                        . "</div>\n</div>\n{hint}\n{error}\n"
+                                    . "{endWrapper}",
+            ])->dropDownList(ArrayHelper::map(common\models\City::find("country_id=84")->all(), "city_id", "city_name_en"), [
+                'class' => 'selectpicker',
+                'data-live-search' => 'true',
+            ]) ?>
 
         
         <div class="form-group">

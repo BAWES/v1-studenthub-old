@@ -77,12 +77,17 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             ['employer_email', 'unique', 'targetClass' => '\common\models\Employer', 
                 'message' => \Yii::t('frontend','This email address is already registered.')],
             
+            
+            /**
+             * Validate existence of CityID and IndustryId selected
+             */
+            
             //Default Values
             ['employer_language_pref', 'default', 'value' => 'en-US'],
             
             //Email preference rules
             ['employer_email_verification', 'default', 'value' => self::EMAIL_NOT_VERIFIED],
-            ['employer_email_verification', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
+            ['employer_email_verification', 'in', 'range' => [self::EMAIL_VERIFIED, self::EMAIL_NOT_VERIFIED]],
             
             //Email preference rules
             ['employer_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
@@ -110,7 +115,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             'employer_id' => Yii::t('app', 'Employer ID'),
             'industry_id' => Yii::t('app', 'Industry ID'),
-            'city_id' => Yii::t('app', 'City ID'),
+            'city_id' => Yii::t('app', 'City'),
             'employer_company_name' => Yii::t('app', 'Company Name'),
             'employer_logo' => Yii::t('app', 'Logo'),
             'employer_website' => Yii::t('app', 'Website'),
