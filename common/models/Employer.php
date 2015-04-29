@@ -27,6 +27,7 @@ use yii\db\Expression;
  * @property string $employer_credit
  * @property integer $employer_email_preference
  * @property string $employer_email
+ * @property integer $employer_email_verification 
  * @property string $employer_auth_key
  * @property string $employer_password_hash
  * @property string $employer_password_reset_token
@@ -45,6 +46,9 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
     const NOTIFICATION_OFF = 0;
     const NOTIFICATION_DAILY = 1;
     const NOTIFICATION_WEEKLY = 2;
+    //Email verification values for `employer_email_verification`
+    const EMAIL_VERIFIED = 1;
+    const EMAIL_NOT_VERIFIED = 0;
     
     /**
      * @inheritdoc
@@ -68,6 +72,10 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             
             //Default Values
             ['employer_language_pref', 'default', 'value' => 'en-US'],
+            
+            //Email preference rules
+            ['employer_email_verification', 'default', 'value' => self::EMAIL_NOT_VERIFIED],
+            ['employer_email_verification', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
             
             //Email preference rules
             ['employer_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
@@ -109,6 +117,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             'employer_credit' => Yii::t('app', 'Employer Credit'),
             'employer_email_preference' => Yii::t('app', 'Employer Email Preference'),
             'employer_email' => Yii::t('app', 'Employer Email'),
+            'employer_email_verification' => Yii::t('app', 'Employer Email Verification'),
             'employer_auth_key' => Yii::t('app', 'Employer Auth Key'),
             'employer_password_hash' => Yii::t('app', 'Employer Password Hash'),
             'employer_password_reset_token' => Yii::t('app', 'Employer Password Reset Token'),

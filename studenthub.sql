@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.9
+-- version 4.3.3
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2015 at 04:34 PM
--- Server version: 5.6.23
+-- Generation Time: Apr 29, 2015 at 08:45 AM
+-- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -385,6 +385,7 @@ CREATE TABLE IF NOT EXISTS `employer` (
   `employer_credit` decimal(10,0) NOT NULL DEFAULT '0',
   `employer_email_preference` tinyint(4) NOT NULL COMMENT 'Off(0), Daily(1), Weekly(2)',
   `employer_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `employer_email_verification` tinyint(4) NOT NULL DEFAULT '0',
   `employer_auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `employer_password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `employer_password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
@@ -2136,7 +2137,14 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_banned` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 - for banned',
   `student_updated_datetime` datetime NOT NULL,
   `student_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`student_id`, `degree_id`, `country_id`, `university_id`, `student_firstname`, `student_lastname`, `student_dob`, `student_status`, `student_enrolment_year`, `student_graduating_year`, `student_gpa`, `student_english_level`, `student_gender`, `student_transportation`, `student_contact_number`, `student_interestingfacts`, `student_photo`, `student_cv`, `student_skill`, `student_hobby`, `student_club`, `student_sport`, `student_experience_company`, `student_experience_position`, `student_verification_attachment`, `student_email_verification`, `student_id_verification`, `student_id_number`, `student_email_preference`, `student_email`, `student_auth_key`, `student_password_hash`, `student_password_reset_token`, `student_language_pref`, `student_banned`, `student_updated_datetime`, `student_datetime`) VALUES
+(13, 2, 9, 1, 'dwadwa', 'dwadwa', '1984-04-12', 1, 2013, 2017, '2.00', 2, 0, 0, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, 0, 'dawd@gust.edu.kw', 'V0nH70XkhjxuBSP3k4Mi-Rq5c_Lj6bvc', '$2y$13$zCplTcuoqlXfTMXl8jGrC.3v0DD52vqR276ostHuialSExU07bNDe', '', 'en-US', 0, '2015-04-27 10:51:37', '2015-04-27 10:51:37');
 
 -- --------------------------------------------------------
 
@@ -2165,6 +2173,13 @@ CREATE TABLE IF NOT EXISTS `student_language` (
   `language_id` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `student_language`
+--
+
+INSERT INTO `student_language` (`student_id`, `language_id`) VALUES
+(13, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -2175,6 +2190,13 @@ CREATE TABLE IF NOT EXISTS `student_major` (
   `student_id` int(11) unsigned NOT NULL,
   `major_id` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `student_major`
+--
+
+INSERT INTO `student_major` (`student_id`, `major_id`) VALUES
+(13, 7);
 
 -- --------------------------------------------------------
 
@@ -2463,7 +2485,7 @@ ALTER TABLE `payment_type`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `student_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `student_job_application`
 --
