@@ -23,14 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id' => 'form-signup',
                     'layout' => 'horizontal',
                     'fieldConfig' => [
-                        'options' => [
-                            'class' => 'inputer floating-label',
-                        ],
-                        'template' => "{beginWrapper}\n{input}\n{label}\n{endWrapper}\n{hint}\n{error}",
+                        'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
                         'horizontalCssClasses' => [
-                            'label' => '',
+                            'label' => 'col-md-3',
                             'offset' => '',
-                            'wrapper' => 'input-wrapper',
+                            'wrapper' => 'col-md-5',
                             'error' => '',
                             'hint' => '',
                         ],
@@ -38,24 +35,20 @@ $this->params['breadcrumbs'][] = $this->title;
         ]);
         ?>
 
-        <div class="row">
-            <div class="col-lg-6">
 
+        <?= $form->field($model, 'employer_email') ?>
+        <?= $form->field($model, 'employer_password_hash')->passwordInput() ?>
+        <?= $form->field($model, 'employer_company_name') ?>
+        <?= $form->field($model, 'employer_contact_firstname') ?>
+        <?= $form->field($model, 'employer_contact_lastname') ?>
+        <?= $form->field($model, 'employer_email_preference') ?>
 
-                <?= $form->field($model, 'employer_email') ?>
-                <?= $form->field($model, 'employer_password_hash')->passwordInput() ?>
-                <?= $form->field($model, 'employer_company_name') ?>
-                <?= $form->field($model, 'employer_contact_firstname') ?>
-                <?= $form->field($model, 'employer_contact_lastname') ?>
-                <?= $form->field($model, 'employer_email_preference') ?>
-
-            </div>
-        </div>
-
-        <br/>
+        
         <div class="form-group">
+            <br/>
             <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
         </div>
+        
+        <?php ActiveForm::end(); ?>
     </div>
 </div>
-<?php ActiveForm::end(); ?>
