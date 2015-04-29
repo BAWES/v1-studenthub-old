@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 29, 2015 at 08:45 AM
+-- Generation Time: Apr 29, 2015 at 10:45 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -374,8 +374,6 @@ CREATE TABLE IF NOT EXISTS `employer` (
   `city_id` int(11) unsigned NOT NULL,
   `employer_company_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `employer_logo` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `employer_background_image` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `employer_background_color` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `employer_website` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `employer_company_desc` text COLLATE utf8_unicode_ci NOT NULL,
   `employer_num_employees` int(11) NOT NULL,

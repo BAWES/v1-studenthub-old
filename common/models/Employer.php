@@ -16,8 +16,6 @@ use yii\db\Expression;
  * @property integer $city_id
  * @property string $employer_company_name
  * @property string $employer_logo
- * @property string $employer_background_image 
- * @property string $employer_background_color 
  * @property string $employer_website
  * @property string $employer_company_desc
  * @property integer $employer_num_employees
@@ -112,8 +110,6 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             'city_id' => Yii::t('app', 'City ID'),
             'employer_company_name' => Yii::t('app', 'Employer Company Name'),
             'employer_logo' => Yii::t('app', 'Employer Logo'),
-            'employer_background_image' => Yii::t('app', 'Employer Background Image'), 
-            'employer_background_color' => Yii::t('app', 'Employer Background Color'), 
             'employer_website' => Yii::t('app', 'Employer Website'),
             'employer_company_desc' => Yii::t('app', 'Employer Company Desc'),
             'employer_num_employees' => Yii::t('app', 'Employer Num Employees'),
