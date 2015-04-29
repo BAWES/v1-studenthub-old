@@ -62,7 +62,10 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['industry_id', 'city_id', 'employer_company_desc', 'employer_num_employees', 'employer_contact_firstname', 'employer_contact_lastname', 'employer_email_preference', 'employer_email', 'employer_auth_key'], 'required'],
+            [['industry_id', 'city_id', 'employer_company_desc', 'employer_num_employees', 'employer_contact_firstname', 
+                'employer_password_hash', 'employer_company_name',
+                'employer_contact_lastname', 'employer_email_preference', 'employer_email', 'employer_auth_key'], 'required'],
+            
             [['industry_id', 'city_id', 'employer_num_employees', 'employer_email_preference'], 'integer'],
             [['employer_company_desc'], 'string'],
             [['employer_credit'], 'number'],

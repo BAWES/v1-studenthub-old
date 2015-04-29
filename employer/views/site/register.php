@@ -23,7 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id' => 'form-signup',
                     'layout' => 'horizontal',
                     'fieldConfig' => [
-                        'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
+                        'template' => "{label}\n{beginWrapper}\n"
+                                        . "<div class='inputer'>\n<div class='input-wrapper'>\n"
+                                        . "{input}"
+                                        . "</div>\n</div>\n{hint}\n{error}\n"
+                                    . "{endWrapper}",
                         'horizontalCssClasses' => [
                             'label' => 'col-md-3',
                             'offset' => '',
@@ -36,8 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
 
 
-        <?= $form->field($model, 'employer_email') ?>
-        <?= $form->field($model, 'employer_password_hash')->passwordInput() ?>
+        <?= $form->field($model, 'employer_email')->textInput(['placeholder' => 'email@company.com']) ?>
+        <?= $form->field($model, 'employer_password_hash')->passwordInput(['placeholder' => '***']) ?>
         <?= $form->field($model, 'employer_company_name') ?>
         <?= $form->field($model, 'employer_contact_firstname') ?>
         <?= $form->field($model, 'employer_contact_lastname') ?>
