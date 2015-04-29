@@ -4,9 +4,9 @@ use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \common\models\Student */
+/* @var $model \common\models\Employer */
 
-$this->title = 'Register as a Student';
+$this->title = 'Register as an Employer';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
@@ -18,26 +18,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
             
-                <?= $form->field($model, 'student_email') ?>
-                <?= $form->field($model, 'student_password_hash')->passwordInput() ?>
-                <?= $form->field($model, 'student_firstname') ?>
-                <?= $form->field($model, 'student_lastname') ?>
-                <?= $form->field($model, 'student_dob') ?>
-                <?= $form->field($model, 'student_status') ?>
-                <?= $form->field($model, 'student_enrolment_year') ?>
-                <?= $form->field($model, 'student_graduating_year') ?>
-                <?= $form->field($model, 'student_gpa') ?>
-                <?= $form->field($model, 'student_gender') ?>
-                <?= $form->field($model, 'student_transportation') ?>
-                <?= $form->field($model, 'student_contact_number') ?>
-                <?= $form->field($model, 'student_interestingfacts') ?>
-                <?= $form->field($model, 'student_photo') ?>
-                <?= $form->field($model, 'student_cv') ?>
-                <?= $form->field($model, 'student_skill') ?>
-                <?= $form->field($model, 'student_hobby') ?>
-                <?= $form->field($model, 'student_club') ?>
-                <?= $form->field($model, 'student_sport') ?>
-                <?= $form->field($model, 'student_email_preference') ?>
+                <?= $form->field($model, 'employer_email') ?>
+                <?= $form->field($model, 'employer_password_hash')->passwordInput() ?>
+                <?= $form->field($model, 'employer_company_name') ?>
+                <?= $form->field($model, 'employer_contact_firstname') ?>
+                <?= $form->field($model, 'employer_contact_lastname') ?>
+                <?= $form->field($model, 'employer_email_preference') ?>
                 
                 <div class="form-group">
                     <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>

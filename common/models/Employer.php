@@ -70,6 +70,12 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             [['employer_credit'], 'number'],
             [['employer_company_name', 'employer_website', 'employer_contact_firstname', 'employer_contact_lastname', 'employer_email', 'employer_password_hash', 'employer_password_reset_token'], 'string', 'max' => 255],
             
+            //Unique emails
+            ['employer_email', 'filter', 'filter' => 'trim'],
+            ['employer_email', 'email'],
+            ['employer_email', 'unique', 'targetClass' => '\common\models\Employer', 
+                'message' => \Yii::t('frontend','This email address is already registered.')],
+            
             //Default Values
             ['employer_language_pref', 'default', 'value' => 'en-US'],
             
