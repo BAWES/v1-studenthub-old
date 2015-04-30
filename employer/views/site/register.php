@@ -89,11 +89,11 @@ $this->registerCss($css);
                 'browseLabel' =>  Yii::t('register', 'Upload Logo (Optional)')
             ],
         ]) ?>
-        <?= $form->field($model, 'employer_num_employees')->input("number", ['placeholder' => 'Average # of Employees']) ?>
+        <?= $form->field($model, 'employer_num_employees')->input("number", ['placeholder' => Yii::t('register', 'Average # of Employees')]) ?>
         <?= $form->field($model, 'employer_company_desc')->textarea([
             'class' => 'form-control js-auto-size',
             'rows' => 1,
-            'placeholder' => "Describe your company"
+            'placeholder' => Yii::t('register', "Describe your company")
             ]) ?>
         
         
