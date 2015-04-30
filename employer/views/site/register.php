@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
+use common\models\Employer;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -46,7 +47,18 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'employer_company_name') ?>
         <?= $form->field($model, 'employer_contact_firstname') ?>
         <?= $form->field($model, 'employer_contact_lastname') ?>
-        <?= $form->field($model, 'employer_email_preference') ?>
+        
+        <?= $form->field($model, 'employer_email_preference',[
+                'template' => "{label}\n{beginWrapper}\n"
+                                        . "<div class=''>\n<div class=''>\n"
+                                        . "{input}"
+                                        . "</div>\n</div>\n{hint}\n{error}\n"
+                                    . "{endWrapper}",
+            ])->dropDownList([
+                Employer::NOTIFICATION_DAILY => "Daily when students apply",
+                Employer::NOTIFICATION_WEEKLY => "Weekly Summary",
+                Employer::NOTIFICATION_OFF => "Off",
+            ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
         
         <?= $form->field($model, 'city_id',[
                 'template' => "{label}\n{beginWrapper}\n"
@@ -57,6 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ])->dropDownList(ArrayHelper::map(common\models\City::find("country_id=84")->all(), "city_id", "city_name_en"), [
                 'class' => 'selectpicker',
                 'data-live-search' => 'true',
+                'data-width' => 'auto'
             ]) ?>
 
         
