@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.3
+-- version 4.3.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 29, 2015 at 10:45 AM
--- Server version: 5.6.22
+-- Generation Time: Apr 30, 2015 at 05:08 PM
+-- Server version: 5.6.23
 -- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -373,10 +373,10 @@ CREATE TABLE IF NOT EXISTS `employer` (
   `industry_id` int(11) unsigned NOT NULL,
   `city_id` int(11) unsigned NOT NULL,
   `employer_company_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `employer_logo` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `employer_website` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `employer_company_desc` text COLLATE utf8_unicode_ci NOT NULL,
-  `employer_num_employees` int(11) NOT NULL,
+  `employer_logo` varchar(128) COLLATE utf8_unicode_ci DEFAULT '',
+  `employer_website` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
+  `employer_company_desc` text COLLATE utf8_unicode_ci,
+  `employer_num_employees` int(11) DEFAULT NULL,
   `employer_contact_firstname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `employer_contact_lastname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `employer_contact_number` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',

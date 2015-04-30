@@ -11,6 +11,13 @@ use common\models\Employer;
 
 $this->title = 'Register as an Employer';
 $this->params['breadcrumbs'][] = $this->title;
+
+$css = "
+div.required label:after {
+    content: ' *';
+    color: red;
+}";
+$this->registerCss($css);
 ?>
 <div class="panel">
     <div class="panel-heading">
@@ -40,14 +47,43 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
         ]);
         ?>
-
-
-        <?= $form->field($model, 'employer_email')->textInput(['placeholder' => 'email@company.com']) ?>
-        <?= $form->field($model, 'employer_password_hash')->passwordInput(['placeholder' => '***']) ?>
-        <?= $form->field($model, 'employer_company_name') ?>
-        <?= $form->field($model, 'employer_contact_firstname') ?>
-        <?= $form->field($model, 'employer_contact_lastname') ?>
         
+        <h3><?= Yii::t('register', "Company Details") ?></h3>
+        
+        <?= $form->field($model, 'employer_company_name')->textInput(['placeholder' => Yii::t('register', 'Company Name')]) ?>
+        <?= $form->field($model, 'employer_website')->input("url", ['placeholder' => 'http://yourwebsite.com']) ?>
+        <?= $form->field($model, 'city_id',[
+                'template' => "{label}\n{beginWrapper}\n"
+                                        . "<div class=''>\n<div class=''>\n"
+                                        . "{input}"
+                                        . "</div>\n</div>\n{hint}\n{error}\n"
+                                    . "{endWrapper}",
+            ])->dropDownList(
+                ArrayHelper::map(common\models\City::find("country_id=84")->all(), "city_id", 
+                        $this->params['isArabic']?"city_name_ar":"city_name_en"), [
+                'class' => 'selectpicker',
+                'data-live-search' => 'true',
+                'data-width' => 'auto'
+            ]) ?>
+        <?= $form->field($model, 'industry_id',[
+                'template' => "{label}\n{beginWrapper}\n"
+                                        . "<div class=''>\n<div class=''>\n"
+                                        . "{input}"
+                                        . "</div>\n</div>\n{hint}\n{error}\n"
+                                    . "{endWrapper}",
+            ])->dropDownList(
+                ArrayHelper::map(common\models\Industry::find()->all(), "industry_id", 
+                        $this->params['isArabic']?"industry_name_ar":"industry_name_en"), [
+                'class' => 'selectpicker',
+                'data-live-search' => 'true',
+                'data-width' => 'auto'
+            ]) ?>
+        
+        
+        <br/>
+        <h3><?= Yii::t('register', "User Details") ?></h3>
+
+
         <?= $form->field($model, 'employer_email_preference',[
                 'template' => "{label}\n{beginWrapper}\n"
                                         . "<div class=''>\n<div class=''>\n"
@@ -55,23 +91,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                         . "</div>\n</div>\n{hint}\n{error}\n"
                                     . "{endWrapper}",
             ])->dropDownList([
-                Employer::NOTIFICATION_DAILY => "Daily when students apply",
-                Employer::NOTIFICATION_WEEKLY => "Weekly Summary",
-                Employer::NOTIFICATION_OFF => "Off",
+                Employer::NOTIFICATION_DAILY => Yii::t('register', "Daily when students apply"),
+                Employer::NOTIFICATION_WEEKLY => Yii::t('register', "Weekly Summary"),
+                Employer::NOTIFICATION_OFF => Yii::t('register', "Off"),
             ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
+        <?= $form->field($model, 'employer_contact_firstname')->textInput(['placeholder' => Yii::t('register', 'First Name')]) ?>
+        <?= $form->field($model, 'employer_contact_lastname')->textInput(['placeholder' => Yii::t('register', 'Last Name')]) ?>
+        <?= $form->field($model, 'employer_email')->input('email', ['placeholder' => 'email@company.com']) ?>
+        <?= $form->field($model, 'employer_password_hash')->passwordInput(['placeholder' => '***']) ?>
         
-        <?= $form->field($model, 'city_id',[
-                'template' => "{label}\n{beginWrapper}\n"
-                                        . "<div class=''>\n<div class=''>\n"
-                                        . "{input}"
-                                        . "</div>\n</div>\n{hint}\n{error}\n"
-                                    . "{endWrapper}",
-            ])->dropDownList(ArrayHelper::map(common\models\City::find("country_id=84")->all(), "city_id", "city_name_en"), [
-                'class' => 'selectpicker',
-                'data-live-search' => 'true',
-                'data-width' => 'auto'
-            ]) ?>
-
         
         <div class="form-group">
             <br/>
