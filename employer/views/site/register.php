@@ -78,6 +78,17 @@ $this->registerCss($css);
                 'data-live-search' => 'true',
                 'data-width' => 'auto'
             ]) ?>
+        <?= $form->field($model, 'employer_logo')->widget(kartik\file\FileInput::classname(), [
+        'options' => ['accept' => 'image/*'],
+        'pluginOptions' => [
+            'showCaption' => false,
+            'showRemove' => false,
+            'showUpload' => false,
+            'browseClass' => 'btn btn-primary btn-block',
+            'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
+            'browseLabel' =>  Yii::t('register', 'Upload Logo (Optional)')
+        ],
+    ]) ?>
         
         
         <br/>
