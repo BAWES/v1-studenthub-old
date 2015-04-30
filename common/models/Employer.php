@@ -62,7 +62,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['industry_id', 'city_id', 'employer_company_desc', 'employer_num_employees', 'employer_contact_firstname', 
+            [['industry_id', 'city_id', 'employer_company_desc', 'employer_contact_firstname', 
                 'employer_password_hash', 'employer_company_name',
                 'employer_contact_lastname', 'employer_email_preference', 'employer_email', 'employer_auth_key'], 'required'],
             
@@ -120,7 +120,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             'employer_logo' => Yii::t('app', 'Logo'),
             'employer_website' => Yii::t('app', 'Website'),
             'employer_company_desc' => Yii::t('app', 'Description'),
-            'employer_num_employees' => Yii::t('app', 'Num Employees'),
+            'employer_num_employees' => Yii::t('app', 'Number of Employees'),
             'employer_contact_firstname' => Yii::t('app', 'Contact First name'),
             'employer_contact_lastname' => Yii::t('app', 'Contact Last name'),
             'employer_contact_number' => Yii::t('app', 'Phone Number'),

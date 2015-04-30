@@ -79,16 +79,22 @@ $this->registerCss($css);
                 'data-width' => 'auto'
             ]) ?>
         <?= $form->field($model, 'employer_logo')->widget(kartik\file\FileInput::classname(), [
-        'options' => ['accept' => 'image/*'],
-        'pluginOptions' => [
-            'showCaption' => false,
-            'showRemove' => false,
-            'showUpload' => false,
-            'browseClass' => 'btn btn-primary btn-block',
-            'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
-            'browseLabel' =>  Yii::t('register', 'Upload Logo (Optional)')
-        ],
-    ]) ?>
+            'options' => ['accept' => 'image/*'],
+            'pluginOptions' => [
+                'showCaption' => false,
+                'showRemove' => false,
+                'showUpload' => false,
+                'browseClass' => 'btn btn-primary btn-block',
+                'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
+                'browseLabel' =>  Yii::t('register', 'Upload Logo (Optional)')
+            ],
+        ]) ?>
+        <?= $form->field($model, 'employer_num_employees')->input("number", ['placeholder' => 'Average # of Employees']) ?>
+        <?= $form->field($model, 'employer_company_desc')->textarea([
+            'class' => 'form-control js-auto-size',
+            'rows' => 1,
+            'placeholder' => "Describe your company"
+            ]) ?>
         
         
         <br/>
