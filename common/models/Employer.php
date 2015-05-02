@@ -66,7 +66,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
                 'employer_password_hash', 'employer_company_name', 'employer_contact_number',
                 'employer_contact_lastname', 'employer_email_preference', 'employer_email'], 'required'],
             
-            [['industry_id', 'city_id', 'employer_num_employees', 'employer_email_preference'], 'integer'],
+            [['industry_id', 'city_id', 'employer_contact_number', 'employer_num_employees', 'employer_email_preference'], 'integer'],
             [['employer_company_desc'], 'string'],
             [['employer_company_name', 'employer_website', 'employer_contact_firstname', 'employer_contact_lastname', 'employer_email', 'employer_password_hash', 'employer_password_reset_token'], 'string', 'max' => 255],
             
@@ -76,6 +76,8 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             ['employer_email', 'unique', 'targetClass' => '\common\models\Employer', 
                 'message' => \Yii::t('frontend','This email address is already registered.')],
             
+            //URL Validator
+            ['employer_website', 'url', 'defaultScheme' => 'http'],
             
             //Validate existence of CityID and IndustryId selected
             ['city_id', 'exist',
