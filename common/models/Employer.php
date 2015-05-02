@@ -84,6 +84,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             
             //Default Values
             ['employer_language_pref', 'default', 'value' => 'en-US'],
+            [['employer_logo', 'employer_website'], 'default'],
             
             //Email preference rules
             ['employer_email_verification', 'default', 'value' => self::EMAIL_NOT_VERIFIED],
