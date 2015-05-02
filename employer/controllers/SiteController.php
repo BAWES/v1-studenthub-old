@@ -69,11 +69,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if($model->validate()){
                 $model->signup();
-                    //Render/Redirect to a thank you page here
-                    //Similar to Student Model
-
-                    //However activation action will automatically log them in / redirect to portal
-                
+                return $this->render('thanks');
             }else{
                 foreach($model->errors as $error => $errorText){
                     Yii::$app->getSession()->setFlash('error', $errorText);
