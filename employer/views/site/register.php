@@ -40,20 +40,48 @@ $this->registerCss($css);
 
     <div class="panel-body">
         <?php
+        //English Field Templates
+        $fieldTemplate = "{label}\n{beginWrapper}\n"
+                        . "<div class='inputer'>\n<div class='input-wrapper'>\n"
+                        . "{input}"
+                        . "</div>\n</div>\n{hint}\n{error}\n"
+                        . "{endWrapper}";
+        
+        $selectTemplate = "{label}\n{beginWrapper}\n"
+                        . "<div class=''>\n<div class=''>\n"
+                        . "{input}"
+                        . "</div>\n</div>\n{hint}\n{error}\n"
+                        . "{endWrapper}";
+        
+        //Arabic Field Templates
+        if($this->params['isArabic']){
+            $fieldTemplate = "{beginWrapper}\n"
+                        . "<div class='inputer'>\n<div class='input-wrapper'>\n"
+                        . "{input}"
+                        . "</div>\n</div>\n{hint}\n{error}\n"
+                        . "{endWrapper}\n{label}";
+            
+            $selectTemplate = "{beginWrapper}\n"
+                        . "<div class=''>\n<div class=''>\n"
+                        . "{input}"
+                        . "</div>\n</div>\n{hint}\n{error}\n"
+                        . "{endWrapper}\n{label}";
+        }
+        
+        
+        /**
+         * Start Form
+         */
         $form = ActiveForm::begin([
                     'id' => 'form-signup',
                     'layout' => 'horizontal',
                     'options' => ['enctype' => 'multipart/form-data'],
                     'fieldConfig' => [
-                        'template' => "{label}\n{beginWrapper}\n"
-                                        . "<div class='inputer'>\n<div class='input-wrapper'>\n"
-                                        . "{input}"
-                                        . "</div>\n</div>\n{hint}\n{error}\n"
-                                    . "{endWrapper}",
+                        'template' => $fieldTemplate,
                         'horizontalCssClasses' => [
-                            'label' => 'col-md-3',
+                            'label' => $this->params['isArabic']? 'col-xs-4 col-md-3' : 'col-md-3',
                             'offset' => '',
-                            'wrapper' => 'col-md-5',
+                            'wrapper' => $this->params['isArabic']? "col-xs-8 col-md-5  col-md-offset-4" : "col-md-5",
                             'error' => '',
                             'hint' => '',
                         ],
@@ -66,11 +94,7 @@ $this->registerCss($css);
         <?= $form->field($model, 'employer_company_name')->textInput(['placeholder' => Yii::t('register', 'Company Name')]) ?>
         <?= $form->field($model, 'employer_website')->input("url", ['placeholder' => 'http://yourwebsite.com']) ?>
         <?= $form->field($model, 'city_id',[
-                'template' => "{label}\n{beginWrapper}\n"
-                                        . "<div class=''>\n<div class=''>\n"
-                                        . "{input}"
-                                        . "</div>\n</div>\n{hint}\n{error}\n"
-                                    . "{endWrapper}",
+                'template' => $selectTemplate,
             ])->dropDownList(
                 ArrayHelper::map(common\models\City::find("country_id=84")->all(), "city_id", 
                         $this->params['isArabic']?"city_name_ar":"city_name_en"), [
@@ -79,11 +103,7 @@ $this->registerCss($css);
                 'data-width' => '100%'
             ]) ?>
         <?= $form->field($model, 'industry_id',[
-                'template' => "{label}\n{beginWrapper}\n"
-                                        . "<div class=''>\n<div class=''>\n"
-                                        . "{input}"
-                                        . "</div>\n</div>\n{hint}\n{error}\n"
-                                    . "{endWrapper}",
+                'template' => $selectTemplate,
             ])->dropDownList(
                 ArrayHelper::map(common\models\Industry::find()->all(), "industry_id", 
                         $this->params['isArabic']?"industry_name_ar":"industry_name_en"), [
@@ -115,11 +135,7 @@ $this->registerCss($css);
 
 
         <?= $form->field($model, 'employer_email_preference',[
-                'template' => "{label}\n{beginWrapper}\n"
-                                        . "<div class=''>\n<div class=''>\n"
-                                        . "{input}"
-                                        . "</div>\n</div>\n{hint}\n{error}\n"
-                                    . "{endWrapper}",
+                'template' => $selectTemplate,
             ])->dropDownList([
                 Employer::NOTIFICATION_DAILY => Yii::t('register', "Daily when students apply"),
                 Employer::NOTIFICATION_WEEKLY => Yii::t('register', "Weekly Summary"),
