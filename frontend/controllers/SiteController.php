@@ -89,6 +89,11 @@ class SiteController extends Controller
         $student->sendVerificationEmail();
          * 
          */
+        /*
+        $employer = \employer\models\Employer::findOne(1);
+        $employer->sendVerificationEmail();
+         * 
+         */
     }
 
     public function actionLogout()
