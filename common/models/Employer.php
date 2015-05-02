@@ -7,6 +7,7 @@ use yii\base\NotSupportedException;
 use yii\web\IdentityInterface;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "employer".
@@ -38,8 +39,8 @@ use yii\db\Expression;
  * @property NotificationEmployer[] $notificationEmployers
  * @property Payment[] $payments
  */
-class Employer extends \yii\db\ActiveRecord implements IdentityInterface
-{
+class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
+
     //Email notification preference values for `employer_email_preference`
     const NOTIFICATION_OFF = 0;
     const NOTIFICATION_DAILY = 1;
@@ -47,65 +48,59 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
     //Email verification values for `employer_email_verification`
     const EMAIL_VERIFIED = 1;
     const EMAIL_NOT_VERIFIED = 0;
-    
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'employer';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    { //Make sure to never include employer_credit in rules - so its never allowed to be massively assigned
+    public function rules() { //Make sure to never include employer_credit in rules - so its never allowed to be massively assigned
         return [
-            [['industry_id', 'city_id', 'employer_company_desc', 'employer_contact_firstname', 
-                'employer_password_hash', 'employer_company_name', 'employer_contact_number',
-                'employer_contact_lastname', 'employer_email_preference', 'employer_email'], 'required'],
-            
+            [['industry_id', 'city_id', 'employer_company_desc', 'employer_contact_firstname',
+            'employer_password_hash', 'employer_company_name', 'employer_contact_number',
+            'employer_contact_lastname', 'employer_email_preference', 'employer_email'], 'required'],
             [['industry_id', 'city_id', 'employer_contact_number', 'employer_num_employees', 'employer_email_preference'], 'integer'],
             [['employer_company_desc'], 'string'],
-            [['employer_company_name', 'employer_website', 'employer_contact_firstname', 'employer_contact_lastname', 
-                'employer_email', 'employer_password_hash', 'employer_password_reset_token'], 'string', 'max' => 255],
-            
+            [['employer_company_name', 'employer_website', 'employer_contact_firstname', 'employer_contact_lastname',
+            'employer_email', 'employer_password_hash', 'employer_password_reset_token'], 'string', 'max' => 255],
             //Unique emails
             ['employer_email', 'filter', 'filter' => 'trim'],
             ['employer_email', 'email'],
-            ['employer_email', 'unique', 'targetClass' => '\common\models\Employer', 
-                'message' => \Yii::t('frontend','This email address is already registered.')],
-            
+            ['employer_email', 'unique', 'targetClass' => '\common\models\Employer',
+                'message' => \Yii::t('frontend', 'This email address is already registered.')],
+            //Upload University Logo
+            ['employer_logo', 'file', 'extensions' => 'jpg, png, gif', 'maxSize' => 10000000,
+                'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for your Logo: {extensions}')],
             //URL Validator
             ['employer_website', 'url', 'defaultScheme' => 'http'],
-            
             //Validate existence of CityID and IndustryId selected
             ['city_id', 'exist',
                 'targetClass' => '\common\models\City',
                 'targetAttribute' => 'city_id',
-                'message' => \Yii::t('frontend','This city does not exist.')
+                'message' => \Yii::t('frontend', 'This city does not exist.')
             ],
             ['industry_id', 'exist',
                 'targetClass' => '\common\models\Industry',
                 'targetAttribute' => 'industry_id',
-                'message' => \Yii::t('frontend','This industry does not exist.')
+                'message' => \Yii::t('frontend', 'This industry does not exist.')
             ],
-            
             //Length Requirements
             ['employer_contact_number', 'string', 'length' => 8],
             ['employer_password_hash', 'string', 'length' => [5]],
-            
             //Default Values
             ['employer_language_pref', 'default', 'value' => 'en-US'],
             [['employer_logo', 'employer_website'], 'default'],
-            
             //Email preference rules
             ['employer_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
             ['employer_email_preference', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
         ];
     }
-    
+
     public function behaviors() {
         return [
             [
@@ -116,13 +111,11 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             ],
         ];
     }
-    
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'employer_id' => Yii::t('app', 'Employer ID'),
             'industry_id' => Yii::t('app', 'Industry'),
@@ -142,56 +135,76 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             'employer_auth_key' => Yii::t('app', 'Auth Key'),
             'employer_password_hash' => Yii::t('app', 'Password'),
             'employer_password_reset_token' => Yii::t('app', 'Password Reset Token'),
-            'employer_language_pref' => Yii::t('app', 'Language Preference'), 
+            'employer_language_pref' => Yii::t('app', 'Language Preference'),
             'employer_datetime' => Yii::t('app', 'Datetime Registered'),
         ];
     }
 
     /**
+     * Uploads the new logo if $this->employer_logo is an instance of UploadedFile
+     */
+    public function uploadLogo() {
+        if($this->employer_logo instanceof UploadedFile){
+            $filename = Yii::$app->security->generateRandomString() . "." . $this->employer_logo->extension;
+
+            //Resize file using imagine
+            $newTmpName = $this->employer_logo->tempName . "." . $this->employer_logo->extension;
+
+            $imagine = new \Imagine\Gd\Imagine();
+            $image = $imagine->open($this->employer_logo->tempName);
+            $image->resize($image->getSize()->widen(500));
+            $image->save($newTmpName);
+
+            //Overwrite old filename for S3 uploading
+            $this->employer_logo->tempName = $newTmpName;
+
+            //Save to S3 Temporary folder
+            $awsResult = Yii::$app->resourceManager->save($this->employer_logo, "employer-logo/" . $filename);
+            if($awsResult){
+                $this->employer_logo = $filename;
+            }
+        }
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIndustry()
-    {
+    public function getIndustry() {
         return $this->hasOne(Industry::className(), ['industry_id' => 'industry_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCity()
-    {
+    public function getCity() {
         return $this->hasOne(City::className(), ['city_id' => 'city_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getJobs()
-    {
+    public function getJobs() {
         return $this->hasMany(Job::className(), ['employer_id' => 'employer_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNotificationEmployers()
-    {
+    public function getNotificationEmployers() {
         return $this->hasMany(NotificationEmployer::className(), ['employer_id' => 'employer_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPayments()
-    {
+    public function getPayments() {
         return $this->hasMany(Payment::className(), ['employer_id' => 'employer_id']);
     }
-    
-    
+
     /*
      * Start Identity Code
      */
-    
+
     /**
      * @inheritdoc
      */
@@ -308,4 +321,5 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
     public function removePasswordResetToken() {
         $this->employer_password_reset_token = null;
     }
+
 }

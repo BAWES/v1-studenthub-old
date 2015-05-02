@@ -43,6 +43,7 @@ $this->registerCss($css);
         $form = ActiveForm::begin([
                     'id' => 'form-signup',
                     'layout' => 'horizontal',
+                    'options' => ['enctype' => 'multipart/form-data'],
                     'fieldConfig' => [
                         'template' => "{label}\n{beginWrapper}\n"
                                         . "<div class='inputer'>\n<div class='input-wrapper'>\n"

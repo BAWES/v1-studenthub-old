@@ -7,6 +7,7 @@ use yii\web\Controller;
 use employer\models\LoginForm;
 use employer\models\Employer;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * Site controller
@@ -67,7 +68,14 @@ class SiteController extends Controller
         $model = new \employer\models\Employer();
         
         if ($model->load(Yii::$app->request->post())) {
+            $model->employer_logo = UploadedFile::getInstance($model, 'employer_logo');
+            
             if($model->validate()){
+                if($model->employer_logo){
+                    //file upload is valid - Upload file to amazon S3
+                    $model->uploadLogo();
+                }
+                
                 $model->signup();
                 return $this->render('thanks');
             }else{
