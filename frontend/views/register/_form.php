@@ -168,7 +168,7 @@ Yii::$app->formatter->thousandSeparator = "";
         <option value='' selected disabled><?= Yii::t('register', 'Year') ?></option>
         <?php
         $currentYear = date("Y");
-        $numberOfYears = 7;
+        $numberOfYears = 9;
         for ($i = 0; $i < $numberOfYears; $i++) {
             $yearOption = $currentYear - $i;
             echo "<option value='$yearOption'>".Yii::$app->formatter->asInteger($yearOption)."</option>";
@@ -181,7 +181,7 @@ Yii::$app->formatter->thousandSeparator = "";
     <select class="selectpicker" name="student_graduating_year" data-width="130px">
         <option value='' selected disabled><?= Yii::t('register', 'Year') ?></option>
         <?php
-        $currentYear = date("Y") - 1;
+        $currentYear = date("Y") - 3;
         $numberOfYears = 11;
         for ($i = 0; $i < $numberOfYears; $i++) {
             $yearOption = $currentYear + $i;
