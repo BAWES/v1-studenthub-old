@@ -132,8 +132,9 @@ $this->registerCss($css);
         
         
         <div class="form-group">
-            <br/>
-            <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+            <div class="col-md-5 col-md-offset-3">
+                <?= Html::submitButton('Signup', ['class' => 'btn btn-primary btn-block btn-ripple', 'name' => 'signup-button']) ?>
+            </div>
         </div>
         
         <?php ActiveForm::end(); ?>
