@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 30, 2015 at 05:08 PM
+-- Generation Time: May 02, 2015 at 01:28 PM
 -- Server version: 5.6.23
 -- PHP Version: 5.6.7
 
@@ -389,7 +389,15 @@ CREATE TABLE IF NOT EXISTS `employer` (
   `employer_password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `employer_language_pref` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'en-US',
   `employer_datetime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `employer`
+--
+
+INSERT INTO `employer` (`employer_id`, `industry_id`, `city_id`, `employer_company_name`, `employer_logo`, `employer_website`, `employer_company_desc`, `employer_num_employees`, `employer_contact_firstname`, `employer_contact_lastname`, `employer_contact_number`, `employer_credit`, `employer_email_preference`, `employer_email`, `employer_email_verification`, `employer_auth_key`, `employer_password_hash`, `employer_password_reset_token`, `employer_language_pref`, `employer_datetime`) VALUES
+(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '0', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$SRXEKOXoc0HzY3TeKiiHp.CvmK.9dkH3WafV49prFXyOhwuin36N2', '', 'en-US', '2015-05-02 16:15:30'),
+(2, 1, 1, 'Test Company', NULL, NULL, 'sqSQ', NULL, 'DWAD', 'dwadwa', '99811042', '0', 1, 'dwadwadw@dwad.com', 1, 'RkJCWLIjxJPziHMmyx-GTHgf9Q8RBndT', '$2y$13$KONg0F9VYiie8LDelIsuZeSo6Hd4AuB/1Xq2GflzO7Eqw4Rdl3wOK', '', 'en-US', '2015-05-02 16:27:38');
 
 -- --------------------------------------------------------
 
@@ -2428,7 +2436,7 @@ ALTER TABLE `degree`
 -- AUTO_INCREMENT for table `employer`
 --
 ALTER TABLE `employer`
-  MODIFY `employer_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `employer_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `filter`
 --
