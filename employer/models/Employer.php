@@ -19,10 +19,10 @@ class Employer extends \common\models\Employer {
         if($this->employer_language_pref == "en-US"){
             //Send English Email
             return Yii::$app->mailer->compose([
-                                'html' => 'verificationEmail-html',
-                                'text' => 'verificationEmail-text',
+                                'html' => 'employer/verificationEmail-html',
+                                'text' => 'employer/verificationEmail-text',
                                     ], [
-                                'student' => $this
+                                'employer' => $this
                             ])
                             ->setFrom(['contact@studenthub.co' => 'StudentHub'])
                             ->setTo($this->employer_email)
@@ -34,10 +34,10 @@ class Employer extends \common\models\Employer {
             
             //Send Arabic Email
             return Yii::$app->mailer->compose([
-                                'html' => 'verificationEmail-ar-html',
-                                'text' => 'verificationEmail-ar-text',
+                                'html' => 'employer/verificationEmail-ar-html',
+                                'text' => 'employer/verificationEmail-ar-text',
                                     ], [
-                                'student' => $this
+                                'employer' => $this
                             ])
                             ->setFrom(['contact@studenthub.co' => 'StudentHub'])
                             ->setTo($this->employer_email)
