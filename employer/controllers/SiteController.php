@@ -4,7 +4,7 @@ namespace employer\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use common\models\LoginForm;
+use employer\models\LoginForm;
 use yii\filters\VerbFilter;
 
 /**
@@ -63,12 +63,19 @@ class SiteController extends Controller
     
     public function actionRegister()
     {
-        $model = new \common\models\Employer();
+        $model = new \employer\models\Employer();
         
         if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
+            if($model->validate()){
+                $model->signup();
+                    //Render/Redirect to a thank you page here
+                    //Similar to Student Model
+
+                    //However activation action will automatically log them in / redirect to portal
+                
+            }else{
+                foreach($model->errors as $error => $errorText){
+                    Yii::$app->getSession()->setFlash('error', $errorText);
                 }
             }
         }
