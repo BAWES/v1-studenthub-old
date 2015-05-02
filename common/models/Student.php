@@ -113,6 +113,10 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             ['student_language_pref', 'default', 'value' => 'en-US'],
             ['student_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
             
+            //Enrolment year canot be higher than graduation year
+            ['student_enrolment_year', 'compare', 'compareAttribute' => 'student_graduating_year', 'operator' => '<=',
+                'message' => \Yii::t('frontend','Enrollment year must be before graduation year.')],
+            
             //ID upload only required when university requires verification
             ['student_verification_attachment', 'required', 'message' => \Yii::t('frontend','Please upload a photo of your university id card'),
                 'when' => function($model) {
