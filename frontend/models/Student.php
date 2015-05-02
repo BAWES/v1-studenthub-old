@@ -164,8 +164,8 @@ class Student extends \common\models\Student {
         if($this->student_language_pref == "en-US"){
             //Send English Email
             return Yii::$app->mailer->compose([
-                                'html' => 'verificationEmail-html',
-                                'text' => 'verificationEmail-text',
+                                'html' => 'student/verificationEmail-html',
+                                'text' => 'student/verificationEmail-text',
                                     ], [
                                 'student' => $this
                             ])
@@ -179,8 +179,8 @@ class Student extends \common\models\Student {
             
             //Send Arabic Email
             return Yii::$app->mailer->compose([
-                                'html' => 'verificationEmail-ar-html',
-                                'text' => 'verificationEmail-ar-text',
+                                'html' => 'student/verificationEmail-ar-html',
+                                'text' => 'student/verificationEmail-ar-text',
                                     ], [
                                 'student' => $this
                             ])

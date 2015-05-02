@@ -84,9 +84,11 @@ class SiteController extends Controller
     public function actionTest()
     {
         //Test activation email
-        
+        /*
         $student = \frontend\models\Student::findOne(13);
         $student->sendVerificationEmail();
+         * 
+         */
     }
 
     public function actionLogout()
