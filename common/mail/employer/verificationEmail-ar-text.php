@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 /* @var $employer common\models\Employer */
 
-$verificationUrl = Yii::$app->urlManager->createAbsoluteUrl(['register/email-verify', 'code' => $employer->employer_auth_key, 'verify' => $employer->employer_id]);
+$verificationUrl = Yii::$app->urlManager->createAbsoluteUrl(['site/email-verify', 'code' => $employer->employer_auth_key, 'verify' => $employer->employer_id]);
 ?>
 
 أهلا <?= $employer->employer_contact_firstname ?>

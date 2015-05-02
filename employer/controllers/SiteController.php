@@ -5,6 +5,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use employer\models\LoginForm;
+use employer\models\Employer;
 use yii\filters\VerbFilter;
 
 /**
@@ -83,6 +84,35 @@ class SiteController extends Controller
         return $this->render('register', [
             'model' => $model,
         ]);
+    }
+    
+    /**
+     * Email verification by clicking on link in email which includes the code that will verify
+     * @param string $code Verification key that will verify your account
+     * @param int $verify Employer ID to verify
+     * @throws NotFoundHttpException if the code is invalid
+     */
+    public function actionEmailVerify($code, $verify) {
+        //Code is his auth key, check if code is valid
+        $employer = Employer::findOne(['employer_auth_key'=>$code, 'employer_id' => (int) $verify]);
+        if($employer){
+            //If not verified
+            if($employer->employer_email_verification == Employer::EMAIL_NOT_VERIFIED){
+                //Verify this employers  email
+                $employer->employer_email_verification = Employer::EMAIL_VERIFIED;
+                $employer->save(false);
+                
+                //Log him in
+                Yii::$app->user->login($employer, 0);
+            }
+            
+            //Render thanks for verifying + Button to go to his portal
+            return $this->render('verified');
+            
+        } else {
+            //inserted code is invalid
+            throw new \yii\web\BadRequestHttpException(Yii::t('register', 'Invalid email verification code'));
+        }
     }
     
 

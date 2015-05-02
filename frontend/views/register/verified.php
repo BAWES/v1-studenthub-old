@@ -14,16 +14,16 @@ $this->params['breadcrumbs'][] = Yii::t('register', 'Email Verified');
 
     <div class="panel-body">
 
-        <h3>Thanks for verifying your email</h3>
+        <h3><?= Yii::t('register', 'Thanks for verifying your email') ?></h3>
         
         <?php if($idVerified){
             //Render Thanks for verifying
             //+ Link to job search area
             ?>
         <p>
-            You may now fully access <b>StudentHub</b>
+            <?= Yii::t('register', 'You may now fully access <b>StudentHub</b>') ?>
         </p>
-        <a href="#" class="btn btn-primary">Browse Jobs</a>
+        <a href="#" class="btn btn-primary"><?= Yii::t('register', 'Browse Jobs') ?></a>
         
         
         
@@ -32,12 +32,12 @@ $this->params['breadcrumbs'][] = Yii::t('register', 'Email Verified');
             //+ Link to contact us for assistance
             ?>
         <p>
-            Your account will activate as soon as we verify your Student ID
+            <?= Yii::t('register', 'Your account will activate as soon as we verify your Student ID') ?>
         </p>
         <p>
-            Please feel free to contact us if you need assistance.
+            <?= Yii::t('register', 'Please feel free to contact us if you need assistance.') ?>
         </p>
-        <a href="#" class="btn btn-primary">Contact Us</a>
+        <a href="#" class="btn btn-primary"><?= Yii::t('register', 'Contact Us') ?></a>
         
         
         <?php } ?>
