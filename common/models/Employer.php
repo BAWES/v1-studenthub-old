@@ -60,7 +60,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
      * @inheritdoc
      */
     public function rules()
-    {
+    { //Make sure to never include employer_credit in rules - so its never allowed to be massively assigned
         return [
             [['industry_id', 'city_id', 'employer_company_desc', 'employer_contact_firstname', 
                 'employer_password_hash', 'employer_company_name', 'employer_contact_number',
@@ -68,7 +68,6 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             
             [['industry_id', 'city_id', 'employer_num_employees', 'employer_email_preference'], 'integer'],
             [['employer_company_desc'], 'string'],
-            [['employer_credit'], 'number'],
             [['employer_company_name', 'employer_website', 'employer_contact_firstname', 'employer_contact_lastname', 'employer_email', 'employer_password_hash', 'employer_password_reset_token'], 'string', 'max' => 255],
             
             //Unique emails
