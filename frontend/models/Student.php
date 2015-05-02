@@ -106,7 +106,7 @@ class Student extends \common\models\Student {
                 //If verification is not required for this university - set that the student identity is verified
                 $university = $this->university;
                 if($university){
-                    if($university->university_require_verify == University::VERIFICATION_NOT_REQUIRED){
+                    if($university->university_require_verify == \common\models\University::VERIFICATION_NOT_REQUIRED){
                         $this-> student_id_verification = self::ID_VERIFIED;
                     }
                 }
