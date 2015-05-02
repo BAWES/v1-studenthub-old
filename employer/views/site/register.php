@@ -126,6 +126,7 @@ $this->registerCss($css);
             ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
         <?= $form->field($model, 'employer_contact_firstname')->textInput(['placeholder' => Yii::t('register', 'First Name')]) ?>
         <?= $form->field($model, 'employer_contact_lastname')->textInput(['placeholder' => Yii::t('register', 'Last Name')]) ?>
+        <?= $form->field($model, 'employer_contact_number')->input('tel', ['placeholder' => Yii::t('register', 'Phone Number')]) ?>
         <?= $form->field($model, 'employer_email')->input('email', ['placeholder' => 'email@company.com']) ?>
         <?= $form->field($model, 'employer_password_hash')->passwordInput(['placeholder' => '***']) ?>
         

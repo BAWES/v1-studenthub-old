@@ -63,7 +63,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['industry_id', 'city_id', 'employer_company_desc', 'employer_contact_firstname', 
-                'employer_password_hash', 'employer_company_name',
+                'employer_password_hash', 'employer_company_name', 'employer_contact_number',
                 'employer_contact_lastname', 'employer_email_preference', 'employer_email'], 'required'],
             
             [['industry_id', 'city_id', 'employer_num_employees', 'employer_email_preference'], 'integer'],
@@ -123,7 +123,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             'employer_num_employees' => Yii::t('app', 'Number of Employees'),
             'employer_contact_firstname' => Yii::t('app', 'Contact First name'),
             'employer_contact_lastname' => Yii::t('app', 'Contact Last name'),
-            'employer_contact_number' => Yii::t('app', 'Phone Number'),
+            'employer_contact_number' => Yii::t('app', 'Contact Phone'),
             'employer_credit' => Yii::t('app', 'Credit'),
             'employer_email_preference' => Yii::t('app', 'Email Preference'),
             'employer_email' => Yii::t('app', 'Email'),
