@@ -89,6 +89,10 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
                 'message' => \Yii::t('frontend','This industry does not exist.')
             ],
             
+            //Length Requirements
+            ['employer_contact_number', 'string', 'length' => 8],
+            ['employer_password_hash', 'string', 'length' => [5]],
+            
             //Default Values
             ['employer_language_pref', 'default', 'value' => 'en-US'],
             [['employer_logo', 'employer_website'], 'default'],
