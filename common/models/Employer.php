@@ -78,9 +78,17 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
                 'message' => \Yii::t('frontend','This email address is already registered.')],
             
             
-            /**
-             * Validate existence of CityID and IndustryId selected
-             */
+            //Validate existence of CityID and IndustryId selected
+            ['city_id', 'exist',
+                'targetClass' => '\common\models\City',
+                'targetAttribute' => 'city_id',
+                'message' => \Yii::t('frontend','This city does not exist.')
+            ],
+            ['industry_id', 'exist',
+                'targetClass' => '\common\models\Industry',
+                'targetAttribute' => 'industry_id',
+                'message' => \Yii::t('frontend','This industry does not exist.')
+            ],
             
             //Default Values
             ['employer_language_pref', 'default', 'value' => 'en-US'],
