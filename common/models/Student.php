@@ -112,21 +112,6 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 'student_skill', 'student_hobby', 'student_sport', 'student_experience_company', 'student_experience_position'], 'default'],
             ['student_language_pref', 'default', 'value' => 'en-US'],
             ['student_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
-            ['student_email_verification', 'default', 'value' => self::EMAIL_NOT_VERIFIED],
-            ['student_id_verification', 'default', 'value' => self::ID_VERIFIED,
-                'when' => function($model){
-                //Set Student to ID verified should his university not require verification
-                if(isset($model->university_id)){
-                    $univId = (int) $model->university_id;
-                    $university = University::findOne($univId);
-                    if($university){
-                        //If verification is not required - let student ID be auto verified
-                        if($university->university_require_verify == University::VERIFICATION_NOT_REQUIRED){
-                            return true;
-                        }
-                    }
-                }
-            }],
             
             //ID upload only required when university requires verification
             ['student_verification_attachment', 'required', 'message' => \Yii::t('frontend','Please upload a photo of your university id card'),
@@ -203,10 +188,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             //Constant options
             ['student_status', 'in', 'range' => [self::STATUS_FULL_TIME, self::STATUS_PART_TIME]],
             ['student_gender', 'in', 'range' => [self::GENDER_MALE, self::GENDER_FEMALE]],
-            ['student_email_verification', 'in', 'range' => [self::EMAIL_VERIFIED, self::EMAIL_NOT_VERIFIED]],
             ['student_transportation', 'in', 'range' => [self::TRANSPORTATION_AVAILABLE, self::TRANSPORTATION_NOT_AVAILABLE]],
-            ['student_id_verification', 'in', 'range' => [self::ID_VERIFIED, self::ID_NOT_VERIFIED]],
-            ['student_banned', 'in', 'range' => [self::BAN_STUDENT_BANNED, self::BAN_STUDENT_NOT_BANNED]],
             ['student_email_preference', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
             ['student_english_level', 'in', 'range' => [self::ENGLISH_WEAK, self::ENGLISH_GOOD, self::ENGLISH_FAIR]],
         ];

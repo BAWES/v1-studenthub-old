@@ -103,6 +103,14 @@ class Student extends \common\models\Student {
                 //Set Language preference to current language
                 $this->student_language_pref = Yii::$app->language;
                 
+                //If verification is not required for this university - set that the student identity is verified
+                $university = $this->university;
+                if($university){
+                    if($university->university_require_verify == University::VERIFICATION_NOT_REQUIRED){
+                        $this-> student_id_verification = self::ID_VERIFIED;
+                    }
+                }
+                
                 //Move verification attachment from `temporary` bucket to `student-identification`
                 if ($this->student_verification_attachment) {
                     $filename = $this->student_verification_attachment;

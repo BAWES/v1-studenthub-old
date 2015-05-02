@@ -68,7 +68,8 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             
             [['industry_id', 'city_id', 'employer_contact_number', 'employer_num_employees', 'employer_email_preference'], 'integer'],
             [['employer_company_desc'], 'string'],
-            [['employer_company_name', 'employer_website', 'employer_contact_firstname', 'employer_contact_lastname', 'employer_email', 'employer_password_hash', 'employer_password_reset_token'], 'string', 'max' => 255],
+            [['employer_company_name', 'employer_website', 'employer_contact_firstname', 'employer_contact_lastname', 
+                'employer_email', 'employer_password_hash', 'employer_password_reset_token'], 'string', 'max' => 255],
             
             //Unique emails
             ['employer_email', 'filter', 'filter' => 'trim'],
@@ -98,10 +99,6 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface
             //Default Values
             ['employer_language_pref', 'default', 'value' => 'en-US'],
             [['employer_logo', 'employer_website'], 'default'],
-            
-            //Email preference rules
-            ['employer_email_verification', 'default', 'value' => self::EMAIL_NOT_VERIFIED],
-            ['employer_email_verification', 'in', 'range' => [self::EMAIL_VERIFIED, self::EMAIL_NOT_VERIFIED]],
             
             //Email preference rules
             ['employer_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
