@@ -32,7 +32,7 @@ $checkboxTemplate = "<div class=\"checkboxer\">\n"
     <div class="panel-body">
         
         <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-5 <?= $this->params['isArabic']?"col-lg-offset-7":"" ?>">
                 <?php $form = ActiveForm::begin([
                     'id' => 'login-form',
                     'fieldConfig' => [
@@ -47,20 +47,22 @@ $checkboxTemplate = "<div class=\"checkboxer\">\n"
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
                 
                 
-                <div style="color:#999;margin:1em 0">
+                <div class="form-group">
+                <?= Html::submitButton(Yii::t("employer",'Login'), ['class' => 'btn btn-teal', 'name' => 'login-button']) ?>
+                </div>
+                
+                
+                <div style="color:#999;margin:1.5em 0">
                     <?= Yii::t("employer", "If you forgot your password you can") ?>
                     <?= Html::a(Yii::t("employer",'reset it'), ['site/request-password-reset']) ?>
                     <br/>
                     <?= Yii::t("employer", "Don't have an account? <a href='{url}'>Register</a>", [
                         'url' => Url::to(['site/register']),
                     ]) ?>
-                    
                 </div>
                 
                 
-                <div class="form-group">
-                <?= Html::submitButton(Yii::t("employer",'Login'), ['class' => 'btn btn-teal', 'name' => 'login-button']) ?>
-                </div>
+                
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
