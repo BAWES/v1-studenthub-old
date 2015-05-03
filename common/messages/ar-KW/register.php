@@ -30,7 +30,7 @@ return [
     'Contact Us' => 'اتصل بنا',
     'Cooking, playing guitar, and hiking' => 'الطبخ، العزف على الجيتار، والمشي لمسافات طويلة',
     'Daily as jobs are posted' => 'يوميا عندما يتم نشر فرص العمل',
-    'Daily when students apply' => 'يومياً في حل تقديم الطلاب',
+    'Daily when students apply' => 'يوميا',
     'Degree' => 'شهادة',
     'Describe your company' => 'وصف الشركة',
     'Email Verified' => 'البريد الإلكتروني تم التحقق منه',
