@@ -59,7 +59,7 @@ class PasswordResetRequestForm extends Model
             if ($employer->save()) {
                 if($employer->employer_language_pref == "en-US"){
                     //Send English Email
-                    return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['user' => $employer])
+                    return \Yii::$app->mailer->compose(['html' => 'employer/passwordResetToken-html', 'text' => 'employer/passwordResetToken-text'], ['employer' => $employer])
                         ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                         ->setTo($employer->employer_email)
                         ->setSubject('[StudentHub] Password Reset')
@@ -68,7 +68,7 @@ class PasswordResetRequestForm extends Model
                     //Set language based on preference stored in DB
                     Yii::$app->view->params['isArabic'] = true;
                     
-                    return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['user' => $employer])
+                    return \Yii::$app->mailer->compose(['html' => 'employer/passwordResetToken-html', 'text' => 'employer/passwordResetToken-text'], ['employer' => $employer])
                         ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                         ->setTo($employer->employer_email)
                         ->setSubject('[StudentHub] إعادة تعيين كلمة المرور')
