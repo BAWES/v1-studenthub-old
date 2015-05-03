@@ -17,8 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Login' => 'تسجيل الدخول',
+    'Please click the verification link sent to you by email to activate your account.<br/><a href=\'{url}\'>Contact us</a> if you need any assistance' => 'الرجاء الضغط على الرابط الذي أرسل لك عن طريق البريد الإلكتروني لتفعيل حسابك.<br/><a href=\'{url}\'>إتصل بنا </a> إذا كنت تحتاج إلى مساعدة',
     'If you forgot your password you can' => 'إذا كنت قد نسيت كلمة المرور الخاصة بك يمكنك ',
+    'Login' => 'تسجيل الدخول',
     'Please fill out the following fields to login' => 'يرجى ملء الحقول التالية للدخول',
     'There is no employer with such email.' => 'لا يوجد صاحب العمل مع هذا البريد الإلكتروني.',
     'reset it' => 'إعادة تعيينها',

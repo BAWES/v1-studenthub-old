@@ -81,7 +81,10 @@ class LoginForm extends Model
                 return Yii::$app->user->login($this->getEmployer(), $this->rememberMe ? 3600 * 24 * 30 : 0);
             }else{
                 //Set Flash that employer needs to verify his email
-                Yii::$app->session->setFlash("warning", "Please click the verification link sent to you by email to activate your account.<br/><a href='#'>Contact us</a> if you need any assistance");
+                Yii::$app->session->setFlash("warning", 
+                        Yii::t('employer',"Please click the verification link sent to you by email to activate your account.<br/><a href='{url}'>Contact us</a> if you need any assistance",[
+                                    'url' => '#',
+                                ]));
             }
         }
         
