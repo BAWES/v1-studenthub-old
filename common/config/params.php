@@ -1,6 +1,6 @@
 <?php
 return [
     'adminEmail' => 'contact@studenthub.co',
-    'supportEmail' => 'help@studenthub.co',
+    'supportEmail' => 'contact@studenthub.co',
     'user.passwordResetTokenExpire' => 3600,
 ];
