@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use Yii;
 use common\models\Student;
 use yii\base\Model;
 
