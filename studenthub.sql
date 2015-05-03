@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 02, 2015 at 01:28 PM
+-- Generation Time: May 03, 2015 at 05:56 PM
 -- Server version: 5.6.23
 -- PHP Version: 5.6.7
 
@@ -388,16 +388,21 @@ CREATE TABLE IF NOT EXISTS `employer` (
   `employer_password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `employer_password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `employer_language_pref` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'en-US',
+  `employer_limit_email` datetime NOT NULL,
+  `employer_updated_datetime` datetime NOT NULL,
   `employer_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `employer`
 --
 
-INSERT INTO `employer` (`employer_id`, `industry_id`, `city_id`, `employer_company_name`, `employer_logo`, `employer_website`, `employer_company_desc`, `employer_num_employees`, `employer_contact_firstname`, `employer_contact_lastname`, `employer_contact_number`, `employer_credit`, `employer_email_preference`, `employer_email`, `employer_email_verification`, `employer_auth_key`, `employer_password_hash`, `employer_password_reset_token`, `employer_language_pref`, `employer_datetime`) VALUES
-(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '0', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$SRXEKOXoc0HzY3TeKiiHp.CvmK.9dkH3WafV49prFXyOhwuin36N2', '', 'en-US', '2015-05-02 16:15:30'),
-(2, 1, 1, 'Test Company', NULL, NULL, 'sqSQ', NULL, 'DWAD', 'dwadwa', '99811042', '0', 1, 'dwadwadw@dwad.com', 1, 'RkJCWLIjxJPziHMmyx-GTHgf9Q8RBndT', '$2y$13$KONg0F9VYiie8LDelIsuZeSo6Hd4AuB/1Xq2GflzO7Eqw4Rdl3wOK', '', 'en-US', '2015-05-02 16:27:38');
+INSERT INTO `employer` (`employer_id`, `industry_id`, `city_id`, `employer_company_name`, `employer_logo`, `employer_website`, `employer_company_desc`, `employer_num_employees`, `employer_contact_firstname`, `employer_contact_lastname`, `employer_contact_number`, `employer_credit`, `employer_email_preference`, `employer_email`, `employer_email_verification`, `employer_auth_key`, `employer_password_hash`, `employer_password_reset_token`, `employer_language_pref`, `employer_limit_email`, `employer_updated_datetime`, `employer_datetime`) VALUES
+(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '0', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$SRXEKOXoc0HzY3TeKiiHp.CvmK.9dkH3WafV49prFXyOhwuin36N2', '', 'en-US', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2015-05-02 16:15:30'),
+(2, 1, 1, 'Test Company', NULL, NULL, 'sqSQ', NULL, 'DWAD', 'dwadwa', '99811042', '0', 1, 'dwadwadw@dwad.com', 1, 'RkJCWLIjxJPziHMmyx-GTHgf9Q8RBndT', '$2y$13$KONg0F9VYiie8LDelIsuZeSo6Hd4AuB/1Xq2GflzO7Eqw4Rdl3wOK', '', 'en-US', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2015-05-02 16:27:38'),
+(3, 1, 1, 'Khalid', 'LNOOgViwpx86Op575JBj37xHjINuJnF9.png', NULL, 'Free Stuff', NULL, 'dwad', 'dwad', '99811042', '30', 1, 'dwda@gust.edom', 0, 'rsI8d0rOnrvuOZt0W4j3eAbP6Gge0Yo3', '$2y$13$xUE.p13lHQnJSjsN6rifZuhbtacDdYBxgVO/GdY9xxZA8pEchL2kC', '', 'en-US', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2015-05-02 18:43:14'),
+(4, 1, 1, 'Khalid', NULL, NULL, 'dwa', NULL, 'Khalid', 'M', '99811042', '0', 1, 'm6awa3@gmail.com', 0, 'nILkFnFe18sI5O1ZsXVRoMTXIOz_sIIi', '$2y$13$7S6UeVDSd2QGavGvSNFltuDEBV.PYSC9/RodkaAspGsWkGmMLp.AK', '', 'en-US', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2015-05-03 20:00:29'),
+(5, 1, 1, 'Test', NULL, NULL, 'dwadaw', NULL, 'dwad', 'dwadaw', '99811042', '0', 1, 'm6awa32@gmail.com', 0, '7kRFSJSzIa7AdXs6_0lOui13td78ZbaN', '$2y$13$vk.CGQ9YMB3jv0Pk1kHkaebrmwcMAa5oRWLMRvSCdaX..LwlYIX5i', '', 'en-US', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-03 20:55:19');
 
 -- --------------------------------------------------------
 
@@ -2141,16 +2146,18 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `student_language_pref` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'en-US',
   `student_banned` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 - for banned',
+  `student_limit_email` datetime NOT NULL,
   `student_updated_datetime` datetime NOT NULL,
   `student_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_id`, `degree_id`, `country_id`, `university_id`, `student_firstname`, `student_lastname`, `student_dob`, `student_status`, `student_enrolment_year`, `student_graduating_year`, `student_gpa`, `student_english_level`, `student_gender`, `student_transportation`, `student_contact_number`, `student_interestingfacts`, `student_photo`, `student_cv`, `student_skill`, `student_hobby`, `student_club`, `student_sport`, `student_experience_company`, `student_experience_position`, `student_verification_attachment`, `student_email_verification`, `student_id_verification`, `student_id_number`, `student_email_preference`, `student_email`, `student_auth_key`, `student_password_hash`, `student_password_reset_token`, `student_language_pref`, `student_banned`, `student_updated_datetime`, `student_datetime`) VALUES
-(13, 2, 9, 1, 'dwadwa', 'dwadwa', '1984-04-12', 1, 2013, 2017, '2.00', 2, 0, 0, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, 0, 'dawd@gust.edu.kw', 'V0nH70XkhjxuBSP3k4Mi-Rq5c_Lj6bvc', '$2y$13$zCplTcuoqlXfTMXl8jGrC.3v0DD52vqR276ostHuialSExU07bNDe', '', 'en-US', 0, '2015-04-27 10:51:37', '2015-04-27 10:51:37');
+INSERT INTO `student` (`student_id`, `degree_id`, `country_id`, `university_id`, `student_firstname`, `student_lastname`, `student_dob`, `student_status`, `student_enrolment_year`, `student_graduating_year`, `student_gpa`, `student_english_level`, `student_gender`, `student_transportation`, `student_contact_number`, `student_interestingfacts`, `student_photo`, `student_cv`, `student_skill`, `student_hobby`, `student_club`, `student_sport`, `student_experience_company`, `student_experience_position`, `student_verification_attachment`, `student_email_verification`, `student_id_verification`, `student_id_number`, `student_email_preference`, `student_email`, `student_auth_key`, `student_password_hash`, `student_password_reset_token`, `student_language_pref`, `student_banned`, `student_limit_email`, `student_updated_datetime`, `student_datetime`) VALUES
+(13, 2, 9, 1, 'dwadwa', 'dwadwa', '1984-04-12', 1, 2013, 2017, '2.00', 2, 0, 0, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, 0, 'dawd@gust.edu.kw', 'V0nH70XkhjxuBSP3k4Mi-Rq5c_Lj6bvc', '$2y$13$zCplTcuoqlXfTMXl8jGrC.3v0DD52vqR276ostHuialSExU07bNDe', '', 'en-US', 0, '0000-00-00 00:00:00', '2015-04-27 10:51:37', '2015-04-27 10:51:37'),
+(14, 2, 8, 1, 'Khalid', 'Mutawa', '1990-05-08', 1, 2013, 2017, '3.00', 1, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, 1, 'dwada@gust.edu.kw', '441qQzDCYen0l4WffdcHa-3HwSSf6l9s', '$2y$13$lXNk5kJBFQGp5ucQDP8D5el9ASYVZusUHXDfZnYxJ9if5XPBuRuwG', '', 'en-US', 0, '0000-00-00 00:00:00', '2015-05-02 17:15:37', '2015-05-02 17:15:37');
 
 -- --------------------------------------------------------
 
@@ -2184,7 +2191,8 @@ CREATE TABLE IF NOT EXISTS `student_language` (
 --
 
 INSERT INTO `student_language` (`student_id`, `language_id`) VALUES
-(13, 3);
+(13, 3),
+(14, 4);
 
 -- --------------------------------------------------------
 
@@ -2202,6 +2210,7 @@ CREATE TABLE IF NOT EXISTS `student_major` (
 --
 
 INSERT INTO `student_major` (`student_id`, `major_id`) VALUES
+(14, 5),
 (13, 7);
 
 -- --------------------------------------------------------
@@ -2436,7 +2445,7 @@ ALTER TABLE `degree`
 -- AUTO_INCREMENT for table `employer`
 --
 ALTER TABLE `employer`
-  MODIFY `employer_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `employer_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `filter`
 --
@@ -2491,7 +2500,7 @@ ALTER TABLE `payment_type`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `student_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `student_job_application`
 --
