@@ -32,10 +32,19 @@ body,.selectize-dropdown, .selectize-input, .selectize-input input{font-family: 
 /*Datepicker Arabic Width Fix*/
 .daterangepicker .calendar{max-width: none;}
 
-/*Radio Button Fixes*/
+/*Breadcrumb Fix*/
 .page-header .breadcrumb > li + li:before{content: '\f107';}
+
+/*Radio Button Fixes*/
 .radioer input[type="radio"] + label{margin:5px 36px 15px 20px;}
 .radioer input[type="radio"] + label:before{left:auto; right: -36px;}
+
+/* Checkbox Fixes */
+.checkboxer input[type="checkbox"] + label {margin:5px 36px 15px 20px;}
+.checkboxer input[type="checkbox"] + label:before{left:auto; right:-35px;}
+.checkboxer input[type="checkbox"] + label:after{left:auto; right:-27px;}
+.checkboxer input[type="checkbox"]:checked + label:before{left:auto; right:-27px;}
+.checkboxer input[type="checkbox"]:checked + label:after{left:auto; right:-28px;}
 
 blockquote{border-left:0; border-right:2px solid #f0f0f0;}
 .dropdown-menu{text-align:right;}
