@@ -12,9 +12,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $fieldTemplate = "{label}\n{beginWrapper}\n"
                         . "<div class='inputer'>\n<div class='input-wrapper'>\n"
-                        . "{input}"
+                        . "{input}\n"
                         . "</div>\n</div>\n{hint}\n{error}\n"
                         . "{endWrapper}";
+$checkboxTemplate = "<div class=\"checkboxer\">\n"
+                        . "{input}\n"
+                        . "{label}\n"
+                        . "</div>\n{error}\n{hint}";
+
 ?>
 <div class="panel">
     <div class="panel-heading">
@@ -31,6 +36,7 @@ $fieldTemplate = "{label}\n{beginWrapper}\n"
                     'id' => 'login-form',
                     'fieldConfig' => [
                         'template' => $fieldTemplate,
+                        'checkboxTemplate' => $checkboxTemplate,
                     ],
                 ]); ?>
                 
