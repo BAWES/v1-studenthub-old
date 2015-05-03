@@ -3,7 +3,7 @@ namespace employer\models;
 
 use Yii;
 use yii\base\Model;
-use common\models\Employer;
+use employer\models\Employer;
 
 /**
  * Login form
@@ -62,10 +62,18 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getEmployer(), $this->rememberMe ? 3600 * 24 * 30 : 0);
-        } else {
-            return false;
+            
+            //Check if Employer has verified their email
+            $employer = $this->getEmployer();
+            if($employer->employer_email_verification == Employer::EMAIL_VERIFIED){
+                return Yii::$app->user->login($this->getEmployer(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+            }else{
+                //Set Flash that employer needs to verify his email
+                Yii::$app->session->setFlash("warning", "Please click the verification link sent to you by email to activate your account.<br/><a href='#'>Contact us</a> if you need any assistance");
+            }
         }
+        
+        return false;
     }
 
     /**
