@@ -17,9 +17,18 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Enrollment year must be before graduation year.' => 'يجب أن تكون سنة الالتحاق قبل سنة التخرج.',
+    'This city does not exist.' => 'لا وجود لهذه المدينة.',
+    'This industry does not exist.' => 'لا وجود لهذا القطاع.',
+    'About' => 'من نحن',
+    'Contact' => 'إتصل بنا',
+    'Home' => 'الرئيسية',
     'Invalid input for {attribute}' => 'إدخال غير صالح لل{attribute}',
+    'Login' => 'تسجيل دخول',
+    'Logout' => 'تسجيل الخروج',
     'Please upload a photo of your university id card' => 'يرجى تحميل صورة من بطاقة الهوية جامعتك',
     'Please use your university email eg: {emailName}@{universityDomain}' => 'الرجاء استخدام البريد الإلكتروني الجامعي الخاص بك على سبيل المثال: {emailName}@{universityDomain}',
+    'Register' => 'تسجيل',
     'Selected language does not exist.' => 'لا وجود اللغة المحددة',
     'Selected major does not exist.' => 'عدم وجود هذا التخصص',
     'The format of your date of birth is invalid, should be yyyy/mm/dd' => 'شكل تاريخ ميلادك غير صالح، ينبغي أن يكون شهر / يوم / سنة',
@@ -30,10 +39,4 @@ return [
     'You must be at least {age} years old' => 'عمرك يجب ان يكون على الاقل {age} سنة',
     'Your CV upload is invalid' => 'تحميل السيرة الذاتية الخاصة بك غير صالح',
     'Your photo upload is invalid' => 'تحميل الصور الخاصة بك غير صالح',
-    'About' => 'من نحن',
-    'Contact' => 'إتصل بنا',
-    'Home' => 'الرئيسية',
-    'Login' => 'تسجيل دخول',
-    'Logout' => 'تسجيل الخروج',
-    'Register' => 'تسجيل',
 ];
