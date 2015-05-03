@@ -17,7 +17,24 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'working as a' => 'أعمل ك-',
+    'Average # of Employees' => 'عدد الموظفين',
+    'Browse Jobs' => 'ابحث عن عمل',
+    'Company Details' => 'تفاصيل الشركة',
+    'Company Name' => 'اسم الشركة',
+    'Contact Us' => 'اتصل بنا',
+    'Daily when students apply' => 'يومياً في حل تقديم الطلاب',
+    'Describe your company' => 'وصف الشركة',
+    'Only files with these extensions are allowed for your Logo: {extensions}' => 'يسمح فقط الملفات مع هذه الملحقات لشعار الشركة {extensions}',
+    'Please feel free to contact us if you need assistance.' => 'لا تتردد في الاتصال بنا اذا كنت بحاجة إلى المساعدة.',
+    'Post your first Job opening' => 'تسجيل أول عرض عمل',
+    'Sign up and start recruiting today!' => 'سجل وابدأ في تعيين اليوم!',
+    'Thanks for signing up, please click on the link sent to you by email to verify your account' => 'شكرا جزيلا على الاشتراك، يرجى اضغط على الرابط المرسل لك عن طريق البريد الإلكتروني للتحقق من حسابك',
+    'Thanks for verifying your email' => 'شكرا للتحقق من بريدك الالكتروني',
+    'Upload Logo (Optional)' => 'تحميل شعار (اختياري)',
+    'User Details' => 'تفاصيل المستخدم',
+    'Weekly Summary' => 'ملخص أسبوعي',
+    'You may now fully access <b>StudentHub</b>' => '',
+    'Your account will activate as soon as we verify your Student ID' => 'سوف يتم تفعيل الحساب الخاص بك بعد التحقق من هوية الطالب',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Change' => 'تغيير',
     'Clubs im in' => 'النوادي الاذي أنا بها',
@@ -98,4 +115,5 @@ return [
     'in a club.' => 'في النادي.',
     'sports.' => 'الرياضة.',
     'student pursuing a ' => 'اسعى على الحصول على شهادة ',
+    'working as a' => 'أعمل ك-',
 ];
