@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Html::a(Yii::t("employer",'reset it'), ['site/request-password-reset']) ?>
                 </div>
                 <div class="form-group">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-teal', 'name' => 'login-button']) ?>
+                <?= Html::submitButton(Yii::t("employer",'Login'), ['class' => 'btn btn-teal', 'name' => 'login-button']) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>
