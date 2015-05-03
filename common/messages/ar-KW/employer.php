@@ -19,7 +19,7 @@
 return [
     'Login' => 'تسجيل الدخول',
     'If you forgot your password you can' => 'إذا كنت قد نسيت كلمة المرور الخاصة بك يمكنك ',
-    'Please fill out the following fields to login:' => 'يرجى ملء الحقول التالية للدخول:',
+    'Please fill out the following fields to login' => 'يرجى ملء الحقول التالية للدخول',
     'There is no employer with such email.' => 'لا يوجد صاحب العمل مع هذا البريد الإلكتروني.',
     'reset it' => 'إعادة تعيينها',
 ];
