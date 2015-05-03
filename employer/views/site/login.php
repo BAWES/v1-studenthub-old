@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -49,6 +50,11 @@ $checkboxTemplate = "<div class=\"checkboxer\">\n"
                 <div style="color:#999;margin:1em 0">
                     <?= Yii::t("employer", "If you forgot your password you can") ?>
                     <?= Html::a(Yii::t("employer",'reset it'), ['site/request-password-reset']) ?>
+                    <br/>
+                    <?= Yii::t("employer", "Don't have an account? <a href='{url}'>Register</a>", [
+                        'url' => Url::to(['site/register']),
+                    ]) ?>
+                    
                 </div>
                 
                 

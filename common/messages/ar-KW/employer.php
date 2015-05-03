@@ -17,9 +17,13 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Please click the verification link sent to you by email to activate your account.<br/><a href=\'{url}\'>Contact us</a> if you need any assistance' => 'الرجاء الضغط على الرابط الذي أرسل لك عن طريق البريد الإلكتروني لتفعيل حسابك.<br/><a href=\'{url}\'>إتصل بنا </a> إذا كنت تحتاج إلى مساعدة',
+    'Don\'t have an account? <a href=\'{url}\'>Register</a>' => 'ليس لديك حساب؟ <a href=\'{url}\'>سجل</a>',
+    'Please fill out your email. A link to reset password will be sent there' => 'يرجى ملء البريد الإلكتروني الخاص بك. سيتم إرسال رابط لإعادة تعيين كلمة المرور',
+    'Request password reset' => 'طلب إعادة تعيين كلمة المرور',
+    'Send' => 'إرسال',
     'If you forgot your password you can' => 'إذا كنت قد نسيت كلمة المرور الخاصة بك يمكنك ',
     'Login' => 'تسجيل الدخول',
+    'Please click the verification link sent to you by email to activate your account.<br/><a href=\'{url}\'>Contact us</a> if you need any assistance' => 'الرجاء الضغط على الرابط الذي أرسل لك عن طريق البريد الإلكتروني لتفعيل حسابك.<br/><a href=\'{url}\'>إتصل بنا </a> إذا كنت تحتاج إلى مساعدة',
     'Please fill out the following fields to login' => 'يرجى ملء الحقول التالية للدخول',
     'There is no employer with such email.' => 'لا يوجد صاحب العمل مع هذا البريد الإلكتروني.',
     'reset it' => 'إعادة تعيينها',
