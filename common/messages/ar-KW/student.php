@@ -17,5 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Please fill out the following fields to login:' => 'يرجى ملء الحقول التالية للدخول:',
     'There is no student with such email.' => 'لا يوجد أي طالب مع هذا البريد الإلكتروني.',
 ];
