@@ -192,7 +192,7 @@ class Student extends \common\models\Student {
                                     ], [
                                 'student' => $this
                             ])
-                            ->setFrom(['contact@studenthub.co' => 'StudentHub'])
+                            ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                             ->setTo($this->student_email)
                             ->setSubject('[StudentHub] التحقق من البريد الإلكتروني')
                             ->send();
