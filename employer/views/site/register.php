@@ -34,7 +34,7 @@ $this->registerCss($css);
 <div class="panel">
     <div class="panel-heading">
         <div class="panel-title">
-            <h4><?= Yii::t('employer', 'Sign up and start recruiting today!') ?></h4>
+            <h4><?= Yii::t('register', 'Sign up and start recruiting today!') ?></h4>
         </div>
     </div>
 
