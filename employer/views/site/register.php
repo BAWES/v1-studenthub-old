@@ -9,7 +9,7 @@ use common\models\Employer;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\Employer */
 
-$this->title = 'Register as an Employer';
+$this->title = Yii::t('register', 'Register as an Employer');
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = "
@@ -81,7 +81,7 @@ $this->registerCss($css);
                         'horizontalCssClasses' => [
                             'label' => $this->params['isArabic']? 'col-xs-4 col-md-3' : 'col-md-3',
                             'offset' => '',
-                            'wrapper' => $this->params['isArabic']? "col-xs-8 col-md-5  col-md-offset-4" : "col-md-5",
+                            'wrapper' => $this->params['isArabic']? "col-xs-8 col-md-5 col-md-offset-4" : "col-md-5",
                             'error' => '',
                             'hint' => '',
                         ],
@@ -117,7 +117,7 @@ $this->registerCss($css);
                 'showCaption' => false,
                 'showRemove' => false,
                 'showUpload' => false,
-                'browseClass' => 'btn btn-primary btn-block',
+                'browseClass' => 'btn btn-teal btn-block button-striped button-full-striped',
                 'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
                 'browseLabel' =>  Yii::t('register', 'Upload Logo (Optional)')
             ],
@@ -149,8 +149,8 @@ $this->registerCss($css);
         
         
         <div class="form-group">
-            <div class="col-md-5 col-md-offset-3">
-                <?= Html::submitButton('Signup', ['class' => 'btn btn-primary btn-block btn-ripple', 'name' => 'signup-button']) ?>
+            <div class="<?= $this->params['isArabic']? "col-xs-8 col-md-5 col-md-offset-4" : "col-md-5 col-md-offset-3" ?>">
+                <?= Html::submitButton(Yii::t('register', 'Sign Up'), ['class' => 'btn btn-teal btn-block btn-ripple', 'name' => 'signup-button']) ?>
             </div>
         </div>
         
