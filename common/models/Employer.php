@@ -113,17 +113,6 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
             ],
         ];
     }
-    
-    public function beforeSave($insert) {
-        if (parent::beforeSave($insert)) {
-            if ($insert) {
-                //Set Email limit
-                $this->employer_limit_email = new Expression('NOW()');
-            }
-
-            return true;
-        }
-    }
 
     /**
      * @inheritdoc
