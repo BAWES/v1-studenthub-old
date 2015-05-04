@@ -55,6 +55,9 @@ class PasswordResetRequestForm extends Model
             if (!Student::isPasswordResetTokenValid($student->student_password_reset_token)) {
                 $student->generatePasswordResetToken();
             }
+            
+            //Update student last email limit timestamp
+            $student->student_limit_email = new Expression('NOW()');
 
             if ($student->save()) {
                 return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['user' => $student])
