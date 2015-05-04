@@ -57,7 +57,7 @@ class PasswordResetRequestForm extends Model
             }
             
             //Update student last email limit timestamp
-            $student->student_limit_email = new Expression('NOW()');
+            $student->student_limit_email = new \yii\db\Expression('NOW()');
 
             if ($student->save()) {
                 return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['user' => $student])
