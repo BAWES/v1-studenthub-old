@@ -42,14 +42,16 @@ class PasswordResetRequestForm extends Model
     /**
      * Sends an email with a link, for resetting the password.
      *
+     * @param employer\models\Employer $employer
      * @return boolean whether the email was sent
      */
-    public function sendEmail()
+    public function sendEmail($employer = null)
     {
-        /* @var $employer Employer */
-        $employer = Employer::findOne([
-            'employer_email' => $this->email,
-        ]);
+        if(!$employer){
+            $employer = Employer::findOne([
+                'employer_email' => $this->email,
+            ]);
+        }
 
         if ($employer) {
             if (!Employer::isPasswordResetTokenValid($employer->employer_password_reset_token)) {
@@ -57,7 +59,7 @@ class PasswordResetRequestForm extends Model
             }
             
             //Update employer last email limit timestamp
-            $employer->employer_limit_email = new Expression('NOW()');
+            $employer->employer_limit_email = new \yii\db\Expression('NOW()');
             
             if ($employer->save()) {
                 if($employer->employer_language_pref == "en-US"){
