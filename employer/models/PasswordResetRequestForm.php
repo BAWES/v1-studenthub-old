@@ -68,7 +68,7 @@ class PasswordResetRequestForm extends Model
                     //Set language based on preference stored in DB
                     Yii::$app->view->params['isArabic'] = true;
                     
-                    return \Yii::$app->mailer->compose(['html' => 'employer/passwordResetToken-html', 'text' => 'employer/passwordResetToken-text'], ['employer' => $employer])
+                    return \Yii::$app->mailer->compose(['html' => 'employer/passwordResetToken-ar-html', 'text' => 'employer/passwordResetToken-ar-text'], ['employer' => $employer])
                         ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                         ->setTo($employer->employer_email)
                         ->setSubject('[StudentHub] إعادة تعيين كلمة المرور')
