@@ -119,7 +119,7 @@ class SiteController extends Controller
             
         } else {
             //inserted code is invalid
-            throw new \yii\web\BadRequestHttpException(Yii::t('register', 'Invalid email verification code'));
+            throw new BadRequestHttpException(Yii::t('register', 'Invalid email verification code'));
         }
     }
     
