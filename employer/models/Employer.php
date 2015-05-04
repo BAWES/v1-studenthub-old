@@ -16,6 +16,10 @@ class Employer extends \common\models\Employer {
      * @return boolean whether the email was sent
      */
     public function sendVerificationEmail() {
+        //Update employer last email limit timestamp
+        $this->employer_limit_email = new Expression('NOW()');
+        $this->save(false);
+            
         if($this->employer_language_pref == "en-US"){
             //Send English Email
             return Yii::$app->mailer->compose([

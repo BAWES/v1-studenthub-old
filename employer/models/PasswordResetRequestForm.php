@@ -56,6 +56,9 @@ class PasswordResetRequestForm extends Model
                 $employer->generatePasswordResetToken();
             }
             
+            //Update employer last email limit timestamp
+            $employer->employer_limit_email = new Expression('NOW()');
+            
             if ($employer->save()) {
                 if($employer->employer_language_pref == "en-US"){
                     //Send English Email

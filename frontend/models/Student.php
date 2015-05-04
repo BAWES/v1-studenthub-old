@@ -169,6 +169,10 @@ class Student extends \common\models\Student {
      * @return boolean whether the email was sent
      */
     public function sendVerificationEmail() {
+        //Update student last email limit timestamp
+        $this->student_limit_email = new Expression('NOW()');
+        $this->save(false);
+        
         if($this->student_language_pref == "en-US"){
             //Send English Email
             return Yii::$app->mailer->compose([

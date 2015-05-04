@@ -151,6 +151,8 @@ class SiteController extends Controller
     {
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            //Check when was the last time we sent an email to this employer
+            //Based on that we will choose whether to send mail or not
             if ($model->sendEmail()) {
                 Yii::$app->getSession()->setFlash('success', Yii::t('employer', 'Password reset link sent, please check your email for further instructions.'));
 
