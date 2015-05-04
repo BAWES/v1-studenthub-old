@@ -151,14 +151,37 @@ class SiteController extends Controller
     {
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            //Check when was the last time we sent an email to this employer
-            //Based on that we will choose whether to send mail or not
-            if ($model->sendEmail()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('employer', 'Password reset link sent, please check your email for further instructions.'));
+            
+            $employer = Employer::findOne([
+                'employer_email' => $model->email,
+            ]);
+            
+            if($employer){
+                //Check if this user sent an email in past few minutes (to limit email spam)
+                $emailLimitDatetime = new \DateTime($employer->employer_limit_email);
+                date_add($emailLimitDatetime, date_interval_create_from_date_string('4 minutes'));
+                $currentDatetime = new \DateTime();
+                
+                if($currentDatetime < $emailLimitDatetime){
+                    $difference = $currentDatetime->diff($emailLimitDatetime);
+                    $minuteDifference = $difference->i;
+                    $secondDifference = $difference->s;
+                    
+                    //Add plural rules to minutes and seconds here (eg: 1 second, 2 seconds)
+                    
+                    $warningMessage = Yii::t('employer', "Sent email previously, you may send another one in {numMinutes} minutes and {numSeconds} seconds",[
+                        'numMinutes' => $minuteDifference,
+                        'numSeconds' => $secondDifference,
+                    ]);
+                    
+                    Yii::$app->getSession()->setFlash('warning', $warningMessage);
+                } else if ($model->sendEmail($employer)) {
+                    Yii::$app->getSession()->setFlash('success', Yii::t('employer', 'Password reset link sent, please check your email for further instructions.'));
 
-                return $this->redirect(['login']);
-            } else {
-                Yii::$app->getSession()->setFlash('error', Yii::t('employer', 'Sorry, we are unable to reset password for email provided.'));
+                    return $this->redirect(['login']);
+                } else {
+                    Yii::$app->getSession()->setFlash('error', Yii::t('employer', 'Sorry, we are unable to reset password for email provided.'));
+                }
             }
         }
 
