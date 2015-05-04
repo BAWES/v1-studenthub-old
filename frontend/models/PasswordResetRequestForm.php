@@ -42,14 +42,16 @@ class PasswordResetRequestForm extends Model
     /**
      * Sends an email with a link, for resetting the password.
      *
+     * @param frontend\models\Student $student
      * @return boolean whether the email was send
      */
-    public function sendEmail()
+    public function sendEmail($student = null)
     {
-        /* @var $student Student */
-        $student = Student::findOne([
-            'student_email' => $this->email,
-        ]);
+        if(!$student){
+            $student = Student::findOne([
+                'student_email' => $this->email,
+            ]);
+        }
 
         if ($student) {
             if (!Student::isPasswordResetTokenValid($student->student_password_reset_token)) {
