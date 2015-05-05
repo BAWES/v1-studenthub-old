@@ -164,12 +164,10 @@ class SiteController extends Controller
                 
                 if($currentDatetime < $emailLimitDatetime){
                     $difference = $currentDatetime->diff($emailLimitDatetime);
-                    $minuteDifference = $difference->i;
-                    $secondDifference = $difference->s;
+                    $minuteDifference = (int) $difference->i;
+                    $secondDifference = (int) $difference->s;
                     
-                    //Add plural rules to minutes and seconds here (eg: 1 second, 2 seconds)
-                    
-                    $warningMessage = Yii::t('employer', "Sent email previously, you may send another one in {numMinutes} minutes and {numSeconds} seconds",[
+                    $warningMessage = Yii::t('app', "Email was sent previously, you may request another one in {numMinutes, number} minutes and {numSeconds, number} seconds",[
                         'numMinutes' => $minuteDifference,
                         'numSeconds' => $secondDifference,
                     ]);

@@ -62,6 +62,7 @@ return [
     'Degree Name En' => '',
     'Email Verfication' => '',
     'Email Verification' => '',
+    'Email was sent previously, you may request another one in {numMinutes, number} minutes and {numSeconds, number} seconds' => 'أرسلنا لك رسالة بالبريد الالكتروني في وقت سابق. يمكنك طلب إرسال آخر بعد {numMinutes, number} دقيقة و {numSeconds, number} ثانية',
     'Employer ID' => '',
     'Filter Gpa' => '',
     'Filter Graduation Year End' => '',
