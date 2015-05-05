@@ -17,8 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Register as an Employer' => 'تسجيل كصاحب عمل',
-    'You may now fully access <b>StudentHub</b>' => 'يمكنك الآن استخدام الموقع',
+    'Please click on the link sent to you by email to verify your account' => 'يرجى الضغط على الرابط المرسل لك عن طريق البريد الإلكتروني للتحقق من حسابك',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Average # of Employees' => 'عدد الموظفين',
     'Browse Jobs' => 'ابحث عن عمل',
@@ -83,6 +82,7 @@ return [
     'Please upload a photo of your student ID card' => 'يرجى تحميل صورة من بطاقة هوية الطالب الخاص بك',
     'Position' => 'وظيفه',
     'Post your first Job opening' => 'تسجيل أول عرض عمل',
+    'Register as an Employer' => 'تسجيل كصاحب عمل',
     'Registration' => 'تسجيل',
     'Remove' => 'حذف',
     'Select a major' => 'اختيار التخصص',
@@ -94,7 +94,7 @@ return [
     'Student ID Verification' => 'التحقق من هوية الطالب',
     'Teamwork, time management, and photoshop' => 'العمل الجماعي، وإدارة الوقت، وفوتوشوب',
     'Thank You!' => 'شكرا',
-    'Thanks for signing up, please click on the link sent to you by email to verify your account' => 'شكرا جزيلا على الاشتراك، يرجى اضغط على الرابط المرسل لك عن طريق البريد الإلكتروني للتحقق من حسابك',
+    'Thanks for signing up, please click on the link sent to you by email to verify your account' => 'شكرا جزيلا على الاشتراك، يرجى الضغط على الرابط المرسل لك عن طريق البريد الإلكتروني للتحقق من حسابك',
     'Thanks for verifying your email' => 'شكرا للتحقق من بريدك الالكتروني',
     'The following questions are optional but will increase your chances of being contacted by employers' => 'الأسئلة التالية اختيارية ولكن سوف تزيد فرصك لعثور على وظيفة',
     'University not listed?' => 'جامعة غير مذكورة؟',
@@ -107,6 +107,7 @@ return [
     'Weekly Summary' => 'ملخص أسبوعي',
     'Weekly summary' => 'ملخص أسبوعي',
     'Year' => 'عام',
+    'You may now fully access <b>StudentHub</b>' => 'يمكنك الآن استخدام الموقع',
     'You may still sign up and our agents will get in touch with you for account activation.' => 'يمكنك التسجيل على الرغم من عدم وجود جامعتك لدينا وإن توفرت الفرصة سوف نقوم بالإتصال بك لتفعيل الحساب ',
     'Your account will activate as soon as we verify your Student ID' => 'سوف يتم تفعيل الحساب الخاص بك بعد التحقق من هوية الطالب',
     'a method of transportation.' => 'طريقة اتنقل بها',
