@@ -207,6 +207,32 @@ class SiteController extends Controller
         ]);
     }
     
+    /**
+     * Resend verification email
+     * @param int $id the id of the user
+     * @param string $email the email of the user
+     * @throws BadRequestHttpException when user not found or already verified
+     */
+    public function actionResendVerification($id, $email){
+        $employer = Employer::findOne([
+            'employer_id' => (int) $id,
+            'employer_email' => $email,
+        ]);
+        
+        if($employer){
+            if($employer->employer_email_verification == Employer::EMAIL_NOT_VERIFIED){
+                $employer->sendVerificationEmail();
+                Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Please click on the link sent to you by email to verify your account'));
+
+                return $this->redirect(['login']);
+            }else{
+                throw new BadRequestHttpException("Already verified");
+            }
+        }else{
+            throw new BadRequestHttpException("Unable to send verification email");
+        }
+    }
+    
     //set language to English
     public function actionEnglish()
     {
