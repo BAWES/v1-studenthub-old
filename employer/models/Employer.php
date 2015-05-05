@@ -3,6 +3,7 @@
 namespace employer\models;
 
 use Yii;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "employer".
