@@ -207,23 +207,6 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionRegister()
-    {
-        $model = new \common\models\Student();
-        
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
-            }
-        }
-
-        return $this->render('register', [
-            'model' => $model,
-        ]);
-    }
-
     public function actionRequestPasswordReset()
     {
         $model = new PasswordResetRequestForm();

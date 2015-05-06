@@ -153,7 +153,13 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                     ['label' => Yii::t('frontend','Home'), 'url' => ['/site/index']],
                     ['label' => Yii::t('frontend','About'), 'url' => ['/site/about']],
                     ['label' => Yii::t('frontend','Contact'), 'url' => ['/site/contact']],
-                    [
+                    
+                ];
+                if (Yii::$app->user->isGuest) {
+                    $menuItems[] = ['label' => Yii::t('frontend','Register'), 'url' => ['/register/index']];
+                    $menuItems[] = ['label' => Yii::t('frontend','Login'), 'url' => ['/site/login']];
+                } else {
+                    $menuItems[] = [
                         'label' => 'Test',
                         'items' => [
                             [
@@ -161,12 +167,7 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                                 'url' => ['/register/index'],
                             ],
                         ]
-                    ],
-                ];
-                if (Yii::$app->user->isGuest) {
-                    $menuItems[] = ['label' => Yii::t('frontend','Register'), 'url' => ['/site/register']];
-                    $menuItems[] = ['label' => Yii::t('frontend','Login'), 'url' => ['/site/login']];
-                } else {
+                    ];
                     $menuItems[] = [
                         'label' => Yii::t('frontend','Logout'),
                         'url' => ['/site/logout'],
