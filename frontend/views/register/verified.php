@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = Yii::t('register', 'Email Verified');
         <p>
             <?= Yii::t('register', 'Please feel free to contact us if you need assistance.') ?>
         </p>
-        <a href="#" class="btn btn-primary"><?= Yii::t('register', 'Contact Us') ?></a>
+        <a href="<?= yii\helpers\Url::to(["site/contact"]) ?>" class="btn btn-primary"><?= Yii::t('register', 'Contact Us') ?></a>
         
         
         <?php } ?>
