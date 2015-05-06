@@ -39,6 +39,7 @@ $fieldTemplate = "{label}\n{beginWrapper}\n"
                     <div class="form-group" style="margin-top:30px;">
                         <?= Html::submitButton(Yii::t('employer', 'Send'), ['class' => 'btn btn-teal']) ?>
                     </div>
+                
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
