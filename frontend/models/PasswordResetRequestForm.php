@@ -60,13 +60,28 @@ class PasswordResetRequestForm extends Model
             
             //Update student last email limit timestamp
             $student->student_limit_email = new \yii\db\Expression('NOW()');
-
+            
             if ($student->save()) {
-                return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['user' => $student])
-                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
-                    ->setTo($this->email)
-                    ->setSubject('Password reset for ' . \Yii::$app->name)
-                    ->send();
+                if($student->student_language_pref == "en-US"){
+                    //Set language based on preference stored in DB
+                    Yii::$app->view->params['isArabic'] = false;
+                    
+                    //Send English Email
+                    return \Yii::$app->mailer->compose(['html' => 'student/passwordResetToken-html', 'text' => 'student/passwordResetToken-text'], ['student' => $student])
+                        ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                        ->setTo($student->student_email)
+                        ->setSubject('[StudentHub] Password Reset')
+                        ->send();
+                }else{
+                    //Set language based on preference stored in DB
+                    Yii::$app->view->params['isArabic'] = true;
+                    
+                    return \Yii::$app->mailer->compose(['html' => 'student/passwordResetToken-ar-html', 'text' => 'student/passwordResetToken-ar-text'], ['student' => $student])
+                        ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                        ->setTo($student->student_email)
+                        ->setSubject('[StudentHub] إعادة تعيين كلمة المرور')
+                        ->send();
+                }
             }
         }
 
