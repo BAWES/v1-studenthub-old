@@ -61,7 +61,7 @@ class PasswordResetRequestForm extends Model
             //Update employer last email limit timestamp
             $employer->employer_limit_email = new \yii\db\Expression('NOW()');
             
-            if ($employer->save()) {
+            if ($employer->save(false)) {
                 if($employer->employer_language_pref == "en-US"){
                     //Set language based on preference stored in DB
                     Yii::$app->view->params['isArabic'] = false;

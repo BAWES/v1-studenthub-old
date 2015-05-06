@@ -61,7 +61,7 @@ class PasswordResetRequestForm extends Model
             //Update student last email limit timestamp
             $student->student_limit_email = new \yii\db\Expression('NOW()');
             
-            if ($student->save()) {
+            if ($student->save(false)) {
                 if($student->student_language_pref == "en-US"){
                     //Set language based on preference stored in DB
                     Yii::$app->view->params['isArabic'] = false;
