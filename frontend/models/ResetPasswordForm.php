@@ -48,6 +48,16 @@ class ResetPasswordForm extends Model
             ['password', 'string', 'min' => 5],
         ];
     }
+    
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'password' => Yii::t('register', 'Password'),
+        ];
+    }
 
     /**
      * Resets password.
