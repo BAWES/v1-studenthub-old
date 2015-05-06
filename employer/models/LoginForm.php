@@ -78,9 +78,7 @@ class LoginForm extends Model
             //Check if Employer has verified their email
             $employer = $this->getEmployer();
             if($employer){
-                if($employer->employer_email_verification == Employer::EMAIL_VERIFIED){
-                    return Yii::$app->user->login($this->getEmployer(), $this->rememberMe ? 3600 * 24 * 30 : 0);
-                }else{
+                if($employer->employer_email_verification == Employer::EMAIL_NOT_VERIFIED){
                     //Set Flash that employer needs to verify his email + resend option
                     Yii::$app->session->setFlash("warning", 
                         Yii::t('employer',"Please click the verification link sent to you by email to activate your account.<br/><a href='{resendLink}'>Resend verification email</a>",[
@@ -89,6 +87,9 @@ class LoginForm extends Model
                                     'email' => $employer->employer_email,
                                 ]),
                             ]));
+                }else{
+                    //Log him in
+                    return Yii::$app->user->login($this->getEmployer(), $this->rememberMe ? 3600 * 24 * 30 : 0);
                 }
             }
         }
