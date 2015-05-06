@@ -48,7 +48,7 @@ $checkboxTemplate = "<div class=\"checkboxer\">\n"
                 
                 
                 <div class="form-group">
-                <?= Html::submitButton(Yii::t("employer",'Login'), ['class' => 'btn btn-teal', 'name' => 'login-button']) ?>
+                    <?= Html::submitButton(Yii::t("employer",'Login'), ['class' => 'btn btn-teal', 'name' => 'login-button']) ?>
                 </div>
                 
                 
