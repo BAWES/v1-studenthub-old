@@ -17,12 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'New password was saved.' => 'تم حفظ كلمة المرور الجديدة.',
-    'Password reset link sent, please check your email for further instructions.' => 'تم ارسال الرابط الى إعادة تعيين كلمة المرور، يرجى التحقق من بريدك الالكتروني لمزيد من التعليمات.',
-    'Sorry, we are unable to reset password for email provided.' => 'آسف، نحن غير قادرين على إعادة تعيين كلمة المرور للبريد الإلكتروني',
     'Don\'t have an account? <a href=\'{url}\'>Register</a>' => 'ليس لديك حساب؟ <a href=\'{url}\'>سجل</a>',
     'If you forgot your password you can' => 'إذا كنت قد نسيت كلمة المرور الخاصة بك يمكنك ',
     'Login' => 'تسجيل الدخول',
+    'New password was saved.' => 'تم حفظ كلمة المرور الجديدة.',
+    'Password reset link sent, please check your email for further instructions.' => 'تم ارسال الرابط الى إعادة تعيين كلمة المرور، يرجى التحقق من بريدك الالكتروني لمزيد من التعليمات.',
     'Please choose your new password' => 'يرجى اختيار كلمة مرور جديدة',
     'Please click the verification link sent to you by email to activate your account.<br/><a href=\'{resendLink}\'>Resend verification email</a>' => 'الرجاء الضغط على الرابط الذي أرسل لك عن طريق البريد الإلكتروني لتفعيل حسابك. <br/> <a href=\'{resendLink}\'> إعادة إرسال</a> البريد الإلكتروني',
     'Please fill out the following fields to login' => 'يرجى ملء الحقول التالية للدخول',
@@ -31,6 +30,7 @@ return [
     'Reset password' => 'إعادة تعيين كلمة المرور',
     'Save' => 'حفظ',
     'Send' => 'إرسال',
+    'Sorry, we are unable to reset password for email provided.' => 'آسف، نحن غير قادرين على إعادة تعيين كلمة المرور للبريد الإلكتروني',
     'There is no student with such email.' => 'لا يوجد أي طالب مع هذا البريد الإلكتروني.',
     'Your account will activate as soon as we verify your student identity.<br/>Please <a href=\'{contactLink}\'>contact us</a> for any questions and assistance.' => 'سوف يتم تفعيل حسابك بعد  التحقق من هوية الطالب. <br/> يرجى <a href=\'{contactLink}\'> الاتصال بنا </a> إذا كان لديك أسئلة أو بحاجة إلى المساعدة.',
     'reset it' => 'إعادة تعيينها',

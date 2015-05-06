@@ -17,11 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Enrollment year must be before graduation year.' => 'يجب أن تكون سنة الالتحاق قبل سنة التخرج.',
-    'This city does not exist.' => 'لا وجود لهذه المدينة.',
-    'This industry does not exist.' => 'لا وجود لهذا القطاع.',
-    'About' => 'من نحن',
+    'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.' => 'إذا كان لديك استفسارات أو أسئلة، يرجى ملء النموذج التالي للاتصال بنا. شكرا.',
     'Contact' => 'إتصل بنا',
+    'Enrollment year must be before graduation year.' => 'يجب أن تكون سنة الالتحاق قبل سنة التخرج.',
     'Home' => 'الرئيسية',
     'Invalid input for {attribute}' => 'إدخال غير صالح لل{attribute}',
     'Login' => 'تسجيل دخول',
@@ -32,8 +30,10 @@ return [
     'Selected language does not exist.' => 'لا وجود اللغة المحددة',
     'Selected major does not exist.' => 'عدم وجود هذا التخصص',
     'The format of your date of birth is invalid, should be yyyy/mm/dd' => 'شكل تاريخ ميلادك غير صالح، ينبغي أن يكون شهر / يوم / سنة',
+    'This city does not exist.' => 'لا وجود لهذه المدينة.',
     'This email address is already registered.' => 'هذا البريد الإلكتروني لديه حساب',
     'This email belongs to {universityName}' => 'هذا البريد الإلكتروني ينتمي إلى {universityName}',
+    'This industry does not exist.' => 'لا وجود لهذا القطاع.',
     'This university does not exist.' => 'هذه الجامعة لا وجود لها',
     'University does not exist' => 'الجامعة لا وجود لها',
     'You must be at least {age} years old' => 'عمرك يجب ان يكون على الاقل {age} سنة',
