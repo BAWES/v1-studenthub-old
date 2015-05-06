@@ -202,10 +202,6 @@ class SiteController extends Controller
         return $this->redirect(Yii::$app->request->referrer);
     }
 
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
 
     public function actionRequestPasswordReset()
     {
