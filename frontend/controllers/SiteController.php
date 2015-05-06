@@ -6,6 +6,7 @@ use frontend\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\ContactForm;
+use frontend\models\Student;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -119,6 +120,44 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+    
+    /**
+     * Resend verification email
+     * @param int $id the id of the user
+     * @param string $email the email of the user
+     */
+    public function actionResendVerification($id, $email) {
+        $student = Student::findOne([
+                    'student_id' => (int) $id,
+                    'student_email' => $email,
+        ]);
+
+        if ($student) {
+            //Check if this user sent an email in past few minutes (to limit email spam)
+            $emailLimitDatetime = new \DateTime($student->student_limit_email);
+            date_add($emailLimitDatetime, date_interval_create_from_date_string('4 minutes'));
+            $currentDatetime = new \DateTime();
+
+            if ($currentDatetime < $emailLimitDatetime) {
+                $difference = $currentDatetime->diff($emailLimitDatetime);
+                $minuteDifference = (int) $difference->i;
+                $secondDifference = (int) $difference->s;
+
+                $warningMessage = Yii::t('app', "Email was sent previously, you may request another one in {numMinutes, number} minutes and {numSeconds, number} seconds", [
+                            'numMinutes' => $minuteDifference,
+                            'numSeconds' => $secondDifference,
+                ]);
+
+                Yii::$app->getSession()->setFlash('warning', $warningMessage);
+                
+            } else if ($student->student_email_verification == Student::EMAIL_NOT_VERIFIED) {
+                $student->sendVerificationEmail();
+                Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Please click on the link sent to you by email to verify your account'));
+            }
+        }
+        
+        return $this->redirect(['login']);
     }
     
     //set language to English
