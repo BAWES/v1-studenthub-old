@@ -17,13 +17,16 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Please fill out your email. A link to reset password will be sent there' => 'يرجى ملء البريد الإلكتروني الخاص بك. سيتم إرسال رابط لإعادة تعيين كلمة المرور',
-    'Request password reset' => 'طلب إعادة تعيين كلمة المرور',
-    'Send' => 'إرسال',
+    'Please choose your new password' => 'يرجى اختيار كلمة مرور جديدة',
+    'Reset password' => 'إعادة تعيين كلمة المرور',
+    'Save' => 'حفظ',
     'Don\'t have an account? <a href=\'{url}\'>Register</a>' => 'ليس لديك حساب؟ <a href=\'{url}\'>سجل</a>',
     'If you forgot your password you can' => 'إذا كنت قد نسيت كلمة المرور الخاصة بك يمكنك ',
     'Login' => 'تسجيل الدخول',
     'Please fill out the following fields to login' => 'يرجى ملء الحقول التالية للدخول',
+    'Please fill out your email. A link to reset password will be sent there' => 'يرجى ملء البريد الإلكتروني الخاص بك. سيتم إرسال رابط لإعادة تعيين كلمة المرور',
+    'Request password reset' => 'طلب إعادة تعيين كلمة المرور',
+    'Send' => 'إرسال',
     'There is no student with such email.' => 'لا يوجد أي طالب مع هذا البريد الإلكتروني.',
     'reset it' => 'إعادة تعيينها',
 ];
