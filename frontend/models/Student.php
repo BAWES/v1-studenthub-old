@@ -175,6 +175,9 @@ class Student extends \common\models\Student {
         $this->save(false);
         
         if($this->student_language_pref == "en-US"){
+            //Set language based on preference stored in DB
+            Yii::$app->view->params['isArabic'] = false;
+            
             //Send English Email
             return Yii::$app->mailer->compose([
                                 'html' => 'student/verificationEmail-html',

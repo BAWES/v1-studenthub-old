@@ -63,6 +63,9 @@ class PasswordResetRequestForm extends Model
             
             if ($employer->save()) {
                 if($employer->employer_language_pref == "en-US"){
+                    //Set language based on preference stored in DB
+                    Yii::$app->view->params['isArabic'] = false;
+                    
                     //Send English Email
                     return \Yii::$app->mailer->compose(['html' => 'employer/passwordResetToken-html', 'text' => 'employer/passwordResetToken-text'], ['employer' => $employer])
                         ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
