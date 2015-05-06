@@ -74,10 +74,34 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getStudent(), $this->rememberMe ? 3600 * 24 * 30 : 0);
-        } else {
-            return false;
+            
+            //Check if Student has verified his email
+            $student = $this->getStudent();
+            if($student){
+                if($student->student_email_verification == Student::EMAIL_NOT_VERIFIED){
+                    //Email not verified, show warning
+                    Yii::$app->session->setFlash("warning", 
+                        Yii::t('student',"Please click the verification link sent to you by email to activate your account.<br/><a href='{resendLink}'>Resend verification email</a>",[
+                                'resendLink' => \yii\helpers\Url::to(["site/resend-verification", 
+                                    'id' => $student->student_id,
+                                    'email' => $student->student_email,
+                                ]),
+                            ]));
+                    
+                }else if($student->student_id_verification == Student::ID_NOT_VERIFIED){
+                    //ID not verified, show warning
+                    Yii::$app->session->setFlash("warning", 
+                        Yii::t('student',"Your account will activate as soon as we verify your student identity.<br/>Please <a href='{contactLink}'>contact us</a> for any questions and assistance.",[
+                                'contactLink' => \yii\helpers\Url::to(["site/contact"]),
+                            ]));
+                }else{
+                    //Log him in
+                    return Yii::$app->user->login($this->getStudent(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+                }
+            }
         }
+        
+        return false;
     }
 
     /**
