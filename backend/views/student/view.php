@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Student */
 
-$this->title = $model->student_id;
+$this->title = $model->student_firstname." ".$model->student_lastname;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Students'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,23 +15,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->student_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->student_id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+        <?= Html::a(Yii::t('app', 'Update Student Details'), ['update', 'id' => $model->student_id], ['class' => 'btn btn-primary']) ?>
+    </p><br/>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'student_id',
-            'degree_id',
-            'country_id',
-            'university_id',
+            'degree.degree_name_en',
+            'country.country_name_en',
+            'university.university_name_en',
             'student_firstname',
             'student_lastname',
             'student_dob',

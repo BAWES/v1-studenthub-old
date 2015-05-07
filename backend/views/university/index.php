@@ -26,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'university_domain',
             'isVerificationRequired',
             'numberOfStudents',
+            'numberOfVerifiedStudents',
             // 'university_id_template',
             // 'university_logo',
             // 'university_graphic',

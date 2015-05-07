@@ -141,10 +141,27 @@ class University extends \yii\db\ActiveRecord {
     }
     
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVerifiedStudents() {
+        return $this->hasMany(Student::className(), ['university_id' => 'university_id'])->where([
+            "student_id_verification" => Student::ID_VERIFIED,
+            "student_email_verification" => Student::EMAIL_VERIFIED,
+        ]);
+    }
+    
+    /**
      * @return int Number of students within this university
      */
     public function getNumberOfStudents() {
         return $this->getStudents()->count();
+    }
+    
+    /**
+     * @return int Number of verified students within this university
+     */
+    public function getNumberOfVerifiedStudents() {
+        return $this->getVerifiedStudents()->count();
     }
 
 }
