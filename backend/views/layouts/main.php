@@ -29,7 +29,7 @@ AppAsset::register($this);
                 'brandLabel' => 'StudentHub Admin System',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
+                    'class' => 'navbar-default navbar-fixed-top',
                 ],
             ]);
             $menuItems = [];
@@ -41,6 +41,14 @@ AppAsset::register($this);
                 [
                     ['label' => 'Dashboard', 'url' => ['/site/index']],
                     
+                    //Require Assistance
+                    [
+                        'label' => 'Req. Assistance',
+                        'items' => [
+                            ['label' => 'Student Verification <span class="badge">12</span>', 'url' => ['/student/index']],
+                            ['label' => 'Employer Verification <span class="badge">5</span>', 'url' => ['/employer/index']],
+                        ],
+                    ],
                     //User Management
                     [
                         'label' => 'Accounts',
@@ -77,6 +85,7 @@ AppAsset::register($this);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,
+                'encodeLabels' => false,
             ]);
             NavBar::end();
         ?>
