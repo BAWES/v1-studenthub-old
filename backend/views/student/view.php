@@ -51,7 +51,3 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
-
-<p>
-        <?= Html::a(Yii::t('app', 'Update Student Details'), ['update', 'id' => $model->student_id], ['class' => 'btn btn-primary']) ?>
-</p>
