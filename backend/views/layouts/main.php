@@ -43,7 +43,7 @@ AppAsset::register($this);
                     
                     //Require Assistance
                     [
-                        'label' => 'Req. Assistance',
+                        'label' => 'Require Assistance',
                         'items' => [
                             ['label' => 'Student Verification <span class="badge">12</span>', 'url' => ['/student/index']],
                             ['label' => 'Employer Verification <span class="badge">5</span>', 'url' => ['/employer/index']],
