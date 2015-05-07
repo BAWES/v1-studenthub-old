@@ -8,7 +8,7 @@ use common\models\Student;
 use common\models\StudentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 /**
  * StudentController implements the CRUD actions for Student model.
@@ -41,6 +41,36 @@ class StudentController extends Controller
 
         return $this->render('index', [
             'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    /**
+     * Lists all Students requiring ID verification
+     * @return mixed
+     */
+    public function actionVerifyIdRequired()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Student::find(),
+        ]);
+
+        return $this->render('verify-id', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    /**
+     * Lists all Students requiring Email verification
+     * @return mixed
+     */
+    public function actionVerifyEmailRequired()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Student::find(),
+        ]);
+
+        return $this->render('verify-email', [
             'dataProvider' => $dataProvider,
         ]);
     }
