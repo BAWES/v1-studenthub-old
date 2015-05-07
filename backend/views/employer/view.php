@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'employer_credit',
             'employer_email_preference:email',
             'employer_email:email',
-            'employer_email_verification:email',
+            'employer_email_verification',
             'employer_auth_key',
             'employer_password_hash',
             'employer_password_reset_token',
