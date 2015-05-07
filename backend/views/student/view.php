@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            'photo:image',
             'student_id',
             'degree.degree_name_en',
             'country.country_name_en',
@@ -31,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'transportation',
             'student_contact_number',
             'student_interestingfacts:ntext',
-            'student_photo',
             'student_cv',
             'student_skill:ntext',
             'student_hobby:ntext',

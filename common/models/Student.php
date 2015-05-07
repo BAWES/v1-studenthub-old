@@ -8,6 +8,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use yii\web\IdentityInterface;
 use common\models\University;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "student".
@@ -274,6 +275,17 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
 
             return true;
         }
+    }
+    
+    
+    /**
+     * @return string path to the student photo
+     */
+    public function getPhoto(){
+        if($this->student_photo){
+            //Return link to photo uploaded in S3 bucket
+            return Url::to("@student-photo/".$this->student_photo);
+        }else return Url::to("@web/images/student-photo.png");
     }
     
     /**
