@@ -277,6 +277,33 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     }
     
     /**
+     * @return string the students gender
+     */
+    public function getGender(){
+        if($this->student_gender == self::GENDER_MALE){
+            return "Male";
+        }else return "Female";
+    }
+    
+    /**
+     * @return string whether the student has transportation
+     */
+    public function getTransportation(){
+        if($this->student_transportation == self::TRANSPORTATION_AVAILABLE){
+            return "Available";
+        }else return "Unavailable";
+    }
+    
+    /**
+     * @return string the students status
+     */
+    public function getStatus(){
+        if($this->student_status == self::STATUS_FULL_TIME){
+            return Yii::t('register', 'Full-time');
+        }else return Yii::t('register', 'Part-time');
+    }
+    
+    /**
      * @return string text explaining ID Verification Status
      */
     public function getIdVerificationStatus(){
@@ -307,6 +334,23 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 break;
             case self::NOTIFICATION_OFF:
                 return Yii::t('register', 'Off');
+                break;
+        }
+    }
+    
+    /**
+     * @return string the users English language level
+     */
+    public function getEnglishLanguageLevel(){
+        switch($this->student_english_level){
+            case self::ENGLISH_WEAK:
+                return Yii::t('register', 'Weak');
+                break;
+            case self::ENGLISH_FAIR:
+                return Yii::t('register', 'Fair');
+                break;
+            case self::ENGLISH_GOOD:
+                return Yii::t('register', 'Good');
                 break;
         }
     }
