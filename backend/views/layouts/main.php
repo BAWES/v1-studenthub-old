@@ -29,7 +29,7 @@ AppAsset::register($this);
                 'brandLabel' => 'StudentHub Admin System',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
-                    'class' => 'navbar-default navbar-fixed-top',
+                    'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
             $menuItems = [];
