@@ -7,21 +7,19 @@ use yii\helpers\Html;
 /* @var $message string */
 /* @var $exception Exception */
 
-$this->title = $name;
+$this->title = nl2br(Html::encode($message));
 ?>
-<div class="site-error">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+<div class="panel">
+    
+    <div class="panel-body">
+        <div class="alert alert-danger">
+            <?= $name ?>
+        </div>
+        <p>
+            <?= Yii::t("app", "The above error occurred while the server was processing your request.") ?>
+        </p>
+        <p>
+            <?= Yii::t("app", "Please contact us if you need any assistance. Thank you.") ?>
+        </p>
     </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
 </div>
