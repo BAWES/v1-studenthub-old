@@ -276,6 +276,41 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         }
     }
     
+    /**
+     * @return string text explaining ID Verification Status
+     */
+    public function getIdVerificationStatus(){
+        if($this->student_id_verification == self::ID_VERIFIED){
+            return "Verified";
+        }else return "Not Yet Verified";
+    }
+    
+    /**
+     * @return string text explaining Email Verification Status
+     */
+    public function getEmailVerificationStatus(){
+        if($this->student_email_verification == self::EMAIL_VERIFIED){
+            return "Verified";
+        }else return "Not Yet Verified";
+    }
+    
+    /**
+     * @return string the users email preference
+     */
+    public function getEmailPreference(){
+        switch($this->student_email_preference){
+            case self::NOTIFICATION_DAILY:
+                return Yii::t('register', 'Daily as jobs are posted');
+                break;
+            case self::NOTIFICATION_WEEKLY:
+                return Yii::t('register', 'Weekly summary');
+                break;
+            case self::NOTIFICATION_OFF:
+                return Yii::t('register', 'Off');
+                break;
+        }
+    }
+    
 
     /**
      * @return \yii\db\ActiveQuery
