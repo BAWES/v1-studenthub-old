@@ -40,12 +40,21 @@ AppAsset::register($this);
                 $menuItems = 
                 [
                     
-                    ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'Admins', 'url' => ['/admin/index']],
-                    ['label' => 'Universities', 'url' => ['/university/index']],
+                    ['label' => 'Dashboard', 'url' => ['/site/index']],
+                    
+                    //User Management
+                    [
+                        'label' => 'Accounts',
+                        'items' => [
+                            ['label' => 'Students', 'url' => ['/student/index']],
+                            ['label' => 'Admins', 'url' => ['/admin/index']],
+                        ],
+                    ],
+                    //Pre-set Controls (no need to touch)
                     [
                         'label' => 'Pre-set Controls',
                         'items' => [
+                            ['label' => 'Universities', 'url' => ['/university/index']],
                             ['label' => 'Job Types', 'url' => ['/jobtype/index']],
                             ['label' => 'Industries', 'url' => ['/industry/index']],
                             ['label' => 'Degrees', 'url' => ['/degree/index']],
