@@ -39,7 +39,6 @@ AppAsset::register($this);
             } else {
                 $menuItems = 
                 [
-                    
                     ['label' => 'Dashboard', 'url' => ['/site/index']],
                     
                     //User Management
@@ -47,6 +46,7 @@ AppAsset::register($this);
                         'label' => 'Accounts',
                         'items' => [
                             ['label' => 'Students', 'url' => ['/student/index']],
+                            ['label' => 'Employers', 'url' => ['/employer/index']],
                             ['label' => 'Admins', 'url' => ['/admin/index']],
                         ],
                     ],
