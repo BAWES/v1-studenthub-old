@@ -21,8 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'degree.degree_name_en',
             'country.country_name_en',
             'university.university_name_en',
-            'student_firstname',
-            'student_lastname',
             'student_dob',
             'status',
             'student_enrolment_year',
