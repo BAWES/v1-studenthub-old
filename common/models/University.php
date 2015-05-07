@@ -139,5 +139,12 @@ class University extends \yii\db\ActiveRecord {
     public function getStudents() {
         return $this->hasMany(Student::className(), ['university_id' => 'university_id']);
     }
+    
+    /**
+     * @return int Number of students within this university
+     */
+    public function getNumberOfStudents() {
+        return $this->getStudents()->count();
+    }
 
 }
