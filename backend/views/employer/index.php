@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'employer_language_pref',
             'employer_datetime',
 
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],
         ],
     ]); ?>
 

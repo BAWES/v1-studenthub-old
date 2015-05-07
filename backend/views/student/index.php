@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'student_language_pref',
             'student_datetime',
 
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],
         ],
     ]); ?>
 
