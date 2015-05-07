@@ -30,6 +30,9 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'formatter' => [
+            'currencyCode' => 'KWD',
+        ],
         'i18n' => [
             'translations' => [
                 '*' => [
