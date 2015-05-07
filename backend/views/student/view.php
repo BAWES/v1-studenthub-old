@@ -11,13 +11,12 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Students'), 'url' =>
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    <?= Html::img($model->photo,['style'=>'width:150px; float:left; margin:15px;']) ?>
+    <h1 style="padding-top:40px;"><?= Html::encode($this->title) ?></h1>
+    
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'photo:image',
             'student_id',
             'degree.degree_name_en',
             'country.country_name_en',
