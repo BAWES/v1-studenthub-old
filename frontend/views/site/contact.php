@@ -15,12 +15,8 @@ $fieldTemplate = "{label}\n{beginWrapper}\n"
                         . "{input}\n"
                         . "</div>\n</div>\n{hint}\n{error}\n"
                         . "{endWrapper}";
-$captchaTemplate = "{image}\n"
-                        . "<div class='inputer'>\n<div class='input-wrapper'>\n"
-                        . "{input}\n"
-                        . "</div>\n</div>\n";
 
-//$captchaTemplate = '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>';
+$this->registerJsFile("https://www.google.com/recaptcha/api.js", ['position' => \yii\web\View::POS_HEAD]);
 ?>
 
 <div class="panel">
@@ -46,10 +42,15 @@ $captchaTemplate = "{image}\n"
                     <?= $form->field($model, 'email') ?>
                     <?= $form->field($model, 'subject') ?>
                     <?= $form->field($model, 'body')->textArea(['rows' => 1, 'class' => 'form-control js-auto-size']) ?>
-                    <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                        'template' => $captchaTemplate,
-                    ]) ?>
-                    <div class="form-group">
+                    <?= $form->field($model, 'verifyCode', [
+                        'template'=> "<br/>\n{beginWrapper}\n"
+                                    . "<div class=''>\n<div class=''>\n"
+                                    . "{input}\n"
+                                    . "</div>\n</div>\n{hint}\n{error}\n"
+                                    . "{endWrapper}"
+                        ])->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
+                
+                    <div class="form-group" style="margin-top:30px;">
                         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                     </div>
                 <?php ActiveForm::end(); ?>

@@ -14,6 +14,12 @@ return [
              * https://studenthub.s3.amazonaws.com/folderName/fileName.jpg
              */
         ],
+        'reCaptcha' => [
+            'name' => 'reCaptcha',
+            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
+            'siteKey' => '6Lc3NwUTAAAAACVAv1KWmGq7FpAmggfvVPXYkjmn',
+            'secret' => '6Lc3NwUTAAAAAK6Y2ynxJabyvJh6YpaIW4JtBPzb',
+        ],
         'assetManager' => [
             //Link assets -> create symbolic links to assets
             'linkAssets' => true,

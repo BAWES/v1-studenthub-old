@@ -146,7 +146,7 @@ return [
     'Update {modelClass}: ' => '',
     'Updated on' => '',
     'Verfication Attachment' => '',
-    'Verification Code' => 'رمز التحقق',
+    'Verification' => 'التحقق',
     'Company Name' => 'اسم الشركة',
     'Contact First name' => 'الاسم الأول',
     'Contact Last name' => 'اسم العائلة',
