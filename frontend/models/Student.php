@@ -139,7 +139,7 @@ class Student extends \common\models\Student {
         //Linking selected majors to student
         if (is_array($this->majorsSelected)) {
             //Unlink all majors from this Student
-            $this->unlinkAll('majors');
+            $this->unlinkAll('majors', true);
 
             //Link the new majors to this Student
             foreach ($this->majorsSelected as $majorId) {
@@ -153,7 +153,7 @@ class Student extends \common\models\Student {
         //Linking selected languages to student
         if (is_array($this->languagesSelected)) {
             //Unlink all languages from this Student
-            $this->unlinkAll('languages');
+            $this->unlinkAll('languages', true);
 
             //Link the new majors to this Student
             foreach ($this->languagesSelected as $languageId) {
