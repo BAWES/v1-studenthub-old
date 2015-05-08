@@ -20,17 +20,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
-            //'student_id',
-            //'degree_id',
-            //'country_id',
-            //'university_id',
             'student_firstname',
             'student_lastname',
             //'student_gender',
             'student_contact_number',
             'student_email:email',
-            'student_language_pref',
+            'student_id_number',
             'student_datetime',
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],

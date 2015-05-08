@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use common\models\Student;
 use common\models\StudentSearch;
+use backend\models\VerifyIdForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\data\ActiveDataProvider;
@@ -84,8 +85,16 @@ class StudentController extends Controller
     {
         $model = $this->findModel($id);
         
+        //Handle ID Verification functionality
+        $verifyIdForm = new VerifyIdForm($model);
+        if ($verifyIdForm->load(Yii::$app->request->post()) && $verifyIdForm->validate()) {
+            //Set Student as verified
+            $verifyIdForm->verifyIdentity();
+        }
+        
         return $this->render('view', [
             'model' => $model,
+            'verifyIdForm' => $verifyIdForm,
         ]);
     }
 

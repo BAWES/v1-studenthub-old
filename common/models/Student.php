@@ -289,6 +289,16 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     }
     
     /**
+     * @return string path to the verification attachment
+     */
+    public function getVerificationAttachment(){
+        if($this->student_verification_attachment){
+            //Return link to verification uploaded in S3 bucket
+            return Url::to("@student-id/".$this->student_verification_attachment);
+        }else return Url::to("@web/images/student-photo.png");
+    }
+    
+    /**
      * @return string the students gender
      */
     public function getGender(){
