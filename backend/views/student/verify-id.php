@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'item'],
+        'itemOptions' => ['class' => 'row', 'style' => 'border:1px solid grey; margin-top:10px; padding:1em; margin-left:0;margin-right:0;'],
         'itemView' => "_studentIdVerification",
     ]) ?>
 
