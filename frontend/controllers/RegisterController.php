@@ -120,7 +120,7 @@ class RegisterController extends \yii\web\Controller {
         
         if($uploadedFile){
             $model = DynamicModel::validateData(compact('uploadedFile'), [
-                [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png, gif, pdf', 'maxSize' => 10000000,
+                [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png, gif', 'maxSize' => 10000000,
                     'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for ID: {extensions}')],
             ]);
 
