@@ -48,6 +48,7 @@ use yii\helpers\Url;
  * @property string $student_password_reset_token
  * @property string $student_language_pref
  * @property integer $student_banned 
+ * @property string $student_support_field
  * @property string $student_limit_email
  * @property string $student_updated_datetime
  * @property string $student_datetime
@@ -250,6 +251,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_password_reset_token' => Yii::t('app', 'Password Reset Token'),
             'student_language_pref' => Yii::t('app', 'Language Preference'),
             'student_banned' => Yii::t('app', 'Student Banned'),
+            'student_support_field' => Yii::t('app', 'Student Support Field'),
             'student_limit_email' => Yii::t('app', 'Limit Email'),
             'student_updated_datetime' => Yii::t('app', 'Updated on'),
             'student_datetime' => Yii::t('app', 'Created on'),
