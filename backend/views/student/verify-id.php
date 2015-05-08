@@ -6,7 +6,7 @@ use yii\widgets\ListView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Student ID Verification');
+$this->title = Yii::t('app', 'Students Requiring ID Verification');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-index">
