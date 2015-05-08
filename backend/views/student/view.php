@@ -15,9 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= Html::img($model->photo,['style'=>'width:150px; float:left; margin:15px;']) ?>
     <h1 style="padding-top:40px;"><?= Html::encode($this->title) ?></h1>
     <p>
+        <b>Language Preference:</b> <?= $model->student_language_pref=="en-US"? "English" : "Arabic" ?>
+        <br/>
         <b>Email:</b> <a href="mailto:<?= $model->student_email ?>"><?= $model->student_email ?></a>
         <br/>
         <b>Phone:</b> <?= $model->student_contact_number ?>
+        
     </p>
     
     <br style="clear:both"/>
@@ -40,20 +43,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'englishLanguageLevel',
             'gender',
             'transportation',
-            'student_experience_company',
-            'student_experience_position',
             'emailVerificationStatus',
             'emailPreference',
-            'student_language_pref',
             'student_updated_datetime:datetime',
             'student_datetime:datetime',
+            'student_experience_company',
+            'student_experience_position',
             'student_interestingfacts:ntext',
-            'student_cv',
             'student_skill:ntext',
             'student_hobby:ntext',
             'student_club:ntext',
             'student_sport:ntext',
-            'verificationAttachment:image',
+            'student_cv:url',
+            'verificationAttachment:url',
         ],
     ]) ?>
 

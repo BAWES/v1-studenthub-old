@@ -4,4 +4,5 @@ use yii\helpers\Html;
 ?>
 
 
-<?= Html::a(Html::encode($model->student_firstname." ".$model->student_lastname), ['view', 'id' => $model->student_id]) ?>
+<?= Html::a(Html::encode($model->student_firstname." ".$model->student_lastname), ['view', 'id' => $model->student_id]) ?><br/>
+<?= Yii::$app->formatter->asRelativeTime($model->student_datetime) ?>

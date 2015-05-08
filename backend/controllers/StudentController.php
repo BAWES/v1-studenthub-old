@@ -53,7 +53,8 @@ class StudentController extends Controller
     public function actionVerifyIdRequired()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Student::find(),
+            'query' => Student::find()->where(['student_id_verification' => Student::ID_NOT_VERIFIED])
+                            ->orderBy("student_datetime ASC"),
         ]);
 
         return $this->render('verify-id', [
