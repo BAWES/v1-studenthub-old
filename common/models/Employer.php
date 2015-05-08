@@ -31,6 +31,7 @@ use yii\web\UploadedFile;
  * @property string $employer_password_hash
  * @property string $employer_password_reset_token
  * @property string $employer_language_pref
+ * @property string $employer_support_field
  * @property string $employer_limit_email 
  * @property string $employer_updated_datetime 
  * @property string $employer_datetime
@@ -137,6 +138,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
             'employer_auth_key' => Yii::t('app', 'Auth Key'),
             'employer_password_hash' => Yii::t('app', 'Password'),
             'employer_password_reset_token' => Yii::t('app', 'Password Reset Token'),
+            'employer_support_field' => Yii::t('app', 'Employer Support Field'),
             'employer_language_pref' => Yii::t('app', 'Language Preference'),
             'employer_limit_email' => Yii::t('app', 'Limit Email'),
             'employer_updated_datetime' => Yii::t('app', 'Datetime Updated'),
