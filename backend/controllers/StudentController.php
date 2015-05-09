@@ -74,13 +74,25 @@ class StudentController extends Controller
     }
     
     /**
-     * Lists all Students requiring Email verification
+     * Lists all Students requiring ID verification
+     * You are able to remove a student from the list
+     * 
      * @return mixed
      */
     public function actionVerifyEmailRequired()
     {
+        if($remove = Yii::$app->request->post("remove")){
+            $student = $this->findModel((int) $remove);
+            $student->student_support_field = "Removed by ".Yii::$app->user->identity->admin_name
+                                                    ." (".Yii::$app->user->id.")";
+            $student->save(false);
+        }
+        
         $dataProvider = new ActiveDataProvider([
-            'query' => Student::find(),
+            'query' => Student::find()
+                ->where(['student_email_verification' => Student::EMAIL_NOT_VERIFIED])
+                ->andWhere(['not like', 'student_support_field', 'Removed'])
+                ->orderBy("student_datetime ASC"),
         ]);
 
         return $this->render('verify-email', [
