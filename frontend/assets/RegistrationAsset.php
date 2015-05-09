@@ -5,7 +5,10 @@ namespace frontend\assets;
 use yii\web\AssetBundle;
 
 /*
- * SelectizeAsset includes js and css files for selectize.js selection plugin
+ * RegistrationAsset includes js and css files plugins which include
+ * - selectize.js selection plugin
+ * - daterange picker plugin
+ * - jasny bootstrap
  */
 class RegistrationAsset extends AssetBundle
 {
