@@ -5,9 +5,15 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use common\models\Student;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+
+//Processing for notifications
+$numStudentsNeedIdVerification = Student::find()->where(['student_id_verification' => Student::ID_NOT_VERIFIED])
+                                ->andWhere(['not like', 'student_support_field', 'Removed'])
+                                ->count();
 
 AppAsset::register($this);
 ?>
@@ -45,9 +51,9 @@ AppAsset::register($this);
                     [
                         'label' => 'Require Assistance',
                         'items' => [
-                            ['label' => 'Student ID Verify <span class="badge">7</span>', 'url' => ['/student/verify-id-required']],
-                            ['label' => 'Student Email Verify <span class="badge">12</span>', 'url' => ['/student/verify-email-required']],
-                            ['label' => 'Employer Email Verify <span class="badge">5</span>', 'url' => ['/employer/index']],
+                            ['label' => "Student ID Verify <span class='badge'>$numStudentsNeedIdVerification</span>", 'url' => ['/student/verify-id-required']],
+                            ['label' => "Student Email Verify <span class='badge'>x</span>", 'url' => ['/student/verify-email-required']],
+                            ['label' => "Employer Email Verify <span class='badge'>x</span>", 'url' => ['/employer/index']],
                         ],
                     ],
                     //User Management
