@@ -32,6 +32,7 @@ return [
         ],
         'formatter' => [
             'currencyCode' => 'KWD',
+            'defaultTimeZone' => 'Asia/Kuwait',
         ],
         'i18n' => [
             'translations' => [
