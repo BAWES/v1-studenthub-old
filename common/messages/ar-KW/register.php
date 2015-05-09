@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Please click on the link sent to you by email to verify your account' => 'يرجى الضغط على الرابط المرسل لك عن طريق البريد الإلكتروني للتحقق من حسابك',
+    'Select Industry' => 'مجال العمل',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Average # of Employees' => 'عدد الموظفين',
     'Browse Jobs' => 'ابحث عن عمل',
@@ -78,6 +78,7 @@ return [
     'Part-time' => 'دوام جزئى',
     'Password' => 'كلمة المرور',
     'Phone Number' => 'رقم الهاتف',
+    'Please click on the link sent to you by email to verify your account' => 'يرجى الضغط على الرابط المرسل لك عن طريق البريد الإلكتروني للتحقق من حسابك',
     'Please feel free to contact us if you need assistance.' => 'لا تتردد في الاتصال بنا اذا كنت بحاجة إلى المساعدة.',
     'Please upload a photo of your student ID card' => 'يرجى تحميل صورة من بطاقة هوية الطالب الخاص بك',
     'Position' => 'وظيفه',

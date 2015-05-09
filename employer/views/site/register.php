@@ -108,6 +108,7 @@ $this->registerCss($css);
                 ArrayHelper::map(common\models\Industry::find()->all(), "industry_id", 
                         $this->params['isArabic']?"industry_name_ar":"industry_name_en"), [
                 'class' => 'selectpicker',
+                'prompt' => Yii::t('register', 'Select Industry'),
                 'data-live-search' => 'true',
                 'data-width' => '100%'
             ]) ?>
@@ -143,7 +144,10 @@ $this->registerCss($css);
             ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
         <?= $form->field($model, 'employer_contact_firstname')->textInput(['placeholder' => Yii::t('register', 'First Name')]) ?>
         <?= $form->field($model, 'employer_contact_lastname')->textInput(['placeholder' => Yii::t('register', 'Last Name')]) ?>
-        <?= $form->field($model, 'employer_contact_number')->input('tel', ['placeholder' => Yii::t('register', 'Phone Number')]) ?>
+        <?= $form->field($model, 'employer_contact_number')->input('tel', [
+            'placeholder' => Yii::t('register', 'Phone Number'),
+            'maxlength' => 8,
+            ]) ?>
         <?= $form->field($model, 'employer_email')->input('email', ['placeholder' => 'email@company.com']) ?>
         <?= $form->field($model, 'employer_password_hash')->passwordInput(['placeholder' => '***']) ?>
         
