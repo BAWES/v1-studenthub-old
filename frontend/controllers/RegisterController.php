@@ -13,6 +13,8 @@ use frontend\models\Student;
 use DateTime;
 
 class RegisterController extends \yii\web\Controller {
+    
+    public $enableCsrfValidation = false;
 
     /**
      * @inheritdoc
