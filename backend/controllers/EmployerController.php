@@ -9,6 +9,7 @@ use common\models\EmployerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 /**
  * EmployerController implements the CRUD actions for Employer model.
@@ -41,6 +42,33 @@ class EmployerController extends Controller
 
         return $this->render('index', [
             'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    /**
+     * Lists all Employers requiring ID verification
+     * You are able to remove a employer from the list
+     * 
+     * @return mixed
+     */
+    public function actionVerifyEmailRequired()
+    {
+        if($remove = Yii::$app->request->post("remove")){
+            $employer = $this->findModel((int) $remove);
+            $employer->employer_support_field = "Removed by ".Yii::$app->user->identity->admin_name
+                                                    ." (".Yii::$app->user->id.")";
+            $employer->save(false);
+        }
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => Employer::find()
+                ->where(['employer_email_verification' => Employer::EMAIL_NOT_VERIFIED])
+                ->andWhere(['not like', 'employer_support_field', 'Removed'])
+                ->orderBy("employer_datetime ASC"),
+        ]);
+
+        return $this->render('verify-email', [
             'dataProvider' => $dataProvider,
         ]);
     }
