@@ -65,9 +65,9 @@ AppAsset::register($this);
                             ['label' => "Employer Email Verify <span class='badge'>$numEmployersNeedEmailVerification</span>", 
                                 'url' => ['/employer/verify-email-required']],
                             ['label' => "<span style='color:darkred'>Removed Students</span>", 
-                                'url' => ['/employer/index']],
+                                'url' => ['/student/list-removed']],
                             ['label' => "<span style='color:darkred'>Removed Employers</span>", 
-                                'url' => ['/employer/index']],
+                                'url' => ['/employer/list-removed']],
                         ],
                     ],
                     //User Management
