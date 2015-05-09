@@ -58,9 +58,16 @@ AppAsset::register($this);
                     [
                         'label' => 'Require Assistance',
                         'items' => [
-                            ['label' => "Student ID Verify <span class='badge'>$numStudentsNeedIdVerification</span>", 'url' => ['/student/verify-id-required']],
-                            ['label' => "Student Email Verify <span class='badge'>$numStudentsNeedEmailVerification</span>", 'url' => ['/student/verify-email-required']],
-                            ['label' => "Employer Email Verify <span class='badge'>$numEmployersNeedEmailVerification</span>", 'url' => ['/employer/verify-email-required']],
+                            ['label' => "Student ID Verify <span class='badge'>$numStudentsNeedIdVerification</span>", 
+                                'url' => ['/student/verify-id-required']],
+                            ['label' => "Student Email Verify <span class='badge'>$numStudentsNeedEmailVerification</span>", 
+                                'url' => ['/student/verify-email-required']],
+                            ['label' => "Employer Email Verify <span class='badge'>$numEmployersNeedEmailVerification</span>", 
+                                'url' => ['/employer/verify-email-required']],
+                            ['label' => "<span style='color:darkred'>Removed Students</span>", 
+                                'url' => ['/employer/verify-email-required']],
+                            ['label' => "<span style='color:darkred'>Removed Employers</span>", 
+                                'url' => ['/employer/verify-email-required']],
                         ],
                     ],
                     //User Management
