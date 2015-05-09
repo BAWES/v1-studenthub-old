@@ -291,13 +291,23 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     }
     
     /**
+     * @return string path to the student cv if exists
+     */
+    public function getCv(){
+        if($this->student_cv){
+            //Return link to photo uploaded in S3 bucket
+            return Url::to("@student-cv/".$this->student_cv);
+        }else return "No CV";
+    }
+    
+    /**
      * @return string path to the verification attachment
      */
     public function getVerificationAttachment(){
         if($this->student_verification_attachment){
             //Return link to verification uploaded in S3 bucket
             return Url::to("@student-id/".$this->student_verification_attachment);
-        }else return Url::to("@web/images/student-photo.png");
+        }else return "No Attachment";
     }
     
     /**

@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'student_hobby:ntext',
             'student_club:ntext',
             'student_sport:ntext',
-            'student_cv:url',
+            'cv:url',
             'verificationAttachment:url',
         ],
     ]) ?>
