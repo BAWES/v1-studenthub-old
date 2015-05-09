@@ -12,18 +12,20 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Students'), 'url' =>
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-view">
-    <?= Html::img($model->photo,['style'=>'width:150px; float:left; margin:15px;']) ?>
-    <h1 style="padding-top:40px;"><?= Html::encode($this->title) ?></h1>
-    <p>
-        <b>Language Preference:</b> <?= $model->student_language_pref=="en-US"? "English" : "Arabic" ?>
-        <br/>
-        <b>Email:</b> <a href="mailto:<?= $model->student_email ?>"><?= $model->student_email ?></a>
-        <br/>
-        <b>Phone:</b> <?= $model->student_contact_number ?>
-        
-    </p>
+    <div class="row">
+        <div class="col-sm-3 col-md-2" style="text-align:center">
+            <?= Html::img($model->photo,['style'=>'max-width:100%; max-height:250px;']) ?>
+        </div>
+        <div class="col-sm-9 col-md-10">
+            <h1><?= Html::encode($this->title) ?></h1>
+            <b>Language Preference:</b> <?= $model->student_language_pref=="en-US"? "English" : "Arabic" ?>
+            <br/>
+            <b>Email:</b> <a href="mailto:<?= $model->student_email ?>"><?= $model->student_email ?></a>
+            <br/>
+            <b>Phone:</b> <?= $model->student_contact_number ?>
+        </div>
+    </div>
     
-    <br style="clear:both"/>
     <?php  echo $this->render('_verificationForm', ['model' => $model, 'verifyIdForm' => $verifyIdForm]); ?>
     
     <hr/>
