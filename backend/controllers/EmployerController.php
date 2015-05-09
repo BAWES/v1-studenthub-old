@@ -65,7 +65,7 @@ class EmployerController extends Controller
             'query' => Employer::find()
                 ->where(['employer_email_verification' => Employer::EMAIL_NOT_VERIFIED])
                 ->andWhere(['not like', 'employer_support_field', 'Removed'])
-                ->orderBy("employer_datetime ASC"),
+                ->orderBy("employer_updated_datetime DESC"),
         ]);
 
         return $this->render('verify-email', [
@@ -91,7 +91,7 @@ class EmployerController extends Controller
             'query' => Employer::find()
                 ->where(['employer_email_verification' => Employer::EMAIL_NOT_VERIFIED])
                 ->andWhere(['like', 'employer_support_field', 'Removed'])
-                ->orderBy("employer_datetime DESC"),
+                ->orderBy("employer_updated_datetime DESC"),
         ]);
 
         return $this->render('removed-list', [

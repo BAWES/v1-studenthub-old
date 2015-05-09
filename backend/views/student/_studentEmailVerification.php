@@ -12,7 +12,7 @@ use yii\helpers\Html;
                         'target' => '_blank'
                     ]) ?>
             </h4>
-            <?= Yii::$app->formatter->asRelativeTime($model->student_datetime) ?>
+            <?= Yii::$app->formatter->asRelativeTime($model->student_updated_datetime) ?>
         </div>
         <div class="col-xs-3" style="text-align: right">
             <?= Html::a("<span class='glyphicon glyphicon-remove'></span> Remove", ['verify-email-required'], [

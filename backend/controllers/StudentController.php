@@ -65,7 +65,7 @@ class StudentController extends Controller
             'query' => Student::find()
                 ->where(['student_id_verification' => Student::ID_NOT_VERIFIED])
                 ->andWhere(['not like', 'student_support_field', 'Removed'])
-                ->orderBy("student_datetime ASC"),
+                ->orderBy("student_updated_datetime DESC"),
         ]);
 
         return $this->render('verify-id', [
@@ -92,10 +92,36 @@ class StudentController extends Controller
             'query' => Student::find()
                 ->where(['student_email_verification' => Student::EMAIL_NOT_VERIFIED])
                 ->andWhere(['not like', 'student_support_field', 'Removed'])
-                ->orderBy("student_datetime ASC"),
+                ->orderBy("student_updated_datetime DESC"),
         ]);
 
         return $this->render('verify-email', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    /**
+     * Lists all Students removed from support
+     * You are able to return a student to the list
+     * 
+     * @return mixed
+     */
+    public function actionListRemoved()
+    {
+        if($restore = Yii::$app->request->post("restore")){
+            $student = $this->findModel((int) $restore);
+            $student->student_support_field = "";
+            $student->save(false);
+        }
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => Student::find()
+                ->where(['student_email_verification' => Student::EMAIL_NOT_VERIFIED])
+                ->andWhere(['like', 'student_support_field', 'Removed'])
+                ->orderBy("student_updated_datetime DESC"),
+        ]);
+
+        return $this->render('removed-list', [
             'dataProvider' => $dataProvider,
         ]);
     }

@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-/* @var $model common\models\Student */
+/* @var $model common\models\Employer */
 ?>
 
 <div style="border:1px solid grey; padding:1em; margin-top:1.5em;">
@@ -12,16 +12,17 @@ use yii\helpers\Html;
                         'target' => '_blank'
                     ]) ?>
             </h4>
+            <?= $model->student_support_field ?><br/>
             <?= Yii::$app->formatter->asRelativeTime($model->student_updated_datetime) ?>
         </div>
         <div class="col-xs-3" style="text-align: right">
-            <?= Html::a("<span class='glyphicon glyphicon-remove'></span> Remove", ['verify-id-required'], [
-                'class' => 'btn btn-xs btn-danger',
+            <?= Html::a("<span class='glyphicon glyphicon-repeat'></span> Restore", ['list-removed'], [
+                'class' => 'btn btn-xs btn-success',
                 'data' => [
-                    'confirm' => 'Are you sure you want to remove this student?',
+                    'confirm' => 'Are you sure you want to restore this student?',
                     'method' => 'post',
                     'params' => [
-                        'remove' => $model->student_id,
+                        'restore' => $model->student_id,
                     ]
                 ],
             ]) ?>

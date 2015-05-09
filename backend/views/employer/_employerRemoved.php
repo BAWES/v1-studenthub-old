@@ -13,7 +13,7 @@ use yii\helpers\Html;
                     ]) ?>
             </h4>
             <?= $model->employer_support_field ?><br/>
-            <?= Yii::$app->formatter->asRelativeTime($model->employer_datetime) ?>
+            <?= Yii::$app->formatter->asRelativeTime($model->employer_updated_datetime) ?>
         </div>
         <div class="col-xs-3" style="text-align: right">
             <?= Html::a("<span class='glyphicon glyphicon-repeat'></span> Restore", ['list-removed'], [
