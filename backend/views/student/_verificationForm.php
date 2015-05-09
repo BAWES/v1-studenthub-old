@@ -28,7 +28,7 @@ if($model->student_id_verification == common\models\Student::ID_NOT_VERIFIED){
     <?= $form->field($verifyIdForm, 'idNumber') ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save ID Verification'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('Verify Student ID', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
