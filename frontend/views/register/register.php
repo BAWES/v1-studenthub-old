@@ -114,7 +114,7 @@ $("#nextStep").click(function () {
         var data = new FormData();
         data.append("idUpload", file);
         
-        uploadToServer(data, idLink, $myForm, $("#idUpload"), 1);
+        uploadToServer(data, idLink, $myForm, $("#idUpload"), 1, true, function(){});
     }
     else if(notUploadedCV && notUploadedPhoto){
         //Upload both CV and Photo together
@@ -125,23 +125,24 @@ $("#nextStep").click(function () {
         photoData.append("photoUpload", photoFile);
         
         //Upload photo without validation
-        uploadToServer(photoData, photoLink, $myForm, $("#photoData"), 3, false);
-        //Upload cv with validation
-        uploadToServer(cvData, cvLink, $myForm, $("#cvData"), 2);
+        uploadToServer(photoData, photoLink, $myForm, $("#photoData"), 3, false, function(){
+            //Upload cv with validation
+            uploadToServer(cvData, cvLink, $myForm, $("#cvData"), 2, true, function(){});
+        });
     }
     else if(notUploadedCV){
         //Replicate ID upload thingy for CV
         var data = new FormData();
         data.append("cvUpload", cvFile);
         
-        uploadToServer(data, cvLink, $myForm, $("#cvData"), 2);
+        uploadToServer(data, cvLink, $myForm, $("#cvData"), 2, true, function(){});
     }
     else if(notUploadedPhoto){
         //Replicate ID upload thingy for Photo
         var data = new FormData();
         data.append("photoUpload", photoFile);
         
-        uploadToServer(data, photoLink, $myForm, $("#photoData"), 3);
+        uploadToServer(data, photoLink, $myForm, $("#photoData"), 3, true, function(){});
     }
     else{
         //file upload not required, proceed with validation
@@ -152,8 +153,7 @@ $("#nextStep").click(function () {
 });
 
 //File Upload Function
-function uploadToServer(fileData, requestUrl, theForm, targetHiddenInput, uploadRef, validate){
-    if (typeof validate === "undefined") { validate = true; } //set default param value
+function uploadToServer(fileData, requestUrl, theForm, targetHiddenInput, uploadRef, validate, callback){
     
     $.ajax({
             url: requestUrl,
@@ -161,9 +161,7 @@ function uploadToServer(fileData, requestUrl, theForm, targetHiddenInput, upload
             data: fileData,
             cache: false,
             beforeSend: function () {
-                if(validate){
-                    showLoading();
-                }
+                showLoading();
             },
             dataType: "json",
             processData: false,
@@ -202,6 +200,9 @@ function uploadToServer(fileData, requestUrl, theForm, targetHiddenInput, upload
                             notUploadedPhoto = false;
                             break;
                     }
+                    
+                    //Execute the callback
+                    callback();
                     
                     //validate form after file uploaded
                     if(validate){
