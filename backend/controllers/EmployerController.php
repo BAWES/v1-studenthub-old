@@ -72,6 +72,32 @@ class EmployerController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    
+    /**
+     * Lists all Employers removed from support
+     * You are able to return a employer to the list
+     * 
+     * @return mixed
+     */
+    public function actionListRemoved()
+    {
+        if($restore = Yii::$app->request->post("restore")){
+            $employer = $this->findModel((int) $restore);
+            $employer->employer_support_field = "";
+            $employer->save(false);
+        }
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => Employer::find()
+                ->where(['employer_email_verification' => Employer::EMAIL_NOT_VERIFIED])
+                ->andWhere(['like', 'employer_support_field', 'Removed'])
+                ->orderBy("employer_datetime DESC"),
+        ]);
+
+        return $this->render('removed-list', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 
     /**
      * Displays a single Employer model.
