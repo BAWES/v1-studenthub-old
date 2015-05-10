@@ -14,6 +14,7 @@ $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\Te
 
 <ul class="nav nav-tabs" style="background-color: white">
     <li class="active"><a href="#openJobs" data-toggle="tab">Open <span class="badge badge-teal">3</span></a></li>
+    <li><a href="#pendingJobs" data-toggle="tab">Pending <span class="badge badge-teal">0</span></a></li>
     <li><a href="#closedJobs" data-toggle="tab">Closed <span class="badge badge-teal">21</span></a></li>
     <li><a href="#draftJobs" data-toggle="tab">Drafts <span class="badge badge-teal">6</span></a></li>
 </ul>
@@ -72,24 +73,29 @@ $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\Te
                         </div><!--.col-md-4-->
                         
                     </div>
-                    <!--tab-pane-->
 
+                    
+                    <!-- List of pending jobs in this tab -->
+                    <div class="tab-pane text-style" id="pendingJobs">
+                        
+                        pending
+                        
+                    </div>
                     
                     <!-- List of jobs closed in this tab -->
                     <div class="tab-pane text-style" id="closedJobs">
                         
-                        
+                        closed
                         
                     </div>
-                    <!--tab-pane-->
                     
 
                     <!-- List of jobs drafted in this tab -->
                     <div class="tab-pane text-style" id="draftJobs">
                         
+                        draft
 
                     </div>
-                    <!--tab-pane-->
 
                 </div>
             </div><!-- panel-body -->
