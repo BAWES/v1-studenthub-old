@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "job".
@@ -65,13 +67,9 @@ class Job extends \yii\db\ActiveRecord
             [['job_startdate'], 'safe'],
             [['job_price_per_applicant'], 'number'],
             [['job_title', 'job_responsibilites', 'job_other_quilifications', 'job_desired_skill', 'job_compensation', 'job_question_1', 'job_question_2'], 'string', 'max' => 255],
-            
-            //`job_status` rules
-            ['job_status', 'default', 'value' => self::STATUS_DRAFT],
-            ['job_status', 'in', 'range' => [self::STATUS_DRAFT, self::STATUS_OPEN, self::STATUS_CLOSED]],
-            
+                        
             //`job_pay` rules
-            ['job_pay', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
+            ['job_pay', 'in', 'range' => [self::PAY_PAID, self::PAY_NOT_PAID]],
         ];
     }
     
