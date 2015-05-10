@@ -8,6 +8,7 @@ use yii\web\IdentityInterface;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use yii\web\UploadedFile;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "employer".
@@ -144,6 +145,43 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
             'employer_updated_datetime' => Yii::t('app', 'Datetime Updated'),
             'employer_datetime' => Yii::t('app', 'Datetime Registered'),
         ];
+    }
+    
+    /**
+     * @return string path to the employer logo
+     */
+    public function getLogo(){
+        if($this->employer_logo){
+            //Return link to photo uploaded in S3 bucket
+            return Url::to("@employer-logo/".$this->employer_logo);
+        }else return Url::to("@web/images/employer-logo.png");
+    }
+    
+    
+    /**
+     * @return string the users email preference
+     */
+    public function getEmailPreference(){
+        switch($this->employer_email_preference){
+            case self::NOTIFICATION_DAILY:
+                return Yii::t('register', 'Daily as jobs are posted');
+                break;
+            case self::NOTIFICATION_WEEKLY:
+                return Yii::t('register', 'Weekly summary');
+                break;
+            case self::NOTIFICATION_OFF:
+                return Yii::t('register', 'Off');
+                break;
+        }
+    }
+    
+    /**
+     * @return string text explaining Email Verification Status
+     */
+    public function getEmailVerificationStatus(){
+        if($this->employer_email_verification == self::EMAIL_VERIFIED){
+            return "Verified";
+        }else return "Not Yet Verified";
     }
 
     /**
