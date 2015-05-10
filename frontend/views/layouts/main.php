@@ -86,7 +86,7 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
 
             <div class="nav-user">
                 <div class="user">
-                    <img src="img/faces/tolga-ergin.jpg" alt="">
+                    <img src="<?= Yii::$app->user->identity->photo ?>" alt="">
                     <span class="badge">3</span>
                 </div><!--.user-->
                 <div class="cross">
