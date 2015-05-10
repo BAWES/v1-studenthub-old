@@ -1,11 +1,15 @@
 <?php
+use yii\helpers\Url;
+
 /* @var $this yii\web\View */
 $this->title = yii::t("employer", 'Dashboard');
 
 $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\TemplateAsset']);
 ?>
 
-<button type="button" class="btn btn-success btn-xl btn-block btn-ripple" style="margin-bottom: 1em"><i class="fa fa-pencil-square-o"></i> Post a Job Opening</button>
+<a href="<?= Url::to(["job/index"]) ?>" class="btn btn-success btn-xl btn-block btn-ripple" style="margin-bottom: 1em">
+    <i class="fa fa-pencil-square-o"></i> Post a Job Opening
+</a>
 <br/>
 
 <ul class="nav nav-tabs" style="background-color: white">
