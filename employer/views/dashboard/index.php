@@ -28,7 +28,7 @@ $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\Te
                             <div class="card card-user card-clickable card-clickable-over-content card-event">
 
                                 <div class="card-heading heading-center text-color-white" style="margin-bottom: 0px; height:132px">
-                                    <h3 class="card-title"><a href="#">CS System Planning and Service Assurance Specialist</a></h3>
+                                    <h3 class="card-title">CS System Planning and Service Assurance Specialist</h3>
 
                                 </div><!--.card-heading-->
 
