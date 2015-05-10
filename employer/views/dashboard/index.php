@@ -5,7 +5,7 @@ $this->title = yii::t("employer", 'Dashboard');
 $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\TemplateAsset']);
 ?>
 
-<button type="button" class="btn btn-teal btn-xl btn-block btn-ripple" style="margin-bottom: 1em"><i class="fa fa-pencil-square-o"></i> Post a Job Opening</button>
+<button type="button" class="btn btn-success btn-xl btn-block btn-ripple" style="margin-bottom: 1em"><i class="fa fa-pencil-square-o"></i> Post a Job Opening</button>
 <br/>
 
 <ul class="nav nav-tabs" style="background-color: white">
