@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.9
+-- version 4.3.3
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 08, 2015 at 10:58 PM
--- Server version: 5.6.23
+-- Generation Time: May 10, 2015 at 02:27 PM
+-- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -399,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `employer` (
 --
 
 INSERT INTO `employer` (`employer_id`, `industry_id`, `city_id`, `employer_company_name`, `employer_logo`, `employer_website`, `employer_company_desc`, `employer_num_employees`, `employer_contact_firstname`, `employer_contact_lastname`, `employer_contact_number`, `employer_credit`, `employer_email_preference`, `employer_email`, `employer_email_verification`, `employer_auth_key`, `employer_password_hash`, `employer_password_reset_token`, `employer_language_pref`, `employer_support_field`, `employer_limit_email`, `employer_updated_datetime`, `employer_datetime`) VALUES
-(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '0', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$SRXEKOXoc0HzY3TeKiiHp.CvmK.9dkH3WafV49prFXyOhwuin36N2', '', 'en-US', '0', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-02 16:15:30'),
+(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '0', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$yD4XFIMwChLBjsRxTFQ5GuEvQTDIBtV8MCtouOC0rj4qhrNyyGvGa', NULL, 'ar-KW', '0', '2015-05-10 09:49:40', '2015-05-10 11:04:16', '2015-05-02 16:15:30'),
 (2, 1, 1, 'Test Company', NULL, NULL, 'sqSQ', NULL, 'DWAD', 'dwadwa', '99811042', '0', 1, 'dwadwadw@dwad.com', 1, 'RkJCWLIjxJPziHMmyx-GTHgf9Q8RBndT', '$2y$13$KONg0F9VYiie8LDelIsuZeSo6Hd4AuB/1Xq2GflzO7Eqw4Rdl3wOK', '', 'en-US', '0', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-02 16:27:38'),
 (3, 1, 1, 'Khalid', 'LNOOgViwpx86Op575JBj37xHjINuJnF9.png', NULL, 'Free Stuff', NULL, 'dwad', 'dwad', '99811042', '30', 1, 'dwda@gust.edom', 0, 'rsI8d0rOnrvuOZt0W4j3eAbP6Gge0Yo3', '$2y$13$xUE.p13lHQnJSjsN6rifZuhbtacDdYBxgVO/GdY9xxZA8pEchL2kC', '', 'en-US', '0', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-02 18:43:14'),
 (4, 1, 1, 'Khalid', NULL, NULL, 'dwa', NULL, 'Khalid', 'M', '99811042', '0', 0, 'm6awa3@gmail.com', 0, 'nILkFnFe18sI5O1ZsXVRoMTXIOz_sIIi', '$2y$13$0Eg4BM0F0bFi8/ePjoSrd.W2dVPu5KLY.3o.iEUKzIKgheM4yNq0O', NULL, 'en-US', '0', '2015-05-05 22:07:17', '2015-05-05 22:07:17', '2015-05-03 20:00:29'),
@@ -2158,7 +2158,7 @@ CREATE TABLE IF NOT EXISTS `student` (
 --
 
 INSERT INTO `student` (`student_id`, `degree_id`, `country_id`, `university_id`, `student_firstname`, `student_lastname`, `student_dob`, `student_status`, `student_enrolment_year`, `student_graduating_year`, `student_gpa`, `student_english_level`, `student_gender`, `student_transportation`, `student_contact_number`, `student_interestingfacts`, `student_photo`, `student_cv`, `student_skill`, `student_hobby`, `student_club`, `student_sport`, `student_experience_company`, `student_experience_position`, `student_verification_attachment`, `student_email_verification`, `student_id_verification`, `student_id_number`, `student_email_preference`, `student_email`, `student_auth_key`, `student_password_hash`, `student_password_reset_token`, `student_language_pref`, `student_banned`, `student_support_field`, `student_limit_email`, `student_updated_datetime`, `student_datetime`) VALUES
-(13, 2, 9, 1, 'dwadwa', 'dwadwa', '1984-04-12', 1, 2013, 2017, '2.00', 2, 0, 0, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, 0, 'dawd@gust.edu.kw', 'V0nH70XkhjxuBSP3k4Mi-Rq5c_Lj6bvc', '$2y$13$zCplTcuoqlXfTMXl8jGrC.3v0DD52vqR276ostHuialSExU07bNDe', '', 'en-US', 0, '', '0000-00-00 00:00:00', '2015-04-27 10:51:37', '2015-04-27 10:51:37'),
+(13, 2, 9, 1, 'dwadwa', 'dwadwa', '1984-04-12', 1, 2013, 2017, '2.00', 2, 0, 0, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 0, 'khalid@gust.edu.kw', 'V0nH70XkhjxuBSP3k4Mi-Rq5c_Lj6bvc', '$2y$13$Cvawm4VAyY48MYelhBOlQ.MC7jvtZHbyLdXFduJRosxFywTEv21yi', NULL, 'en-US', 0, '', '2015-05-10 10:03:03', '2015-05-10 11:06:37', '2015-04-27 10:51:37'),
 (14, 2, 8, 1, 'Khalid', 'Mutawa', '1990-05-08', 1, 2013, 2017, '3.00', 1, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, 1, 'dwada@gust.edu.kw', '441qQzDCYen0l4WffdcHa-3HwSSf6l9s', '$2y$13$lXNk5kJBFQGp5ucQDP8D5el9ASYVZusUHXDfZnYxJ9if5XPBuRuwG', '', 'en-US', 0, '', '0000-00-00 00:00:00', '2015-05-02 17:15:37', '2015-05-02 17:15:37'),
 (15, 4, 3, 2, 'Mohammed', 'Ashkanani', '1989-05-30', 1, 2013, 2015, '3.00', 2, 1, 1, '99811042', NULL, 'lTJL5P-XkYyxOz-YyHCj3e-a3wzDsWN8.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 't72RPXKpgRUrK5cjkNLNCTUeE0_sIFBm.png', 0, 0, NULL, 1, 'test@test.com', '2JdqmrQUWWHgk3HypwDYvgeVxDKvJaBU', '$2y$13$XP2e3uNZc53RWHM9rz7HuufcL6ZWL2wTa5LNi8Ia29NG5lb7nFHOe', '', 'en-US', 0, '', '2015-05-08 12:57:33', '2015-05-08 22:57:38', '2015-05-08 12:57:33'),
 (16, 4, 4, 2, 'Saoud', 'Turki', '1992-09-09', 0, 2013, 2017, '3.00', 2, 1, 0, '99811042', NULL, 'Rz-RICTfOL9Tps8BcYlFNrg8VWIsOleh.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pG5MolYl7fX6z2eSSdJBArWnzDk1Nhi_.png', 0, 0, NULL, 1, 'km@km.com', 'qm6tV2DTlQE8oX5xelqo_EY2oAarFIjK', '$2y$13$ecT3h6RypLdNZjJgpjXoX.YMKC5s1mNr.oxTkckDeSu3sX66m5PCq', 'zcTJRTTcxe3YZEn7GuzVL3ilCU1-5Rwo_1431114197', 'en-US', 0, '', '2015-05-08 22:43:17', '2015-05-08 22:58:05', '2015-05-08 13:10:56'),
