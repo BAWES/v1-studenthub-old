@@ -95,6 +95,20 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                 </div><!--.cross-->
             </div><!--.nav-user-->
             <?php } ?>
+            
+            <?php if(Yii::$app->language == 'en-US'){ ?>
+            <a href="<?= Url::to(['/site/arabic']) ?>">
+                <div class="nav-language">
+                    <img src="<?= Url::to('@web/images/arabic.png') ?>" alt="العربية" title="العربية">
+                </div>
+            </a>
+            <?php } else { ?>
+            <a href="<?= Url::to(['/site/english']) ?>">
+                <div class="nav-language">
+                    <img src="<?= Url::to('@web/images/english.png') ?>" alt="English" title="English">
+                </div>
+            </a>
+            <?php } ?>
             <!-- END OF ICONS -->
 
             <div class="nav-bar-border"></div><!--.nav-bar-border-->
@@ -175,10 +189,6 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                         'linkOptions' => ['data-method' => 'post']
                     ];
                 }
-                
-                if(Yii::$app->language == 'en-US'){
-                    $menuItems[] = ['label' => 'العربية', 'url' => ['/site/arabic']];
-                }else $menuItems[] = ['label' => 'English', 'url' => ['/site/english']];
                 
                 echo Navigation::widget(['items' => $menuItems]);
                 ?>

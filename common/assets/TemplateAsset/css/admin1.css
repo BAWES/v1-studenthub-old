@@ -12308,6 +12308,22 @@ h6 {
       -ms-transform-origin: 50% 50%;
           transform-origin: 50% 50%;
 }
+
+/* Start Language Button */
+.nav-language {
+  position: fixed;
+  bottom: 80px;
+  left: 0;
+  width: 80px;
+  z-index: 4;
+  cursor: pointer;
+  padding:27px;
+  text-align:center;
+}
+
+/* End Language Button */
+
+
 .nav-user {
   position: fixed;
   bottom: 0;
@@ -14259,6 +14275,7 @@ button.toast-close-button {
 }
 .layout-rtl .nav-menu,
 .layout-rtl .nav-search,
+.layout-rtl .nav-language,
 .layout-rtl .nav-user {
   left: auto;
   right: 0;
@@ -14340,7 +14357,8 @@ button.toast-close-button {
         -ms-transform: translateX(65px);
             transform: translateX(65px);
   }
-  .layout-rtl .nav-bar-container .nav-user {
+  .layout-rtl .nav-bar-container .nav-user,
+  .layout-rtl .nav-bar-container .nav-language{
     float: left;
   }
   .layout-rtl .overlay.overlay-nav .logo,
@@ -14631,6 +14649,13 @@ button.toast-close-button {
   .nav-bar-container .nav-user {
     position: relative;
     float: right;
+  }
+  .nav-bar-container .nav-language {
+    position: relative;
+    float: right;
+    bottom: 0;
+    padding: 17px 0;
+    width: 60px;
   }
   .nav-bar-container .nav-user .user {
     padding: 10px 20px;
