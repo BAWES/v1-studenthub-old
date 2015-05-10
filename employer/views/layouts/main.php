@@ -170,13 +170,14 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
             <!-- BEGIN MENU LAYER -->
             <div class="menu-layer">
                 <?php
-                $menuItems = [
-                    ['label' => Yii::t('frontend','Home'), 'url' => ['/site/index']],
-                ];
+                $menuItems = [];
+                
                 if (Yii::$app->user->isGuest) {
+                    $menuItems[] = ['label' => Yii::t('frontend','Home'), 'url' => ['/site/index']];
                     $menuItems[] = ['label' => Yii::t('frontend','Register'), 'url' => ['/site/register']];
                     $menuItems[] = ['label' => Yii::t('frontend','Login'), 'url' => ['/site/login']];
                 } else {
+                    $menuItems[] = ['label' => Yii::t('frontend','Home'), 'url' => ['/dashboard/index']];
                     $menuItems[] = [
                         'label' => Yii::t('frontend','Logout'),
                         'url' => ['/site/logout'],
