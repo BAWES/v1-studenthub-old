@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'job_pay',
             'job_startdate',
             'job_responsibilites',
-            'job_other_quilifications',
+            'job_other_qualifications',
             'job_desired_skill',
             'job_compensation',
             'job_question_1',
