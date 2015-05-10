@@ -9,9 +9,9 @@ $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\Te
 <br/>
 
 <ul class="nav nav-tabs" style="background-color: white">
-    <li class="active"><a href="#openJobs" data-toggle="tab">Open Application(s)</a></li>
-    <li><a href="#closedJobs" data-toggle="tab">Close Application(s)</a></li>
-    <li><a href="#draftJobs" data-toggle="tab">Drafts</a></li>
+    <li class="active"><a href="#openJobs" data-toggle="tab">Open <span class="badge badge-teal">3</span></a></li>
+    <li><a href="#closedJobs" data-toggle="tab">Closed <span class="badge badge-teal">21</span></a></li>
+    <li><a href="#draftJobs" data-toggle="tab">Drafts <span class="badge badge-teal">6</span></a></li>
 </ul>
 
 <div class="row">

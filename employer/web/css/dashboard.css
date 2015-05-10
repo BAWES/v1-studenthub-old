@@ -29,8 +29,9 @@ a{color:#009587 }
 	top: 80px;
 }
 .card-body{
-	font-size: 14px;
+	font-size: 0.9em;
 }
+.badge{font-weight:normal !important; margin-left:5px;}
 .p{
 	margin-top: -50px;
 }
