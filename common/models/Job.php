@@ -24,8 +24,10 @@ use yii\db\Expression;
  * @property integer $job_max_applicants
  * @property integer $job_current_num_applicants
  * @property integer $job_status
- * @property string $job_created_datetime
  * @property string $job_price_per_applicant
+ * @property integer $job_verified
+ * @property string $job_updated_datetime
+ * @property string $job_created_datetime
  *
  * @property Filter[] $filters
  * @property Jobtype $jobtype
@@ -41,6 +43,12 @@ class Job extends \yii\db\ActiveRecord
     //Specifies if the job pays or not
     const PAY_PAID = 1;
     const PAY_NOT_PAID = 0;
+    
+    //Options for `job_verified` column
+    //Specifies if the job has been verified by admin or not
+    //This will change to unverified whenever employer makes changes to it
+    const VERICATION_IS_VERIFIED = 1;
+    const VERICATION_IS_NOT_VERIFIED = 0;
     
     //Options for `job_status` column
     //Job status affects the visibility of the job (draft,open, or closed)
@@ -78,7 +86,7 @@ class Job extends \yii\db\ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'job_created_datetime',
-                'updatedAtAttribute' => false,
+                'updatedAtAttribute' => 'job_updated_datetime',
                 'value' => new Expression('NOW()'),
             ],
         ];
@@ -105,8 +113,10 @@ class Job extends \yii\db\ActiveRecord
             'job_max_applicants' => Yii::t('app', 'Job Max Applicants'),
             'job_current_num_applicants' => Yii::t('app', 'Job Current Num Applicants'),
             'job_status' => Yii::t('app', 'Job Status'),
-            'job_created_datetime' => Yii::t('app', 'Job Created Datetime'),
             'job_price_per_applicant' => Yii::t('app', 'Job Price Per Applicant'),
+            'job_verified' => Yii::t('app', 'Job Verified'),
+            'job_updated_datetime' => Yii::t('app', 'Job Updated Datetime'),
+            'job_created_datetime' => Yii::t('app', 'Job Created Datetime'),
         ];
     }
 
