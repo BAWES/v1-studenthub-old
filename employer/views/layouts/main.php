@@ -94,8 +94,8 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                     <span class="line"></span>
                 </div><!--.cross-->
             </div><!--.nav-user-->
-            <!-- END OF ICONS -->
             <?php } ?>
+            <!-- END OF ICONS -->
 
             <div class="nav-bar-border"></div><!--.nav-bar-border-->
 
