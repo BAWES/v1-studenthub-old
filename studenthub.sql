@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 10, 2015 at 02:51 PM
+-- Generation Time: May 10, 2015 at 03:17 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -550,8 +550,9 @@ CREATE TABLE IF NOT EXISTS `job` (
   `job_max_applicants` int(11) NOT NULL,
   `job_current_num_applicants` int(11) NOT NULL,
   `job_status` tinyint(4) NOT NULL COMMENT 'close (0), open (1), draft (2)',
-  `job_created_datetime` date NOT NULL,
-  `job_price_per_applicant` decimal(10,0) NOT NULL
+  `job_price_per_applicant` decimal(10,0) NOT NULL,
+  `job_updated_datetime` datetime NOT NULL,
+  `job_created_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
