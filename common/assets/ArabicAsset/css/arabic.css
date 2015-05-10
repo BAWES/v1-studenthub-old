@@ -23,6 +23,14 @@ body,.selectize-dropdown, .selectize-input, .selectize-input input{font-family: 
     text-align: left;
   }
 }
+/*Bootstrap float fix*/
+@media (min-width: 992px) {
+  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: right;
+  }
+}
+
+.nav-tabs > li{float:right}
 
 
 /**
@@ -55,3 +63,10 @@ blockquote{border-left:0; border-right:2px solid #f0f0f0;}
 .questionRow p{float:right !important;}
 #registerForm .inputer{float:right !important;}
 #registerForm .inputer label{left:auto; right:0;}
+
+
+/**
+*   Employer Portal
+*/
+
+.card.card-event .card-body .calendar{left:30px; right:auto;}

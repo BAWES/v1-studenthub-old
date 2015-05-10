@@ -2,21 +2,21 @@
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-$this->title = yii::t("employer", 'Dashboard');
+$this->title = Yii::t("employer", 'Dashboard');
 
 $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\TemplateAsset']);
 ?>
 
 <a href="<?= Url::to(["job/create"]) ?>" class="btn btn-success btn-xl btn-block btn-ripple" style="margin-bottom: 1em">
-    <i class="fa fa-pencil-square-o"></i> Post a Job Opening
+    <i class="fa fa-pencil-square-o"></i> <?= Yii::t('employer', 'Post a Job Opening') ?>
 </a>
 <br/>
 
 <ul class="nav nav-tabs" style="background-color: white">
-    <li class="active"><a href="#openJobs" data-toggle="tab">Open <span class="badge badge-teal">3</span></a></li>
-    <li><a href="#pendingJobs" data-toggle="tab">Pending <span class="badge badge-teal">0</span></a></li>
-    <li><a href="#closedJobs" data-toggle="tab">Closed <span class="badge badge-teal">21</span></a></li>
-    <li><a href="#draftJobs" data-toggle="tab">Drafts <span class="badge badge-teal">6</span></a></li>
+    <li class="active"><a href="#openJobs" data-toggle="tab"><?= Yii::t('employer', 'Open') ?> <span class="badge badge-teal"><?= Yii::$app->formatter->asInteger(3) ?></span></a></li>
+    <li><a href="#pendingJobs" data-toggle="tab"><?= Yii::t('employer', 'Pending') ?> <span class="badge badge-teal"><?= Yii::$app->formatter->asInteger(0) ?></span></a></li>
+    <li><a href="#closedJobs" data-toggle="tab"><?= Yii::t('employer', 'Closed') ?> <span class="badge badge-teal"><?= Yii::$app->formatter->asInteger(21) ?></span></a></li>
+    <li><a href="#draftJobs" data-toggle="tab"><?= Yii::t('employer', 'Drafts') ?> <span class="badge badge-teal"><?= Yii::$app->formatter->asInteger(6) ?></span></a></li>
 </ul>
 
 <div class="row">
@@ -39,8 +39,8 @@ $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\Te
 
                                 <div class="card-body applicants">
                                     <div class="calendar" style="width:85px">
-                                        <div class="month">September</div>
-                                        <div class="date">27</div>
+                                        <div class="month"><?= Yii::$app->formatter->asDate("September", 'LLLL') ?></div>
+                                        <div class="date"><?= Yii::$app->formatter->asInteger(27) ?></div>
                                     </div>
                                     <div class="row">
                                         <p><b> Industry:</b> Banking <br>
@@ -64,7 +64,7 @@ $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\Te
                                     <a class="btn btn-floating"  style="position:absolute;right:70px; bottom:7px"><i class="ion-android-create"></i></a>
                                     <a class="btn btn-floating" data-toggle="modal" data-target="#job-more" style="position:absolute;right:15px; bottom:7px"><i class="fa fa-ellipsis-h"></i></a>
                                     <ul>
-                                        <li class="pull-left"><a href="#">100 Applied</a></li>
+                                        <li class="pull-left"><a href="#"><?= Yii::$app->formatter->asInteger(100) ?> <?= Yii::t('employer', 'Applied') ?></a></li>
                                     </ul>
                                 </div>
 
