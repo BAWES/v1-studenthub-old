@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'job_responsibilites')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'job_other_quilifications')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'job_other_qualifications')->textInput(['maxlength' => 255]) ?>
 
     <?= $form->field($model, 'job_desired_skill')->textInput(['maxlength' => 255]) ?>
 
