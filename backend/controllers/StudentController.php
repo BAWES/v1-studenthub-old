@@ -140,6 +140,7 @@ class StudentController extends Controller
         if ($verifyIdForm->load(Yii::$app->request->post()) && $verifyIdForm->validate()) {
             //Set Student as verified
             $verifyIdForm->verifyIdentity();
+            $model->refresh();
         }
         
         return $this->render('view', [
