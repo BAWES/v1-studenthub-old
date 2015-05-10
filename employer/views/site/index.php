@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-$this->title = 'Employers';
+$this->title = 'StudentHub';
 ?>
 
 <div class="row">
@@ -9,14 +9,45 @@ $this->title = 'Employers';
             <div class="panel-body">
 
 
-                <h1>You're an Employer!</h1>
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <h2>Start your Recruitment Today!</h2>
+                    </div><!--.col-->
+                    <div class="col-md-9 col-sm-12">
+                        <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+                        <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
+                    </div><!--col-->
+                </div><!--.row-->
 
-                <p class="lead">This is where you find the perfect candidate!</p>
-                <p>
-                    <a class="btn btn-lg btn-danger toastr-notify" data-toastr-type="success" data-toastr-title="New Applicant!" 
-                       data-toastr-notification="We found you the perfect applicant!" href="#">Don't click this</a>
-                </p>
+                <div class="row client-list">
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <a href="#"><img src="img/brands/1.png" alt=""></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <a href="#"><img src="img/brands/2.png" alt=""></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <a href="#"><img src="img/brands/3.png" alt=""></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <a href="#"><img src="img/brands/4.png" alt=""></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <a href="#"><img src="img/brands/5.png" alt=""></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <a href="#"><img src="img/brands/6.png" alt=""></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <a href="#"><img src="img/brands/7.png" alt=""></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <a href="#"><img src="img/brands/8.png" alt=""></a>
+                    </div>
+                </div><!--.row.client-list-->
+
                 
+                <h2>Link to student portal:</h2>
                 <?php
                 //Link to Student Front-end
                 $urlLink = Yii::$app->urlManagerFrontend->createUrl(["site/index"]);
