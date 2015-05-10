@@ -16,7 +16,7 @@ use yii\db\Expression;
  * @property integer $job_pay
  * @property string $job_startdate
  * @property string $job_responsibilites
- * @property string $job_other_quilifications
+ * @property string $job_other_qualifications
  * @property string $job_desired_skill
  * @property string $job_compensation
  * @property string $job_question_1
@@ -62,11 +62,11 @@ class Job extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['jobtype_id', 'employer_id', 'job_title', 'job_pay', 'job_startdate', 'job_responsibilites', 'job_other_quilifications', 'job_desired_skill', 'job_question_1', 'job_question_2', 'job_max_applicants', 'job_current_num_applicants', 'job_status', 'job_price_per_applicant'], 'required'],
-            [['jobtype_id', 'employer_id', 'job_pay', 'job_max_applicants', 'job_current_num_applicants', 'job_status'], 'integer'],
+            [['jobtype_id', 'employer_id', 'job_title', 'job_pay', 'job_startdate', 'job_responsibilites', 'job_other_qualifications', 'job_desired_skill', 'job_question_1', 'job_question_2', 'job_max_applicants', 'job_status'], 'required'],
+            [['jobtype_id', 'employer_id', 'job_pay', 'job_status'], 'integer'],
             [['job_startdate'], 'safe'],
             [['job_price_per_applicant'], 'number'],
-            [['job_title', 'job_responsibilites', 'job_other_quilifications', 'job_desired_skill', 'job_compensation', 'job_question_1', 'job_question_2'], 'string', 'max' => 255],
+            [['job_title', 'job_responsibilites', 'job_other_qualifications', 'job_desired_skill', 'job_compensation', 'job_question_1', 'job_question_2'], 'string', 'max' => 255],
                         
             //`job_pay` rules
             ['job_pay', 'in', 'range' => [self::PAY_PAID, self::PAY_NOT_PAID]],
@@ -97,7 +97,7 @@ class Job extends \yii\db\ActiveRecord
             'job_pay' => Yii::t('app', 'Job Pay'),
             'job_startdate' => Yii::t('app', 'Job Startdate'),
             'job_responsibilites' => Yii::t('app', 'Job Responsibilites'),
-            'job_other_quilifications' => Yii::t('app', 'Job Other Quilifications'),
+            'job_other_qualifications' => Yii::t('app', 'Job Other Qualifications'),
             'job_desired_skill' => Yii::t('app', 'Job Desired Skill'),
             'job_compensation' => Yii::t('app', 'Job Compensation'),
             'job_question_1' => Yii::t('app', 'Job Question 1'),

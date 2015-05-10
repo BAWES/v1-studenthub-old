@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 10, 2015 at 02:27 PM
+-- Generation Time: May 10, 2015 at 02:51 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -542,7 +542,7 @@ CREATE TABLE IF NOT EXISTS `job` (
   `job_pay` tinyint(4) NOT NULL COMMENT 'Pay (1), No Pay (0)',
   `job_startdate` date NOT NULL,
   `job_responsibilites` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `job_other_quilifications` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `job_other_qualifications` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `job_desired_skill` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `job_compensation` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `job_question_1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
