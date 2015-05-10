@@ -1,19 +1,28 @@
 <?php
+
+use yii\helpers\Html;
+use yii\widgets\ListView;
+
 /* @var $this yii\web\View */
-$this->title = Yii::t('employer', 'Job Types');
-$this->params['breadcrumbs'][] = Yii::t('employer', 'Job Types');
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
+$this->title = Yii::t('app', 'Jobs');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="panel">
-    <div class="panel-heading">
-        <div class="panel-title">
-            <h4><?= Yii::t('register', 'Select a Job Type') ?></h4>
-        </div>
-    </div>
+<div class="job-index">
 
-    <div class="panel-body">
+    <h1><?= Html::encode($this->title) ?></h1>
 
-        List job types here?
-        
-    </div>
+    <p>
+        <?= Html::a(Yii::t('app', 'Create Job'), ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= ListView::widget([
+        'dataProvider' => $dataProvider,
+        'itemOptions' => ['class' => 'item'],
+        'itemView' => function ($model, $key, $index, $widget) {
+            return Html::a(Html::encode($model->job_id), ['view', 'id' => $model->job_id]);
+        },
+    ]) ?>
+
 </div>

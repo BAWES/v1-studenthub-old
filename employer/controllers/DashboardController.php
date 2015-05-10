@@ -40,6 +40,7 @@ class DashboardController extends \yii\web\Controller {
      * Renders Employer Dashboard containing all jobs posted + link to create a new job
      */
     public function actionIndex() {
+        //Maybe replace this controller with Job Controller
         return $this->render('index');
     }
 
