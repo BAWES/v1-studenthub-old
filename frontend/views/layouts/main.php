@@ -79,6 +79,7 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                 </div><!--.hamburger-->
             </div><!--.nav-menu-->
 
+            <?php if (!Yii::$app->user->isGuest) { ?>
             <div class="nav-search">
                 <span class="search"></span>
             </div><!--.nav-search-->
@@ -93,6 +94,7 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                     <span class="line"></span>
                 </div><!--.cross-->
             </div><!--.nav-user-->
+            <?php } ?>
             <!-- END OF ICONS -->
 
             <div class="nav-bar-border"></div><!--.nav-bar-border-->
@@ -184,6 +186,7 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
             <!-- END OF MENU LAYER -->
 
             <!-- BEGIN SEARCH LAYER -->
+            <?php if (!Yii::$app->user->isGuest) { ?>
             <div class="search-layer">
                 <div class="search">
                     <form action="pages-search-results.html">
@@ -320,9 +323,11 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                     </div><!--.row-->
                 </div><!--.results-->
             </div><!--.search-layer-->
+            <?php } ?>
             <!-- END OF SEARCH LAYER -->
 
             <!-- BEGIN USER LAYER -->
+            <?php if (!Yii::$app->user->isGuest) { ?>
             <div class="user-layer">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
                     <li class="active"><a href="#messages" data-toggle="tab">Messages</a></li>
@@ -742,6 +747,7 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
 
                 </div><!--.row-->
             </div><!--.user-layer-->
+            <?php } ?>
             <!-- END OF USER LAYER -->
 
         </div><!--.layer-container-->
