@@ -59,11 +59,18 @@ $form = ActiveForm::begin([
         ]);
 ?>
 
-<?= $form->field($model, 'jobtype_id')->textInput() ?>
-
-<?= $form->field($model, 'employer_id')->textInput() ?>
-
 <?= $form->field($model, 'job_title')->textInput(['maxlength' => 255]) ?>
+
+<?= $form->field($model, 'jobtype_id',[
+                'template' => $selectTemplate,
+            ])->dropDownList(
+                ArrayHelper::map(common\models\Jobtype::find()->all(), "jobtype_id", 
+                        $this->params['isArabic']?"jobtype_name_ar":"jobtype_name_en"), [
+                'class' => 'selectpicker',
+                'data-width' => '100%'
+            ]) ?>
+
+
 
 <?= $form->field($model, 'job_pay')->textInput() ?>
 
@@ -77,20 +84,15 @@ $form = ActiveForm::begin([
 
 <?= $form->field($model, 'job_compensation')->textInput(['maxlength' => 255]) ?>
 
-<?= $form->field($model, 'job_question_1')->textInput(['maxlength' => 255]) ?>
-
-<?= $form->field($model, 'job_question_2')->textInput(['maxlength' => 255]) ?>
-
 <?= $form->field($model, 'job_max_applicants')->textInput() ?>
 
-<?= $form->field($model, 'job_current_num_applicants')->textInput() ?>
+<?= $form->field($model, 'job_question_1')->textArea(['rows' => 1, 'class' => 'form-control js-auto-size']) ?>
 
-<?= $form->field($model, 'job_status')->textInput() ?>
+<?= $form->field($model, 'job_question_2')->textArea(['rows' => 1, 'class' => 'form-control js-auto-size']) ?>
 
-<?= $form->field($model, 'job_price_per_applicant')->textInput(['maxlength' => 10]) ?>
-
-<div class="form-group">
-    <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+<div class="col-md-5 col-md-offset-3">
+    <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), 
+    ['class' => $model->isNewRecord ? 'btn btn-success btn-block btn-ripple' : 'btn btn-teal btn-block btn-ripple']) ?>
 </div>
 
 <?php ActiveForm::end(); ?>
