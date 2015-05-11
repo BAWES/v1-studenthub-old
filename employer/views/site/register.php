@@ -138,7 +138,7 @@ $this->registerCss($css);
         
         
         <div class="col-md-5 col-md-offset-3">
-                <?= Html::submitButton(Yii::t('register', 'Sign Up'), ['class' => 'btn btn-teal btn-block btn-ripple', 'name' => 'signup-button']) ?>
+                <?= Html::submitButton(Yii::t('register', 'Sign Up'), ['class' => 'btn btn-success btn-block btn-ripple', 'name' => 'signup-button']) ?>
         </div>
         
         <?php ActiveForm::end(); ?>
