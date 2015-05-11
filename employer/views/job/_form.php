@@ -23,6 +23,23 @@ $checkboxTemplate = "<div class='control-label col-md-3'>{label}</div>\n"
         . "{input}\n\n{error}\n{hint}"
         . "</div>";
 
+//Set Datepicker Locale to AR if language selected
+$datePickerLocale = "";
+if($this->params['isArabic']){
+    $datePickerLocale = "
+   locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Cancel',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة','السبت'],
+            monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+            firstDay: 1
+        }     
+";
+}
+
 
 $css = "
 div.required label:after {
@@ -40,11 +57,25 @@ if(isMobile()){
     $(".selectpicker").selectpicker("mobile");
 }
 
+//Mobile Date selection fix for new form
+if (!isMobile()) {
+    $("input[type=date]")
+        .attr("type", "text")
+        .daterangepicker({
+            // Consistent format with the HTML5 picker
+            showDropdowns: true,
+            singleDatePicker: true,
+            format: "YYYY/MM/DD",
+            '.$datePickerLocale.'
+    });
+}
+
 $(".switchSelect").bootstrapSwitch();
 ';
 
 
-employer\assets\SwitchInputAsset::register($this);
+\employer\assets\SwitchInputAsset::register($this);
+\employer\assets\DateRangeInputAsset::register($this);
 
 $this->registerJs($js);
 $this->registerCss($css);
@@ -67,7 +98,7 @@ $form = ActiveForm::begin([
 
 <h3>Job Details</h3>
 
-<?= $form->field($model, 'job_title')->textInput(['maxlength' => 255]) ?>
+<?= $form->field($model, 'job_title')->textInput(['maxlength' => 255, 'placeholder' => 'Project Manager']) ?>
 
 <?= $form->field($model, 'jobtype_id',[
                 'template' => $selectTemplate,
@@ -89,15 +120,27 @@ $form = ActiveForm::begin([
     'checked',
     ]) ?>
 
-<?= $form->field($model, 'job_responsibilites')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>
+<?= $form->field($model, 'job_responsibilites')->textArea([
+    'rows' => 2, 
+    'class' => 'form-control js-auto-size',
+    'placeholder' => 'eg..',
+        ]) ?>
 
-<?= $form->field($model, 'job_desired_skill')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>
+<?= $form->field($model, 'job_desired_skill')->textArea([
+    'rows' => 2, 
+    'class' => 'form-control js-auto-size',
+    'placeholder' => 'eg..',
+    ]) ?>
 
-<?= $form->field($model, 'job_other_qualifications')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>
+<?= $form->field($model, 'job_other_qualifications')->textArea([
+    'rows' => 1, 
+    'class' => 'form-control js-auto-size',
+    'placeholder' => 'eg..',
+    ]) ?>
 
-<?= $form->field($model, 'job_startdate')->textInput() ?>
+<?= $form->field($model, 'job_startdate')->input('date') ?>
 
-<?= $form->field($model, 'job_compensation')->textInput(['maxlength' => 255]) ?>
+<?= $form->field($model, 'job_compensation')->textInput(['maxlength' => 255, 'placeholder' => 'Recommendation Letter / $$$ / Free lunch']) ?>
 
 <h3>Interview Questions</h3>
 
