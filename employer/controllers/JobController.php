@@ -3,7 +3,7 @@
 namespace employer\controllers;
 
 use Yii;
-use common\models\Job;
+use employer\models\Job;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
