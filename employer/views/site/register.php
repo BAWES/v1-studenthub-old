@@ -53,21 +53,6 @@ $this->registerCss($css);
                         . "</div>\n</div>\n{hint}\n{error}\n"
                         . "{endWrapper}";
         
-        //Arabic Field Templates
-        if($this->params['isArabic']){
-            $fieldTemplate = "{beginWrapper}\n"
-                        . "<div class='inputer'>\n<div class='input-wrapper'>\n"
-                        . "{input}"
-                        . "</div>\n</div>\n{hint}\n{error}\n"
-                        . "{endWrapper}\n{label}";
-            
-            $selectTemplate = "{beginWrapper}\n"
-                        . "<div class=''>\n<div class=''>\n"
-                        . "{input}"
-                        . "</div>\n</div>\n{hint}\n{error}\n"
-                        . "{endWrapper}\n{label}";
-        }
-        
         
         /**
          * Start Form
@@ -79,9 +64,9 @@ $this->registerCss($css);
                     'fieldConfig' => [
                         'template' => $fieldTemplate,
                         'horizontalCssClasses' => [
-                            'label' => $this->params['isArabic']? 'col-xs-4 col-md-3' : 'col-md-3',
+                            'label' => 'col-md-3',
                             'offset' => '',
-                            'wrapper' => $this->params['isArabic']? "col-xs-8 col-md-5 col-md-offset-4" : "col-md-5",
+                            'wrapper' => "col-md-5",
                             'error' => '',
                             'hint' => '',
                         ],
@@ -152,10 +137,8 @@ $this->registerCss($css);
         <?= $form->field($model, 'employer_password_hash')->passwordInput(['placeholder' => '***']) ?>
         
         
-        <div class="form-group">
-            <div class="<?= $this->params['isArabic']? "col-xs-8 col-md-5 col-md-offset-4" : "col-md-5 col-md-offset-3" ?>">
+        <div class="col-md-5 col-md-offset-3">
                 <?= Html::submitButton(Yii::t('register', 'Sign Up'), ['class' => 'btn btn-teal btn-block btn-ripple', 'name' => 'signup-button']) ?>
-            </div>
         </div>
         
         <?php ActiveForm::end(); ?>
