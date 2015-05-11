@@ -86,9 +86,9 @@ $form = ActiveForm::begin([
                 'template' => $fieldTemplate,
                 'horizontalCheckboxTemplate' => $checkboxTemplate,
                 'horizontalCssClasses' => [
-                    'label' => 'col-md-3 col-xs-4',
+                    'label' => 'col-md-3',
                     'offset' => '',
-                    'wrapper' => "col-md-5 col-xs-8",
+                    'wrapper' => "col-md-5",
                     'error' => '',
                     'hint' => '',
                 ],
@@ -98,11 +98,20 @@ $form = ActiveForm::begin([
 
 <h3>Job Details</h3>
 
-<?= $form->field($model, 'job_title')->textInput(['maxlength' => 255, 'placeholder' => 'Project Manager']) ?>
+<?= $form->field($model, 'job_title',[
+    'horizontalCssClasses' => [
+                    'label' => 'col-md-3 col-xs-4',
+                    'wrapper' => "col-md-5 col-xs-8",
+                ],
+])->textInput(['maxlength' => 255, 'placeholder' => 'Project Manager']) ?>
 
 <?=
 $form->field($model, 'jobtype_id', [
     'template' => $selectTemplate,
+    'horizontalCssClasses' => [
+                    'label' => 'col-md-3 col-xs-4',
+                    'wrapper' => "col-md-5 col-xs-8",
+                ],
 ])->dropDownList(
         ArrayHelper::map(common\models\Jobtype::find()->all(), "jobtype_id", $this->params['isArabic'] ? "jobtype_name_ar" : "jobtype_name_en"), [
     'class' => 'selectpicker',
@@ -198,7 +207,12 @@ $form->field($model, 'job_question_2')->textArea([
 
 
 <?=
-$form->field($model, 'job_max_applicants')->textInput([
+$form->field($model, 'job_max_applicants',[
+    'horizontalCssClasses' => [
+                    'label' => 'col-md-3 col-xs-4',
+                    'wrapper' => "col-md-5 col-xs-8",
+                ],
+])->textInput([
     'placeholder' => 'Minimum 25 applicants',
 ])
 ?>
