@@ -5,7 +5,7 @@ use Yii;
 use frontend\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
-use frontend\models\ContactForm;
+use common\models\ContactForm;
 use frontend\models\Student;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
