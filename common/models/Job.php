@@ -65,7 +65,9 @@ class Job extends \yii\db\ActiveRecord
     {
         return [
             [['jobtype_id', 'job_title', 'job_pay', 'job_responsibilites', 'job_desired_skill', 'job_max_applicants'], 'required'],
-            [['jobtype_id', 'job_pay'], 'integer'],
+            [['job_other_qualifications', 'job_compensation'], 'safe'],
+            
+            //Length validation
             [['job_title', 'job_compensation'], 'string', 'max' => 255],
             
             //Date Validation

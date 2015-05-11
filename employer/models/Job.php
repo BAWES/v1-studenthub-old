@@ -19,6 +19,8 @@ class Job extends \common\models\Job {
         return array_merge(parent::rules(), [
             //Always required
             //[['step', 'majorsSelected', 'languagesSelected'], 'required'],
+            
+            //Create rule saying that all attributes are safe on draft scenario
         ]);
     }
     
@@ -27,13 +29,8 @@ class Job extends \common\models\Job {
      */
     public function scenarios() {
         $scenarios = parent::scenarios();
-        
-        /*
-        //Validate only these attributes on firstStep
-        $scenarios['registrationFirstStep'] = ['step', 'university_id', 'student_email', 'student_password_hash',
-            'student_contact_number', 'student_verification_attachment'];
-         * 
-         */
+        $scenarios['step1'] = ['job_title', 'jobtype_id', 'job_pay', 'job_responsibilites', 'job_desired_skill',
+            'job_other_qualifications', 'job_startdate', 'job_compensation'];
 
         return $scenarios;
     }
