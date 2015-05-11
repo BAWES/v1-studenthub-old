@@ -64,11 +64,12 @@ class Job extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['jobtype_id', 'employer_id', 'job_title', 'job_pay', 'job_startdate', 'job_responsibilites', 'job_other_qualifications', 'job_desired_skill', 'job_question_1', 'job_question_2', 'job_max_applicants', 'job_status'], 'required'],
+            [['jobtype_id', 'employer_id', 'job_title', 'job_pay', 'job_responsibilites', 'job_desired_skill', 'job_max_applicants', 'job_status'], 'required'],
             [['jobtype_id', 'employer_id', 'job_pay', 'job_status'], 'integer'],
-            [['job_startdate'], 'safe'],
             [['job_price_per_applicant'], 'number'],
-            [['job_title', 'job_responsibilites', 'job_other_qualifications', 'job_desired_skill', 'job_compensation', 'job_question_1', 'job_question_2'], 'string', 'max' => 255],
+            [['job_title', 'job_compensation'], 'string', 'max' => 255],
+            
+            [['job_startdate'], 'date'],
                         
             //`job_pay` rules
             ['job_pay', 'in', 'range' => [self::PAY_PAID, self::PAY_NOT_PAID]],
@@ -93,18 +94,18 @@ class Job extends \yii\db\ActiveRecord
     {
         return [
             'job_id' => Yii::t('app', 'Job ID'),
-            'jobtype_id' => Yii::t('app', 'Jobtype ID'),
+            'jobtype_id' => Yii::t('app', 'Type'),
             'employer_id' => Yii::t('app', 'Employer ID'),
             'job_title' => Yii::t('app', 'Job Title'),
-            'job_pay' => Yii::t('app', 'Job Pay'),
-            'job_startdate' => Yii::t('app', 'Job Startdate'),
-            'job_responsibilites' => Yii::t('app', 'Job Responsibilites'),
-            'job_other_qualifications' => Yii::t('app', 'Job Other Qualifications'),
-            'job_desired_skill' => Yii::t('app', 'Job Desired Skill'),
-            'job_compensation' => Yii::t('app', 'Job Compensation'),
-            'job_question_1' => Yii::t('app', 'Job Question 1'),
-            'job_question_2' => Yii::t('app', 'Job Question 2'),
-            'job_max_applicants' => Yii::t('app', 'Job Max Applicants'),
+            'job_pay' => Yii::t('app', 'Paid'),
+            'job_startdate' => Yii::t('app', 'Work Starting Date'),
+            'job_responsibilites' => Yii::t('app', 'Responsibilites'),
+            'job_other_qualifications' => Yii::t('app', 'Other Qualifications'),
+            'job_desired_skill' => Yii::t('app', 'Desired Skills'),
+            'job_compensation' => Yii::t('app', 'Compensation'),
+            'job_question_1' => Yii::t('app', 'Question 1'),
+            'job_question_2' => Yii::t('app', 'Question 2'),
+            'job_max_applicants' => Yii::t('app', 'Max # of Applicants'),
             'job_current_num_applicants' => Yii::t('app', 'Job Current Num Applicants'),
             'job_status' => Yii::t('app', 'Job Status'),
             'job_price_per_applicant' => Yii::t('app', 'Job Price Per Applicant'),

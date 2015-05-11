@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 11, 2015 at 09:36 AM
+-- Generation Time: May 11, 2015 at 10:08 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -540,13 +540,13 @@ CREATE TABLE IF NOT EXISTS `job` (
   `employer_id` int(11) unsigned NOT NULL,
   `job_title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `job_pay` tinyint(4) NOT NULL COMMENT 'Pay (1), No Pay (0)',
-  `job_startdate` date NOT NULL,
-  `job_responsibilites` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `job_other_qualifications` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `job_desired_skill` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `job_startdate` date DEFAULT NULL,
+  `job_responsibilites` text COLLATE utf8_unicode_ci NOT NULL,
+  `job_other_qualifications` text COLLATE utf8_unicode_ci,
+  `job_desired_skill` text COLLATE utf8_unicode_ci NOT NULL,
   `job_compensation` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `job_question_1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `job_question_2` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `job_question_1` text COLLATE utf8_unicode_ci,
+  `job_question_2` text COLLATE utf8_unicode_ci,
   `job_max_applicants` int(11) NOT NULL,
   `job_current_num_applicants` int(11) NOT NULL,
   `job_status` tinyint(4) NOT NULL COMMENT 'close (0), open (1), draft (2)',

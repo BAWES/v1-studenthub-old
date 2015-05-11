@@ -65,6 +65,8 @@ $form = ActiveForm::begin([
         ]);
 ?>
 
+<h3>Job Details</h3>
+
 <?= $form->field($model, 'job_title')->textInput(['maxlength' => 255]) ?>
 
 <?= $form->field($model, 'jobtype_id',[
@@ -78,23 +80,37 @@ $form = ActiveForm::begin([
 
 
 
-<?= $form->field($model, 'job_pay')->checkbox(['class' => 'switchSelect']) ?>
+<?= $form->field($model, 'job_pay')->checkbox([
+    'class' => 'switchSelect',
+    'data-on-text' => 'Yes',
+    'data-on-color' => 'success',
+    'data-off-text' => 'No',
+    'data-off-color' => 'danger',
+    ]) ?>
+
+<?= $form->field($model, 'job_responsibilites')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>
+
+<?= $form->field($model, 'job_desired_skill')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>
+
+<?= $form->field($model, 'job_other_qualifications')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>
 
 <?= $form->field($model, 'job_startdate')->textInput() ?>
 
-<?= $form->field($model, 'job_responsibilites')->textInput(['maxlength' => 255]) ?>
-
-<?= $form->field($model, 'job_other_qualifications')->textInput(['maxlength' => 255]) ?>
-
-<?= $form->field($model, 'job_desired_skill')->textInput(['maxlength' => 255]) ?>
-
 <?= $form->field($model, 'job_compensation')->textInput(['maxlength' => 255]) ?>
 
-<?= $form->field($model, 'job_max_applicants')->textInput() ?>
+<h3>Interview Questions</h3>
 
 <?= $form->field($model, 'job_question_1')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>
 
 <?= $form->field($model, 'job_question_2')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>
+
+
+<h3>Listing Details</h3>
+
+<?= $form->field($model, 'job_max_applicants')->textInput() ?>
+
+<h3>Filters</h3>
+
 
 <div class="col-md-5 col-md-offset-3">
     <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), 
