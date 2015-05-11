@@ -18,6 +18,10 @@ $selectTemplate = "{label}\n{beginWrapper}\n"
         . "{input}"
         . "</div>\n</div>\n{hint}\n{error}\n"
         . "{endWrapper}";
+$checkboxTemplate = "<div class=\"checkboxer\">\n"
+        . "{input}\n"
+        . "{label}\n"
+        . "</div>\n{error}\n{hint}";
 
 
 $css = "
@@ -43,6 +47,7 @@ $form = ActiveForm::begin([
             'layout' => 'horizontal',
             'fieldConfig' => [
                 'template' => $fieldTemplate,
+                'checkboxTemplate' => $checkboxTemplate,
                 'horizontalCssClasses' => [
                     'label' => 'col-md-3',
                     'offset' => '',
