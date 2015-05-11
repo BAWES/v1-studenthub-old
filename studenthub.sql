@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 11, 2015 at 10:08 AM
+-- Generation Time: May 11, 2015 at 03:35 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -538,19 +538,19 @@ CREATE TABLE IF NOT EXISTS `job` (
   `job_id` int(11) unsigned NOT NULL,
   `jobtype_id` int(11) unsigned NOT NULL,
   `employer_id` int(11) unsigned NOT NULL,
-  `job_title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `job_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `job_pay` tinyint(4) NOT NULL COMMENT 'Pay (1), No Pay (0)',
   `job_startdate` date DEFAULT NULL,
-  `job_responsibilites` text COLLATE utf8_unicode_ci NOT NULL,
+  `job_responsibilites` text COLLATE utf8_unicode_ci,
   `job_other_qualifications` text COLLATE utf8_unicode_ci,
-  `job_desired_skill` text COLLATE utf8_unicode_ci NOT NULL,
-  `job_compensation` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `job_desired_skill` text COLLATE utf8_unicode_ci,
+  `job_compensation` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `job_question_1` text COLLATE utf8_unicode_ci,
   `job_question_2` text COLLATE utf8_unicode_ci,
-  `job_max_applicants` int(11) NOT NULL,
-  `job_current_num_applicants` int(11) NOT NULL,
+  `job_max_applicants` int(11) DEFAULT NULL,
+  `job_current_num_applicants` int(11) NOT NULL DEFAULT '0',
   `job_status` tinyint(4) NOT NULL COMMENT 'close (0), open (1), draft (2)',
-  `job_price_per_applicant` decimal(10,0) NOT NULL,
+  `job_price_per_applicant` decimal(10,0) DEFAULT NULL,
   `job_updated_datetime` datetime NOT NULL,
   `job_created_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -572,7 +572,7 @@ CREATE TABLE IF NOT EXISTS `jobtype` (
 --
 
 INSERT INTO `jobtype` (`jobtype_id`, `jobtype_name_ar`, `jobtype_name_en`) VALUES
-(1, 'متدرب', 'Intern'),
+(1, 'متدرب', 'Internship'),
 (2, 'متطوع', 'Volunteer'),
 (3, 'وظيفة بدوام واحد', 'One-time Job'),
 (4, 'وظيفة بدوام جزئي', 'Part-time Job'),
