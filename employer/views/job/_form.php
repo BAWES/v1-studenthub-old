@@ -213,7 +213,7 @@ $form->field($model, 'job_max_applicants',[
                     'wrapper' => "col-md-5 col-xs-8",
                 ],
 ])->textInput([
-    'placeholder' => 'Minimum 25 applicants',
+    'placeholder' => 'Minimum 25',
 ])
 ?>
 
