@@ -188,19 +188,19 @@ $form->field($model, 'job_question_2')->textArea([
 
 
 <div class="row" style="margin-bottom:10px;">
-    <span class="col-md-3 col-xs-4 control-label">
+    <span class="col-md-3 col-xs-6 control-label">
         Price per Applicant
     </span>
-    <div class="col-md-5 col-xs-8">
+    <div class="col-md-5 col-xs-6">
         KD 0.750
     </div>
 </div>
 
 <div class="row" style="margin-bottom:10px;">
-    <span class="col-md-3 col-xs-4 control-label">
+    <span class="col-md-3 col-xs-6 control-label">
         Filter Price per Applicant
     </span>
-    <div class="col-md-5 col-xs-8">
+    <div class="col-md-5 col-xs-6">
         KD 0.250
     </div>
 </div>
@@ -209,8 +209,8 @@ $form->field($model, 'job_question_2')->textArea([
 <?=
 $form->field($model, 'job_max_applicants',[
     'horizontalCssClasses' => [
-                    'label' => 'col-md-3 col-xs-4',
-                    'wrapper' => "col-md-5 col-xs-8",
+                    'label' => 'col-md-3 col-xs-6',
+                    'wrapper' => "col-md-5 col-xs-6",
                 ],
 ])->textInput([
     'placeholder' => 'Minimum 25',
