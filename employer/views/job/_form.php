@@ -18,14 +18,14 @@ $selectTemplate = "{label}\n{beginWrapper}\n"
         . "{input}"
         . "</div>\n</div>\n{hint}\n{error}\n"
         . "{endWrapper}";
-$checkboxTemplate = "<div class='control-label col-md-3'>{label}</div>\n"
-        . "<div class='col-md-5'>"
+$checkboxTemplate = "<span class='control-label col-md-3 col-xs-4'>{label}</span>\n"
+        . "<div class='col-md-5 col-xs-8'>"
         . "{input}\n\n{error}\n{hint}"
         . "</div>";
 
 //Set Datepicker Locale to AR if language selected
 $datePickerLocale = "";
-if($this->params['isArabic']){
+if ($this->params['isArabic']) {
     $datePickerLocale = "
    locale: {
             applyLabel: 'Submit',
@@ -66,7 +66,7 @@ if (!isMobile()) {
             showDropdowns: true,
             singleDatePicker: true,
             format: "YYYY/MM/DD",
-            '.$datePickerLocale.'
+            ' . $datePickerLocale . '
     });
 }
 
@@ -86,9 +86,9 @@ $form = ActiveForm::begin([
                 'template' => $fieldTemplate,
                 'horizontalCheckboxTemplate' => $checkboxTemplate,
                 'horizontalCssClasses' => [
-                    'label' => 'col-md-3',
+                    'label' => 'col-md-3 col-xs-4',
                     'offset' => '',
-                    'wrapper' => "col-md-5",
+                    'wrapper' => "col-md-5 col-xs-8",
                     'error' => '',
                     'hint' => '',
                 ],
@@ -100,43 +100,52 @@ $form = ActiveForm::begin([
 
 <?= $form->field($model, 'job_title')->textInput(['maxlength' => 255, 'placeholder' => 'Project Manager']) ?>
 
-<?= $form->field($model, 'jobtype_id',[
-                'template' => $selectTemplate,
-            ])->dropDownList(
-                ArrayHelper::map(common\models\Jobtype::find()->all(), "jobtype_id", 
-                        $this->params['isArabic']?"jobtype_name_ar":"jobtype_name_en"), [
-                'class' => 'selectpicker',
-                'data-width' => '100%'
-            ]) ?>
+<?=
+$form->field($model, 'jobtype_id', [
+    'template' => $selectTemplate,
+])->dropDownList(
+        ArrayHelper::map(common\models\Jobtype::find()->all(), "jobtype_id", $this->params['isArabic'] ? "jobtype_name_ar" : "jobtype_name_en"), [
+    'class' => 'selectpicker',
+    'data-width' => '100%'
+])
+?>
 
 
 
-<?= $form->field($model, 'job_pay')->checkbox([
+<?=
+$form->field($model, 'job_pay')->checkbox([
     'class' => 'switchSelect',
     'data-on-text' => 'Yes',
     'data-on-color' => 'success',
     'data-off-text' => 'No',
     'data-off-color' => 'danger',
     'checked',
-    ]) ?>
+])
+?>
 
-<?= $form->field($model, 'job_responsibilites')->textArea([
-    'rows' => 2, 
+<?=
+$form->field($model, 'job_responsibilites')->textArea([
+    'rows' => 2,
     'class' => 'form-control js-auto-size',
     'placeholder' => 'eg..',
-        ]) ?>
+])
+?>
 
-<?= $form->field($model, 'job_desired_skill')->textArea([
-    'rows' => 2, 
+<?=
+$form->field($model, 'job_desired_skill')->textArea([
+    'rows' => 2,
     'class' => 'form-control js-auto-size',
     'placeholder' => 'eg..',
-    ]) ?>
+])
+?>
 
-<?= $form->field($model, 'job_other_qualifications')->textArea([
-    'rows' => 1, 
+<?=
+$form->field($model, 'job_other_qualifications')->textArea([
+    'rows' => 1,
     'class' => 'form-control js-auto-size',
     'placeholder' => 'eg..',
-    ]) ?>
+])
+?>
 
 <?= $form->field($model, 'job_startdate')->input('date') ?>
 
@@ -144,21 +153,79 @@ $form = ActiveForm::begin([
 
 <h3>Interview Questions</h3>
 
-<?= $form->field($model, 'job_question_1')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>
+<?=
+$form->field($model, 'job_question_1')->textArea([
+    'rows' => 2,
+    'class' => 'form-control js-auto-size',
+    'placeholder' => 'Sample question here',
+])
+?>
 
-<?= $form->field($model, 'job_question_2')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>
+<?=
+$form->field($model, 'job_question_2')->textArea([
+    'rows' => 2,
+    'class' => 'form-control js-auto-size',
+    'placeholder' => 'Sample question here',
+])
+?>
+
+<h3>Filters</h3>
+
+<p>Choose your filters here</p>
+<br/>
 
 
 <h3>Listing Details</h3>
 
-<?= $form->field($model, 'job_max_applicants')->textInput() ?>
 
-<h3>Filters</h3>
+<div class="row" style="margin-bottom:10px;">
+    <span class="col-md-3 col-xs-4 control-label">
+        Price per Applicant
+    </span>
+    <div class="col-md-5 col-xs-8">
+        KD 0.750
+    </div>
+</div>
+
+<div class="row" style="margin-bottom:10px;">
+    <span class="col-md-3 col-xs-4 control-label">
+        Filter Price per Applicant
+    </span>
+    <div class="col-md-5 col-xs-8">
+        KD 0.250
+    </div>
+</div>
 
 
-<div class="col-md-5 col-md-offset-3">
-    <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), 
-    ['class' => $model->isNewRecord ? 'btn btn-success btn-block btn-ripple' : 'btn btn-teal btn-block btn-ripple']) ?>
+<?=
+$form->field($model, 'job_max_applicants')->textInput([
+    'placeholder' => 'Minimum 25 applicants',
+])
+?>
+
+<div class="row">
+    <div class="col-md-5 col-md-offset-3">
+        <div class="note note-warning note-left-striped">
+            <h4>Note</h4>
+            <p>
+                Once payment is made for the job, you will not be able to make changes to the filters and number of applicants requested.
+            </p>
+        </div><!--.note-->
+    </div>
+</div>
+
+<div class="row" style="margin-bottom:10px; margin-top:10px;">
+    <div class="col-md-5 col-md-offset-3">
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Save as Draft') : Yii::t('app', 'Update'), ['class' => 'btn btn-warning btn-block btn-ripple'])
+        ?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5 col-md-offset-3">
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Proceed to Payment') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success btn-block btn-ripple' : 'btn btn-teal btn-block btn-ripple'])
+        ?>
+    </div>
 </div>
 
 <?php ActiveForm::end(); ?>

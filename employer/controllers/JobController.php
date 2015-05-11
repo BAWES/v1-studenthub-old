@@ -75,6 +75,7 @@ class JobController extends Controller
         //Set default values
         $model->employer_id = Yii::$app->user->identity->employer_id;
         $model->job_pay = Job::PAY_PAID;
+        $model->job_startdate = date("Y/m/d");
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->job_id]);
