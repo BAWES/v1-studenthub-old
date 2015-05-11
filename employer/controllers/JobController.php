@@ -78,10 +78,9 @@ class JobController extends Controller {
         $model->job_pay = Job::PAY_PAID;
         $model->job_startdate = date("Y/m/d");
         
-
         if ($model->load(Yii::$app->request->post())) {
             //If draft, save without validation and redirect to dashboard
-            if(Yii::$app->request->post('draft') && (Yii::$app->request->post() == 'yes')){
+            if(Yii::$app->request->post('draft') && (Yii::$app->request->post('draft') == 'yes')){
                 $model->save(false);
                 return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
             }

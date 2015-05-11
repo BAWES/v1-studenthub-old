@@ -76,13 +76,12 @@ $(".switchSelect").bootstrapSwitch();
 var saveAsDraft = false;
 
 $("#saveAsDraft").click(function(){
-    var saveAsDraft = true;
+    saveAsDraft = true;
 });
-
 
 // Disable client-side validation when saving as draft
 $("form").on("beforeValidateAttribute", function (event, attribute,messages,deferreds) {
-    if (saveAsDraft) { alert("yes"); return false;  }
+    if (saveAsDraft) { return false;   }
 });
 ';
 
