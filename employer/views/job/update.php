@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -8,16 +7,19 @@ use yii\helpers\Html;
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
     'modelClass' => 'Job',
 ]) . ' ' . $model->job_id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Jobs'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->job_id, 'url' => ['view', 'id' => $model->job_id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('employer', 'Dashboard'), 'url' => ['dashboard/index']];
+$this->params['breadcrumbs'][] = ['label' => $model->job_title, 'url' => ['view', 'id' => $model->job_id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
-<div class="job-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="panel">
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="panel-body">
+        
+        <?= $this->render('_form', [
+            'model' => $model,
+        ]) ?>
+        
+    </div>
 
 </div>
