@@ -20,8 +20,8 @@ $selectTemplate = "{label}\n{beginWrapper}\n"
         . "{endWrapper}";
 $checkboxTemplate = "<div class='control-label col-md-3'>{label}</div>\n"
         . "<div class='col-md-5'>"
-        . "{input}\n"
-        . "</div>\n{error}\n{hint}";
+        . "{input}\n\n{error}\n{hint}"
+        . "</div>";
 
 
 $css = "
@@ -86,6 +86,7 @@ $form = ActiveForm::begin([
     'data-on-color' => 'success',
     'data-off-text' => 'No',
     'data-off-color' => 'danger',
+    'data-indeterminate' => 'true',
     ]) ?>
 
 <?= $form->field($model, 'job_responsibilites')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>
