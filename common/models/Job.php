@@ -69,7 +69,7 @@ class Job extends \yii\db\ActiveRecord
             [['job_price_per_applicant'], 'number'],
             [['job_title', 'job_compensation'], 'string', 'max' => 255],
             
-            [['job_startdate'], 'date'],
+            [['job_startdate'], 'date', 'format' => 'yyyy/MM/dd'],
                         
             //`job_pay` rules
             ['job_pay', 'in', 'range' => [self::PAY_PAID, self::PAY_NOT_PAID]],
