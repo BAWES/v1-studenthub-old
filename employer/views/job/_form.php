@@ -86,7 +86,7 @@ $form = ActiveForm::begin([
     'data-on-color' => 'success',
     'data-off-text' => 'No',
     'data-off-color' => 'danger',
-    'data-indeterminate' => 'true',
+    'checked',
     ]) ?>
 
 <?= $form->field($model, 'job_responsibilites')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>

@@ -71,6 +71,10 @@ class JobController extends Controller
     public function actionCreate()
     {
         $model = new Job();
+        
+        //Set default values
+        $model->employer_id = Yii::$app->user->identity->employer_id;
+        $model->job_pay = Job::PAY_PAID;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->job_id]);
