@@ -184,6 +184,18 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 'targetAttribute' => 'university_id',
                 'message' => \Yii::t('frontend','This university does not exist.')
             ],
+            //Country existence validation
+            ['country_id', 'exist',
+                'targetClass' => '\common\models\Country',
+                'targetAttribute' => 'country_id',
+                'message' => \Yii::t('frontend','This nationality does not exist.')
+            ],
+            //Degree existence validation
+            ['degree_id', 'exist',
+                'targetClass' => '\common\models\Degree',
+                'targetAttribute' => 'country_id',
+                'message' => \Yii::t('frontend','This degree does not exist.')
+            ],
             
             //Unique emails
             ['student_email', 'filter', 'filter' => 'trim'],
