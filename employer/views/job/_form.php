@@ -18,9 +18,9 @@ $selectTemplate = "{label}\n{beginWrapper}\n"
         . "{input}"
         . "</div>\n</div>\n{hint}\n{error}\n"
         . "{endWrapper}";
-$checkboxTemplate = "<div class=\"checkboxer\">\n"
+$checkboxTemplate = "<div class='control-label col-md-3'>{label}</div>\n"
+        . "<div class='col-md-5'>"
         . "{input}\n"
-        . "{label}\n"
         . "</div>\n{error}\n{hint}";
 
 
@@ -38,7 +38,13 @@ function isMobile(){
 }
 if(isMobile()){
     $(".selectpicker").selectpicker("mobile");
-}';
+}
+
+$(".switchSelect").bootstrapSwitch();
+';
+
+
+employer\assets\SwitchInputAsset::register($this);
 
 $this->registerJs($js);
 $this->registerCss($css);
@@ -47,7 +53,7 @@ $form = ActiveForm::begin([
             'layout' => 'horizontal',
             'fieldConfig' => [
                 'template' => $fieldTemplate,
-                'checkboxTemplate' => $checkboxTemplate,
+                'horizontalCheckboxTemplate' => $checkboxTemplate,
                 'horizontalCssClasses' => [
                     'label' => 'col-md-3',
                     'offset' => '',
@@ -72,7 +78,7 @@ $form = ActiveForm::begin([
 
 
 
-<?= $form->field($model, 'job_pay')->textInput() ?>
+<?= $form->field($model, 'job_pay')->checkbox(['class' => 'switchSelect']) ?>
 
 <?= $form->field($model, 'job_startdate')->textInput() ?>
 
@@ -86,9 +92,9 @@ $form = ActiveForm::begin([
 
 <?= $form->field($model, 'job_max_applicants')->textInput() ?>
 
-<?= $form->field($model, 'job_question_1')->textArea(['rows' => 1, 'class' => 'form-control js-auto-size']) ?>
+<?= $form->field($model, 'job_question_1')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>
 
-<?= $form->field($model, 'job_question_2')->textArea(['rows' => 1, 'class' => 'form-control js-auto-size']) ?>
+<?= $form->field($model, 'job_question_2')->textArea(['rows' => 2, 'class' => 'form-control js-auto-size']) ?>
 
 <div class="col-md-5 col-md-offset-3">
     <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), 
