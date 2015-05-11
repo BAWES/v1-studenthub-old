@@ -64,12 +64,19 @@ class Job extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['jobtype_id', 'employer_id', 'job_title', 'job_pay', 'job_responsibilites', 'job_desired_skill', 'job_max_applicants', 'job_status'], 'required'],
-            [['jobtype_id', 'employer_id', 'job_pay', 'job_status'], 'integer'],
-            [['job_price_per_applicant'], 'number'],
+            [['jobtype_id', 'job_title', 'job_pay', 'job_responsibilites', 'job_desired_skill', 'job_max_applicants'], 'required'],
+            [['jobtype_id', 'job_pay'], 'integer'],
             [['job_title', 'job_compensation'], 'string', 'max' => 255],
             
+            //Date Validation
             [['job_startdate'], 'date', 'format' => 'yyyy/MM/dd'],
+            
+            //Job Type Existence Validation
+            ['jobtype_id', 'exist',
+                'targetClass' => '\common\models\Jobtype',
+                'targetAttribute' => 'jobtype_id',
+                'message' => \Yii::t('frontend','This job type does not exist.')
+            ],
                         
             //`job_pay` rules
             ['job_pay', 'in', 'range' => [self::PAY_PAID, self::PAY_NOT_PAID]],
