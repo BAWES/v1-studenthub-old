@@ -1,5 +1,8 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\widgets\ListView;
+
 
 /* @var $this yii\web\View */
 /* @var $openJobsDataProvider yii\data\ArrayDataProvider */
@@ -18,10 +21,10 @@ $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\Te
 <br/>
 
 <ul class="nav nav-tabs" style="background-color: white">
-    <li class="active"><a href="#openJobs" data-toggle="tab"><?= Yii::t('employer', 'Open') ?> <span class="badge badge-teal"><?= Yii::$app->formatter->asInteger(3) ?></span></a></li>
-    <li><a href="#pendingJobs" data-toggle="tab"><?= Yii::t('employer', 'Pending') ?> <span class="badge badge-teal"><?= Yii::$app->formatter->asInteger(0) ?></span></a></li>
-    <li><a href="#closedJobs" data-toggle="tab"><?= Yii::t('employer', 'Closed') ?> <span class="badge badge-teal"><?= Yii::$app->formatter->asInteger(21) ?></span></a></li>
-    <li><a href="#draftJobs" data-toggle="tab"><?= Yii::t('employer', 'Drafts') ?> <span class="badge badge-teal"><?= Yii::$app->formatter->asInteger(6) ?></span></a></li>
+    <li class="active"><a href="#openJobs" data-toggle="tab"><?= Yii::t('employer', 'Open') ?> <span class="badge badge-teal"><?= Yii::$app->formatter->asInteger(count($openJobsDataProvider->allModels)) ?></span></a></li>
+    <li><a href="#pendingJobs" data-toggle="tab"><?= Yii::t('employer', 'Pending') ?> <span class="badge badge-teal"><?= Yii::$app->formatter->asInteger(count($pendingJobsDataProvider->allModels)) ?></span></a></li>
+    <li><a href="#closedJobs" data-toggle="tab"><?= Yii::t('employer', 'Closed') ?> <span class="badge badge-teal"><?= Yii::$app->formatter->asInteger(count($closedJobsDataProvider->allModels)) ?></span></a></li>
+    <li><a href="#draftJobs" data-toggle="tab"><?= Yii::t('employer', 'Drafts') ?> <span class="badge badge-teal"><?= Yii::$app->formatter->asInteger(count($draftJobsDataProvider->allModels)) ?></span></a></li>
 </ul>
 
 <div class="row">
@@ -83,14 +86,26 @@ $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\Te
                     <!-- List of pending jobs in this tab -->
                     <div class="tab-pane text-style" id="pendingJobs">
                         
-                        pending
+                        <?= ListView::widget([
+                            'dataProvider' => $closedJobsDataProvider,
+                            'itemOptions' => ['class' => 'item'],
+                            'itemView' => function ($model, $key, $index, $widget) {
+                                return Html::a(Html::encode($model->job_id), ['view', 'id' => $model->job_id]);
+                            },
+                        ]) ?>
                         
                     </div>
                     
                     <!-- List of jobs closed in this tab -->
                     <div class="tab-pane text-style" id="closedJobs">
                         
-                        closed
+                        <?= ListView::widget([
+                            'dataProvider' => $closedJobsDataProvider,
+                            'itemOptions' => ['class' => 'item'],
+                            'itemView' => function ($model, $key, $index, $widget) {
+                                return Html::a(Html::encode($model->job_id), ['view', 'id' => $model->job_id]);
+                            },
+                        ]) ?>
                         
                     </div>
                     
@@ -98,7 +113,13 @@ $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\Te
                     <!-- List of jobs drafted in this tab -->
                     <div class="tab-pane text-style" id="draftJobs">
                         
-                        draft
+                        <?= ListView::widget([
+                            'dataProvider' => $draftJobsDataProvider,
+                            'itemOptions' => ['class' => 'item'],
+                            'itemView' => function ($model, $key, $index, $widget) {
+                                return Html::a(Html::encode($model->job_id), ['view', 'id' => $model->job_id]);
+                            },
+                        ]) ?>
 
                     </div>
 
