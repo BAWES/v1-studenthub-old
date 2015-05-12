@@ -5,6 +5,7 @@ namespace employer\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
+use employer\models\Job;
 
 class DashboardController extends \yii\web\Controller {
 
@@ -40,8 +41,33 @@ class DashboardController extends \yii\web\Controller {
      * Renders Employer Dashboard containing all jobs posted + link to create a new job
      */
     public function actionIndex() {
-        //Maybe replace this controller with Job Controller
-        return $this->render('index');
+        $jobs = Yii::$app->user->identity->jobs;
+        
+        $openJobs = $closedJobs = $pendingJobs = $draftJobs = [];
+        
+        foreach($jobs as $job){
+            switch($job->job_status){
+                case Job::STATUS_OPEN:
+                    $openJobs[] = $job;
+                    break;
+                case Job::STATUS_CLOSED:
+                    $closedJobs[] = $job;
+                    break;
+                case Job::STATUS_PENDING:
+                    $pendingJobs[] = $job;
+                    break;
+                case Job::STATUS_DRAFT:
+                    $draftJobs[] = $job;
+                    break;
+            }
+        }
+                
+        return $this->render('index',[
+            'openJobs' => $openJobs,
+            'closedJobs' => $closedJobs,
+            'pendingJobs' => $pendingJobs,
+            'draftJobs' => $draftJobs,
+        ]);
     }
 
     

@@ -2,6 +2,11 @@
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
+/* @var $openJobs array */
+/* @var $closedJobs array */
+/* @var $draftJobs array */
+/* @var $pendingJobs array */
+
 $this->title = Yii::t("employer", 'Dashboard');
 
 $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\TemplateAsset']);
