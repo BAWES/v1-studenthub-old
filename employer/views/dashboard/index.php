@@ -2,10 +2,10 @@
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $openJobs array */
-/* @var $closedJobs array */
-/* @var $draftJobs array */
-/* @var $pendingJobs array */
+/* @var $openJobsDataProvider yii\data\ArrayDataProvider */
+/* @var $closedJobsDataProvider yii\data\ArrayDataProvider */
+/* @var $draftJobsDataProvider yii\data\ArrayDataProvider */
+/* @var $pendingJobsDataProvider yii\data\ArrayDataProvider */
 
 $this->title = Yii::t("employer", 'Dashboard');
 

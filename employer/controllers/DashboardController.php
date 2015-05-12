@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use employer\models\Job;
+use yii\data\ArrayDataProvider;
 
 class DashboardController extends \yii\web\Controller {
 
@@ -61,12 +62,25 @@ class DashboardController extends \yii\web\Controller {
                     break;
             }
         }
+        
+        $openJobsDataProvider = new ArrayDataProvider([
+            'allModels' => $openJobs,
+        ]);
+        $closedJobsDataProvider = new ArrayDataProvider([
+            'allModels' => $closedJobs,
+        ]);
+        $pendingJobsDataProvider = new ArrayDataProvider([
+            'allModels' => $pendingJobs,
+        ]);
+        $draftJobsDataProvider = new ArrayDataProvider([
+            'allModels' => $draftJobs,
+        ]);
                 
         return $this->render('index',[
-            'openJobs' => $openJobs,
-            'closedJobs' => $closedJobs,
-            'pendingJobs' => $pendingJobs,
-            'draftJobs' => $draftJobs,
+            'openJobsDataProvider' => $openJobsDataProvider,
+            'closedJobsDataProvider' => $closedJobsDataProvider,
+            'pendingJobsDataProvider' => $pendingJobsDataProvider,
+            'draftJobsDataProvider' => $draftJobsDataProvider,
         ]);
     }
 
