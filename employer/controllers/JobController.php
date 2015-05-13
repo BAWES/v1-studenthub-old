@@ -195,7 +195,7 @@ class JobController extends Controller {
             }
         }
 
-        return $this->render('step2', [
+        return $this->render('step3', [
             'model' => $model,
         ]);
     }
