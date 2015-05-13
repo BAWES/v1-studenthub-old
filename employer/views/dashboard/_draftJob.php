@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $model employer\models\Job */
 ?>
@@ -30,7 +31,13 @@ use yii\helpers\Html;
         </div><!--.card-body-->
         <div class="card-footer applicants">
             <a class="btn btn-floating"  style="position:absolute;right:70px; bottom:7px"><i class="ion-android-create"></i></a>
-            <a class="btn btn-floating" data-toggle="modal" data-target="#job-more" style="position:absolute;right:15px; bottom:7px"><i class="fa fa-ellipsis-h"></i></a>
+            <a href="<?= Url::to(['job/delete', 'id' => $model->job_id]) ?>"
+               class="btn btn-floating" 
+               data-method="post"
+               data-confirm="<?= Yii::t('app', 'Are you sure you want to delete this draft?') ?>"
+               style="position:absolute;right:15px; bottom:7px">
+                <i class="ion-android-delete"></i>
+            </a>
             <ul>
                 <li class="pull-left" style="font-weight:bold;"><?= Yii::t("employer", "Draft") ?></li>
             </ul>

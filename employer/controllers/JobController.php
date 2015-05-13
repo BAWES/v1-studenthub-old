@@ -26,12 +26,12 @@ class JobController extends Controller {
                     ],
                 ],
             ],
-            'verbs' => [
+            /*'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
-            ],
+            ],*/
         ];
     }
 
@@ -142,27 +142,38 @@ class JobController extends Controller {
         }
     }
 
+    
     /**
-     * Deletes an existing Job model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * Allows employer to delete his own drafts
+     * If deletion is successful, the browser will be redirected to the 'index' draft page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        //Check if its a draft & owned by this employer before deleting
+        $model = $this->findModel($id);
+        if($model->job_status == Job::STATUS_DRAFT){
+            $model->delete();
+        }
+        
+        return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
     }
 
     /**
      * Finds the Job model based on its primary key value.
+     * Job must belong to this employer for it to be found
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
      * @return Job the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = Job::findOne($id)) !== null) {
+        $condition = [
+            'job_id' => (int) $id,
+            'employer_id' => Yii::$app->user->identity->employer_id,
+        ];
+        
+        if (($model = Job::findOne($condition)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
