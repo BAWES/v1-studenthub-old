@@ -149,7 +149,7 @@ $form->field($model, 'job_pay')->checkbox([
 $form->field($model, 'job_responsibilites')->textArea([
     'rows' => 2,
     'class' => 'form-control js-auto-size',
-    'placeholder' => 'eg..',
+    'placeholder' => 'A short description about the job',
 ])
 ?>
 
@@ -157,7 +157,7 @@ $form->field($model, 'job_responsibilites')->textArea([
 $form->field($model, 'job_desired_skill')->textArea([
     'rows' => 2,
     'class' => 'form-control js-auto-size',
-    'placeholder' => 'eg..',
+    'placeholder' => 'Teamwork / time management / photoshop',
 ])
 ?>
 
@@ -165,11 +165,11 @@ $form->field($model, 'job_desired_skill')->textArea([
 $form->field($model, 'job_other_qualifications')->textArea([
     'rows' => 1,
     'class' => 'form-control js-auto-size',
-    'placeholder' => 'eg..',
+    'placeholder' => 'etc..',
 ])
 ?>
 
-<?= $form->field($model, 'job_startdate')->input('date') ?>
+<?= $form->field($model, 'job_startdate')->input('date',['placeholder' => Yii::t('employer', 'Leave blank to show "flexible start date"')]) ?>
 
 <?= $form->field($model, 'job_compensation')->textInput(['maxlength' => 255, 'placeholder' => 'Recommendation Letter / $$$ / Free lunch']) ?>
 

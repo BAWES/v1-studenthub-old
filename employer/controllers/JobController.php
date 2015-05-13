@@ -107,7 +107,6 @@ class JobController extends Controller {
         $model->employer_id = Yii::$app->user->identity->employer_id;
         $model->job_status = Job::STATUS_DRAFT;
         $model->job_pay = Job::PAY_PAID;
-        $model->job_startdate = date("Y/m/d");
         
         if ($model->load(Yii::$app->request->post())) {
             //If draft, save without validation and redirect to dashboard
