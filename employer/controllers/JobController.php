@@ -195,7 +195,7 @@ class JobController extends Controller {
      * Job must belong to this employer for it to be found
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return employer\models\Job the loaded model
+     * @return Job the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
