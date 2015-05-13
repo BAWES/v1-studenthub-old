@@ -71,10 +71,8 @@ class JobController extends Controller {
         $model = $this->findModel($id);
         $model->scenario = "step1";
         
-        //Editing of closed jobs is not allowed
-        if($model->job_status == Job::STATUS_CLOSED){
-            throw new \yii\web\BadRequestHttpException("You are not allowed to update a closed job");
-        }
+        //Check if editing is allowed
+        $this->checkJobEditAllowed($model);
 
         if ($model->load(Yii::$app->request->post())) {
             //If draft, save without validation and redirect to dashboard
@@ -84,7 +82,7 @@ class JobController extends Controller {
             }
 
             if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->job_id]);
+                return $this->redirect(['create-step2', 'id' => $model->job_id]);
             }
         }
         
@@ -141,6 +139,9 @@ class JobController extends Controller {
     public function actionCreateStep2($id) {
         $model = $this->findModel($id);
         $model->scenario = "step2";
+        
+        //Check if editing is allowed
+        $this->checkJobEditAllowed($model);
 
         if ($model->load(Yii::$app->request->post())) {
             //If draft, save without validation and redirect to dashboard
@@ -178,12 +179,23 @@ class JobController extends Controller {
         return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
     }
 
+    
+    /**
+     * Checks if editing a job is allowed
+     * @param Job $job
+     */
+    public function checkJobEditAllowed($job){
+        if($job->job_status == Job::STATUS_CLOSED){
+            throw new \yii\web\BadRequestHttpException("You are not allowed to update a closed job");
+        }
+    }
+    
     /**
      * Finds the Job model based on its primary key value.
      * Job must belong to this employer for it to be found
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Job the loaded model
+     * @return employer\models\Job the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {

@@ -177,6 +177,13 @@ $form->field($model, 'job_other_qualifications')->textArea([
 
 <div class="row" style="margin-bottom:10px; margin-top:10px;">
     <div class="col-md-5 col-md-offset-3">
+        <?= Html::submitButton(Yii::t('employer', 'Next Step') , ['class' => 'btn btn-success btn-block btn-ripple'])
+        ?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5 col-md-offset-3">
         <?= Html::a(Yii::t('employer', 'Save as Draft'), Url::current(), [
                 'class' => 'btn btn-warning btn-block btn-ripple',
                 'id' => 'saveAsDraft',
@@ -187,13 +194,6 @@ $form->field($model, 'job_other_qualifications')->textArea([
                     ]
                 ],
             ]) ?>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-5 col-md-offset-3">
-        <?= Html::submitButton(Yii::t('employer', 'Next Step') , ['class' => 'btn btn-success btn-block btn-ripple'])
-        ?>
     </div>
 </div>
 

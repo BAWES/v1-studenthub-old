@@ -1,6 +1,6 @@
 <?php
 
-use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Job */
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h4><?= Yii::t("employer", "Step 2: Interview Questions") ?></h4>
             <div class="steps-pull-right">
                 <ul class="wizard-steps">
-                    <li class="step" id="step1"><a href="#firstStep" class="btn btn-white btn-ripple"><?= Yii::$app->formatter->asInteger(1) ?></a></li>
+                    <li class="step" id="step1"><a href="<?= Url::to(["job/update", "id" => $model->job_id]) ?>" class="btn btn-white btn-ripple"><?= Yii::$app->formatter->asInteger(1) ?></a></li>
                     <li class="step" id="step2"><a href="#secondStep" class="btn btn-teal btn-ripple"><?= Yii::$app->formatter->asInteger(2) ?></a></li>
                     <li class="step" id="step3"><a href="#thirdStep" class="btn btn-white btn-ripple"><?= Yii::$app->formatter->asInteger(3) ?></a></li>
                     <li class="step" id="step3"><a href="#fourthStep" class="btn btn-white btn-ripple"><?= Yii::$app->formatter->asInteger(4) ?></a></li>

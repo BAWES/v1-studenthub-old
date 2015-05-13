@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 
@@ -116,7 +117,14 @@ $form->field($model, 'job_question_2')->textArea([
 
 <div class="row" style="margin-bottom:10px; margin-top:10px;">
     <div class="col-md-5 col-md-offset-3">
-        <?= Html::a(Yii::t('employer', 'Save as Draft'), ['create'], [
+        <?= Html::submitButton(Yii::t('employer', 'Next Step') , ['class' => 'btn btn-success btn-block btn-ripple'])
+        ?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5 col-md-offset-3">
+        <?= Html::a(Yii::t('employer', 'Save as Draft'), Url::current(), [
                 'class' => 'btn btn-warning btn-block btn-ripple',
                 'id' => 'saveAsDraft',
                 'data' => [
@@ -126,13 +134,6 @@ $form->field($model, 'job_question_2')->textArea([
                     ]
                 ],
             ]) ?>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-5 col-md-offset-3">
-        <?= Html::submitButton(Yii::t('employer', 'Next Step') , ['class' => 'btn btn-success btn-block btn-ripple'])
-        ?>
     </div>
 </div>
 
