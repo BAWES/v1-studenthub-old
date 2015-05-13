@@ -118,8 +118,9 @@ class JobController extends Controller {
                 return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
             }
 
+            //Save and go to second step
             if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->job_id]);
+                return $this->redirect(['create-step2', 'id' => $model->job_id]);
             }
         }
 
@@ -134,27 +135,29 @@ class JobController extends Controller {
      * 
      * Should user save it as draft, it will save without validation and 
      * take him back to the dashboard
+     * @param integer $id
      * @return mixed
      */
-    public function actionCreateStep2() {
-        $model = new Job();
+    public function actionCreateStep2($id) {
+        $model = $this->findModel($id);
         $model->scenario = "step2";
 
-        //Set default values
-        $model->employer_id = Yii::$app->user->identity->employer_id;
-        $model->job_pay = Job::PAY_PAID;
-        $model->job_startdate = date("Y/m/d");
+        if ($model->load(Yii::$app->request->post())) {
+            //If draft, save without validation and redirect to dashboard
+            if(Yii::$app->request->post('draft') && (Yii::$app->request->post('draft') == 'yes')){
+                $model->save(false);
+                return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
+            }
 
-
-        //If draft, save without validation and redirect to dashboard
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->job_id]);
-        } else {
-            return $this->render('step2', [
-                        'model' => $model,
-            ]);
+            //Save and go to third step
+            if ($model->save()) {
+                return $this->redirect(['create-step3', 'id' => $model->job_id]);
+            }
         }
+
+        return $this->render('step2', [
+            'model' => $model,
+        ]);
     }
 
     
