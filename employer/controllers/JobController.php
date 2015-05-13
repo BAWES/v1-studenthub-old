@@ -26,12 +26,12 @@ class JobController extends Controller {
                     ],
                 ],
             ],
-            /*'verbs' => [
+            'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
-            ],*/
+            ],
         ];
     }
 
