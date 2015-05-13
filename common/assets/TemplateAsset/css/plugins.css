@@ -1,4 +1,6 @@
 /* Chosen Select Plugin */
+a.hover-red:hover{color:red}
+a.hover-orange:hover{color:orange}
 /* icheck */
 .icheck .radio label,
 .icheck .checkbox label {
