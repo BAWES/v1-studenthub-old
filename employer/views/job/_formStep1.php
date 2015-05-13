@@ -174,6 +174,17 @@ $form->field($model, 'job_other_qualifications')->textArea([
 <?= $form->field($model, 'job_compensation')->textInput(['maxlength' => 255, 'placeholder' => 'Recommendation Letter / $$$ / Free lunch']) ?>
 
 
+<div class="row">
+    <div class="col-md-5 col-md-offset-3">
+        <div class="note note-warning note-left-striped">
+            <h4>Note</h4>
+            <p>
+                A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub
+            </p>
+        </div><!--.note-->
+    </div>
+</div>
+
 
 <div class="row" style="margin-bottom:10px; margin-top:10px;">
     <div class="col-md-5 col-md-offset-3">
