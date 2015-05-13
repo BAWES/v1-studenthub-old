@@ -97,13 +97,13 @@ $form = ActiveForm::begin([
         ]);
 ?>
 
-<h3>Interview Questions</h3>
+<h3><?= Yii::t("employer", "Have a question for the applicants? (optional)") ?></h3>
 
 <?=
 $form->field($model, 'job_question_1')->textArea([
     'rows' => 2,
     'class' => 'form-control js-auto-size',
-    'placeholder' => 'Sample question here',
+    'placeholder' => 'Which of our products have you used before, and what do you like most about them?',
 ])
 ?>
 
@@ -111,9 +111,20 @@ $form->field($model, 'job_question_1')->textArea([
 $form->field($model, 'job_question_2')->textArea([
     'rows' => 2,
     'class' => 'form-control js-auto-size',
-    'placeholder' => 'Sample question here',
+    'placeholder' => 'Do you have experience working in social media?',
 ])
 ?>
+
+<div class="row">
+    <div class="col-md-5 col-md-offset-3">
+        <div class="note note-warning note-left-striped">
+            <h4><?= Yii::t("employer", "Tip") ?></h4>
+            <p>
+                <?= Yii::t("employer", "Decide carefully! You may not be able to change these questions without contacting us once you publish your job posting") ?>
+            </p>
+        </div><!--.note-->
+    </div>
+</div>
 
 <div class="row" style="margin-bottom:10px; margin-top:10px;">
     <div class="col-md-5 col-md-offset-3">
