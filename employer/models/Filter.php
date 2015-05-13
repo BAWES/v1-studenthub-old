@@ -14,12 +14,19 @@ class Filter extends \common\models\Filter {
     //majors and languages selected during job filter creation
     public $majorsSelected;
     public $languagesSelected;
+    public $numberOfApplicants;
 
     /**
      * @inheritdoc
      */
     public function rules() {
         return array_merge(parent::rules(), [
+            //Employers must input number of applicants they wish to have (minimum 20)
+            [['numberOfApplicants'], 'required'],
+            [['numberOfApplicants'], '\common\components\ArabicNumberValidator'],
+            [['numberOfApplicants'], 'integer', 'min' => 20],
+            
+            //Allow massive assignment of majors and languages
             [['majorsSelected', 'languagesSelected'], 'safe'],
             
             //Validate Major and Language selections (if selected)
