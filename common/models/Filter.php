@@ -42,10 +42,39 @@ class Filter extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['job_id', 'university_id', 'degree_id', 'filter_gpa', 'filter_graduation_year_start', 'filter_graduation_year_end', 'filter_transportation'], 'required'],
-            [['job_id', 'university_id', 'degree_id', 'filter_transportation'], 'integer'],
-            [['filter_gpa'], 'number'],
-            [['filter_graduation_year_start', 'filter_graduation_year_end'], 'safe']
+            [['job_id'], 'required'],
+            [['job_id', 'university_id', 'degree_id'], 'integer'],
+            
+            //Default Null Values
+            [['job_id','university_id','degree_id','filter_gpa','filter_graduation_year_start', 
+                'filter_graduation_year_end', 'filter_transportation'], 'default'],
+            
+            
+            //Grad year start cant be higher than graduation year end
+            ['filter_graduation_year_start', 'compare', 'compareAttribute' => 'filter_graduation_year_end', 'operator' => '<=',
+                'message' => \Yii::t('frontend','Graduation year start must be less than or equal to the graduation year end.')],
+            
+            //Convert Arabic Numeric Input to English
+            [['filter_gpa'], '\common\components\ArabicNumberValidator'],
+            //Gpa min and max
+            [['filter_gpa'], 'number', 'min' => 0.1, 'max' => 4],
+            
+            
+            
+            //University existence validation
+            ['university_id', 'exist',
+                'targetClass' => '\common\models\University',
+                'targetAttribute' => 'university_id',
+                'message' => \Yii::t('frontend','This university does not exist.')
+            ],
+            //Degree existence validation
+            ['degree_id', 'exist',
+                'targetClass' => '\common\models\Degree',
+                'targetAttribute' => 'country_id',
+                'message' => \Yii::t('frontend','This degree does not exist.')
+            ],
+            //Transportation options
+            ['filter_transportation', 'in', 'range' => [Student::TRANSPORTATION_AVAILABLE, Student::TRANSPORTATION_NOT_AVAILABLE]],
         ];
     }
 
