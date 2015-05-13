@@ -160,6 +160,45 @@ class JobController extends Controller {
             'model' => $model,
         ]);
     }
+    
+    /**
+     * Third Step of Job Creation - Selecting filters to add to your Job posting
+     * If everything is valid, save and move to next step
+     * 
+     * Should user save it as draft, it will save without validation and 
+     * take him back to the dashboard
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionCreateStep3($id) {
+        $model = $this->findModel($id);
+        
+        //Check if editing is allowed
+        $this->checkJobEditAllowed($model);
+
+        
+        //In this step we will create the filters and link them to this Job
+        //Whenever someone edits this page, it will clear all filters and re-add them
+        //However, you can only edit the filters if this is a draft
+        
+        
+        if ($model->load(Yii::$app->request->post())) {
+            //If draft, save without validation and redirect to dashboard
+            if(Yii::$app->request->post('draft') && (Yii::$app->request->post('draft') == 'yes')){
+                $model->save(false);
+                return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
+            }
+
+            //Save and go to third step
+            if ($model->save()) {
+                return $this->redirect(['create-step3', 'id' => $model->job_id]);
+            }
+        }
+
+        return $this->render('step2', [
+            'model' => $model,
+        ]);
+    }
 
     
     /**
