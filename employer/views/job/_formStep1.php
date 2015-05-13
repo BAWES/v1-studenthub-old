@@ -177,9 +177,9 @@ $form->field($model, 'job_other_qualifications')->textArea([
 <div class="row">
     <div class="col-md-5 col-md-offset-3">
         <div class="note note-warning note-left-striped">
-            <h4>Note</h4>
+            <h4><?= Yii::t("employer", "Note") ?></h4>
             <p>
-                A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub
+                <?= Yii::t("employer", "A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub") ?>
             </p>
         </div><!--.note-->
     </div>
