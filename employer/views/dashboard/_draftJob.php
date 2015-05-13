@@ -30,7 +30,8 @@ use yii\helpers\Url;
             
         </div><!--.card-body-->
         <div class="card-footer applicants">
-            <a class="btn btn-floating"  style="position:absolute;right:70px; bottom:7px"><i class="ion-android-create"></i></a>
+            <a href="<?= Url::to(['job/update', 'id' => $model->job_id]) ?>"
+                class="btn btn-floating"  style="position:absolute;right:70px; bottom:7px"><i class="ion-android-create"></i></a>
             <a href="<?= Url::to(['job/delete', 'id' => $model->job_id]) ?>"
                class="btn btn-floating" 
                data-method="post"

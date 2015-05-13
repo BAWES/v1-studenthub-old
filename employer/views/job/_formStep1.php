@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Job */
@@ -176,7 +177,7 @@ $form->field($model, 'job_other_qualifications')->textArea([
 
 <div class="row" style="margin-bottom:10px; margin-top:10px;">
     <div class="col-md-5 col-md-offset-3">
-        <?= Html::a(Yii::t('employer', 'Save as Draft'), ['create'], [
+        <?= Html::a(Yii::t('employer', 'Save as Draft'), Url::current(), [
                 'class' => 'btn btn-warning btn-block btn-ripple',
                 'id' => 'saveAsDraft',
                 'data' => [

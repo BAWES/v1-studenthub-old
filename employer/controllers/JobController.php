@@ -59,6 +59,39 @@ class JobController extends Controller {
                     'model' => $this->findModel($id),
         ]);
     }
+    
+    /**
+     * Updates an existing Job model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function actionUpdate($id) {
+        $model = $this->findModel($id);
+        $model->scenario = "step1";
+        
+        //Editing of closed jobs is not allowed
+        if($model->job_status == Job::STATUS_CLOSED){
+            throw new \yii\web\BadRequestHttpException("You are not allowed to update a closed job");
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+            //If draft, save without validation and redirect to dashboard
+            if(Yii::$app->request->post('draft') && (Yii::$app->request->post('draft') == 'yes')){
+                $model->save(false);
+                return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
+            }
+
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->job_id]);
+            }
+        }
+        
+        return $this->render('step1', [
+            'model' => $model,
+        ]);
+    }
 
     /**
      * Creates a new Job model. (First Step)
@@ -124,24 +157,6 @@ class JobController extends Controller {
         }
     }
 
-    /**
-     * Updates an existing Job model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id) {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->job_id]);
-        } else {
-            return $this->render('update', [
-                        'model' => $model,
-            ]);
-        }
-    }
-
     
     /**
      * Allows employer to delete his own drafts
@@ -152,6 +167,7 @@ class JobController extends Controller {
     public function actionDelete($id) {
         //Check if its a draft & owned by this employer before deleting
         $model = $this->findModel($id);
+        
         if($model->job_status == Job::STATUS_DRAFT){
             $model->delete();
         }
