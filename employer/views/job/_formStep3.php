@@ -104,9 +104,12 @@ $form = ActiveForm::begin([
 $form->field($filter, 'university_id', ['template' => $selectTemplate])->dropDownList(
         ArrayHelper::map(common\models\University::find()->all(), "university_id", $this->params['isArabic'] ? "university_name_ar" : "university_name_en"), [
     'class' => 'selectpicker',
+    'prompt' => Yii::t('employer', 'All Universities'),
     'data-width' => '100%'
 ])
 ?>
+
+<?= $form->field($filter, 'numberOfApplicants')->input("number", ['placeholder' => 'Minimum 20']) ?>
 
 
 <h3 style="margin-bottom:0;"><?= Yii::t("employer", "Premium Filters") ?></h3>
