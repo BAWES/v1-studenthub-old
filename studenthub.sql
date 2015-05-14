@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 11, 2015 at 03:35 PM
+-- Generation Time: May 14, 2015 at 10:44 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -399,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `employer` (
 --
 
 INSERT INTO `employer` (`employer_id`, `industry_id`, `city_id`, `employer_company_name`, `employer_logo`, `employer_website`, `employer_company_desc`, `employer_num_employees`, `employer_contact_firstname`, `employer_contact_lastname`, `employer_contact_number`, `employer_credit`, `employer_email_preference`, `employer_email`, `employer_email_verification`, `employer_auth_key`, `employer_password_hash`, `employer_password_reset_token`, `employer_language_pref`, `employer_support_field`, `employer_limit_email`, `employer_updated_datetime`, `employer_datetime`) VALUES
-(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '0', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$yD4XFIMwChLBjsRxTFQ5GuEvQTDIBtV8MCtouOC0rj4qhrNyyGvGa', NULL, 'en-US', '0', '2015-05-10 09:49:40', '2015-05-11 08:51:18', '2015-05-02 16:15:30'),
+(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '0', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$yD4XFIMwChLBjsRxTFQ5GuEvQTDIBtV8MCtouOC0rj4qhrNyyGvGa', NULL, 'en-US', '0', '2015-05-10 09:49:40', '2015-05-13 13:43:11', '2015-05-02 16:15:30'),
 (2, 1, 1, 'Test Company', NULL, NULL, 'sqSQ', NULL, 'DWAD', 'dwadwa', '99811042', '0', 1, 'dwadwadw@dwad.com', 1, 'RkJCWLIjxJPziHMmyx-GTHgf9Q8RBndT', '$2y$13$KONg0F9VYiie8LDelIsuZeSo6Hd4AuB/1Xq2GflzO7Eqw4Rdl3wOK', '', 'en-US', '0', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-02 16:27:38'),
 (3, 1, 1, 'Khalid', 'LNOOgViwpx86Op575JBj37xHjINuJnF9.png', NULL, 'Free Stuff', NULL, 'dwad', 'dwad', '99811042', '30', 1, 'dwda@gust.edom', 0, 'rsI8d0rOnrvuOZt0W4j3eAbP6Gge0Yo3', '$2y$13$xUE.p13lHQnJSjsN6rifZuhbtacDdYBxgVO/GdY9xxZA8pEchL2kC', '', 'en-US', '0', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-02 18:43:14'),
 (4, 1, 1, 'Khalid', NULL, NULL, 'dwa', NULL, 'Khalid', 'M', '99811042', '0', 0, 'm6awa3@gmail.com', 0, 'nILkFnFe18sI5O1ZsXVRoMTXIOz_sIIi', '$2y$13$0Eg4BM0F0bFi8/ePjoSrd.W2dVPu5KLY.3o.iEUKzIKgheM4yNq0O', NULL, 'en-US', '0', '2015-05-05 22:07:17', '2015-05-05 22:07:17', '2015-05-03 20:00:29'),
@@ -414,11 +414,11 @@ INSERT INTO `employer` (`employer_id`, `industry_id`, `city_id`, `employer_compa
 CREATE TABLE IF NOT EXISTS `filter` (
   `filter_id` int(11) unsigned NOT NULL,
   `job_id` int(11) unsigned NOT NULL,
-  `university_id` int(11) unsigned NOT NULL,
-  `degree_id` int(11) unsigned NOT NULL,
-  `filter_gpa` decimal(10,2) NOT NULL,
-  `filter_graduation_year_start` year(4) NOT NULL,
-  `filter_graduation_year_end` year(4) NOT NULL,
+  `university_id` int(11) unsigned DEFAULT NULL,
+  `degree_id` int(11) unsigned DEFAULT NULL,
+  `filter_gpa` decimal(10,2) DEFAULT NULL,
+  `filter_graduation_year_start` year(4) DEFAULT NULL,
+  `filter_graduation_year_end` year(4) DEFAULT NULL,
   `filter_transportation` tinyint(4) NOT NULL COMMENT 'true (1), false (0)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -553,7 +553,15 @@ CREATE TABLE IF NOT EXISTS `job` (
   `job_price_per_applicant` decimal(10,0) DEFAULT NULL,
   `job_updated_datetime` datetime NOT NULL,
   `job_created_datetime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `job`
+--
+
+INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_updated_datetime`, `job_created_datetime`) VALUES
+(4, 1, 1, 'Something', 0, '2015-05-14', 'Not many responsibilities', 'No idea what to put here', 'Oh plenty plenty\r\nYou can brush your teeth with it', 'Money', '', '', NULL, 0, 0, NULL, '2015-05-14 09:23:46', '2015-05-13 10:08:08'),
+(5, 1, 1, 'My new title sucks', 1, '2015-05-13', 'dwa', '', 'dwa', '', 'ertef', 'dwawd', NULL, 0, 0, NULL, '2015-05-13 14:01:08', '2015-05-13 10:14:38');
 
 -- --------------------------------------------------------
 
@@ -2476,7 +2484,7 @@ ALTER TABLE `industry`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `job_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `job_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `jobtype`
 --
