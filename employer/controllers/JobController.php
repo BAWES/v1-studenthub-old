@@ -242,7 +242,7 @@ class JobController extends Controller {
         
         if($model->job_status == Job::STATUS_DRAFT){
             $model->delete();
-        }
+        }else throw new \yii\web\BadRequestHttpException("You are only allowed to delete drafts");
         
         return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
     }
