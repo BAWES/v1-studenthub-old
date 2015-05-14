@@ -12,6 +12,7 @@ use yii\db\Expression;
  * @property integer $job_id
  * @property integer $jobtype_id
  * @property integer $employer_id
+ * @property integer $filter_id
  * @property string $job_title
  * @property integer $job_pay
  * @property string $job_startdate
@@ -31,6 +32,7 @@ use yii\db\Expression;
  * @property Filter[] $filters
  * @property Jobtype $jobtype
  * @property Employer $employer
+ * @property Filter $filter
  * @property NotificationEmployer[] $notificationEmployers
  * @property NotificationStudent[] $notificationStudents
  * @property StudentJobApplication[] $studentJobApplications
@@ -105,6 +107,7 @@ class Job extends \yii\db\ActiveRecord
             'job_id' => Yii::t('app', 'Job ID'),
             'jobtype_id' => Yii::t('app', 'Type'),
             'employer_id' => Yii::t('app', 'Employer ID'),
+            'filter_id' => Yii::t('app', 'Filter ID'),
             'job_title' => Yii::t('app', 'Job Title'),
             'job_pay' => Yii::t('app', 'Paid'),
             'job_startdate' => Yii::t('app', 'Work Starting Date'),
@@ -145,6 +148,14 @@ class Job extends \yii\db\ActiveRecord
     public function getEmployer()
     {
         return $this->hasOne(Employer::className(), ['employer_id' => 'employer_id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFilter()
+    {
+        return $this->hasOne(Filter::className(), ['filter_id' => 'filter_id']);
     }
 
     /**

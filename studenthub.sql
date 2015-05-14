@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.3
+-- version 4.3.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 14, 2015 at 10:44 AM
--- Server version: 5.6.22
+-- Generation Time: May 14, 2015 at 07:14 PM
+-- Server version: 5.6.23
 -- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -413,7 +413,6 @@ INSERT INTO `employer` (`employer_id`, `industry_id`, `city_id`, `employer_compa
 
 CREATE TABLE IF NOT EXISTS `filter` (
   `filter_id` int(11) unsigned NOT NULL,
-  `job_id` int(11) unsigned NOT NULL,
   `university_id` int(11) unsigned DEFAULT NULL,
   `degree_id` int(11) unsigned DEFAULT NULL,
   `filter_gpa` decimal(10,2) DEFAULT NULL,
@@ -538,6 +537,7 @@ CREATE TABLE IF NOT EXISTS `job` (
   `job_id` int(11) unsigned NOT NULL,
   `jobtype_id` int(11) unsigned NOT NULL,
   `employer_id` int(11) unsigned NOT NULL,
+  `filter_id` int(11) unsigned DEFAULT NULL,
   `job_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `job_pay` tinyint(4) NOT NULL COMMENT 'Pay (1), No Pay (0)',
   `job_startdate` date DEFAULT NULL,
@@ -554,14 +554,6 @@ CREATE TABLE IF NOT EXISTS `job` (
   `job_updated_datetime` datetime NOT NULL,
   `job_created_datetime` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `job`
---
-
-INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_updated_datetime`, `job_created_datetime`) VALUES
-(4, 1, 1, 'Something', 0, '2015-05-14', 'Not many responsibilities', 'No idea what to put here', 'Oh plenty plenty\r\nYou can brush your teeth with it', 'Money', '', '', NULL, 0, 0, NULL, '2015-05-14 09:23:46', '2015-05-13 10:08:08'),
-(5, 1, 1, 'My new title sucks', 1, '2015-05-13', 'dwa', '', 'dwa', '', 'ertef', 'dwawd', NULL, 0, 0, NULL, '2015-05-13 14:01:08', '2015-05-13 10:14:38');
 
 -- --------------------------------------------------------
 
@@ -2325,7 +2317,7 @@ ALTER TABLE `employer`
 -- Indexes for table `filter`
 --
 ALTER TABLE `filter`
-  ADD PRIMARY KEY (`filter_id`), ADD KEY `job_id` (`job_id`), ADD KEY `university_id` (`university_id`), ADD KEY `degree_id` (`degree_id`);
+  ADD PRIMARY KEY (`filter_id`), ADD KEY `university_id` (`university_id`), ADD KEY `degree_id` (`degree_id`);
 
 --
 -- Indexes for table `filter_country`
@@ -2355,7 +2347,7 @@ ALTER TABLE `industry`
 -- Indexes for table `job`
 --
 ALTER TABLE `job`
-  ADD PRIMARY KEY (`job_id`), ADD KEY `jobtype_id` (`jobtype_id`), ADD KEY `employer_id` (`employer_id`);
+  ADD PRIMARY KEY (`job_id`), ADD KEY `jobtype_id` (`jobtype_id`), ADD KEY `employer_id` (`employer_id`), ADD KEY `filter_id` (`filter_id`);
 
 --
 -- Indexes for table `jobtype`
@@ -2561,7 +2553,6 @@ ADD CONSTRAINT `employer_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`cit
 -- Constraints for table `filter`
 --
 ALTER TABLE `filter`
-ADD CONSTRAINT `filter_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`),
 ADD CONSTRAINT `filter_ibfk_2` FOREIGN KEY (`university_id`) REFERENCES `university` (`university_id`),
 ADD CONSTRAINT `filter_ibfk_3` FOREIGN KEY (`degree_id`) REFERENCES `degree` (`degree_id`);
 
@@ -2591,7 +2582,8 @@ ADD CONSTRAINT `filter_major_ibfk_2` FOREIGN KEY (`major_id`) REFERENCES `major`
 --
 ALTER TABLE `job`
 ADD CONSTRAINT `job_ibfk_1` FOREIGN KEY (`jobtype_id`) REFERENCES `jobtype` (`jobtype_id`),
-ADD CONSTRAINT `job_ibfk_2` FOREIGN KEY (`employer_id`) REFERENCES `employer` (`employer_id`);
+ADD CONSTRAINT `job_ibfk_2` FOREIGN KEY (`employer_id`) REFERENCES `employer` (`employer_id`),
+ADD CONSTRAINT `job_ibfk_3` FOREIGN KEY (`filter_id`) REFERENCES `filter` (`filter_id`);
 
 --
 -- Constraints for table `notification_employer`

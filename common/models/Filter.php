@@ -8,7 +8,6 @@ use Yii;
  * This is the model class for table "filter".
  *
  * @property integer $filter_id
- * @property integer $job_id
  * @property integer $university_id
  * @property integer $degree_id
  * @property string $filter_gpa
@@ -16,7 +15,6 @@ use Yii;
  * @property string $filter_graduation_year_end
  * @property integer $filter_transportation
  *
- * @property Job $job
  * @property University $university
  * @property Degree $degree
  * @property FilterCountry[] $filterCountries
@@ -25,6 +23,7 @@ use Yii;
  * @property Language[] $languages
  * @property FilterMajor[] $filterMajors
  * @property Major[] $majors
+ * @property Job[] $jobs 
  */
 class Filter extends \yii\db\ActiveRecord
 {
@@ -42,11 +41,10 @@ class Filter extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['job_id'], 'required'],
-            [['job_id', 'university_id', 'degree_id'], 'integer'],
+            [['university_id', 'degree_id'], 'integer'],
             
             //Default Null Values
-            [['job_id','university_id','degree_id','filter_gpa','filter_graduation_year_start', 
+            [['university_id','degree_id','filter_gpa','filter_graduation_year_start', 
                 'filter_graduation_year_end', 'filter_transportation'], 'default'],
             
             
@@ -85,7 +83,6 @@ class Filter extends \yii\db\ActiveRecord
     {
         return [
             'filter_id' => Yii::t('app', 'Filter ID'),
-            'job_id' => Yii::t('app', 'Job ID'),
             'university_id' => Yii::t('app', 'University ID'),
             'degree_id' => Yii::t('app', 'Degree ID'),
             'filter_gpa' => Yii::t('app', 'Filter Gpa'),
@@ -93,14 +90,6 @@ class Filter extends \yii\db\ActiveRecord
             'filter_graduation_year_end' => Yii::t('app', 'Filter Graduation Year End'),
             'filter_transportation' => Yii::t('app', 'Filter Transportation'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getJob()
-    {
-        return $this->hasOne(Job::className(), ['job_id' => 'job_id']);
     }
 
     /**
@@ -165,5 +154,13 @@ class Filter extends \yii\db\ActiveRecord
     public function getMajors()
     {
         return $this->hasMany(Major::className(), ['major_id' => 'major_id'])->viaTable('filter_major', ['filter_id' => 'filter_id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getJobs()
+    {
+        return $this->hasMany(Job::className(), ['filter_id' => 'filter_id']);
     }
 }
