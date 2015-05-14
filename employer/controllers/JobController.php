@@ -181,36 +181,45 @@ class JobController extends Controller {
         $filter = new \employer\models\Filter();
         if($model->filter){
             $filter = $model->filter;
-        }
+        }        
         
-        //Whenever someone edits this page, it will clear all filters and re-add them
-        //However, you can only edit the filters if this is a draft
-        
-        
+        //On Form Submit
         if ($filter->load(Yii::$app->request->post())) {
+            $model->job_max_applicants = $filter->numberOfApplicants;
+            
             //If draft, save without validation and redirect to dashboard
             if(Yii::$app->request->post('draft') && (Yii::$app->request->post('draft') == 'yes')){
                 
-                
-                
-                //
                 //IMPORTANT
                 //
-                //Make sure to save majors selected, languages, and the number of applicants if set
-                //in filters
+                //Make sure to save majors selected, languages, and the number of applicants if setin filters
                 //Unlink majors and languages before re-linking
                 
-                $model->save(false);
+                //Check if creating a filter is required.
+                //If it is, then create then link to job model
+                //If it isn't, delete existing filters and set to null
+                
                 $filter->save(false);
+                $model->save(false);
+                
                 return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
             }
 
-            //Save and go to third step
-            if ($filter->save()) {
-                //Don't forget to set num applicants in $model - then save without validation
+            //Save and go to fourth step
+            if ($filter->validate()) {
+                
+                
                 //Make sure to save majors selected, languages, and the number of applicants if set
                 //Unlink majors and languages before re-linking
-                return $this->redirect(['create-step3', 'id' => $model->job_id]);
+                
+                //Check if creating a filter is required.
+                //If it is, then create then link to job model
+                //If it isn't, delete existing filters and set to null
+                
+                $filter->save(false);
+                $model->save(false);
+                
+                return $this->redirect(['create-step4', 'id' => $model->job_id]);
             }
         }
 
