@@ -73,6 +73,17 @@ if (!isMobile()) {
 }
 
 $(".switchSelect").bootstrapSwitch();
+
+var saveAsDraft = false;
+
+$("#saveAsDraft").click(function(){
+    saveAsDraft = true;
+});
+
+// Disable client-side validation when saving as draft
+$("form").on("beforeValidateAttribute", function (event, attribute,messages,deferreds) {
+    if (saveAsDraft) { return false;   }
+});
 ';
 
 
