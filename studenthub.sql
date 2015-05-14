@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 14, 2015 at 07:14 PM
+-- Generation Time: May 14, 2015 at 08:36 PM
 -- Server version: 5.6.23
 -- PHP Version: 5.6.7
 
@@ -553,7 +553,14 @@ CREATE TABLE IF NOT EXISTS `job` (
   `job_price_per_applicant` decimal(10,0) DEFAULT NULL,
   `job_updated_datetime` datetime NOT NULL,
   `job_created_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `job`
+--
+
+INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `filter_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_updated_datetime`, `job_created_datetime`) VALUES
+(11, 2, 1, NULL, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe', 'dwadwg', 'No compensation', '', '', NULL, 0, 0, NULL, '2015-05-14 19:43:09', '2015-05-14 19:15:47');
 
 -- --------------------------------------------------------
 
@@ -2476,7 +2483,7 @@ ALTER TABLE `industry`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `job_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `job_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `jobtype`
 --
