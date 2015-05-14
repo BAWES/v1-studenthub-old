@@ -171,31 +171,52 @@ class JobController extends Controller {
      */
     public function actionCreateStep3($id) {
         $model = $this->findModel($id);
+        $model->scenario = "step3";
         
         //Check if editing is allowed
         $this->checkJobEditAllowed($model);
-
         
-        //In this step we will create the filters and link them to this Job
+        
+        //If this Job already has a filter defined, load for editing. Otherwise use new
+        $filter = new \employer\models\Filter();
+        if($model->filter){
+            $filter = $model->filter;
+        }
+        
         //Whenever someone edits this page, it will clear all filters and re-add them
         //However, you can only edit the filters if this is a draft
         
         
-        if ($model->load(Yii::$app->request->post())) {
+        if ($filter->load(Yii::$app->request->post())) {
             //If draft, save without validation and redirect to dashboard
             if(Yii::$app->request->post('draft') && (Yii::$app->request->post('draft') == 'yes')){
+                
+                
+                
+                //
+                //IMPORTANT
+                //
+                //Make sure to save majors selected, languages, and the number of applicants if set
+                //in filters
+                //Unlink majors and languages before re-linking
+                
                 $model->save(false);
+                $filter->save(false);
                 return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
             }
 
             //Save and go to third step
-            if ($model->save()) {
+            if ($filter->save()) {
+                //Don't forget to set num applicants in $model - then save without validation
+                //Make sure to save majors selected, languages, and the number of applicants if set
+                //Unlink majors and languages before re-linking
                 return $this->redirect(['create-step3', 'id' => $model->job_id]);
             }
         }
 
         return $this->render('step3', [
             'model' => $model,
+            'filter' => $filter,
         ]);
     }
 

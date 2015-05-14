@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Job */
+/* @var $filter employer\models\Filter */
 /* @var $form yii\bootstrap\ActiveForm */
 
 $fieldTemplate = "{label}\n{beginWrapper}\n"
@@ -100,23 +101,18 @@ $form = ActiveForm::begin([
 <h3><?= Yii::t("employer", "Audience Targetting") ?></h3>
 
 <?=
-$form->field($model, 'job_question_1')->textArea([
-    'rows' => 2,
-    'class' => 'form-control js-auto-size',
-    'placeholder' => 'Which of our products have you used before, and what do you like most about them?',
+$form->field($filter, 'university_id', ['template' => $selectTemplate])->dropDownList(
+        ArrayHelper::map(common\models\University::find()->all(), "university_id", $this->params['isArabic'] ? "university_name_ar" : "university_name_en"), [
+    'class' => 'selectpicker',
+    'data-width' => '100%'
 ])
 ?>
+
 
 <h3 style="margin-bottom:0;"><?= Yii::t("employer", "Premium Filters") ?></h3>
 <h5><?= Yii::t("employer", "Each option increases applicant cost by 0.250 fils") ?></h5>
 
-<?=
-$form->field($model, 'job_question_2')->textArea([
-    'rows' => 2,
-    'class' => 'form-control js-auto-size',
-    'placeholder' => 'Do you have experience working in social media?',
-])
-?>
+input here
 
 <div class="row">
     <div class="col-md-5 col-md-offset-3">

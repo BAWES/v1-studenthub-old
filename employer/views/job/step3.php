@@ -4,6 +4,7 @@ use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Job */
+/* @var $filter employer\models\Filter */
 
 $this->title = Yii::t('employer', 'Post a Job Opening');
 
@@ -31,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?=
         $this->render('_formStep3', [
             'model' => $model,
+            'filter' => $filter,
         ])
         ?>
 
