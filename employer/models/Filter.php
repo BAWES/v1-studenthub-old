@@ -15,6 +15,16 @@ class Filter extends \common\models\Filter {
     public $majorsSelected;
     public $languagesSelected;
     public $numberOfApplicants;
+    
+    //Checkboxes for Premium Filters
+    public $degreeFilter = false;
+    public $gpaFilter = false;
+    public $graduationFilter = false;
+    public $majorFilter = false;
+    public $languageFilter = false;
+    public $nationalityFilter = false;
+    public $transporationFilter = false;
+    
 
     /**
      * @inheritdoc
