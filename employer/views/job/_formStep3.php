@@ -25,23 +25,6 @@ $checkboxTemplate = "<div class=\"checkboxer\" style='margin-left:1em;'>\n"
                         . "{label}\n"
                         . "</div>\n{error}\n{hint}";
 
-//Set Datepicker Locale to AR if language selected
-$datePickerLocale = "";
-if ($this->params['isArabic']) {
-    $datePickerLocale = "
-   locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Cancel',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة','السبت'],
-            monthNames: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
-            firstDay: 1
-        }     
-";
-}
-
 
 $css = "
 div.required label:after {
@@ -63,21 +46,6 @@ if(isMobile()){
     $(".selectpicker").selectpicker("mobile");
 }
 
-//Mobile Date selection fix for new form
-if (!isMobile()) {
-    $("input[type=date]")
-        .attr("type", "text")
-        .daterangepicker({
-            // Consistent format with the HTML5 picker
-            showDropdowns: true,
-            singleDatePicker: true,
-            format: "YYYY/MM/DD",
-            ' . $datePickerLocale . '
-    });
-}
-
-$(".switchSelect").bootstrapSwitch();
-
 var saveAsDraft = false;
 
 $("#saveAsDraft").click(function(){
@@ -91,8 +59,7 @@ $("form").on("beforeValidateAttribute", function (event, attribute,messages,defe
 ';
 
 
-\employer\assets\SwitchInputAsset::register($this);
-\employer\assets\DateRangeInputAsset::register($this);
+\employer\assets\SelectizeAsset::register($this);
 
 $this->registerJs($js);
 $this->registerCss($css);
