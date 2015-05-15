@@ -24,7 +24,7 @@ class Filter extends \common\models\Filter {
     public $languageFilter = false;
     public $englishFilter = false;
     public $nationalityFilter = false;
-    public $transporationFilter = false;
+    public $transportationFilter = false;
     
     //Make sure to implement afterFind -> set these values to true where chosen
     
@@ -73,11 +73,11 @@ class Filter extends \common\models\Filter {
             'degreeFilter' => Yii::t('employer', 'Filter students by Degree'),
             'gpaFilter' => Yii::t('employer', 'Filter students by GPA'),
             'graduationFilter' => Yii::t('employer', 'Filter students by Graduation Year'),
-            'majorFilter' => Yii::t('employer', 'Filter students by Majors'),
+            'majorFilter' => Yii::t('employer', 'Filter students by Major'),
             'languageFilter' => Yii::t('employer', 'Filter students by Language Spoken'),
             'englishFilter' => Yii::t('employer', 'Filter students by English language level'),
             'nationalityFilter' => Yii::t('employer', 'Filter students by Nationality'),
-            'transporationFilter' => Yii::t('employer', 'Only show to Students that have a car'),
+            'transportationFilter' => Yii::t('employer', 'Only show job to Students that have a car'),
         ]);
     }
 

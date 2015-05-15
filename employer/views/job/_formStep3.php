@@ -20,10 +20,10 @@ $selectTemplate = "{label}\n{beginWrapper}\n"
         . "{input}"
         . "</div>\n</div>\n{hint}\n{error}\n"
         . "{endWrapper}";
-$checkboxTemplate = "<span class='control-label col-md-3 col-xs-4'>{label}</span>\n"
-        . "<div class='col-md-5 col-xs-8'>"
-        . "{input}\n\n{error}\n{hint}"
-        . "</div>";
+$checkboxTemplate = "<div class=\"checkboxer\" style='margin-left:1em;'>\n"
+                        . "{input}\n"
+                        . "{label}\n"
+                        . "</div>\n{error}\n{hint}";
 
 //Set Datepicker Locale to AR if language selected
 $datePickerLocale = "";
@@ -47,7 +47,11 @@ $css = "
 div.required label:after {
     content: ' *';
     color: red;
-}";
+}
+.checkboxer input[type='checkbox'] + label{
+    margin-bottom:0;
+}
+";
 
 $js = '
 function isMobile(){
@@ -138,6 +142,15 @@ $form->field($filter, 'degree_id', ['template' => $selectTemplate])->dropDownLis
 
 <?= $form->field($filter, 'filter_gpa')->input("number", ['placeholder' => '3.0']) ?>
 
+
+<?= $form->field($filter, 'degreeFilter')->checkbox() ?>
+<?= $form->field($filter, 'gpaFilter')->checkbox() ?>
+<?= $form->field($filter, 'graduationFilter')->checkbox() ?>
+<?= $form->field($filter, 'majorFilter')->checkbox() ?>
+<?= $form->field($filter, 'languageFilter')->checkbox() ?>
+<?= $form->field($filter, 'englishFilter')->checkbox() ?>
+<?= $form->field($filter, 'nationalityFilter')->checkbox() ?>
+<?= $form->field($filter, 'transportationFilter')->checkbox() ?>
 
 
 <!-- Finalize -->
