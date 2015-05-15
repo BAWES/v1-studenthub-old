@@ -39,8 +39,9 @@ class Filter extends \common\models\Filter {
             [['numberOfApplicants'], '\common\components\ArabicNumberValidator'],
             [['numberOfApplicants'], 'integer', 'min' => 20],
             
-            //Allow massive assignment of majors and languages
-            [['majorsSelected', 'languagesSelected'], 'safe'],
+            //Allow massive assignment of majors, languages, and filters
+            [['majorsSelected', 'languagesSelected', 'degreeFilter', 'gpaFilter', 'graduationFilter',
+                'majorFilter', 'languageFilter', 'englishFilter', 'nationalityFilter', 'transportationFilter'], 'safe'],
             
             //Validate Major and Language selections (if selected)
             ['majorsSelected', '\common\components\ArrayValidator',
