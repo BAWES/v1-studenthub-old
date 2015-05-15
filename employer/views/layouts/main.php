@@ -179,6 +179,7 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                     $menuItems[] = ['label' => Yii::t('frontend','Login'), 'url' => ['/site/login']];
                 } else {
                     $menuItems[] = ['label' => Yii::t('employer','Dashboard'), 'url' => ['/dashboard/index']];
+                    $menuItems[] = ['label' => Yii::t('employer','Buy Credit'), 'url' => ['/credit/index']];
                     $menuItems[] = ['label' => Yii::t('frontend','Contact'), 'url' => ['/site/contact']];
                     $menuItems[] = [
                         'label' => Yii::t('frontend','Logout'),
