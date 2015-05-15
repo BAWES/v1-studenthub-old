@@ -11,6 +11,7 @@ use Yii;
  * @property integer $university_id
  * @property integer $degree_id
  * @property string $filter_gpa
+ * @property integer $filter_english_level
  * @property string $filter_graduation_year_start
  * @property string $filter_graduation_year_end
  * @property integer $filter_transportation
@@ -71,8 +72,9 @@ class Filter extends \yii\db\ActiveRecord
                 'targetAttribute' => 'country_id',
                 'message' => \Yii::t('frontend','This degree does not exist.')
             ],
-            //Transportation options
+            //Range options
             ['filter_transportation', 'in', 'range' => [Student::TRANSPORTATION_AVAILABLE, Student::TRANSPORTATION_NOT_AVAILABLE]],
+            ['filter_english_level', 'in', 'range' => [Student::ENGLISH_WEAK, Student::ENGLISH_FAIR, Student::ENGLISH_GOOD]],
         ];
     }
 
@@ -83,12 +85,13 @@ class Filter extends \yii\db\ActiveRecord
     {
         return [
             'filter_id' => Yii::t('app', 'Filter ID'),
-            'university_id' => Yii::t('app', 'Only students who study at'),
-            'degree_id' => Yii::t('app', 'Only students who expect to earn this degree'),
-            'filter_gpa' => Yii::t('app', 'Only students with a GPA of at least'),
+            'university_id' => Yii::t('app', 'University'),
+            'degree_id' => Yii::t('app', 'Degree'),
+            'filter_english_level' => Yii::t('app', 'English Language Level'),
+            'filter_gpa' => Yii::t('app', 'Minimum GPA'),
             'filter_graduation_year_start' => Yii::t('app', 'Expected Graduation Year Start'),
             'filter_graduation_year_end' => Yii::t('app', 'Expected Graduation Year End'),
-            'filter_transportation' => Yii::t('app', 'Only students who have a car'),
+            'filter_transportation' => Yii::t('app', 'Transportation'),
         ];
     }
 
