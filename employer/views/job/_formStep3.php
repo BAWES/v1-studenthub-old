@@ -123,11 +123,24 @@ $form->field($filter, 'university_id', ['template' => $selectTemplate])->dropDow
 <?= $form->field($filter, 'numberOfApplicants')->input("number", ['placeholder' => 'Minimum 20']) ?>
 
 
+<!-- Premium Filters -->
 <h3 style="margin-bottom:0;"><?= Yii::t("employer", "Premium Filters") ?></h3>
 <h5><?= Yii::t("employer", "Each option increases applicant cost by 0.250 fils") ?></h5>
 
-input here
+<?=
+$form->field($filter, 'degree_id', ['template' => $selectTemplate])->dropDownList(
+        ArrayHelper::map(common\models\Degree::find()->all(), "degree_id", $this->params['isArabic'] ? "degree_name_ar" : "degree_name_en"), [
+    'class' => 'selectpicker',
+    'prompt' => Yii::t('employer', 'Select a Degree'),
+    'data-width' => '100%'
+])
+?>
 
+<?= $form->field($filter, 'filter_gpa')->input("number", ['placeholder' => '3.0']) ?>
+
+
+
+<!-- Finalize -->
 <div class="row">
     <div class="col-md-5 col-md-offset-3">
         <div class="note note-warning note-left-striped">
