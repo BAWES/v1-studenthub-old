@@ -22,14 +22,18 @@ div.required label:after {
 }";
 
 $js = '
+var form = $("form");
 var saveAsDraft = false;
-
 $("#saveAsDraft").click(function(){
     saveAsDraft = true;
+    $("<input>").attr("type", "hidden").attr("name", "draft").attr("value", "yes").appendTo(form);
+    form.submit();
+    
+    return false;
 });
 
 // Disable client-side validation when saving as draft
-$("form").on("beforeValidateAttribute", function (event, attribute,messages,deferreds) {
+form.on("beforeValidateAttribute", function (event, attribute,messages,deferreds) {
     if (saveAsDraft) { return false;   }
 });
 ';
@@ -93,12 +97,6 @@ $form->field($model, 'job_question_2')->textArea([
         <?= Html::a(Yii::t('employer', 'Save as Draft'), Url::current(), [
                 'class' => 'btn btn-warning btn-block btn-ripple',
                 'id' => 'saveAsDraft',
-                'data' => [
-                    'method' => 'post',
-                    'params' => [
-                        'draft' => 'yes',
-                    ]
-                ],
             ]) ?>
     </div>
 </div>
