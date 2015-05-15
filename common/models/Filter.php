@@ -84,11 +84,11 @@ class Filter extends \yii\db\ActiveRecord
         return [
             'filter_id' => Yii::t('app', 'Filter ID'),
             'university_id' => Yii::t('app', 'Only students who study at'),
-            'degree_id' => Yii::t('app', 'Degree ID'),
+            'degree_id' => Yii::t('app', 'Only students who expect to earn this degree'),
             'filter_gpa' => Yii::t('app', 'Filter Gpa'),
-            'filter_graduation_year_start' => Yii::t('app', 'Filter Graduation Year Start'),
-            'filter_graduation_year_end' => Yii::t('app', 'Filter Graduation Year End'),
-            'filter_transportation' => Yii::t('app', 'Filter Transportation'),
+            'filter_graduation_year_start' => Yii::t('app', 'Expected Graduation Year Start'),
+            'filter_graduation_year_end' => Yii::t('app', 'Expected Graduation Year End'),
+            'filter_transportation' => Yii::t('app', 'Only students who have a car'),
         ];
     }
 
