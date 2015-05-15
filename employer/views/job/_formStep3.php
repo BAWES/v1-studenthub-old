@@ -127,12 +127,14 @@ $form->field($filter, 'university_id', ['template' => $selectTemplate])->dropDow
 <?= $form->field($filter, 'numberOfApplicants')->input("number", ['placeholder' => 'Minimum 20']) ?>
 
 
-<!-- Premium Filters -->
+<!-- Premium Filters Header -->
 <h3 style="margin-bottom:0;"><?= Yii::t("employer", "Premium Filters") ?></h3>
 <h5><?= Yii::t("employer", "Each option increases applicant cost by 0.250 fils") ?></h5>
 
-<?=
-$form->field($filter, 'degree_id', ['template' => $selectTemplate])->dropDownList(
+
+<!-- Filter by Degree -->
+<?= $form->field($filter, 'degreeFilter')->checkbox() ?>
+<?= $form->field($filter, 'degree_id', ['template' => $selectTemplate])->dropDownList(
         ArrayHelper::map(common\models\Degree::find()->all(), "degree_id", $this->params['isArabic'] ? "degree_name_ar" : "degree_name_en"), [
     'class' => 'selectpicker',
     'prompt' => Yii::t('employer', 'Select a Degree'),
@@ -140,16 +142,55 @@ $form->field($filter, 'degree_id', ['template' => $selectTemplate])->dropDownLis
 ])
 ?>
 
+<!-- Filter by GPA -->
+<?= $form->field($filter, 'gpaFilter')->checkbox() ?>
 <?= $form->field($filter, 'filter_gpa')->input("number", ['placeholder' => '3.0']) ?>
 
 
-<?= $form->field($filter, 'degreeFilter')->checkbox() ?>
-<?= $form->field($filter, 'gpaFilter')->checkbox() ?>
+<!-- Filter by Graduation Years (range) -->
+<?php
+//Graduation year options
+$graduationYearOptions = [];
+$currentYear = date("Y") - 3;
+$numberOfYears = 8;
+Yii::$app->formatter->thousandSeparator = "";
+for ($i = 0; $i < $numberOfYears; $i++) {
+    $yearOption = $currentYear + $i;
+    $graduationYearOptions[$yearOption] = Yii::$app->formatter->asInteger($yearOption);
+} ?>
 <?= $form->field($filter, 'graduationFilter')->checkbox() ?>
+<?= $form->field($filter, 'filter_graduation_year_start',[
+                'template' => $selectTemplate,
+            ])->dropDownList($graduationYearOptions, [
+                'class' => 'selectpicker', 
+                'data-width' => '100%',
+                'prompt' => Yii::t('employer', 'Select Year'),
+                ]) ?>
+<?= $form->field($filter, 'filter_graduation_year_end',[
+                'template' => $selectTemplate,
+            ])->dropDownList($graduationYearOptions, [
+                'class' => 'selectpicker', 
+                'data-width' => '100%',
+                'prompt' => Yii::t('employer', 'Select Year'),
+                ]) ?>
+
+
+<!-- Filter by Majors -->
 <?= $form->field($filter, 'majorFilter')->checkbox() ?>
+
+<!-- Filter by Languages Spoken -->
 <?= $form->field($filter, 'languageFilter')->checkbox() ?>
+
+
+<!-- Filter by English Language Level -->
 <?= $form->field($filter, 'englishFilter')->checkbox() ?>
+
+
+<!-- Filter by Nationality -->
 <?= $form->field($filter, 'nationalityFilter')->checkbox() ?>
+
+
+<!-- Filter by Transport Availability -->
 <?= $form->field($filter, 'transportationFilter')->checkbox() ?>
 
 
