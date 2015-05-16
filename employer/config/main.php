@@ -17,6 +17,9 @@ return [
             'identityClass' => 'common\models\Employer',
             'enableAutoLogin' => true,
         ],
+        'session' => [
+            'name' => 'app-employer',
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
