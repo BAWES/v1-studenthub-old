@@ -67,8 +67,8 @@ class Filter extends \common\models\Filter {
     public function attributeLabels() {
         return array_merge(parent::attributeLabels(), [
             'numberOfApplicants' => Yii::t('employer', 'Number of Applicants'),
-            'majorsSelected' => Yii::t('employer', 'Majors selected'),
-            'languagesSelected' => Yii::t('employer', 'Languages selected'),
+            'majorsSelected' => Yii::t('employer', 'Majors'),
+            'languagesSelected' => Yii::t('employer', 'Languages'),
             
             'degreeFilter' => Yii::t('employer', 'Filter students by Degree'),
             'gpaFilter' => Yii::t('employer', 'Filter students by GPA'),
