@@ -29,7 +29,7 @@ $this->registerJsFile("https://www.google.com/recaptcha/api.js", ['position' => 
     <div class="panel-body">
         
         <div class="row">
-            <div class="col-lg-5 <?= $this->params['isArabic']?"col-lg-offset-7":"" ?>">
+            <div class="col-lg-5">
                 <?php $form = ActiveForm::begin([
                     'id' => 'contact-form',
                     'fieldConfig' => [
