@@ -63,7 +63,7 @@ form.on("beforeValidateAttribute", function (event, attribute,messages,deferreds
 
 
 //Major type and select
-$(".selectize-majors").selectize({
+$(".selectize").selectize({
     selectOnTab: true,
 });
 ';
@@ -156,18 +156,39 @@ for ($i = 0; $i < $numberOfYears; $i++) {
 <?= $form->field($filter, 'majorFilter')->checkbox() ?>
 <?= $form->field($filter, 'majorsSelected', ['template' => $selectTemplate])->listBox(
         ArrayHelper::map(common\models\Major::find()->all(), "major_id", $this->params['isArabic'] ? "major_name_ar" : "major_name_en"), [
-    'class' => 'selectize-majors',
-    'placeholder' => Yii::t("employer", "Select Majors (multiple)"),
+    'class' => 'selectize',
+    'placeholder' => Yii::t("employer", "Select as many as you'd like"),
     'multiple' => 'true',
 ])
 ?>
 
 <!-- Filter by Languages Spoken -->
 <?= $form->field($filter, 'languageFilter')->checkbox() ?>
+<?= $form->field($filter, 'languagesSelected', ['template' => $selectTemplate])->listBox(
+        ArrayHelper::map(common\models\Language::find()->all(), "language_id", $this->params['isArabic'] ? "language_name_ar" : "language_name_en"), [
+    'class' => 'selectize',
+    'placeholder' => Yii::t("employer", "Select as many as you'd like"),
+    'multiple' => 'true',
+])
+?>
 
 
 <!-- Filter by English Language Level -->
+<?php
+$englishLevelOptions = [
+    \common\models\Student::ENGLISH_WEAK => Yii::t('register', 'Weak'),
+    \common\models\Student::ENGLISH_FAIR => Yii::t('register', 'Fair'),
+    \common\models\Student::ENGLISH_GOOD => Yii::t('register', 'Good'),
+];
+?>
 <?= $form->field($filter, 'englishFilter')->checkbox() ?>
+<?= $form->field($filter, 'filter_english_level',[
+                'template' => $selectTemplate,
+            ])->dropDownList($englishLevelOptions, [
+                'class' => 'selectpicker', 
+                'data-width' => '100%',
+                'prompt' => Yii::t('employer', 'Select Language Level'),
+                ]) ?>
 
 
 <!-- Filter by Nationality -->
