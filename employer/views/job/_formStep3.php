@@ -193,6 +193,13 @@ $englishLevelOptions = [
 
 <!-- Filter by Nationality -->
 <?= $form->field($filter, 'nationalityFilter')->checkbox() ?>
+<?= $form->field($filter, 'nationalitiesSelected', ['template' => $selectTemplate])->listBox(
+        ArrayHelper::map(common\models\Country::find()->orderBy("country_nationality_name_en")->all(), "country_id", $this->params['isArabic'] ? "country_nationality_name_ar" : "country_nationality_name_en"), [
+    'class' => 'selectize',
+    'placeholder' => Yii::t("employer", "Select as many as you'd like"),
+    'multiple' => 'true',
+])
+?>
 
 
 <!-- Filter by Transport Availability -->
