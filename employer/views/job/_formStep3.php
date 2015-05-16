@@ -60,6 +60,12 @@ $("#saveAsDraft").click(function(){
 form.on("beforeValidateAttribute", function (event, attribute,messages,deferreds) {
     if (saveAsDraft) { return false;   }
 });
+
+
+//Major type and select
+$(".selectize-majors").selectize({
+    selectOnTab: true,
+});
 ';
 
 
@@ -148,6 +154,13 @@ for ($i = 0; $i < $numberOfYears; $i++) {
 
 <!-- Filter by Majors -->
 <?= $form->field($filter, 'majorFilter')->checkbox() ?>
+<?= $form->field($filter, 'majorsSelected', ['template' => $selectTemplate])->listBox(
+        ArrayHelper::map(common\models\Major::find()->all(), "major_id", $this->params['isArabic'] ? "major_name_ar" : "major_name_en"), [
+    'class' => 'selectize-majors',
+    'placeholder' => Yii::t("employer", "Select Majors (multiple)"),
+    'multiple' => 'true',
+])
+?>
 
 <!-- Filter by Languages Spoken -->
 <?= $form->field($filter, 'languageFilter')->checkbox() ?>
