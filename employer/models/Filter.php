@@ -78,6 +78,7 @@ class Filter extends \common\models\Filter {
             'numberOfApplicants' => Yii::t('employer', 'Number of Applicants'),
             'majorsSelected' => Yii::t('employer', 'Majors'),
             'languagesSelected' => Yii::t('employer', 'Languages'),
+            'nationalitiesSelected' => Yii::t('employer', 'Nationalities'),
             
             'degreeFilter' => Yii::t('employer', 'Filter students by Degree'),
             'gpaFilter' => Yii::t('employer', 'Filter students by GPA'),
