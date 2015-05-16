@@ -14,6 +14,7 @@ class Filter extends \common\models\Filter {
     //majors and languages selected during job filter creation
     public $majorsSelected;
     public $languagesSelected;
+    public $nationalitiesSelected;
     public $numberOfApplicants;
     
     //Checkboxes for Premium Filters
@@ -40,22 +41,30 @@ class Filter extends \common\models\Filter {
             [['numberOfApplicants'], 'integer', 'min' => 20],
             
             //Allow massive assignment of majors, languages, and filters
-            [['majorsSelected', 'languagesSelected', 'degreeFilter', 'gpaFilter', 'graduationFilter',
+            [['majorsSelected', 'languagesSelected', 'nationalitiesSelected',
+                'degreeFilter', 'gpaFilter', 'graduationFilter',
                 'majorFilter', 'languageFilter', 'englishFilter', 'nationalityFilter', 'transportationFilter'], 'safe'],
             
-            //Validate Major and Language selections (if selected)
+            //Validate Major, Language, and Nationality selections (if selected)
             ['majorsSelected', '\common\components\ArrayValidator',
                 'rule' => ['exist',
                     'targetClass' => '\common\models\Major',
                     'targetAttribute' => 'major_id',
-                    'message' => \Yii::t('frontend', 'Selected major does not exist.')
+                    'message' => \Yii::t('employer', 'Selected major does not exist.')
                 ]
             ],
             ['languagesSelected', '\common\components\ArrayValidator',
                 'rule' => ['exist',
                     'targetClass' => '\common\models\Language',
                     'targetAttribute' => 'language_id',
-                    'message' => \Yii::t('frontend', 'Selected language does not exist.')
+                    'message' => \Yii::t('employer', 'Selected language does not exist.')
+                ]
+            ],
+            ['nationalitiesSelected', '\common\components\ArrayValidator',
+                'rule' => ['exist',
+                    'targetClass' => '\common\models\Country',
+                    'targetAttribute' => 'country_id',
+                    'message' => \Yii::t('employer', 'Selected nationality does not exist.')
                 ]
             ],
         ]);
