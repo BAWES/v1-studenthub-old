@@ -40,9 +40,11 @@ class Filter extends \common\models\Filter {
             //Allow massive assignment of majors, languages, and filters
             [['majorsSelected', 'languagesSelected', 'nationalitiesSelected',
                 'degreeFilter', 'gpaFilter', 'graduationFilter',
-                'majorFilter', 'languageFilter', 'englishFilter', 'nationalityFilter', 'transportationFilter'], 'safe'],
+                'majorFilter', 'languageFilter', 'englishFilter', 'nationalityFilter'], 'safe'],
             
-            //Validate Major, Language, and Nationality selections (if selected)
+            /**
+             * Validate Major, Language, and Nationality selections (if selected)
+             */
             ['majorsSelected', '\common\components\ArrayValidator',
                 'rule' => ['exist',
                     'targetClass' => '\common\models\Major',
@@ -64,6 +66,39 @@ class Filter extends \common\models\Filter {
                     'message' => \Yii::t('employer', 'Selected nationality does not exist.')
                 ]
             ],
+            
+            
+            /**
+             * Client side validation (Require Premium filter fields when ticked)
+             */
+            
+            //Majors selected required when filter is ticked
+            ['majorsSelected', 'required', 'when' => function($model) {
+                if($this->majorFilter){
+                    return true;
+                }
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#filter-majorfilter').is(':checked');
+            }"],
+            //Languages selected required when filter is ticked
+            ['languagesSelected', 'required', 'when' => function($model) {
+                if($this->languageFilter){
+                    return true;
+                }
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#filter-languagefilter').is(':checked');
+            }"],
+            //Languages selected required when filter is ticked
+            ['nationalitiesSelected', 'required', 'when' => function($model) {
+                if($this->nationalityFilter){
+                    return true;
+                }
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#filter-nationalityfilter').is(':checked');
+            }"],
+            
+            
+            
         ]);
     }
 
