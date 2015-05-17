@@ -8,7 +8,6 @@ use Yii;
  * This is the model class for table "filter".
  *
  * @property integer $filter_id
- * @property integer $university_id
  * @property integer $degree_id
  * @property string $filter_gpa
  * @property integer $filter_english_level
@@ -16,7 +15,8 @@ use Yii;
  * @property string $filter_graduation_year_end
  * @property integer $filter_transportation
  *
- * @property University $university
+ * @property FilterUniversity[] $filterUniversities
+ * @property University[] $universities
  * @property Degree $degree
  * @property FilterCountry[] $filterCountries
  * @property Country[] $countries
@@ -42,10 +42,10 @@ class Filter extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['university_id', 'degree_id'], 'integer'],
+            [['degree_id'], 'integer'],
             
             //Default Null Values
-            [['university_id','degree_id','filter_gpa','filter_graduation_year_start', 
+            [['degree_id','filter_gpa','filter_graduation_year_start', 
                 'filter_graduation_year_end', 'filter_transportation'], 'default'],
             
             
@@ -58,14 +58,6 @@ class Filter extends \yii\db\ActiveRecord
             //Gpa min and max
             [['filter_gpa'], 'number', 'min' => 0.1, 'max' => 4],
             
-            
-            
-            //University existence validation
-            ['university_id', 'exist',
-                'targetClass' => '\common\models\University',
-                'targetAttribute' => 'university_id',
-                'message' => \Yii::t('frontend','This university does not exist.')
-            ],
             //Degree existence validation
             ['degree_id', 'exist',
                 'targetClass' => '\common\models\Degree',
@@ -85,7 +77,6 @@ class Filter extends \yii\db\ActiveRecord
     {
         return [
             'filter_id' => Yii::t('app', 'Filter ID'),
-            'university_id' => Yii::t('app', 'University'),
             'degree_id' => Yii::t('app', 'Degree'),
             'filter_english_level' => Yii::t('app', 'English Language Level'),
             'filter_gpa' => Yii::t('app', 'Minimum GPA'),
@@ -98,9 +89,17 @@ class Filter extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUniversity()
+    public function getFilterUniversities()
     {
-        return $this->hasOne(University::className(), ['university_id' => 'university_id']);
+        return $this->hasMany(FilterUniversity::className(), ['filter_id' => 'filter_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUniversities()
+    {
+        return $this->hasMany(University::className(), ['university_id' => 'university_id'])->viaTable('filter_university', ['filter_id' => 'filter_id']);
     }
 
     /**

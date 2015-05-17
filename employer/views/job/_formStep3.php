@@ -82,6 +82,11 @@ $(":checkbox").change(function(){
         }
     }
 });
+
+$("#selectAllBtn").click(function(){
+    $(".univSelect").selectpicker("selectAll");
+    return false;
+});
 ';
 
 
@@ -109,13 +114,20 @@ $form = ActiveForm::begin([
 <h3><?= Yii::t("employer", "Audience Targetting") ?></h3>
 
 <?=
-$form->field($filter, 'university_id', ['template' => $selectTemplate])->dropDownList(
+$form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->listBox(
         ArrayHelper::map(common\models\University::find()->all(), "university_id", $this->params['isArabic'] ? "university_name_ar" : "university_name_en"), [
-    'class' => 'selectpicker',
-    'prompt' => Yii::t('employer', 'All Universities'),
+    'class' => 'selectpicker univSelect',
+    'title' => Yii::t('employer', 'Select Universities'),
+    'multiple' => 'true',
     'data-width' => '100%'
 ])
 ?>
+<div class="row">
+    <div class="col-md-5 col-md-offset-3">
+        <a class="btn btn-primary btn-block" style="margin-bottom:20px;" id="selectAllBtn"><?= Yii::t("employer", "Select All Universities") ?></a>
+    </div>
+</div>
+
 
 <?= $form->field($filter, 'numberOfApplicants')->input("number", ['placeholder' => 'Minimum 20']) ?>
 

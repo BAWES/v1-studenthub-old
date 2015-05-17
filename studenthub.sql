@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.9
+-- version 4.3.3
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 15, 2015 at 01:09 PM
--- Server version: 5.6.23
+-- Generation Time: May 17, 2015 at 01:21 PM
+-- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -413,14 +413,20 @@ INSERT INTO `employer` (`employer_id`, `industry_id`, `city_id`, `employer_compa
 
 CREATE TABLE IF NOT EXISTS `filter` (
   `filter_id` int(11) unsigned NOT NULL,
-  `university_id` int(11) unsigned DEFAULT NULL,
   `degree_id` int(11) unsigned DEFAULT NULL,
   `filter_gpa` decimal(10,2) DEFAULT NULL,
   `filter_english_level` tinyint(4) DEFAULT NULL,
   `filter_graduation_year_start` year(4) DEFAULT NULL,
   `filter_graduation_year_end` year(4) DEFAULT NULL,
   `filter_transportation` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `filter`
+--
+
+INSERT INTO `filter` (`filter_id`, `degree_id`, `filter_gpa`, `filter_english_level`, `filter_graduation_year_start`, `filter_graduation_year_end`, `filter_transportation`) VALUES
+(6, NULL, NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -454,6 +460,32 @@ CREATE TABLE IF NOT EXISTS `filter_major` (
   `filter_id` int(11) unsigned NOT NULL,
   `major_id` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `filter_university`
+--
+
+CREATE TABLE IF NOT EXISTS `filter_university` (
+  `filter_id` int(11) unsigned NOT NULL,
+  `university_id` int(11) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `filter_university`
+--
+
+INSERT INTO `filter_university` (`filter_id`, `university_id`) VALUES
+(6, 1),
+(6, 2),
+(6, 3),
+(6, 4),
+(6, 6),
+(6, 9),
+(6, 10),
+(6, 11),
+(6, 12);
 
 -- --------------------------------------------------------
 
@@ -561,7 +593,7 @@ CREATE TABLE IF NOT EXISTS `job` (
 --
 
 INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `filter_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_updated_datetime`, `job_created_datetime`) VALUES
-(11, 2, 1, NULL, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe', 'dwadwg', 'No compensation', '', '', NULL, 0, 0, NULL, '2015-05-15 09:49:06', '2015-05-14 19:15:47');
+(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe', 'dwadwg', 'No compensation', '', '', 43, 0, 0, NULL, '2015-05-17 13:21:00', '2015-05-14 19:15:47');
 
 -- --------------------------------------------------------
 
@@ -2325,7 +2357,7 @@ ALTER TABLE `employer`
 -- Indexes for table `filter`
 --
 ALTER TABLE `filter`
-  ADD PRIMARY KEY (`filter_id`), ADD KEY `university_id` (`university_id`), ADD KEY `degree_id` (`degree_id`);
+  ADD PRIMARY KEY (`filter_id`), ADD KEY `degree_id` (`degree_id`);
 
 --
 -- Indexes for table `filter_country`
@@ -2344,6 +2376,12 @@ ALTER TABLE `filter_language`
 --
 ALTER TABLE `filter_major`
   ADD PRIMARY KEY (`filter_id`,`major_id`), ADD KEY `major_id` (`major_id`);
+
+--
+-- Indexes for table `filter_university`
+--
+ALTER TABLE `filter_university`
+  ADD PRIMARY KEY (`filter_id`,`university_id`), ADD KEY `university_id` (`university_id`);
 
 --
 -- Indexes for table `industry`
@@ -2474,7 +2512,7 @@ ALTER TABLE `employer`
 -- AUTO_INCREMENT for table `filter`
 --
 ALTER TABLE `filter`
-  MODIFY `filter_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `filter_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `industry`
 --
@@ -2561,7 +2599,6 @@ ADD CONSTRAINT `employer_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `city` (`cit
 -- Constraints for table `filter`
 --
 ALTER TABLE `filter`
-ADD CONSTRAINT `filter_ibfk_2` FOREIGN KEY (`university_id`) REFERENCES `university` (`university_id`),
 ADD CONSTRAINT `filter_ibfk_3` FOREIGN KEY (`degree_id`) REFERENCES `degree` (`degree_id`);
 
 --
@@ -2584,6 +2621,13 @@ ADD CONSTRAINT `filter_language_ibfk_2` FOREIGN KEY (`language_id`) REFERENCES `
 ALTER TABLE `filter_major`
 ADD CONSTRAINT `filter_major_ibfk_1` FOREIGN KEY (`filter_id`) REFERENCES `filter` (`filter_id`),
 ADD CONSTRAINT `filter_major_ibfk_2` FOREIGN KEY (`major_id`) REFERENCES `major` (`major_id`);
+
+--
+-- Constraints for table `filter_university`
+--
+ALTER TABLE `filter_university`
+ADD CONSTRAINT `filter_university_ibfk_1` FOREIGN KEY (`filter_id`) REFERENCES `filter` (`filter_id`),
+ADD CONSTRAINT `filter_university_ibfk_2` FOREIGN KEY (`university_id`) REFERENCES `university` (`university_id`);
 
 --
 -- Constraints for table `job`

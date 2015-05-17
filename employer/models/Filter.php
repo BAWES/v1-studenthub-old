@@ -11,7 +11,8 @@ use yii\db\Expression;
  * 
  */
 class Filter extends \common\models\Filter {
-    //majors and languages selected during job filter creation
+    //values selected during job filter creation
+    public $universitiesSelected = [];
     public $majorsSelected = [];
     public $languagesSelected = [];
     public $nationalitiesSelected = [];
@@ -33,7 +34,7 @@ class Filter extends \common\models\Filter {
     public function rules() {
         return array_merge(parent::rules(), [
             //Employers must input number of applicants they wish to have (minimum 20)
-            [['numberOfApplicants'], 'required'],
+            [['numberOfApplicants', 'universitiesSelected'], 'required'],
             [['numberOfApplicants'], '\common\components\ArabicNumberValidator'],
             [['numberOfApplicants'], 'integer', 'min' => 20],
             
@@ -43,8 +44,15 @@ class Filter extends \common\models\Filter {
                 'majorFilter', 'languageFilter', 'englishFilter', 'nationalityFilter'], 'safe'],
             
             /**
-             * Validate Major, Language, and Nationality selections (if selected)
+             * Validate Universities, Major, Language, and Nationality selections (if selected)
              */
+            ['universitiesSelected', '\common\components\ArrayValidator',
+                'rule' => ['exist',
+                    'targetClass' => '\common\models\University',
+                    'targetAttribute' => 'university_id',
+                    'message' => \Yii::t('employer', 'Selected university does not exist.')
+                ]
+            ],
             ['majorsSelected', '\common\components\ArrayValidator',
                 'rule' => ['exist',
                     'targetClass' => '\common\models\Major',
@@ -138,6 +146,7 @@ class Filter extends \common\models\Filter {
     public function attributeLabels() {
         return array_merge(parent::attributeLabels(), [
             'numberOfApplicants' => Yii::t('employer', 'Number of Applicants'),
+            'universitiesSelected' => Yii::t('employer', 'Universities'),
             'majorsSelected' => Yii::t('employer', 'Majors'),
             'languagesSelected' => Yii::t('employer', 'Languages'),
             'nationalitiesSelected' => Yii::t('employer', 'Nationalities'),
@@ -211,13 +220,8 @@ class Filter extends \common\models\Filter {
             $filterRequired = true;
         }
         
-        //University Filter
-        if($this->university_id){
-            $filterRequired = true;
-        }
-        
         //If selection are not empty, filter is required
-        if(!empty($this->majorsSelected) || !empty($this->languagesSelected) || !empty($this->nationalitiesSelected)){
+        if(!empty($this->majorsSelected) || !empty($this->languagesSelected) || !empty($this->nationalitiesSelected) || !empty($this->universitiesSelected)){
             $filterRequired = true;
         }
         
@@ -247,8 +251,11 @@ class Filter extends \common\models\Filter {
         parent::afterFind();
         
         /**
-         * Load selected majors, languages, and nationalities
+         * Load selected universities, majors, languages, and nationalities
          */
+        foreach($this->universities as $university){
+            $this->universitiesSelected[] = $university->university_id;
+        }
         foreach($this->majors as $major){
             $this->majorsSelected[] = $major->major_id;
         }
@@ -293,6 +300,20 @@ class Filter extends \common\models\Filter {
     public function afterSave($insert, $changedAttributes) {
         parent::afterSave($insert, $changedAttributes);
 
+        //Linking selected universities to student
+        if (is_array($this->universitiesSelected)) {
+            //Unlink all majors from this Student
+            $this->unlinkAll('universities', true);
+
+            //Link the new majors to this Student
+            foreach ($this->universitiesSelected as $universityId) {
+                $university = \common\models\University::findOne((int) $universityId);
+                if ($university) {
+                    $this->link('universities', $university);
+                }
+            }
+        }
+        
         //Linking selected majors to student
         if (is_array($this->majorsSelected)) {
             //Unlink all majors from this Student
@@ -329,7 +350,7 @@ class Filter extends \common\models\Filter {
             //Link the new majors to this Student
             foreach ($this->nationalitiesSelected as $nationalityId) {
                 $nationality = \common\models\Country::findOne((int) $nationalityId);
-                if ($language) {
+                if ($nationality) {
                     $this->link('countries', $nationality);
                 }
             }
