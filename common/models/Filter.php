@@ -50,8 +50,8 @@ class Filter extends \yii\db\ActiveRecord
             
             
             //Grad year start cant be higher than graduation year end
-            ['filter_graduation_year_start', 'compare', 'compareAttribute' => 'filter_graduation_year_end', 'operator' => '<=',
-                'message' => \Yii::t('frontend','Graduation year start must be less than or equal to the graduation year end.')],
+            ['filter_graduation_year_end', 'compare', 'compareAttribute' => 'filter_graduation_year_start', 'operator' => '>=',
+                'message' => \Yii::t('frontend','Graduation year end must be greater than or equal to the graduation year start.')],
             
             //Convert Arabic Numeric Input to English
             [['filter_gpa'], '\common\components\ArabicNumberValidator'],
