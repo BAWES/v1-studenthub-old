@@ -111,7 +111,8 @@ $form = ActiveForm::begin([
         ]);
 ?>
 
-<h3><?= Yii::t("employer", "Audience Targetting") ?></h3>
+<h3 style="margin-bottom:0; margin-top:0"><?= Yii::t("employer", "Audience Targetting") ?></h3>
+<h5 style='margin-bottom:1.5em;'><?= Yii::t("employer", "Basic cost per applicant is 0.750 fils") ?></h5>
 
 <?=
 $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->listBox(
@@ -125,17 +126,27 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
 
 <div class="row">
     <div class="col-md-5 col-md-offset-3">
-        <a class="btn btn-teal btn-sm button-striped button-full-striped btn-ripple" style="margin-bottom:20px;" id="selectAllBtn"><?= Yii::t("employer", "Select All Universities") ?></a>
+        <a class="btn btn-teal btn-xs btn-ripple" style="margin-bottom:20px;" id="selectAllBtn"><?= Yii::t("employer", "Select All Universities") ?></a>
     </div>
 </div>
 
 
 <?= $form->field($filter, 'numberOfApplicants')->input("number", ['placeholder' => 'Minimum 20']) ?>
 
+<div class="row">
+    <div class="col-md-5 col-md-offset-3">
+        <div class="note note-warning note-left-striped">
+            <p>
+                <?= Yii::t("employer", "This job listing will be taken down once you receive this number of applicants") ?>
+            </p>
+        </div><!--.note-->
+    </div>
+</div>
+
 
 <!-- Premium Filters Header -->
-<h3 style="margin-bottom:0;"><?= Yii::t("employer", "Premium Filters") ?></h3>
-<h5><?= Yii::t("employer", "Each option increases applicant cost by 0.250 fils") ?></h5>
+<h3 style="margin-bottom:0; margin-top:1.5em;"><?= Yii::t("employer", "Premium Filters") ?></h3>
+<h5 style='margin-bottom:1.5em;'><?= Yii::t("employer", "Each option increases applicant cost by 0.250 fils") ?></h5>
 
 
 <!-- Filter by Degree -->

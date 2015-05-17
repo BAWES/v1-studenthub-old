@@ -145,7 +145,7 @@ class Filter extends \common\models\Filter {
      */
     public function attributeLabels() {
         return array_merge(parent::attributeLabels(), [
-            'numberOfApplicants' => Yii::t('employer', 'Number of Applicants'),
+            'numberOfApplicants' => Yii::t('employer', 'Maximum Number of Applicants'),
             'universitiesSelected' => Yii::t('employer', 'Universities'),
             'majorsSelected' => Yii::t('employer', 'Majors'),
             'languagesSelected' => Yii::t('employer', 'Languages'),
