@@ -58,5 +58,13 @@ class Job extends \common\models\Job {
         }
     }
     
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFilter()
+    {
+        return $this->hasOne(\employer\models\Filter::className(), ['filter_id' => 'filter_id']);
+    }
+    
 
 }

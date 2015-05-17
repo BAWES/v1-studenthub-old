@@ -177,10 +177,11 @@ class JobController extends Controller {
         $this->checkJobEditAllowed($model);
         
         
-        //If this Job already has a filter defined, load for editing. Otherwise use new
+        //Load filter for this Job already if defined. Otherwise use new
         $filter = new \employer\models\Filter();
         if($model->filter){
             $filter = $model->filter;
+            $filter->numberOfApplicants = $model->job_max_applicants;
         }        
         
         //On Form Submit
@@ -200,6 +201,7 @@ class JobController extends Controller {
                 //If it isn't, delete existing filters and set to null
                 
                 $filter->save(false);
+                $model->filter_id = $filter->filter_id;
                 $model->save(false);
                 
                 return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
@@ -217,9 +219,10 @@ class JobController extends Controller {
                 //If it isn't, delete existing filters and set to null
                 
                 $filter->save(false);
+                $model->filter_id = $filter->filter_id;
                 $model->save(false);
                 
-                return $this->redirect(['create-step4', 'id' => $model->job_id]);
+                return $this->redirect(['create-step3', 'id' => $model->job_id]);
             }
         }
 

@@ -69,6 +69,11 @@ class Filter extends \common\models\Filter {
             ],
         ]);
     }
+    
+    public function afterFind() {
+        parent::afterFind();
+        
+    }
 
     /**
      * Attribute labels that are inherited are extended here
