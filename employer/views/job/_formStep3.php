@@ -127,7 +127,7 @@ $form->field($filter, 'university_id', ['template' => $selectTemplate])->dropDow
 
 <!-- Filter by Degree -->
 <?= $form->field($filter, 'degreeFilter')->checkbox() ?>
-<div class="question">
+<div class="question" style="display: <?= $filter->degreeFilter?"block":"none" ?>">
     <?= $form->field($filter, 'degree_id', ['template' => $selectTemplate])->dropDownList(
             ArrayHelper::map(common\models\Degree::find()->all(), "degree_id", $this->params['isArabic'] ? "degree_name_ar" : "degree_name_en"), [
         'class' => 'selectpicker',
@@ -139,7 +139,7 @@ $form->field($filter, 'university_id', ['template' => $selectTemplate])->dropDow
 
 <!-- Filter by GPA -->
 <?= $form->field($filter, 'gpaFilter')->checkbox() ?>
-<div class="question">
+<div class="question" style="display: <?= $filter->gpaFilter?"block":"none" ?>">
     <?= $form->field($filter, 'filter_gpa')->input("number", ['placeholder' => '3.0']) ?>
 </div>
 
@@ -156,7 +156,7 @@ for ($i = 0; $i < $numberOfYears; $i++) {
     $graduationYearOptions[$yearOption] = Yii::$app->formatter->asInteger($yearOption);
 } ?>
 <?= $form->field($filter, 'graduationFilter')->checkbox() ?>
-<div class="question">
+<div class="question" style="display: <?= $filter->graduationFilter?"block":"none" ?>">
     <?= $form->field($filter, 'filter_graduation_year_start',[
                     'template' => $selectTemplate,
                 ])->dropDownList($graduationYearOptions, [
@@ -176,7 +176,7 @@ for ($i = 0; $i < $numberOfYears; $i++) {
 
 <!-- Filter by Majors -->
 <?= $form->field($filter, 'majorFilter')->checkbox() ?>
-<div class="question">
+<div class="question" style="display: <?= $filter->majorFilter?"block":"none" ?>">
     <?= $form->field($filter, 'majorsSelected', ['template' => $selectTemplate])->listBox(
             ArrayHelper::map(common\models\Major::find()->all(), "major_id", $this->params['isArabic'] ? "major_name_ar" : "major_name_en"), [
         'class' => 'selectize',
@@ -188,7 +188,7 @@ for ($i = 0; $i < $numberOfYears; $i++) {
 
 <!-- Filter by Languages Spoken -->
 <?= $form->field($filter, 'languageFilter')->checkbox() ?>
-<div class="question">
+<div class="question" style="display: <?= $filter->languageFilter?"block":"none" ?>">
     <?= $form->field($filter, 'languagesSelected', ['template' => $selectTemplate])->listBox(
             ArrayHelper::map(common\models\Language::find()->all(), "language_id", $this->params['isArabic'] ? "language_name_ar" : "language_name_en"), [
         'class' => 'selectize',
@@ -207,7 +207,7 @@ $englishLevelOptions = [
 ];
 ?>
 <?= $form->field($filter, 'englishFilter')->checkbox() ?>
-<div class="question">
+<div class="question" style="display: <?= $filter->englishFilter?"block":"none" ?>">
     <?= $form->field($filter, 'filter_english_level',[
                     'template' => $selectTemplate,
                 ])->dropDownList($englishLevelOptions, [
@@ -220,7 +220,7 @@ $englishLevelOptions = [
 
 <!-- Filter by Nationality -->
 <?= $form->field($filter, 'nationalityFilter')->checkbox() ?>
-<div class="question">
+<div class="question" style="display: <?= $filter->nationalityFilter?"block":"none" ?>">
     <?= $form->field($filter, 'nationalitiesSelected', ['template' => $selectTemplate])->listBox(
             ArrayHelper::map(common\models\Country::find()->orderBy("country_nationality_name_en")->all(), "country_id", $this->params['isArabic'] ? "country_nationality_name_ar" : "country_nationality_name_en"), [
         'class' => 'selectize',
