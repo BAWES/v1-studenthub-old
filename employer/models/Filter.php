@@ -96,8 +96,38 @@ class Filter extends \common\models\Filter {
             }, 'whenClient' => "function (attribute, value) {
                 return $('#filter-nationalityfilter').is(':checked');
             }"],
-            
-            
+            //Degree required when filter is ticked
+            ['degree_id', 'required', 'when' => function($model) {
+                if($this->degreeFilter){
+                    return true;
+                }
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#filter-degreefilter').is(':checked');
+            }"],
+            //GPA required when filter is ticked
+            ['filter_gpa', 'required', 'when' => function($model) {
+                if($this->gpaFilter){
+                    return true;
+                }
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#filter-gpafilter').is(':checked');
+            }"],
+            //English level required when filter is ticked
+            ['filter_english_level', 'required', 'when' => function($model) {
+                if($this->englishFilter){
+                    return true;
+                }
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#filter-englishfilter').is(':checked');
+            }"],
+            //Grad years required when filter is ticked
+            [['filter_graduation_year_start','filter_graduation_year_end'], 'required', 'when' => function($model) {
+                if($this->graduationFilter){
+                    return true;
+                }
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#filter-graduationfilter').is(':checked');
+            }"],
             
         ]);
     }
