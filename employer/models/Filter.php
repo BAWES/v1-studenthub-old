@@ -87,6 +87,47 @@ class Filter extends \common\models\Filter {
         ]);
     }
     
+    /**
+     * Saves the filter based on the values of the filter checkboxes
+     * If a checkbox is unticked - the value of that filter is set to null
+     * @return mixed the Id of the saved filter OR `null` to store in job->filter
+     */
+    public function saveFilter(){
+        /**
+         * If checkboxes are un-checked, clear their input / set to null
+         */
+        if(!$this->majorFilter){
+            $this->majorsSelected = [];
+        }
+        if(!$this->languageFilter){
+            $this->languagesSelected = [];
+        }
+        if(!$this->nationalityFilter){
+            $this->nationalitiesSelected = [];
+        }
+        if(!$this->englishFilter){
+            $this->filter_english_level = NULL;
+        }
+        if(!$this->degreeFilter){
+            $this->degree_id = NULL;
+        }
+        if(!$this->gpaFilter){
+            $this->filter_gpa = NULL;
+        }
+        if(!$this->graduationFilter){
+            $this->filter_graduation_year_start = NULL;
+            $this->filter_graduation_year_end = NULL;
+        }
+        
+        
+        
+        if($this->save(false)){
+            return $this->filter_id;
+        }
+            
+        return ""; //null
+    }
+    
     
     public function afterFind() {
         parent::afterFind();

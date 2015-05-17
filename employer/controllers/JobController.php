@@ -201,18 +201,16 @@ class JobController extends Controller {
                 //If someone already wrote in a filter, then unchecked a filter checkbox-
                 //It should delete that filter value from existing record
                 
-                $filter->save(false);
-                $model->filter_id = $filter->filter_id;
+                $model->filter_id = $filter->saveFilter();
                 $model->save(false);
                 
                 return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
             }
 
-            //Save and go to fourth step
+            //Validate, Save, then go to fourth step
             if ($filter->validate()) {
                 
-                $filter->save(false);
-                $model->filter_id = $filter->filter_id;
+                $model->filter_id = $filter->saveFilter();
                 $model->save(false);
                 
                 return $this->redirect(['create-step3', 'id' => $model->job_id]);
