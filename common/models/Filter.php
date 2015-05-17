@@ -69,7 +69,7 @@ class Filter extends \yii\db\ActiveRecord
             //Degree existence validation
             ['degree_id', 'exist',
                 'targetClass' => '\common\models\Degree',
-                'targetAttribute' => 'country_id',
+                'targetAttribute' => 'degree_id',
                 'message' => \Yii::t('frontend','This degree does not exist.')
             ],
             //Range options
