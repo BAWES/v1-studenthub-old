@@ -181,8 +181,8 @@ class JobController extends Controller {
         $filter = new \employer\models\Filter();
         if($model->filter){
             $filter = $model->filter;
-            $filter->numberOfApplicants = $model->job_max_applicants;
-        }        
+        }
+        $filter->numberOfApplicants = $model->job_max_applicants;
         
         //On Form Submit
         if ($filter->load(Yii::$app->request->post())) {
@@ -191,27 +191,14 @@ class JobController extends Controller {
             //If draft, save without validation and redirect to dashboard
             if(Yii::$app->request->post('draft') && (Yii::$app->request->post('draft') == 'yes')){
                 
-                //IMPORTANT
-                
-                //Check if creating a filter is required.
-                //If it is, then create then link to job model
-                //If it isn't, delete existing filters and set to null
-                
-                //Check the checkboxes
-                //If someone already wrote in a filter, then unchecked a filter checkbox-
-                //It should delete that filter value from existing record
-                
-                $model->filter_id = $filter->saveFilter();
-                $model->save(false);
-                
+                $filter->saveModelAndFilter($model);
+                                
                 return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
             }
 
             //Validate, Save, then go to fourth step
             if ($filter->validate()) {
-                
-                $model->filter_id = $filter->saveFilter();
-                $model->save(false);
+                $filter->saveModelAndFilter($model);
                 
                 return $this->redirect(['create-step3', 'id' => $model->job_id]);
             }

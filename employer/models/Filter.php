@@ -90,42 +90,91 @@ class Filter extends \common\models\Filter {
     /**
      * Saves the filter based on the values of the filter checkboxes
      * If a checkbox is unticked - the value of that filter is set to null
+     * @param \employer\models\Job $jobModel the job we are applying the filter to
      * @return mixed the Id of the saved filter OR `null` to store in job->filter
      */
-    public function saveFilter(){
+    public function saveModelAndFilter($jobModel){
+        
+        /**
+         * Filters are not required by default
+         * We will now check if any filters are applied we will set to true for saving
+         */
+        $filterRequired = false;
+        
         /**
          * If checkboxes are un-checked, clear their input / set to null
          */
+        
+        //Major Filter
         if(!$this->majorFilter){
             $this->majorsSelected = [];
         }
+        
+        //Language Filter
         if(!$this->languageFilter){
             $this->languagesSelected = [];
         }
+        
+        //Nationality Filter
         if(!$this->nationalityFilter){
             $this->nationalitiesSelected = [];
         }
+        
+        //English Language Level Filter
         if(!$this->englishFilter){
             $this->filter_english_level = NULL;
-        }
+        }else $filterRequired = true;
+        
+        //Degree Filter
         if(!$this->degreeFilter){
             $this->degree_id = NULL;
-        }
+        }else $filterRequired = true;
+        
+        //GPA Filter
         if(!$this->gpaFilter){
             $this->filter_gpa = NULL;
-        }
+        }else $filterRequired = true;
+        
+        //Graduation Filter
         if(!$this->graduationFilter){
             $this->filter_graduation_year_start = NULL;
             $this->filter_graduation_year_end = NULL;
+        }else $filterRequired = true;
+        
+        //Transportation Filter
+        if($this->filter_transportation){
+            $filterRequired = true;
         }
         
-        
-        
-        if($this->save(false)){
-            return $this->filter_id;
+        //University Filter
+        if($this->university_id){
+            $filterRequired = true;
         }
-            
-        return ""; //null
+        
+        //If selection are not empty, filter is required
+        if(!empty($this->majorsSelected) || !empty($this->languagesSelected) || !empty($this->nationalitiesSelected)){
+            $filterRequired = true;
+        }
+        
+        /**
+         * If filters are required, save and apply to given job model
+         * Else set job filter to null, and delete all associated filter records
+         */
+        if($filterRequired){
+            if($this->save(false)){
+                $jobModel->filter_id = $this->filter_id;
+                $jobModel->save(false);
+            }
+        }else{
+            //Delete this filter record and return null
+            $jobModel->filter_id = NULL;
+            if($jobModel->save(false)){
+                $this->unlinkAll('majors', true);
+                $this->unlinkAll('languages', true);
+                $this->unlinkAll('countries', true);
+                $this->delete();
+            }
+        }
     }
     
     
