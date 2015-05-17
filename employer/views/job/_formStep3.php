@@ -34,6 +34,10 @@ div.required label:after {
 .checkboxer input[type='checkbox'] + label{
     margin-bottom:0;
 }
+
+@media (min-width: 990px) {
+  
+}
 ";
 
 $js = '
@@ -164,7 +168,7 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
 <!-- Filter by GPA -->
 <?= $form->field($filter, 'gpaFilter')->checkbox() ?>
 <div class="question" style="display: <?= $filter->gpaFilter?"block":"none" ?>">
-    <?= $form->field($filter, 'filter_gpa')->input("number", ['placeholder' => '3.0']) ?>
+    <?= $form->field($filter, 'filter_gpa')->input("number", ['placeholder' => '3.0', 'step' => 'any']) ?>
 </div>
 
 
@@ -263,9 +267,30 @@ $englishLevelOptions = [
 <div class="row">
     <div class="col-md-5 col-md-offset-3">
         <div class="note note-warning note-left-striped">
-            <h4><?= Yii::t("employer", "Note") ?></h4>
             <p>
                 <?= Yii::t("employer", "You will not be able to change these filters once you publish your job posting") ?>
+            </p>
+        </div><!--.note-->
+    </div>
+</div>
+
+
+<div class="row priceChart">
+    <div class="col-md-5 col-md-offset-3">
+
+        <div class="note note-warning note-left-striped" style="text-align: center">
+            <h4 style="margin-bottom:5px;"><?= Yii::t("employer", "Your Order") ?></h4>
+            <p style="margin-bottom:0;">
+                -
+            </p>
+            <p style="font-size:0.7em; margin-top:0; margin-bottom:5px;">
+                maximum applicants
+            </p>
+            <p style="margin-bottom:0;">
+                0.750 KD
+            </p>
+            <p style="font-size:0.7em; margin-top:0;">
+                cost per applicant
             </p>
         </div><!--.note-->
     </div>

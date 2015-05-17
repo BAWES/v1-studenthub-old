@@ -53,8 +53,6 @@ class Filter extends \yii\db\ActiveRecord
             ['filter_graduation_year_end', 'compare', 'compareAttribute' => 'filter_graduation_year_start', 'operator' => '>=',
                 'message' => \Yii::t('frontend','Graduation year end must be greater than or equal to the graduation year start.')],
             
-            //Convert Arabic Numeric Input to English
-            [['filter_gpa'], '\common\components\ArabicNumberValidator'],
             //Gpa min and max
             [['filter_gpa'], 'number', 'min' => 0.1, 'max' => 4],
             
