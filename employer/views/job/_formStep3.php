@@ -122,9 +122,10 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
     'data-width' => '100%'
 ])
 ?>
+
 <div class="row">
     <div class="col-md-5 col-md-offset-3">
-        <a class="btn btn-primary btn-block" style="margin-bottom:20px;" id="selectAllBtn"><?= Yii::t("employer", "Select All Universities") ?></a>
+        <a class="btn btn-teal btn-sm button-striped button-full-striped btn-ripple" style="margin-bottom:20px;" id="selectAllBtn"><?= Yii::t("employer", "Select All Universities") ?></a>
     </div>
 </div>
 
