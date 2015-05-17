@@ -197,6 +197,10 @@ class JobController extends Controller {
                 //If it is, then create then link to job model
                 //If it isn't, delete existing filters and set to null
                 
+                //Check the checkboxes
+                //If someone already wrote in a filter, then unchecked a filter checkbox-
+                //It should delete that filter value from existing record
+                
                 $filter->save(false);
                 $model->filter_id = $filter->filter_id;
                 $model->save(false);
@@ -206,10 +210,6 @@ class JobController extends Controller {
 
             //Save and go to fourth step
             if ($filter->validate()) {
-                
-                //Check if creating a filter is required.
-                //If it is, then create then link to job model
-                //If it isn't, delete existing filters and set to null
                 
                 $filter->save(false);
                 $model->filter_id = $filter->filter_id;

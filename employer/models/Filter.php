@@ -25,9 +25,7 @@ class Filter extends \common\models\Filter {
     public $languageFilter = false;
     public $englishFilter = false;
     public $nationalityFilter = false;
-    
-    //Make sure to implement afterFind -> set these values to true where chosen
-    
+        
 
     /**
      * @inheritdoc
@@ -93,7 +91,9 @@ class Filter extends \common\models\Filter {
     public function afterFind() {
         parent::afterFind();
         
-        //Load selected majors, languages, and nationalities
+        /**
+         * Load selected majors, languages, and nationalities
+         */
         foreach($this->majors as $major){
             $this->majorsSelected[] = $major->major_id;
         }
@@ -102,6 +102,31 @@ class Filter extends \common\models\Filter {
         }
         foreach($this->countries as $country){
             $this->nationalitiesSelected[] = $country->country_id;
+        }
+        
+        /**
+         * Load Checkboxes where set
+         */
+        if(!empty($this->majorsSelected)){
+            $this->majorFilter = true;
+        }
+        if(!empty($this->languagesSelected)){
+            $this->languageFilter = true;
+        }
+        if(!empty($this->nationalitiesSelected)){
+            $this->nationalityFilter = true;
+        }
+        if($this->filter_english_level){
+            $this->englishFilter = true;
+        }
+        if($this->filter_graduation_year_start || $this->filter_graduation_year_end){
+            $this->graduationFilter = true;
+        }
+        if($this->filter_gpa){
+            $this->gpaFilter = true;
+        }
+        if($this->degree_id){
+            $this->degreeFilter = true;
         }
     }
 
