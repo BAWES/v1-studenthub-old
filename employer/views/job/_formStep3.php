@@ -61,10 +61,28 @@ form.on("beforeValidateAttribute", function (event, attribute,messages,deferreds
     if (saveAsDraft) { return false;   }
 });
 
-
 //Major type and select
 $(".selectize").selectize({
     selectOnTab: true,
+});
+
+//Look for checkbox toggle events
+$(":checkbox").change(function(){
+    if($(this).hasClass("hasQuestion")){
+        var nextObject = $(this).parent().parent().next();
+        
+        if($(this).is(":checked")){
+            //Show questions
+            if(nextObject.hasClass("question")){
+                nextObject.show();
+            }
+        }else{
+            //Hide Questions
+            if(nextObject.hasClass("question")){
+                nextObject.hide();
+            }
+        }
+    }
 });
 ';
 
@@ -110,18 +128,22 @@ $form->field($filter, 'university_id', ['template' => $selectTemplate])->dropDow
 
 
 <!-- Filter by Degree -->
-<?= $form->field($filter, 'degreeFilter')->checkbox() ?>
-<?= $form->field($filter, 'degree_id', ['template' => $selectTemplate])->dropDownList(
-        ArrayHelper::map(common\models\Degree::find()->all(), "degree_id", $this->params['isArabic'] ? "degree_name_ar" : "degree_name_en"), [
-    'class' => 'selectpicker',
-    'prompt' => Yii::t('employer', 'Select a Degree'),
-    'data-width' => '100%'
-])
-?>
+<?= $form->field($filter, 'degreeFilter')->checkbox(['class' => 'hasQuestion']) ?>
+<div class="question">
+    <?= $form->field($filter, 'degree_id', ['template' => $selectTemplate])->dropDownList(
+            ArrayHelper::map(common\models\Degree::find()->all(), "degree_id", $this->params['isArabic'] ? "degree_name_ar" : "degree_name_en"), [
+        'class' => 'selectpicker',
+        'prompt' => Yii::t('employer', 'Select a Degree'),
+        'data-width' => '100%'
+    ])
+    ?>
+</div>
 
 <!-- Filter by GPA -->
-<?= $form->field($filter, 'gpaFilter')->checkbox() ?>
-<?= $form->field($filter, 'filter_gpa')->input("number", ['placeholder' => '3.0']) ?>
+<?= $form->field($filter, 'gpaFilter')->checkbox(['class' => 'hasQuestion']) ?>
+<div class="question">
+    <?= $form->field($filter, 'filter_gpa')->input("number", ['placeholder' => '3.0']) ?>
+</div>
 
 
 <!-- Filter by Graduation Years (range) -->
@@ -135,43 +157,48 @@ for ($i = 0; $i < $numberOfYears; $i++) {
     $yearOption = $currentYear + $i;
     $graduationYearOptions[$yearOption] = Yii::$app->formatter->asInteger($yearOption);
 } ?>
-<?= $form->field($filter, 'graduationFilter')->checkbox() ?>
-<?= $form->field($filter, 'filter_graduation_year_start',[
-                'template' => $selectTemplate,
-            ])->dropDownList($graduationYearOptions, [
-                'class' => 'selectpicker', 
-                'data-width' => '100%',
-                'prompt' => Yii::t('employer', 'Select Year'),
-                ]) ?>
-<?= $form->field($filter, 'filter_graduation_year_end',[
-                'template' => $selectTemplate,
-            ])->dropDownList($graduationYearOptions, [
-                'class' => 'selectpicker', 
-                'data-width' => '100%',
-                'prompt' => Yii::t('employer', 'Select Year'),
-                ]) ?>
+<?= $form->field($filter, 'graduationFilter')->checkbox(['class' => 'hasQuestion']) ?>
+<div class="question">
+    <?= $form->field($filter, 'filter_graduation_year_start',[
+                    'template' => $selectTemplate,
+                ])->dropDownList($graduationYearOptions, [
+                    'class' => 'selectpicker', 
+                    'data-width' => '100%',
+                    'prompt' => Yii::t('employer', 'Select Year'),
+                    ]) ?>
+    <?= $form->field($filter, 'filter_graduation_year_end',[
+                    'template' => $selectTemplate,
+                ])->dropDownList($graduationYearOptions, [
+                    'class' => 'selectpicker', 
+                    'data-width' => '100%',
+                    'prompt' => Yii::t('employer', 'Select Year'),
+                    ]) ?>
+</div>
 
 
 <!-- Filter by Majors -->
-<?= $form->field($filter, 'majorFilter')->checkbox() ?>
-<?= $form->field($filter, 'majorsSelected', ['template' => $selectTemplate])->listBox(
-        ArrayHelper::map(common\models\Major::find()->all(), "major_id", $this->params['isArabic'] ? "major_name_ar" : "major_name_en"), [
-    'class' => 'selectize',
-    'placeholder' => Yii::t("employer", "Select as many as you'd like"),
-    'multiple' => 'true',
-])
-?>
+<?= $form->field($filter, 'majorFilter')->checkbox(['class' => 'hasQuestion']) ?>
+<div class="question">
+    <?= $form->field($filter, 'majorsSelected', ['template' => $selectTemplate])->listBox(
+            ArrayHelper::map(common\models\Major::find()->all(), "major_id", $this->params['isArabic'] ? "major_name_ar" : "major_name_en"), [
+        'class' => 'selectize',
+        'placeholder' => Yii::t("employer", "Select as many as you'd like"),
+        'multiple' => 'true',
+    ])
+    ?>
+</div>
 
 <!-- Filter by Languages Spoken -->
-<?= $form->field($filter, 'languageFilter')->checkbox() ?>
-<?= $form->field($filter, 'languagesSelected', ['template' => $selectTemplate])->listBox(
-        ArrayHelper::map(common\models\Language::find()->all(), "language_id", $this->params['isArabic'] ? "language_name_ar" : "language_name_en"), [
-    'class' => 'selectize',
-    'placeholder' => Yii::t("employer", "Select as many as you'd like"),
-    'multiple' => 'true',
-])
-?>
-
+<?= $form->field($filter, 'languageFilter')->checkbox(['class' => 'hasQuestion']) ?>
+<div class="question">
+    <?= $form->field($filter, 'languagesSelected', ['template' => $selectTemplate])->listBox(
+            ArrayHelper::map(common\models\Language::find()->all(), "language_id", $this->params['isArabic'] ? "language_name_ar" : "language_name_en"), [
+        'class' => 'selectize',
+        'placeholder' => Yii::t("employer", "Select as many as you'd like"),
+        'multiple' => 'true',
+    ])
+    ?>
+</div>
 
 <!-- Filter by English Language Level -->
 <?php
@@ -181,25 +208,29 @@ $englishLevelOptions = [
     \common\models\Student::ENGLISH_GOOD => Yii::t('register', 'Good'),
 ];
 ?>
-<?= $form->field($filter, 'englishFilter')->checkbox() ?>
-<?= $form->field($filter, 'filter_english_level',[
-                'template' => $selectTemplate,
-            ])->dropDownList($englishLevelOptions, [
-                'class' => 'selectpicker', 
-                'data-width' => '100%',
-                'prompt' => Yii::t('employer', 'Select Language Level'),
-                ]) ?>
+<?= $form->field($filter, 'englishFilter')->checkbox(['class' => 'hasQuestion']) ?>
+<div class="question">
+    <?= $form->field($filter, 'filter_english_level',[
+                    'template' => $selectTemplate,
+                ])->dropDownList($englishLevelOptions, [
+                    'class' => 'selectpicker', 
+                    'data-width' => '100%',
+                    'prompt' => Yii::t('employer', 'Select Language Level'),
+                    ]) ?>
+</div>
 
 
 <!-- Filter by Nationality -->
-<?= $form->field($filter, 'nationalityFilter')->checkbox() ?>
-<?= $form->field($filter, 'nationalitiesSelected', ['template' => $selectTemplate])->listBox(
-        ArrayHelper::map(common\models\Country::find()->orderBy("country_nationality_name_en")->all(), "country_id", $this->params['isArabic'] ? "country_nationality_name_ar" : "country_nationality_name_en"), [
-    'class' => 'selectize',
-    'placeholder' => Yii::t("employer", "Select as many as you'd like"),
-    'multiple' => 'true',
-])
-?>
+<?= $form->field($filter, 'nationalityFilter')->checkbox(['class' => 'hasQuestion']) ?>
+<div class="question">
+    <?= $form->field($filter, 'nationalitiesSelected', ['template' => $selectTemplate])->listBox(
+            ArrayHelper::map(common\models\Country::find()->orderBy("country_nationality_name_en")->all(), "country_id", $this->params['isArabic'] ? "country_nationality_name_ar" : "country_nationality_name_en"), [
+        'class' => 'selectize',
+        'placeholder' => Yii::t("employer", "Select as many as you'd like"),
+        'multiple' => 'true',
+    ])
+    ?>
+</div>
 
 
 <!-- Filter by Transport Availability -->
