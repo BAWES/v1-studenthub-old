@@ -192,9 +192,6 @@ class JobController extends Controller {
             if(Yii::$app->request->post('draft') && (Yii::$app->request->post('draft') == 'yes')){
                 
                 //IMPORTANT
-                //
-                //Make sure to save majors selected, languages, and the number of applicants if setin filters
-                //Unlink majors and languages before re-linking
                 
                 //Check if creating a filter is required.
                 //If it is, then create then link to job model
@@ -209,10 +206,6 @@ class JobController extends Controller {
 
             //Save and go to fourth step
             if ($filter->validate()) {
-                
-                
-                //Make sure to save majors selected, languages, and the number of applicants if set
-                //Unlink majors and languages before re-linking
                 
                 //Check if creating a filter is required.
                 //If it is, then create then link to job model

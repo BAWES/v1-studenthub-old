@@ -12,9 +12,9 @@ use yii\db\Expression;
  */
 class Filter extends \common\models\Filter {
     //majors and languages selected during job filter creation
-    public $majorsSelected;
-    public $languagesSelected;
-    public $nationalitiesSelected;
+    public $majorsSelected = [];
+    public $languagesSelected = [];
+    public $nationalitiesSelected = [];
     public $numberOfApplicants;
     
     //Checkboxes for Premium Filters
@@ -25,7 +25,6 @@ class Filter extends \common\models\Filter {
     public $languageFilter = false;
     public $englishFilter = false;
     public $nationalityFilter = false;
-    public $transportationFilter = false;
     
     //Make sure to implement afterFind -> set these values to true where chosen
     
@@ -69,11 +68,6 @@ class Filter extends \common\models\Filter {
             ],
         ]);
     }
-    
-    public function afterFind() {
-        parent::afterFind();
-        
-    }
 
     /**
      * Attribute labels that are inherited are extended here
@@ -92,8 +86,23 @@ class Filter extends \common\models\Filter {
             'languageFilter' => Yii::t('employer', 'Filter students by Language Spoken'),
             'englishFilter' => Yii::t('employer', 'Filter students by English language level'),
             'nationalityFilter' => Yii::t('employer', 'Filter students by Nationality'),
-            'transportationFilter' => Yii::t('employer', 'Only show job to Students that have a car'),
         ]);
+    }
+    
+    
+    public function afterFind() {
+        parent::afterFind();
+        
+        //Load selected majors, languages, and nationalities
+        foreach($this->majors as $major){
+            $this->majorsSelected[] = $major->major_id;
+        }
+        foreach($this->languages as $language){
+            $this->languagesSelected[] = $language->language_id;
+        }
+        foreach($this->countries as $country){
+            $this->nationalitiesSelected[] = $country->country_id;
+        }
     }
 
     /**
@@ -128,6 +137,20 @@ class Filter extends \common\models\Filter {
                 $language = \common\models\Language::findOne((int) $languageId);
                 if ($language) {
                     $this->link('languages', $language);
+                }
+            }
+        }
+        
+        //Linking selected languages to student
+        if (is_array($this->nationalitiesSelected)) {
+            //Unlink all languages from this Student
+            $this->unlinkAll('countries', true);
+
+            //Link the new majors to this Student
+            foreach ($this->nationalitiesSelected as $nationalityId) {
+                $nationality = \common\models\Country::findOne((int) $nationalityId);
+                if ($language) {
+                    $this->link('countries', $nationality);
                 }
             }
         }

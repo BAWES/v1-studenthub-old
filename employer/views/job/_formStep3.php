@@ -203,7 +203,7 @@ $englishLevelOptions = [
 
 
 <!-- Filter by Transport Availability -->
-<?= $form->field($filter, 'transportationFilter')->checkbox() ?>
+<?= $form->field($filter, 'filter_transportation')->checkbox() ?>
 
 
 <!-- Finalize -->
