@@ -356,7 +356,7 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
 
 <div class="row" style="margin-bottom:10px; margin-top:10px;">
     <div class="col-md-5 col-md-offset-3">
-        <?= Html::submitButton(Yii::t('employer', 'Preview & Post Job') , ['class' => 'btn btn-success btn-block btn-ripple'])
+        <?= Html::submitButton(Yii::t('employer', 'Review & Post Job') , ['class' => 'btn btn-success btn-block btn-ripple'])
         ?>
     </div>
 </div>
