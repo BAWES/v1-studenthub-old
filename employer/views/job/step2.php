@@ -3,7 +3,7 @@
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Job */
+/* @var $model employer\models\Job */
 
 $this->title = Yii::t('employer', 'Post a Job Opening');
 
