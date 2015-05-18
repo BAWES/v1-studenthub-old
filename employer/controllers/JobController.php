@@ -200,13 +200,40 @@ class JobController extends Controller {
             if ($filter->validate()) {
                 $filter->saveModelAndFilter($model);
                 
-                return $this->redirect(['create-step3', 'id' => $model->job_id]);
+                return $this->redirect(['create-step4', 'id' => $model->job_id]);
             }
         }
 
         return $this->render('step3', [
             'model' => $model,
             'filter' => $filter,
+        ]);
+    }
+    
+    /**
+     * Fourth Step of Job Creation - Payment / Price Summary
+     * If everything is valid, save and move to next step
+     * 
+     * Should user save it as draft, it will save without validation and 
+     * take him back to the dashboard
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionCreateStep4($id) {
+        $model = $this->findModel($id);
+        
+        //Check if editing is allowed
+        $this->checkJobEditAllowed($model);
+        
+        //Validate all the Job fields before proceeding
+        //If there are validation issues, redirect back to first step
+        if(!$model->validate()){
+            return $this->redirect(['update', 'id' => $model->job_id]);
+        }
+        
+        
+        return $this->render('step4', [
+            'model' => $model,
         ]);
     }
 
@@ -234,8 +261,8 @@ class JobController extends Controller {
      * @param Job $job
      */
     public function checkJobEditAllowed($job){
-        if($job->job_status == Job::STATUS_CLOSED){
-            throw new \yii\web\BadRequestHttpException("You are not allowed to update a closed job");
+        if($job->job_status != Job::STATUS_DRAFT){
+            throw new \yii\web\BadRequestHttpException("You are only allowed to edit drafts");
         }
     }
     
