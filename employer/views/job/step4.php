@@ -34,23 +34,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tbody>
                     <tr>
                         <td>Max Applicants</td>
-                        <td><?= $model->job_max_applicants ?></td>
+                        <td><?= Yii::$app->formatter->asInteger($model->job_max_applicants) ?></td>
                     </tr>
                     <tr>
                         <td>Cost Per Applicant</td>
-                        <td><?= Yii::$app->formatter->asDecimal(0.75,3) ?> KD</td>
-                    </tr>
-                    <tr>
-                        <td>Number of Universities</td>
-                        <td>3</td>
+                        <td><?= Yii::$app->formatter->asDecimal(0.75 + 0.25 *  $model->filter->premiumFilterCount,3) ?> KD</td>
                     </tr>
                     <tr>
                         <td>Premium Filters</td>
-                        <td><?= $model->filter->premiumFilterCount ?></td>
+                        <td><?= Yii::$app->formatter->asInteger($model->filter->premiumFilterCount) ?></td>
                     </tr>
                     <tr class="warning">
                         <td>Total Price</td>
-                        <td>300 KD</td>
+                        <td><?= Yii::$app->formatter->asDecimal((0.75 + 0.25 *  $model->filter->premiumFilterCount) * $model->job_max_applicants,3) ?> KD</td>
                     </tr>
                 </tbody>
             </table>
