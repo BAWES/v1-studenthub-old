@@ -34,16 +34,32 @@ div.required label:after {
 .checkboxer input[type='checkbox'] + label{
     margin-bottom:0;
 }
-
-@media (min-width: 992px) {
-  #priceChart{
-    width: 450px;
-    position:fixed;
-    top: 300px;
-    right: 0%;
-  }
-}
 ";
+
+if($this->params['isArabic']){
+    $css .= "
+    @media (min-width: 992px) {
+      #priceChart{
+        width: 450px;
+        position:fixed;
+        top: 300px;
+        left: 0%;
+      }
+    }
+    ";
+}
+else{
+    $css .= "
+    @media (min-width: 992px) {
+      #priceChart{
+        width: 450px;
+        position:fixed;
+        top: 300px;
+        right: 0%;
+      }
+    }
+    ";
+}
 
 $js = '
 function isMobile(){
