@@ -35,8 +35,13 @@ div.required label:after {
     margin-bottom:0;
 }
 
-@media (min-width: 990px) {
-  
+@media (min-width: 992px) {
+  #priceChart{
+    width: 450px;
+    position:fixed;
+    top: 300px;
+    right: 0%;
+  }
 }
 ";
 
@@ -276,7 +281,7 @@ $englishLevelOptions = [
 </div>
 
 
-<div class="row priceChart">
+<div id="priceChart" class="row">
     <div class="col-md-5 col-md-offset-3">
 
         <div class="note note-warning note-left-striped" style="text-align: center">
