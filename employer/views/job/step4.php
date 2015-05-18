@@ -3,8 +3,7 @@
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Job */
-/* @var $filter employer\models\Filter */
+/* @var $model employer\models\Job */
 
 $this->title = Yii::t('employer', 'Post a Job Opening');
 
@@ -28,7 +27,34 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="panel-body">
+        <h3 style="margin-top:0"><?= Yii::t("employer", "Order Summary") ?></h3>
 
+        <div class="col-md-5">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td>Max Applicants</td>
+                        <td><?= $model->job_max_applicants ?></td>
+                    </tr>
+                    <tr>
+                        <td>Cost Per Applicant</td>
+                        <td><?= Yii::$app->formatter->asDecimal(0.75,3) ?> KD</td>
+                    </tr>
+                    <tr>
+                        <td>Number of Universities</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Premium Filters</td>
+                        <td><?= $model->filter->premiumFilterCount ?></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>Total Price</td>
+                        <td>300 KD</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
     </div>
 

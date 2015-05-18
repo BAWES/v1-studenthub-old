@@ -11,6 +11,8 @@ use yii\db\Expression;
  * 
  */
 class Filter extends \common\models\Filter {
+    //Count of premium filters, updated in afterFind()
+    public $premiumFilterCount = 0;
     //values selected during job filter creation
     public $universitiesSelected = [];
     public $majorsSelected = [];
@@ -271,24 +273,34 @@ class Filter extends \common\models\Filter {
          */
         if(!empty($this->majorsSelected)){
             $this->majorFilter = true;
+            $this->premiumFilterCount += 1;
         }
         if(!empty($this->languagesSelected)){
             $this->languageFilter = true;
+            $this->premiumFilterCount += 1;
         }
         if(!empty($this->nationalitiesSelected)){
             $this->nationalityFilter = true;
+            $this->premiumFilterCount += 1;
         }
         if($this->filter_english_level){
             $this->englishFilter = true;
+            $this->premiumFilterCount += 1;
         }
         if($this->filter_graduation_year_start || $this->filter_graduation_year_end){
             $this->graduationFilter = true;
+            $this->premiumFilterCount += 1;
         }
         if($this->filter_gpa){
             $this->gpaFilter = true;
+            $this->premiumFilterCount += 1;
         }
         if($this->degree_id){
             $this->degreeFilter = true;
+            $this->premiumFilterCount += 1;
+        }
+        if($this->filter_transportation){
+            $this->premiumFilterCount += 1;
         }
     }
 
