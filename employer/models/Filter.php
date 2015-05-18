@@ -156,7 +156,7 @@ class Filter extends \common\models\Filter {
             'graduationFilter' => Yii::t('employer', 'Filter students by Graduation Year'),
             'majorFilter' => Yii::t('employer', 'Filter students by Major'),
             'languageFilter' => Yii::t('employer', 'Filter students by Language Spoken'),
-            'englishFilter' => Yii::t('employer', 'Filter students by English language level'),
+            'englishFilter' => Yii::t('employer', 'Filter students by English Level'),
             'nationalityFilter' => Yii::t('employer', 'Filter students by Nationality'),
         ]);
     }
