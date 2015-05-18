@@ -191,7 +191,7 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
 </div>
 
 
-<?= $form->field($filter, 'numberOfApplicants')->input("number", ['placeholder' => 'Minimum 20']) ?>
+<?= $form->field($filter, 'numberOfApplicants')->input("number", ['placeholder' => 'Minimum 10']) ?>
 
 <div class="row">
     <div class="col-md-5 col-md-offset-3">

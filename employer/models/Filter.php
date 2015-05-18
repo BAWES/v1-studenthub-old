@@ -36,7 +36,7 @@ class Filter extends \common\models\Filter {
             //Employers must input number of applicants they wish to have (minimum 20)
             [['numberOfApplicants', 'universitiesSelected'], 'required'],
             [['numberOfApplicants'], '\common\components\ArabicNumberValidator'],
-            [['numberOfApplicants'], 'integer', 'min' => 20],
+            [['numberOfApplicants'], 'integer', 'min' => 10],
             
             //Allow massive assignment of majors, languages, and filters
             [['majorsSelected', 'languagesSelected', 'nationalitiesSelected',

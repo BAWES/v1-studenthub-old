@@ -69,6 +69,8 @@ class Job extends \yii\db\ActiveRecord
             [['jobtype_id', 'job_title', 'job_pay', 'job_responsibilites', 'job_desired_skill', 'job_max_applicants'], 'required'],
             [['job_other_qualifications', 'job_compensation'], 'safe'],
             
+            [['job_max_applicants'], 'integer', 'min' => 10],
+            
             //Length validation
             [['job_title', 'job_compensation'], 'string', 'max' => 255],
             
