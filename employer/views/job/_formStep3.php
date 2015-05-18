@@ -106,11 +106,46 @@ $(":checkbox").change(function(){
             nextObject.hide();
         }
     }
+    
+    //Update order summary
+    updateOrder();
 });
 
 $("#selectAllBtn").click(function(){
     $(".univSelect").selectpicker("selectAll");
     return false;
+});
+
+
+
+var $pricePerApplicant = $("#pricePerApplicant");
+var $numApplicants = $("#numApplicants");
+var basicCost = 0.75;
+var pricePerFilter = 0.25;
+
+function updateOrder(){
+    //get maximum applicants, if none, set to -
+    var maximumApplicants = parseInt($("#filter-numberofapplicants").val());
+    if(maximumApplicants > 0){
+        $numApplicants.text(maximumApplicants);
+    }else $numApplicants.text("-");
+    
+    var newCost = basicCost;
+    
+    //Get Number of premium filters selected, add price to it
+    $("#premium :checkbox").each(function(){
+        if($(this).is(":checked")){
+            newCost+=pricePerFilter;
+        }
+    });
+    
+    newCost = newCost.toFixed(3);
+    $pricePerApplicant.text(newCost + " KD");
+}
+updateOrder();
+
+$("#filter-numberofapplicants").on("input", function(){
+    updateOrder();
 });
 ';
 
@@ -170,119 +205,120 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
 
 
 <!-- Premium Filters Header -->
-<h3 style="margin-bottom:0; margin-top:1.5em;"><?= Yii::t("employer", "Premium Filters") ?></h3>
-<h5 style='margin-bottom:1.5em;'><?= Yii::t("employer", "Each option increases applicant cost by 0.250 fils") ?></h5>
+<div id="premium">
+    <h3 style="margin-bottom:0; margin-top:1.5em;"><?= Yii::t("employer", "Premium Filters") ?></h3>
+    <h5 style='margin-bottom:1.5em;'><?= Yii::t("employer", "Each option increases applicant cost by 0.250 fils") ?></h5>
 
 
-<!-- Filter by Degree -->
-<?= $form->field($filter, 'degreeFilter')->checkbox() ?>
-<div class="question" style="display: <?= $filter->degreeFilter?"block":"none" ?>">
-    <?= $form->field($filter, 'degree_id', ['template' => $selectTemplate])->dropDownList(
-            ArrayHelper::map(common\models\Degree::find()->all(), "degree_id", $this->params['isArabic'] ? "degree_name_ar" : "degree_name_en"), [
-        'class' => 'selectpicker',
-        'prompt' => Yii::t('employer', 'Select a Degree'),
-        'data-width' => '100%'
-    ])
+    <!-- Filter by Degree -->
+    <?= $form->field($filter, 'degreeFilter')->checkbox() ?>
+    <div class="question" style="display: <?= $filter->degreeFilter?"block":"none" ?>">
+        <?= $form->field($filter, 'degree_id', ['template' => $selectTemplate])->dropDownList(
+                ArrayHelper::map(common\models\Degree::find()->all(), "degree_id", $this->params['isArabic'] ? "degree_name_ar" : "degree_name_en"), [
+            'class' => 'selectpicker',
+            'prompt' => Yii::t('employer', 'Select a Degree'),
+            'data-width' => '100%'
+        ])
+        ?>
+    </div>
+
+    <!-- Filter by GPA -->
+    <?= $form->field($filter, 'gpaFilter')->checkbox() ?>
+    <div class="question" style="display: <?= $filter->gpaFilter?"block":"none" ?>">
+        <?= $form->field($filter, 'filter_gpa')->input("number", ['placeholder' => '3.0', 'step' => 'any']) ?>
+    </div>
+
+
+    <!-- Filter by Graduation Years (range) -->
+    <?php
+    //Graduation year options
+    $graduationYearOptions = [];
+    $currentYear = date("Y") - 3;
+    $numberOfYears = 8;
+    Yii::$app->formatter->thousandSeparator = "";
+    for ($i = 0; $i < $numberOfYears; $i++) {
+        $yearOption = $currentYear + $i;
+        $graduationYearOptions[$yearOption] = Yii::$app->formatter->asInteger($yearOption);
+    } ?>
+    <?= $form->field($filter, 'graduationFilter')->checkbox() ?>
+    <div class="question" style="display: <?= $filter->graduationFilter?"block":"none" ?>">
+        <?= $form->field($filter, 'filter_graduation_year_start',[
+                        'template' => $selectTemplate,
+                    ])->dropDownList($graduationYearOptions, [
+                        'class' => 'selectpicker', 
+                        'data-width' => '100%',
+                        'prompt' => Yii::t('employer', 'Select Year'),
+                        ]) ?>
+        <?= $form->field($filter, 'filter_graduation_year_end',[
+                        'template' => $selectTemplate,
+                    ])->dropDownList($graduationYearOptions, [
+                        'class' => 'selectpicker', 
+                        'data-width' => '100%',
+                        'prompt' => Yii::t('employer', 'Select Year'),
+                        ]) ?>
+    </div>
+
+
+    <!-- Filter by Majors -->
+    <?= $form->field($filter, 'majorFilter')->checkbox() ?>
+    <div class="question" style="display: <?= $filter->majorFilter?"block":"none" ?>">
+        <?= $form->field($filter, 'majorsSelected', ['template' => $selectTemplate])->listBox(
+                ArrayHelper::map(common\models\Major::find()->all(), "major_id", $this->params['isArabic'] ? "major_name_ar" : "major_name_en"), [
+            'class' => 'selectize',
+            'placeholder' => Yii::t("employer", "Select as many as you'd like"),
+            'multiple' => 'true',
+        ])
+        ?>
+    </div>
+
+    <!-- Filter by Languages Spoken -->
+    <?= $form->field($filter, 'languageFilter')->checkbox() ?>
+    <div class="question" style="display: <?= $filter->languageFilter?"block":"none" ?>">
+        <?= $form->field($filter, 'languagesSelected', ['template' => $selectTemplate])->listBox(
+                ArrayHelper::map(common\models\Language::find()->all(), "language_id", $this->params['isArabic'] ? "language_name_ar" : "language_name_en"), [
+            'class' => 'selectize',
+            'placeholder' => Yii::t("employer", "Select as many as you'd like"),
+            'multiple' => 'true',
+        ])
+        ?>
+    </div>
+
+    <!-- Filter by English Language Level -->
+    <?php
+    $englishLevelOptions = [
+        \common\models\Student::ENGLISH_WEAK => Yii::t('register', 'Weak'),
+        \common\models\Student::ENGLISH_FAIR => Yii::t('register', 'Fair'),
+        \common\models\Student::ENGLISH_GOOD => Yii::t('register', 'Good'),
+    ];
     ?>
+    <?= $form->field($filter, 'englishFilter')->checkbox() ?>
+    <div class="question" style="display: <?= $filter->englishFilter?"block":"none" ?>">
+        <?= $form->field($filter, 'filter_english_level',[
+                        'template' => $selectTemplate,
+                    ])->dropDownList($englishLevelOptions, [
+                        'class' => 'selectpicker', 
+                        'data-width' => '100%',
+                        'prompt' => Yii::t('employer', 'Select Language Level'),
+                        ]) ?>
+    </div>
+
+
+    <!-- Filter by Nationality -->
+    <?= $form->field($filter, 'nationalityFilter')->checkbox() ?>
+    <div class="question" style="display: <?= $filter->nationalityFilter?"block":"none" ?>">
+        <?= $form->field($filter, 'nationalitiesSelected', ['template' => $selectTemplate])->listBox(
+                ArrayHelper::map(common\models\Country::find()->orderBy("country_nationality_name_en")->all(), "country_id", $this->params['isArabic'] ? "country_nationality_name_ar" : "country_nationality_name_en"), [
+            'class' => 'selectize',
+            'placeholder' => Yii::t("employer", "Select as many as you'd like"),
+            'multiple' => 'true',
+        ])
+        ?>
+    </div>
+
+
+    <!-- Filter by Transport Availability -->
+    <?= $form->field($filter, 'filter_transportation')->checkbox() ?>
 </div>
-
-<!-- Filter by GPA -->
-<?= $form->field($filter, 'gpaFilter')->checkbox() ?>
-<div class="question" style="display: <?= $filter->gpaFilter?"block":"none" ?>">
-    <?= $form->field($filter, 'filter_gpa')->input("number", ['placeholder' => '3.0', 'step' => 'any']) ?>
-</div>
-
-
-<!-- Filter by Graduation Years (range) -->
-<?php
-//Graduation year options
-$graduationYearOptions = [];
-$currentYear = date("Y") - 3;
-$numberOfYears = 8;
-Yii::$app->formatter->thousandSeparator = "";
-for ($i = 0; $i < $numberOfYears; $i++) {
-    $yearOption = $currentYear + $i;
-    $graduationYearOptions[$yearOption] = Yii::$app->formatter->asInteger($yearOption);
-} ?>
-<?= $form->field($filter, 'graduationFilter')->checkbox() ?>
-<div class="question" style="display: <?= $filter->graduationFilter?"block":"none" ?>">
-    <?= $form->field($filter, 'filter_graduation_year_start',[
-                    'template' => $selectTemplate,
-                ])->dropDownList($graduationYearOptions, [
-                    'class' => 'selectpicker', 
-                    'data-width' => '100%',
-                    'prompt' => Yii::t('employer', 'Select Year'),
-                    ]) ?>
-    <?= $form->field($filter, 'filter_graduation_year_end',[
-                    'template' => $selectTemplate,
-                ])->dropDownList($graduationYearOptions, [
-                    'class' => 'selectpicker', 
-                    'data-width' => '100%',
-                    'prompt' => Yii::t('employer', 'Select Year'),
-                    ]) ?>
-</div>
-
-
-<!-- Filter by Majors -->
-<?= $form->field($filter, 'majorFilter')->checkbox() ?>
-<div class="question" style="display: <?= $filter->majorFilter?"block":"none" ?>">
-    <?= $form->field($filter, 'majorsSelected', ['template' => $selectTemplate])->listBox(
-            ArrayHelper::map(common\models\Major::find()->all(), "major_id", $this->params['isArabic'] ? "major_name_ar" : "major_name_en"), [
-        'class' => 'selectize',
-        'placeholder' => Yii::t("employer", "Select as many as you'd like"),
-        'multiple' => 'true',
-    ])
-    ?>
-</div>
-
-<!-- Filter by Languages Spoken -->
-<?= $form->field($filter, 'languageFilter')->checkbox() ?>
-<div class="question" style="display: <?= $filter->languageFilter?"block":"none" ?>">
-    <?= $form->field($filter, 'languagesSelected', ['template' => $selectTemplate])->listBox(
-            ArrayHelper::map(common\models\Language::find()->all(), "language_id", $this->params['isArabic'] ? "language_name_ar" : "language_name_en"), [
-        'class' => 'selectize',
-        'placeholder' => Yii::t("employer", "Select as many as you'd like"),
-        'multiple' => 'true',
-    ])
-    ?>
-</div>
-
-<!-- Filter by English Language Level -->
-<?php
-$englishLevelOptions = [
-    \common\models\Student::ENGLISH_WEAK => Yii::t('register', 'Weak'),
-    \common\models\Student::ENGLISH_FAIR => Yii::t('register', 'Fair'),
-    \common\models\Student::ENGLISH_GOOD => Yii::t('register', 'Good'),
-];
-?>
-<?= $form->field($filter, 'englishFilter')->checkbox() ?>
-<div class="question" style="display: <?= $filter->englishFilter?"block":"none" ?>">
-    <?= $form->field($filter, 'filter_english_level',[
-                    'template' => $selectTemplate,
-                ])->dropDownList($englishLevelOptions, [
-                    'class' => 'selectpicker', 
-                    'data-width' => '100%',
-                    'prompt' => Yii::t('employer', 'Select Language Level'),
-                    ]) ?>
-</div>
-
-
-<!-- Filter by Nationality -->
-<?= $form->field($filter, 'nationalityFilter')->checkbox() ?>
-<div class="question" style="display: <?= $filter->nationalityFilter?"block":"none" ?>">
-    <?= $form->field($filter, 'nationalitiesSelected', ['template' => $selectTemplate])->listBox(
-            ArrayHelper::map(common\models\Country::find()->orderBy("country_nationality_name_en")->all(), "country_id", $this->params['isArabic'] ? "country_nationality_name_ar" : "country_nationality_name_en"), [
-        'class' => 'selectize',
-        'placeholder' => Yii::t("employer", "Select as many as you'd like"),
-        'multiple' => 'true',
-    ])
-    ?>
-</div>
-
-
-<!-- Filter by Transport Availability -->
-<?= $form->field($filter, 'filter_transportation')->checkbox() ?>
-
 
 <!-- Finalize -->
 <div class="row">
@@ -302,13 +338,13 @@ $englishLevelOptions = [
 
         <div class="note note-warning note-left-striped" style="text-align: center">
             <h4 style="margin-bottom:5px;"><?= Yii::t("employer", "Your Order") ?></h4>
-            <p style="margin-bottom:0;">
+            <p style="margin-bottom:0;" id="numApplicants">
                 -
             </p>
             <p style="font-size:0.7em; margin-top:0; margin-bottom:5px;">
                 maximum applicants
             </p>
-            <p style="margin-bottom:0;">
+            <p style="margin-bottom:0;" id="pricePerApplicant">
                 0.750 KD
             </p>
             <p style="font-size:0.7em; margin-top:0;">
