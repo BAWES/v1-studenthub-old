@@ -140,10 +140,10 @@ $form->field($model, 'jobtype_id', [
 
 <?=
 $form->field($model, 'job_pay')->checkbox([
-    'class' => 'switchSelect',
-    'data-on-text' => 'Yes',
+    'class' => $this->params['isArabic']?"":"switchSelect",
+    'data-on-text' => Yii::t("employer", 'Yes'),
     'data-on-color' => 'success',
-    'data-off-text' => 'No',
+    'data-off-text' => Yii::t("employer", 'No'),
     'data-off-color' => 'danger',
     'checked',
 ])
