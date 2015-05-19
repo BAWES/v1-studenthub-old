@@ -127,14 +127,7 @@ class Job extends \yii\db\ActiveRecord
             'job_created_datetime' => Yii::t('app', 'Job Created Datetime'),
         ];
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFilters()
-    {
-        return $this->hasMany(Filter::className(), ['job_id' => 'job_id']);
-    }
+    
 
     /**
      * @return \yii\db\ActiveQuery

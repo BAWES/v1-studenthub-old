@@ -59,6 +59,26 @@ class Job extends \common\models\Job {
     }
     
     /**
+     * Returns the current listing cost based on current price per applicant + filter price
+     * @return real the current cost
+     */
+    public function getListingCost(){
+        $listingCost = $this->costPerApplicant * $this->job_max_applicants;
+        return $listingCost; 
+    }
+    
+    /**
+     * Returns the current cost per applicant (with filters selected)
+     * @return real the current cost per applicant
+     */
+    public function getCostPerApplicant(){
+        $pricePerApplicant = \common\models\Note::findOne(["note_name" => "pricePerApplicant"])->note_value;
+        $pricePerPremiumFilter = \common\models\Note::findOne(["note_name" => "pricePerPremiumFilter"])->note_value;
+        $costPerApplicant = $pricePerApplicant + $pricePerPremiumFilter *  $this->filter->premiumFilterCount;
+        return $costPerApplicant; 
+    }
+    
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getFilter()

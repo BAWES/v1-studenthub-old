@@ -9,9 +9,6 @@ $this->title = Yii::t('employer', 'Post a Job Opening');
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('employer', 'Dashboard'), 'url' => ['dashboard/index']];
 $this->params['breadcrumbs'][] = $this->title;
-
-$pricePerApplicant = \common\models\Note::findOne(["note_name" => "pricePerApplicant"])->note_value;
-$pricePerPremiumFilter = \common\models\Note::findOne(["note_name" => "pricePerPremiumFilter"])->note_value;
 ?>
 
 <div class="panel">
@@ -31,6 +28,11 @@ $pricePerPremiumFilter = \common\models\Note::findOne(["note_name" => "pricePerP
 
     <div class="panel-body">
         <h3 style="margin-top:0"><?= Yii::t("employer", "Order Summary") ?></h3>
+        
+        <?php
+            $amountDue = $model->listingCost - Yii::$app->user->identity->employer_credit;
+            if($amountDue < 0) $amountDue = 0;
+        ?>
 
         <div class="col-md-5">
             <table class="table table-striped">
@@ -41,31 +43,34 @@ $pricePerPremiumFilter = \common\models\Note::findOne(["note_name" => "pricePerP
                     </tr>
                     <tr>
                         <td><?= Yii::t("employer", "Cost Per Applicant") ?></td>
-                        <td><?= Yii::$app->formatter->asDecimal($pricePerApplicant + $pricePerPremiumFilter *  $model->filter->premiumFilterCount, 3) ?> <?= Yii::t("employer", "KD") ?></td>
+                        <td><?= Yii::$app->formatter->asDecimal($model->costPerApplicant, 3) ?> <?= Yii::t("employer", "KD") ?></td>
                     </tr>
-                    <tr>
+                    <tr style="border-bottom: 2px solid black;">
                         <td><?= Yii::t("employer", "Premium Filters") ?></td>
                         <td><?= Yii::$app->formatter->asInteger($model->filter->premiumFilterCount) ?></td>
                     </tr>
-                    <tr class="info">
+                    <tr class="">
+                        <td><?= Yii::t("employer", "Listing Cost") ?></td>
+                        <td><?= Yii::$app->formatter->asDecimal($model->listingCost,3) ?> <?= Yii::t("employer", "KD") ?></td>
+                    </tr>
+                    <tr class="warning">
                         <td>
                             <?= Yii::t("employer", "Current Credit") ?> 
-                            <span style="cursor:help" class="label label-info" data-toggle="tooltip" 
+                            <span style="cursor:help" class="label label-warning" data-toggle="tooltip" 
                                   data-placement="right" title="" data-original-title="<?= Yii::t("employer", "You may purchase credit in advance for faster job posting") ?>">?</span>
                         </td>
                         <td><?= Yii::$app->formatter->asDecimal(Yii::$app->user->identity->employer_credit,3) ?> <?= Yii::t("employer", "KD") ?></td>
-                    </tr>
-                    <tr class="warning">
-                        <td><?= Yii::t("employer", "Subtotal") ?></td>
-                        <td><?= Yii::$app->formatter->asDecimal(($pricePerApplicant + $pricePerPremiumFilter *  $model->filter->premiumFilterCount) * $model->job_max_applicants,3) ?> <?= Yii::t("employer", "KD") ?></td>
                     </tr>
                     
                 </tbody>
             </table>
         </div>
         
+        
+        
         <div class="col-md-6 col-md-offset-1">
-            test
+            <h4 style="margin-bottom:0;"><?= Yii::t("employer", "Amount Due") ?></h4>
+            <h3 style="margin-top:0; font-weight:bold;"><?= Yii::$app->formatter->asDecimal($amountDue, 3) ?> <?= Yii::t("employer", "KD") ?></h3>
         </div>
 
     </div>
