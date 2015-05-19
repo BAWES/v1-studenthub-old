@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 19, 2015 at 10:23 AM
+-- Generation Time: May 19, 2015 at 10:59 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -593,7 +593,7 @@ CREATE TABLE IF NOT EXISTS `job` (
 --
 
 INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `filter_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_updated_datetime`, `job_created_datetime`) VALUES
-(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe', 'dwadwg', 'No compensation', '', '', 10, 0, 0, NULL, '2015-05-19 10:18:01', '2015-05-14 19:15:47'),
+(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe', 'dwadwg', 'No compensation', '', '', 10, 0, 0, NULL, '2015-05-19 10:25:38', '2015-05-14 19:15:47'),
 (12, 1, 1, NULL, '', 1, NULL, '', '', '', '', NULL, NULL, NULL, 0, 0, NULL, '2015-05-18 13:14:03', '2015-05-18 13:14:03');
 
 -- --------------------------------------------------------
@@ -2108,7 +2108,7 @@ CREATE TABLE IF NOT EXISTS `note` (
 --
 
 INSERT INTO `note` (`note_id`, `note_name`, `note_value`) VALUES
-(1, 'pricePerApplicant', '0.85'),
+(1, 'pricePerApplicant', '0.75'),
 (2, 'pricePerPremiumFilter', '0.25');
 
 -- --------------------------------------------------------

@@ -47,12 +47,25 @@ $pricePerPremiumFilter = \common\models\Note::findOne(["note_name" => "pricePerP
                         <td><?= Yii::t("employer", "Premium Filters") ?></td>
                         <td><?= Yii::$app->formatter->asInteger($model->filter->premiumFilterCount) ?></td>
                     </tr>
+                    <tr class="info">
+                        <td>
+                            <?= Yii::t("employer", "Current Credit") ?> 
+                            <span style="cursor:help" class="label label-info" data-toggle="tooltip" 
+                                  data-placement="right" title="" data-original-title="<?= Yii::t("employer", "You may purchase credit in advance for faster job posting") ?>">?</span>
+                        </td>
+                        <td><?= Yii::$app->formatter->asDecimal(Yii::$app->user->identity->employer_credit,3) ?> <?= Yii::t("employer", "KD") ?></td>
+                    </tr>
                     <tr class="warning">
-                        <td><?= Yii::t("employer", "Total Price") ?></td>
+                        <td><?= Yii::t("employer", "Subtotal") ?></td>
                         <td><?= Yii::$app->formatter->asDecimal(($pricePerApplicant + $pricePerPremiumFilter *  $model->filter->premiumFilterCount) * $model->job_max_applicants,3) ?> <?= Yii::t("employer", "KD") ?></td>
                     </tr>
+                    
                 </tbody>
             </table>
+        </div>
+        
+        <div class="col-md-6 col-md-offset-1">
+            test
         </div>
 
     </div>
