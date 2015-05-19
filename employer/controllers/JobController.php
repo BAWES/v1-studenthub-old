@@ -214,8 +214,6 @@ class JobController extends Controller {
      * Fourth Step of Job Creation - Payment / Price Summary
      * If everything is valid, save and move to next step
      * 
-     * Should user save it as draft, it will save without validation and 
-     * take him back to the dashboard
      * @param integer $id
      * @return mixed
      */
@@ -232,12 +230,59 @@ class JobController extends Controller {
         }
         
         
+        /*
+         * Accept form input and process payment here
+         *  On success, thank you page (with link back to dashboard)
+         * On Failure, send back to previous step with (setFlash error message)
+         */
+        
+        //Create transaction for successful payment + deduct from credit
+        /**
+         * Requested to make payment
+         */
+        if(Yii::$app->request->post()){
+            $paymentOption = Yii::$app->request->post('paymentOption');
+            //You're not allowed payment option 1 (StudentHub Sponsor)
+            if($paymentOption == 1) exit();
+            
+            
+            $totalCredit = Yii::$app->user->identity->employer_credit;
+            $amountDue = $model->listingCost - $totalCredit;
+            //Does his credit cover the jobs cost? If yes, then process
+            if($amountDue <= 0){
+                //Process Payment Transaction for this Job
+                $transaction = new \common\models\Transaction();
+                $transaction->job_id = $model->job_id;
+                $transaction->transaction_number_of_applicants = $model->job_max_applicants;
+                $transaction->transaction_price_per_applicant = $model->costPerApplicant;
+                $transaction->transaction_price_total = $model->listingCost;
+                if($transaction->save()){
+                    //Redirect to thank you page
+                    return $this->redirect(['thanks']);
+                }else{
+                    //There are errors, set flash for those errors
+                    foreach($transaction->errors as $error){
+                        Yii::$app->session->setFlash("warning", print_r($error[0], true));
+                    }
+                }
+            }
+            
+        }
+        
+        
         return $this->render('step4', [
             'model' => $model,
         ]);
     }
-
     
+    /**
+     * Thank you page after payment
+     */
+    public function actionThanks(){
+        return $this->render('thanks');
+    }
+    
+
     /**
      * Allows employer to delete his own drafts
      * If deletion is successful, the browser will be redirected to the 'index' draft page.
