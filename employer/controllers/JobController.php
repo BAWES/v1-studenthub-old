@@ -231,14 +231,11 @@ class JobController extends Controller {
         
         
         /*
-         * Accept form input and process payment here
-         *  On success, thank you page (with link back to dashboard)
-         * On Failure, send back to previous step with (setFlash error message)
-         */
-        
-        //Create transaction for successful payment + deduct from credit
-        /**
          * Requested to make payment
+         * Accept form input and process payment here
+         * On success, thank you page (with link back to dashboard)
+         * On Failure, send back to previous step with (setFlash error message)
+         * Create transaction for successful payment + deduct from credit
          */
         if(Yii::$app->request->post()){
             $paymentOption = Yii::$app->request->post('paymentOption');
