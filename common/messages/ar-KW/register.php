@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Select Industry' => 'مجال العمل',
+    'Thanks! Your Job will soon be posted for students to apply on' => '',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Average # of Employees' => 'عدد الموظفين',
     'Browse Jobs' => 'ابحث عن عمل',
@@ -86,6 +86,7 @@ return [
     'Register as an Employer' => 'تسجيل كصاحب عمل',
     'Registration' => 'تسجيل',
     'Remove' => 'حذف',
+    'Select Industry' => 'مجال العمل',
     'Select a major' => 'اختيار التخصص',
     'Select your University' => 'اختر جامعتك',
     'Sign Up' => 'سجل',
