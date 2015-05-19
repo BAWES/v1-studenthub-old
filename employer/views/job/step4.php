@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Url;
+use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model employer\models\Job */
@@ -73,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h4 style="margin-bottom:0;"><?= Yii::t("employer", "Amount Due") ?></h4>
             <h3 style="margin-top:0; font-weight:bold;"><?= Yii::$app->formatter->asDecimal($amountDue, 3) ?> <?= Yii::t("employer", "KD") ?></h3>
 
-            <form method="post">
+            <?php $form = ActiveForm::begin(); ?>
                 <?php
                 if($amountDue > 0){
                     $paymentTypes = \common\models\PaymentType::find()->where("payment_type_id != 1")->all();
@@ -89,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 ?>
                 <input type="submit" value="<?= Yii::t("employer", "Make Payment") ?>" class="btn btn-primary btn-block btn-ripple" style="margin-top:7px;"/>
-            </form>
+            <?php ActiveForm::end(); ?>
         </div>
 
     </div>
