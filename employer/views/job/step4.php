@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Url;
+use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -83,13 +84,17 @@ $this->params['breadcrumbs'][] = $this->title;
                         $i++;
                 ?>
                     <div class="radioer">
-                        <input type="radio" name="paymentOption" id="option<?=$i?>" value="<?= $type->payment_type_id ?>" <?= $i==1?"checked=''":"" ?>>
+                        <input required type="radio" name="paymentOption" id="option<?=$i?>" value="<?= $type->payment_type_id ?>" <?= $i==1?"checked=''":"" ?>>
                         <label for="option<?=$i?>"><?= $this->params['isArabic']?$type->payment_type_name_ar:$type->payment_type_name_en ?></label>
                     </div>
                 <?php } 
                 }
                 ?>
-                <input type="submit" value="<?= Yii::t("employer", "Make Payment") ?>" class="btn btn-primary btn-block btn-ripple" style="margin-top:7px;"/>
+
+                <?= Html::submitButton(Yii::t('employer', 'Make Payment') , [
+                    'class' => 'btn btn-primary btn-block btn-ripple',
+                    'style' => 'margin-top: 7px;',
+                ]) ?>
             <?php ActiveForm::end(); ?>
         </div>
 
