@@ -73,16 +73,22 @@ $this->params['breadcrumbs'][] = $this->title;
             <h4 style="margin-bottom:0;"><?= Yii::t("employer", "Amount Due") ?></h4>
             <h3 style="margin-top:0; font-weight:bold;"><?= Yii::$app->formatter->asDecimal($amountDue, 3) ?> <?= Yii::t("employer", "KD") ?></h3>
 
-            <form>
-                <div class="radioer">
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-                    <label for="optionsRadios1"><?= Yii::t("employer", "KNET") ?></label>
-                </div>
-                <div class="radioer">
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                    <label for="optionsRadios2"><?= Yii::t("employer", "Creditcard") ?></label>
-                </div>
-                <input type="submit" value="<?= Yii::t("employer", "Make Payment") ?>" class="btn btn-primary btn-block btn-ripple"/>
+            <form method="post">
+                <?php
+                if($amountDue > 0){
+                    $paymentTypes = \common\models\PaymentType::find()->where("payment_type_id != 1")->all();
+                    $i = 0;
+                    foreach($paymentTypes as $type){
+                        $i++;
+                ?>
+                    <div class="radioer">
+                        <input type="radio" name="paymentOption" id="options<?=$i?>" value="<?= $type->payment_type_name_ar ?>" <?= $i==1?"checked=''":"" ?>>
+                        <label for="option<?=$i?>"><?= $this->params['isArabic']?$type->payment_type_name_ar:$type->payment_type_name_en ?></label>
+                    </div>
+                <?php } 
+                }
+                ?>
+                <input type="submit" value="<?= Yii::t("employer", "Make Payment") ?>" class="btn btn-primary btn-block btn-ripple" style="margin-top:7px;"/>
             </form>
         </div>
 
