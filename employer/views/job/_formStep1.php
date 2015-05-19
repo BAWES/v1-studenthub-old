@@ -120,7 +120,7 @@ $form = ActiveForm::begin([
                     'label' => 'col-md-3 col-xs-4',
                     'wrapper' => "col-md-5 col-xs-8",
                 ],
-])->textInput(['maxlength' => 255, 'placeholder' => 'Project Manager']) ?>
+])->textInput(['maxlength' => 255, 'placeholder' => Yii::t('employer', 'Project Manager')]) ?>
 
 <?=
 $form->field($model, 'jobtype_id', [
@@ -153,7 +153,7 @@ $form->field($model, 'job_pay')->checkbox([
 $form->field($model, 'job_responsibilites')->textArea([
     'rows' => 2,
     'class' => 'form-control js-auto-size',
-    'placeholder' => 'A short description about the job',
+    'placeholder' => Yii::t('employer', 'A short description about the job'),
 ])
 ?>
 
@@ -161,7 +161,7 @@ $form->field($model, 'job_responsibilites')->textArea([
 $form->field($model, 'job_desired_skill')->textArea([
     'rows' => 2,
     'class' => 'form-control js-auto-size',
-    'placeholder' => 'Teamwork / time management / photoshop',
+    'placeholder' => Yii::t('employer', 'Teamwork / time management / photoshop'),
 ])
 ?>
 
@@ -169,7 +169,7 @@ $form->field($model, 'job_desired_skill')->textArea([
 $form->field($model, 'job_other_qualifications')->textArea([
     'rows' => 1,
     'class' => 'form-control js-auto-size',
-    'placeholder' => 'etc..',
+    'placeholder' => Yii::t('employer', 'etc..'),
 ])
 ?>
 
