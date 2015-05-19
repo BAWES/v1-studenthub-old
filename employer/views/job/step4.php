@@ -28,10 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="panel-body">
         <h3 style="margin-top:0"><?= Yii::t("employer", "Order Summary") ?></h3>
-        
+
         <?php
-            $amountDue = $model->listingCost - Yii::$app->user->identity->employer_credit;
-            if($amountDue < 0) $amountDue = 0;
+        $amountDue = $model->listingCost - Yii::$app->user->identity->employer_credit;
+        if ($amountDue < 0)
+            $amountDue = 0;
         ?>
 
         <div class="col-md-5">
@@ -51,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </tr>
                     <tr class="">
                         <td><?= Yii::t("employer", "Listing Cost") ?></td>
-                        <td><?= Yii::$app->formatter->asDecimal($model->listingCost,3) ?> <?= Yii::t("employer", "KD") ?></td>
+                        <td><?= Yii::$app->formatter->asDecimal($model->listingCost, 3) ?> <?= Yii::t("employer", "KD") ?></td>
                     </tr>
                     <tr class="warning">
                         <td>
@@ -59,18 +60,30 @@ $this->params['breadcrumbs'][] = $this->title;
                             <span style="cursor:help" class="label label-warning" data-toggle="tooltip" 
                                   data-placement="right" title="" data-original-title="<?= Yii::t("employer", "You may purchase credit in advance for faster job posting") ?>">?</span>
                         </td>
-                        <td><?= Yii::$app->formatter->asDecimal(Yii::$app->user->identity->employer_credit,3) ?> <?= Yii::t("employer", "KD") ?></td>
+                        <td><?= Yii::$app->formatter->asDecimal(Yii::$app->user->identity->employer_credit, 3) ?> <?= Yii::t("employer", "KD") ?></td>
                     </tr>
-                    
+
                 </tbody>
             </table>
         </div>
-        
-        
-        
-        <div class="col-md-6 col-md-offset-1">
+
+
+
+        <div class="col-md-4 col-md-offset-1 ">
             <h4 style="margin-bottom:0;"><?= Yii::t("employer", "Amount Due") ?></h4>
             <h3 style="margin-top:0; font-weight:bold;"><?= Yii::$app->formatter->asDecimal($amountDue, 3) ?> <?= Yii::t("employer", "KD") ?></h3>
+
+            <form>
+                <div class="radioer">
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                    <label for="optionsRadios1"><?= Yii::t("employer", "KNET") ?></label>
+                </div>
+                <div class="radioer">
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                    <label for="optionsRadios2"><?= Yii::t("employer", "Creditcard") ?></label>
+                </div>
+                <input type="submit" value="<?= Yii::t("employer", "Make Payment") ?>" class="btn btn-primary btn-block btn-ripple"/>
+            </form>
         </div>
 
     </div>
