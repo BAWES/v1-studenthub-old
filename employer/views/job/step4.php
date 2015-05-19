@@ -83,7 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         $i++;
                 ?>
                     <div class="radioer">
-                        <input type="radio" name="paymentOption" id="options<?=$i?>" value="<?= $type->payment_type_name_ar ?>" <?= $i==1?"checked=''":"" ?>>
+                        <input type="radio" name="paymentOption" id="option<?=$i?>" value="<?= $type->payment_type_id ?>" <?= $i==1?"checked=''":"" ?>>
                         <label for="option<?=$i?>"><?= $this->params['isArabic']?$type->payment_type_name_ar:$type->payment_type_name_en ?></label>
                     </div>
                 <?php } 
