@@ -329,7 +329,7 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
 <div class="row">
     <div class="col-md-5 col-md-offset-3">
         <div class="note note-danger note-left-striped">
-            <h4>Notice</h4>
+            <h4><?= Yii::t("employer", "Notice") ?></h4>
             <p>
                 <?= Yii::t("employer", "You will not be able to change these filters once you publish your job posting") ?>
             </p>

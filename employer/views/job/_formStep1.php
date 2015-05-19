@@ -175,7 +175,7 @@ $form->field($model, 'job_other_qualifications')->textArea([
 
 <?= $form->field($model, 'job_startdate')->input('date',['placeholder' => Yii::t('employer', 'Leave blank to show "flexible start date"')]) ?>
 
-<?= $form->field($model, 'job_compensation')->textInput(['maxlength' => 255, 'placeholder' => 'Recommendation Letter / $$$ / Free lunch']) ?>
+<?= $form->field($model, 'job_compensation')->textInput(['maxlength' => 255, 'placeholder' => Yii::t('employer', 'Recommendation Letter / $$$ / Free lunch')]) ?>
 
 
 <div class="row">

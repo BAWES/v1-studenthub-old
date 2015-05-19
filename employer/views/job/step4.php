@@ -60,7 +60,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td>
                             <?= Yii::t("employer", "Current Credit") ?> 
                             <span style="cursor:help" class="label label-warning" data-toggle="tooltip" 
-                                  data-placement="right" title="" data-original-title="<?= Yii::t("employer", "You may purchase credit in advance for faster job posting") ?>">?</span>
+                                  data-placement=<?= $this->params['isArabic']?"left":"right" ?>
+                                  title="" data-original-title="<?= Yii::t("employer", "You may purchase credit in advance for faster job posting") ?>">?</span>
                         </td>
                         <td><?= Yii::$app->formatter->asDecimal(Yii::$app->user->identity->employer_credit, 3) ?> <?= Yii::t("employer", "KD") ?></td>
                     </tr>

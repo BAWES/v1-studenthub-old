@@ -62,7 +62,7 @@ $form = ActiveForm::begin([
 $form->field($model, 'job_question_1')->textArea([
     'rows' => 2,
     'class' => 'form-control js-auto-size',
-    'placeholder' => 'Which of our products have you used before, and what do you like most about them?',
+    'placeholder' => Yii::t("employer", 'Which of our products have you used before, and what do you like most about them?'),
 ])
 ?>
 
@@ -70,7 +70,7 @@ $form->field($model, 'job_question_1')->textArea([
 $form->field($model, 'job_question_2')->textArea([
     'rows' => 2,
     'class' => 'form-control js-auto-size',
-    'placeholder' => 'Do you have experience working in social media?',
+    'placeholder' => Yii::t("employer", 'Do you have experience working in social media?'),
 ])
 ?>
 
