@@ -9,6 +9,9 @@ $this->title = Yii::t('employer', 'Post a Job Opening');
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('employer', 'Dashboard'), 'url' => ['dashboard/index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$pricePerApplicant = \common\models\Note::findOne(["note_name" => "pricePerApplicant"])->note_value;
+$pricePerPremiumFilter = \common\models\Note::findOne(["note_name" => "pricePerPremiumFilter"])->note_value;
 ?>
 
 <div class="panel">
@@ -33,20 +36,20 @@ $this->params['breadcrumbs'][] = $this->title;
             <table class="table table-striped">
                 <tbody>
                     <tr>
-                        <td>Max Applicants</td>
+                        <td><?= Yii::t("employer", "Max Applicants") ?></td>
                         <td><?= Yii::$app->formatter->asInteger($model->job_max_applicants) ?></td>
                     </tr>
                     <tr>
-                        <td>Cost Per Applicant</td>
-                        <td><?= Yii::$app->formatter->asDecimal(0.75 + 0.25 *  $model->filter->premiumFilterCount,3) ?> KD</td>
+                        <td><?= Yii::t("employer", "Cost Per Applicant") ?></td>
+                        <td><?= Yii::$app->formatter->asDecimal($pricePerApplicant + $pricePerPremiumFilter *  $model->filter->premiumFilterCount, 3) ?> <?= Yii::t("employer", "KD") ?></td>
                     </tr>
                     <tr>
-                        <td>Premium Filters</td>
+                        <td><?= Yii::t("employer", "Premium Filters") ?></td>
                         <td><?= Yii::$app->formatter->asInteger($model->filter->premiumFilterCount) ?></td>
                     </tr>
                     <tr class="warning">
-                        <td>Total Price</td>
-                        <td><?= Yii::$app->formatter->asDecimal((0.75 + 0.25 *  $model->filter->premiumFilterCount) * $model->job_max_applicants,3) ?> KD</td>
+                        <td><?= Yii::t("employer", "Total Price") ?></td>
+                        <td><?= Yii::$app->formatter->asDecimal(($pricePerApplicant + $pricePerPremiumFilter *  $model->filter->premiumFilterCount) * $model->job_max_applicants,3) ?> <?= Yii::t("employer", "KD") ?></td>
                     </tr>
                 </tbody>
             </table>

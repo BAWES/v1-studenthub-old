@@ -10,6 +10,11 @@ use yii\helpers\ArrayHelper;
 /* @var $filter employer\models\Filter */
 /* @var $form yii\bootstrap\ActiveForm */
 
+
+$pricePerApplicant = \common\models\Note::findOne(["note_name" => "pricePerApplicant"])->note_value;
+$pricePerPremiumFilter = \common\models\Note::findOne(["note_name" => "pricePerPremiumFilter"])->note_value;
+
+
 $fieldTemplate = "{label}\n{beginWrapper}\n"
         . "<div class='inputer'>\n<div class='input-wrapper'>\n"
         . "{input}\n"
@@ -120,8 +125,8 @@ $("#selectAllBtn").click(function(){
 
 var $pricePerApplicant = $("#pricePerApplicant");
 var $numApplicants = $("#numApplicants");
-var basicCost = 0.75;
-var pricePerFilter = 0.25;
+var basicCost = '.$pricePerApplicant.';
+var pricePerFilter = '.$pricePerPremiumFilter.';
 
 function updateOrder(){
     //get maximum applicants, if none, set to -
@@ -172,7 +177,7 @@ $form = ActiveForm::begin([
 ?>
 
 <h3 style="margin-bottom:0; margin-top:0"><?= Yii::t("employer", "Audience Targetting") ?></h3>
-<h5 style='margin-bottom:1.5em;'><?= Yii::t("employer", "Basic cost per applicant is 0.750 fils") ?></h5>
+<h5 style='margin-bottom:1.5em;'><?= Yii::t("employer", "Basic cost per applicant is {0, number, 0.000} KD", $pricePerApplicant) ?></h5>
 
 <?=
 $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->listBox(
@@ -191,7 +196,7 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
 </div>
 
 
-<?= $form->field($filter, 'numberOfApplicants')->input("number", ['placeholder' => 'Minimum 10']) ?>
+<?= $form->field($filter, 'numberOfApplicants')->input("number", ['placeholder' => Yii::t('employer', 'Minimum 10')]) ?>
 
 <div class="row">
     <div class="col-md-5 col-md-offset-3">
@@ -207,7 +212,7 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
 <!-- Premium Filters Header -->
 <div id="premium">
     <h3 style="margin-bottom:0; margin-top:1.5em;"><?= Yii::t("employer", "Premium Filters") ?></h3>
-    <h5 style='margin-bottom:1.5em;'><?= Yii::t("employer", "Each option increases applicant cost by 0.250 fils") ?></h5>
+    <h5 style='margin-bottom:1.5em;'><?= Yii::t("employer", "Each option increases applicant cost by {0, number, 0.000} KD", $pricePerPremiumFilter) ?></h5>
 
 
     <!-- Filter by Degree -->
@@ -342,13 +347,13 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
                 -
             </p>
             <p style="font-size:0.7em; margin-top:0; margin-bottom:5px;">
-                maximum applicants
+                <?= Yii::t("employer", "maximum applicants") ?>
             </p>
             <p style="margin-bottom:0;" id="pricePerApplicant">
-                0.750 KD
+                -
             </p>
             <p style="font-size:0.7em; margin-top:0;">
-                cost per applicant
+                <?= Yii::t("employer", "cost per applicant") ?>
             </p>
         </div><!--.note-->
     </div>

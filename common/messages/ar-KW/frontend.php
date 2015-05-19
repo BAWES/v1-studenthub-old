@@ -17,10 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Graduation year start must be less than or equal to the graduation year end.' => '',
+    'Graduation year end must be greater than or equal to the graduation year start.' => '',
     'This degree does not exist.' => '',
     'This job type does not exist.' => '',
     'This nationality does not exist.' => '',
+    'Graduation year start must be less than or equal to the graduation year end.' => '@@@@',
     'Contact' => 'إتصل بنا',
     'Enrollment year must be before graduation year.' => 'يجب أن تكون سنة الالتحاق قبل سنة التخرج.',
     'Home' => 'الرئيسية',

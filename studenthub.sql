@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 18, 2015 at 12:17 PM
+-- Generation Time: May 19, 2015 at 10:23 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -399,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `employer` (
 --
 
 INSERT INTO `employer` (`employer_id`, `industry_id`, `city_id`, `employer_company_name`, `employer_logo`, `employer_website`, `employer_company_desc`, `employer_num_employees`, `employer_contact_firstname`, `employer_contact_lastname`, `employer_contact_number`, `employer_credit`, `employer_email_preference`, `employer_email`, `employer_email_verification`, `employer_auth_key`, `employer_password_hash`, `employer_password_reset_token`, `employer_language_pref`, `employer_support_field`, `employer_limit_email`, `employer_updated_datetime`, `employer_datetime`) VALUES
-(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '0', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$yD4XFIMwChLBjsRxTFQ5GuEvQTDIBtV8MCtouOC0rj4qhrNyyGvGa', NULL, 'en-US', '0', '2015-05-10 09:49:40', '2015-05-18 10:57:22', '2015-05-02 16:15:30'),
+(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '0', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$yD4XFIMwChLBjsRxTFQ5GuEvQTDIBtV8MCtouOC0rj4qhrNyyGvGa', NULL, 'en-US', '0', '2015-05-10 09:49:40', '2015-05-19 10:17:55', '2015-05-02 16:15:30'),
 (2, 1, 1, 'Test Company', NULL, NULL, 'sqSQ', NULL, 'DWAD', 'dwadwa', '99811042', '0', 1, 'dwadwadw@dwad.com', 1, 'RkJCWLIjxJPziHMmyx-GTHgf9Q8RBndT', '$2y$13$KONg0F9VYiie8LDelIsuZeSo6Hd4AuB/1Xq2GflzO7Eqw4Rdl3wOK', '', 'en-US', '0', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-02 16:27:38'),
 (3, 1, 1, 'Khalid', 'LNOOgViwpx86Op575JBj37xHjINuJnF9.png', NULL, 'Free Stuff', NULL, 'dwad', 'dwad', '99811042', '30', 1, 'dwda@gust.edom', 0, 'rsI8d0rOnrvuOZt0W4j3eAbP6Gge0Yo3', '$2y$13$xUE.p13lHQnJSjsN6rifZuhbtacDdYBxgVO/GdY9xxZA8pEchL2kC', '', 'en-US', '0', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-02 18:43:14'),
 (4, 1, 1, 'Khalid', NULL, NULL, 'dwa', NULL, 'Khalid', 'M', '99811042', '0', 0, 'm6awa3@gmail.com', 0, 'nILkFnFe18sI5O1ZsXVRoMTXIOz_sIIi', '$2y$13$0Eg4BM0F0bFi8/ePjoSrd.W2dVPu5KLY.3o.iEUKzIKgheM4yNq0O', NULL, 'en-US', '0', '2015-05-05 22:07:17', '2015-05-05 22:07:17', '2015-05-03 20:00:29'),
@@ -426,7 +426,7 @@ CREATE TABLE IF NOT EXISTS `filter` (
 --
 
 INSERT INTO `filter` (`filter_id`, `degree_id`, `filter_gpa`, `filter_english_level`, `filter_graduation_year_start`, `filter_graduation_year_end`, `filter_transportation`) VALUES
-(6, 2, NULL, NULL, NULL, NULL, 0);
+(6, NULL, NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -438,13 +438,6 @@ CREATE TABLE IF NOT EXISTS `filter_country` (
   `filter_id` int(11) unsigned NOT NULL,
   `country_id` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `filter_country`
---
-
-INSERT INTO `filter_country` (`filter_id`, `country_id`) VALUES
-(6, 84);
 
 -- --------------------------------------------------------
 
@@ -467,13 +460,6 @@ CREATE TABLE IF NOT EXISTS `filter_major` (
   `filter_id` int(11) unsigned NOT NULL,
   `major_id` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `filter_major`
---
-
-INSERT INTO `filter_major` (`filter_id`, `major_id`) VALUES
-(6, 3);
 
 -- --------------------------------------------------------
 
@@ -600,14 +586,15 @@ CREATE TABLE IF NOT EXISTS `job` (
   `job_price_per_applicant` decimal(10,0) DEFAULT NULL,
   `job_updated_datetime` datetime NOT NULL,
   `job_created_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `job`
 --
 
 INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `filter_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_updated_datetime`, `job_created_datetime`) VALUES
-(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe', 'dwadwg', 'No compensation', '', '', 25, 0, 0, NULL, '2015-05-18 12:07:19', '2015-05-14 19:15:47');
+(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe', 'dwadwg', 'No compensation', '', '', 10, 0, 0, NULL, '2015-05-19 10:18:01', '2015-05-14 19:15:47'),
+(12, 1, 1, NULL, '', 1, NULL, '', '', '', '', NULL, NULL, NULL, 0, 0, NULL, '2015-05-18 13:14:03', '2015-05-18 13:14:03');
 
 -- --------------------------------------------------------
 
@@ -2107,6 +2094,26 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `note`
+--
+
+CREATE TABLE IF NOT EXISTS `note` (
+  `note_id` int(11) unsigned NOT NULL,
+  `note_name` varchar(128) NOT NULL DEFAULT '',
+  `note_value` varchar(128) NOT NULL DEFAULT ''
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `note`
+--
+
+INSERT INTO `note` (`note_id`, `note_name`, `note_value`) VALUES
+(1, 'pricePerApplicant', '0.85'),
+(2, 'pricePerPremiumFilter', '0.25');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notification_employer`
 --
 
@@ -2434,6 +2441,12 @@ ALTER TABLE `migration`
   ADD PRIMARY KEY (`version`);
 
 --
+-- Indexes for table `note`
+--
+ALTER TABLE `note`
+  ADD PRIMARY KEY (`note_id`);
+
+--
 -- Indexes for table `notification_employer`
 --
 ALTER TABLE `notification_employer`
@@ -2536,7 +2549,7 @@ ALTER TABLE `industry`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `job_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `job_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `jobtype`
 --
@@ -2552,6 +2565,11 @@ ALTER TABLE `language`
 --
 ALTER TABLE `major`
   MODIFY `major_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1409;
+--
+-- AUTO_INCREMENT for table `note`
+--
+ALTER TABLE `note`
+  MODIFY `note_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `notification_employer`
 --
