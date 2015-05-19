@@ -8,7 +8,8 @@ use Yii;
  * This is the model class for table "payment_type".
  *
  * @property integer $payment_type_id
- * @property integer $payment_type_name
+ * @property string $payment_type_name_en
+ * @property string $payment_type_name_ar
  *
  * @property Payment[] $payments
  */
@@ -28,8 +29,8 @@ class PaymentType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['payment_type_name'], 'required'],
-            [['payment_type_name'], 'integer']
+            [['payment_type_name_ar'], 'required'],
+            [['payment_type_name_en', 'payment_type_name_ar'], 'string', 'max' => 128]
         ];
     }
 
@@ -40,7 +41,8 @@ class PaymentType extends \yii\db\ActiveRecord
     {
         return [
             'payment_type_id' => Yii::t('app', 'Payment Type ID'),
-            'payment_type_name' => Yii::t('app', 'Payment Type Name'),
+            'payment_type_name_en' => Yii::t('app', 'Payment Type Name En'),
+            'payment_type_name_ar' => Yii::t('app', 'Payment Type Name Ar'),
         ];
     }
 
