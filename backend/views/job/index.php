@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'job_status',
             'job_created_datetime:datetime',
 
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],
         ],
     ]); ?>
 

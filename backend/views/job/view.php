@@ -18,9 +18,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h4 style="margin-top:0;">Status: <em><?= $model->jobStatus ?></em></h4>
 
     <br/>
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->job_id], ['class' => 'btn btn-primary']) ?>
-    </p>
 
     <?= DetailView::widget([
         'model' => $model,
