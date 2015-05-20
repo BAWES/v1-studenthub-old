@@ -120,7 +120,7 @@ class Job extends \yii\db\ActiveRecord
             'job_question_1' => Yii::t('app', 'Question 1'),
             'job_question_2' => Yii::t('app', 'Question 2'),
             'job_max_applicants' => Yii::t('app', 'Max # of Applicants'),
-            'job_current_num_applicants' => Yii::t('app', 'Job Current Num Applicants'),
+            'job_current_num_applicants' => Yii::t('app', 'Current Applicants'),
             'job_status' => Yii::t('app', 'Job Status'),
             'job_price_per_applicant' => Yii::t('app', 'Job Price Per Applicant'),
             'job_updated_datetime' => Yii::t('app', 'Job Updated Datetime'),
