@@ -61,4 +61,12 @@ class Degree extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Student::className(), ['degree_id' => 'degree_id']);
     }
+    
+    /**
+     * @return int student count
+     */
+    public function getStudentCount()
+    {
+        return $this->hasMany(Student::className(), ['degree_id' => 'degree_id'])->count();
+    }
 }

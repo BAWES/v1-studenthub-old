@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'industry_id',
             
             'industry_name_en',
-            'industry_name_ar',
+            'employerCount',
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}'],
         ],

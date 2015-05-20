@@ -21,9 +21,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
 
-            'major_id',
+            //'major_id',
             'major_name_en',
-            'major_name_ar',
+            'studentCount',
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}'],
         ],

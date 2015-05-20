@@ -21,9 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
 
-            'degree_id',
             'degree_name_en',
-            'degree_name_ar',
+            'studentCount',
 
             [
                 'class' => 'yii\grid\ActionColumn',

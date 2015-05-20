@@ -53,4 +53,12 @@ class Industry extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Employer::className(), ['industry_id' => 'industry_id']);
     }
+    
+    /**
+     * @return int employer count
+     */
+    public function getEmployerCount()
+    {
+        return $this->hasMany(Employer::className(), ['industry_id' => 'industry_id'])->count();
+    }
 }

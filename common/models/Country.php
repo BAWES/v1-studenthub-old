@@ -83,4 +83,12 @@ class Country extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Student::className(), ['country_id' => 'country_id']);
     }
+    
+    /**
+     * @return int number of students from country
+     */
+    public function getStudentCount()
+    {
+        return $this->hasMany(Student::className(), ['country_id' => 'country_id'])->count();
+    }
 }
