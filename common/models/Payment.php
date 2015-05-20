@@ -12,8 +12,10 @@ use yii\db\Expression;
  * @property integer $payment_id
  * @property integer $employer_id
  * @property integer $payment_type_id
- * @property string $payment_datetime
  * @property string $payment_amount
+ * @property string $payment_note
+ * @property string $payment_datetime
+ * 
  *
  * @property Employer $employer
  * @property PaymentType $paymentType
@@ -36,7 +38,7 @@ class Payment extends \yii\db\ActiveRecord
         return [
             [['employer_id', 'payment_type_id', 'payment_amount'], 'required'],
             [['employer_id', 'payment_type_id'], 'integer'],
-            [['payment_amount'], 'number']
+            [['payment_amount'], 'number', 'min' => 0.1]
         ];
     }
     
