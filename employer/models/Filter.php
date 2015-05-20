@@ -227,6 +227,11 @@ class Filter extends \common\models\Filter {
             $filterRequired = true;
         }
         
+        
+        $pricePerApplicant = \common\models\Note::findOne(["note_name" => "pricePerApplicant"])->note_value;
+        $pricePerPremiumFilter = \common\models\Note::findOne(["note_name" => "pricePerPremiumFilter"])->note_value;
+        $this->refreshPremiumFilterCount();
+        
         /**
          * If filters are required, save and apply to given job model
          * Else set job filter to null, and delete all associated filter records
@@ -234,11 +239,14 @@ class Filter extends \common\models\Filter {
         if($filterRequired){
             if($this->save(false)){
                 $jobModel->filter_id = $this->filter_id;
+                $jobModel->job_price_per_applicant = $pricePerApplicant + ($pricePerPremiumFilter *  $this->premiumFilterCount);
                 $jobModel->save(false);
             }
         }else{
             //Delete this filter record and return null
             $jobModel->filter_id = NULL;
+            $jobModel->job_price_per_applicant = $pricePerApplicant;
+            
             if($jobModel->save(false)){
                 $this->unlinkAll('majors', true);
                 $this->unlinkAll('languages', true);
@@ -251,6 +259,9 @@ class Filter extends \common\models\Filter {
     
     public function afterFind() {
         parent::afterFind();
+        
+        //Refresh premium filter count
+        $this->refreshPremiumFilterCount();
         
         /**
          * Load selected universities, majors, languages, and nationalities
@@ -273,30 +284,52 @@ class Filter extends \common\models\Filter {
          */
         if(!empty($this->majorsSelected)){
             $this->majorFilter = true;
-            $this->premiumFilterCount += 1;
         }
         if(!empty($this->languagesSelected)){
             $this->languageFilter = true;
-            $this->premiumFilterCount += 1;
         }
         if(!empty($this->nationalitiesSelected)){
             $this->nationalityFilter = true;
-            $this->premiumFilterCount += 1;
         }
         if($this->filter_english_level){
             $this->englishFilter = true;
-            $this->premiumFilterCount += 1;
         }
         if($this->filter_graduation_year_start || $this->filter_graduation_year_end){
             $this->graduationFilter = true;
-            $this->premiumFilterCount += 1;
         }
         if($this->filter_gpa){
             $this->gpaFilter = true;
-            $this->premiumFilterCount += 1;
         }
         if($this->degree_id){
             $this->degreeFilter = true;
+        }
+    }
+    
+    /**
+     * Refresh Premium Filter Count
+     */
+    public function refreshPremiumFilterCount(){
+        $this->premiumFilterCount = 0;
+        
+        if(!empty($this->majorsSelected)){
+            $this->premiumFilterCount += 1;
+        }
+        if(!empty($this->languagesSelected)){
+            $this->premiumFilterCount += 1;
+        }
+        if(!empty($this->nationalitiesSelected)){
+            $this->premiumFilterCount += 1;
+        }
+        if($this->filter_english_level){
+            $this->premiumFilterCount += 1;
+        }
+        if($this->filter_graduation_year_start || $this->filter_graduation_year_end){
+            $this->premiumFilterCount += 1;
+        }
+        if($this->filter_gpa){
+            $this->premiumFilterCount += 1;
+        }
+        if($this->degree_id){
             $this->premiumFilterCount += 1;
         }
         if($this->filter_transportation){
