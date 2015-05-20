@@ -37,12 +37,17 @@ class JobSearch extends Job
      * Creates data provider instance with search query applied
      *
      * @param array $params
+     * @param mixed $addWhere
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $addWhere = false)
     {
         $query = Job::find();
+        
+        if($addWhere){
+            $query->andFilterWhere($addWhere);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

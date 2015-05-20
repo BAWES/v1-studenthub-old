@@ -76,8 +76,11 @@ AppAsset::register($this);
                     [
                         'label' => 'Jobs',
                         'items' => [
-                            ['label' => 'Job List', 'url' => ['/job/index']],
-                            ['label' => 'Job Types', 'url' => ['/jobtype/index']],
+                            ['label' => 'Pending Jobs', 'url' => ['/job/index', 'jobStatus' => 'pending']],
+                            ['label' => 'Open Jobs', 'url' => ['/job/index', 'jobStatus' => 'open']],
+                            ['label' => 'Draft Jobs', 'url' => ['/job/index', 'jobStatus' => 'draft']],
+                            ['label' => 'Closed Jobs', 'url' => ['/job/index', 'jobStatus' => 'closed']],
+                            ['label' => 'All Jobs', 'url' => ['/job/index', 'jobStatus' => 'all']],
                         ],
                     ],
                     //Sales Management
@@ -106,6 +109,7 @@ AppAsset::register($this);
                             ['label' => 'Industries', 'url' => ['/industry/index']],
                             ['label' => 'Degrees', 'url' => ['/degree/index']],
                             ['label' => 'Majors', 'url' => ['/major/index']],
+                            ['label' => 'Job Types', 'url' => ['/jobtype/index']],
                             ['label' => 'Languages', 'url' => ['/language/index']],
                             ['label' => 'Countries', 'url' => ['/country/index']],
                             ['label' => 'Cities', 'url' => ['/city/index']],

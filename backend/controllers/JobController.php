@@ -38,14 +38,40 @@ class JobController extends Controller
 
     /**
      * Lists all Job models.
+     * @param string $jobStatus
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($jobStatus = "all")
     {
         $searchModel = new JobSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        $filter = false;
+        $title = "All Jobs";
+        
+        switch($jobStatus){
+            case "draft":
+                $filter = ['job_status' => Job::STATUS_DRAFT];
+                $title = "Draft Jobs";
+                break;
+            case "pending":
+                $filter = ['job_status' => Job::STATUS_PENDING];
+                $title = "Pending Jobs";
+                break;
+            case "open":
+                $filter = ['job_status' => Job::STATUS_OPEN];
+                $title = "Open Jobs";
+                break;
+            case "closed":
+                $filter = ['job_status' => Job::STATUS_CLOSED];
+                $title = "Closed Jobs";
+                break;
+        }
+        
+        
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $filter);
 
         return $this->render('index', [
+            'title' => $title,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

@@ -4,10 +4,11 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
+/* @var $title string */
 /* @var $searchModel common\models\JobSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Jobs');
+$this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="job-index">
