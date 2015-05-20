@@ -11,10 +11,21 @@ $this->title = 'Dashboard';
         <p class="lead">All the important details summarized here</p>
 
     </div>
-    
+
     <div class="row">
+
         <div class="col-md-4">
-            <h2>Payment Summary</h2>
+            <h3>Today's Sales</h3>
+
+        </div>
+
+        <div class="col-md-4">
+            <h3><?= date("F") ?> Sales</h3>
+
+        </div>        
+
+        <div class="col-md-4">
+            <h3 style="margin-bottom:1em;">Payment Summary</h3>
             <table class="table">
                 <tr>
                     <td>Payments</td>
@@ -30,6 +41,7 @@ $this->title = 'Dashboard';
                 </tr>
             </table>
         </div>
+
     </div>
 
 </div>
