@@ -52,8 +52,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'employer_num_employees',
             'emailPreference',
             'emailVerificationStatus',
-            'employer_updated_datetime',
-            'employer_datetime',
+            'employer_updated_datetime:datetime',
+            'employer_datetime:datetime',
         ],
     ]) ?>
     
@@ -98,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
             'job_title',
-            'job_created_datetime',
+            'job_created_datetime:datetime',
             'jobStatus',
 
             ['class' => 'yii\grid\ActionColumn', 'controller' => 'job', 'template' => '{view}'],
