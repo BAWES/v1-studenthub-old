@@ -55,7 +55,7 @@ class JobController extends Controller
                 break;
             case "pending":
                 $filter = ['job_status' => Job::STATUS_PENDING];
-                $title = "Pending Jobs";
+                $title = "Pending Jobs - waiting for approval";
                 break;
             case "open":
                 $filter = ['job_status' => Job::STATUS_OPEN];
