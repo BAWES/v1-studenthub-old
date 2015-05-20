@@ -78,7 +78,6 @@ AppAsset::register($this);
                         'items' => [
                             ['label' => 'Job List', 'url' => ['/job/index']],
                             ['label' => 'Job Types', 'url' => ['/jobtype/index']],
-                            ['label' => 'Filters / Analysis', 'url' => ['/jobtype/index']],
                         ],
                     ],
                     //Sales Management

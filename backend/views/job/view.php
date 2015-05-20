@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Job */
 
-$this->title = $model->job_id;
+$this->title = $model->job_title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Jobs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -14,19 +14,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->job_id], ['class' => 'btn btn-primary']) ?>
-    </p>
+    
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'job_id',
-            'jobtype_id',
-            'employer_id',
+            'jobtype.jobtype_name_en',
+            'employer.employer_company_name',
             'filter_id',
             'job_title',
-            'job_pay',
+            'job_pay:boolean',
             'job_startdate',
             'job_responsibilites:ntext',
             'job_other_qualifications:ntext',
@@ -42,5 +39,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'job_created_datetime',
         ],
     ]) ?>
+    
+    <p>
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->job_id], ['class' => 'btn btn-primary']) ?>
+    </p>
 
 </div>
