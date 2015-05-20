@@ -24,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'employer.employer_company_name',
             'paymentType.payment_type_name_en',
             'payment_amount:currency',
+            'payment_note',
             'payment_datetime:datetime',
 
             ['class' => 'yii\grid\ActionColumn'],

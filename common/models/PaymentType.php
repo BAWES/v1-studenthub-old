@@ -15,6 +15,9 @@ use Yii;
  */
 class PaymentType extends \yii\db\ActiveRecord
 {
+    //Row ID for the Credit Giveaway payment type
+    const TYPE_CREDIT_GIVEAWAY = 1;
+    
     /**
      * @inheritdoc
      */

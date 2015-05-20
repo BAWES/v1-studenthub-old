@@ -67,6 +67,16 @@ class Payment extends \yii\db\ActiveRecord
             'payment_note' => 'Payment Note',
         ];
     }
+    
+    
+    public function afterSave($insert, $changedAttributes) {
+        parent::afterSave($insert, $changedAttributes);
+        
+        if($insert){
+            //Add the credit to employer account
+            $this->employer->updateCounters(['employer_credit' => $this->payment_amount]); 
+        }
+    }
 
     /**
      * @return \yii\db\ActiveQuery

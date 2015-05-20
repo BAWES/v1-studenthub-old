@@ -41,10 +41,17 @@ class EmployerController extends Controller
         $model = $this->findModel($id);
         
         $payment = new \common\models\Payment();
+        $payment->employer_id = $model->employer_id;
+        $payment->payment_type_id = \common\models\PaymentType::TYPE_CREDIT_GIVEAWAY;
+        $payment->payment_note = "Gift from Admin: ".Yii::$app->user->identity->admin_name;
         
+        if ($payment->load(Yii::$app->request->post()) && $payment->save()) {
+            return $this->redirect(['view', 'id' => $model->employer_id]);
+        }
         
         return $this->render('gift', [
             'model' => $model,
+            'payment' => $payment,
         ]);
     }
 
