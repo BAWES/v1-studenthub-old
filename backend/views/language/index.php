@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'language_id',
             'language_name_en',
-            'language_name_ar',
+            'studentCount',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -79,4 +79,12 @@ class Language extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Student::className(), ['student_id' => 'student_id'])->viaTable('student_language', ['language_id' => 'language_id']);
     }
+    
+    /**
+     * @return int number of students
+     */
+    public function getStudentCount()
+    {
+        return $this->hasMany(Student::className(), ['student_id' => 'student_id'])->viaTable('student_language', ['language_id' => 'language_id'])->count();
+    }
 }
