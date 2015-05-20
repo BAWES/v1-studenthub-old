@@ -64,6 +64,7 @@ class Payment extends \yii\db\ActiveRecord
             'payment_type_id' => Yii::t('app', 'Payment Type ID'),
             'payment_datetime' => Yii::t('app', 'Payment Datetime'),
             'payment_amount' => Yii::t('app', 'Payment Amount'),
+            'payment_note' => 'Payment Note',
         ];
     }
 

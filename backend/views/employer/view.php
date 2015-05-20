@@ -27,6 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="col-sm-7">
                     <b>Language Preference:</b> <?= $model->employer_language_pref=="en-US"? "English" : "Arabic" ?>
+                    <p style="margin-top:10px;">
+                        <?= Html::a("Give Credit Gift", ['gift', 'id' => $model->employer_id], ['class' => 'btn btn-primary']) ?>
+                    </p>
                 </div>
             </div>
         </div>

@@ -30,6 +30,23 @@ class EmployerController extends Controller
             ],
         ];
     }
+    
+    
+    /**
+     * Give Credit Gift to Employer
+     * @param int $id Employer ID to gift
+     * @return mixed
+     */
+    public function actionGift($id){
+        $model = $this->findModel($id);
+        
+        $payment = new \common\models\Payment();
+        
+        
+        return $this->render('gift', [
+            'model' => $model,
+        ]);
+    }
 
     /**
      * Lists all Employer models.
