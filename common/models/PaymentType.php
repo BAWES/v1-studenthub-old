@@ -64,4 +64,11 @@ class PaymentType extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Payment::className(), ['payment_type_id' => 'payment_type_id'])->count();
     }
+    
+    /**
+     * @return real total payments amount made on this type
+     */
+    public function getTotalPayments(){
+        return $this->getPayments()->sum("payment_amount");
+    }
 }

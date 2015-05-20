@@ -17,11 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            'payment_type_id',
             'payment_type_name_en',
             'paymentCount',
+            'totalPayments:currency',
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],
         ],

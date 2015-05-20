@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'payment_type_name_en',
             'payment_type_name_ar',
             'paymentCount',
+            'totalPayments:currency',
         ],
     ]) ?>
 
