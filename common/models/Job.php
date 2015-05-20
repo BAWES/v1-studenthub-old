@@ -128,6 +128,26 @@ class Job extends \yii\db\ActiveRecord
         ];
     }
     
+    /**
+     * @return string the users job status
+     */
+    public function getJobStatus(){
+        switch($this->job_status){
+            case self::STATUS_DRAFT:
+                return Yii::t('app', 'Draft');
+                break;
+            case self::STATUS_OPEN:
+                return Yii::t('app', 'Open');
+                break;
+            case self::STATUS_CLOSED:
+                return Yii::t('app', 'Closed');
+                break;
+            case self::STATUS_PENDING:
+                return Yii::t('app', 'Pending');
+                break;
+        }
+    }
+    
 
     /**
      * @return \yii\db\ActiveQuery

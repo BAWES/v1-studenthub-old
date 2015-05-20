@@ -13,8 +13,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="job-view">
 
-    <h1><?= $this->title?$this->title:"Draft" ?> @ <?= $model->employer->employer_company_name ?></h1>
+    <h1><?= $this->title?$this->title:"Draft" ?> @ 
+        <?= Html::a($model->employer->employer_company_name, ['employer/view', 'id'=>$model->employer->employer_id],['target' => '_blank']) ?></h1>
+    <h4 style="margin-top:0;">Status: <em><?= $model->jobStatus ?></em></h4>
 
+    <br/>
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->job_id], ['class' => 'btn btn-primary']) ?>
     </p>
@@ -33,7 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'job_question_2:ntext',
             'job_max_applicants',
             'job_current_num_applicants',
-            'job_status',
             'job_price_per_applicant',
             'job_updated_datetime',
             'job_created_datetime',
