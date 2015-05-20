@@ -86,7 +86,7 @@ AppAsset::register($this);
                         'items' => [
                             ['label' => 'Transactions', 'url' => ['/student/index']],
                             ['label' => 'Payments', 'url' => ['/employer/index']],
-                            ['label' => 'Payment Types', 'url' => ['/employer/index']],
+                            ['label' => 'Payment Types', 'url' => ['/payment-type/index']],
                             ['label' => 'Giveaway Credit', 'url' => ['/admin/index']],
                         ],
                     ],

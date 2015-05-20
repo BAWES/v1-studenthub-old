@@ -53,4 +53,12 @@ class PaymentType extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Payment::className(), ['payment_type_id' => 'payment_type_id']);
     }
+    
+    /**
+     * @return int number of payments
+     */
+    public function getPaymentCount()
+    {
+        return $this->hasMany(Payment::className(), ['payment_type_id' => 'payment_type_id'])->count();
+    }
 }
