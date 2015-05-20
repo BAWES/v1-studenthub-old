@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'university_logo',
             // 'university_graphic',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}'],
         ],
     ]); ?>
 

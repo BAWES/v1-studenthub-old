@@ -16,19 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->university_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->university_id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'university_id',
             'university_name_en',
             'university_name_ar',
             'university_domain',
@@ -36,6 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'university_id_template',
             'university_logo',
             'university_graphic',
+            'numberOfStudents',
+            'numberOfVerifiedStudents',
         ],
     ]) ?>
 

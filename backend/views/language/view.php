@@ -28,9 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'language_id',
             'language_name_en',
             'language_name_ar',
+            'studentCount',
         ],
     ]) ?>
 
