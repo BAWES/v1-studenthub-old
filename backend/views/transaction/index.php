@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\models\Transaction;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\TransactionSearch */
@@ -13,6 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="transaction-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <h4 style="margin-top:0; margin-bottom: 1em">Total: <em><?= Transaction::total() ?> KD</em></h4>
+    
+    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([

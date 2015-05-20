@@ -93,4 +93,11 @@ class Payment extends \yii\db\ActiveRecord
     {
         return $this->hasOne(PaymentType::className(), ['payment_type_id' => 'payment_type_id']);
     }
+    
+    /**
+     * @return real Sum of all payments made
+     */
+    public static function total(){
+        return static::find()->sum("payment_amount");
+    }
 }

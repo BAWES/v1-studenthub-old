@@ -108,4 +108,11 @@ class Transaction extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Job::className(), ['job_id' => 'job_id']);
     }
+    
+    /**
+     * @return real Sum of all transactions made
+     */
+    public static function total(){
+        return static::find()->sum("transaction_price_total");
+    }
 }
