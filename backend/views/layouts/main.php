@@ -7,6 +7,7 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 use common\models\Student;
 use common\models\Employer;
+use common\models\Job;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -21,6 +22,7 @@ $numStudentsNeedEmailVerification = Student::find()->where(['student_email_verif
 $numEmployersNeedEmailVerification = Employer::find()->where(['employer_email_verification' => Employer::EMAIL_NOT_VERIFIED])
                                 ->andWhere(['not like', 'employer_support_field', 'Removed'])
                                 ->count();
+$numJobsPending = Job::find()->where(['job_status' => Job::STATUS_DRAFT])->count();
 
 AppAsset::register($this);
 ?>
@@ -58,8 +60,8 @@ AppAsset::register($this);
                     [
                         'label' => 'Require Assistance',
                         'items' => [
-                            ['label' => "Pending Jobs <span class='badge'>$numStudentsNeedIdVerification</span>", 
-                                'url' => ['/student/verify-id-required']],
+                            ['label' => "Pending Jobs <span class='badge'>$numJobsPending</span>", 
+                                'url' => ['/job/index', 'jobStatus' => 'pending']],
                             ['label' => "Student ID Verify <span class='badge'>$numStudentsNeedIdVerification</span>", 
                                 'url' => ['/student/verify-id-required']],
                             ['label' => "Student Email Verify <span class='badge'>$numStudentsNeedEmailVerification</span>", 
@@ -76,7 +78,6 @@ AppAsset::register($this);
                     [
                         'label' => 'Jobs',
                         'items' => [
-                            ['label' => 'Pending Jobs', 'url' => ['/job/index', 'jobStatus' => 'pending']],
                             ['label' => 'Open Jobs', 'url' => ['/job/index', 'jobStatus' => 'open']],
                             ['label' => 'Draft Jobs', 'url' => ['/job/index', 'jobStatus' => 'draft']],
                             ['label' => 'Closed Jobs', 'url' => ['/job/index', 'jobStatus' => 'closed']],
