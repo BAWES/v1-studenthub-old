@@ -29,6 +29,29 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php  echo $this->render('_verificationForm', ['model' => $model, 'verifyIdForm' => $verifyIdForm]); ?>
     
     <hr/>
+    
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Majors Studied</h3>
+            <ul>
+                <?php foreach($model->majors as $major){ ?>
+                <li><?= $major->major_name_en ?> </li>
+                <?php }?>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h3>Languages Spoken</h3>
+            <ul>
+                <?php foreach($model->languages as $language){ ?>
+                <li><?= $language->language_name_en ?> </li>
+                <?php }?>
+            </ul>
+        </div>
+    </div>
+    
+    
+    
+    <hr/>
     <h3>Additional Details</h3><br/>
     <?= DetailView::widget([
         'model' => $model,
