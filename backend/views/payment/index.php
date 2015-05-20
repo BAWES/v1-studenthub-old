@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'payment_note',
             'payment_datetime:datetime',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],
         ],
     ]); ?>
 
