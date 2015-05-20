@@ -41,8 +41,8 @@ class PaymentType extends \yii\db\ActiveRecord
     {
         return [
             'payment_type_id' => Yii::t('app', 'Payment Type ID'),
-            'payment_type_name_en' => Yii::t('app', 'Payment Type Name En'),
-            'payment_type_name_ar' => Yii::t('app', 'Payment Type Name Ar'),
+            'payment_type_name_en' => Yii::t('app', 'Payment Type'),
+            'payment_type_name_ar' => Yii::t('app', 'Payment Type [Ar]'),
         ];
     }
 
