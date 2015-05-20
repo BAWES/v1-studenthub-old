@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -12,17 +13,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="job-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= $this->title?$this->title:"Draft" ?> @ <?= $model->employer->employer_company_name ?></h1>
 
-    
+    <p>
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->job_id], ['class' => 'btn btn-primary']) ?>
+    </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'jobtype.jobtype_name_en',
-            'employer.employer_company_name',
-            'filter_id',
-            'job_title',
             'job_pay:boolean',
             'job_startdate',
             'job_responsibilites:ntext',
@@ -40,8 +40,70 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
     
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->job_id], ['class' => 'btn btn-primary']) ?>
-    </p>
-
+    <hr/>
+    
+<?php if($model->filter){ $filter = $model->filter; ?>
+    <h2>Filters Applied</h2>
+    
+    <div class="row">
+        <div class="col-sm-3">
+            <h4>Universities</h4>
+            <?php
+            if($filter->universities){
+                echo "<ul>";
+                foreach($filter->universities as $university){
+                    $link = Url::to(['university/view', 'id' => $university->university_id]);
+                    echo "<li><a href='$link' target='_blank'>".$university->university_name_en."</a></li>";
+                }
+                echo "</ul>";
+            }else echo "University filter not applied";
+            ?>
+        </div>
+        
+        <div class="col-sm-3">
+            <h4>Majors</h4>
+            <?php
+            if($filter->majors){
+                echo "<ul>";
+                foreach($filter->majors as $major){
+                    $link = Url::to(['major/view', 'id' => $major->major_id]);
+                    echo "<li><a href='$link' target='_blank'>".$major->major_name_en."</a></li>";
+                }
+                echo "</ul>";                
+            }else echo "Major filter not applied";
+            ?>
+        </div>
+        
+        <div class="col-sm-3">
+            <h4>Languages</h4>
+            <?php
+            if($filter->majors){
+                echo "<ul>";
+                foreach($filter->languages as $language){
+                    $link = Url::to(['language/view', 'id' => $language->language_id]);
+                    echo "<li><a href='$link' target='_blank'>".$language->language_name_en."</a></li>";
+                }
+                echo "</ul>";
+            }else echo "Language filter not applied";
+            ?>
+        </div>
+        
+        <div class="col-sm-3">
+            <h4>Nationalities</h4>
+            <?php
+            if($filter->countries){
+                echo "<ul>";
+                foreach($filter->countries as $nationality){
+                    $link = Url::to(['country/view', 'id' => $nationality->country_id]);
+                    echo "<li><a href='$link' target='_blank'>".$nationality->country_nationality_name_en."</a></li>";
+                }
+                echo "</ul>";
+            }else echo "Nationality filter not applied";
+            ?>
+        </div>
+    </div>
+    
+    
+    
+ <?php } ?>
 </div>
