@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Jobtypes');
+$this->title = Yii::t('app', 'Job Types');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="jobtype-index">
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'jobtype_id',
             'jobtype_name_en',
-            'jobtype_name_ar',
+            'jobCount',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -64,4 +64,12 @@ class City extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Employer::className(), ['city_id' => 'city_id']);
     }
+    
+    /**
+     * @return int number of employers
+     */
+    public function getEmployerCount()
+    {
+        return $this->hasMany(Employer::className(), ['city_id' => 'city_id'])->count();
+    }
 }

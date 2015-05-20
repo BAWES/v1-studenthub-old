@@ -23,12 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'country.country_name_en',
-            //'city_id',
-            'country_id',
             
+            'country.country_name_en',            
             'city_name_en',
-            'city_name_ar',
+            'employerCount',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

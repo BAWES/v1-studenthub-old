@@ -53,4 +53,12 @@ class Jobtype extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Job::className(), ['jobtype_id' => 'jobtype_id']);
     }
+    
+    /**
+     * @return int number of jobs
+     */
+    public function getJobCount()
+    {
+        return $this->hasMany(Job::className(), ['jobtype_id' => 'jobtype_id'])->count();
+    }
 }
