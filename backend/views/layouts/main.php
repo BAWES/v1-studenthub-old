@@ -58,6 +58,8 @@ AppAsset::register($this);
                     [
                         'label' => 'Require Assistance',
                         'items' => [
+                            ['label' => "Pending Jobs <span class='badge'>$numStudentsNeedIdVerification</span>", 
+                                'url' => ['/student/verify-id-required']],
                             ['label' => "Student ID Verify <span class='badge'>$numStudentsNeedIdVerification</span>", 
                                 'url' => ['/student/verify-id-required']],
                             ['label' => "Student Email Verify <span class='badge'>$numStudentsNeedEmailVerification</span>", 
@@ -68,6 +70,25 @@ AppAsset::register($this);
                                 'url' => ['/student/list-removed']],
                             ['label' => "<span style='color:darkred'>Removed Employers</span>", 
                                 'url' => ['/employer/list-removed']],
+                        ],
+                    ],
+                    //Job Management
+                    [
+                        'label' => 'Jobs',
+                        'items' => [
+                            ['label' => 'Job List', 'url' => ['/admin/index']],
+                            ['label' => 'Job Types', 'url' => ['/jobtype/index']],
+                            ['label' => 'Filters / Analysis', 'url' => ['/jobtype/index']],
+                        ],
+                    ],
+                    //Sales Management
+                    [
+                        'label' => 'Sales',
+                        'items' => [
+                            ['label' => 'Transactions', 'url' => ['/student/index']],
+                            ['label' => 'Payments', 'url' => ['/employer/index']],
+                            ['label' => 'Payment Types', 'url' => ['/employer/index']],
+                            ['label' => 'Giveaway Credit', 'url' => ['/admin/index']],
                         ],
                     ],
                     //User Management
@@ -84,7 +105,6 @@ AppAsset::register($this);
                         'label' => 'Pre-set Controls',
                         'items' => [
                             ['label' => 'Universities', 'url' => ['/university/index']],
-                            ['label' => 'Job Types', 'url' => ['/jobtype/index']],
                             ['label' => 'Industries', 'url' => ['/industry/index']],
                             ['label' => 'Degrees', 'url' => ['/degree/index']],
                             ['label' => 'Majors', 'url' => ['/major/index']],
