@@ -47,6 +47,65 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php if($model->filter){ $filter = $model->filter; ?>
     <h2>Filters Applied</h2>
     
+    <div class="row" style="margin-bottom:1em;">
+        <div class="col-sm-3">
+            <h4>Degree</h4>
+            <?php
+            if($filter->degree){
+                echo $filter->degree->degree_name_en;
+            }else echo "Degree filter not applied";
+            ?>
+        </div>
+        
+        <div class="col-sm-3">
+            <h4>GPA</h4>
+            <?php
+            if($filter->filter_gpa){
+                echo $filter->filter_gpa;
+            }else echo "GPA filter not applied";
+            ?>
+        </div>
+        
+        <div class="col-sm-3">
+            <h4>Graduation Year</h4>
+            <?php
+            if($filter->filter_graduation_year_start){
+                echo $filter->filter_graduation_year_start." - ".$filter->filter_graduation_year_end;
+            }else echo "Graduation filter not applied";
+            ?>
+        </div>
+        
+        <div class="col-sm-3">
+            <h4>English Level</h4>
+            <?php
+            if($filter->filter_english_level){
+                switch($filter->filter_english_level){
+                    case \common\models\Student::ENGLISH_WEAK:
+                        echo Yii::t('register', 'Weak');
+                        break;
+                    case \common\models\Student::ENGLISH_FAIR:
+                        echo Yii::t('register', 'Fair');
+                        break;
+                    case \common\models\Student::ENGLISH_GOOD:
+                        echo Yii::t('register', 'Good');
+                        break;
+                }
+            }else echo "GPA filter not applied";
+            ?>
+        </div>
+    </div>
+    
+    <div class="row" style="margin-bottom:1em;">
+        <div class="col-sm-3">
+            <h4>Transportation</h4>
+            <?php
+            if($filter->filter_transportation){
+                echo "Yes";
+            }else echo "Transportation filter not applied";
+            ?>
+        </div>
+    </div>
+    
     <div class="row">
         <div class="col-sm-3">
             <h4>Universities</h4>
@@ -103,7 +162,7 @@ $this->params['breadcrumbs'][] = $this->title;
             }else echo "Nationality filter not applied";
             ?>
         </div>
-    </div>
+    </div>    
     
     
     
