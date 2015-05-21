@@ -9,15 +9,21 @@ use yii\data\ActiveDataProvider;
 /* @var $this yii\web\View */
 /* @var $model common\models\Job */
 
-$this->title = $model->job_title;
+$this->title = $model->job_title?$this->title:"Draft";
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Jobs'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->employer->employer_company_name, 'url' => ['employer/view', 'id' => $model->employer_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="job-view">
 
-    <h1><?= $this->title?$this->title:"Draft" ?> @ 
-        <?= Html::a($model->employer->employer_company_name, ['employer/view', 'id'=>$model->employer->employer_id],['target' => '_blank']) ?></h1>
-    <h4 style="margin-top:0;">Status: <em><?= $model->jobStatus ?></em></h4>
+    <div class="jumbotron">
+        <h1><?= $this->title ?> 
+        </h1>
+
+        <p class="lead"><?= Html::a($model->employer->employer_company_name, ['employer/view', 'id'=>$model->employer->employer_id],['target' => '_blank']) ?>
+            <br/>Status: <em><?= $model->jobStatus ?></em>
+        </p>
+    </div>
 
     <br/>
 
