@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use common\models\Job;
+use backend\models\Job;
 use common\models\JobSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -87,6 +87,22 @@ class JobController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+    
+    
+    /**
+     * Verifies a single Job model, sets status to Open.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionVerify($id){
+        $model = $this->findModel($id);
+        
+        if(!$model->verify()){
+            throw new NotFoundHttpException("Error during verification - contact Admin if job isn't already verified");
+        }
+        
+        return $this->redirect(['view', 'id' => $id]);
     }
 
 

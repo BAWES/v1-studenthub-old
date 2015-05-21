@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
 use yii\data\ActiveDataProvider;
+use common\models\Job;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Job */
@@ -13,6 +14,23 @@ $this->title = $model->job_title?$model->job_title:"Draft";
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Jobs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->employer->employer_company_name, 'url' => ['employer/view', 'id' => $model->employer_id]];
 $this->params['breadcrumbs'][] = $this->title;
+
+//Different formatting for each job status
+$color = "";
+switch ($model->job_status){
+    case Job::STATUS_CLOSED:
+        $color = "red";
+        break;
+    case Job::STATUS_DRAFT:
+        $color = "";
+        break;
+    case Job::STATUS_OPEN:
+        $color = "green";
+        break;
+    case Job::STATUS_PENDING:
+        $color = "orange";
+        break;
+}
 ?>
 <div class="job-view">
 
@@ -21,9 +39,22 @@ $this->params['breadcrumbs'][] = $this->title;
         </h1>
 
         <p class="lead"><?= Html::a($model->employer->employer_company_name, ['employer/view', 'id'=>$model->employer->employer_id],['target' => '_blank']) ?>
-            <br/>Status: <em><?= $model->jobStatus ?></em>
+            <br/>Status: <em style='color: <?= $color ?>'><?= $model->jobStatus ?></em>
         </p>
     </div>
+    
+    <?php if($model->job_status == Job::STATUS_PENDING){ ?>
+    <div class="alert alert-warning">
+        <a href='<?= Url::to(['job/verify', 'id' => $model->job_id]) ?>' 
+           data-confirm='Are you sure you want to verify this listing?'
+           class='btn btn-warning pull-right'>Verify</a>
+        
+        <h4>This Job is Pending Verification</h4>
+        <p>
+            Please review the job details then `Verify` this listing
+        </p>
+    </div>
+    <?php } ?>
 
     <br/>
 
