@@ -34,20 +34,30 @@ use yii\helpers\Url;
                     <br><br>
                     
                     
-                    Max number of Applicants: <b> 20 </b>
+                    Max number of Applicants: <b> 20 </b><br> <br>
                 </p>
             </div>
             
+            <ul id="users">
+                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa"><img src="img/faces/1.jpg" alt=""></a></li>
+                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="img/faces/2.jpg" alt=""></a></li>
+                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="img/faces/3.jpg" alt=""></a></li>
+                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="img/faces/4.jpg" alt=""></a></li>
+                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="img/faces/5.jpg" alt=""></a></li>
+                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="img/faces/6.jpg" alt=""></a></li>
+                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="img/faces/7.jpg" alt=""></a></li>
+            </ul>
+            
         </div><!--.card-body-->
+        
         <div class="card-footer applicants">
             <a href="<?= Url::to(['job/update', 'id' => $model->job_id]) ?>"
                 class="btn btn-floating hover-orange"  style="position:absolute;right:70px; bottom:7px;"><i class="ion-android-create"></i></a>
-            <a href="<?= Url::to(['job/delete', 'id' => $model->job_id]) ?>"
-               class="btn btn-floating hover-red" 
-               data-method="post"
-               data-confirm="<?= Yii::t('app', 'Are you sure you want to delete this draft?') ?>"
+            <a href="#viewMore"
+               data-toggle="modal" data-target="#job-more"
+               class="btn btn-floating hover-orange"
                style="position:absolute;right:15px; bottom:7px">
-                <i class="ion-android-delete"></i>
+                <i class="fa fa-ellipsis-h"></i>
             </a>
             <ul>
                 <li class="pull-left"><a href="#"><?= Yii::$app->formatter->asInteger(100) ?> <?= Yii::t('employer', 'Applied') ?></a></li>
