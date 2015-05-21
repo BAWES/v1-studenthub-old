@@ -59,7 +59,7 @@ use yii\helpers\Url;
             <a href="<?= Url::to(['job/update', 'id' => $model->job_id]) ?>"
                 class="btn btn-floating hover-orange"  style="position:absolute;right:70px; bottom:7px;"><i class="ion-android-create"></i></a>
             <a href="#viewMore"
-               data-toggle="modal" data-target="#job-more"
+               data-toggle="modal" data-target="#about-job"
                class="btn btn-floating hover-orange"
                style="position:absolute;right:15px; bottom:7px">
                 <i class="fa fa-ellipsis-h"></i>
