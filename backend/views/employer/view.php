@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Employer */
@@ -50,9 +52,57 @@ $this->params['breadcrumbs'][] = $this->title;
             'employer_num_employees',
             'emailPreference',
             'emailVerificationStatus',
-            'employer_updated_datetime',
-            'employer_datetime',
+            'employer_updated_datetime:datetime',
+            'employer_datetime:datetime',
         ],
     ]) ?>
+    
+    <hr/>
+    
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Payments <span class="badge">Total: <?= Yii::$app->formatter->asCurrency($model->paymentsTotal) ?></span></h3>
+            <ul>
+                <?php
+                $payments = $model->payments;
+                foreach($payments as $payment){
+                    echo "<li>".Html::a($payment->payment_amount." KD on ".Yii::$app->formatter->asDatetime($payment->payment_datetime), 
+                    ["payment/view", "id" => $payment->payment_id], ['target'=>'_blank'])."</li>";
+                }
+                ?>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h3>Transactions <span class="badge">Total: <?= Yii::$app->formatter->asCurrency($model->transactionsTotal) ?></span></h3>
+            <ul>
+                <?php
+                $transactions = $model->transactions;
+                foreach($transactions as $transaction){
+                    echo "<li>".Html::a($transaction->transaction_price_total." KD on ".Yii::$app->formatter->asDatetime($transaction->transaction_datetime), 
+                    ["transaction/view", "id" => $transaction->transaction_id], ['target'=>'_blank'])."</li>";
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
+    
+    <hr/>
+    <h3>Jobs</h3>
+    <?php
+    $jobDataProvider = new ActiveDataProvider([
+            'query' => $model->getJobs()->orderBy("job_created_datetime DESC"),
+        ]);
+    ?>
+    <?= GridView::widget([
+        'dataProvider' => $jobDataProvider,
+        'columns' => [
+            //['class' => 'yii\grid\SerialColumn'],
+            'job_title',
+            'job_created_datetime:datetime',
+            'jobStatus',
+
+            ['class' => 'yii\grid\ActionColumn', 'controller' => 'job', 'template' => '{view}'],
+        ],
+    ]); ?>
 
 </div>
