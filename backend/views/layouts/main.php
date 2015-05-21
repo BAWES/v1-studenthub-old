@@ -91,6 +91,8 @@ AppAsset::register($this);
                             ['label' => 'Transactions', 'url' => ['/transaction/index']],
                             ['label' => 'Payments', 'url' => ['/payment/index']],
                             ['label' => 'Payment Types', 'url' => ['/payment-type/index']],
+                            ['label' => 'Inactive Employers', 'url' => ['/employer/inactive']],
+                            ['label' => 'Inactive Students', 'url' => ['/student/inactive']],
                         ],
                     ],
                     //User Management
