@@ -20,7 +20,7 @@ use yii\helpers\Url;
                 <div class="date"><?= Yii::$app->formatter->asDate($model->job_updated_datetime, 'd') ?></div>
             </div>
             <div class="row">
-                <p style='margin-bottom:0; padding-bottom: 0;'>
+                <div style='margin-bottom:0; padding-bottom: 0;'>
                     <b><?= Yii::t("employer", "Industry") ?>:</b> 
                     <?= $this->params['isArabic']? Yii::$app->user->identity->industry->industry_name_ar : Yii::$app->user->identity->industry->industry_name_en ?> 
                     <br>
@@ -34,13 +34,13 @@ use yii\helpers\Url;
                     <br><br>
                     
                     0 out of 20 Applicants
-                    <div class="progress progress-xs active">
+                    <div class="progress progress-xs active" style='margin-bottom:10px;'>
                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                             <span class="sr-only">80% Complete</span>
                         </div>
                     </div>
                     
-                </p>
+                </div>
             </div>
             
             <ul id="users">
@@ -65,7 +65,7 @@ use yii\helpers\Url;
                 <i class="fa fa-ellipsis-h"></i>
             </a>
             <ul>
-                <li class="pull-left"><a href="#"><?= Yii::$app->formatter->asInteger(100) ?> <?= Yii::t('employer', 'Applied') ?></a></li>
+                <li class="pull-left"><a href="#" class='btn btn-sm btn-teal fixmenow'><?= Yii::t('employer', 'View Applicants') ?></a></li>
             </ul>
         </div>
 

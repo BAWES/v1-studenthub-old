@@ -12,7 +12,16 @@ use yii\widgets\ListView;
 
 $this->title = Yii::t("employer", 'Dashboard');
 
+$css = "
+@media (min-width:992px) and (max-width:1090px) {
+    .fixmenow {
+        font-size:12px;
+    }
+}​
+";
+
 $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\TemplateAsset']);
+$this->registerCss($css);
 ?>
 
 <a href="<?= Url::to(["job/create"]) ?>" class="btn btn-success btn-xl btn-block btn-ripple" style="margin-bottom: 1em">
