@@ -32,6 +32,9 @@ use yii\helpers\Url;
                     <b> <?= Yii::t("app", "Paid") ?>:</b> 
                     <?= $model->job_pay? Yii::t("employer", 'Yes') : Yii::t("employer", 'No') ?>
                     <br><br>
+                    
+                    
+                    Max number of Applicants: <b> 20 </b>
                 </p>
             </div>
             
@@ -47,7 +50,7 @@ use yii\helpers\Url;
                 <i class="ion-android-delete"></i>
             </a>
             <ul>
-                <li class="pull-left" style="font-weight:bold;"><?= Yii::t("employer", "Draft") ?></li>
+                <li class="pull-left"><a href="#"><?= Yii::$app->formatter->asInteger(100) ?> <?= Yii::t('employer', 'Applied') ?></a></li>
             </ul>
         </div>
 
