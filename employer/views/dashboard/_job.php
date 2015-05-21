@@ -20,7 +20,7 @@ use yii\helpers\Url;
                 <div class="date"><?= Yii::$app->formatter->asDate($model->job_updated_datetime, 'd') ?></div>
             </div>
             <div class="row">
-                <p>
+                <p style='margin-bottom:0; padding-bottom: 0;'>
                     <b><?= Yii::t("employer", "Industry") ?>:</b> 
                     <?= $this->params['isArabic']? Yii::$app->user->identity->industry->industry_name_ar : Yii::$app->user->identity->industry->industry_name_en ?> 
                     <br>
@@ -33,8 +33,13 @@ use yii\helpers\Url;
                     <?= $model->job_pay? Yii::t("employer", 'Yes') : Yii::t("employer", 'No') ?>
                     <br><br>
                     
+                    0 out of 20 Applicants
+                    <div class="progress progress-xs active">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                            <span class="sr-only">80% Complete</span>
+                        </div>
+                    </div>
                     
-                    Max number of Applicants: <b> 20 </b><br> <br>
                 </p>
             </div>
             
