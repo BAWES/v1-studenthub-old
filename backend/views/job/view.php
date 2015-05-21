@@ -9,7 +9,7 @@ use yii\data\ActiveDataProvider;
 /* @var $this yii\web\View */
 /* @var $model common\models\Job */
 
-$this->title = $model->job_title?$this->title:"Draft";
+$this->title = $model->job_title?$model->job_title:"Draft";
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Jobs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->employer->employer_company_name, 'url' => ['employer/view', 'id' => $model->employer_id]];
 $this->params['breadcrumbs'][] = $this->title;
