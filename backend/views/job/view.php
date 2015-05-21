@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Job */
@@ -33,13 +35,34 @@ $this->params['breadcrumbs'][] = $this->title;
             'job_question_2:ntext',
             'job_max_applicants',
             'job_current_num_applicants',
-            'job_price_per_applicant',
-            'job_updated_datetime',
-            'job_created_datetime',
+            'job_price_per_applicant:currency',
+            'job_updated_datetime:datetime',
+            'job_created_datetime:datetime',
         ],
     ]) ?>
     
     <hr/>
+    
+    <h2>Transactions</h2>
+    <?php
+    $transactionDataProvider = new ActiveDataProvider([
+            'query' => $model->getTransactions()->orderBy("transaction_datetime DESC"),
+        ]);
+    ?>
+    <?= GridView::widget([
+        'dataProvider' => $transactionDataProvider,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            'transaction_number_of_applicants',
+            'transaction_price_per_applicant:currency',
+            'transaction_price_total:currency',
+            'transaction_datetime:datetime',
+
+            ['class' => 'yii\grid\ActionColumn', 'controller' => 'transaction', 'template' => '{view}'],
+        ],
+    ]); ?>
+    
+   <hr/>
     
 <?php if($model->filter){ $filter = $model->filter; ?>
     <h2>Filters Applied</h2>
@@ -159,7 +182,7 @@ $this->params['breadcrumbs'][] = $this->title;
             }else echo "Nationality filter not applied";
             ?>
         </div>
-    </div>    
+    </div>
     
     
     
