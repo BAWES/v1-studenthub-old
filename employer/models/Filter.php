@@ -260,9 +260,6 @@ class Filter extends \common\models\Filter {
     public function afterFind() {
         parent::afterFind();
         
-        //Refresh premium filter count
-        $this->refreshPremiumFilterCount();
-        
         /**
          * Load selected universities, majors, languages, and nationalities
          */
@@ -303,6 +300,9 @@ class Filter extends \common\models\Filter {
         if($this->degree_id){
             $this->degreeFilter = true;
         }
+        
+        //Refresh premium filter count
+        $this->refreshPremiumFilterCount();
     }
     
     /**
