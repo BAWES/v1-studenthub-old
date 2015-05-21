@@ -87,11 +87,9 @@ $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\Te
                     <div class="tab-pane text-style" id="pendingJobs">
                         
                         <?= ListView::widget([
-                            'dataProvider' => $closedJobsDataProvider,
+                            'dataProvider' => $pendingJobsDataProvider,
                             'itemOptions' => ['class' => 'item'],
-                            'itemView' => function ($model, $key, $index, $widget) {
-                                return Html::a(Html::encode($model->job_id), ['view', 'id' => $model->job_id]);
-                            },
+                            'itemView' => '_pendingJob',
                         ]) ?>
                         
                     </div>
