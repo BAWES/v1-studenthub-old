@@ -155,6 +155,27 @@ use yii\helpers\Url;
                                     .Yii::$app->formatter->asInteger($filter->filter_graduation_year_end);
                             echo "</p>";
                         }
+                        
+                        //English Level Filter
+                        if($filter->filter_english_level){
+                            $levelOutput = "";
+                            switch($filter->filter_english_level){
+                                case \common\models\Student::ENGLISH_WEAK:
+                                    $levelOutput = Yii::t('register', 'Weak');
+                                    break;
+                                case \common\models\Student::ENGLISH_FAIR:
+                                    $levelOutput = Yii::t('register', 'Fair');
+                                    break;
+                                case \common\models\Student::ENGLISH_GOOD:
+                                    $levelOutput = Yii::t('register', 'Good');
+                                    break;
+                            }
+                            
+                            echo "<p>";
+                            echo "<b>".Yii::t("employer", "English Level")."</b><br/>";
+                            echo $levelOutput;
+                            echo "</p>";
+                        }
                     } 
                     ?>
                 </div>
