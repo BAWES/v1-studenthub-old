@@ -22,7 +22,7 @@ $numStudentsNeedEmailVerification = Student::find()->where(['student_email_verif
 $numEmployersNeedEmailVerification = Employer::find()->where(['employer_email_verification' => Employer::EMAIL_NOT_VERIFIED])
                                 ->andWhere(['not like', 'employer_support_field', 'Removed'])
                                 ->count();
-$numJobsPending = Job::find()->where(['job_status' => Job::STATUS_DRAFT])->count();
+$numJobsPending = Job::find()->where(['job_status' => Job::STATUS_PENDING])->count();
 
 AppAsset::register($this);
 ?>
