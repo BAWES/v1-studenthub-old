@@ -29,7 +29,6 @@ use yii\db\Expression;
  * @property string $job_updated_datetime
  * @property string $job_created_datetime
  *
- * @property Filter[] $filters
  * @property Jobtype $jobtype
  * @property Employer $employer
  * @property Filter $filter
