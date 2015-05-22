@@ -12,11 +12,11 @@ use yii\helpers\Url;
 <div class="modal-body">
     <h3 style="text-align: center; margin-bottom: 1em"><?= $model->job_title ?></h3>
     <div class="panel-group accordion" id="accordion">
-        
-        
+
+
         <div class="panel">
-            <div class="panel-heading">
-                <a class="panel-title" data-toggle="collapse" href="#collapse1">
+            <div class="panel-heading active">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse1">
                     <?= Yii::t("employer", "About the Company") ?>
                 </a>
             </div>
@@ -26,11 +26,11 @@ use yii\helpers\Url;
                 </div>
             </div>
         </div>
-        
-        
+
+
         <div class="panel">
-            <div class="panel-heading">
-                <a class="panel-title" data-toggle="collapse" href="#collapse2">
+            <div class="panel-heading active">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse2">
                     <?= Yii::t("employer", "Responsibilities") ?>
                 </a>
             </div>
@@ -40,11 +40,11 @@ use yii\helpers\Url;
                 </div>
             </div>
         </div>
-        
-        
+
+
         <div class="panel">
-            <div class="panel-heading">
-                <a class="panel-title" data-toggle="collapse" href="#collapse4">
+            <div class="panel-heading active">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse4">
                     <?= Yii::t("employer", "Skills") ?>
                 </a>
             </div>
@@ -54,11 +54,11 @@ use yii\helpers\Url;
                 </div>
             </div>
         </div>
-        
-        
+
+
         <div class="panel">
-            <div class="panel-heading">
-                <a class="panel-title" data-toggle="collapse" href="#collapse3">
+            <div class="panel-heading active">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse3">
                     <?= Yii::t("employer", "Other Qualifications") ?>
                 </a>
             </div>
@@ -68,11 +68,11 @@ use yii\helpers\Url;
                 </div>
             </div>
         </div>
-        
-        
+
+
         <div class="panel">
-            <div class="panel-heading">
-                <a class="panel-title" data-toggle="collapse" href="#collapse5">
+            <div class="panel-heading active">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse5">
                     <?= Yii::t("employer", "Compensation") ?>
                 </a>
             </div>
@@ -82,11 +82,46 @@ use yii\helpers\Url;
                 </div>
             </div>
         </div>
-        
-        
+
         <div class="panel">
-            <div class="panel-heading">
-                <a class="panel-title" data-toggle="collapse" href="#collapse6">
+            <div class="panel-heading active">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseQuestions">
+                    <?= Yii::t("employer", "Interview Questions") ?>
+                </a>
+            </div>
+            <div id="collapseQuestions" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <b>Question 1</b>
+                    <div class="well">
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that.
+                    </div>
+                    
+                    <b>Question 2</b>
+                    <div class="well">
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel">
+            <div class="panel-heading active">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse7">
+                    <?= Yii::t("employer", "Applied Filters") ?>
+                </a>
+            </div>
+            <div id="collapse7" class="panel-collapse collapse">
+                <div class="panel-body">
+                    Applied filters listed here
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel">
+            <div class="panel-heading active">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse6">
                     <?= Yii::t("employer", "Targetted Universities") ?>
                 </a>
             </div>
@@ -108,7 +143,8 @@ use yii\helpers\Url;
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>        
+
     </div>
 </div>
 <div class="modal-footer">
