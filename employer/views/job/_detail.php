@@ -133,7 +133,7 @@ use yii\helpers\Url;
                         if($filter->degree){
                             echo "<p>";
                             echo "<b>".Yii::t("employer", "Degree")."</b><br/>";
-                            echo $filter->degree->degree_name_en;
+                            echo $this->params['isArabic']?$filter->degree->degree_name_ar:$filter->degree->degree_name_en;
                             echo "</p>";
                         }
                         
@@ -142,6 +142,17 @@ use yii\helpers\Url;
                             echo "<p>";
                             echo "<b>".Yii::t("employer", "Minimum GPA")."</b><br/>";
                             echo $filter->filter_gpa;
+                            echo "</p>";
+                        }
+                        
+                        //Graduation Year Filter
+                        if($filter->filter_graduation_year_start){
+                            Yii::$app->formatter->thousandSeparator = "";
+                            echo "<p>";
+                            echo "<b>".Yii::t("employer", "Graduation Year")."</b><br/>";
+                            echo Yii::$app->formatter->asInteger($filter->filter_graduation_year_start)
+                                    ." - "
+                                    .Yii::$app->formatter->asInteger($filter->filter_graduation_year_end);
                             echo "</p>";
                         }
                     } 
