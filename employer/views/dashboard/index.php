@@ -13,6 +13,13 @@ use yii\widgets\ListView;
 $this->title = Yii::t("employer", 'Dashboard');
 
 $css = "
+@media (max-width:352px) {
+    .fixmenow span{display:none}
+    .fixmenow:after{content:'+'; font-size:15px;}
+}
+@media (min-width:352px) and (max-width:384px) {
+    .fixmenow{font-size:14px;}
+}
 @media (min-width:992px) and (max-width:1090px) {
     .fixmenow {
         font-size:12px;
