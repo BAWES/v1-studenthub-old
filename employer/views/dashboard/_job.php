@@ -31,6 +31,10 @@ use yii\helpers\Url;
                     
                     <b> <?= Yii::t("app", "Paid") ?>:</b> 
                     <?= $model->job_pay? Yii::t("employer", 'Yes') : Yii::t("employer", 'No') ?>
+                    <br>
+                    
+                    <b> <?= Yii::t("app", "Work Start Date") ?>:</b> 
+                    <?= $model->job_startdate? Yii::$app->formatter->asDate($model->job_startdate) : Yii::t("employer", 'Flexible') ?>
                     <br><br>
                     
                     0 out of 20 Applicants
