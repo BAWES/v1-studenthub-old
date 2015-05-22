@@ -60,8 +60,11 @@ use yii\helpers\Url;
         </div><!--.card-body-->
         
         <div class="card-footer applicants">
+            <?php if($model->job_status != common\models\Job::STATUS_CLOSED){ ?>
             <a href="<?= Url::to(['job/update', 'id' => $model->job_id]) ?>"
                 class="btn btn-floating hover-orange"  style="position:absolute;right:70px; bottom:7px;"><i class="ion-android-create"></i></a>
+            <?php } ?>
+            
             <a href="#viewMore" data-job="<?= Url::to(['job/detail', 'id' => $model->job_id]) ?>"
                data-toggle="modal" data-target="#about-job"
                class="btn btn-floating hover-orange jobDetail"
