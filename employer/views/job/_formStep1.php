@@ -113,7 +113,7 @@ $form = ActiveForm::begin([
         ]);
 ?>
 
-<h3>Job Details</h3>
+<h3><?= Yii::t("employer", "Job Details") ?></h3>
 
 <?= $form->field($model, 'job_title',[
     'horizontalCssClasses' => [
