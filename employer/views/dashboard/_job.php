@@ -58,9 +58,9 @@ use yii\helpers\Url;
         <div class="card-footer applicants">
             <a href="<?= Url::to(['job/update', 'id' => $model->job_id]) ?>"
                 class="btn btn-floating hover-orange"  style="position:absolute;right:70px; bottom:7px;"><i class="ion-android-create"></i></a>
-            <a href="#viewMore"
+            <a href="#viewMore" data-job="<?= Url::to(['job/detail', 'id' => $model->job_id]) ?>"
                data-toggle="modal" data-target="#about-job"
-               class="btn btn-floating hover-orange"
+               class="btn btn-floating hover-orange jobDetail"
                style="position:absolute;right:15px; bottom:7px">
                 <i class="fa fa-ellipsis-h"></i>
             </a>

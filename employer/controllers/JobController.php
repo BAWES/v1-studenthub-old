@@ -61,6 +61,17 @@ class JobController extends Controller {
     }
     
     /**
+     * Displays job details for employer via AJAX
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDetail($id) {
+        return $this->renderPartial('_detail', [
+                    'model' => $this->findModel($id),
+        ]);
+    }
+    
+    /**
      * Updates an existing Job model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
