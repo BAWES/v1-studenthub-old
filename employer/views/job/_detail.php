@@ -45,7 +45,7 @@ use yii\helpers\Url;
         <div class="panel">
             <div class="panel-heading active">
                 <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse4">
-                    <?= Yii::t("employer", "Skills") ?>
+                    <?= Yii::t("employer", "Desired Skills") ?>
                 </a>
             </div>
             <div id="collapse4" class="panel-collapse collapse">
@@ -56,6 +56,7 @@ use yii\helpers\Url;
         </div>
 
 
+        <?php if($model->job_other_qualifications){ ?>
         <div class="panel">
             <div class="panel-heading active">
                 <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseQualif">
@@ -68,8 +69,10 @@ use yii\helpers\Url;
                 </div>
             </div>
         </div>
+        <?php } ?>
 
 
+        <?php if($model->job_compensation){ ?>
         <div class="panel">
             <div class="panel-heading active">
                 <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseCompensation">
@@ -82,7 +85,9 @@ use yii\helpers\Url;
                 </div>
             </div>
         </div>
+        <?php } ?>
 
+        <?php if($model->job_question_1 || $model->job_question_2){ ?>
         <div class="panel">
             <div class="panel-heading active">
                 <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseQuestions">
@@ -91,18 +96,24 @@ use yii\helpers\Url;
             </div>
             <div id="collapseQuestions" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <b>Question 1</b>
-                    <div class="well">
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that.
-                    </div>
                     
-                    <b>Question 2</b>
+                    <?php if($model->job_question_1){ ?>
+                    <b><?= Yii::t("employer", "Question") ?></b>
                     <div class="well">
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that.
+                        <?= Yii::$app->formatter->asNtext($model->job_question_1) ?>
                     </div>
+                    <?php } ?>
+                    
+                    <?php if($model->job_question_2){ ?>
+                    <b><?= Yii::t("employer", "Question") ?></b>
+                    <div class="well">
+                        <?= Yii::$app->formatter->asNtext($model->job_question_2) ?>
+                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
+        <?php } ?>
 
 
         <div class="panel">
@@ -113,7 +124,28 @@ use yii\helpers\Url;
             </div>
             <div id="collapseFilters" class="panel-collapse collapse">
                 <div class="panel-body">
-                    Applied filters listed here
+                    <?php
+                    $filter = $model->filter;
+                    if(!$filter->premiumFilterCount){
+                        echo Yii::t("employer", "No filters selected");
+                    }else{ 
+                        //Degree Filter
+                        if($filter->degree){
+                            echo "<p>";
+                            echo "<b>".Yii::t("employer", "Degree")."</b><br/>";
+                            echo $filter->degree->degree_name_en;
+                            echo "</p>";
+                        }
+                        
+                        //GPA Filter
+                        if($filter->filter_gpa){
+                            echo "<p>";
+                            echo "<b>".Yii::t("employer", "Minimum GPA")."</b><br/>";
+                            echo $filter->filter_gpa;
+                            echo "</p>";
+                        }
+                    } 
+                    ?>
                 </div>
             </div>
         </div>
