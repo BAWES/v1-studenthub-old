@@ -18,7 +18,7 @@ $css = "
     .fixmenow:after{content:'+'; font-size:15px;}
 }
 @media (min-width:352px) and (max-width:384px) {
-    .fixmenow{font-size:14px;}
+    .fixmenow{font-size:13px;}
 }
 @media (min-width:992px) and (max-width:1090px) {
     .fixmenow {
