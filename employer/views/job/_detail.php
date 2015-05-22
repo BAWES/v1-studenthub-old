@@ -176,6 +176,48 @@ use yii\helpers\Url;
                             echo $levelOutput;
                             echo "</p>";
                         }
+                        
+                        //Transportation Filter
+                        if($filter->filter_transportation){
+                            echo "<p>";
+                            echo "<b>".Yii::t("employer", "Transportation")."</b><br/>";
+                            echo Yii::t("employer", "Student must have a method of transportation");
+                            echo "</p>";
+                        }
+                        
+                        //Nationality Filter
+                        if($filter->countries){
+                            echo "<p>";
+                            echo "<b>".Yii::t("employer", "Nationalities")."</b><br/>";
+                            foreach($filter->countries as $nationality){
+                                echo "- ";
+                                echo $this->params['isArabic']?$nationality->country_nationality_name_ar:$nationality->country_nationality_name_en."<br/>";
+                            }
+                            echo "</p>";             
+                        }
+                        
+                        //Major Filter
+                        if($filter->majors){
+                            echo "<p>";
+                            echo "<b>".Yii::t("employer", "Majors")."</b><br/>";
+                            foreach($filter->majors as $major){
+                                echo "- ";
+                                echo $this->params['isArabic']?$major->major_name_ar:$major->major_name_en."<br/>";
+                            }
+                            echo "</p>";             
+                        }
+                        
+                        //Language Filter
+                        if($filter->languages){
+                            echo "<p>";
+                            echo "<b>".Yii::t("employer", "Languages")."</b><br/>";
+                            foreach($filter->languages as $language){
+                                echo "- ";
+                                echo $this->params['isArabic']?$language->language_name_ar:$language->language_name_en."<br/>";
+                            }
+                            echo "</p>";             
+                        }
+                        
                     } 
                     ?>
                 </div>
@@ -186,7 +228,7 @@ use yii\helpers\Url;
         <div class="panel">
             <div class="panel-heading active">
                 <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseUniv">
-                    <?= Yii::t("employer", "Targetted Universities") ?>
+                    <?= Yii::t("employer", "Targeted Universities") ?>
                 </a>
             </div>
             <div id="collapseUniv" class="panel-collapse collapse">
