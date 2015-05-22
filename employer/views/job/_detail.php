@@ -16,11 +16,11 @@ use yii\helpers\Url;
 
         <div class="panel">
             <div class="panel-heading active">
-                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse1">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseAbout">
                     <?= Yii::t("employer", "About the Company") ?>
                 </a>
             </div>
-            <div id="collapse1" class="panel-collapse collapse">
+            <div id="collapseAbout" class="panel-collapse collapse">
                 <div class="panel-body">
                     <?= Yii::$app->formatter->asNtext($model->employer->employer_company_desc) ?>
                 </div>
@@ -30,11 +30,11 @@ use yii\helpers\Url;
 
         <div class="panel">
             <div class="panel-heading active">
-                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse2">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseResponsibility">
                     <?= Yii::t("employer", "Responsibilities") ?>
                 </a>
             </div>
-            <div id="collapse2" class="panel-collapse collapse">
+            <div id="collapseResponsibility" class="panel-collapse collapse">
                 <div class="panel-body">
                     <?= Yii::$app->formatter->asNtext($model->job_responsibilites) ?>
                 </div>
@@ -58,11 +58,11 @@ use yii\helpers\Url;
 
         <div class="panel">
             <div class="panel-heading active">
-                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse3">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseQualif">
                     <?= Yii::t("employer", "Other Qualifications") ?>
                 </a>
             </div>
-            <div id="collapse3" class="panel-collapse collapse">
+            <div id="collapseQualif" class="panel-collapse collapse">
                 <div class="panel-body">
                     <?= Yii::$app->formatter->asNtext($model->job_other_qualifications) ?>
                 </div>
@@ -72,11 +72,11 @@ use yii\helpers\Url;
 
         <div class="panel">
             <div class="panel-heading active">
-                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse5">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseCompensation">
                     <?= Yii::t("employer", "Compensation") ?>
                 </a>
             </div>
-            <div id="collapse5" class="panel-collapse collapse">
+            <div id="collapseCompensation" class="panel-collapse collapse">
                 <div class="panel-body">
                     <?= Yii::$app->formatter->asNtext($model->job_compensation) ?>
                 </div>
@@ -107,11 +107,11 @@ use yii\helpers\Url;
 
         <div class="panel">
             <div class="panel-heading active">
-                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse7">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseFilters">
                     <?= Yii::t("employer", "Applied Filters") ?>
                 </a>
             </div>
-            <div id="collapse7" class="panel-collapse collapse">
+            <div id="collapseFilters" class="panel-collapse collapse">
                 <div class="panel-body">
                     Applied filters listed here
                 </div>
@@ -121,11 +121,11 @@ use yii\helpers\Url;
 
         <div class="panel">
             <div class="panel-heading active">
-                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse6">
+                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseUniv">
                     <?= Yii::t("employer", "Targetted Universities") ?>
                 </a>
             </div>
-            <div id="collapse6" class="panel-collapse collapse">
+            <div id="collapseUniv" class="panel-collapse collapse">
                 <div class="panel-body">
                     <ul class="list-material">
                         <?php foreach ($model->filter->universities as $university) { ?>
