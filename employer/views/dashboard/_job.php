@@ -69,7 +69,7 @@ use yii\helpers\Url;
                 <i class="fa fa-ellipsis-h"></i>
             </a>
             <ul>
-                <li class="pull-left"><a href="#" class='btn btn-sm btn-teal fixmenow'><?= Yii::t('employer', 'View Applicants') ?></a></li>
+                <li class="pull-left"><a href="#" class='btn btn-sm btn-teal fixmenow'><span><?= Yii::t('employer', 'View Applicants') ?></span></a></li>
             </ul>
         </div>
 
