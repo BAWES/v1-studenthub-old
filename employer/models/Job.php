@@ -29,6 +29,21 @@ class Job extends \common\models\Job {
     /**
      * @inheritdoc
      */
+    public function beforeSave($insert) {
+        if(parent::beforeSave($insert)){
+            if(!$insert){
+                //When an Active job is updated by employer, status must go back to pending
+                if(($this->job_status != self::STATUS_DRAFT) && ($this->job_status != self::STATUS_CLOSED)){
+                    $this->job_status = self::STATUS_PENDING;
+                }
+            }
+            return true;
+        }
+    }
+    
+    /**
+     * @inheritdoc
+     */
     public function afterFind() {
         parent::afterFind();
         

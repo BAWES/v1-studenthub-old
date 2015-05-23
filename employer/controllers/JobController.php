@@ -82,23 +82,37 @@ class JobController extends Controller {
         $model = $this->findModel($id);
         $model->scenario = "step1";
         
-        //Check if editing is allowed
-        $this->checkJobEditAllowed($model);
+        //Check if editing is allowed, you can edit step 1 at any point as long as job not closed
+        if($model->job_status == Job::STATUS_CLOSED){
+            throw new \yii\web\BadRequestHttpException(Yii::t("employer", "You are not allowed to edit closed jobs"));
+        }
+        
+        //Published jobs are limited to Step 1 - not allowed to move further and edit anything else
+        $published = $model->job_status != Job::STATUS_DRAFT? true : false;
 
         if ($model->load(Yii::$app->request->post())) {
             //If draft, save without validation and redirect to dashboard
-            if(Yii::$app->request->post('draft') && (Yii::$app->request->post('draft') == 'yes')){
+            if(Yii::$app->request->post('draft') && (Yii::$app->request->post('draft') == 'yes') && !$published){
                 $model->save(false);
                 return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
             }
 
             if ($model->save()) {
-                return $this->redirect(['create-step2', 'id' => $model->job_id]);
+                if(!$published){
+                    return $this->redirect(['create-step2', 'id' => $model->job_id]);
+                }else{
+                    //Set flash that it was saved then redirect to dashboard
+                    Yii::$app->session->setFlash("warning", 
+                        Yii::t('employer',
+                                "Your job details have been updated and will go live as soon as they are verified."));
+                    return $this->redirect(['dashboard/index', '#' => 'tab_pendingJobs']);
+                }
             }
         }
         
         return $this->render('step1', [
             'model' => $model,
+            'published' => $published,
         ]);
     }
 
@@ -134,6 +148,7 @@ class JobController extends Controller {
 
         return $this->render('step1', [
             'model' => $model,
+            'published' => false,
         ]);
     }
 
@@ -315,7 +330,7 @@ class JobController extends Controller {
      */
     public function checkJobEditAllowed($job){
         if($job->job_status != Job::STATUS_DRAFT){
-            throw new \yii\web\BadRequestHttpException("You are only allowed to edit drafts");
+            throw new \yii\web\BadRequestHttpException(Yii::t("employer", "You are only allowed to edit drafts"));
         }
     }
     

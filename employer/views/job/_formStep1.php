@@ -8,6 +8,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model common\models\Job */
 /* @var $form yii\bootstrap\ActiveForm */
+/* @var $published boolean */
 
 $fieldTemplate = "{label}\n{beginWrapper}\n"
         . "<div class='inputer'>\n<div class='input-wrapper'>\n"
@@ -178,6 +179,7 @@ $form->field($model, 'job_other_qualifications')->textArea([
 <?= $form->field($model, 'job_compensation')->textInput(['maxlength' => 255, 'placeholder' => Yii::t('employer', 'Recommendation Letter / $$$ / Free lunch')]) ?>
 
 
+<?php if (!$published){ ?>
 <div class="row">
     <div class="col-md-5 col-md-offset-3">
         <div class="note note-warning note-left-striped">
@@ -188,15 +190,16 @@ $form->field($model, 'job_other_qualifications')->textArea([
         </div><!--.note-->
     </div>
 </div>
-
+<?php } ?>
 
 <div class="row" style="margin-bottom:10px; margin-top:10px;">
     <div class="col-md-5 col-md-offset-3">
-        <?= Html::submitButton(Yii::t('employer', 'Next Step') , ['class' => 'btn btn-success btn-block btn-ripple'])
+        <?= Html::submitButton($published?Yii::t('employer', 'Update'):Yii::t('employer', 'Next Step') , ['class' => 'btn btn-success btn-block btn-ripple'])
         ?>
     </div>
 </div>
 
+<?php if(!$published){ ?>
 <div class="row">
     <div class="col-md-5 col-md-offset-3">
         <?= Html::a(Yii::t('employer', 'Save as Draft'), Url::current(), [
@@ -205,5 +208,6 @@ $form->field($model, 'job_other_qualifications')->textArea([
             ]) ?>
     </div>
 </div>
+<?php } ?>
 
 <?php ActiveForm::end(); ?>
