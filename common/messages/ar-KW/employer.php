@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '{currentApplicants, number} out of {maxApplicants, number} Applicants' => 'عدد المتقدمين {currentApplicants, number} من {maxApplicants, number}',
+    'Loading Job Details..' => 'جاري تحميل تفاصيل الوظيفة ..',
     'A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub' => 'لن يتم الموافقة على فرصة عملك إذا كان لديه عناوين تطبيق أو بريد إلكتروني في الوصف. وينبغي أن يقدم جميع الطلاب لهذه الوضيفة من خلال موقع StudentHub',
     'A short description about the job' => 'وصف قصير عن العمل',
     'About the Company' => 'عن الشركة',
@@ -134,4 +134,5 @@ return [
     'etc..' => 'الخ ..',
     'maximum applicants' => 'الحد الأقصى للمتقدمين',
     'reset it' => 'إعادة تعيينها',
+    '{currentApplicants, number} out of {maxApplicants, number} Applicants' => 'عدد المتقدمين {currentApplicants, number} من {maxApplicants, number}',
 ];

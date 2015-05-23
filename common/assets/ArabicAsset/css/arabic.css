@@ -313,3 +313,7 @@ blockquote{border-left:0; border-right:2px solid #f0f0f0;}
 */
 
 .card.card-event .card-body .calendar{left:30px; right:auto;}
+
+/* Accordion Fix */
+.accordion .panel-heading a:after, .toggle .panel-heading a:after{left: 20px; right:auto;}
+.modal-footer{text-align:left;}

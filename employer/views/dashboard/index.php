@@ -154,17 +154,17 @@ function getActive(&$activeStatus){
 
                 </div>
             </div><!-- panel-body -->
-            <div class="modal fade full-height from-right" id="about-job" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal fade full-height <?= $this->params['isArabic']?"from-left":"from-right"?> " id="about-job" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" style="text-align: center">Loading Job Details..</h4>
+                            <h4 class="modal-title" style="text-align: center"><?= Yii::t('employer',"Loading Job Details..") ?></h4>
                         </div>
                         <div class="modal-body">
                             <div class="loading-bar indeterminate margin-top-10"></div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-teal" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-teal btn-ripple" data-dismiss="modal"><?= Yii::t('app',"Close") ?></button>
                         </div>
                     </div>
                 </div><!--.modal-->

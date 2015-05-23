@@ -254,6 +254,6 @@ use yii\helpers\Url;
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-teal" data-dismiss="modal">Edit</button>
-    <button type="button" class="btn btn-teal" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-warning btn-ripple" data-dismiss="modal"><?= Yii::t('app',"Edit") ?></button>
+    <button type="button" class="btn btn-flat btn-ripple" data-dismiss="modal"><?= Yii::t('app',"Close") ?></button>
 </div>
