@@ -254,6 +254,7 @@ use yii\helpers\Url;
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-warning btn-ripple" data-dismiss="modal"><?= Yii::t('app',"Edit") ?></button>
+    <a href="<?= Url::to(["job/update", "id" => $model->job_id]) ?>"
+        class="btn btn-warning btn-ripple"><?= Yii::t('app',"Edit") ?></a>
     <button type="button" class="btn btn-flat btn-ripple" data-dismiss="modal"><?= Yii::t('app',"Close") ?></button>
 </div>
