@@ -37,7 +37,10 @@ use yii\helpers\Url;
                     <?= $model->job_startdate? Yii::$app->formatter->asDate($model->job_startdate) : Yii::t("employer", 'Flexible') ?>
                     <br><br>
                     
-                    0 out of 20 Applicants
+                    <?=  Yii::t("employer", "{currentApplicants, number} out of {maxApplicants, number} Applicants",[
+                        'currentApplicants' => 0,
+                        'maxApplicants' => 20,
+                    ]) ?>
                     <div class="progress progress-xs active" style='margin-bottom:10px;'>
                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                             <span class="sr-only">80% Complete</span>

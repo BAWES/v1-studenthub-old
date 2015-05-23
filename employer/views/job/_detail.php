@@ -141,7 +141,7 @@ use yii\helpers\Url;
                         if($filter->filter_gpa){
                             echo "<p>";
                             echo "<b>".Yii::t("employer", "Minimum GPA")."</b><br/>";
-                            echo $filter->filter_gpa;
+                            echo Yii::$app->formatter->asDecimal($filter->filter_gpa, 2);
                             echo "</p>";
                         }
                         
