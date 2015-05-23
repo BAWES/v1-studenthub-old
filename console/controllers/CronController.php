@@ -19,6 +19,8 @@ class CronController extends \yii\console\Controller {
         echo $var."\n";
         //$this->stdout($var, Console::FG_RED, Console::BG_YELLOW, CONSOLE::BLINK)."\n";
         
+        //Yii::error("Issue Happened", "cron");
+        
         return self::EXIT_CODE_NORMAL;
     }
 
