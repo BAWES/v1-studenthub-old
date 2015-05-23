@@ -65,17 +65,17 @@ use yii\helpers\Url;
         <div class="card-footer applicants">
             <?php if($model->job_status != common\models\Job::STATUS_CLOSED){ ?>
             <a href="<?= Url::to(['job/update', 'id' => $model->job_id]) ?>"
-                class="btn btn-floating hover-orange"  style="position:absolute;right:70px; bottom:7px;"><i class="ion-android-create"></i></a>
+                class="btn btn-floating hover-orange"  style="position:absolute;<?= $this->params['isArabic']?"left:70px;":"right:70px;"?> bottom:7px;"><i class="ion-android-create"></i></a>
             <?php } ?>
             
             <a href="#viewMore" data-job="<?= Url::to(['job/detail', 'id' => $model->job_id]) ?>"
                data-toggle="modal" data-target="#about-job"
                class="btn btn-floating hover-orange jobDetail"
-               style="position:absolute;right:15px; bottom:7px">
+               style="position:absolute; <?= $this->params['isArabic']?"left:15px;":"right:15px;"?> bottom:7px">
                 <i class="fa fa-ellipsis-h"></i>
             </a>
             <ul>
-                <li class="pull-left"><a href="#" class='btn btn-sm btn-teal fixmenow'><span><?= Yii::t('employer', 'View Applicants') ?></span></a></li>
+                <li class="<?= $this->params['isArabic']?"pull-right":"pull-left"?>"><a href="#" class='btn btn-sm btn-teal fixmenow'><span><?= Yii::t('employer', 'View Applicants') ?></span></a></li>
             </ul>
         </div>
 

@@ -38,16 +38,16 @@ use yii\helpers\Url;
         </div><!--.card-body-->
         <div class="card-footer applicants">
             <a href="<?= Url::to(['job/update', 'id' => $model->job_id]) ?>"
-                class="btn btn-floating hover-orange"  style="position:absolute;right:70px; bottom:7px;"><i class="ion-android-create"></i></a>
+                class="btn btn-floating hover-orange"  style="position:absolute;<?= $this->params['isArabic']?"left:70px;":"right:70px;"?> bottom:7px;"><i class="ion-android-create"></i></a>
             <a href="<?= Url::to(['job/delete', 'id' => $model->job_id]) ?>"
                class="btn btn-floating hover-red" 
                data-method="post"
                data-confirm="<?= Yii::t('app', 'Are you sure you want to delete this draft?') ?>"
-               style="position:absolute;right:15px; bottom:7px">
+               style="position:absolute; <?= $this->params['isArabic']?"left:15px;":"right:15px;"?> bottom:7px">
                 <i class="ion-android-delete"></i>
             </a>
             <ul>
-                <li class="pull-left" style="font-weight:bold;"><?= Yii::t("employer", "Draft") ?></li>
+                <li class="<?= $this->params['isArabic']?"pull-right":"pull-left"?>" style="font-weight:bold;"><?= Yii::t("employer", "Draft") ?></li>
             </ul>
         </div>
 
