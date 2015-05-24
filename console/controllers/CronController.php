@@ -17,10 +17,8 @@ class CronController extends \yii\console\Controller {
     public function actionMinute() {
         
         
-        //Processed Note!!!:
-        //Make sure to ignore already processed jobs
-        //When admin approves a pending job, make sure to not add processed jobs to queue
-        
+        //Processing Note!!!:
+        //Make sure to ignore already processed jobs        
         
         
         //echo $var."\n";
