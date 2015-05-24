@@ -16,6 +16,13 @@ class CronController extends \yii\console\Controller {
      */
     public function actionMinute() {
         
+        
+        //Processed Note!!!:
+        //Make sure to ignore already processed jobs
+        //When admin approves a pending job, make sure to not add processed jobs to queue
+        
+        
+        
         //echo $var."\n";
         //$this->stdout($var, Console::FG_RED, Console::BG_YELLOW, CONSOLE::BLINK)."\n";
         //Yii::error("Issue Happened", "cron");
