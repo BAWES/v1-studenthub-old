@@ -8,6 +8,7 @@ use common\models\Job;
 use common\models\JobProcessQueue;
 use common\models\StudentJobQualification;
 use common\models\NotificationStudent;
+use common\models\Student;
 
 
 /**
@@ -35,6 +36,7 @@ class CronController extends \yii\console\Controller {
         }else{
             $this->stdout("Processing Job #".$job->job_id."\n", Console::FG_GREEN);
             $this->stdout($job->job_title." was queued ".Yii::$app->formatter->asRelativeTime($queuedJob->queue_datetime)."\n", Console::FG_YELLOW);
+            
             /**
             * Delete all existing student notifications and qualifications for this job
             */
@@ -47,6 +49,9 @@ class CronController extends \yii\console\Controller {
              */
             $this->stdout("\nLooking for qualified Applicants"."\n", Console::FG_GREY);
             
+            
+            //Only verified students allowed (both ID and email)
+            //Only non-banned students
             
             
             
