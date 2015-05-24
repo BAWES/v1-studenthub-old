@@ -73,6 +73,7 @@ switch ($model->job_status){
             'job_max_applicants',
             'job_current_num_applicants',
             'job_price_per_applicant:currency',
+            'job_broadcasted:boolean',
             'job_updated_datetime:datetime',
             'job_created_datetime:datetime',
         ],
