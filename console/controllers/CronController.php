@@ -6,6 +6,9 @@ use Yii;
 use yii\helpers\Console;
 use common\models\Job;
 use common\models\JobProcessQueue;
+use common\models\StudentJobQualification;
+use common\models\NotificationStudent;
+
 
 /**
  * All Cron actions related to this project
@@ -33,14 +36,17 @@ class CronController extends \yii\console\Controller {
             $this->stdout($job->job_title." @ ".$queuedJob->queue_datetime."\n");
             
             /**
-            * Delete all existing notifications (emp and stud) and qualifications for this job
+            * Delete all existing student notifications and qualifications for this job
             */
-            
+            StudentJobQualification::deleteAll(['job_id' => $job->job_id]);
+            NotificationStudent::deleteAll(['job_id' => $job->job_id]);
             
             
             /**
              * Find and filter students who qualify, for each student that qualifies - create notification and qualification record
              */
+            
+            
             
             
             
