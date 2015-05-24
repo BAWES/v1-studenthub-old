@@ -35,6 +35,8 @@ class CronController extends \yii\console\Controller {
             $this->stdout($job->job_title."\n");
         }
         
+        //Set job_broadcasted to BROADCASTED_YES when the broadcast is complete
+        
         return self::EXIT_CODE_NORMAL;
     }
 
