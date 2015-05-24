@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 24, 2015 at 09:02 AM
+-- Generation Time: May 24, 2015 at 09:28 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -595,6 +595,7 @@ CREATE TABLE IF NOT EXISTS `job` (
   `job_current_num_applicants` int(11) NOT NULL DEFAULT '0',
   `job_status` tinyint(4) NOT NULL COMMENT 'close (0), open (1), draft (2)',
   `job_price_per_applicant` decimal(10,3) DEFAULT NULL,
+  `job_broadcasted` tinyint(4) NOT NULL DEFAULT '0',
   `job_updated_datetime` datetime NOT NULL,
   `job_created_datetime` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -603,11 +604,11 @@ CREATE TABLE IF NOT EXISTS `job` (
 -- Dumping data for table `job`
 --
 
-INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `filter_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_updated_datetime`, `job_created_datetime`) VALUES
-(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 10, 0, 3, '1.500', '2015-05-24 08:58:49', '2015-05-21 08:26:37'),
-(13, 1, 1, NULL, '', 0, NULL, '', '', '', '', NULL, NULL, NULL, 0, 0, NULL, '2015-05-21 11:41:00', '2015-05-21 11:31:47'),
-(14, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 35, 32, 3, '1.500', '2015-05-21 11:26:20', '2015-05-21 08:26:37'),
-(15, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 42, 5, 3, '1.500', '2015-05-21 11:26:20', '2015-05-21 08:26:37');
+INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `filter_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_broadcasted`, `job_updated_datetime`, `job_created_datetime`) VALUES
+(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 10, 0, 3, '1.500', 0, '2015-05-24 08:58:49', '2015-05-21 08:26:37'),
+(13, 1, 1, NULL, '', 0, NULL, '', '', '', '', NULL, NULL, NULL, 0, 0, NULL, 0, '2015-05-21 11:41:00', '2015-05-21 11:31:47'),
+(14, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 35, 32, 3, '1.500', 0, '2015-05-21 11:26:20', '2015-05-21 08:26:37'),
+(15, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 42, 5, 3, '1.500', 0, '2015-05-21 11:26:20', '2015-05-21 08:26:37');
 
 -- --------------------------------------------------------
 

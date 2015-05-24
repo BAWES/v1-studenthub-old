@@ -26,6 +26,7 @@ use yii\db\Expression;
  * @property integer $job_current_num_applicants
  * @property integer $job_status
  * @property string $job_price_per_applicant
+ * @property integer $job_broadcasted
  * @property string $job_updated_datetime
  * @property string $job_created_datetime
  *
@@ -51,6 +52,11 @@ class Job extends \yii\db\ActiveRecord
     const STATUS_OPEN = 1;
     const STATUS_CLOSED = 2;
     const STATUS_PENDING = 3; //If its pending - admin must verify
+    
+    //Options for `job_broadcasted` column
+    //Broadcast cron will ignore jobs already broadcasted
+    const BROADCASTED_YES = 1;
+    const BROADCASTED_NO = 0;
     
     /**
      * @inheritdoc
@@ -124,6 +130,7 @@ class Job extends \yii\db\ActiveRecord
             'job_current_num_applicants' => Yii::t('app', 'Current Applicants'),
             'job_status' => Yii::t('app', 'Job Status'),
             'job_price_per_applicant' => Yii::t('app', 'Job Price Per Applicant'),
+            'job_broadcasted' => Yii::t('app', 'Job Broadcasted'),
             'job_updated_datetime' => Yii::t('app', 'Job Updated Datetime'),
             'job_created_datetime' => Yii::t('app', 'Job Created Datetime'),
         ];
