@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 20, 2015 at 03:59 PM
+-- Generation Time: May 24, 2015 at 09:02 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -399,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `employer` (
 --
 
 INSERT INTO `employer` (`employer_id`, `industry_id`, `city_id`, `employer_company_name`, `employer_logo`, `employer_website`, `employer_company_desc`, `employer_num_employees`, `employer_contact_firstname`, `employer_contact_lastname`, `employer_contact_number`, `employer_credit`, `employer_email_preference`, `employer_email`, `employer_email_verification`, `employer_auth_key`, `employer_password_hash`, `employer_password_reset_token`, `employer_language_pref`, `employer_support_field`, `employer_limit_email`, `employer_updated_datetime`, `employer_datetime`) VALUES
-(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '22.750', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$yD4XFIMwChLBjsRxTFQ5GuEvQTDIBtV8MCtouOC0rj4qhrNyyGvGa', NULL, 'en-US', '0', '2015-05-10 09:49:40', '2015-05-20 13:36:04', '2015-05-02 16:15:30'),
+(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '20.750', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$yD4XFIMwChLBjsRxTFQ5GuEvQTDIBtV8MCtouOC0rj4qhrNyyGvGa', NULL, 'en-US', '0', '2015-05-10 09:49:40', '2015-05-24 08:58:11', '2015-05-02 16:15:30'),
 (2, 1, 1, 'Test Company', NULL, NULL, 'sqSQ', NULL, 'DWAD', 'dwadwa', '99811042', '0.000', 1, 'dwadwadw@dwad.com', 1, 'RkJCWLIjxJPziHMmyx-GTHgf9Q8RBndT', '$2y$13$KONg0F9VYiie8LDelIsuZeSo6Hd4AuB/1Xq2GflzO7Eqw4Rdl3wOK', '', 'en-US', '0', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-02 16:27:38'),
 (3, 1, 1, 'Khalid', 'LNOOgViwpx86Op575JBj37xHjINuJnF9.png', NULL, 'Free Stuff', NULL, 'dwad', 'dwad', '99811042', '0.000', 1, 'dwda@gust.edom', 0, 'rsI8d0rOnrvuOZt0W4j3eAbP6Gge0Yo3', '$2y$13$xUE.p13lHQnJSjsN6rifZuhbtacDdYBxgVO/GdY9xxZA8pEchL2kC', '', 'en-US', '0', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-02 18:43:14'),
 (4, 1, 1, 'Khalid', NULL, NULL, 'dwa', NULL, 'Khalid', 'M', '99811042', '0.000', 0, 'm6awa3@gmail.com', 0, 'nILkFnFe18sI5O1ZsXVRoMTXIOz_sIIi', '$2y$13$0Eg4BM0F0bFi8/ePjoSrd.W2dVPu5KLY.3o.iEUKzIKgheM4yNq0O', NULL, 'en-US', '0', '2015-05-05 22:07:17', '2015-05-05 22:07:17', '2015-05-03 20:00:29'),
@@ -597,15 +597,17 @@ CREATE TABLE IF NOT EXISTS `job` (
   `job_price_per_applicant` decimal(10,3) DEFAULT NULL,
   `job_updated_datetime` datetime NOT NULL,
   `job_created_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `job`
 --
 
 INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `filter_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_updated_datetime`, `job_created_datetime`) VALUES
-(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 10, 0, 3, '2.000', '2015-05-20 15:47:07', '2015-05-20 15:47:07'),
-(12, 1, 1, NULL, '', 1, NULL, '', '', '', '', NULL, NULL, NULL, 0, 0, NULL, '2015-05-18 13:14:03', '2015-05-18 13:14:03');
+(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 10, 0, 3, '1.500', '2015-05-24 08:58:49', '2015-05-21 08:26:37'),
+(13, 1, 1, NULL, '', 0, NULL, '', '', '', '', NULL, NULL, NULL, 0, 0, NULL, '2015-05-21 11:41:00', '2015-05-21 11:31:47'),
+(14, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 35, 32, 3, '1.500', '2015-05-21 11:26:20', '2015-05-21 08:26:37'),
+(15, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 42, 5, 3, '1.500', '2015-05-21 11:26:20', '2015-05-21 08:26:37');
 
 -- --------------------------------------------------------
 
@@ -629,6 +631,18 @@ INSERT INTO `jobtype` (`jobtype_id`, `jobtype_name_ar`, `jobtype_name_en`) VALUE
 (3, 'وظيفة بدوام واحد', 'One-time Job'),
 (4, 'وظيفة بدوام جزئي', 'Part-time Job'),
 (5, 'وظيفة بدوام كامل', 'Full-time Job');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_process_queue`
+--
+
+CREATE TABLE IF NOT EXISTS `job_process_queue` (
+  `queue_id` int(11) unsigned NOT NULL,
+  `job_id` int(11) unsigned NOT NULL,
+  `queue_datetime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2166,14 +2180,14 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `payment_amount` decimal(10,3) NOT NULL,
   `payment_note` text COLLATE utf8_unicode_ci,
   `payment_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `payment`
 --
 
 INSERT INTO `payment` (`payment_id`, `employer_id`, `payment_type_id`, `payment_amount`, `payment_note`, `payment_datetime`) VALUES
-(5, 1, 1, '35.250', 'Gift from Admin: Khalid', '2015-05-20 13:46:06');
+(6, 1, 1, '35.750', 'Gift from Admin: Khalid', '2015-05-21 08:16:00');
 
 -- --------------------------------------------------------
 
@@ -2277,6 +2291,19 @@ CREATE TABLE IF NOT EXISTS `student_job_application` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `student_job_qualification`
+--
+
+CREATE TABLE IF NOT EXISTS `student_job_qualification` (
+  `qualification_id` int(11) unsigned NOT NULL,
+  `student_id` int(11) unsigned NOT NULL,
+  `job_id` int(11) unsigned NOT NULL,
+  `qualification_datetime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `student_language`
 --
 
@@ -2332,14 +2359,14 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   `transaction_price_per_applicant` decimal(10,3) NOT NULL,
   `transaction_price_total` decimal(10,3) NOT NULL,
   `transaction_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `transaction`
 --
 
 INSERT INTO `transaction` (`transaction_id`, `job_id`, `transaction_number_of_applicants`, `transaction_price_per_applicant`, `transaction_price_total`, `transaction_datetime`) VALUES
-(4, 11, 10, '1.250', '12.500', '2015-05-20 15:47:07');
+(6, 11, 10, '1.500', '15.000', '2015-05-21 08:26:37');
 
 -- --------------------------------------------------------
 
@@ -2459,6 +2486,12 @@ ALTER TABLE `jobtype`
   ADD PRIMARY KEY (`jobtype_id`);
 
 --
+-- Indexes for table `job_process_queue`
+--
+ALTER TABLE `job_process_queue`
+  ADD PRIMARY KEY (`queue_id`), ADD KEY `job_id` (`job_id`);
+
+--
 -- Indexes for table `language`
 --
 ALTER TABLE `language`
@@ -2517,6 +2550,12 @@ ALTER TABLE `student`
 --
 ALTER TABLE `student_job_application`
   ADD PRIMARY KEY (`application_id`), ADD KEY `student_id` (`student_id`), ADD KEY `job_id` (`job_id`);
+
+--
+-- Indexes for table `student_job_qualification`
+--
+ALTER TABLE `student_job_qualification`
+  ADD PRIMARY KEY (`qualification_id`), ADD KEY `student_id` (`student_id`), ADD KEY `job_id` (`job_id`);
 
 --
 -- Indexes for table `student_language`
@@ -2585,12 +2624,17 @@ ALTER TABLE `industry`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `job_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `job_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `jobtype`
 --
 ALTER TABLE `jobtype`
   MODIFY `jobtype_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `job_process_queue`
+--
+ALTER TABLE `job_process_queue`
+  MODIFY `queue_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `language`
 --
@@ -2620,7 +2664,7 @@ ALTER TABLE `notification_student`
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payment_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `payment_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `payment_type`
 --
@@ -2637,10 +2681,15 @@ ALTER TABLE `student`
 ALTER TABLE `student_job_application`
   MODIFY `application_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `student_job_qualification`
+--
+ALTER TABLE `student_job_qualification`
+  MODIFY `qualification_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `transaction_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `transaction_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `university`
 --
@@ -2706,6 +2755,12 @@ ADD CONSTRAINT `job_ibfk_2` FOREIGN KEY (`employer_id`) REFERENCES `employer` (`
 ADD CONSTRAINT `job_ibfk_3` FOREIGN KEY (`filter_id`) REFERENCES `filter` (`filter_id`);
 
 --
+-- Constraints for table `job_process_queue`
+--
+ALTER TABLE `job_process_queue`
+ADD CONSTRAINT `job_process_queue_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`);
+
+--
 -- Constraints for table `notification_employer`
 --
 ALTER TABLE `notification_employer`
@@ -2741,6 +2796,13 @@ ADD CONSTRAINT `student_ibfk_5` FOREIGN KEY (`country_id`) REFERENCES `country` 
 ALTER TABLE `student_job_application`
 ADD CONSTRAINT `student_job_application_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
 ADD CONSTRAINT `student_job_application_ibfk_2` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`);
+
+--
+-- Constraints for table `student_job_qualification`
+--
+ALTER TABLE `student_job_qualification`
+ADD CONSTRAINT `student_job_qualification_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
+ADD CONSTRAINT `student_job_qualification_ibfk_2` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`);
 
 --
 -- Constraints for table `student_language`

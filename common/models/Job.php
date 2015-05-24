@@ -35,6 +35,7 @@ use yii\db\Expression;
  * @property NotificationEmployer[] $notificationEmployers
  * @property NotificationStudent[] $notificationStudents
  * @property StudentJobApplication[] $studentJobApplications
+ * @property StudentJobQualification[] $studentJobQualifications
  * @property Transaction[] $transactions
  */
 class Job extends \yii\db\ActiveRecord
@@ -195,6 +196,14 @@ class Job extends \yii\db\ActiveRecord
     public function getStudentJobApplications()
     {
         return $this->hasMany(StudentJobApplication::className(), ['job_id' => 'job_id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStudentJobQualifications()
+    {
+        return $this->hasMany(StudentJobQualification::className(), ['job_id' => 'job_id']);
     }
 
     /**

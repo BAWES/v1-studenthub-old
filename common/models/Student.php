@@ -59,6 +59,7 @@ use yii\helpers\Url;
  * @property University $university
  * @property Country $country
  * @property StudentJobApplication[] $studentJobApplications
+ * @property StudentJobQualification[] $studentJobQualifications
  * @property StudentLanguage[] $studentLanguages
  * @property Language[] $languages
  * @property StudentMajor[] $studentMajors
@@ -458,6 +459,14 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function getStudentJobApplications() {
         return $this->hasMany(StudentJobApplication::className(), ['student_id' => 'student_id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStudentJobQualifications()
+    {
+        return $this->hasMany(StudentJobQualification::className(), ['student_id' => 'student_id']);
     }
 
     /**
