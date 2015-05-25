@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 24, 2015 at 09:28 AM
+-- Generation Time: May 25, 2015 at 02:29 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -419,14 +419,15 @@ CREATE TABLE IF NOT EXISTS `filter` (
   `filter_graduation_year_start` year(4) DEFAULT NULL,
   `filter_graduation_year_end` year(4) DEFAULT NULL,
   `filter_transportation` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `filter`
 --
 
 INSERT INTO `filter` (`filter_id`, `degree_id`, `filter_gpa`, `filter_english_level`, `filter_graduation_year_start`, `filter_graduation_year_end`, `filter_transportation`) VALUES
-(6, NULL, NULL, 2, NULL, NULL, 1);
+(6, 2, '2.23', 2, 2013, 2015, 1),
+(7, NULL, NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -458,6 +459,13 @@ CREATE TABLE IF NOT EXISTS `filter_language` (
   `language_id` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `filter_language`
+--
+
+INSERT INTO `filter_language` (`filter_id`, `language_id`) VALUES
+(6, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -486,17 +494,29 @@ CREATE TABLE IF NOT EXISTS `filter_university` (
 
 INSERT INTO `filter_university` (`filter_id`, `university_id`) VALUES
 (6, 1),
+(7, 1),
 (6, 2),
+(7, 2),
 (6, 3),
+(7, 3),
 (6, 4),
+(7, 4),
 (6, 5),
+(7, 5),
 (6, 6),
+(7, 6),
 (6, 7),
+(7, 7),
 (6, 8),
+(7, 8),
 (6, 9),
+(7, 9),
 (6, 10),
+(7, 10),
 (6, 11),
-(6, 12);
+(7, 11),
+(6, 12),
+(7, 12);
 
 -- --------------------------------------------------------
 
@@ -605,9 +625,9 @@ CREATE TABLE IF NOT EXISTS `job` (
 --
 
 INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `filter_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_broadcasted`, `job_updated_datetime`, `job_created_datetime`) VALUES
-(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 10, 0, 3, '1.500', 0, '2015-05-24 08:58:49', '2015-05-21 08:26:37'),
-(13, 1, 1, NULL, '', 0, NULL, '', '', '', '', NULL, NULL, NULL, 0, 0, NULL, 0, '2015-05-21 11:41:00', '2015-05-21 11:31:47'),
-(14, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 35, 32, 3, '1.500', 0, '2015-05-21 11:26:20', '2015-05-21 08:26:37'),
+(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 10, 0, 1, '1.500', 0, '2015-05-24 11:16:32', '2015-05-21 08:26:37'),
+(13, 1, 1, 7, 'dwa', 0, NULL, 'dwa', '', 'dwa', '', '', '', 10, 0, 0, '0.750', 0, '2015-05-25 13:11:48', '2015-05-21 11:31:47'),
+(14, 2, 1, 6, 'Success Centre Attendant', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 35, 32, 1, '1.500', 0, '2015-05-24 10:23:23', '2015-05-21 08:26:37'),
 (15, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 42, 5, 3, '1.500', 0, '2015-05-21 11:26:20', '2015-05-21 08:26:37');
 
 -- --------------------------------------------------------
@@ -643,7 +663,15 @@ CREATE TABLE IF NOT EXISTS `job_process_queue` (
   `queue_id` int(11) unsigned NOT NULL,
   `job_id` int(11) unsigned NOT NULL,
   `queue_datetime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `job_process_queue`
+--
+
+INSERT INTO `job_process_queue` (`queue_id`, `job_id`, `queue_datetime`) VALUES
+(3, 14, '2015-05-24 10:23:23'),
+(4, 11, '2015-05-24 11:16:32');
 
 -- --------------------------------------------------------
 
@@ -2265,7 +2293,7 @@ CREATE TABLE IF NOT EXISTS `student` (
 
 INSERT INTO `student` (`student_id`, `degree_id`, `country_id`, `university_id`, `student_firstname`, `student_lastname`, `student_dob`, `student_status`, `student_enrolment_year`, `student_graduating_year`, `student_gpa`, `student_english_level`, `student_gender`, `student_transportation`, `student_contact_number`, `student_interestingfacts`, `student_photo`, `student_cv`, `student_skill`, `student_hobby`, `student_club`, `student_sport`, `student_experience_company`, `student_experience_position`, `student_verification_attachment`, `student_email_verification`, `student_id_verification`, `student_id_number`, `student_email_preference`, `student_email`, `student_auth_key`, `student_password_hash`, `student_password_reset_token`, `student_language_pref`, `student_banned`, `student_support_field`, `student_limit_email`, `student_updated_datetime`, `student_datetime`) VALUES
 (13, 2, 9, 1, 'dwadwa', 'dwadwa', '1984-04-12', 1, 2013, 2017, '2.00', 2, 0, 0, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 0, 'khalid@gust.edu.kw', 'V0nH70XkhjxuBSP3k4Mi-Rq5c_Lj6bvc', '$2y$13$Cvawm4VAyY48MYelhBOlQ.MC7jvtZHbyLdXFduJRosxFywTEv21yi', NULL, 'en-US', 0, '', '2015-05-10 10:03:03', '2015-05-10 11:06:37', '2015-04-27 10:51:37'),
-(14, 2, 8, 1, 'Khalid', 'Mutawa', '1990-05-08', 1, 2013, 2017, '3.00', 1, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, 1, 'dwada@gust.edu.kw', '441qQzDCYen0l4WffdcHa-3HwSSf6l9s', '$2y$13$lXNk5kJBFQGp5ucQDP8D5el9ASYVZusUHXDfZnYxJ9if5XPBuRuwG', '', 'en-US', 0, '', '0000-00-00 00:00:00', '2015-05-02 17:15:37', '2015-05-02 17:15:37'),
+(14, 2, 84, 1, 'Khalid', 'Mutawa', '1990-05-08', 1, 2013, 2014, '3.00', 2, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 1, 'gust0003887@gust.edu.kw', '441qQzDCYen0l4WffdcHa-3HwSSf6l9s', '$2y$13$lXNk5kJBFQGp5ucQDP8D5el9ASYVZusUHXDfZnYxJ9if5XPBuRuwG', '', 'en-US', 0, '', '0000-00-00 00:00:00', '2015-05-02 17:15:37', '2015-05-02 17:15:37'),
 (15, 4, 3, 2, 'Mohammed', 'Ashkanani', '1989-05-30', 1, 2013, 2015, '3.00', 2, 1, 1, '99811042', NULL, 'lTJL5P-XkYyxOz-YyHCj3e-a3wzDsWN8.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 't72RPXKpgRUrK5cjkNLNCTUeE0_sIFBm.png', 0, 0, NULL, 1, 'test@test.com', '2JdqmrQUWWHgk3HypwDYvgeVxDKvJaBU', '$2y$13$XP2e3uNZc53RWHM9rz7HuufcL6ZWL2wTa5LNi8Ia29NG5lb7nFHOe', '', 'en-US', 0, '', '2015-05-08 12:57:33', '2015-05-08 22:57:38', '2015-05-08 12:57:33'),
 (16, 4, 4, 2, 'Saoud', 'Turki', '1992-09-09', 0, 2013, 2017, '3.00', 2, 1, 0, '99811042', NULL, 'Rz-RICTfOL9Tps8BcYlFNrg8VWIsOleh.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pG5MolYl7fX6z2eSSdJBArWnzDk1Nhi_.png', 0, 0, NULL, 1, 'km@km.com', 'qm6tV2DTlQE8oX5xelqo_EY2oAarFIjK', '$2y$13$ecT3h6RypLdNZjJgpjXoX.YMKC5s1mNr.oxTkckDeSu3sX66m5PCq', 'zcTJRTTcxe3YZEn7GuzVL3ilCU1-5Rwo_1431114197', 'en-US', 0, '', '2015-05-08 22:43:17', '2015-05-08 22:58:05', '2015-05-08 13:10:56'),
 (17, 2, 182, 2, 'Saoud', 'AlTurki', '1979-05-30', 1, 2013, 2017, '3.00', 1, 1, 0, '99811042', NULL, 'KYj-ohYWhlcJymuugyeggv5xN4MTgx4F.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'YOldR1yk-dJ_JEl4lotG5c0l_wMzWagm.png', 0, 0, NULL, 1, 'khalid@bto.com', 'wx9F3seITdpLCwcGHh_eJJHRWxDB8TEH', '$2y$13$AYId0O0xDrErojHzj6N5EONFl8UGxvhK9LH9tzsv0NLDfZTvc28/e', '', 'en-US', 0, '', '2015-05-08 13:21:33', '2015-05-08 13:21:33', '2015-05-08 13:21:33'),
@@ -2318,6 +2346,7 @@ CREATE TABLE IF NOT EXISTS `student_language` (
 --
 
 INSERT INTO `student_language` (`student_id`, `language_id`) VALUES
+(14, 1),
 (20, 1),
 (15, 3),
 (16, 3),
@@ -2337,15 +2366,6 @@ CREATE TABLE IF NOT EXISTS `student_major` (
   `student_id` int(11) unsigned NOT NULL,
   `major_id` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `student_major`
---
-
-INSERT INTO `student_major` (`student_id`, `major_id`) VALUES
-(18, 4),
-(19, 6),
-(20, 50);
 
 -- --------------------------------------------------------
 
@@ -2562,13 +2582,13 @@ ALTER TABLE `student_job_qualification`
 -- Indexes for table `student_language`
 --
 ALTER TABLE `student_language`
-  ADD PRIMARY KEY (`language_id`,`student_id`);
+  ADD KEY `student_id` (`student_id`), ADD KEY `language_id` (`language_id`);
 
 --
 -- Indexes for table `student_major`
 --
 ALTER TABLE `student_major`
-  ADD PRIMARY KEY (`student_id`,`major_id`);
+  ADD KEY `student_id` (`student_id`), ADD KEY `major_id` (`major_id`);
 
 --
 -- Indexes for table `transaction`
@@ -2615,7 +2635,7 @@ ALTER TABLE `employer`
 -- AUTO_INCREMENT for table `filter`
 --
 ALTER TABLE `filter`
-  MODIFY `filter_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `filter_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `industry`
 --
@@ -2635,7 +2655,7 @@ ALTER TABLE `jobtype`
 -- AUTO_INCREMENT for table `job_process_queue`
 --
 ALTER TABLE `job_process_queue`
-  MODIFY `queue_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `queue_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `language`
 --
@@ -2809,13 +2829,15 @@ ADD CONSTRAINT `student_job_qualification_ibfk_2` FOREIGN KEY (`job_id`) REFEREN
 -- Constraints for table `student_language`
 --
 ALTER TABLE `student_language`
-ADD CONSTRAINT `student_language_ibfk_1` FOREIGN KEY (`language_id`) REFERENCES `language` (`language_id`);
+ADD CONSTRAINT `student_language_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
+ADD CONSTRAINT `student_language_ibfk_2` FOREIGN KEY (`language_id`) REFERENCES `language` (`language_id`);
 
 --
 -- Constraints for table `student_major`
 --
 ALTER TABLE `student_major`
-ADD CONSTRAINT `student_major_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`);
+ADD CONSTRAINT `student_major_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
+ADD CONSTRAINT `student_major_ibfk_2` FOREIGN KEY (`major_id`) REFERENCES `major` (`major_id`);
 
 --
 -- Constraints for table `transaction`
