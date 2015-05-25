@@ -4,6 +4,7 @@ namespace console\controllers;
 
 use Yii;
 use yii\helpers\Console;
+use yii\helpers\ArrayHelper;
 use common\models\Job;
 use common\models\JobProcessQueue;
 use common\models\StudentJobQualification;
@@ -60,13 +61,14 @@ class CronController extends \yii\console\Controller {
                         ]);
 
                 /**
-                 * Add where conditions based on filter values
+                 * Add conditions based on filter values
                  */
                 $filter = $job->filter;
                 if($filter){
+                    //Get ActiveQueries for each
+                    $countryList = $filter->countries;
                     $universityList = $filter->universities;
                     $languageList = $filter->languages;
-                    $countryList = $filter->countries;
                     $majorList = $filter->majors;
 
 
@@ -83,6 +85,18 @@ class CronController extends \yii\console\Controller {
                     $query->andFilterWhere(['student_english_level' => $filter->filter_english_level]);
                     //Degree Filter
                     $query->andFilterWhere(['degree_id' => $filter->degree_id]);
+                    
+                    //Nationality Filter
+                    $query->andFilterWhere(['in', 'country_id', ArrayHelper::getColumn($countryList, "country_id")]);
+                    //University
+                    $query->andFilterWhere(['in', 'university_id', ArrayHelper::getColumn($universityList, "university_id")]);
+                    
+                    
+                    
+                    //FOR MAJOR AND LANGUAGE FILTER
+                    //Look into using subquery
+                    //['in', 'user_id', (new Query())->select('id')->from('users')->where(['active' => 1])]
+                    //or accessing via relation
                     
                 }
                 
