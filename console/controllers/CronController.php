@@ -91,12 +91,17 @@ class CronController extends \yii\console\Controller {
                     //University
                     $query->andFilterWhere(['in', 'university_id', ArrayHelper::getColumn($universityList, "university_id")]);
                     
+                    //Language Filter
+                    if($languageList){
+                        $query->joinWith('languages');
+                        $query->andWhere(['in', 'language.language_id', ArrayHelper::getColumn($languageList, "language_id")]);
+                    }
                     
-                    
-                    //FOR MAJOR AND LANGUAGE FILTER
-                    //Look into using subquery
-                    //['in', 'user_id', (new Query())->select('id')->from('users')->where(['active' => 1])]
-                    //or accessing via relation
+                    //Major Filter
+                    if($majorList){
+                        $query->joinWith('majors');
+                        $query->andWhere(['in', 'major.major_id', ArrayHelper::getColumn($majorList, "major_id")]);
+                    }
                     
                 }
                 
