@@ -49,10 +49,55 @@ class CronController extends \yii\console\Controller {
              */
             $this->stdout("\nLooking for qualified Applicants"."\n", Console::FG_GREY);
             
-            
-            //Only verified students allowed (both ID and email)
-            //Only non-banned students
-            
+            $filter = $job->filter;
+            if($filter){
+                $query = Student::find();
+                
+                /**
+                 * Only verified and non-banned students
+                 */
+                $query->where([
+                    'student_id_verification' => Student::ID_VERIFIED,
+                    'student_email_verification' => Student::EMAIL_VERIFIED,
+                    'student_banned' => Student::BAN_STUDENT_NOT_BANNED,
+                    ]);
+                
+                /**
+                 * Add where conditions based on filter values
+                 */
+                $universityList = $filter->universities;
+                $languageList = $filter->languages;
+                $countryList = $filter->countries;
+                $majorList = $filter->majors;
+                
+                
+                //GPA Filter
+                $query->andFilterWhere(['>=', 'student_gpa', $filter->filter_gpa]);
+                //Graduation Filter
+                $query->andFilterWhere(['>=', 'student_graduating_year', $filter->filter_graduation_year_start]);
+                $query->andFilterWhere(['<=', 'student_graduating_year', $filter->filter_graduation_year_end]);
+                //Transportation Filter
+                if($filter->filter_transportation){
+                    $query->andFilterWhere(['student_transportation' => $filter->filter_transportation]);
+                }
+                //English language filter
+                $query->andFilterWhere(['student_english_level' => $filter->filter_english_level]);
+                //Degree Filter
+                $query->andFilterWhere(['degree_id' => $filter->degree_id]);
+                
+                /**
+                 * Test query and output
+                 */
+                echo $query->createCommand()->rawSql;
+                echo "\n";
+                $students = $query->all();
+                if($students){
+                    foreach($students as $student){
+                        $this->stdout($student->student_email. " record found"."\n", Console::FG_YELLOW);
+                    }
+                }else $this->stdout( "No records found"."\n", Console::FG_YELLOW);
+                
+            }
             
             
             /**
