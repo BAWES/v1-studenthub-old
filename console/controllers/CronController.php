@@ -5,7 +5,7 @@ namespace console\controllers;
 use Yii;
 use yii\helpers\Console;
 use yii\helpers\ArrayHelper;
-use common\models\Job;
+use backend\models\Job;
 use common\models\JobProcessQueue;
 use common\models\StudentJobQualification;
 use common\models\NotificationStudent;
@@ -50,67 +50,7 @@ class CronController extends \yii\console\Controller {
                  * Find and filter students who qualify, for each student that qualifies - create notification and qualification record
                  */
                 $this->stdout("\nLooking for qualified Applicants"."\n", Console::FG_GREY);
-                
-                /**
-                 * Only verified and non-banned students
-                 */
-                $query = Student::find()->where([
-                        'student_id_verification' => Student::ID_VERIFIED,
-                        'student_email_verification' => Student::EMAIL_VERIFIED,
-                        'student_banned' => Student::BAN_STUDENT_NOT_BANNED,
-                        ]);
-
-                /**
-                 * Add conditions based on filter values
-                 */
-                $filter = $job->filter;
-                if($filter){
-                    //Get ActiveQueries for each
-                    $countryList = $filter->countries;
-                    $universityList = $filter->universities;
-                    $languageList = $filter->languages;
-                    $majorList = $filter->majors;
-
-
-                    //GPA Filter
-                    $query->andFilterWhere(['>=', 'student_gpa', $filter->filter_gpa]);
-                    //Graduation Filter
-                    $query->andFilterWhere(['>=', 'student_graduating_year', $filter->filter_graduation_year_start]);
-                    $query->andFilterWhere(['<=', 'student_graduating_year', $filter->filter_graduation_year_end]);
-                    //Transportation Filter
-                    if($filter->filter_transportation){
-                        $query->andFilterWhere(['student_transportation' => $filter->filter_transportation]);
-                    }
-                    //English language filter
-                    $query->andFilterWhere(['student_english_level' => $filter->filter_english_level]);
-                    //Degree Filter
-                    $query->andFilterWhere(['degree_id' => $filter->degree_id]);
-                    
-                    //Nationality Filter
-                    $query->andFilterWhere(['in', 'country_id', ArrayHelper::getColumn($countryList, "country_id")]);
-                    //University
-                    $query->andFilterWhere(['in', 'university_id', ArrayHelper::getColumn($universityList, "university_id")]);
-                    
-                    //Language Filter
-                    if($languageList){
-                        $query->joinWith('languages');
-                        $query->andWhere(['in', 'language.language_id', ArrayHelper::getColumn($languageList, "language_id")]);
-                    }
-                    
-                    //Major Filter
-                    if($majorList){
-                        $query->joinWith('majors');
-                        $query->andWhere(['in', 'major.major_id', ArrayHelper::getColumn($majorList, "major_id")]);
-                    }
-                    
-                }
-                
-                /**
-                 * Test query and output
-                 */
-                echo $query->createCommand()->rawSql;
-                echo "\n";
-                $students = $query->all();
+                $students = $job->getQualifiedStudents()->all();
                 if($students){
                     foreach($students as $student){
                         $studentCount++;
@@ -122,8 +62,7 @@ class CronController extends \yii\console\Controller {
                  * Set job_broadcasted to BROADCASTED_YES when the broadcast is complete
                  */
                 $job->job_broadcasted = Job::BROADCASTED_YES;
-                //Remove comment once implementation is complete
-                //$job->save(false);            
+                $job->save(false);            
 
             }
 
@@ -131,8 +70,7 @@ class CronController extends \yii\console\Controller {
              * Delete queue record for this job
              */
             $this->stdout("\nRemoving Job from Queue"."\n", Console::FG_RED);
-            //Remove comment once implementation is complete
-            //$queuedJob->delete();
+            $queuedJob->delete();
             $this->stdout("Complete, broadcasted job to $studentCount students"."\n", Console::FG_GREEN);
         }else $this->stdout("There are no jobs in the Queue"."\n", Console::FG_RED);
         

@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "job".
@@ -156,6 +157,70 @@ class Job extends \yii\db\ActiveRecord
         }
     }
     
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQualifiedStudents(){
+        /**
+         * Only verified and non-banned students
+         */
+        $query = Student::find()->where([
+                'student_id_verification' => Student::ID_VERIFIED,
+                'student_email_verification' => Student::EMAIL_VERIFIED,
+                'student_banned' => Student::BAN_STUDENT_NOT_BANNED,
+                ]);
+
+        /**
+         * Add conditions based on filter values
+         */
+        $filter = $this->filter;
+        if($filter){
+            //Get ActiveQueries for each
+            $countryList = $filter->countries;
+            $universityList = $filter->universities;
+            $languageList = $filter->languages;
+            $majorList = $filter->majors;
+
+
+            //GPA Filter
+            $query->andFilterWhere(['>=', 'student_gpa', $filter->filter_gpa]);
+            //Graduation Filter
+            $query->andFilterWhere(['>=', 'student_graduating_year', $filter->filter_graduation_year_start]);
+            $query->andFilterWhere(['<=', 'student_graduating_year', $filter->filter_graduation_year_end]);
+            //Transportation Filter
+            if($filter->filter_transportation){
+                $query->andFilterWhere(['student_transportation' => $filter->filter_transportation]);
+            }
+            //English language filter
+            $query->andFilterWhere(['student_english_level' => $filter->filter_english_level]);
+            //Degree Filter
+            $query->andFilterWhere(['degree_id' => $filter->degree_id]);
+
+            //Nationality Filter
+            $query->andFilterWhere(['in', 'country_id', ArrayHelper::getColumn($countryList, "country_id")]);
+            //University
+            $query->andFilterWhere(['in', 'university_id', ArrayHelper::getColumn($universityList, "university_id")]);
+
+            //Language Filter
+            if($languageList){
+                $query->joinWith('languages');
+                $query->andWhere(['in', 'language.language_id', ArrayHelper::getColumn($languageList, "language_id")]);
+            }
+
+            //Major Filter
+            if($majorList){
+                $query->joinWith('majors');
+                $query->andWhere(['in', 'major.major_id', ArrayHelper::getColumn($majorList, "major_id")]);
+            }
+        }
+        
+        return $query;
+    }
+    
+    public function getQualifiedStudentsCount(){
+        return $this->getQualifiedStudents()->count();
+    }
 
     /**
      * @return \yii\db\ActiveQuery
