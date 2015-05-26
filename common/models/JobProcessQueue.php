@@ -69,7 +69,7 @@ class JobProcessQueue extends \yii\db\ActiveRecord
             $job = $queuedJob->job;
 
             if($job){
-                Yii::info("Broadcasting Job #".$job->job_id." [".$job->job_title."] which was queued "
+                Yii::info("[Broadcast] Starting broadcast of Job #".$job->job_id." which was queued "
                         .Yii::$app->formatter->asRelativeTime($queuedJob->queue_datetime), __METHOD__);
                 
                 $studentCount = $job->broadcast();
