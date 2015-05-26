@@ -165,57 +165,32 @@ class Job extends \yii\db\ActiveRecord
         /**
          * Only verified and non-banned students
          */
-        $query = Student::find()->where([
-                'student_id_verification' => Student::ID_VERIFIED,
-                'student_email_verification' => Student::EMAIL_VERIFIED,
-                'student_banned' => Student::BAN_STUDENT_NOT_BANNED,
-                ]);
+        $students = Student::find()->active();
 
         /**
          * Add conditions based on filter values
          */
         $filter = $this->filter;
         if($filter){
-            //Get ActiveQueries for each
             $countryList = $filter->countries;
             $universityList = $filter->universities;
             $languageList = $filter->languages;
             $majorList = $filter->majors;
 
-
-            //GPA Filter
-            $query->andFilterWhere(['>=', 'student_gpa', $filter->filter_gpa]);
-            //Graduation Filter
-            $query->andFilterWhere(['>=', 'student_graduating_year', $filter->filter_graduation_year_start]);
-            $query->andFilterWhere(['<=', 'student_graduating_year', $filter->filter_graduation_year_end]);
-            //Transportation Filter
+            $students->minimumGPA($filter->filter_gpa);
+            $students->graduationYearBetween($filter->filter_graduation_year_start, $filter->filter_graduation_year_end);
+            $students->englishLevel($filter->filter_english_level);
+            $students->degree($filter->degree_id);
+            $students->nationalityFilter(ArrayHelper::getColumn($countryList, "country_id"));
+            $students->universityFilter(ArrayHelper::getColumn($universityList, "university_id"));
+            $students->languageFilter(ArrayHelper::getColumn($languageList, "language_id"));
+            $students->majorFilter(ArrayHelper::getColumn($majorList, "major_id"));
             if($filter->filter_transportation){
-                $query->andFilterWhere(['student_transportation' => $filter->filter_transportation]);
-            }
-            //English language filter
-            $query->andFilterWhere(['student_english_level' => $filter->filter_english_level]);
-            //Degree Filter
-            $query->andFilterWhere(['degree_id' => $filter->degree_id]);
-
-            //Nationality Filter
-            $query->andFilterWhere(['in', 'country_id', ArrayHelper::getColumn($countryList, "country_id")]);
-            //University
-            $query->andFilterWhere(['in', 'university_id', ArrayHelper::getColumn($universityList, "university_id")]);
-
-            //Language Filter
-            if($languageList){
-                $query->joinWith('languages');
-                $query->andWhere(['in', 'language.language_id', ArrayHelper::getColumn($languageList, "language_id")]);
-            }
-
-            //Major Filter
-            if($majorList){
-                $query->joinWith('majors');
-                $query->andWhere(['in', 'major.major_id', ArrayHelper::getColumn($majorList, "major_id")]);
+                $students->transportationAvailable($filter->filter_transportation);
             }
         }
         
-        return $query;
+        return $students;
     }
     
     public function getQualifiedStudentsCount(){
