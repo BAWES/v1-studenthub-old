@@ -116,6 +116,7 @@ AppAsset::register($this);
                             ['label' => 'Languages', 'url' => ['/language/index']],
                             ['label' => 'Countries', 'url' => ['/country/index']],
                             ['label' => 'Cities', 'url' => ['/city/index']],
+                            ['label' => 'Log', 'url' => ['/log/index']],
                         ],
                     ],
                     

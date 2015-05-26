@@ -36,7 +36,7 @@ $this->title = 'Dashboard';
                     },
                 ],
 
-                ['class' => 'yii\grid\ActionColumn', 'controller' => 'transaction', 'template' => '{view}'],
+                ['class' => 'yii\grid\ActionColumn', 'controller' => 'log', 'template' => '{view}'],
             ],
         ]); 
         ?>
