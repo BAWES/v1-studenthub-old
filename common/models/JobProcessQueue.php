@@ -58,12 +58,36 @@ class JobProcessQueue extends \yii\db\ActiveRecord
             'queue_datetime' => 'Queue Datetime',
         ];
     }
+    
+    /**
+     * Static function for processing the next job in queue
+     */
+    public static function processNextJob(){
+        $queuedJob = static::find()->orderBy("queue_datetime ASC")->one();
+        if($queuedJob){
+            $studentCount = 0;
+            $job = $queuedJob->job;
+
+            if($job){
+                Yii::info("Broadcasting Job #".$job->job_id." [".$job->job_title."] which was queued "
+                        .Yii::$app->formatter->asRelativeTime($queuedJob->queue_datetime), __METHOD__);
+                
+                $studentCount = $job->broadcast();
+            }
+
+            /**
+             * Delete queue record for this job
+             */
+            $queuedJob->delete();
+            
+        }else Yii::info("There are no jobs in the Queue", __METHOD__);
+    }
 
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getJob()
     {
-        return $this->hasOne(Job::className(), ['job_id' => 'job_id']);
+        return $this->hasOne(\backend\models\Job::className(), ['job_id' => 'job_id']);
     }
 }
