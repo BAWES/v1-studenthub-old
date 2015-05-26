@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 26, 2015 at 09:37 AM
+-- Generation Time: May 26, 2015 at 12:42 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -399,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `employer` (
 --
 
 INSERT INTO `employer` (`employer_id`, `industry_id`, `city_id`, `employer_company_name`, `employer_logo`, `employer_website`, `employer_company_desc`, `employer_num_employees`, `employer_contact_firstname`, `employer_contact_lastname`, `employer_contact_number`, `employer_credit`, `employer_email_preference`, `employer_email`, `employer_email_verification`, `employer_auth_key`, `employer_password_hash`, `employer_password_reset_token`, `employer_language_pref`, `employer_support_field`, `employer_limit_email`, `employer_updated_datetime`, `employer_datetime`) VALUES
-(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '20.750', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$yD4XFIMwChLBjsRxTFQ5GuEvQTDIBtV8MCtouOC0rj4qhrNyyGvGa', NULL, 'en-US', '0', '2015-05-10 09:49:40', '2015-05-24 08:58:11', '2015-05-02 16:15:30'),
+(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '28.750', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$yD4XFIMwChLBjsRxTFQ5GuEvQTDIBtV8MCtouOC0rj4qhrNyyGvGa', NULL, 'en-US', '0', '2015-05-10 09:49:40', '2015-05-26 11:21:12', '2015-05-02 16:15:30'),
 (2, 1, 1, 'Test Company', NULL, NULL, 'sqSQ', NULL, 'DWAD', 'dwadwa', '99811042', '0.000', 1, 'dwadwadw@dwad.com', 1, 'RkJCWLIjxJPziHMmyx-GTHgf9Q8RBndT', '$2y$13$KONg0F9VYiie8LDelIsuZeSo6Hd4AuB/1Xq2GflzO7Eqw4Rdl3wOK', '', 'en-US', '0', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-02 16:27:38'),
 (3, 1, 1, 'Khalid', 'LNOOgViwpx86Op575JBj37xHjINuJnF9.png', NULL, 'Free Stuff', NULL, 'dwad', 'dwad', '99811042', '0.000', 1, 'dwda@gust.edom', 0, 'rsI8d0rOnrvuOZt0W4j3eAbP6Gge0Yo3', '$2y$13$xUE.p13lHQnJSjsN6rifZuhbtacDdYBxgVO/GdY9xxZA8pEchL2kC', '', 'en-US', '0', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-02 18:43:14'),
 (4, 1, 1, 'Khalid', NULL, NULL, 'dwa', NULL, 'Khalid', 'M', '99811042', '0.000', 0, 'm6awa3@gmail.com', 0, 'nILkFnFe18sI5O1ZsXVRoMTXIOz_sIIi', '$2y$13$0Eg4BM0F0bFi8/ePjoSrd.W2dVPu5KLY.3o.iEUKzIKgheM4yNq0O', NULL, 'en-US', '0', '2015-05-05 22:07:17', '2015-05-05 22:07:17', '2015-05-03 20:00:29'),
@@ -625,7 +625,7 @@ CREATE TABLE IF NOT EXISTS `job` (
 --
 
 INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `filter_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_broadcasted`, `job_updated_datetime`, `job_created_datetime`) VALUES
-(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 10, 0, 1, '1.500', 1, '2015-05-26 09:35:52', '2015-05-21 08:26:37'),
+(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 10, 0, 1, '1.500', 1, '2015-05-26 12:40:17', '2015-05-21 08:26:37'),
 (13, 1, 1, 7, 'dwa', 0, NULL, 'dwa', '', 'dwa', '', '', '', 10, 0, 0, '0.750', 0, '2015-05-25 13:11:48', '2015-05-21 11:31:47'),
 (14, 2, 1, 6, 'Success Centre Attendant', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 35, 32, 3, '1.500', 0, '2015-05-26 08:59:45', '2015-05-21 08:26:37'),
 (15, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 42, 5, 3, '1.500', 0, '2015-05-21 11:26:20', '2015-05-21 08:26:37');
@@ -663,7 +663,7 @@ CREATE TABLE IF NOT EXISTS `job_process_queue` (
   `queue_id` int(11) unsigned NOT NULL,
   `job_id` int(11) unsigned NOT NULL,
   `queue_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -704,16 +704,22 @@ CREATE TABLE IF NOT EXISTS `log` (
   `log_time` double DEFAULT NULL,
   `prefix` text COLLATE utf8_unicode_ci,
   `message` text COLLATE utf8_unicode_ci
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `log`
 --
 
 INSERT INTO `log` (`id`, `level`, `category`, `log_time`, `prefix`, `message`) VALUES
-(9, 4, 'common\\models\\JobProcessQueue::processNextJob', 1432622152.5448, '[-][-][-]', 'Broadcasting Job #11 [Project Tester] which was queued 3 seconds ago'),
-(10, 4, 'backend\\models\\Job::broadcast', 1432622152.5569, '[-][-][-]', 'Broadcasted Job #11 to 1 students'),
-(11, 4, 'application', 1432622152.5161, '[-][-][-]', '$_SERVER = [\n    ''TERM_PROGRAM'' => ''Apple_Terminal''\n    ''SHELL'' => ''/bin/bash''\n    ''TERM'' => ''xterm-256color''\n    ''TMPDIR'' => ''/var/folders/tt/8gpgfrnx1cq4ht5d96w7zfqr0000gn/T/''\n    ''Apple_PubSub_Socket_Render'' => ''/private/tmp/com.apple.launchd.g9LAZtcooT/Render''\n    ''TERM_PROGRAM_VERSION'' => ''343.7''\n    ''OLDPWD'' => ''/Users/BAWES''\n    ''TERM_SESSION_ID'' => ''D8122BAB-9958-404D-AA90-5F6DCD89C03F''\n    ''USER'' => ''BAWES''\n    ''SSH_AUTH_SOCK'' => ''/private/tmp/com.apple.launchd.GWpwy18Zsm/Listeners''\n    ''__CF_USER_TEXT_ENCODING'' => ''0x1F5:0x0:0x0''\n    ''PATH'' => ''/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin''\n    ''PWD'' => ''/Users/BAWES/Sites/studenthub''\n    ''XPC_FLAGS'' => ''0x0''\n    ''XPC_SERVICE_NAME'' => ''0''\n    ''SHLVL'' => ''1''\n    ''HOME'' => ''/Users/BAWES''\n    ''LOGNAME'' => ''BAWES''\n    ''LC_CTYPE'' => ''UTF-8''\n    ''_'' => ''./yii''\n    ''PHP_SELF'' => ''./yii''\n    ''SCRIPT_NAME'' => ''./yii''\n    ''SCRIPT_FILENAME'' => ''./yii''\n    ''PATH_TRANSLATED'' => ''./yii''\n    ''DOCUMENT_ROOT'' => ''''\n    ''REQUEST_TIME_FLOAT'' => 1432622152.5148\n    ''REQUEST_TIME'' => 1432622152\n    ''argv'' => [\n        0 => ''./yii''\n        1 => ''cron/minute''\n    ]\n    ''argc'' => 2\n]');
+(19, 4, 'common\\models\\JobProcessQueue::processNextJob', 1432632703.6288, '[-][-][-]', 'Broadcasting Job #11 [Project Tester] which was queued 4 seconds ago'),
+(20, 4, 'application', 1432632703.6001, '[-][-][-]', '$_SERVER = [\n    ''TERM_PROGRAM'' => ''Apple_Terminal''\n    ''SHELL'' => ''/bin/bash''\n    ''TERM'' => ''xterm-256color''\n    ''TMPDIR'' => ''/var/folders/tt/8gpgfrnx1cq4ht5d96w7zfqr0000gn/T/''\n    ''Apple_PubSub_Socket_Render'' => ''/private/tmp/com.apple.launchd.g9LAZtcooT/Render''\n    ''TERM_PROGRAM_VERSION'' => ''343.7''\n    ''OLDPWD'' => ''/Users/BAWES''\n    ''TERM_SESSION_ID'' => ''D8122BAB-9958-404D-AA90-5F6DCD89C03F''\n    ''USER'' => ''BAWES''\n    ''SSH_AUTH_SOCK'' => ''/private/tmp/com.apple.launchd.GWpwy18Zsm/Listeners''\n    ''__CF_USER_TEXT_ENCODING'' => ''0x1F5:0x0:0x0''\n    ''PATH'' => ''/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin''\n    ''PWD'' => ''/Users/BAWES/Sites/studenthub''\n    ''XPC_FLAGS'' => ''0x0''\n    ''XPC_SERVICE_NAME'' => ''0''\n    ''SHLVL'' => ''1''\n    ''HOME'' => ''/Users/BAWES''\n    ''LOGNAME'' => ''BAWES''\n    ''LC_CTYPE'' => ''UTF-8''\n    ''_'' => ''./yii''\n    ''PHP_SELF'' => ''./yii''\n    ''SCRIPT_NAME'' => ''./yii''\n    ''SCRIPT_FILENAME'' => ''./yii''\n    ''PATH_TRANSLATED'' => ''./yii''\n    ''DOCUMENT_ROOT'' => ''''\n    ''REQUEST_TIME_FLOAT'' => 1432632703.5989\n    ''REQUEST_TIME'' => 1432632703\n    ''argv'' => [\n        0 => ''./yii''\n        1 => ''cron/minute''\n    ]\n    ''argc'' => 2\n]'),
+(21, 4, 'common\\models\\JobProcessQueue::processNextJob', 1432632785.8657, '[-][-][-]', 'Broadcasting Job #11 [Project Tester] which was queued a minute ago'),
+(22, 4, 'application', 1432632785.8378, '[-][-][-]', '$_SERVER = [\n    ''TERM_PROGRAM'' => ''Apple_Terminal''\n    ''SHELL'' => ''/bin/bash''\n    ''TERM'' => ''xterm-256color''\n    ''TMPDIR'' => ''/var/folders/tt/8gpgfrnx1cq4ht5d96w7zfqr0000gn/T/''\n    ''Apple_PubSub_Socket_Render'' => ''/private/tmp/com.apple.launchd.g9LAZtcooT/Render''\n    ''TERM_PROGRAM_VERSION'' => ''343.7''\n    ''OLDPWD'' => ''/Users/BAWES''\n    ''TERM_SESSION_ID'' => ''D8122BAB-9958-404D-AA90-5F6DCD89C03F''\n    ''USER'' => ''BAWES''\n    ''SSH_AUTH_SOCK'' => ''/private/tmp/com.apple.launchd.GWpwy18Zsm/Listeners''\n    ''__CF_USER_TEXT_ENCODING'' => ''0x1F5:0x0:0x0''\n    ''PATH'' => ''/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin''\n    ''PWD'' => ''/Users/BAWES/Sites/studenthub''\n    ''XPC_FLAGS'' => ''0x0''\n    ''XPC_SERVICE_NAME'' => ''0''\n    ''SHLVL'' => ''1''\n    ''HOME'' => ''/Users/BAWES''\n    ''LOGNAME'' => ''BAWES''\n    ''LC_CTYPE'' => ''UTF-8''\n    ''_'' => ''./yii''\n    ''PHP_SELF'' => ''./yii''\n    ''SCRIPT_NAME'' => ''./yii''\n    ''SCRIPT_FILENAME'' => ''./yii''\n    ''PATH_TRANSLATED'' => ''./yii''\n    ''DOCUMENT_ROOT'' => ''''\n    ''REQUEST_TIME_FLOAT'' => 1432632785.8365\n    ''REQUEST_TIME'' => 1432632785\n    ''argv'' => [\n        0 => ''./yii''\n        1 => ''cron/minute''\n    ]\n    ''argc'' => 2\n]'),
+(23, 4, 'common\\models\\JobProcessQueue::processNextJob', 1432632842.8768, '[-][-][-]', 'Broadcasting Job #11 [Project Tester] which was queued 2 minutes ago'),
+(24, 4, 'application', 1432632842.8504, '[-][-][-]', '$_SERVER = [\n    ''TERM_PROGRAM'' => ''Apple_Terminal''\n    ''SHELL'' => ''/bin/bash''\n    ''TERM'' => ''xterm-256color''\n    ''TMPDIR'' => ''/var/folders/tt/8gpgfrnx1cq4ht5d96w7zfqr0000gn/T/''\n    ''Apple_PubSub_Socket_Render'' => ''/private/tmp/com.apple.launchd.g9LAZtcooT/Render''\n    ''TERM_PROGRAM_VERSION'' => ''343.7''\n    ''OLDPWD'' => ''/Users/BAWES''\n    ''TERM_SESSION_ID'' => ''D8122BAB-9958-404D-AA90-5F6DCD89C03F''\n    ''USER'' => ''BAWES''\n    ''SSH_AUTH_SOCK'' => ''/private/tmp/com.apple.launchd.GWpwy18Zsm/Listeners''\n    ''__CF_USER_TEXT_ENCODING'' => ''0x1F5:0x0:0x0''\n    ''PATH'' => ''/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin''\n    ''PWD'' => ''/Users/BAWES/Sites/studenthub''\n    ''XPC_FLAGS'' => ''0x0''\n    ''XPC_SERVICE_NAME'' => ''0''\n    ''SHLVL'' => ''1''\n    ''HOME'' => ''/Users/BAWES''\n    ''LOGNAME'' => ''BAWES''\n    ''LC_CTYPE'' => ''UTF-8''\n    ''_'' => ''./yii''\n    ''PHP_SELF'' => ''./yii''\n    ''SCRIPT_NAME'' => ''./yii''\n    ''SCRIPT_FILENAME'' => ''./yii''\n    ''PATH_TRANSLATED'' => ''./yii''\n    ''DOCUMENT_ROOT'' => ''''\n    ''REQUEST_TIME_FLOAT'' => 1432632842.8491\n    ''REQUEST_TIME'' => 1432632842\n    ''argv'' => [\n        0 => ''./yii''\n        1 => ''cron/minute''\n    ]\n    ''argc'' => 2\n]'),
+(25, 4, 'common\\models\\JobProcessQueue::processNextJob', 1432633217.3037, '[-][-][-]', 'Broadcasting Job #11 [Project Tester] which was queued 8 minutes ago'),
+(26, 4, 'backend\\models\\Job::broadcast', 1432633217.3187, '[-][-][-]', 'Broadcasted Job #11 to 1 students'),
+(27, 4, 'application', 1432633217.2752, '[-][-][-]', '$_SERVER = [\n    ''TERM_PROGRAM'' => ''Apple_Terminal''\n    ''SHELL'' => ''/bin/bash''\n    ''TERM'' => ''xterm-256color''\n    ''TMPDIR'' => ''/var/folders/tt/8gpgfrnx1cq4ht5d96w7zfqr0000gn/T/''\n    ''Apple_PubSub_Socket_Render'' => ''/private/tmp/com.apple.launchd.g9LAZtcooT/Render''\n    ''TERM_PROGRAM_VERSION'' => ''343.7''\n    ''OLDPWD'' => ''/Users/BAWES''\n    ''TERM_SESSION_ID'' => ''D8122BAB-9958-404D-AA90-5F6DCD89C03F''\n    ''USER'' => ''BAWES''\n    ''SSH_AUTH_SOCK'' => ''/private/tmp/com.apple.launchd.GWpwy18Zsm/Listeners''\n    ''__CF_USER_TEXT_ENCODING'' => ''0x1F5:0x0:0x0''\n    ''PATH'' => ''/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin''\n    ''PWD'' => ''/Users/BAWES/Sites/studenthub''\n    ''XPC_FLAGS'' => ''0x0''\n    ''XPC_SERVICE_NAME'' => ''0''\n    ''SHLVL'' => ''1''\n    ''HOME'' => ''/Users/BAWES''\n    ''LOGNAME'' => ''BAWES''\n    ''LC_CTYPE'' => ''UTF-8''\n    ''_'' => ''./yii''\n    ''PHP_SELF'' => ''./yii''\n    ''SCRIPT_NAME'' => ''./yii''\n    ''SCRIPT_FILENAME'' => ''./yii''\n    ''PATH_TRANSLATED'' => ''./yii''\n    ''DOCUMENT_ROOT'' => ''''\n    ''REQUEST_TIME_FLOAT'' => 1432633217.2738\n    ''REQUEST_TIME'' => 1432633217\n    ''argv'' => [\n        0 => ''./yii''\n        1 => ''cron/minute''\n    ]\n    ''argc'' => 2\n]');
 
 -- --------------------------------------------------------
 
@@ -2210,8 +2216,15 @@ CREATE TABLE IF NOT EXISTS `notification_student` (
   `job_id` int(11) unsigned NOT NULL,
   `notification_sent` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'False (0), True (1)',
   `notification_viewed` tinyint(4) NOT NULL,
-  `notification_datetime` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `notification_datetime` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `notification_student`
+--
+
+INSERT INTO `notification_student` (`notification_id`, `student_id`, `job_id`, `notification_sent`, `notification_viewed`, `notification_datetime`) VALUES
+(1, 14, 11, 0, 0, '2015-05-26 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -2226,14 +2239,16 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `payment_amount` decimal(10,3) NOT NULL,
   `payment_note` text COLLATE utf8_unicode_ci,
   `payment_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `payment`
 --
 
 INSERT INTO `payment` (`payment_id`, `employer_id`, `payment_type_id`, `payment_amount`, `payment_note`, `payment_datetime`) VALUES
-(6, 1, 1, '35.750', 'Gift from Admin: Khalid', '2015-05-21 08:16:00');
+(6, 1, 1, '35.750', 'Gift from Admin: Khalid', '2015-05-21 08:16:00'),
+(7, 1, 1, '5.000', 'Gift from Admin: Khalid', '2015-05-26 10:03:06'),
+(8, 1, 1, '3.000', 'Gift from Admin: Khalid', '2015-05-26 10:04:08');
 
 -- --------------------------------------------------------
 
@@ -2345,7 +2360,14 @@ CREATE TABLE IF NOT EXISTS `student_job_qualification` (
   `student_id` int(11) unsigned NOT NULL,
   `job_id` int(11) unsigned NOT NULL,
   `qualification_datetime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `student_job_qualification`
+--
+
+INSERT INTO `student_job_qualification` (`qualification_id`, `student_id`, `job_id`, `qualification_datetime`) VALUES
+(2, 14, 11, '2015-05-26 12:40:17');
 
 -- --------------------------------------------------------
 
@@ -2686,7 +2708,7 @@ ALTER TABLE `jobtype`
 -- AUTO_INCREMENT for table `job_process_queue`
 --
 ALTER TABLE `job_process_queue`
-  MODIFY `queue_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `queue_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `language`
 --
@@ -2696,7 +2718,7 @@ ALTER TABLE `language`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `major`
 --
@@ -2716,12 +2738,12 @@ ALTER TABLE `notification_employer`
 -- AUTO_INCREMENT for table `notification_student`
 --
 ALTER TABLE `notification_student`
-  MODIFY `notification_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `notification_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payment_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `payment_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `payment_type`
 --
@@ -2741,7 +2763,7 @@ ALTER TABLE `student_job_application`
 -- AUTO_INCREMENT for table `student_job_qualification`
 --
 ALTER TABLE `student_job_qualification`
-  MODIFY `qualification_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `qualification_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `transaction`
 --
