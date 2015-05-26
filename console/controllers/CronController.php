@@ -22,5 +22,20 @@ class CronController extends \yii\console\Controller {
         
         return self::EXIT_CODE_NORMAL;
     }
+    
+    
+    /**
+     * Method called by cron once a day to send email to all Students and Employers
+     */
+    public function actionDailyEmail(){
+        
+    }
+    
+    /**
+     * Method called by cron once a week to send email to all Students and Employers
+     */
+    public function actionWeeklyEmail(){
+        
+    }
 
 }
