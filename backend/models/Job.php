@@ -58,16 +58,7 @@ class Job extends \common\models\Job {
 
         /**
          * Find and filter students who qualify, for each student that qualifies - create notification and qualification record
-         */
-        $qualification = new StudentJobQualification();
-        $notification = new NotificationStudent();
-        
-        //Set default values
-        //$qualification->qualification_datetime = new Expression("NOW()");
-        //$notification->notification_datetime = new Expression("NOW()");
-        $notification->notification_sent = NotificationStudent::SENT_FALSE;
-        $notification->notification_viewed = NotificationStudent::VIEWED_FALSE;
-        
+         */        
         foreach($this->getQualifiedStudents()->batch() as $students){
             $batchCount = 0;
             $qualifyStudents = [];
