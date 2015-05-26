@@ -100,6 +100,11 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public static function tableName() {
         return 'student';
     }
+    
+    public static function find()
+    {
+        return new StudentQuery(get_called_class());
+    }
 
     /**
      * @inheritdoc
