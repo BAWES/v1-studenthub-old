@@ -13,12 +13,10 @@ use common\models\JobProcessQueue;
 class CronController extends \yii\console\Controller {
     
     /**
-     * Process the next job in Queue
+     * Method called by cron every minute
      */
-    public function actionProcessNextJob() {
-        /**
-         * Find the oldest job in the queue
-         */
+    public function actionMinute() {
+        //Process next job in queue
         JobProcessQueue::processNextJob();
         
         
