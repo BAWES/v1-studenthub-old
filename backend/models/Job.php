@@ -29,13 +29,16 @@ class Job extends \common\models\Job {
                 $queue = new JobProcessQueue();
                 $queue->job_id = $this->job_id;
                 if(!$queue->save()){
-                    Yii::error(print_r($queue->errors, true));
+                    Yii::error(print_r($queue->errors, true), __METHOD__);
                     print_r($queue->errors);
                     exit();
+                }else{
+                    Yii::info("[Job #".$this->job_id."] has been added to broadcasting queue", __METHOD__);
                 }
             }
             
             $this->save(false);
+            Yii::info("[Job #".$this->job_id."] has been approved by ".Yii::$app->user->identity->admin_name, __METHOD__);
             
             return true;
         }

@@ -86,6 +86,8 @@ class VerifyIdForm extends Model
         $student = $this->_student;
         $student->student_id_number = $this->idNumber;
         $student->student_id_verification = Student::ID_VERIFIED;
+        
+        Yii::info("[Student #".$student->student_id."] had his identity verified by ".Yii::$app->user->identity->admin_name, __METHOD__);
 
         return $student->save();
     }

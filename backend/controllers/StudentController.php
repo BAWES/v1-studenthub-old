@@ -59,6 +59,8 @@ class StudentController extends Controller
             $student->student_support_field = "Removed by ".Yii::$app->user->identity->admin_name
                                                     ." (".Yii::$app->user->id.")";
             $student->save(false);
+            
+            Yii::info("[Student #".$student->student_id."] has been removed from ID verification queue by ".Yii::$app->user->identity->admin_name, __METHOD__);
         }
         
         $dataProvider = new ActiveDataProvider([
@@ -86,6 +88,8 @@ class StudentController extends Controller
             $student->student_support_field = "Removed by ".Yii::$app->user->identity->admin_name
                                                     ." (".Yii::$app->user->id.")";
             $student->save(false);
+            
+            Yii::info("[Student #".$student->student_id."] has been removed from Email verification queue by ".Yii::$app->user->identity->admin_name, __METHOD__);
         }
         
         $dataProvider = new ActiveDataProvider([
@@ -112,6 +116,8 @@ class StudentController extends Controller
             $student = $this->findModel((int) $restore);
             $student->student_support_field = "";
             $student->save(false);
+            
+            Yii::info("[Student #".$student->student_id."] has been restored to verification queue by ".Yii::$app->user->identity->admin_name, __METHOD__);
         }
         
         $dataProvider = new ActiveDataProvider([
