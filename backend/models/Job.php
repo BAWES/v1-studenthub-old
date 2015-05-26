@@ -86,7 +86,7 @@ class Job extends \common\models\Job {
             }
             
             /**
-             * Insert the batch to DB if it has records
+             * Batch Insert to DB if records exist
              */
             if($batchCount > 0){
                 Yii::$app->db->createCommand()->batchInsert(StudentJobQualification::tableName(), 
