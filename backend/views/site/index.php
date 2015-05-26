@@ -17,6 +17,9 @@ $this->title = 'Dashboard';
         <?php
         $logDataProvider = new ActiveDataProvider([
                 'query' => Log::find()->where("category != 'application'")->orderBy("log_time DESC"),
+                'pagination' => [
+                    'pageSize' => 10,
+                ]
             ]);
         ?>
         <?= GridView::widget([
