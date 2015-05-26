@@ -1,15 +1,46 @@
 <?php
+use yii\grid\GridView;
+use yii\data\ActiveDataProvider;
+use common\models\Log;
+
 /* @var $this yii\web\View */
 
 $this->title = 'Dashboard';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
-        <h1>StudentHub Dashboard</h1>
+    <div class="row">
+        <div>
+        <h1>Recent Activity</h1>
 
-        <p class="lead">All the important details summarized here</p>
+        <?php
+        $logDataProvider = new ActiveDataProvider([
+                'query' => Log::find()->where("category != 'application'")->orderBy("log_time DESC"),
+            ]);
+        ?>
+        <?= GridView::widget([
+            'dataProvider' => $logDataProvider,
+            'columns' => [
+                [
+                    'attribute' => 'Time',
+                    'format' => 'raw',
+                    'value' => function ($model) {                      
+                            return Yii::$app->formatter->asDatetime(explode('.', $model->log_time)[0]);
+                    },
+                ],
+                [
+                    'attribute' => 'Message',
+                    'format' => 'raw',
+                    'value' => function ($model) {                      
+                            return $model->message;
+                    },
+                ],
 
+                ['class' => 'yii\grid\ActionColumn', 'controller' => 'transaction', 'template' => '{view}'],
+            ],
+        ]); 
+        ?>
+        </div>
     </div>
 
     <div class="row">
