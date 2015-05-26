@@ -14,6 +14,15 @@ return [
              * https://studenthub.s3.amazonaws.com/folderName/fileName.jpg
              */
         ],
+        'log' => [
+            'targets' => [
+                [
+                    'class' => 'yii\log\DbTarget',
+                    'levels' => ['info', 'error', 'warning'],
+                    'categories' => ['backend\*', 'employer\*', 'frontend\*', 'common\*'],
+                ],
+            ],
+        ],
         'reCaptcha' => [
             'name' => 'reCaptcha',
             'class' => 'himiklab\yii2\recaptcha\ReCaptcha',

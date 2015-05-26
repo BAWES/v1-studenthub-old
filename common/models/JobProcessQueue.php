@@ -80,7 +80,7 @@ class JobProcessQueue extends \yii\db\ActiveRecord
              */
             $queuedJob->delete();
             
-        }else Yii::info("There are no jobs in the Queue", __METHOD__);
+        }
     }
 
     /**
