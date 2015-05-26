@@ -74,7 +74,9 @@ class Payment extends \yii\db\ActiveRecord
         
         if($insert){
             //Add the credit to employer account
-            $this->employer->updateCounters(['employer_credit' => $this->payment_amount]); 
+            $this->employer->updateCounters(['employer_credit' => $this->payment_amount]);
+            Yii::info("[Employer #".$this->employer->employer_id
+                    ."] Payment of ".$this->payment_amount." KD made for ".$this->employer->employer_company_name, __METHOD__);
         }
     }
 

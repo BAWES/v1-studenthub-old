@@ -286,6 +286,8 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             if ($insert) {
                 //Set Email limit
                 $this->student_limit_email = new Expression('NOW()');
+                //Notify us of new student registration
+                Yii::info("New student signup - ".$this->student_firstname." ".$this->student_lastname, __METHOD__);
             }
 
             return true;

@@ -80,7 +80,10 @@ class Transaction extends \yii\db\ActiveRecord
             
             //Deduct the transaction price total from its Employer's Credit
             $employer = $job->employer;
-            $employer->updateCounters(['employer_credit' => $this->transaction_price_total * -1]); 
+            $employer->updateCounters(['employer_credit' => $this->transaction_price_total * -1]);
+            
+            Yii::info("[Employer #".$employer->employer_id
+                    ."] Transaction of ".$this->transaction_price_total." KD made by ".$this->employer->employer_company_name." for Job #".$this->job->job_id, __METHOD__);
             
         }
         
