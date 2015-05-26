@@ -2,6 +2,7 @@
 use yii\grid\GridView;
 use yii\data\ActiveDataProvider;
 use common\models\Log;
+use yii\log\Logger;
 
 /* @var $this yii\web\View */
 
@@ -24,15 +25,32 @@ $this->title = 'Dashboard';
                 [
                     'attribute' => 'Time',
                     'format' => 'raw',
-                    'value' => function ($model) {                      
+                    'value' => function ($model) {
                             return Yii::$app->formatter->asDatetime(explode('.', $model->log_time)[0]);
                     },
                 ],
                 [
                     'attribute' => 'Message',
                     'format' => 'raw',
-                    'value' => function ($model) {                      
+                    'value' => function ($model) {
                             return $model->message;
+                    },
+                ],
+                [
+                    'attribute' => 'Level',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                            switch($model->level){
+                                case Logger::LEVEL_INFO:
+                                    return "<div style='text-align:center; background:green; color:white; font-weight:bold;'>Info</div>";
+                                    break;
+                                case Logger::LEVEL_ERROR:
+                                    return "<div style='text-align:center; background:red; font-weight:bold;'>Error</span></div>";
+                                    break;
+                                case Logger::LEVEL_WARNING:
+                                    return "<div style='text-align:center; background:yellow; font-weight:bold;'>Warning</div>";
+                                    break;
+                            }
                     },
                 ],
 

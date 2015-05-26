@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\log\Logger;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\LogSearch */
@@ -18,6 +20,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
+            
+            [
+                    'attribute' => 'Level',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                            switch($model->level){
+                                case Logger::LEVEL_INFO:
+                                    return "<div style='text-align:center; background:green; color:white; font-weight:bold;'>Info</div>";
+                                    break;
+                                case Logger::LEVEL_ERROR:
+                                    return "<div style='text-align:center; background:red; font-weight:bold;'>Error</span></div>";
+                                    break;
+                                case Logger::LEVEL_WARNING:
+                                    return "<div style='text-align:center; background:yellow; font-weight:bold;'>Warning</div>";
+                                    break;
+                            }
+                    },
+            ],
             'id',
             'level',
             'category',
