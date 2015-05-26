@@ -103,10 +103,10 @@ class Job extends \common\models\Job {
          * Set job_broadcasted to BROADCASTED_YES when the broadcast is complete
          */
         if($studentCount > 0){
-            Yii::info("Broadcasted Job #".$this->job_id." to $studentCount students", __METHOD__);
+            Yii::info("[Broadcast] Job #".$this->job_id." has been broadcasted to $studentCount students", __METHOD__);
             $this->job_broadcasted = self::BROADCASTED_YES;
             $this->save(false);
-        }else Yii::warning("Job #".$this->job_id." has no qualified students", __METHOD__);
+        }else Yii::warning("[Broadcast] Job #".$this->job_id." has no qualified students", __METHOD__);
             
 
         return $studentCount;
