@@ -199,7 +199,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             //Degree existence validation
             ['degree_id', 'exist',
                 'targetClass' => '\common\models\Degree',
-                'targetAttribute' => 'country_id',
+                'targetAttribute' => 'degree_id',
                 'message' => \Yii::t('frontend','This degree does not exist.')
             ],
             
