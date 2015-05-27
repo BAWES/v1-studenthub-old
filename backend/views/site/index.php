@@ -95,5 +95,41 @@ $this->title = 'Dashboard';
         </div>
 
     </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Job Broadcast Queue</h3>
+            <?php
+            $queueDataProvider = new ActiveDataProvider([
+                    'query' => \common\models\JobProcessQueue::find()->orderBy("queue_datetime DESC"),
+                    'pagination' => [
+                        'pageSize' => 5,
+                    ]
+                ]);
+            ?>
+            <?= GridView::widget([
+                'dataProvider' => $queueDataProvider,
+                'columns' => [
+                    'job.job_title',
+                    [
+                        'attribute' => 'Time Queued',
+                        'format' => 'raw',
+                        'value' => function ($model) {
+                                return Yii::$app->formatter->asDatetime($model->queue_datetime);
+                        },
+                    ],
+                    [
+                        'class' => 'yii\grid\ActionColumn', 
+                        'controller' => 'job', 
+                        'template' => '{view}',
+                        'urlCreator' => function($action, $model, $key, $index){
+                            return yii\helpers\Url::to(["job/view", "id" => $model->job_id]);
+                        }
+                    ],
+                ],
+            ]); 
+            ?>
+        </div>
+    </div>
 
 </div>
