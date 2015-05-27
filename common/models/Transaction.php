@@ -83,7 +83,7 @@ class Transaction extends \yii\db\ActiveRecord
             $employer->updateCounters(['employer_credit' => $this->transaction_price_total * -1]);
             
             Yii::info("[Employer #".$employer->employer_id
-                    ."] Transaction of ".$this->transaction_price_total." KD made by ".$this->employer->employer_company_name." for Job #".$this->job->job_id, __METHOD__);
+                    ."] Transaction of ".$this->transaction_price_total." KD made by ".$employer->employer_company_name." for Job #".$this->job->job_id, __METHOD__);
             
         }
         
