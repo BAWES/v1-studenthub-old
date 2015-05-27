@@ -206,6 +206,9 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                     ];
                 }
                 
+                //Link to Employer Portal
+                $menuItems[] = ['label' => Yii::t('frontend','Employer Portal'), 'url' => Yii::$app->urlManagerEmployer->createUrl("site/index")];
+                
                 echo Navigation::widget(['items' => $menuItems]);
                 ?>
             </div><!--.menu-layer-->
