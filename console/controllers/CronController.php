@@ -19,7 +19,7 @@ class CronController extends \yii\console\Controller {
         $this->stdout("Starting Qualify Logic \n", Console::FG_RED, Console::BOLD);
         $student = \common\models\Student::findOne(14);
         
-        $qualifiedJobs = $student->filteredQualifiedJobs;
+        $qualifiedJobs = $student->manuallyQualifiedJobs;
     }
     
     /**
