@@ -4,7 +4,7 @@
 /**
  *   Overall pages fix + fonts
  */
-@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+@import url(https://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 body,.selectize-dropdown, .selectize-input, .selectize-input input{font-family: 'Droid Arabic Kufi', serif !important;}
 
 /*warning dialog close button fix*/
