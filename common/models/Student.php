@@ -410,13 +410,31 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     }
     
     /**
-     * Get ACTIVE jobs that this student qualifies for
-     * ONLY USE THIS WHEN MANUAL WORK IS REQUIRED FOR THIS EXACT STUDENT
-     * OTHERWISE GET FROM THE RELATION $this->getStudentJobQualifications()
-     * @return array an array of Job ActiveRecords that student qualifies for
+     * Method that returns true if this student is active 
+     * which is determined by email and id verification and ban status
+     * @return boolean true if active, false inactive
      */
-    public function getManuallyQualifiedJobs(){
-        $qualifiedJobs = [];
+    public function isActive() {
+        if($this->student_id_verification == self::ID_VERIFIED &&
+           $this->student_email_verification == self::EMAIL_VERIFIED &&
+           $this->student_banned == self::BAN_STUDENT_NOT_BANNED){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Links this student to all active jobs he qualifies for
+     * Deletes all existing notifications and qualifications belonging to this student
+     * This is to be called as soon as student verifies his email
+     */
+    public function linkToActiveQualifiedJobs(){
+        /**
+         * Delete all existing notifications and qualifications for this student
+         */
+        StudentJobQualification::deleteAll(['student_id' => $this->student_id]);
+        NotificationStudent::deleteAll(['student_id' => $this->student_id]);
+        
         $allActiveJobs = \common\models\Job::find()
                 ->with(['filter', 'filter.countries', 'filter.languages', 'filter.universities', 'filter.majors'])
                 ->active()
@@ -426,9 +444,8 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         $studentLanguages = $this->languages;
         $studentMajors = $this->majors;
         
-        foreach($allActiveJobs as $job){
-            echo "Processing #".$job->job_id." ".$job->job_title."\n";
-            
+        $numJobsQualified = 0;
+        foreach($allActiveJobs as $job){            
             $studentQualifies = true;
             
             $filter = $job->filter;
@@ -462,33 +479,89 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     }
                 }
                 
-                //check transportation filter_transportation
+                //Check Transportation filter_transportation
                 if($filter->filter_transportation){
                     if($this->student_transportation != $filter->filter_transportation){
                         $studentQualifies = false;
                     }
                 }
                 
-                //check nationality
+                //Check Nationality filter
+                if($filter->countries){
+                    //If student doesn't belong to the requested filter, he does not qualify
+                    $studentQualifies = false;
+                    foreach($filter->countries as $country){
+                        if($this->country_id == $country->country_id){
+                            $studentQualifies = true;
+                        }
+                    }
+                }
                 
-                //check university
+                //Check University Filter
+                if($filter->universities){
+                    //If student doesn't belong to the requested filter, he does not qualify
+                    $studentQualifies = false;
+                    foreach($filter->universities as $university){
+                        if($this->university_id == $university->university_id){
+                            $studentQualifies = true;
+                        }
+                    }
+                }
                 
-                //check language
+                //Check Language Filter
+                if($filter->languages){
+                    //If student doesn't belong to the requested filter, he does not qualify
+                    $studentQualifies = false;
+                    foreach($filter->languages as $filterLanguage){
+                        foreach($studentLanguages as $studentLanguage){
+                            if($studentLanguage->language_id == $filterLanguage->language_id){
+                                $studentQualifies = true;
+                            }
+                        }
+                    }
+                }
                 
-                //check major
-                
-                
+                //Check Major Filter
+                if($filter->majors){
+                    //If student doesn't belong to the requested filter, he does not qualify
+                    $studentQualifies = false;
+                    foreach($filter->majors as $filterMajor){
+                        foreach($studentMajors as $studentMajor){
+                            if($studentMajor->major_id == $filterMajor->major_id){
+                                $studentQualifies = true;
+                            }
+                        }
+                    }
+                }
                 
             }
             
+            /**
+             * If Student Qualifies for this job, link him and add notification
+             */
             if($studentQualifies){
-                echo "Student qualifies \n";
-                $qualifiedJobs[] = $job;
-            }else echo "Student does not qualify \n";
-            
+                $numJobsQualified++;
+                
+                $qualification = new \common\models\StudentJobQualification();
+                $qualification->job_id = $job->job_id;
+                $qualification->student_id = $this->student_id;
+                if(!$qualification->save()){
+                    Yii::error("Error saving qualification -- ".print_r($qualification->errors, true), __METHOD__);
+                }
+                
+                $notification = new \common\models\NotificationStudent();
+                $notification->job_id = $job->job_id;
+                $notification->student_id = $this->student_id;
+                $notification->notification_sent = \common\models\NotificationStudent::SENT_FALSE;
+                $notification->notification_viewed = \common\models\NotificationStudent::VIEWED_FALSE;
+
+                if(!$notification->save()){
+                    Yii::error("Error saving notification -- ".print_r($notification->errors, true), __METHOD__);
+                }
+            }
         }
         
-        return $qualifiedJobs;
+        Yii::info("[Student #".$this->student_id."] ".$this->student_firstname." linked to $numJobsQualified active jobs which they qualify for", __METHOD__);
     }
     
 
