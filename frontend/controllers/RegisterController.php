@@ -50,6 +50,31 @@ class RegisterController extends \yii\web\Controller {
             ],
         ];
     }
+    
+    
+    /**
+     * Get the full major list for AJAX selection based on search input
+     * @param type $q the search input
+     */
+    public function actionMajorList($q){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $majorList = [];
+        
+        if(strlen($q) < 2) return $majorList;
+        
+        $majors = \common\models\Major::find()->where(['like', 'major_name_en', $q])
+                                              ->orWhere(['like', 'major_name_ar', $q])
+                                              ->all();
+               
+        foreach($majors as $major){
+            $majorList[] = [
+                'majorId' => $major->major_id,
+                'majorName' => Yii::$app->view->params['isArabic']?$major->major_name_ar:$major->major_name_en,
+            ];
+        }
+        
+        return $majorList;
+    }
 
     /**
      * Email verification by clicking on link in email which includes the code that will verify

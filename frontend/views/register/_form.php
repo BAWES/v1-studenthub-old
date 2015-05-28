@@ -5,6 +5,7 @@ use yii\helpers\Url;
 
 /* @var $university \common\models\University */
 
+$majorSearchUrl = Url::to(['register/major-list']);
 $js = "
 $('.radioer input:radio').change(function(){
     if($(this).val() == 'yes'){
@@ -23,9 +24,34 @@ $('.studentRegistration').on('click','.bootstrap-select',function(){
     }, 400);
 });
 
-$('.selectize-majors').selectize({
+var selectizeMajors = $('.selectize-majors').selectize({
+    valueField: 'majorId',
+    labelField: 'majorName',
+    searchField: 'majorName',
     selectOnTab: true,
+    create: false,
+    onItemAdd: function(value, item){
+        selectizeMajors[0].selectize.close();
+    },
+    load: function(query, callback) {
+        if (!query.length) return callback();
+        $.ajax({
+            url: '".$majorSearchUrl."',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                q: query,
+            },
+            error: function() {
+                callback();
+            },
+            success: function(res) {
+                callback(res.slice(0, 10));
+            }
+        });
+    }
 });
+
 $('.selectize-text').selectize({
     delimiter: ',',
     persist: false,
@@ -37,6 +63,7 @@ $('.selectize-text').selectize({
         }
     }
 });
+
 
 //Refresh select pickers
 
@@ -199,16 +226,6 @@ Yii::$app->formatter->thousandSeparator = "";
     <?= Yii::t('register', "I'm majoring in") ?>
     <select multiple class="selectize-majors" name="majorsSelected[]" placeholder="<?= Yii::t('register', "Majors (type and select from list)") ?>">
         <option value=""><?= Yii::t('register', 'Select a major') ?></option>
-        <?php
-        $majorList = \common\models\Major::find()->all();
-        foreach ($majorList as $major) {
-            if($this->params['isArabic']){
-                echo "<option value='" . $major->major_id . "'>" . $major->major_name_ar . "</option>";
-            }else{
-                echo "<option value='" . $major->major_id . "'>" . $major->major_name_en . "</option>";
-            }
-        }
-        ?>
     </select>
 </div>
 
