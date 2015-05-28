@@ -16,10 +16,9 @@ class CronController extends \yii\console\Controller {
      * Used for testing only
      */
     public function actionIndex(){
-        $this->stdout("Starting Qualify Logic \n", Console::FG_RED, Console::BOLD);
-        $student = \common\models\Student::findOne(14);
+        $this->stdout("Test Function \n", Console::FG_RED, Console::BOLD);
         
-        $qualifiedJobs = $student->manuallyQualifiedJobs;
+        
     }
     
     /**
