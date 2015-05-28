@@ -86,18 +86,17 @@ class RegisterController extends \yii\web\Controller {
         //Code is his auth key, check if code is valid
         $student = Student::findOne(['student_auth_key'=>$code, 'student_id' => (int) $verify]);
         if($student){
-            //If not verified
             if($student->student_email_verification == Student::EMAIL_NOT_VERIFIED){
-                //Verify this students email
-                $student->student_email_verification = Student::EMAIL_VERIFIED;
-                $student->save(false);
+                /**
+                 * Verify this student email
+                 */
+                $student->verifyEmail();
                 
                 //Log him in (if his ID is verified)
                 if($student->student_id_verification == Student::ID_VERIFIED){
                     Yii::$app->user->login($student, 0);
                 }
             }
-            
             
             if($student->student_id_verification == Student::ID_VERIFIED){
                 return $this->render('verified', ['idVerified' => true]);
