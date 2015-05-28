@@ -432,17 +432,40 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             $filter = $job->filter;
             if($filter){
                 //Check GPA filter_gpa
-                if($this->student_gpa < $filter->filter_gpa){
-                    $studentQualifies = false;
+                if($filter->filter_gpa){
+                    if($this->student_gpa < $filter->filter_gpa){
+                        $studentQualifies = false;
+                    }
                 }
                 
-                //Check graduation year filter_graduation_year_start / filter_graduation_year_end
+                //Check Graduation year
+                if($filter->filter_graduation_year_start && $filter->filter_graduation_year_end){
+                    if($this->student_graduating_year < $filter->filter_graduation_year_start || 
+                            $this->student_graduating_year > $filter->filter_graduation_year_end){
+                        $studentQualifies = false;
+                    }
+                }
                 
-                //Check english level filter_english_level
+                //Check English level
+                if($filter->filter_english_level){
+                    if($this->student_english_level != $filter->filter_english_level){
+                        $studentQualifies = false;
+                    }
+                }
                 
-                //check degree degree_id
+                //Check Degree
+                if($filter->degree_id){
+                    if($this->degree_id != $filter->degree_id){
+                        $studentQualifies = false;
+                    }
+                }
                 
                 //check transportation filter_transportation
+                if($filter->filter_transportation){
+                    if($this->student_transportation != $filter->filter_transportation){
+                        $studentQualifies = false;
+                    }
+                }
                 
                 
                 
