@@ -14,6 +14,9 @@ use yii\helpers\ArrayHelper;
 $pricePerApplicant = \common\models\Note::findOne(["note_name" => "pricePerApplicant"])->note_value;
 $pricePerPremiumFilter = \common\models\Note::findOne(["note_name" => "pricePerPremiumFilter"])->note_value;
 
+$majorSearchUrl = Url::to(['job/major-list']);
+$countrySearchUrl = Url::to(['job/country-list']);
+
 
 $fieldTemplate = "{label}\n{beginWrapper}\n"
         . "<div class='inputer'>\n<div class='input-wrapper'>\n"
@@ -94,6 +97,62 @@ form.on("beforeValidateAttribute", function (event, attribute,messages,deferreds
 //Major type and select
 $(".selectize").selectize({
     selectOnTab: true,
+});
+
+var selectizeMajors = $(".selectize-majors").selectize({
+    valueField: "majorId",
+    labelField: "majorName",
+    searchField: "majorName",
+    selectOnTab: true,
+    create: false,
+    onItemAdd: function(value, item){
+        selectizeMajors[0].selectize.close();
+    },
+    load: function(query, callback) {
+        if (!query.length) return callback();
+        $.ajax({
+            url: "'.$majorSearchUrl.'",
+            type: "GET",
+            dataType: "json",
+            data: {
+                q: query,
+            },
+            error: function() {
+                callback();
+            },
+            success: function(res) {
+                callback(res.slice(0, 10));
+            }
+        });
+    }
+});
+
+var selectizeCountries = $(".selectize-countries").selectize({
+    valueField: "countryId",
+    labelField: "countryName",
+    searchField: "countryName",
+    selectOnTab: true,
+    create: false,
+    onItemAdd: function(value, item){
+        selectizeCountries[0].selectize.close();
+    },
+    load: function(query, callback) {
+        if (!query.length) return callback();
+        $.ajax({
+            url: "'.$countrySearchUrl.'",
+            type: "GET",
+            dataType: "json",
+            data: {
+                q: query,
+            },
+            error: function() {
+                callback();
+            },
+            success: function(res) {
+                callback(res.slice(0, 10));
+            }
+        });
+    }
 });
 
 //Handle Premium Filter Checkboxes
@@ -269,7 +328,7 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
     <div class="question" style="display: <?= $filter->majorFilter?"block":"none" ?>">
         <?= $form->field($filter, 'majorsSelected', ['template' => $selectTemplate])->listBox(
                 ArrayHelper::map(common\models\Major::find()->all(), "major_id", $this->params['isArabic'] ? "major_name_ar" : "major_name_en"), [
-            'class' => 'selectize',
+            'class' => 'selectize-majors',
             'placeholder' => Yii::t("employer", "Select as many as you'd like"),
             'multiple' => 'true',
         ])
@@ -313,7 +372,7 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
     <div class="question" style="display: <?= $filter->nationalityFilter?"block":"none" ?>">
         <?= $form->field($filter, 'nationalitiesSelected', ['template' => $selectTemplate])->listBox(
                 ArrayHelper::map(common\models\Country::find()->orderBy("country_nationality_name_en")->all(), "country_id", $this->params['isArabic'] ? "country_nationality_name_ar" : "country_nationality_name_en"), [
-            'class' => 'selectize',
+            'class' => 'selectize-countries',
             'placeholder' => Yii::t("employer", "Select as many as you'd like"),
             'multiple' => 'true',
         ])
