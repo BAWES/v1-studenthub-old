@@ -164,6 +164,23 @@ class Student extends \common\models\Student {
             }
         }
     }
+    
+    /**
+     * Verifies the student email
+     */
+    public function verifyEmail() {
+        //If not verified
+        if($this->student_email_verification == self::EMAIL_NOT_VERIFIED){
+            //Verify this students email
+            $this->student_email_verification = self::EMAIL_VERIFIED;
+            $this->save(false);
+
+            Yii::info("[Student #".$this->student_id."] ".$this->student_firstname." has verified their email", __METHOD__);
+
+            //Link the student to currently active jobs that they qualify for
+            $this->linkToActiveQualifiedJobs();
+        }
+    }
 
     /**
      * Sends an email requesting a user to verify his email address
