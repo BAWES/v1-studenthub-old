@@ -13,6 +13,16 @@ use common\models\JobProcessQueue;
 class CronController extends \yii\console\Controller {
     
     /**
+     * Used for testing only
+     */
+    public function actionIndex(){
+        $this->stdout("Starting Qualify Logic \n", Console::FG_RED, Console::BOLD);
+        $student = \common\models\Student::findOne(14);
+        
+        $qualifiedJobs = $student->qualifiedJobs;
+    }
+    
+    /**
      * Method called by cron every minute
      */
     public function actionMinute() {

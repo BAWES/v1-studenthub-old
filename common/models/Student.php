@@ -409,6 +409,67 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         }
     }
     
+    /**
+     * Get ACTIVE jobs that this student qualifies for
+     * @return array an array of Job ActiveRecords that student qualifies for
+     */
+    public function getQualifiedJobs(){
+        $qualifiedJobs = [];
+        $allActiveJobs = \common\models\Job::find()
+                ->with(['filter', 'filter.countries', 'filter.languages', 'filter.universities', 'filter.majors'])
+                ->active()
+                ->all();
+        
+        //Get current students' languages spoken and majors to compare with filter
+        $studentLanguages = $this->languages;
+        $studentMajors = $this->majors;
+        
+        foreach($allActiveJobs as $job){
+            echo "Processing #".$job->job_id." ".$job->job_title."\n";
+            
+            $studentQualifies = true;
+            
+            $filter = $job->filter;
+            if($filter){
+                //Check GPA filter_gpa
+                if($this->student_gpa < $filter->filter_gpa){
+                    $studentQualifies = false;
+                }
+                
+                //Check graduation year filter_graduation_year_start / filter_graduation_year_end
+                
+                //Check english level filter_english_level
+                
+                //check degree degree_id
+                
+                //check transportation filter_transportation
+                
+                
+                
+                /////the below need relation checking
+                
+                //check nationality 
+                
+                //check university
+                
+                //check language
+                
+                //check major
+                
+                
+                
+            }
+            
+            if($studentQualifies){
+                echo "Student qualifies \n";
+                $qualifiedJobs[] = $job;
+            }else echo "Student does not qualify \n";
+            
+        }
+        
+        return $qualifiedJobs;
+    }
+    
 
     /**
      * @return \yii\db\ActiveQuery
