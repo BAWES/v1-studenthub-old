@@ -411,9 +411,11 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     
     /**
      * Get ACTIVE jobs that this student qualifies for
+     * ONLY USE THIS WHEN MANUAL WORK IS REQUIRED FOR THIS EXACT STUDENT
+     * OTHERWISE GET FROM THE RELATION $this->getStudentJobQualifications()
      * @return array an array of Job ActiveRecords that student qualifies for
      */
-    public function getQualifiedJobs(){
+    public function getFilteredQualifiedJobs(){
         $qualifiedJobs = [];
         $allActiveJobs = \common\models\Job::find()
                 ->with(['filter', 'filter.countries', 'filter.languages', 'filter.universities', 'filter.majors'])
@@ -467,11 +469,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     }
                 }
                 
-                
-                
-                /////the below need relation checking
-                
-                //check nationality 
+                //check nationality
                 
                 //check university
                 

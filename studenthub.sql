@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 26, 2015 at 04:12 PM
+-- Generation Time: May 28, 2015 at 01:22 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -399,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `employer` (
 --
 
 INSERT INTO `employer` (`employer_id`, `industry_id`, `city_id`, `employer_company_name`, `employer_logo`, `employer_website`, `employer_company_desc`, `employer_num_employees`, `employer_contact_firstname`, `employer_contact_lastname`, `employer_contact_number`, `employer_credit`, `employer_email_preference`, `employer_email`, `employer_email_verification`, `employer_auth_key`, `employer_password_hash`, `employer_password_reset_token`, `employer_language_pref`, `employer_support_field`, `employer_limit_email`, `employer_updated_datetime`, `employer_datetime`) VALUES
-(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '28.750', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$yD4XFIMwChLBjsRxTFQ5GuEvQTDIBtV8MCtouOC0rj4qhrNyyGvGa', NULL, 'en-US', '0', '2015-05-10 09:49:40', '2015-05-26 11:21:12', '2015-05-02 16:15:30'),
+(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '3.750', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$yD4XFIMwChLBjsRxTFQ5GuEvQTDIBtV8MCtouOC0rj4qhrNyyGvGa', NULL, 'en-US', '0', '2015-05-10 09:49:40', '2015-05-27 17:25:08', '2015-05-02 16:15:30'),
 (2, 1, 1, 'Test Company', NULL, NULL, 'sqSQ', NULL, 'DWAD', 'dwadwa', '99811042', '0.000', 1, 'dwadwadw@dwad.com', 1, 'RkJCWLIjxJPziHMmyx-GTHgf9Q8RBndT', '$2y$13$KONg0F9VYiie8LDelIsuZeSo6Hd4AuB/1Xq2GflzO7Eqw4Rdl3wOK', '', 'en-US', '0', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-02 16:27:38'),
 (3, 1, 1, 'Khalid', 'LNOOgViwpx86Op575JBj37xHjINuJnF9.png', NULL, 'Free Stuff', NULL, 'dwad', 'dwad', '99811042', '0.000', 1, 'dwda@gust.edom', 0, 'rsI8d0rOnrvuOZt0W4j3eAbP6Gge0Yo3', '$2y$13$xUE.p13lHQnJSjsN6rifZuhbtacDdYBxgVO/GdY9xxZA8pEchL2kC', '', 'en-US', '0', '2015-05-03 20:55:19', '2015-05-03 20:55:19', '2015-05-02 18:43:14'),
 (4, 1, 1, 'Khalid', NULL, NULL, 'dwa', NULL, 'Khalid', 'M', '99811042', '0.000', 0, 'm6awa3@gmail.com', 0, 'nILkFnFe18sI5O1ZsXVRoMTXIOz_sIIi', '$2y$13$0Eg4BM0F0bFi8/ePjoSrd.W2dVPu5KLY.3o.iEUKzIKgheM4yNq0O', NULL, 'en-US', '0', '2015-05-05 22:07:17', '2015-05-05 22:07:17', '2015-05-03 20:00:29'),
@@ -419,15 +419,17 @@ CREATE TABLE IF NOT EXISTS `filter` (
   `filter_graduation_year_start` year(4) DEFAULT NULL,
   `filter_graduation_year_end` year(4) DEFAULT NULL,
   `filter_transportation` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `filter`
 --
 
 INSERT INTO `filter` (`filter_id`, `degree_id`, `filter_gpa`, `filter_english_level`, `filter_graduation_year_start`, `filter_graduation_year_end`, `filter_transportation`) VALUES
-(6, 2, '2.23', 2, 2013, 2015, 1),
-(7, 2, NULL, NULL, NULL, NULL, 0);
+(6, 2, '2.23', 2, 2011, 2014, 1),
+(7, 2, '2.60', NULL, 2011, 2014, 0),
+(8, 2, '3.00', NULL, NULL, NULL, 0),
+(9, NULL, '3.00', NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -446,7 +448,8 @@ CREATE TABLE IF NOT EXISTS `filter_country` (
 
 INSERT INTO `filter_country` (`filter_id`, `country_id`) VALUES
 (6, 3),
-(6, 84);
+(6, 84),
+(8, 84);
 
 -- --------------------------------------------------------
 
@@ -477,6 +480,14 @@ CREATE TABLE IF NOT EXISTS `filter_major` (
   `major_id` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `filter_major`
+--
+
+INSERT INTO `filter_major` (`filter_id`, `major_id`) VALUES
+(9, 131),
+(9, 136);
+
 -- --------------------------------------------------------
 
 --
@@ -495,28 +506,52 @@ CREATE TABLE IF NOT EXISTS `filter_university` (
 INSERT INTO `filter_university` (`filter_id`, `university_id`) VALUES
 (6, 1),
 (7, 1),
+(8, 1),
+(9, 1),
 (6, 2),
 (7, 2),
+(8, 2),
+(9, 2),
 (6, 3),
 (7, 3),
+(8, 3),
+(9, 3),
 (6, 4),
 (7, 4),
+(8, 4),
+(9, 4),
 (6, 5),
 (7, 5),
+(8, 5),
+(9, 5),
 (6, 6),
 (7, 6),
+(8, 6),
+(9, 6),
 (6, 7),
 (7, 7),
+(8, 7),
+(9, 7),
 (6, 8),
 (7, 8),
+(8, 8),
+(9, 8),
 (6, 9),
 (7, 9),
+(8, 9),
+(9, 9),
 (6, 10),
 (7, 10),
+(8, 10),
+(9, 10),
 (6, 11),
 (7, 11),
+(8, 11),
+(9, 11),
 (6, 12),
-(7, 12);
+(7, 12),
+(8, 12),
+(9, 12);
 
 -- --------------------------------------------------------
 
@@ -618,17 +653,19 @@ CREATE TABLE IF NOT EXISTS `job` (
   `job_broadcasted` tinyint(4) NOT NULL DEFAULT '0',
   `job_updated_datetime` datetime NOT NULL,
   `job_created_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `job`
 --
 
 INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `filter_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_broadcasted`, `job_updated_datetime`, `job_created_datetime`) VALUES
-(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 10, 0, 1, '1.500', 1, '2015-05-26 15:32:41', '2015-05-21 08:26:37'),
-(13, 1, 1, 7, 'dwa', 0, NULL, 'dwa', '', 'dwa', '', '', '', 10, 0, 0, '0.750', 0, '2015-05-25 13:11:48', '2015-05-21 11:31:47'),
+(11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 10, 0, 1, '1.500', 0, '2015-05-27 10:19:21', '2015-05-21 08:26:37'),
+(13, 1, 1, 7, 'dwa', 0, NULL, 'dwa', '', 'dwa', '', '', '', 10, 0, 3, '1.000', 0, '2015-05-27 19:41:41', '2015-05-27 19:41:41'),
 (14, 2, 1, 7, 'Success Centre Attendant', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 35, 32, 1, '1.500', 1, '2015-05-26 15:32:51', '2015-05-21 08:26:37'),
-(15, 2, 1, NULL, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 42, 5, 1, '1.500', 1, '2015-05-26 15:32:59', '2015-05-21 08:26:37');
+(15, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 42, 5, 1, '1.500', 1, '2015-05-26 15:32:59', '2015-05-21 08:26:37'),
+(16, 5, 1, 8, 'dwad', 1, NULL, 'Hello', '', 'Yes', '', '', '', 10, 0, 3, '1.500', 0, '2015-05-27 17:30:06', '2015-05-27 17:30:06'),
+(17, 1, 1, 9, 'Student', 1, NULL, 'dwa', '', 'dwa', '', '', '', 15, 0, 0, '1.250', 0, '2015-05-28 11:23:39', '2015-05-28 08:00:38');
 
 -- --------------------------------------------------------
 
@@ -663,7 +700,14 @@ CREATE TABLE IF NOT EXISTS `job_process_queue` (
   `queue_id` int(11) unsigned NOT NULL,
   `job_id` int(11) unsigned NOT NULL,
   `queue_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `job_process_queue`
+--
+
+INSERT INTO `job_process_queue` (`queue_id`, `job_id`, `queue_datetime`) VALUES
+(28, 11, '2015-05-27 10:19:21');
 
 -- --------------------------------------------------------
 
@@ -704,7 +748,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   `log_time` double DEFAULT NULL,
   `prefix` text COLLATE utf8_unicode_ci,
   `message` text COLLATE utf8_unicode_ci
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `log`
@@ -784,7 +828,14 @@ INSERT INTO `log` (`id`, `level`, `category`, `log_time`, `prefix`, `message`) V
 (100, 4, 'application', 1432643571.1281, '[-][-][-]', '$_SERVER = [\n    ''TERM_PROGRAM'' => ''Apple_Terminal''\n    ''SHELL'' => ''/bin/bash''\n    ''TERM'' => ''xterm-256color''\n    ''TMPDIR'' => ''/var/folders/tt/8gpgfrnx1cq4ht5d96w7zfqr0000gn/T/''\n    ''Apple_PubSub_Socket_Render'' => ''/private/tmp/com.apple.launchd.g9LAZtcooT/Render''\n    ''TERM_PROGRAM_VERSION'' => ''343.7''\n    ''OLDPWD'' => ''/Users/BAWES''\n    ''TERM_SESSION_ID'' => ''D8122BAB-9958-404D-AA90-5F6DCD89C03F''\n    ''USER'' => ''BAWES''\n    ''SSH_AUTH_SOCK'' => ''/private/tmp/com.apple.launchd.GWpwy18Zsm/Listeners''\n    ''__CF_USER_TEXT_ENCODING'' => ''0x1F5:0x0:0x0''\n    ''PATH'' => ''/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin''\n    ''PWD'' => ''/Users/BAWES/Sites/studenthub''\n    ''XPC_FLAGS'' => ''0x0''\n    ''XPC_SERVICE_NAME'' => ''0''\n    ''SHLVL'' => ''1''\n    ''HOME'' => ''/Users/BAWES''\n    ''LOGNAME'' => ''BAWES''\n    ''LC_CTYPE'' => ''UTF-8''\n    ''_'' => ''./yii''\n    ''PHP_SELF'' => ''./yii''\n    ''SCRIPT_NAME'' => ''./yii''\n    ''SCRIPT_FILENAME'' => ''./yii''\n    ''PATH_TRANSLATED'' => ''./yii''\n    ''DOCUMENT_ROOT'' => ''''\n    ''REQUEST_TIME_FLOAT'' => 1432643571.1269\n    ''REQUEST_TIME'' => 1432643571\n    ''argv'' => [\n        0 => ''./yii''\n        1 => ''cron/minute''\n    ]\n    ''argc'' => 2\n]'),
 (101, 4, 'common\\models\\JobProcessQueue::processNextJob', 1432643579.5292, '[-][-][-]', '[Broadcast] Starting broadcast of Job #15 which was queued 57 seconds ago'),
 (102, 4, 'backend\\models\\Job::broadcast', 1432643579.5364, '[-][-][-]', '[Broadcast] Job #15 has been broadcasted to 8 students'),
-(103, 4, 'application', 1432643579.5025, '[-][-][-]', '$_SERVER = [\n    ''TERM_PROGRAM'' => ''Apple_Terminal''\n    ''SHELL'' => ''/bin/bash''\n    ''TERM'' => ''xterm-256color''\n    ''TMPDIR'' => ''/var/folders/tt/8gpgfrnx1cq4ht5d96w7zfqr0000gn/T/''\n    ''Apple_PubSub_Socket_Render'' => ''/private/tmp/com.apple.launchd.g9LAZtcooT/Render''\n    ''TERM_PROGRAM_VERSION'' => ''343.7''\n    ''OLDPWD'' => ''/Users/BAWES''\n    ''TERM_SESSION_ID'' => ''D8122BAB-9958-404D-AA90-5F6DCD89C03F''\n    ''USER'' => ''BAWES''\n    ''SSH_AUTH_SOCK'' => ''/private/tmp/com.apple.launchd.GWpwy18Zsm/Listeners''\n    ''__CF_USER_TEXT_ENCODING'' => ''0x1F5:0x0:0x0''\n    ''PATH'' => ''/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin''\n    ''PWD'' => ''/Users/BAWES/Sites/studenthub''\n    ''XPC_FLAGS'' => ''0x0''\n    ''XPC_SERVICE_NAME'' => ''0''\n    ''SHLVL'' => ''1''\n    ''HOME'' => ''/Users/BAWES''\n    ''LOGNAME'' => ''BAWES''\n    ''LC_CTYPE'' => ''UTF-8''\n    ''_'' => ''./yii''\n    ''PHP_SELF'' => ''./yii''\n    ''SCRIPT_NAME'' => ''./yii''\n    ''SCRIPT_FILENAME'' => ''./yii''\n    ''PATH_TRANSLATED'' => ''./yii''\n    ''DOCUMENT_ROOT'' => ''''\n    ''REQUEST_TIME_FLOAT'' => 1432643579.5013\n    ''REQUEST_TIME'' => 1432643579\n    ''argv'' => [\n        0 => ''./yii''\n        1 => ''cron/minute''\n    ]\n    ''argc'' => 2\n]');
+(103, 4, 'application', 1432643579.5025, '[-][-][-]', '$_SERVER = [\n    ''TERM_PROGRAM'' => ''Apple_Terminal''\n    ''SHELL'' => ''/bin/bash''\n    ''TERM'' => ''xterm-256color''\n    ''TMPDIR'' => ''/var/folders/tt/8gpgfrnx1cq4ht5d96w7zfqr0000gn/T/''\n    ''Apple_PubSub_Socket_Render'' => ''/private/tmp/com.apple.launchd.g9LAZtcooT/Render''\n    ''TERM_PROGRAM_VERSION'' => ''343.7''\n    ''OLDPWD'' => ''/Users/BAWES''\n    ''TERM_SESSION_ID'' => ''D8122BAB-9958-404D-AA90-5F6DCD89C03F''\n    ''USER'' => ''BAWES''\n    ''SSH_AUTH_SOCK'' => ''/private/tmp/com.apple.launchd.GWpwy18Zsm/Listeners''\n    ''__CF_USER_TEXT_ENCODING'' => ''0x1F5:0x0:0x0''\n    ''PATH'' => ''/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin''\n    ''PWD'' => ''/Users/BAWES/Sites/studenthub''\n    ''XPC_FLAGS'' => ''0x0''\n    ''XPC_SERVICE_NAME'' => ''0''\n    ''SHLVL'' => ''1''\n    ''HOME'' => ''/Users/BAWES''\n    ''LOGNAME'' => ''BAWES''\n    ''LC_CTYPE'' => ''UTF-8''\n    ''_'' => ''./yii''\n    ''PHP_SELF'' => ''./yii''\n    ''SCRIPT_NAME'' => ''./yii''\n    ''SCRIPT_FILENAME'' => ''./yii''\n    ''PATH_TRANSLATED'' => ''./yii''\n    ''DOCUMENT_ROOT'' => ''''\n    ''REQUEST_TIME_FLOAT'' => 1432643579.5013\n    ''REQUEST_TIME'' => 1432643579\n    ''argv'' => [\n        0 => ''./yii''\n        1 => ''cron/minute''\n    ]\n    ''argc'' => 2\n]'),
+(104, 4, 'backend\\models\\Job::verify', 1432711161.8206, '[::1][3][-]', '[Job #11] has been added to broadcasting queue'),
+(105, 4, 'backend\\models\\Job::verify', 1432711161.8213, '[::1][3][-]', '[Job #11] has been approved by Khalid'),
+(106, 4, 'application', 1432711161.7724, '[::1][3][-]', '$_GET = [\n    ''r'' => ''job/verify''\n    ''id'' => ''11''\n]\n\n$_COOKIE = [\n    ''PHPSESSID'' => ''m6e6k7vvdrmrlh04haukpqhrr1''\n    ''app-frontend'' => ''4e9v5kokekkph4cusl21h1qsk1''\n    ''language'' => ''4ce6354a02e440b1b70384e20b3cae248b48bffe86ee62d342ffca10bfca48baa:2:{i:0;s:8:\\"language\\";i:1;s:5:\\"en-US\\";}''\n    ''app-backend'' => ''fbm2ljgratrc5t3q11mickgiq5''\n    ''app-employer'' => ''uu6ln43m8b6knaj0qu8ot0n857''\n    ''_csrf'' => ''63883e2908c0b5eda66dc603c0b6b962c9f25570d9a29c33679bda954310b00fa:2:{i:0;s:5:\\"_csrf\\";i:1;s:32:\\"quMNLkImLHECGamv4ebogNAu6zZYLVN7\\";}''\n    ''_identity'' => ''8579fdecd404e7a166e676087795dc1d8588d7486118e35b49f2928ae0373150a:2:{i:0;s:9:\\"_identity\\";i:1;s:46:\\"[3,\\"CT7I0NqtWqYJD1idnQbf1ErsCf_IEfHi\\",2592000]\\";}''\n]\n\n$_SESSION = [\n    ''__flash'' => []\n    ''__returnUrl'' => ''/~BAWES/studenthub/backend/web/index.php?r=job%2Fview&id=11''\n    ''__id'' => 3\n]\n\n$_SERVER = [\n    ''HTTP_HOST'' => ''localhost''\n    ''HTTP_CONNECTION'' => ''keep-alive''\n    ''HTTP_ACCEPT'' => ''text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8''\n    ''HTTP_USER_AGENT'' => ''Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36''\n    ''HTTP_REFERER'' => ''http://localhost/~BAWES/studenthub/backend/web/index.php?r=job%2Fview&id=11''\n    ''HTTP_ACCEPT_ENCODING'' => ''gzip, deflate, sdch''\n    ''HTTP_ACCEPT_LANGUAGE'' => ''en-US,en;q=0.8,ar;q=0.6''\n    ''HTTP_COOKIE'' => ''PHPSESSID=m6e6k7vvdrmrlh04haukpqhrr1; app-frontend=4e9v5kokekkph4cusl21h1qsk1; language=4ce6354a02e440b1b70384e20b3cae248b48bffe86ee62d342ffca10bfca48baa%3A2%3A%7Bi%3A0%3Bs%3A8%3A%22language%22%3Bi%3A1%3Bs%3A5%3A%22en-US%22%3B%7D; app-backend=fbm2ljgratrc5t3q11mickgiq5; app-employer=uu6ln43m8b6knaj0qu8ot0n857; _csrf=63883e2908c0b5eda66dc603c0b6b962c9f25570d9a29c33679bda954310b00fa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22quMNLkImLHECGamv4ebogNAu6zZYLVN7%22%3B%7D; _identity=8579fdecd404e7a166e676087795dc1d8588d7486118e35b49f2928ae0373150a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B3%2C%22CT7I0NqtWqYJD1idnQbf1ErsCf_IEfHi%22%2C2592000%5D%22%3B%7D''\n    ''PATH'' => ''/usr/bin:/bin:/usr/sbin:/sbin''\n    ''SERVER_SIGNATURE'' => ''''\n    ''SERVER_SOFTWARE'' => ''Apache/2.4.10 (Unix) PHP/5.6.7''\n    ''SERVER_NAME'' => ''localhost''\n    ''SERVER_ADDR'' => ''::1''\n    ''SERVER_PORT'' => ''80''\n    ''REMOTE_ADDR'' => ''::1''\n    ''DOCUMENT_ROOT'' => ''/Library/WebServer/Documents''\n    ''REQUEST_SCHEME'' => ''http''\n    ''CONTEXT_PREFIX'' => ''/~BAWES''\n    ''CONTEXT_DOCUMENT_ROOT'' => ''/Users/BAWES/Sites''\n    ''SERVER_ADMIN'' => ''you@example.com''\n    ''SCRIPT_FILENAME'' => ''/Users/BAWES/Sites/studenthub/backend/web/index.php''\n    ''REMOTE_PORT'' => ''63463''\n    ''GATEWAY_INTERFACE'' => ''CGI/1.1''\n    ''SERVER_PROTOCOL'' => ''HTTP/1.1''\n    ''REQUEST_METHOD'' => ''GET''\n    ''QUERY_STRING'' => ''r=job%2Fverify&id=11''\n    ''REQUEST_URI'' => ''/~BAWES/studenthub/backend/web/index.php?r=job%2Fverify&id=11''\n    ''SCRIPT_NAME'' => ''/~BAWES/studenthub/backend/web/index.php''\n    ''PHP_SELF'' => ''/~BAWES/studenthub/backend/web/index.php''\n    ''REQUEST_TIME_FLOAT'' => 1432711161.77\n    ''REQUEST_TIME'' => 1432711161\n]'),
+(107, 4, 'common\\models\\Student::beforeSave', 1432744704.881, '[::1][-][-]', 'New student signup - dwad dwadaw'),
+(108, 4, 'application', 1432744704.3154, '[::1][-][-]', '$_GET = [\n    ''r'' => ''register/validate''\n]\n\n$_POST = [\n    ''student_email_preference'' => ''1''\n    ''student_firstname'' => ''dwad''\n    ''student_lastname'' => ''dwadaw''\n    ''student_dob'' => ''1983/05/25''\n    ''country_id'' => ''84''\n    ''student_status'' => ''1''\n    ''degree_id'' => ''3''\n    ''student_enrolment_year'' => ''2012''\n    ''student_graduating_year'' => ''2019''\n    ''majorsSelected'' => [\n        0 => ''3''\n        1 => ''6''\n    ]\n    ''student_gpa'' => ''3''\n    ''student_gender'' => ''1''\n    ''languagesSelected'' => [\n        0 => ''1''\n        1 => ''3''\n    ]\n    ''student_english_level'' => ''0''\n    ''student_transportation'' => ''1''\n    ''student_club'' => ''''\n    ''student_sport'' => ''''\n    ''student_experience_company'' => ''''\n    ''student_experience_position'' => ''''\n    ''student_skill'' => ''''\n    ''student_hobby'' => ''''\n    ''student_interestingfacts'' => ''''\n    ''student_photo'' => ''''\n    ''student_cv'' => ''''\n    ''step'' => ''2''\n    ''university_id'' => ''1''\n    ''student_email'' => ''dwad@gust.edu.kw''\n    ''student_password_hash'' => ''dwadwa''\n    ''student_contact_number'' => ''99811042''\n]\n\n$_COOKIE = [\n    ''PHPSESSID'' => ''m6e6k7vvdrmrlh04haukpqhrr1''\n    ''app-backend'' => ''fbm2ljgratrc5t3q11mickgiq5''\n    ''language'' => ''4ce6354a02e440b1b70384e20b3cae248b48bffe86ee62d342ffca10bfca48baa:2:{i:0;s:8:\\"language\\";i:1;s:5:\\"en-US\\";}''\n    ''app-employer'' => ''uu6ln43m8b6knaj0qu8ot0n857''\n    ''_identity'' => ''8579fdecd404e7a166e676087795dc1d8588d7486118e35b49f2928ae0373150a:2:{i:0;s:9:\\"_identity\\";i:1;s:46:\\"[3,\\"CT7I0NqtWqYJD1idnQbf1ErsCf_IEfHi\\",2592000]\\";}''\n    ''_csrf'' => ''71638281f415f6b551dadb2864606e004cf0b720f8c6467b07cb2235aa5a6611a:2:{i:0;s:5:\\"_csrf\\";i:1;s:32:\\"InlyAhjreUgx66nyAtSFev5q87LCMWjy\\";}''\n    ''app-frontend'' => ''4e9v5kokekkph4cusl21h1qsk1''\n]\n\n$_SESSION = [\n    ''__flash'' => []\n]\n\n$_SERVER = [\n    ''HTTP_HOST'' => ''localhost''\n    ''HTTP_CONNECTION'' => ''keep-alive''\n    ''CONTENT_LENGTH'' => ''664''\n    ''HTTP_ACCEPT'' => ''*/*''\n    ''HTTP_ORIGIN'' => ''http://localhost''\n    ''HTTP_X_CSRF_TOKEN'' => ''ZGdwQ2FnY20tCRw6IA8JHwEyFztXUQ0UJRMjBQQRVhxcUDwALDAJFA==''\n    ''HTTP_X_REQUESTED_WITH'' => ''XMLHttpRequest''\n    ''HTTP_USER_AGENT'' => ''Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36''\n    ''CONTENT_TYPE'' => ''application/x-www-form-urlencoded; charset=UTF-8''\n    ''HTTP_REFERER'' => ''http://localhost/~BAWES/studenthub/frontend/web/index.php?r=register%2Fregister&university=1''\n    ''HTTP_ACCEPT_ENCODING'' => ''gzip, deflate''\n    ''HTTP_ACCEPT_LANGUAGE'' => ''en-US,en;q=0.8,ar;q=0.6''\n    ''HTTP_COOKIE'' => ''PHPSESSID=m6e6k7vvdrmrlh04haukpqhrr1; app-backend=fbm2ljgratrc5t3q11mickgiq5; language=4ce6354a02e440b1b70384e20b3cae248b48bffe86ee62d342ffca10bfca48baa%3A2%3A%7Bi%3A0%3Bs%3A8%3A%22language%22%3Bi%3A1%3Bs%3A5%3A%22en-US%22%3B%7D; app-employer=uu6ln43m8b6knaj0qu8ot0n857; _identity=8579fdecd404e7a166e676087795dc1d8588d7486118e35b49f2928ae0373150a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B3%2C%22CT7I0NqtWqYJD1idnQbf1ErsCf_IEfHi%22%2C2592000%5D%22%3B%7D; _csrf=71638281f415f6b551dadb2864606e004cf0b720f8c6467b07cb2235aa5a6611a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22InlyAhjreUgx66nyAtSFev5q87LCMWjy%22%3B%7D; app-frontend=4e9v5kokekkph4cusl21h1qsk1''\n    ''PATH'' => ''/usr/bin:/bin:/usr/sbin:/sbin''\n    ''SERVER_SIGNATURE'' => ''''\n    ''SERVER_SOFTWARE'' => ''Apache/2.4.10 (Unix) PHP/5.6.7''\n    ''SERVER_NAME'' => ''localhost''\n    ''SERVER_ADDR'' => ''::1''\n    ''SERVER_PORT'' => ''80''\n    ''REMOTE_ADDR'' => ''::1''\n    ''DOCUMENT_ROOT'' => ''/Library/WebServer/Documents''\n    ''REQUEST_SCHEME'' => ''http''\n    ''CONTEXT_PREFIX'' => ''/~BAWES''\n    ''CONTEXT_DOCUMENT_ROOT'' => ''/Users/BAWES/Sites''\n    ''SERVER_ADMIN'' => ''you@example.com''\n    ''SCRIPT_FILENAME'' => ''/Users/BAWES/Sites/studenthub/frontend/web/index.php''\n    ''REMOTE_PORT'' => ''64972''\n    ''GATEWAY_INTERFACE'' => ''CGI/1.1''\n    ''SERVER_PROTOCOL'' => ''HTTP/1.1''\n    ''REQUEST_METHOD'' => ''POST''\n    ''QUERY_STRING'' => ''r=register%2Fvalidate''\n    ''REQUEST_URI'' => ''/~BAWES/studenthub/frontend/web/index.php?r=register%2Fvalidate''\n    ''SCRIPT_NAME'' => ''/~BAWES/studenthub/frontend/web/index.php''\n    ''PHP_SELF'' => ''/~BAWES/studenthub/frontend/web/index.php''\n    ''REQUEST_TIME_FLOAT'' => 1432744704.313\n    ''REQUEST_TIME'' => 1432744704\n]'),
+(109, 4, 'common\\models\\Transaction::afterSave', 1432744901.4578, '[::1][1][-]', '[Employer #1] Transaction of 10 KD made by BAWES for Job #13'),
+(110, 4, 'application', 1432744901.4108, '[::1][1][-]', '$_GET = [\n    ''r'' => ''job/create-step4''\n    ''id'' => ''13''\n]\n\n$_POST = [\n    ''_csrf'' => ''OVdRcFhfenJsIzY9LDEIHFYdPiAuDQIGWw0OBjMwVwVfGz0.AHJIFw==''\n]\n\n$_COOKIE = [\n    ''PHPSESSID'' => ''m6e6k7vvdrmrlh04haukpqhrr1''\n    ''app-backend'' => ''fbm2ljgratrc5t3q11mickgiq5''\n    ''language'' => ''4ce6354a02e440b1b70384e20b3cae248b48bffe86ee62d342ffca10bfca48baa:2:{i:0;s:8:\\"language\\";i:1;s:5:\\"en-US\\";}''\n    ''_identity'' => ''8579fdecd404e7a166e676087795dc1d8588d7486118e35b49f2928ae0373150a:2:{i:0;s:9:\\"_identity\\";i:1;s:46:\\"[3,\\"CT7I0NqtWqYJD1idnQbf1ErsCf_IEfHi\\",2592000]\\";}''\n    ''app-frontend'' => ''4e9v5kokekkph4cusl21h1qsk1''\n    ''_csrf'' => ''55cff8f0104c886a0cd7ced8469afa50d395cb318ffe6ba6aca008646de41791a:2:{i:0;s:5:\\"_csrf\\";i:1;s:32:\\"UtgMtnrnoJoPvRxtbZ_vko-wfLlNX-2e\\";}''\n    ''app-employer'' => ''uu6ln43m8b6knaj0qu8ot0n857''\n]\n\n$_SESSION = [\n    ''__flash'' => []\n    ''__returnUrl'' => ''/~BAWES/studenthub/employer/web/index.php?r=job%2Fupdate&id=13''\n    ''__id'' => 1\n]\n\n$_SERVER = [\n    ''HTTP_HOST'' => ''localhost''\n    ''HTTP_CONNECTION'' => ''keep-alive''\n    ''CONTENT_LENGTH'' => ''66''\n    ''HTTP_CACHE_CONTROL'' => ''max-age=0''\n    ''HTTP_ACCEPT'' => ''text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8''\n    ''HTTP_ORIGIN'' => ''http://localhost''\n    ''HTTP_USER_AGENT'' => ''Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36''\n    ''CONTENT_TYPE'' => ''application/x-www-form-urlencoded''\n    ''HTTP_REFERER'' => ''http://localhost/~BAWES/studenthub/employer/web/index.php?r=job%2Fcreate-step4&id=13''\n    ''HTTP_ACCEPT_ENCODING'' => ''gzip, deflate''\n    ''HTTP_ACCEPT_LANGUAGE'' => ''en-US,en;q=0.8,ar;q=0.6''\n    ''HTTP_COOKIE'' => ''PHPSESSID=m6e6k7vvdrmrlh04haukpqhrr1; app-backend=fbm2ljgratrc5t3q11mickgiq5; language=4ce6354a02e440b1b70384e20b3cae248b48bffe86ee62d342ffca10bfca48baa%3A2%3A%7Bi%3A0%3Bs%3A8%3A%22language%22%3Bi%3A1%3Bs%3A5%3A%22en-US%22%3B%7D; _identity=8579fdecd404e7a166e676087795dc1d8588d7486118e35b49f2928ae0373150a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A46%3A%22%5B3%2C%22CT7I0NqtWqYJD1idnQbf1ErsCf_IEfHi%22%2C2592000%5D%22%3B%7D; app-frontend=4e9v5kokekkph4cusl21h1qsk1; _csrf=55cff8f0104c886a0cd7ced8469afa50d395cb318ffe6ba6aca008646de41791a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22UtgMtnrnoJoPvRxtbZ_vko-wfLlNX-2e%22%3B%7D; app-employer=uu6ln43m8b6knaj0qu8ot0n857''\n    ''PATH'' => ''/usr/bin:/bin:/usr/sbin:/sbin''\n    ''SERVER_SIGNATURE'' => ''''\n    ''SERVER_SOFTWARE'' => ''Apache/2.4.10 (Unix) PHP/5.6.7''\n    ''SERVER_NAME'' => ''localhost''\n    ''SERVER_ADDR'' => ''::1''\n    ''SERVER_PORT'' => ''80''\n    ''REMOTE_ADDR'' => ''::1''\n    ''DOCUMENT_ROOT'' => ''/Library/WebServer/Documents''\n    ''REQUEST_SCHEME'' => ''http''\n    ''CONTEXT_PREFIX'' => ''/~BAWES''\n    ''CONTEXT_DOCUMENT_ROOT'' => ''/Users/BAWES/Sites''\n    ''SERVER_ADMIN'' => ''you@example.com''\n    ''SCRIPT_FILENAME'' => ''/Users/BAWES/Sites/studenthub/employer/web/index.php''\n    ''REMOTE_PORT'' => ''64996''\n    ''GATEWAY_INTERFACE'' => ''CGI/1.1''\n    ''SERVER_PROTOCOL'' => ''HTTP/1.1''\n    ''REQUEST_METHOD'' => ''POST''\n    ''QUERY_STRING'' => ''r=job%2Fcreate-step4&id=13''\n    ''REQUEST_URI'' => ''/~BAWES/studenthub/employer/web/index.php?r=job%2Fcreate-step4&id=13''\n    ''SCRIPT_NAME'' => ''/~BAWES/studenthub/employer/web/index.php''\n    ''PHP_SELF'' => ''/~BAWES/studenthub/employer/web/index.php''\n    ''REQUEST_TIME_FLOAT'' => 1432744901.409\n    ''REQUEST_TIME'' => 1432744901\n]');
 
 -- --------------------------------------------------------
 
@@ -2395,7 +2446,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `student_limit_email` datetime NOT NULL,
   `student_updated_datetime` datetime NOT NULL,
   `student_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `student`
@@ -2409,7 +2460,8 @@ INSERT INTO `student` (`student_id`, `degree_id`, `country_id`, `university_id`,
 (17, 2, 182, 2, 'Saoud', 'AlTurki', '1979-05-30', 1, 2013, 2017, '3.00', 1, 1, 0, '99811042', NULL, 'KYj-ohYWhlcJymuugyeggv5xN4MTgx4F.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'YOldR1yk-dJ_JEl4lotG5c0l_wMzWagm.png', 1, 1, NULL, 1, 'khalid@bto.com', 'wx9F3seITdpLCwcGHh_eJJHRWxDB8TEH', '$2y$13$AYId0O0xDrErojHzj6N5EONFl8UGxvhK9LH9tzsv0NLDfZTvc28/e', '', 'en-US', 0, '', '2015-05-08 13:21:33', '2015-05-08 13:21:33', '2015-05-08 13:21:33'),
 (18, 2, 4, 1, 'dwadwa', 'dwadwad', '1991-05-10', 1, 2013, 2016, '3.00', 0, 0, 0, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 1, 'dwa@gust.edu.kw', 'DlGj_cCqGzGO4y7lKnfewauSb1-At9T8', '$2y$13$FuUyPrnTdorb68V0Hy1bgud9LXRPWgy9QEJo8v.1VWhX8/WLGw/d2', '', 'en-US', 0, '', '2015-05-08 13:27:57', '2015-05-08 13:27:57', '2015-05-08 13:27:57'),
 (19, 3, 4, 1, 'dwad', 'dwadaw', '1992-05-13', 1, 2013, 2015, '3.00', 1, 0, 0, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 1, 'dwda@gust.edu.kw', 'Uu47h1Uq_TS-8juPZo1ScpU4mWAc0YEE', '$2y$13$9GbGFaawgypMjF5176WSFuMDrPyPhzFv45VguoUXHobdIFqOwV6/O', '', 'en-US', 0, '', '2015-05-08 13:30:03', '2015-05-08 13:30:03', '2015-05-08 13:30:03'),
-(20, 2, 84, 1, 'Khalud', 'Mutawa', '1996-05-15', 1, 2015, 2020, '3.00', 2, 1, 1, '99811042', 'y32jrhn4 r43r 43r34r43r\r\n43\r\n3r4\r\n4', NULL, NULL, NULL, NULL, 'sports,anime,photo', 'jjbxmw', NULL, NULL, NULL, 1, 1, NULL, 1, 'fef@gust.edu.kw', 'QRp3PepAAMgroFuVTZpWp4cJpeNW7dNQ', '$2y$13$dhDYhtnoOsdXC481zafvDOStg0iKpPHkA5dzQDPRnvFfy4rQyP5Fy', '', 'en-US', 0, '', '2015-05-08 14:27:12', '2015-05-08 14:27:36', '2015-05-08 14:27:12');
+(20, 2, 84, 1, 'Khalud', 'Mutawa', '1996-05-15', 1, 2015, 2020, '3.00', 2, 1, 1, '99811042', 'y32jrhn4 r43r 43r34r43r\r\n43\r\n3r4\r\n4', NULL, NULL, NULL, NULL, 'sports,anime,photo', 'jjbxmw', NULL, NULL, NULL, 1, 1, NULL, 1, 'fef@gust.edu.kw', 'QRp3PepAAMgroFuVTZpWp4cJpeNW7dNQ', '$2y$13$dhDYhtnoOsdXC481zafvDOStg0iKpPHkA5dzQDPRnvFfy4rQyP5Fy', '', 'en-US', 0, '', '2015-05-08 14:27:12', '2015-05-08 14:27:36', '2015-05-08 14:27:12'),
+(21, 3, 84, 1, 'dwad', 'dwadaw', '1983-05-25', 1, 2012, 2019, '3.00', 0, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, 1, 'dwad@gust.edu.kw', '-whht11kwdthW2QSz1mpYpNhL0UAl0fk', '$2y$13$IFQoZhYp0UkaCTg6/meiYu4fGyNXP37t20.F0vczQyuZKSAdn1RGa', '', 'en-US', 0, '', '2015-05-27 19:38:24', '2015-05-27 19:38:24', '2015-05-27 19:38:24');
 
 -- --------------------------------------------------------
 
@@ -2484,7 +2536,9 @@ INSERT INTO `student_language` (`student_id`, `language_id`) VALUES
 (16, 4),
 (17, 4),
 (18, 4),
-(19, 4);
+(19, 4),
+(21, 1),
+(21, 3);
 
 -- --------------------------------------------------------
 
@@ -2503,7 +2557,9 @@ CREATE TABLE IF NOT EXISTS `student_major` (
 
 INSERT INTO `student_major` (`student_id`, `major_id`) VALUES
 (14, 5),
-(14, 6);
+(14, 6),
+(21, 3),
+(21, 6);
 
 -- --------------------------------------------------------
 
@@ -2518,14 +2574,16 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   `transaction_price_per_applicant` decimal(10,3) NOT NULL,
   `transaction_price_total` decimal(10,3) NOT NULL,
   `transaction_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `transaction`
 --
 
 INSERT INTO `transaction` (`transaction_id`, `job_id`, `transaction_number_of_applicants`, `transaction_price_per_applicant`, `transaction_price_total`, `transaction_datetime`) VALUES
-(6, 11, 10, '1.500', '15.000', '2015-05-21 08:26:37');
+(6, 11, 10, '1.500', '15.000', '2015-05-21 08:26:37'),
+(7, 16, 10, '1.500', '15.000', '2015-05-27 17:30:06'),
+(8, 13, 10, '1.000', '10.000', '2015-05-27 19:41:41');
 
 -- --------------------------------------------------------
 
@@ -2779,7 +2837,7 @@ ALTER TABLE `employer`
 -- AUTO_INCREMENT for table `filter`
 --
 ALTER TABLE `filter`
-  MODIFY `filter_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `filter_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `industry`
 --
@@ -2789,7 +2847,7 @@ ALTER TABLE `industry`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `job_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `job_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `jobtype`
 --
@@ -2799,7 +2857,7 @@ ALTER TABLE `jobtype`
 -- AUTO_INCREMENT for table `job_process_queue`
 --
 ALTER TABLE `job_process_queue`
-  MODIFY `queue_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+  MODIFY `queue_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `language`
 --
@@ -2809,7 +2867,7 @@ ALTER TABLE `language`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=104;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=111;
 --
 -- AUTO_INCREMENT for table `major`
 --
@@ -2844,7 +2902,7 @@ ALTER TABLE `payment_type`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `student_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `student_job_application`
 --
@@ -2859,7 +2917,7 @@ ALTER TABLE `student_job_qualification`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `transaction_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `transaction_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `university`
 --
