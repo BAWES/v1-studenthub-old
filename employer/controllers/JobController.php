@@ -335,54 +335,6 @@ class JobController extends Controller {
     }
     
     /**
-     * Get the full major list for AJAX selection based on search input
-     * @param type $q the search input
-     */
-    public function actionMajorList($q){
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $majorList = [];
-        
-        if(strlen($q) < 2) return $majorList;
-        
-        $majors = \common\models\Major::find()->where(['like', 'major_name_en', $q])
-                                              ->orWhere(['like', 'major_name_ar', $q])
-                                              ->all();
-               
-        foreach($majors as $major){
-            $majorList[] = [
-                'majorId' => $major->major_id,
-                'majorName' => Yii::$app->view->params['isArabic']?$major->major_name_ar:$major->major_name_en,
-            ];
-        }
-        
-        return $majorList;
-    }
-    
-    /**
-     * Get the full country list for AJAX selection based on search input
-     * @param type $q the search input
-     */
-    public function actionCountryList($q){
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $countryList = [];
-        
-        if(strlen($q) < 2) return $majorList;
-        
-        $countries = \common\models\Country::find()->where(['like', 'country_name_en', $q])
-                                              ->orWhere(['like', 'country_name_ar', $q])
-                                              ->all();
-               
-        foreach($countries as $country){
-            $countryList[] = [
-                'countryId' => $country->major_id,
-                'countryName' => Yii::$app->view->params['isArabic']?$country->country_name_ar:$country->country_name_en,
-            ];
-        }
-        
-        return $countryList;
-    }
-    
-    /**
      * Finds the Job model based on its primary key value.
      * Job must belong to this employer for it to be found
      * If the model is not found, a 404 HTTP exception will be thrown.

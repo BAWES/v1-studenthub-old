@@ -107,23 +107,6 @@ var selectizeMajors = $(".selectize-majors").selectize({
     create: false,
     onItemAdd: function(value, item){
         selectizeMajors[0].selectize.close();
-    },
-    load: function(query, callback) {
-        if (!query.length) return callback();
-        $.ajax({
-            url: "'.$majorSearchUrl.'",
-            type: "GET",
-            dataType: "json",
-            data: {
-                q: query,
-            },
-            error: function() {
-                callback();
-            },
-            success: function(res) {
-                callback(res.slice(0, 10));
-            }
-        });
     }
 });
 
@@ -135,23 +118,6 @@ var selectizeCountries = $(".selectize-countries").selectize({
     create: false,
     onItemAdd: function(value, item){
         selectizeCountries[0].selectize.close();
-    },
-    load: function(query, callback) {
-        if (!query.length) return callback();
-        $.ajax({
-            url: "'.$countrySearchUrl.'",
-            type: "GET",
-            dataType: "json",
-            data: {
-                q: query,
-            },
-            error: function() {
-                callback();
-            },
-            success: function(res) {
-                callback(res.slice(0, 10));
-            }
-        });
     }
 });
 
