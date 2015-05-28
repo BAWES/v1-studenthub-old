@@ -66,6 +66,11 @@ class Job extends \yii\db\ActiveRecord
     {
         return 'job';
     }
+    
+    public static function find()
+    {
+        return new JobQuery(get_called_class());
+    }
 
     /**
      * @inheritdoc
