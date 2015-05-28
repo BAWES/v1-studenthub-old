@@ -50,7 +50,7 @@ class NotificationStudent extends \yii\db\ActiveRecord
             
             //Rules for notification viewed
             ['notification_viewed', 'default', 'value' => self::VIEWED_FALSE],
-            ['notification_viewed', 'in', 'range' => [self::VIEWED_TRUE, self::VIEWED_TRUE]],
+            ['notification_viewed', 'in', 'range' => [self::VIEWED_TRUE, self::VIEWED_FALSE]],
             
             //Rules for notification sent
             ['notification_sent', 'default', 'value' => self::SENT_FALSE],
