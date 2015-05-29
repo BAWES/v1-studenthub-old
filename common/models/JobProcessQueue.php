@@ -65,14 +65,13 @@ class JobProcessQueue extends \yii\db\ActiveRecord
     public static function processNextJob(){
         $queuedJob = static::find()->orderBy("queue_datetime ASC")->one();
         if($queuedJob){
-            $studentCount = 0;
             $job = $queuedJob->job;
 
             if($job){
                 Yii::info("[Broadcast] Starting broadcast of Job #".$job->job_id." which was queued "
                         .Yii::$app->formatter->asRelativeTime($queuedJob->queue_datetime), __METHOD__);
                 
-                $studentCount = $job->broadcast();
+                $job->broadcast();
             }
 
             /**
