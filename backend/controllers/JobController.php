@@ -89,6 +89,19 @@ class JobController extends Controller
         ]);
     }
     
+    /**
+     * Displays the reach of a job
+     * How many students will this job reach? (based on filters)
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDisplayReach($id)
+    {
+        return $this->render('reach', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+    
     
     /**
      * Verifies a single Job model, sets status to Open.

@@ -103,7 +103,7 @@ switch ($model->job_status){
    <hr/>
     
 <?php if($model->filter){ $filter = $model->filter; ?>
-    <h2>Filters Applied</h2>
+    <h2 style="margin-top:0;">Filters Applied</h2>
     
     <div class="row" style="margin-bottom:1em;">
         <div class="col-sm-3">
@@ -221,8 +221,7 @@ switch ($model->job_status){
             ?>
         </div>
     </div>
-    
-    
-    
  <?php } ?>
+    
+    <a href="<?= Url::to(['job/display-reach', 'id' => $model->job_id]) ?>" class="btn btn-warning btn-block">View Job Reach</a>
 </div>
