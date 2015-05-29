@@ -224,4 +224,5 @@ switch ($model->job_status){
  <?php } ?>
     
     <a href="<?= Url::to(['job/display-reach', 'id' => $model->job_id]) ?>" class="btn btn-warning btn-block">View Job Reach</a>
+    <a href="<?= Url::to(['job/edit-job-filter', 'id' => $model->job_id]) ?>" class="btn btn-danger btn-block">Edit Job Filter</a>
 </div>
