@@ -90,6 +90,43 @@ class JobController extends Controller
     }
     
     /**
+     * Edits an active jobs filter and 
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionEditJobFilter($id){
+        $model = $this->findModel($id);
+        
+        /**
+         * Load filter for this Job
+         */
+        $filter = \employer\models\Filter::findOne($model->filter_id);
+        if(!$filter){
+            throw new NotFoundHttpException('This job has no filter');
+        }
+        
+        /**
+         * On Form Submit
+         */
+        if ($filter->load(Yii::$app->request->post())) {
+            if ($filter->validate()) {
+                $filter->saveModelAndFilter($model);
+                Yii::warning("[Job #$id] Filter forcefully updated by ".Yii::$app->user->identity->admin_id, __METHOD__);
+                
+                return $this->redirect(['view', 'id' => $id]);
+            }else{
+                Yii::error("Error Force-updating filter \n".print_r($filter->errors, true), __METHOD__);
+            }
+        }
+        
+        //Render The Filter Form
+        return $this->render('editfilter', [
+            'model' => $model,
+            'filter' => $filter,
+        ]);
+    }
+    
+    /**
      * Displays the reach of a job
      * How many students will this job reach? (based on filters)
      * @param integer $id
