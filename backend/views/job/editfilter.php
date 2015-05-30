@@ -92,138 +92,136 @@ backend\assets\MultiselectAsset::register($this);
 ?>
 
 <div class="panel">
-
-    <?php
-    $form = ActiveForm::begin();
-    ?>
-
-    <h1 style="margin-bottom:1em; margin-top:0.5em">Audience Targeting</h1>
-
-    <?=
-    $form->field($filter, 'universitiesSelected')->listBox(
-            ArrayHelper::map(common\models\University::find()->all(), "university_id", "university_name_en"), [
-        'class' => 'multiselect universitieZ',
-        'multiple' => 'true',
-    ])
-    ?>
-
-    <a class="btn btn-success btn-block" style="margin-bottom:20px;" id="selectAllBtn">Select All Universities</a>
-
-    <hr/>
-
-    <!-- Premium Filters Header -->
-    <div id="premium">
-        <h1 style="margin-bottom:0; margin-top:1.5em;"><?= Yii::t("employer", "Premium Filters") ?></h1>
-
-
-        <!-- Filter by Degree -->
-        <?= $form->field($filter, 'degreeFilter')->checkbox() ?>
-        <div class="question" style="display: <?= $filter->degreeFilter?"block":"none" ?>">
-            <?= $form->field($filter, 'degree_id')->dropDownList(
-                    ArrayHelper::map(common\models\Degree::find()->all(), "degree_id", "degree_name_en"), [
-                'class' => 'selectpicker',
-                'prompt' => Yii::t('employer', 'Select a Degree'),
-                'data-width' => '100%'
-            ])
-            ?>
-        </div>
-
-        <!-- Filter by GPA -->
-        <?= $form->field($filter, 'gpaFilter')->checkbox() ?>
-        <div class="question" style="display: <?= $filter->gpaFilter?"block":"none" ?>">
-            <?= $form->field($filter, 'filter_gpa')->input("number", ['placeholder' => '3.0', 'step' => 'any']) ?>
-        </div>
-
-
-        <!-- Filter by Graduation Years (range) -->
-        <?php
-        //Graduation year options
-        $graduationYearOptions = [];
-        $currentYear = date("Y") - 3;
-        $numberOfYears = 8;
-        Yii::$app->formatter->thousandSeparator = "";
-        for ($i = 0; $i < $numberOfYears; $i++) {
-            $yearOption = $currentYear + $i;
-            $graduationYearOptions[$yearOption] = Yii::$app->formatter->asInteger($yearOption);
-        } ?>
-        <?= $form->field($filter, 'graduationFilter')->checkbox() ?>
-        <div class="question" style="display: <?= $filter->graduationFilter?"block":"none" ?>">
-            <?= $form->field($filter, 'filter_graduation_year_start')->dropDownList($graduationYearOptions, [
-                            'class' => 'selectpicker', 
-                            'data-width' => '100%',
-                            'prompt' => Yii::t('employer', 'Select Year'),
-                            ]) ?>
-            <?= $form->field($filter, 'filter_graduation_year_end')->dropDownList($graduationYearOptions, [
-                            'class' => 'selectpicker', 
-                            'data-width' => '100%',
-                            'prompt' => Yii::t('employer', 'Select Year'),
-                            ]) ?>
-        </div>
-
-
-        <!-- Filter by Majors -->
-        <?= $form->field($filter, 'majorFilter')->checkbox() ?>
-        <div class="question" style="display: <?= $filter->majorFilter?"block":"none" ?>">
-            <?=
-            $form->field($filter, 'majorsSelected')->listBox(
-                    ArrayHelper::map(common\models\Major::find()->all(), "major_id", "major_name_en"), [
-                'class' => 'multiselect',
-                'multiple' => 'true',
-            ])
-            ?>
-        </div>
-
-        <!-- Filter by Languages Spoken -->
-        <?= $form->field($filter, 'languageFilter')->checkbox() ?>
-        <div class="question" style="display: <?= $filter->languageFilter?"block":"none" ?>">
-            <?=
-            $form->field($filter, 'languagesSelected')->listBox(
-                    ArrayHelper::map(common\models\Language::find()->all(), "language_id", "language_name_en"), [
-                'class' => 'multiselect',
-                'multiple' => 'true',
-            ])
-            ?>
-        </div>
-
-        <!-- Filter by English Language Level -->
-        <?php
-        $englishLevelOptions = [
-            \common\models\Student::ENGLISH_WEAK => Yii::t('register', 'Weak'),
-            \common\models\Student::ENGLISH_FAIR => Yii::t('register', 'Fair'),
-            \common\models\Student::ENGLISH_GOOD => Yii::t('register', 'Good'),
-        ];
+    <div class="col-md-8 col-md-offset-2">
+        
+         <?php
+        $form = ActiveForm::begin();
         ?>
-        <?= $form->field($filter, 'englishFilter')->checkbox() ?>
-        <div class="question" style="display: <?= $filter->englishFilter?"block":"none" ?>">
-            <?= $form->field($filter, 'filter_english_level')->dropDownList($englishLevelOptions, [
-                            'class' => 'selectpicker', 
-                            'data-width' => '100%',
-                            'prompt' => Yii::t('employer', 'Select Language Level'),
-                            ]) ?>
+
+        <h1 style="margin-bottom:1em; margin-top:0.5em">Audience Targeting</h1>
+        <?=
+        $form->field($filter, 'universitiesSelected')->listBox(
+                ArrayHelper::map(common\models\University::find()->all(), "university_id", "university_name_en"), [
+            'class' => 'multiselect universitieZ',
+            'multiple' => 'true',
+        ])
+        ?>
+
+        <a class="btn btn-warning btn-block" style="margin-bottom:20px;" id="selectAllBtn">Select All Universities</a>
+
+        <hr/>
+
+        <!-- Premium Filters Header -->
+        <div id="premium">
+            <h1 style="margin-bottom:0; margin-top:1.5em;"><?= Yii::t("employer", "Premium Filters") ?></h1>
+
+
+            <!-- Filter by Degree -->
+            <?= $form->field($filter, 'degreeFilter')->checkbox() ?>
+            <div class="question" style="display: <?= $filter->degreeFilter?"block":"none" ?>">
+                <?= $form->field($filter, 'degree_id')->dropDownList(
+                        ArrayHelper::map(common\models\Degree::find()->all(), "degree_id", "degree_name_en"), [
+                    'class' => 'selectpicker',
+                    'prompt' => Yii::t('employer', 'Select a Degree'),
+                    'data-width' => '100%'
+                ])
+                ?>
+            </div>
+
+            <!-- Filter by GPA -->
+            <?= $form->field($filter, 'gpaFilter')->checkbox() ?>
+            <div class="question" style="display: <?= $filter->gpaFilter?"block":"none" ?>">
+                <?= $form->field($filter, 'filter_gpa')->input("number", ['placeholder' => '3.0', 'step' => 'any']) ?>
+            </div>
+
+
+            <!-- Filter by Graduation Years (range) -->
+            <?php
+            //Graduation year options
+            $graduationYearOptions = [];
+            $currentYear = date("Y") - 3;
+            $numberOfYears = 8;
+            Yii::$app->formatter->thousandSeparator = "";
+            for ($i = 0; $i < $numberOfYears; $i++) {
+                $yearOption = $currentYear + $i;
+                $graduationYearOptions[$yearOption] = Yii::$app->formatter->asInteger($yearOption);
+            } ?>
+            <?= $form->field($filter, 'graduationFilter')->checkbox() ?>
+            <div class="question" style="display: <?= $filter->graduationFilter?"block":"none" ?>">
+                <?= $form->field($filter, 'filter_graduation_year_start')->dropDownList($graduationYearOptions, [
+                                'class' => 'selectpicker', 
+                                'data-width' => '100%',
+                                'prompt' => Yii::t('employer', 'Select Year'),
+                                ]) ?>
+                <?= $form->field($filter, 'filter_graduation_year_end')->dropDownList($graduationYearOptions, [
+                                'class' => 'selectpicker', 
+                                'data-width' => '100%',
+                                'prompt' => Yii::t('employer', 'Select Year'),
+                                ]) ?>
+            </div>
+
+
+            <!-- Filter by Majors -->
+            <?= $form->field($filter, 'majorFilter')->checkbox() ?>
+            <div class="question" style="display: <?= $filter->majorFilter?"block":"none" ?>">
+                <?=
+                $form->field($filter, 'majorsSelected')->listBox(
+                        ArrayHelper::map(common\models\Major::find()->all(), "major_id", "major_name_en"), [
+                    'class' => 'multiselect',
+                    'multiple' => 'true',
+                ])
+                ?>
+            </div>
+
+            <!-- Filter by Languages Spoken -->
+            <?= $form->field($filter, 'languageFilter')->checkbox() ?>
+            <div class="question" style="display: <?= $filter->languageFilter?"block":"none" ?>">
+                <?=
+                $form->field($filter, 'languagesSelected')->listBox(
+                        ArrayHelper::map(common\models\Language::find()->all(), "language_id", "language_name_en"), [
+                    'class' => 'multiselect',
+                    'multiple' => 'true',
+                ])
+                ?>
+            </div>
+
+            <!-- Filter by English Language Level -->
+            <?php
+            $englishLevelOptions = [
+                \common\models\Student::ENGLISH_WEAK => Yii::t('register', 'Weak'),
+                \common\models\Student::ENGLISH_FAIR => Yii::t('register', 'Fair'),
+                \common\models\Student::ENGLISH_GOOD => Yii::t('register', 'Good'),
+            ];
+            ?>
+            <?= $form->field($filter, 'englishFilter')->checkbox() ?>
+            <div class="question" style="display: <?= $filter->englishFilter?"block":"none" ?>">
+                <?= $form->field($filter, 'filter_english_level')->dropDownList($englishLevelOptions, [
+                                'class' => 'selectpicker', 
+                                'data-width' => '100%',
+                                'prompt' => Yii::t('employer', 'Select Language Level'),
+                                ]) ?>
+            </div>
+
+
+            <!-- Filter by Nationality -->
+            <?= $form->field($filter, 'nationalityFilter')->checkbox() ?>
+            <div class="question" style="display: <?= $filter->nationalityFilter?"block":"none" ?>">
+                <?=
+                $form->field($filter, 'nationalitiesSelected')->listBox(
+                        ArrayHelper::map(common\models\Country::find()->orderBy("country_nationality_name_en")->all(), "country_id", "country_nationality_name_en"), [
+                    'class' => 'multiselect',
+                    'multiple' => 'true',
+                ])
+                ?>
+            </div>
+
+
+            <!-- Filter by Transport Availability -->
+            <?= $form->field($filter, 'filter_transportation')->checkbox() ?>
         </div>
 
-
-        <!-- Filter by Nationality -->
-        <?= $form->field($filter, 'nationalityFilter')->checkbox() ?>
-        <div class="question" style="display: <?= $filter->nationalityFilter?"block":"none" ?>">
-            <?=
-            $form->field($filter, 'nationalitiesSelected')->listBox(
-                    ArrayHelper::map(common\models\Country::find()->orderBy("country_nationality_name_en")->all(), "country_id", "country_nationality_name_en"), [
-                'class' => 'multiselect',
-                'multiple' => 'true',
-            ])
-            ?>
-        </div>
-
-
-        <!-- Filter by Transport Availability -->
-        <?= $form->field($filter, 'filter_transportation')->checkbox() ?>
-    </div>
-
-    <div class="row" style="margin-bottom:10px; margin-top:10px;">
-        <div class="col-md-5 col-md-offset-3">
-            <?= Html::submitButton(Yii::t('employer', 'Review & Post Job') , ['class' => 'btn btn-success btn-block btn-ripple'])
-            ?>
+        <div class="row" style="margin-bottom:10px; margin-top:10px;">
+            <?= Html::submitButton(Yii::t('employer', 'Update Filters & Re-broadcast') , ['class' => 'btn btn-danger btn-block btn-ripple'])?>
         </div>
     </div>
 
