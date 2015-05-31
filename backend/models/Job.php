@@ -26,6 +26,9 @@ class Job extends \common\models\Job {
             
             //Add it to the queue if it hasn't been broadcasted
             if($this->job_broadcasted == self::BROADCASTED_NO){
+                //Remove this job from queue (if exists) before adding
+                JobProcessQueue::deleteAll(["job_id" => $this->job_id]);
+                
                 $queue = new JobProcessQueue();
                 $queue->job_id = $this->job_id;
                 if(!$queue->save()){
