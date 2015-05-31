@@ -34,7 +34,7 @@ class EmployerController extends Controller
     
     /**
      * Give Credit Gift to Employer
-     * @param int $id Employer ID to gift
+     * @param int $id Employer ID
      * @return mixed
      */
     public function actionGift($id){
@@ -43,7 +43,7 @@ class EmployerController extends Controller
         $payment = new \common\models\Payment();
         $payment->employer_id = $model->employer_id;
         $payment->payment_type_id = \common\models\PaymentType::TYPE_CREDIT_GIVEAWAY;
-        $payment->payment_note = "Gift from Admin: ".Yii::$app->user->identity->admin_name;
+        $payment->payment_note = "Gift from ".Yii::$app->user->identity->admin_name;
         
         if ($payment->load(Yii::$app->request->post()) && $payment->save()) {
             Yii::warning("[Gift] ".$payment->payment_amount." KD to Employer #".$payment->employer_id." from ".Yii::$app->user->identity->admin_name, __METHOD__);
@@ -51,6 +51,33 @@ class EmployerController extends Controller
         }
         
         return $this->render('gift', [
+            'model' => $model,
+            'payment' => $payment,
+        ]);
+    }
+    
+    /**
+     * Give Refund in credit to Employer
+     * @param int $id Employer ID
+     * @return mixed
+     */
+    public function actionRefund($id){
+        $model = $this->findModel($id);
+        
+        $payment = new \common\models\Payment();
+        $payment->scenario = "refund";
+        $payment->employer_id = $model->employer_id;
+        $payment->payment_type_id = \common\models\PaymentType::TYPE_CREDIT_REFUND;
+        
+        if ($payment->load(Yii::$app->request->post()) && $payment->validate()) {
+            $payment->payment_note = "Refunded by ".Yii::$app->user->identity->admin_name." ** ".$payment->payment_note;
+            if($payment->save(false)){
+                Yii::warning("[Refund] ".$payment->payment_amount." KD to Employer #".$payment->employer_id." from ".Yii::$app->user->identity->admin_name, __METHOD__);
+                return $this->redirect(['view', 'id' => $model->employer_id]);
+            }
+        }
+        
+        return $this->render('refund', [
             'model' => $model,
             'payment' => $payment,
         ]);

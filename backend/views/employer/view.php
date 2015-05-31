@@ -86,6 +86,14 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     
+    <div class="row">
+        <div class="col-md-4">
+            <?= Html::a("Refund in Credits", ['refund', 'id' => $model->employer_id], [
+                'class' => 'btn btn-primary btn-warning btn-block',
+                ]) ?>
+        </div>
+    </div>
+    
     <hr/>
     <h3>Jobs</h3>
     <?php

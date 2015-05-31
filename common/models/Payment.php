@@ -37,8 +37,12 @@ class Payment extends \yii\db\ActiveRecord
     {
         return [
             [['employer_id', 'payment_type_id', 'payment_amount'], 'required'],
+            
             [['employer_id', 'payment_type_id'], 'integer'],
-            [['payment_amount'], 'number', 'min' => 0.1]
+            [['payment_amount'], 'number', 'min' => 0.1],
+            
+            //payment note is required on refund scenario
+            ['payment_note', 'required', 'on' => 'refund'], 
         ];
     }
     
