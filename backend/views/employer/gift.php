@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Give Credit Gift');
     <?= $form->field($payment, 'payment_amount')->input('number', ['step' => 'any', 'placeholder' => 'Amount in KD']) ?>
         
     <div class="form-group">
-        <?= Html::submitButton("Send Credit Gift", ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton("Send Credit Gift", ['class' => 'btn btn-primary', 'data-confirm' => 'Are you sure?']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
