@@ -117,9 +117,40 @@ class JobController extends Controller
                  */
                 $model->job_status = Job::STATUS_PENDING;
                 $model->job_broadcasted = Job::BROADCASTED_NO;
+                
+                //Store previous price per applicant and warn us if the value changes
+                $previousPricePerApplicant = $model->job_price_per_applicant;
+                
                 $filter->saveModelAndFilter($model);
                 
-                Yii::warning("[Job #$id] Filter forcefully updated by ".Yii::$app->user->identity->admin_name." and will need to be verified.", __METHOD__);
+                /**
+                 * Check if price per applicant changed, and warn us on what happened
+                 */
+                $warningMsg = "";
+                if($previousPricePerApplicant > $model->job_price_per_applicant){
+                    //Price per applicant has decreased
+                    Yii::$app->getSession()->setFlash('success', "<h2 style='margin:0;'>Filters updated. Please verify the job listing to broadcast.</h2>");
+                    Yii::$app->getSession()->setFlash('error', "<h3 style='margin:0;'>Price per applicant decreased from <b>$previousPricePerApplicant KD</b> to <b>".number_format($model->job_price_per_applicant,3)
+                                                                 ." KD</b>.<br/>This employer might require a refund.</h3>");
+                    
+                    $warningMsg = "Price per applicant decreased from $previousPricePerApplicant KD to ".number_format($model->job_price_per_applicant,3). " KD. This employer might require a refund.";
+                }else if($previousPricePerApplicant < $model->job_price_per_applicant){
+                    //Price per applicant has increased
+                    Yii::$app->getSession()->setFlash('success', "<h2 style='margin:0;'>Filters updated. Please verify the job listing to broadcast.</h2>");
+                    Yii::$app->getSession()->setFlash('error', "<h3 style='margin:0;'>Price per applicant increased from <b>$previousPricePerApplicant KD</b> to <b>".number_format($model->job_price_per_applicant,3)
+                                                                 ." KD</b>.</h3>");
+                    
+                    $warningMsg = "Price per applicant increased from $previousPricePerApplicant KD to ".number_format($model->job_price_per_applicant,3). " KD";
+                }else{
+                    //Price did not change
+                    Yii::$app->getSession()->setFlash('success', "<h2>Filters updated. Please verify the job listing to broadcast.</h2>");
+                }
+                
+                
+                /**
+                 * Log changes
+                 */
+                Yii::warning("[Job #$id] Filter forcefully updated by ".Yii::$app->user->identity->admin_name.". Job needs to be verified. $warningMsg", __METHOD__);
                 
                 return $this->redirect(['view', 'id' => $id]);
             }else{
