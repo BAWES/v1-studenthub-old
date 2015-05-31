@@ -221,7 +221,12 @@ backend\assets\MultiselectAsset::register($this);
         </div>
 
         <div class="row" style="margin-bottom:10px; margin-top:10px;">
-            <?= Html::submitButton(Yii::t('employer', 'Update Filters & Re-broadcast') , ['class' => 'btn btn-danger btn-block btn-ripple'])?>
+            <?= Html::submitButton(Yii::t('employer', 'Update Filters & Re-broadcast') , [
+                'class' => 'btn btn-danger btn-block btn-ripple',
+                'data-confirm' => 'Pricing for this job will be updated, refund may be required. '
+                                . 'Job will require re-verification and broadcasting to students. '
+                                . 'Are you sure?',
+                ])?>
         </div>
     </div>
 
