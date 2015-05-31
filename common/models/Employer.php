@@ -242,7 +242,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
      * @return \yii\db\ActiveQuery
      */
     public function getPayments() {
-        return $this->hasMany(Payment::className(), ['employer_id' => 'employer_id']);
+        return $this->hasMany(Payment::className(), ['employer_id' => 'employer_id'])->orderBy('payment_datetime DESC');
     }
     
     /**
@@ -256,7 +256,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
      * @return \yii\db\ActiveQuery
      */
     public function getTransactions() {
-        return $this->hasMany(Transaction::className(), ['job_id' => 'job_id'])->via("jobs");
+        return $this->hasMany(Transaction::className(), ['job_id' => 'job_id'])->via("jobs")->orderBy('transaction_datetime DESC');
     }
     
     /**
