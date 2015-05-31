@@ -109,9 +109,17 @@ class JobController extends Controller
          * On Form Submit
          */
         if ($filter->load(Yii::$app->request->post())) {
+            $filter->numberOfApplicants = 100; //just to pass validation (not used)
             if ($filter->validate()) {
+                /**
+                 * Set job status to pending and broadcasted to false
+                 * Job will need to be re-verified (which will drop it back into broadcast queue)
+                 */
+                $model->job_status = Job::STATUS_PENDING;
+                $model->job_broadcasted = Job::BROADCASTED_NO;
                 $filter->saveModelAndFilter($model);
-                Yii::warning("[Job #$id] Filter forcefully updated by ".Yii::$app->user->identity->admin_id, __METHOD__);
+                
+                Yii::warning("[Job #$id] Filter forcefully updated by ".Yii::$app->user->identity->admin_name." and will need to be verified.", __METHOD__);
                 
                 return $this->redirect(['view', 'id' => $id]);
             }else{
