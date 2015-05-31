@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php $form = ActiveForm::begin(); ?>
                 <?php
                 if($amountDue > 0){
-                    $paymentTypes = \common\models\PaymentType::find()->where("payment_type_id != 1")->all();
+                    $paymentTypes = \common\models\PaymentType::find()->where("payment_type_id != 1")->andWhere("payment_type_id != 2")->all();
                     $i = 0;
                     foreach($paymentTypes as $type){
                         $i++;
