@@ -98,6 +98,13 @@ class JobController extends Controller
         $model = $this->findModel($id);
         
         /**
+         * Editing of inactive jobs is not allowed
+         */
+        if($model->job_status == Job::STATUS_CLOSED || $model->job_status == Job::STATUS_DRAFT){
+            throw new \yii\web\BadRequestHttpException("Not allowed to edit an inactive job");
+        }
+        
+        /**
          * Load filter for this Job
          */
         $filter = \employer\models\Filter::findOne($model->filter_id);
@@ -173,8 +180,17 @@ class JobController extends Controller
      */
     public function actionDisplayReach($id)
     {
+        $model = $this->findModel($id);
+        
+        /**
+         * Editing of inactive jobs is not allowed
+         */
+        if($model->job_status == Job::STATUS_CLOSED || $model->job_status == Job::STATUS_DRAFT){
+            throw new \yii\web\BadRequestHttpException("Not allowed to edit an inactive job");
+        }
+        
         return $this->render('reach', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
     

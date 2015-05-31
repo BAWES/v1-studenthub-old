@@ -214,6 +214,8 @@ switch ($model->job_status){
     </div>
  <?php } ?>
     
-    <a href="<?= Url::to(['job/display-reach', 'id' => $model->job_id]) ?>" class="btn btn-warning btn-block">View Job Reach</a>
-    <a href="<?= Url::to(['job/edit-job-filter', 'id' => $model->job_id]) ?>" class="btn btn-danger btn-block">Edit Job Filter</a>
+    <?php if(!($model->job_status == Job::STATUS_CLOSED || $model->job_status == Job::STATUS_DRAFT)){ ?>
+        <a href="<?= Url::to(['job/display-reach', 'id' => $model->job_id]) ?>" class="btn btn-warning btn-block">View Job Reach</a>
+        <a href="<?= Url::to(['job/edit-job-filter', 'id' => $model->job_id]) ?>" class="btn btn-danger btn-block">Edit Job Filter</a>
+    <?php } ?>
 </div>
