@@ -46,6 +46,7 @@ class EmployerController extends Controller
         $payment->payment_note = "Gift from Admin: ".Yii::$app->user->identity->admin_name;
         
         if ($payment->load(Yii::$app->request->post()) && $payment->save()) {
+            Yii::warning("[Gift] ".$payment->payment_amount." KD to Employer #".$payment->employer_id." from ".Yii::$app->user->identity->admin_name, __METHOD__);
             return $this->redirect(['view', 'id' => $model->employer_id]);
         }
         
