@@ -106,37 +106,32 @@ switch ($model->job_status){
     <h2 style="margin-top:0;">Filters Applied</h2>
     
     <div class="row" style="margin-bottom:1em;">
+        <?php if($filter->degree){ ?>
         <div class="col-sm-3">
             <h4>Degree</h4>
-            <?php
-            if($filter->degree){
-                echo $filter->degree->degree_name_en;
-            }else echo "Degree filter not applied";
-            ?>
+            <?= $filter->degree->degree_name_en ?>
         </div>
+        <?php } ?>
         
+        <?php if($filter->filter_gpa){ ?>
         <div class="col-sm-3">
             <h4>GPA</h4>
-            <?php
-            if($filter->filter_gpa){
-                echo $filter->filter_gpa;
-            }else echo "GPA filter not applied";
-            ?>
+            <?= $filter->filter_gpa ?>
         </div>
+        <?php } ?>
         
+        <?php if($filter->filter_graduation_year_start){ ?>
         <div class="col-sm-3">
             <h4>Graduation Year</h4>
-            <?php
-            if($filter->filter_graduation_year_start){
-                echo $filter->filter_graduation_year_start." - ".$filter->filter_graduation_year_end;
-            }else echo "Graduation filter not applied";
-            ?>
+            <?= $filter->filter_graduation_year_start." - ".$filter->filter_graduation_year_end ?>
         </div>
+        <?php } ?>
         
+        <?php if($filter->filter_english_level){ ?>
         <div class="col-sm-3">
             <h4>English Level</h4>
             <?php
-            if($filter->filter_english_level){
+            
                 switch($filter->filter_english_level){
                     case \common\models\Student::ENGLISH_WEAK:
                         echo Yii::t('register', 'Weak');
@@ -148,78 +143,74 @@ switch ($model->job_status){
                         echo Yii::t('register', 'Good');
                         break;
                 }
-            }else echo "GPA filter not applied";
             ?>
         </div>
-    </div>
+        <?php } ?>
+        
     
-    <div class="row" style="margin-bottom:1em;">
+        <?php if($filter->filter_transportation){ ?>
         <div class="col-sm-3">
             <h4>Transportation</h4>
-            <?php
-            if($filter->filter_transportation){
-                echo "Yes";
-            }else echo "Transportation filter not applied";
-            ?>
+            <?= "Yes" ?>
         </div>
-    </div>
+        <?php } ?>
     
-    <div class="row">
+        <?php if($filter->universities){ ?>
         <div class="col-sm-3">
             <h4>Universities</h4>
-            <?php
-            if($filter->universities){
-                echo "<ul>";
+            <ul>
+                <?php
                 foreach($filter->universities as $university){
                     $link = Url::to(['university/view', 'id' => $university->university_id]);
                     echo "<li><a href='$link' target='_blank'>".$university->university_name_en."</a></li>";
                 }
-                echo "</ul>";
-            }else echo "University filter not applied";
-            ?>
+                ?>
+            </ul>
         </div>
+        <?php } ?>
         
+        <?php if($filter->majors){ ?>
         <div class="col-sm-3">
             <h4>Majors</h4>
-            <?php
-            if($filter->majors){
-                echo "<ul>";
+            <ul>
+                <?php
                 foreach($filter->majors as $major){
                     $link = Url::to(['major/view', 'id' => $major->major_id]);
                     echo "<li><a href='$link' target='_blank'>".$major->major_name_en."</a></li>";
                 }
-                echo "</ul>";                
-            }else echo "Major filter not applied";
-            ?>
+                ?>
+            </ul>
         </div>
+        <?php } ?>
         
+        <?php if($filter->languages){ ?>
         <div class="col-sm-3">
             <h4>Languages</h4>
-            <?php
-            if($filter->majors){
-                echo "<ul>";
+            <ul>
+                <?php
                 foreach($filter->languages as $language){
                     $link = Url::to(['language/view', 'id' => $language->language_id]);
                     echo "<li><a href='$link' target='_blank'>".$language->language_name_en."</a></li>";
                 }
-                echo "</ul>";
-            }else echo "Language filter not applied";
-            ?>
+                ?>
+            </ul>
         </div>
+        <?php } ?>
         
+        <?php if($filter->countries){ ?>
         <div class="col-sm-3">
             <h4>Nationalities</h4>
-            <?php
-            if($filter->countries){
-                echo "<ul>";
+            <ul>
+                <?php
                 foreach($filter->countries as $nationality){
                     $link = Url::to(['country/view', 'id' => $nationality->country_id]);
                     echo "<li><a href='$link' target='_blank'>".$nationality->country_nationality_name_en."</a></li>";
                 }
-                echo "</ul>";
-            }else echo "Nationality filter not applied";
-            ?>
+                ?>
+            </ul>
         </div>
+        <?php } ?>
+        
     </div>
  <?php } ?>
     
