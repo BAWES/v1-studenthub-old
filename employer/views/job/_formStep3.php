@@ -10,6 +10,8 @@ use yii\helpers\ArrayHelper;
 /* @var $filter employer\models\Filter */
 /* @var $form yii\bootstrap\ActiveForm */
 
+$showTotal = false;
+
 
 $pricePerApplicant = \common\models\Note::findOne(["note_name" => "pricePerApplicant"])->note_value;
 $pricePerPremiumFilter = \common\models\Note::findOne(["note_name" => "pricePerPremiumFilter"])->note_value;
@@ -150,6 +152,7 @@ $("#selectAllBtn").click(function(){
 
 var $pricePerApplicant = $("#pricePerApplicant");
 var $numApplicants = $("#numApplicants");
+var $listingCost = $("#listingCost");
 var basicCost = '.$pricePerApplicant.';
 var pricePerFilter = '.$pricePerPremiumFilter.';
 
@@ -169,8 +172,19 @@ function updateOrder(){
         }
     });
     
+    var listingCost = newCost * maximumApplicants;
+    
     newCost = newCost.toFixed(3);
+    
+    
+    if(isNaN(listingCost)){ 
+        listingCost = "-";
+    }else{
+        listingCost = listingCost.toFixed(3) + " KD";
+    }
+    
     $pricePerApplicant.text(newCost + " KD");
+    $listingCost.text(listingCost);
 }
 updateOrder();
 
@@ -380,6 +394,14 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
             <p style="font-size:0.7em; margin-top:0;">
                 <?= Yii::t("employer", "cost per applicant") ?>
             </p>
+            <?php if($showTotal){ ?>
+            <p style="margin-bottom:0;" id="listingCost">
+                -
+            </p>
+            <p style="font-size:0.7em; margin-top:0;">
+                <?= Yii::t("employer", "listing cost") ?>
+            </p>
+            <?php } ?>
         </div><!--.note-->
     </div>
 </div>

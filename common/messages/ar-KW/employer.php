@@ -60,6 +60,7 @@ return [
     'Languages' => 'اللغات',
     'Leave blank to show "flexible start date"' => 'اتركه فارغا لعرض "تاريخ البدء مرن"',
     'Listing Cost' => 'التكلفة إدراجك',
+    'listing cost' => 'التكلفة إدراجك',
     'Login' => 'تسجيل الدخول',
     'Majors' => 'التخصصات',
     'Make Payment' => 'إجراء الدفع',
