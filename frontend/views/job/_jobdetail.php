@@ -35,13 +35,13 @@ use yii\helpers\Html;
     <div class="card-footer">                                                                                                                                                
         <div class="btn-group btn-group-justified">
             <div class="btn-group">
-                <a class="btn btn-indigo btn-ripple" data-toggle="modal" data-target="#about-job"><i class="fa fa-info"></i></a>
+                <a href="#jobId" class="btn btn-indigo btn-ripple" data-toggle="modal" data-target="#about-job"><i class="fa fa-info"></i></a>
             </div>
             <div class="btn-group">
-                <a class="btn btn-blue btn-ripple" data-toggle="modal" data-target="#share"><i class="fa fa-share-alt"></i></a>
+                <a href="#sharablePage" class="btn btn-blue btn-ripple" data-toggle="modal" data-target="#share"><i class="fa fa-share-alt"></i></a>
             </div>
             <div class="btn-group">
-                <a class="btn btn-cyan btn-ripple" data-toggle="modal" data-target="#interviewQuestions"><?= Yii::t("frontend", "Apply") ?></a>
+                <a href="#applyLink-hasQuestion?" class="btn btn-cyan btn-ripple" data-toggle="modal" data-target="#interviewQuestions"><?= Yii::t("frontend", "Apply") ?></a>
             </div>
         </div>
     </div><!--.card-footer-->

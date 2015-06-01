@@ -8,6 +8,14 @@ use yii\widgets\ListView;
 
 $this->title = Yii::t('frontend', 'Browse Jobs');
 $this->params['breadcrumbs'][] = Yii::t('frontend', 'Browse Jobs');
+
+$css = "
+.shareButtons div{text-align:center;}
+";
+
+
+$this->registerCssFile("@web/plugins/bootstrap-social/bootstrap-social.css", ['depends' => 'common\assets\TemplateAsset']);
+$this->registerCss($css);
 ?>
 
 
@@ -27,33 +35,30 @@ ListView::widget([
                 <h4 class="modal-title">Share</h4>                                                
             </div>
             <div class="modal-body">
-                <div class="row" style="padding-bottom: 1em">
-                    <div class="col-md-4">
-                        <button class="btn btn-default">
-                            <span class="fa fa-facebook" style="vertical-align:middle"></span>
-                        </button>                                                
+                <div class="row shareButtons" style="padding-bottom: 1em;">
+                    <div class="col-xs-4">
+                        <a href='#shareLink' target='_blank' class="btn btn-facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>                                                
                     </div>
-                    <div class="col-md-4">
-                        <button class="btn btn-default">
-                            <span class="fa fa-twitter" style="vertical-align:middle"></span>
-                        </button>                                                
+                    <div class="col-xs-4">
+                        <a href='#shareLink' target='_blank' class="btn btn-twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>                                                
                     </div>
-                    <div class="col-md-4">
-                        <button class="btn btn-default">
-                            <span class="fa fa-linkedin" style="vertical-align:middle;"></span>
-                        </button> 
+                    <div class="col-xs-4">
+                        <a href='#shareLink' target='_blank' class="btn btn-linkedin">
+                            <i class="fa fa-linkedin"></i>
+                        </a> 
                     </div>
                 </div>
-                <div class="footer">                                                                                                
-                    <div class="form-group">
-                        <h5>Link:</h5>
-                        <input type="text" class="form-control" placeholder="http://www.studenthub.co/job/zain/call-center-1" style="width:40%">
-                    </div>
-                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
-                    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"glyphicon glyphicon-search"</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/span&gt;</span></code></pre></div>
-                    </footer>    
+                <div class="form-group" style='margin-top:10px; margin-bottom:0;'>
+                    <h4>Link</h4>
+                    <input type="text" class="form-control" value="http://www.studenthub.co/job/zain/call-center-1">
                 </div>
-
+            </div>
+            <div class="modal-footer">
+                <button id='copyLink' class='btn btn-block btn-primary'>Copy Link</button>
             </div>
         </div><!--.modal-content-->
     </div><!--.modal-dialog-->
