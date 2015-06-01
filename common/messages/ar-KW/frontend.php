@@ -18,7 +18,7 @@
  */
 return [
     'This job pays!' => 'هذا يدفع!',
-    'Woohoo!' => 'ياي!',
+    'Woohoo!' => 'هييااا!!!',
     'Apply' => 'قدم',
     'Browse Jobs' => 'تصفح فرص العمل',
     'Contact' => 'إتصل بنا',
