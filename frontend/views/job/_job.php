@@ -30,7 +30,7 @@ use yii\helpers\Url;
         <h4 style='margin-top:30px; margin-bottom:0;'><?= $model->job_title ?></h4>
         <h5 style='margin-top:0;'><?= $this->params['isArabic']? $model->jobtype->jobtype_name_ar:$model->jobtype->jobtype_name_en ?></h5>
         
-        <p style='margin-bottom:0; font-size:0.9em'><?= Yii::t("frontend", 'Work start date is') ?> <?= $model->job_startdate? Yii::$app->formatter->asDate($model->job_startdate) : Yii::t("frontend", 'flexible') ?></p>					
+        <p style='margin-bottom:0; font-size:0.9em'><?= Yii::t("frontend", 'Work start date is') ?> <?= $model->job_startdate? Yii::$app->formatter->asDate($model->job_startdate, 'long') : Yii::t("frontend", 'flexible') ?></p>					
     </div><!--.card-body-->
 
     <div class="card-footer">                                                                                                                                                

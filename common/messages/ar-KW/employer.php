@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Loading Job Details..' => 'جاري تحميل تفاصيل الوظيفة ..',
+    'Update Filters & Re-broadcast' => '',
     'A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub' => 'لن يتم الموافقة على فرصة عملك إذا كان لديه عناوين تطبيق أو بريد إلكتروني في الوصف. وينبغي أن يقدم جميع الطلاب لهذه الوضيفة من خلال موقع StudentHub',
     'A short description about the job' => 'وصف قصير عن العمل',
     'About the Company' => 'عن الشركة',
@@ -60,7 +60,7 @@ return [
     'Languages' => 'اللغات',
     'Leave blank to show "flexible start date"' => 'اتركه فارغا لعرض "تاريخ البدء مرن"',
     'Listing Cost' => 'التكلفة إدراجك',
-    'listing cost' => 'التكلفة إدراجك',
+    'Loading Job Details..' => 'جاري تحميل تفاصيل الوظيفة ..',
     'Login' => 'تسجيل الدخول',
     'Majors' => 'التخصصات',
     'Make Payment' => 'إجراء الدفع',
@@ -133,6 +133,7 @@ return [
     'Your job details have been updated and will go live as soon as they are verified.' => 'تم تحديث تفاصيل عملك وسوف تعرض حالما يتم التحقق منها.',
     'cost per applicant' => 'التكلفة لكل المتقدم',
     'etc..' => 'الخ ..',
+    'listing cost' => 'التكلفة إدراجك',
     'maximum applicants' => 'الحد الأقصى للمتقدمين',
     'reset it' => 'إعادة تعيينها',
     '{currentApplicants, number} out of {maxApplicants, number} Applicants' => 'عدد المتقدمين {currentApplicants, number} من {maxApplicants, number}',
