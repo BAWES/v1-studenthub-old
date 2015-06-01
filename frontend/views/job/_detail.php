@@ -15,7 +15,7 @@ use yii\helpers\Url;
 
 
         <div class="panel">
-            <div class="panel-heading active">
+            <div class="panel-heading">
                 <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseAbout">
                     <?= Yii::t("employer", "About the Company") ?>
                 </a>
@@ -29,12 +29,12 @@ use yii\helpers\Url;
 
 
         <div class="panel">
-            <div class="panel-heading active">
+            <div class="panel-heading">
                 <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseResponsibility">
                     <?= Yii::t("employer", "Responsibilities") ?>
                 </a>
             </div>
-            <div id="collapseResponsibility" class="panel-collapse">
+            <div id="collapseResponsibility" class="panel-collapse collapse">
                 <div class="panel-body">
                     <?= Yii::$app->formatter->asNtext($model->job_responsibilites) ?>
                 </div>
@@ -43,7 +43,7 @@ use yii\helpers\Url;
 
 
         <div class="panel">
-            <div class="panel-heading active">
+            <div class="panel-heading">
                 <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapse4">
                     <?= Yii::t("employer", "Desired Skills") ?>
                 </a>
@@ -58,7 +58,7 @@ use yii\helpers\Url;
 
         <?php if($model->job_other_qualifications){ ?>
         <div class="panel">
-            <div class="panel-heading active">
+            <div class="panel-heading">
                 <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseQualif">
                     <?= Yii::t("employer", "Other Qualifications") ?>
                 </a>
@@ -74,7 +74,7 @@ use yii\helpers\Url;
 
         <?php if($model->job_compensation){ ?>
         <div class="panel">
-            <div class="panel-heading active">
+            <div class="panel-heading">
                 <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseCompensation">
                     <?= Yii::t("employer", "Compensation") ?>
                 </a>
