@@ -27,7 +27,7 @@ use yii\helpers\Url;
             <?= $this->params['isArabic']? $model->employer->industry->industry_name_ar : $model->employer->industry->industry_name_en ?>
         </div>
         
-        <h4 style='margin-top:30px; margin-bottom:0;'><?= $model->job_title ?></h4>
+        <h4 style='margin-top:30px; margin-bottom:0; font-size:27px;'><?= $model->job_title ?></h4>
         <h5 style='margin-top:0;'><?= $this->params['isArabic']? $model->jobtype->jobtype_name_ar:$model->jobtype->jobtype_name_en ?></h5>
         
         <p style='margin-bottom:0; font-size:0.9em'><?= Yii::t("frontend", 'Work start date is') ?> <?= $model->job_startdate? Yii::$app->formatter->asDate($model->job_startdate, 'long') : Yii::t("frontend", 'flexible') ?></p>					
