@@ -47,28 +47,34 @@ $("#jobList").on("click", ".jobDetail", function(){
  * Job Applying Functionality
  */
 $js .= '
-var $aboutJob = $("#about-job").find(".modal-content");
-var loadingIndicator = $aboutJob.html();
+//var $aboutJob = $("#about-job").find(".modal-content");
+//var loadingIndicator = $aboutJob.html();
 
-$("#jobList").on("click", ".jobDetail", function(){
-    var detailLink = $(this).attr("data-job");
-
-    $.ajax({
-        url: detailLink,
-        cache: false,
-        beforeSend: function () {
-            $aboutJob.html(loadingIndicator);
-        },
-        success: function(response, textStatus, jqXHR)
-        {
-            $aboutJob.html(response);
-        },
-        error: function(jqXHR, textStatus, errorThrown)
-        {
-            console.log(textStatus);
-        }
-    });
+$("#jobList").on("click", ".job-apply", function(){
+    var card = $(this).parent().parent().parent().parent();
+    
+    if($(this).hasClass("job-hasQuestions")){
+        //Show loading text within the modal before attempting to load (overwrite)
+        $("#interviewQuestions").modal("show");
+    }else{
+    
+        //Send job application without question here
+        //Use same AJAX method used in registration, make it show and hide loading similarly
+        //Make sure to validate, if a job posting requires answering questions, dont accept without answers
+        showLoading(card);
+    }
+    
 });
+
+function showLoading(card){
+    card.append("<div class=\"refresh-container\"><div class=\"loading-bar indeterminate loading-light-blue\"></div></div>");
+}
+
+function hideLoading(card){
+    card.find(".refresh-container").fadeOut(500, function () {
+        card.find(".refresh-container").remove();
+    });
+}
 ';
 
 

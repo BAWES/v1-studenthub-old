@@ -33,7 +33,7 @@ use yii\helpers\Url;
         <p style='margin-bottom:0; font-size:0.9em'><?= Yii::t("frontend", 'Work start date is') ?> <?= $model->job_startdate? Yii::$app->formatter->asDate($model->job_startdate, 'long') : Yii::t("frontend", 'flexible') ?></p>					
     </div><!--.card-body-->
 
-    <div class="card-footer">                                                                                                                                                
+    <div class="card-footer">
         <div class="btn-group btn-group-justified">
             <div class="btn-group">
                 <a href="#loadDetail" data-job="<?= Url::to(['job/detail', 'id' => $model->job_id]) ?>" 
@@ -44,7 +44,7 @@ use yii\helpers\Url;
             </div>
             <div class="btn-group">
                 <a href="#jobApply" data-job="<?= Url::to(['job/apply', 'id' => $model->job_id]) ?>" style="font-weight:bold;" 
-                   class="btn btn-cyan btn-ripple <?= $model->hasInterviewQuestions()?"hasQuestions":"" ?>" data-toggle="modal" data-target="#interviewQuestions"><?= Yii::t("frontend", "Apply") ?></a>
+                   class="job-apply btn btn-cyan btn-ripple <?= $model->hasInterviewQuestions()?"job-hasQuestions":"" ?>"><?= Yii::t("frontend", "Apply") ?></a>
             </div>
         </div>
     </div><!--.card-footer-->
