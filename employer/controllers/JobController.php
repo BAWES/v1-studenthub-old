@@ -22,7 +22,7 @@ class JobController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['@'], //only allow unauthenticated users to job actions
+                        'roles' => ['@'], //only allow authenticated users to job actions
                     ],
                 ],
             ],
