@@ -27,7 +27,7 @@ class TemplateAsset extends AssetBundle
         //BEGIN GLOBAL AND THEME VENDORS
         'js/global-vendors.js',
         //PLEASURE
-        'js/pleasure.js',
+        'js/studenthub.js',
         //ADMIN 1
         'js/layout.js',
     ];

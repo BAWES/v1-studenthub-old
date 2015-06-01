@@ -1,8 +1,7 @@
 var Pleasure = {
 
-	// Pleasure Theme Settings
 	settings: {
-		name: "Pleasure Dashboard Theme",
+		name: "StudentHub",
 		version: "1.0.0",
 
 		paths: {
@@ -12,8 +11,8 @@ var Pleasure = {
 		},
 
 		ga: {
-			urchin: "UA-11816554-27", // UA-XXXXXX-XX
-			url: "auto" // or subdomain.teamfox.co
+			//urchin: "UA-11816554-27",
+			//url: "auto"
 		}
 	},
 
