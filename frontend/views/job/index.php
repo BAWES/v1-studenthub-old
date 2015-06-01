@@ -19,7 +19,79 @@ ListView::widget([
 ])
 ?>
 
+<!-- Share Modal -->
+<div class="modal scale fade" id="share" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Share</h4>                                                
+            </div>
+            <div class="modal-body">
+                <div class="row" style="padding-bottom: 1em">
+                    <div class="col-md-4">
+                        <button class="btn btn-default">
+                            <span class="fa fa-facebook" style="vertical-align:middle"></span>
+                        </button>                                                
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-default">
+                            <span class="fa fa-twitter" style="vertical-align:middle"></span>
+                        </button>                                                
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-default">
+                            <span class="fa fa-linkedin" style="vertical-align:middle;"></span>
+                        </button> 
+                    </div>
+                </div>
+                <div class="footer">                                                                                                
+                    <div class="form-group">
+                        <h5>Link:</h5>
+                        <input type="text" class="form-control" placeholder="http://www.studenthub.co/job/zain/call-center-1" style="width:40%">
+                    </div>
+                    <div class="zero-clipboard"><span class="btn-clipboard">Copy</span></div>
+                    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"glyphicon glyphicon-search"</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/span&gt;</span></code></pre></div>
+                    </footer>    
+                </div>
 
+            </div>
+        </div><!--.modal-content-->
+    </div><!--.modal-dialog-->
+</div><!--.modal-->
+
+
+<!-- Questions Modal -->
+<div class="modal scale fade" id="interviewQuestions" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Interview Questions</h4>
+            </div>
+            <div class="modal-body">
+                How old were you?
+                <div class="inputer">
+                    <div class="input-wrapper">
+                        <textarea class="form-control js-auto-size" rows="1"></textarea>
+                    </div>
+                </div>
+
+                Do you like our products?
+                <div class="inputer">
+                    <div class="input-wrapper">
+                        <textarea class="form-control js-auto-size" rows="1"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-flat btn-primary">Apply</button>
+            </div>
+        </div><!--.modal-content-->
+    </div><!--.modal-dialog-->
+</div><!--.modal-->
+
+
+<!-- More Info Modal -->
 <div class="modal fade full-height from-right" id="about-job" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -88,7 +160,7 @@ ListView::widget([
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-flat-primary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-flat-primary" data-dismiss="modal">Apply</button>                            
+                <button type="button" class="btn btn-flat-primary" data-dismiss="modal" data-toggle="modal" data-target="#interviewQuestions">Apply</button>                            
             </div>                        
         </div>                                    
     </div><!--.modal-->

@@ -41,7 +41,7 @@ use yii\helpers\Html;
                 <a class="btn btn-blue btn-ripple" data-toggle="modal" data-target="#share"><i class="fa fa-share-alt"></i></a>
             </div>
             <div class="btn-group">
-                <a class="btn btn-cyan btn-ripple"><?= Yii::t("frontend", "Apply") ?></a>
+                <a class="btn btn-cyan btn-ripple" data-toggle="modal" data-target="#interviewQuestions"><?= Yii::t("frontend", "Apply") ?></a>
             </div>
         </div>
     </div><!--.card-footer-->
