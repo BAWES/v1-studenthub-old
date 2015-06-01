@@ -601,6 +601,16 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     {
         return $this->hasMany(Major::className(), ['major_id' => 'major_id'])->viaTable('student_major', ['student_id' => 'student_id']);
     }
+    
+    /**
+     * A list of active jobs this student qualifies for
+     * @return \yii\db\ActiveQuery
+     */
+    public function getActiveQualifiedJobs()
+    {
+        return $this->hasMany(Job::className(), ['job_id' => 'job_id'])->viaTable('student_job_qualification', ['student_id' => 'student_id'])
+                    ->where(['job_status' => Job::STATUS_OPEN]);
+    }
 
     /**
      * @return \yii\db\ActiveQuery

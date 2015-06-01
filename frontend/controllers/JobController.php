@@ -6,7 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use common\models\Job;
-use yii\data\ArrayDataProvider;
+use yii\data\ActiveDataProvider;
 
 class JobController extends \yii\web\Controller {
 
@@ -43,10 +43,16 @@ class JobController extends \yii\web\Controller {
      * Ordered by publish date (newest jobs on top)
      */
     public function actionIndex() {
-        $jobs = '';//Yii::$app->user->identity->jobs;
+        $query = Yii::$app->user->identity->getActiveQualifiedJobs();
+        
+        //Allow searching and filtering on this dataprovider + possibly pagination?
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
                 
         return $this->render('index',[
-            'jobs' => $jobs,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
