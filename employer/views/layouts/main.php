@@ -453,13 +453,6 @@ Breadcrumbs::widget([
                             <div class="col-md-6 col-md-offset-3">
 
                                 <div class="settings-panel" style="padding-top:0;">
-                                    <div class="legend">University</div>
-                                    <ul>
-                                        <li>
-                                            <p>Gulf University for Science and Technology</p>
-                                            <button class="btn btn-default" data-toggle="modal" data-target="#smallModal">Transferred to another University?</button>
-                                        </li>
-                                    </ul>
                                     <div class="legend">Notification Preferences</div>
                                     <ul>
                                         <li>
@@ -492,18 +485,7 @@ Breadcrumbs::widget([
                         </div><!--.tab-pane #settings-->
 
                     </div><!--.row-->
-                    <div class="modal scale fade" id="smallModal" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Transferred?</h4>                                                
-                                </div>
-                                <div class="modal-body">
-                                    You are required to create a new account using your new university identity
-                                </div>
-                            </div><!--.modal-content-->
-                        </div><!--.modal-dialog-->
-                    </div><!--.modal-->
+                    
                 </div><!--.user-layer-->
                 <!-- END OF USER LAYER -->
             <?php } ?>
