@@ -181,16 +181,12 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
             <!-- BEGIN MENU LAYER -->
             <div class="menu-layer">
                 <?php
-                $menuItems = [
-                    ['label' => Yii::t('frontend','Home'), 'url' => ['/site/index']],
-                    ['label' => Yii::t('frontend','Contact'), 'url' => ['/site/contact']],
-                    
-                ];
-                if (Yii::$app->user->isGuest) {
-                    $menuItems[] = ['label' => Yii::t('frontend','Register'), 'url' => ['/register/index']];
-                    $menuItems[] = ['label' => Yii::t('frontend','Login'), 'url' => ['/site/login']];
-                } else {
-                    $menuItems[] = [
+                $menuItems = [];
+                
+                /**
+                 * Subnav menu example:
+                 * 
+                 * $menuItems[] = [
                         'label' => 'Test',
                         'items' => [
                             [
@@ -199,12 +195,22 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                             ],
                         ]
                     ];
+                 */
+                
+                if (Yii::$app->user->isGuest) {
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Home'), 'url' => ['/site/index']];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/site/contact']];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Register'), 'url' => ['/register/index']];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Login'), 'url' => ['/site/login']];
+                } else {
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Browse Jobs'), 'url' => ['/job/index']];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/site/contact']];
                     $menuItems[] = [
-                        'label' => Yii::t('frontend','Logout'),
+                        'label' => Yii::t('frontend', 'Logout'),
                         'url' => ['/site/logout'],
                         'linkOptions' => ['data-method' => 'post']
                     ];
-                }
+                }                
                 
                 //Link to Employer Portal
                 $menuItems[] = ['label' => Yii::t('frontend','Employer Portal'), 'url' => Yii::$app->urlManagerEmployer->createUrl("site/index")];
