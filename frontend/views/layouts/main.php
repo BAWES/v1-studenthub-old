@@ -492,7 +492,7 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                                     <h4 class="modal-title">Transferred?</h4>                                                
                                 </div>
                                 <div class="modal-body">
-                                    You are required to create a new account using your new university identity
+                                    Please <a href="<?= Url::to(["site/contact"]) ?>">contact us</a> to transfer your account to another university
                                 </div>
                             </div><!--.modal-content-->
                         </div><!--.modal-dialog-->
