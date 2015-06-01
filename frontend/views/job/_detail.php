@@ -96,5 +96,5 @@ use yii\helpers\Url;
 <div class="modal-footer">
     <button type="button" class="btn btn-flat btn-ripple" data-dismiss="modal"><?= Yii::t('app',"Close") ?></button>
     <a href="<?= Url::to(["job/apply", "id" => $model->job_id]) ?>"
-        class="btn btn-cyan btn-ripple"><?= Yii::t('frontend',"Apply") ?></a>
+       class="btn btn-cyan btn-ripple" style="font-weight:bold;"><?= Yii::t('frontend',"Apply") ?></a>
 </div>
