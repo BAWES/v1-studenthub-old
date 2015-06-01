@@ -609,7 +609,8 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function getActiveQualifiedJobs()
     {
         return $this->hasMany(Job::className(), ['job_id' => 'job_id'])->viaTable('student_job_qualification', ['student_id' => 'student_id'])
-                    ->where(['job_status' => Job::STATUS_OPEN]);
+                    ->where(['job_status' => Job::STATUS_OPEN])
+                    ->with(['employer', 'employer.industry', 'jobtype']);
     }
 
     /**
