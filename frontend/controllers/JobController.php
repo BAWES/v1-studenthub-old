@@ -55,20 +55,37 @@ class JobController extends \yii\web\Controller {
             'dataProvider' => $dataProvider,
         ]);
     }
+    
+    /**
+     * Displays job details for employer via AJAX
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDetail($id) {
+        return $this->renderPartial('_detail', [
+            'model' => $this->findJob($id),
+        ]);
+    }
 
     /**
      * Finds the Job model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
+     * Student must qualify for this job or it wont be found
+     * If the job is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
      * @return Job the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findJob($id)
     {
-        if (($model = Job::findOne($id)) !== null) {
-            return $model;
+        $model = \common\models\StudentJobQualification::find()->where([
+                'job_id' => $id,
+                'student_id' => Yii::$app->user->identity->student_id,
+            ])->one();
+                
+        if ($model) {
+            return $model->job;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('The requested job does not exist.');
         }
     }
     

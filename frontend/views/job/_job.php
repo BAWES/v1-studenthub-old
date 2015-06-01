@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $model common\models\Job */
 ?>
@@ -35,13 +36,15 @@ use yii\helpers\Html;
     <div class="card-footer">                                                                                                                                                
         <div class="btn-group btn-group-justified">
             <div class="btn-group">
-                <a href="#jobId" class="btn btn-indigo btn-ripple" data-toggle="modal" data-target="#about-job"><i class="fa fa-info"></i></a>
+                <a href="#loadDetail" data-job="<?= Url::to(['job/detail', 'id' => $model->job_id]) ?>" 
+                   class="btn btn-indigo btn-ripple jobDetail" data-toggle="modal" data-target="#about-job"><i class="fa fa-info"></i></a>
             </div>
             <div class="btn-group">
                 <a href="#sharablePage" class="btn btn-blue btn-ripple" data-toggle="modal" data-target="#share"><i class="fa fa-share-alt"></i></a>
             </div>
             <div class="btn-group">
-                <a href="#applyLink-hasQuestion?" class="btn btn-cyan btn-ripple" data-toggle="modal" data-target="#interviewQuestions"><?= Yii::t("frontend", "Apply") ?></a>
+                <a href="#jobApply" data-job="<?= Url::to(['job/apply', 'id' => $model->job_id]) ?>" 
+                   class="btn btn-cyan btn-ripple" data-toggle="modal" data-target="#interviewQuestions"><?= Yii::t("frontend", "Apply") ?></a>
             </div>
         </div>
     </div><!--.card-footer-->
