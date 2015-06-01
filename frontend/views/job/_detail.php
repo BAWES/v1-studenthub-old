@@ -34,7 +34,7 @@ use yii\helpers\Url;
                     <?= Yii::t("employer", "Responsibilities") ?>
                 </a>
             </div>
-            <div id="collapseResponsibility" class="panel-collapse collapse">
+            <div id="collapseResponsibility" class="panel-collapse">
                 <div class="panel-body">
                     <?= Yii::$app->formatter->asNtext($model->job_responsibilites) ?>
                 </div>
@@ -88,6 +88,10 @@ use yii\helpers\Url;
         <?php } ?>
 
     </div>
+    
+    <?php if($model->job_pay){ ?>
+    <div class="alert alert-danger"><span class="ion-android-favorite"></span> <strong><?= Yii::t('frontend', 'Woohoo!') ?></strong> <?= Yii::t('frontend',"This job pays!") ?></div>
+    <?php } ?>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-flat btn-ripple" data-dismiss="modal"><?= Yii::t('app',"Close") ?></button>
