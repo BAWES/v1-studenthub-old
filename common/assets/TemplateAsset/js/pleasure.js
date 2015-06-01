@@ -248,7 +248,7 @@ var Pleasure = {
 	},
 
 	handleAccordionAndToggles: function () {
-		$('.accordion a[data-toggle="collapse"]').click(function () {
+		$('body').on('click','.accordion a[data-toggle="collapse"]', function () {
 			$(this).parents('.accordion').find('.panel-heading').removeClass('active');
 			if ( $(this).parent().next().hasClass('in') ) {
 				$(this).parents('.panel-heading').removeClass('active');
@@ -257,7 +257,7 @@ var Pleasure = {
 				$(this).parents('.panel-heading').addClass('active');
 			}
 		});
-		$('.toggle a[data-toggle="collapse"]').click(function () {
+		$('body').on('click','.toggle a[data-toggle="collapse"]', function () {
 			$(this).parents('.panel-heading').toggleClass('active');
 		});
 	},
