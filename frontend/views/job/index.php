@@ -13,9 +13,18 @@ $css = "
 .shareButtons div{text-align:center;}
 ";
 
+$js = "
+//Copy link functionality
+$('#share').on('click', '#copyLink', function(){
+    var shareUrl = $(this).parent().parent().find('#linktoCopy').val();
+    alert(shareUrl);
+});
+";
+
 
 $this->registerCssFile("@web/plugins/bootstrap-social/bootstrap-social.css", ['depends' => 'common\assets\TemplateAsset']);
 $this->registerCss($css);
+$this->registerJs($js);
 ?>
 
 
@@ -54,11 +63,8 @@ ListView::widget([
                 </div>
                 <div class="form-group" style='margin-top:10px; margin-bottom:0;'>
                     <h4>Link</h4>
-                    <input type="text" class="form-control" value="http://www.studenthub.co/job/zain/call-center-1">
+                    <input id="linktoCopy" type="text" class="form-control" value="http://www.studenthub.co/job/zain/call-center-1">
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button id='copyLink' class='btn btn-block btn-primary'>Copy Link</button>
             </div>
         </div><!--.modal-content-->
     </div><!--.modal-dialog-->
