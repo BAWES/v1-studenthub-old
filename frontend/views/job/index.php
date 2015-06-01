@@ -43,6 +43,35 @@ $("#jobList").on("click", ".jobDetail", function(){
 ';
 
 
+/**
+ * Job Applying Functionality
+ */
+$js .= '
+var $aboutJob = $("#about-job").find(".modal-content");
+var loadingIndicator = $aboutJob.html();
+
+$("#jobList").on("click", ".jobDetail", function(){
+    var detailLink = $(this).attr("data-job");
+
+    $.ajax({
+        url: detailLink,
+        cache: false,
+        beforeSend: function () {
+            $aboutJob.html(loadingIndicator);
+        },
+        success: function(response, textStatus, jqXHR)
+        {
+            $aboutJob.html(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            console.log(textStatus);
+        }
+    });
+});
+';
+
+
 $this->registerCssFile("@web/plugins/bootstrap-social/bootstrap-social.css", ['depends' => 'common\assets\TemplateAsset']);
 $this->registerCss($css);
 $this->registerJs($js);

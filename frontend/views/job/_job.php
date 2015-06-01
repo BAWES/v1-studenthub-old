@@ -44,7 +44,7 @@ use yii\helpers\Url;
             </div>
             <div class="btn-group">
                 <a href="#jobApply" data-job="<?= Url::to(['job/apply', 'id' => $model->job_id]) ?>" style="font-weight:bold;" 
-                   class="btn btn-cyan btn-ripple" data-toggle="modal" data-target="#interviewQuestions"><?= Yii::t("frontend", "Apply") ?></a>
+                   class="btn btn-cyan btn-ripple <?= $model->hasInterviewQuestions()?"hasQuestions":"" ?>" data-toggle="modal" data-target="#interviewQuestions"><?= Yii::t("frontend", "Apply") ?></a>
             </div>
         </div>
     </div><!--.card-footer-->
