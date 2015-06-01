@@ -26,23 +26,22 @@ use yii\helpers\Html;
             <?= $this->params['isArabic']? $model->employer->industry->industry_name_ar : $model->employer->industry->industry_name_en ?>
         </div>
         
-        <h4 style='margin-top:30px;'><?= $model->job_title ?></h4>
-        <p>
-            <b>Job Type:</b> Full-Time<br>
-            <b>Start Date:</b> Flexible
-        </p>						
+        <h4 style='margin-top:30px; margin-bottom:0;'><?= $model->job_title ?></h4>
+        <h5 style='margin-top:0;'><?= $this->params['isArabic']? $model->jobtype->jobtype_name_ar:$model->jobtype->jobtype_name_en ?></h5>
+        
+        <p style='margin-bottom:0; font-size:0.9em'><?= Yii::t("frontend", 'Work start date is') ?> <?= $model->job_startdate? Yii::$app->formatter->asDate($model->job_startdate) : Yii::t("frontend", 'flexible') ?></p>					
     </div><!--.card-body-->
 
     <div class="card-footer">                                                                                                                                                
         <div class="btn-group btn-group-justified">
             <div class="btn-group">
-                <button type="button" class="btn btn-indigo btn-ripple" data-toggle="modal" data-target="#about-job"><i class="fa fa-info"></i></button>
+                <a class="btn btn-indigo btn-ripple" data-toggle="modal" data-target="#about-job"><i class="fa fa-info"></i></a>
             </div>
             <div class="btn-group">
-                <button type="button" class="btn btn-blue btn-ripple" data-toggle="modal" data-target="#share"><i class="fa fa-share-alt"></i></button>
+                <a class="btn btn-blue btn-ripple" data-toggle="modal" data-target="#share"><i class="fa fa-share-alt"></i></a>
             </div>
             <div class="btn-group">
-                <button type="button" class="btn btn-cyan btn-ripple">Apply</button>
+                <a class="btn btn-cyan btn-ripple"><?= Yii::t("frontend", "Apply") ?></a>
             </div>
         </div>
     </div><!--.card-footer-->
