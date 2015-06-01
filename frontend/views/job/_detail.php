@@ -87,34 +87,6 @@ use yii\helpers\Url;
         </div>
         <?php } ?>
 
-        <?php if($model->job_question_1 || $model->job_question_2){ ?>
-        <div class="panel">
-            <div class="panel-heading active">
-                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseQuestions">
-                    <?= Yii::t("employer", "Interview Questions") ?>
-                </a>
-            </div>
-            <div id="collapseQuestions" class="panel-collapse collapse">
-                <div class="panel-body">
-                    
-                    <?php if($model->job_question_1){ ?>
-                    <b><?= Yii::t("employer", "Question") ?></b>
-                    <div class="well">
-                        <?= Yii::$app->formatter->asNtext($model->job_question_1) ?>
-                    </div>
-                    <?php } ?>
-                    
-                    <?php if($model->job_question_2){ ?>
-                    <b><?= Yii::t("employer", "Question") ?></b>
-                    <div class="well">
-                        <?= Yii::$app->formatter->asNtext($model->job_question_2) ?>
-                    </div>
-                    <?php } ?>
-                </div>
-            </div>
-        </div>
-        <?php } ?>
-
     </div>
 </div>
 <div class="modal-footer">
