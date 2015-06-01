@@ -2,12 +2,6 @@
 	font-size: 13px;
 	padding-top: 7px;
 }
-h3{
-	font-size: 20px !important;
-	font-weight: bold;
-	line-height: 26px;
-	color: inherit;
-}
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
     color: #076C63;
