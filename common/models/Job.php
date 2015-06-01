@@ -164,6 +164,18 @@ class Job extends \yii\db\ActiveRecord
     
     
     /**
+     * Check whether a job has interview questions or not
+     * @return boolean
+     */
+    public function hasInterviewQuestions(){
+        if($this->job_question_1 || $this->job_question_2){
+            return true;
+        }
+        return false;
+    }
+    
+    
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getQualifiedStudents(){
