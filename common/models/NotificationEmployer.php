@@ -13,7 +13,7 @@ use yii\db\Expression;
  * @property integer $employer_id
  * @property integer $student_id
  * @property integer $job_id
- * @property integer $notication_sent
+ * @property integer $notification_sent
  * @property integer $notification_viewed
  * @property string $notification_datetime
  *
@@ -81,7 +81,7 @@ class NotificationEmployer extends \yii\db\ActiveRecord
             'employer_id' => Yii::t('app', 'Employer ID'),
             'student_id' => Yii::t('app', 'Student ID'),
             'job_id' => Yii::t('app', 'Job ID'),
-            'notication_sent' => Yii::t('app', 'Notication Sent'),
+            'notification_sent' => Yii::t('app', 'Notication Sent'),
             'notification_viewed' => Yii::t('app', 'Notification Viewed'),
             'notification_datetime' => Yii::t('app', 'Notification Datetime'),
         ];
