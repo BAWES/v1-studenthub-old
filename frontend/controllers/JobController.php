@@ -4,12 +4,13 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use common\models\Job;
 use yii\data\ActiveDataProvider;
 
 class JobController extends \yii\web\Controller {
-
+    
     /**
      * @inheritdoc
      */
@@ -24,6 +25,12 @@ class JobController extends \yii\web\Controller {
                     ],
                 ],
             ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'apply' => ['post'],
+                ],
+            ],
         ];
     }
 
@@ -36,6 +43,38 @@ class JobController extends \yii\web\Controller {
                 'class' => 'yii\web\ErrorAction',
             ],
         ];
+    }
+    
+    
+    /**
+     * Handles student application for job
+     */
+    public function actionApply(){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $response = [
+            'valid' => false,
+            'message' => "Default Message",
+        ];
+        
+        
+        $studentApplication = new \frontend\models\StudentJobApplication();
+        $studentApplication->student_id = Yii::$app->user->identity->student_id;
+        $studentApplication->job_id = Yii::$app->request->post('job');
+        $studentApplication->application_answer_1 = Yii::$app->request->post('answer1');
+        $studentApplication->application_answer_2 = Yii::$app->request->post('answer2');
+        
+        if($studentApplication->validate()){
+            //process application/blabla
+            //which should increase applicant counter for job
+            //which will close job if it reaches max applicants
+            $response['valid'] = true;
+            $response['message'] = "WORKS";
+        }else{
+            $response['valid'] = false;
+            $response['message'] = $studentApplication->errors;
+        }
+        
+        return $response;
     }
     
     /**
@@ -80,7 +119,7 @@ class JobController extends \yii\web\Controller {
         $model = \common\models\StudentJobQualification::find()->where([
                 'job_id' => $id,
                 'student_id' => Yii::$app->user->identity->student_id,
-            ])->one();
+            ])->with('job')->one();
                 
         if ($model) {
             return $model->job;

@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "student_job_application".
@@ -39,16 +41,22 @@ class StudentJobApplication extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['student_id', 'job_id', 'application_hidden', 'application_date_apply'], 'required'],
-            [['student_id', 'job_id', 'application_hidden'], 'integer'],
-            [['application_date_apply'], 'safe'],
-            [['application_answer_1', 'application_answer_2'], 'string', 'max' => 255],
-            
-            //Rules hiding of applications
-            ['application_hidden', 'default', 'value' => self::HIDDEN_FALSE],
-            ['application_hidden', 'in', 'range' => [self::HIDDEN_FALSE, self::HIDDEN_TRUE]],
+            [['student_id', 'job_id'], 'required'],
+            [['student_id', 'job_id'], 'integer'],
         ];
     }
+    
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'application_date_apply',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+    
 
     /**
      * @inheritdoc

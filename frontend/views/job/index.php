@@ -46,12 +46,14 @@ $("#jobList").on("click", ".jobDetail", function(){
 /**
  * Job Applying Functionality
  */
+$applyLink = Yii::$app->urlManager->createUrl(['job/apply']);
 $js .= '
 //var $aboutJob = $("#about-job").find(".modal-content");
 //var loadingIndicator = $aboutJob.html();
 
 $("#jobList").on("click", ".job-apply", function(){
     var card = $(this).parent().parent().parent().parent();
+    var jobId = $(this).attr("data-job");
     
     if($(this).hasClass("job-hasQuestions")){
         //Show loading text within the modal before attempting to load (overwrite)
@@ -61,10 +63,42 @@ $("#jobList").on("click", ".job-apply", function(){
         //Send job application without question here
         //Use same AJAX method used in registration, make it show and hide loading similarly
         //Make sure to validate, if a job posting requires answering questions, dont accept without answers
-        showLoading(card);
+        
+        
+        applyTo(jobId,"","",card);
     }
     
 });
+
+function applyTo(job, answer1, answer2, card){
+    var csrfToken = $("meta[name=\'csrf-token\']").attr("content");
+
+    $.ajax({
+        type: "POST",
+        cache: false,
+        url: "'.$applyLink.'",
+        data: {job: job, answer1: answer1, answer2: answer2, _csrf:csrfToken},
+        beforeSend: function () {
+            showLoading(card);
+        }
+    }).done(function (response) {
+        
+        if(response.valid == true){
+            toastr.success(response.message);
+            //Update card markup so student can no longer apply again
+        }else{
+            $.each(response.message, function() {
+                $.each(this, function(key, value) {
+                    toastr.error(value);
+                });
+            });
+        }
+        
+        hideLoading(card);
+        
+
+    });
+}
 
 function showLoading(card){
     card.append("<div class=\"refresh-container\"><div class=\"loading-bar indeterminate loading-light-blue\"></div></div>");

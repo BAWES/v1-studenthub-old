@@ -43,7 +43,7 @@ use yii\helpers\Url;
                 <a href="#sharablePage" class="btn btn-blue btn-ripple" data-toggle="modal" data-target="#share"><i class="fa fa-share-alt"></i></a>
             </div>
             <div class="btn-group">
-                <a href="#jobApply" data-job="<?= Url::to(['job/apply', 'id' => $model->job_id]) ?>" style="font-weight:bold;" 
+                <a href="#jobApply" data-job="<?= $model->job_id ?>" style="font-weight:bold;" 
                    class="job-apply btn btn-cyan btn-ripple <?= $model->hasInterviewQuestions()?"job-hasQuestions":"" ?>"><?= Yii::t("frontend", "Apply") ?></a>
             </div>
         </div>
