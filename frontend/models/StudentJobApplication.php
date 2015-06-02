@@ -39,9 +39,9 @@ class StudentJobApplication extends \common\models\StudentJobApplication {
             /**
              * Check if questions have been answered
              */
-            if($job->job_question_1 && !$this->application_answer_1){
+            if($job->job_question_1 && !trim($this->application_answer_1)){
                 $this->addError($attribute, Yii::t('frontend','Please answer the interview question'));
-            }else if($job->job_question_2 && !$this->application_answer_2){
+            }else if($job->job_question_2 && !trim($this->application_answer_2)){
                 $this->addError($attribute, Yii::t('frontend','Please answer the interview question'));
             }else if(!$job->job_question_1 && !$job->job_question_2){
                 $this->application_answer_1 = null;
