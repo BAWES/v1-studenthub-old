@@ -51,6 +51,10 @@ class StudentJobApplication extends \common\models\StudentJobApplication {
         }else $this->addError($attribute, Yii::t('frontend','You do not qualify for this job'));
     }
 
+    
+    /**
+     * @inheritdoc
+     */
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
             if ($insert) {
@@ -61,6 +65,10 @@ class StudentJobApplication extends \common\models\StudentJobApplication {
         }
     }
 
+    
+    /**
+     * @inheritdoc
+     */
     public function afterSave($insert, $changedAttributes) {
         parent::afterSave($insert, $changedAttributes);
 
