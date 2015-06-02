@@ -162,6 +162,29 @@ class Job extends \yii\db\ActiveRecord
         }
     }
     
+    /**
+     * Closes the job
+     */
+    public function close(){
+        if($this->job_status != self::STATUS_CLOSED){
+            $this->job_status = self::STATUS_CLOSED;
+            $this->save(false);
+        }
+    }
+    
+    /**
+     * Check if number of max applicants has been reached
+     * Closes the job if it did
+     */
+    public function checkMaxApplicantsReached(){
+        /**
+         * Close the job once it reaches max number of applicants
+         */
+        if($this->job_current_num_applicants >= $this->job_max_applicants){
+            $this->close();
+        }
+    }
+    
     
     /**
      * Check whether a job has interview questions or not
