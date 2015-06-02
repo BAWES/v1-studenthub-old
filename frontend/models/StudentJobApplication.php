@@ -43,15 +43,26 @@ class StudentJobApplication extends \common\models\StudentJobApplication {
                 $this->addError($attribute, Yii::t('frontend','This job is no longer available, please refresh to load updated list'));
             }else{
                 /**
-                 * Check if questions have been answered
+                 * Check if student already applied for this job
                  */
-                if($job->job_question_1 && !trim($this->application_answer_1)){
-                    $this->addError($attribute, Yii::t('frontend','Please answer the interview question'));
-                }else if($job->job_question_2 && !trim($this->application_answer_2)){
-                    $this->addError($attribute, Yii::t('frontend','Please answer the interview question'));
-                }else if(!$job->job_question_1 && !$job->job_question_2){
-                    $this->application_answer_1 = null;
-                    $this->application_answer_2 = null;
+                $applicationCheck = static::find()->where([
+                    'student_id' => $this->student_id,
+                    'job_id' => $this->job_id,
+                    ])->one();
+                if($applicationCheck){
+                    $this->addError($attribute, Yii::t('frontend','You have already applied for this job'));
+                }else{
+                    /**
+                     * Check if questions have been answered
+                     */
+                    if($job->job_question_1 && !trim($this->application_answer_1)){
+                        $this->addError($attribute, Yii::t('frontend','Please answer the interview question'));
+                    }else if($job->job_question_2 && !trim($this->application_answer_2)){
+                        $this->addError($attribute, Yii::t('frontend','Please answer the interview question'));
+                    }else if(!$job->job_question_1 && !$job->job_question_2){
+                        $this->application_answer_1 = null;
+                        $this->application_answer_2 = null;
+                    }
                 }
             }
             
@@ -66,20 +77,23 @@ class StudentJobApplication extends \common\models\StudentJobApplication {
         if (parent::beforeSave($insert)) {
             if ($insert) {
                 $this->application_hidden = self::HIDDEN_FALSE;
+                
+                /**
+                 * Notify Employer about this new Application
+                 */
+                
+                
+                /**
+                 * Update job counters and check if max applicants reached
+                 */
+                $job = $this->job;
+                $job->updateCounters(['job_current_num_applicants' => 1]);
+                $job->checkMaxApplicantsReached();
+                
             }
 
             return true;
         }
-    }
-
-    
-    /**
-     * @inheritdoc
-     */
-    public function afterSave($insert, $changedAttributes) {
-        parent::afterSave($insert, $changedAttributes);
-
-        //temp
     }
 
 }
