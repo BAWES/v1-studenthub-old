@@ -88,7 +88,7 @@ class StudentJobApplication extends \common\models\StudentJobApplication {
                 $notification->employer_id = $job->employer_id;
                 $notification->student_id = $this->student_id;
                 $notification->job_id = $this->job_id;
-                $notification->notication_sent = NotificationEmployer::SENT_FALSE;
+                $notification->notification_sent = NotificationEmployer::SENT_FALSE;
                 $notification->notification_viewed = NotificationEmployer::VIEWED_FALSE;
                 $notification->save();
                 
