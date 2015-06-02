@@ -37,15 +37,22 @@ class StudentJobApplication extends \common\models\StudentJobApplication {
             $job = $qualification->job;
             
             /**
-             * Check if questions have been answered
+             * Check if this job is still active
              */
-            if($job->job_question_1 && !trim($this->application_answer_1)){
-                $this->addError($attribute, Yii::t('frontend','Please answer the interview question'));
-            }else if($job->job_question_2 && !trim($this->application_answer_2)){
-                $this->addError($attribute, Yii::t('frontend','Please answer the interview question'));
-            }else if(!$job->job_question_1 && !$job->job_question_2){
-                $this->application_answer_1 = null;
-                $this->application_answer_2 = null;
+            if($job->job_status != \common\models\Job::STATUS_OPEN){
+                $this->addError($attribute, Yii::t('frontend','This job is no longer available, please refresh to load updated list'));
+            }else{
+                /**
+                 * Check if questions have been answered
+                 */
+                if($job->job_question_1 && !trim($this->application_answer_1)){
+                    $this->addError($attribute, Yii::t('frontend','Please answer the interview question'));
+                }else if($job->job_question_2 && !trim($this->application_answer_2)){
+                    $this->addError($attribute, Yii::t('frontend','Please answer the interview question'));
+                }else if(!$job->job_question_1 && !$job->job_question_2){
+                    $this->application_answer_1 = null;
+                    $this->application_answer_2 = null;
+                }
             }
             
         }else $this->addError($attribute, Yii::t('frontend','You do not qualify for this job'));
