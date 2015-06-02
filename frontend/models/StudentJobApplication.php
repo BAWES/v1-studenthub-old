@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use common\models\NotificationEmployer;
 
 /**
  * This is the model class for table "student_job_application".
@@ -78,15 +79,22 @@ class StudentJobApplication extends \common\models\StudentJobApplication {
             if ($insert) {
                 $this->application_hidden = self::HIDDEN_FALSE;
                 
+                $job = $this->job;
+                
                 /**
                  * Notify Employer about this new Application
                  */
-                
+                $notification = new NotificationEmployer();
+                $notification->employer_id = $job->employer_id;
+                $notification->student_id = $this->student_id;
+                $notification->job_id = $this->job_id;
+                $notification->notication_sent = NotificationEmployer::SENT_FALSE;
+                $notification->notification_viewed = NotificationEmployer::VIEWED_FALSE;
+                $notification->save();
                 
                 /**
                  * Update job counters and check if max applicants reached
                  */
-                $job = $this->job;
                 $job->updateCounters(['job_current_num_applicants' => 1]);
                 $job->checkMaxApplicantsReached();
                 
