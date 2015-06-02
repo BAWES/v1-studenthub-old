@@ -48,7 +48,7 @@ class NotificationEmployer extends \yii\db\ActiveRecord
     {
         return [
             [['employer_id', 'student_id', 'job_id', 'notification_viewed'], 'required'],
-            [['employer_id', 'student_id', 'job_id', 'notication_sent', 'notification_viewed'], 'integer'],
+            [['employer_id', 'student_id', 'job_id', 'notification_sent', 'notification_viewed'], 'integer'],
             
             //Rules for notification viewed
             ['notification_viewed', 'default', 'value' => self::VIEWED_FALSE],
@@ -81,7 +81,7 @@ class NotificationEmployer extends \yii\db\ActiveRecord
             'employer_id' => Yii::t('app', 'Employer ID'),
             'student_id' => Yii::t('app', 'Student ID'),
             'job_id' => Yii::t('app', 'Job ID'),
-            'notification_sent' => Yii::t('app', 'Notication Sent'),
+            'notification_sent' => Yii::t('app', 'Notification Sent'),
             'notification_viewed' => Yii::t('app', 'Notification Viewed'),
             'notification_datetime' => Yii::t('app', 'Notification Datetime'),
         ];
