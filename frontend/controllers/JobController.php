@@ -96,12 +96,23 @@ class JobController extends \yii\web\Controller {
     }
     
     /**
-     * Displays job details for employer via AJAX
+     * Displays job details for student via AJAX
      * @param integer $id
      * @return mixed
      */
     public function actionDetail($id) {
         return $this->renderPartial('_detail', [
+            'model' => $this->findJob($id),
+        ]);
+    }
+    
+    /**
+     * Displays job interview questions for student via AJAX
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionQuestions($id) {
+        return $this->renderPartial('_questions', [
             'model' => $this->findJob($id),
         ]);
     }

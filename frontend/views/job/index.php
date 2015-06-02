@@ -48,29 +48,54 @@ $("#jobList").on("click", ".jobDetail", function(){
  */
 $applyLink = Yii::$app->urlManager->createUrl(['job/apply']);
 $js .= '
-//var $aboutJob = $("#about-job").find(".modal-content");
-//var loadingIndicator = $aboutJob.html();
+var $interviewQuestions = $("#interviewQuestions");
+var $interviewQuestionsContent = $interviewQuestions.find(".modal-content");
+var questionsLoadingIndicator = $interviewQuestionsContent.html();
+
+var currentCard;
 
 $("#jobList").on("click", ".job-apply", function(){
-    var card = $(this).parent().parent().parent().parent();
+    currentCard = $(this).parent().parent().parent().parent();
+    
     var jobId = $(this).attr("data-job");
     
     if($(this).hasClass("job-hasQuestions")){
-        //Show loading text within the modal before attempting to load (overwrite)
-        $("#interviewQuestions").modal("show");
+        var questionsUrl = $(this).attr("data-questions");
+        loadQuestions(questionsUrl);
     }else{
-    
-        //Send job application without question here
-        //Use same AJAX method used in registration, make it show and hide loading similarly
-        //Make sure to validate, if a job posting requires answering questions, dont accept without answers
-        
-        
-        applyTo(jobId,"","",card);
-    }
-    
+        applyTo(jobId,"","");
+    } 
 });
 
-function applyTo(job, answer1, answer2, card){
+$interviewQuestions.on("click", ".interviewSubmit", function(){
+    var jobId = $(this).attr("data-job");
+    var answer1 = $interviewQuestionsContent.find(".question1").val();
+    var answer2 = $interviewQuestionsContent.find(".question2").val();
+    
+    applyTo(jobId,answer1,answer2);
+});
+
+function loadQuestions(questionsUrl){
+    $.ajax({
+        url: questionsUrl,
+        cache: false,
+        beforeSend: function () {
+            $interviewQuestionsContent.html(questionsLoadingIndicator);
+            $interviewQuestions.modal("show");
+        },
+        success: function(response, textStatus, jqXHR)
+        {
+            $interviewQuestionsContent.html(response);
+            $(".js-auto-size").textareaAutoSize();
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            console.log(textStatus);
+        }
+    });
+}
+
+function applyTo(job, answer1, answer2){
     var csrfToken = $("meta[name=\'csrf-token\']").attr("content");
 
     $.ajax({
@@ -79,7 +104,8 @@ function applyTo(job, answer1, answer2, card){
         url: "'.$applyLink.'",
         data: {job: job, answer1: answer1, answer2: answer2, _csrf:csrfToken},
         beforeSend: function () {
-            showLoading(card);
+            $interviewQuestions.modal("hide");
+            showLoading(currentCard);
         }
     }).done(function (response) {
         
@@ -94,8 +120,7 @@ function applyTo(job, answer1, answer2, card){
             });
         }
         
-        hideLoading(card);
-        
+        hideLoading(currentCard);
 
     });
 }
@@ -167,26 +192,13 @@ $this->registerJs($js);
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Interview Questions</h4>
+                <h4 class="modal-title" style="text-align: center"><?= Yii::t('employer', "Loading Interview Questions..") ?></h4>
             </div>
             <div class="modal-body">
-                How old were you?
-                <div class="inputer">
-                    <div class="input-wrapper">
-                        <textarea class="form-control js-auto-size" rows="1"></textarea>
-                    </div>
-                </div>
-
-                Do you like our products?
-                <div class="inputer">
-                    <div class="input-wrapper">
-                        <textarea class="form-control js-auto-size" rows="1"></textarea>
-                    </div>
-                </div>
+                <div class="loading-bar indeterminate margin-top-10"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-flat btn-primary">Apply</button>
+                <button type="button" class="btn btn-primary btn-ripple" data-dismiss="modal"><?= Yii::t('app', "Close") ?></button>
             </div>
         </div><!--.modal-content-->
     </div><!--.modal-dialog-->
