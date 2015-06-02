@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 02, 2015 at 04:02 PM
+-- Generation Time: Jun 02, 2015 at 04:33 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -658,8 +658,8 @@ CREATE TABLE IF NOT EXISTS `job` (
 INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `filter_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_broadcasted`, `job_updated_datetime`, `job_created_datetime`) VALUES
 (11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 10, 0, 3, '1.000', 0, '2015-05-31 08:56:35', '2015-05-21 08:26:37'),
 (13, 1, 1, 7, 'dwa', 0, NULL, 'dwa', '', 'dwa', '', '', '', 10, 0, 3, '1.000', 0, '2015-05-27 19:41:41', '2015-05-27 19:41:41'),
-(14, 2, 1, 7, 'Success Centre Attendant', 1, '2015-05-26', 'dwadwa', 'yes no maybe3', 'dwadwg', '', 'Describe your best work experience', '', 35, 34, 1, '1.500', 1, '2015-06-02 16:00:32', '2015-05-21 08:26:37'),
-(15, 2, 1, 6, 'Project Tester', 0, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'Chicken wings on the house', '', '', 42, 5, 1, '1.500', 0, '2015-05-31 08:14:00', '2015-05-21 08:26:37'),
+(14, 2, 1, 7, 'Success Centre Attendant', 1, '2015-05-26', 'dwadwa', 'yes no maybe3', 'dwadwg', '', '', 'My Question', 45, 38, 1, '1.500', 1, '2015-06-02 16:03:04', '2015-05-21 08:26:37'),
+(15, 2, 1, 6, 'Project Tester', 0, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'Chicken wings on the house', '', '', 42, 6, 1, '1.500', 0, '2015-05-31 08:14:00', '2015-05-21 08:26:37'),
 (16, 5, 1, 8, 'dwad', 1, NULL, 'Hello', '', 'Yes', '', '', '', 10, 0, 3, '1.500', 0, '2015-05-27 17:30:06', '2015-05-27 17:30:06'),
 (17, 1, 1, 9, 'Student', 1, NULL, 'dwa', '', 'dwa', '', '', '', 15, 0, 0, '1.250', 0, '2015-05-31 09:20:02', '2015-05-28 08:00:38'),
 (18, 3, 1, NULL, 'dwad', 1, NULL, 'dwa', '', 'dwa', '', '', '', NULL, 0, 0, NULL, 0, '2015-06-01 14:23:21', '2015-06-01 14:23:18');
@@ -2396,7 +2396,7 @@ CREATE TABLE IF NOT EXISTS `notification_employer` (
   `employer_id` int(11) unsigned NOT NULL,
   `student_id` int(11) unsigned NOT NULL,
   `job_id` int(11) unsigned NOT NULL,
-  `notication_sent` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'False (0), True (1)',
+  `notification_sent` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'False (0), True (1)',
   `notification_viewed` tinyint(4) NOT NULL,
   `notification_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -2560,10 +2560,10 @@ CREATE TABLE IF NOT EXISTS `student_job_application` (
   `student_id` int(11) unsigned NOT NULL,
   `job_id` int(11) unsigned NOT NULL,
   `application_answer_1` text COLLATE utf8_unicode_ci,
-  `application_answer_2` text COLLATE utf8_unicode_ci NOT NULL,
+  `application_answer_2` text COLLATE utf8_unicode_ci,
   `application_hidden` tinyint(11) NOT NULL,
   `application_date_apply` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2998,7 +2998,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `student_job_application`
 --
 ALTER TABLE `student_job_application`
-  MODIFY `application_id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `application_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `student_job_qualification`
 --
