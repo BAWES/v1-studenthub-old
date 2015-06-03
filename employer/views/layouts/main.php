@@ -53,6 +53,7 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-touch-fullscreen" content="yes">
 
         <!-- BEGIN SHORTCUT AND TOUCH ICONS -->
         <link rel="shortcut icon" href="<?= Url::to('@web/images/icons') ?>/favicon.ico" type="image/x-icon" />
@@ -74,6 +75,10 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
         <meta name="msapplication-wide310x150logo" content="<?= Url::to('@web/images/icons') ?>/widetile.png" />
         <meta name="msapplication-square310x310logo" content="<?= Url::to('@web/images/icons') ?>/largetile.png" />
         <!-- END SHORTCUT AND TOUCH ICONS -->
+        
+        <!-- Allows apple mobile webapp -->
+        <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>   
+        
 
 <?php $this->head() ?>
     </head>
