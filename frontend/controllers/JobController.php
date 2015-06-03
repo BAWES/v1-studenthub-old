@@ -109,8 +109,19 @@ class JobController extends \yii\web\Controller {
      * @return mixed
      */
     public function actionDetail($id) {
+        /**
+         * Get if student already applied
+         */
+        $jobAlreadyApplied = \common\models\StudentJobApplication::find()->select('job_id')
+                            ->where([
+                                'student_id' => Yii::$app->user->identity->student_id,
+                                'job_id' => $id
+                                ])
+                            ->one();
+        
         return $this->renderPartial('_detail', [
             'model' => $this->findJob($id),
+            'jobAlreadyApplied' => $jobAlreadyApplied,
         ]);
     }
     

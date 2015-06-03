@@ -21,8 +21,12 @@ $css = "
 $js = '
 var $aboutJob = $("#about-job").find(".modal-content");
 var loadingIndicator = $aboutJob.html();
+var currentCard;
+var fromModal = false;
 
 $("#jobList").on("click", ".jobDetail", function(){
+    currentCard = $(this).parent().parent().parent().parent();
+    fromModal = true;
     var detailLink = $(this).attr("data-job");
 
     $.ajax({
@@ -53,10 +57,13 @@ var $interviewQuestions = $("#interviewQuestions");
 var $interviewQuestionsContent = $interviewQuestions.find(".modal-content");
 var questionsLoadingIndicator = $interviewQuestionsContent.html();
 
-var currentCard;
 
-$("#jobList").on("click", ".job-apply", function(){
-    currentCard = $(this).parent().parent().parent().parent();
+$("body").on("click", ".job-apply", function(){
+    if(!fromModal){
+        currentCard = $(this).parent().parent().parent().parent();
+    }
+    
+    fromModal = false;
     
     var jobId = $(this).attr("data-job");
     
@@ -114,6 +121,10 @@ function applyTo(job, answer1, answer2){
             toastr.success(response.message);
             //Update card markup so student can no longer apply again
             currentCard.find(".job-apply")
+                        .removeClass("btn-cyan")
+                        .addClass("disabled btn-success")
+                        .html("<i class=\'glyphicon glyphicon-ok\'></i>");
+            $("#about-job").find(".job-apply")
                         .removeClass("btn-cyan")
                         .addClass("disabled btn-success")
                         .html("<i class=\'glyphicon glyphicon-ok\'></i>");

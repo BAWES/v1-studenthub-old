@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 /* @var $model employer\models\Job */
+/* @var $jobAlreadyApplied boolean */
 ?>
 
 <div class="modal-header">
@@ -95,6 +96,8 @@ use yii\helpers\Url;
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-flat btn-ripple" data-dismiss="modal"><?= Yii::t('app',"Close") ?></button>
-    <a href="<?= Url::to(["job/apply", "id" => $model->job_id]) ?>"
-       class="btn btn-cyan btn-ripple" style="font-weight:bold;"><?= Yii::t('frontend',"Apply") ?></a>
+    <a href="#jobApply" data-job="<?= $model->job_id ?>"
+       class="job-apply btn btn-ripple <?= $jobAlreadyApplied?"disabled btn-success":"btn-cyan" ?>" style="font-weight:bold;">
+        <?= $jobAlreadyApplied?"<i class='glyphicon glyphicon-ok'></i>":Yii::t("frontend", "Apply") ?>
+    </a>
 </div>
