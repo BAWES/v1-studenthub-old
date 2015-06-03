@@ -2,16 +2,24 @@
 
 use yii\helpers\Url;
 use yii\widgets\ListView;
+use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
+/* @var $filter frontend\models\FilterForm */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $jobsApplied array */
+/* @var $availableIndustries array */
+/* @var $availableJobTypes array */
+/* @var $availablePaymentOptions array */
 
 $this->title = Yii::t('frontend', 'Browse Jobs');
 $this->params['breadcrumbs'][] = Yii::t('frontend', 'Browse Jobs');
 
 $css = "
 .shareButtons div{text-align:center;}
+.summary{text-align:center;}
+.empty{text-align:center; font-size:1.7em;}
+label{display:none;}
 ";
 
 
@@ -110,7 +118,7 @@ function applyTo(job, answer1, answer2){
     $.ajax({
         type: "POST",
         cache: false,
-        url: "'.$applyLink.'",
+        url: "' . $applyLink . '",
         data: {job: job, answer1: answer1, answer2: answer2, _csrf:csrfToken},
         beforeSend: function () {
             $interviewQuestions.modal("hide");
@@ -153,11 +161,60 @@ function hideLoading(card){
 }
 ';
 
+/**
+ * Filtering Functionality
+ */
+$js .= '
+$("#filterForm").on("change","select",function(){
+    $("#filterForm").submit();
+});
+';
 
 $this->registerCssFile("@web/plugins/bootstrap-social/bootstrap-social.css", ['depends' => 'common\assets\TemplateAsset']);
 $this->registerCss($css);
 $this->registerJs($js);
 ?>
+
+<div class="panel panel-with-shadow">
+    <div class="panel-heading">
+        <div class="panel-title"><h4>Filters</h4></div>
+    </div><!--.panel-heading-->
+    <div class="panel-body">
+        <div class="row">
+        <?php $form = ActiveForm::begin(['id' => 'filterForm', 'method'=>'get']); ?>
+            <div class="col-sm-4">
+                <?= $form->field($filter, 'jobtype')->dropDownList($availableJobTypes, [
+                        'class' => 'selecter',
+                        'prompt' => Yii::t('frontend', 'All Job Types'),
+                        'data-width' => '100%'
+                    ]) 
+                ?>
+            </div>
+            <div class="col-sm-4">
+                <?= $form->field($filter, 'industry')->dropDownList($availableIndustries, [
+                        'class' => 'selecter',
+                        'prompt' => Yii::t('frontend', 'All Industries'),
+                        'data-width' => '100%'
+                    ]) 
+                ?>
+            </div>
+            <div class="col-sm-4">
+                <?= $form->field($filter, 'payment')->dropDownList($availablePaymentOptions, [
+                        'class' => 'selecter',
+                        'prompt' => Yii::t('frontend', 'Any Compensation'),
+                        'data-width' => '100%'
+                    ]) 
+                ?>
+            </div>
+        <?php ActiveForm::end(); ?>
+        </div>
+        <div class="row" style="margin-top:0.5em;">
+            <div class="col-md-6 col-md-offset-3">
+                <a href="<?= Url::to(['job/index']) ?>" class="btn btn-primary btn-block button-striped button-full-striped"><?= Yii::t("frontend", "Clear Filters") ?></a>
+            </div>
+        </div>
+    </div><!--.panel-body-->
+</div>
 
 <div id="jobList">
     <?=

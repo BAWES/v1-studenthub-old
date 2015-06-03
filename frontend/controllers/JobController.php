@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
@@ -78,13 +79,49 @@ class JobController extends \yii\web\Controller {
      * Ordered by publish date (newest jobs on top)
      */
     public function actionIndex() {
-        $query = Yii::$app->user->identity->getActiveQualifiedJobs()->orderBy("job_updated_datetime DESC");
+        $filter = new \frontend\models\FilterForm;
         
-        //Allow searching and filtering on this dataprovider + possibly pagination?
+        $query = Yii::$app->user->identity->getActiveQualifiedJobs()->orderBy("job_updated_datetime DESC");
+        $jobsQuery = clone $query;
+        
+        /**
+         * Take Params from GET and filter the query if the filter validates
+         */
+        if ($filter->load(Yii::$app->request->queryParams)) {
+            if($filter->validate()){
+                /**
+                 * Filter
+                 */
+                $query->andFilterWhere([
+                    'jobtype_id' => $filter->jobtype,
+                    'job_pay' => $filter->payment,
+                ]);
+                
+                if($filter->industry){
+                    $query->joinWith('employer')
+                        ->andWhere(['employer.industry_id' => $filter->industry]);
+                }
+            }
+        }
         
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        
+        
+        /**
+         * Get List of available industries within filtered
+         */
+        
+        $jobs = $jobsQuery->asArray()->all();
+        
+        $availableIndustries = ArrayHelper::map($jobs, "employer.industry.industry_id", Yii::$app->view->params['isArabic']?"employer.industry.industry_name_ar":"employer.industry.industry_name_en");
+        $availableJobTypes = ArrayHelper::map(\common\models\Jobtype::find()->all(), "jobtype_id", Yii::$app->view->params['isArabic'] ? "jobtype_name_ar" : "jobtype_name_en");
+        $availablePaymentOptions = [
+            Job::PAY_PAID => Yii::t("frontend", "Paid Jobs"),
+            Job::PAY_NOT_PAID => Yii::t("frontend", "Unpaid Jobs"),
+        ];
+        
         
         /**
          * Get list of Jobs this student has already applied for
@@ -98,8 +135,12 @@ class JobController extends \yii\web\Controller {
         
                 
         return $this->render('index',[
+            'filter' => $filter,
             'dataProvider' => $dataProvider,
             'jobsApplied' => $jobsApplied,
+            'availableIndustries' => $availableIndustries,
+            'availableJobTypes' => $availableJobTypes,
+            'availablePaymentOptions' => $availablePaymentOptions,
         ]);
     }
     
