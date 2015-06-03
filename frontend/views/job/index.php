@@ -89,6 +89,7 @@ function loadQuestions(questionsUrl){
         cache: false,
         beforeSend: function () {
             $interviewQuestionsContent.html(questionsLoadingIndicator);
+            $("#about-job").modal("hide");
             $interviewQuestions.modal("show");
         },
         success: function(response, textStatus, jqXHR)

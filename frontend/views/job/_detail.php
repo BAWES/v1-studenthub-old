@@ -95,9 +95,14 @@ use yii\helpers\Url;
     <?php } ?>
 </div>
 <div class="modal-footer">
+    <?php
+        $hasQuestions = $model->hasInterviewQuestions()?true:false;
+    ?>
+    
     <button type="button" class="btn btn-flat btn-ripple" data-dismiss="modal"><?= Yii::t('app',"Close") ?></button>
-    <a href="#jobApply" data-job="<?= $model->job_id ?>"
-       class="job-apply btn btn-ripple <?= $jobAlreadyApplied?"disabled btn-success":"btn-cyan" ?>" style="font-weight:bold;">
+    
+    <a href="#jobApply" data-job="<?= $model->job_id ?>" <?= $hasQuestions?"data-questions='".Url::to(['job/questions', 'id' => $model->job_id])."'":"" ?>
+       class="job-apply btn btn-ripple <?= $jobAlreadyApplied?"disabled btn-success":"btn-cyan" ?> <?= $hasQuestions?"job-hasQuestions":"" ?>" style="font-weight:bold;">
         <?= $jobAlreadyApplied?"<i class='glyphicon glyphicon-ok'></i>":Yii::t("frontend", "Apply") ?>
     </a>
 </div>
