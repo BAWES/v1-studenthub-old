@@ -46,6 +46,25 @@ class JobController extends \yii\web\Controller {
         ];
     }
     
+    /**
+     * Loads shareable page including job details
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionShare($id){
+        $this->layout = "shareable";
+        
+        $model = \common\models\Job::findOne($id);
+                
+        if (!$model) {
+            throw new NotFoundHttpException('The requested job does not exist.');
+        }
+        
+        return $this->render('share',[
+            'model' => $model,
+        ]);
+    }
+    
     
     /**
      * Handles student application for job
