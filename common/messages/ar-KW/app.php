@@ -100,7 +100,6 @@ return [
     'Note ID' => '',
     'Note Name' => '',
     'Note Value' => '',
-    'Notication Sent' => '',
     'Notification Datetime' => '',
     'Notification ID' => '',
     'Notification Sent' => '',

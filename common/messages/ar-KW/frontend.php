@@ -17,8 +17,11 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'This job pays!' => 'هذا يدفع!',
-    'Woohoo!' => 'هييااا!!!',
+    'Please answer the interview question' => 'الرجاء الإجابة على الأسئلة',
+    'This job is no longer available, please refresh to load updated list' => 'هذه المهمة لم تعد متوفرة، يرجى إعادة تحميل الصفحة لتحميل قائمة محدثة',
+    'You do not qualify for this job' => 'لست مؤهلا لهذه المهمة',
+    'You have already applied for this job' => 'قدمت عليهم قبل شوي',
+    'You have applied!' => 'قمت بالتقديم!',
     'Apply' => 'قدم',
     'Browse Jobs' => 'تصفح فرص العمل',
     'Contact' => 'إتصل بنا',
@@ -42,10 +45,12 @@ return [
     'This email address is already registered.' => 'هذا البريد الإلكتروني لديه حساب',
     'This email belongs to {universityName}' => 'هذا البريد الإلكتروني ينتمي إلى {universityName}',
     'This industry does not exist.' => 'لا وجود لهذا القطاع.',
+    'This job pays!' => 'هذا يدفع!',
     'This job type does not exist.' => 'عدم وجود هذا النوع وظيفة',
     'This nationality does not exist.' => 'عدم وجود هذه الجنسية',
     'This university does not exist.' => 'هذه الجامعة لا وجود لها',
     'University does not exist' => 'الجامعة لا وجود لها',
+    'Woohoo!' => 'هييااا!!!',
     'Work start date is' => 'تاريخ بدء العمل',
     'You must be at least {age} years old' => 'عمرك يجب ان يكون على الاقل {age} سنة',
     'Your CV upload is invalid' => 'تحميل السيرة الذاتية الخاصة بك غير صالح',
