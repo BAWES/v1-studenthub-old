@@ -51,9 +51,11 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
         <meta name="description" content="StudentHub Recruitment Platform">
         <meta name="author" content="BAWES - Built Awesome">
 
+        <!-- Apple Webapp -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-touch-fullscreen" content="yes">
 
         <!-- BEGIN SHORTCUT AND TOUCH ICONS -->
         <link rel="shortcut icon" href="<?= Url::to('@web/images/icons') ?>/favicon.ico" type="image/x-icon" />
