@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 03, 2015 at 12:04 PM
+-- Generation Time: Jun 03, 2015 at 05:01 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -658,8 +658,8 @@ CREATE TABLE IF NOT EXISTS `job` (
 INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `filter_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_broadcasted`, `job_updated_datetime`, `job_created_datetime`) VALUES
 (11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 10, 0, 3, '1.000', 0, '2015-05-31 08:56:35', '2015-05-21 08:26:37'),
 (13, 1, 1, 7, 'dwa', 0, NULL, 'dwa', '', 'dwa', '', '', '', 10, 0, 3, '1.000', 0, '2015-05-27 19:41:41', '2015-05-27 19:41:41'),
-(14, 3, 2, 7, 'Success Centre Attendant', 1, '2015-05-26', 'dwadwa', 'yes no maybe3', 'dwadwg', '', '', 'My Question', 66, 43, 1, '1.500', 1, '2015-06-02 16:03:04', '2015-05-21 08:26:37'),
-(15, 2, 1, 6, 'Project Tester', 0, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'Chicken wings on the house', '', '', 80, 24, 1, '1.500', 0, '2015-05-31 08:14:00', '2015-05-21 08:26:37'),
+(14, 3, 2, 7, 'Success Centre Attendant', 1, '2015-05-26', 'dwadwa', 'yes no maybe3', 'dwadwg', '', '', 'My Question', 66, 44, 1, '1.500', 1, '2015-06-02 16:03:04', '2015-05-21 08:26:37'),
+(15, 2, 1, 6, 'Project Tester', 0, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'Chicken wings on the house', '', '', 80, 25, 1, '1.500', 0, '2015-05-31 08:14:00', '2015-05-21 08:26:37'),
 (16, 5, 1, 8, 'dwad', 1, NULL, 'Hello', '', 'Yes', '', '', '', 10, 0, 3, '1.500', 0, '2015-05-27 17:30:06', '2015-05-27 17:30:06'),
 (17, 1, 1, 9, 'Student', 1, NULL, 'dwa', '', 'dwa', '', '', '', 15, 0, 0, '1.250', 0, '2015-05-31 09:20:02', '2015-05-28 08:00:38'),
 (18, 3, 1, NULL, 'dwad', 1, NULL, 'dwa', '', 'dwa', '', '', '', NULL, 0, 0, NULL, 0, '2015-06-01 14:23:21', '2015-06-01 14:23:18');
@@ -2399,7 +2399,15 @@ CREATE TABLE IF NOT EXISTS `notification_employer` (
   `notification_sent` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'False (0), True (1)',
   `notification_viewed` tinyint(4) NOT NULL,
   `notification_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `notification_employer`
+--
+
+INSERT INTO `notification_employer` (`notification_id`, `employer_id`, `student_id`, `job_id`, `notification_sent`, `notification_viewed`, `notification_datetime`) VALUES
+(22, 1, 13, 15, 0, 0, '2015-06-03 16:16:24'),
+(23, 2, 13, 14, 0, 0, '2015-06-03 16:16:32');
 
 -- --------------------------------------------------------
 
@@ -2538,7 +2546,7 @@ CREATE TABLE IF NOT EXISTS `student` (
 --
 
 INSERT INTO `student` (`student_id`, `degree_id`, `country_id`, `university_id`, `student_firstname`, `student_lastname`, `student_dob`, `student_status`, `student_enrolment_year`, `student_graduating_year`, `student_gpa`, `student_english_level`, `student_gender`, `student_transportation`, `student_contact_number`, `student_interestingfacts`, `student_photo`, `student_cv`, `student_skill`, `student_hobby`, `student_club`, `student_sport`, `student_experience_company`, `student_experience_position`, `student_verification_attachment`, `student_email_verification`, `student_id_verification`, `student_id_number`, `student_email_preference`, `student_email`, `student_auth_key`, `student_password_hash`, `student_password_reset_token`, `student_language_pref`, `student_banned`, `student_support_field`, `student_limit_email`, `student_updated_datetime`, `student_datetime`) VALUES
-(13, 2, 9, 1, 'dwadwa', 'dwadwa', '1984-04-12', 1, 2013, 2017, '2.00', 2, 0, 0, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 0, 'khalid@gust.edu.kw', 'V0nH70XkhjxuBSP3k4Mi-Rq5c_Lj6bvc', '$2y$13$Cvawm4VAyY48MYelhBOlQ.MC7jvtZHbyLdXFduJRosxFywTEv21yi', NULL, 'ar-KW', 0, '', '2015-05-10 10:03:03', '2015-06-03 11:58:23', '2015-04-27 10:51:37'),
+(13, 2, 9, 1, 'dwadwa', 'dwadwa', '1984-04-12', 1, 2013, 2017, '2.00', 2, 0, 0, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 0, 'khalid@gust.edu.kw', 'V0nH70XkhjxuBSP3k4Mi-Rq5c_Lj6bvc', '$2y$13$Cvawm4VAyY48MYelhBOlQ.MC7jvtZHbyLdXFduJRosxFywTEv21yi', NULL, 'en-US', 0, '', '2015-05-10 10:03:03', '2015-06-03 16:15:05', '2015-04-27 10:51:37'),
 (14, 2, 3, 1, 'Khalid', 'Mutawa', '1990-05-08', 1, 2013, 2014, '3.00', 2, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 1, 'gust0003887@gust.edu.kw', '441qQzDCYen0l4WffdcHa-3HwSSf6l9s', '$2y$13$lXNk5kJBFQGp5ucQDP8D5el9ASYVZusUHXDfZnYxJ9if5XPBuRuwG', '', 'en-US', 0, '', '0000-00-00 00:00:00', '2015-05-02 17:15:37', '2015-05-02 17:15:37'),
 (15, 4, 3, 2, 'Mohammed', 'Ashkanani', '1989-05-30', 1, 2013, 2015, '3.00', 2, 1, 1, '99811042', NULL, 'lTJL5P-XkYyxOz-YyHCj3e-a3wzDsWN8.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 't72RPXKpgRUrK5cjkNLNCTUeE0_sIFBm.png', 1, 1, NULL, 1, 'test@test.com', '2JdqmrQUWWHgk3HypwDYvgeVxDKvJaBU', '$2y$13$XP2e3uNZc53RWHM9rz7HuufcL6ZWL2wTa5LNi8Ia29NG5lb7nFHOe', '', 'en-US', 0, '', '2015-05-08 12:57:33', '2015-05-08 22:57:38', '2015-05-08 12:57:33'),
 (16, 4, 4, 2, 'Saoud', 'Turki', '1992-09-09', 0, 2013, 2017, '3.00', 2, 1, 0, '99811042', NULL, 'Rz-RICTfOL9Tps8BcYlFNrg8VWIsOleh.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pG5MolYl7fX6z2eSSdJBArWnzDk1Nhi_.png', 1, 1, NULL, 1, 'km@km.com', 'qm6tV2DTlQE8oX5xelqo_EY2oAarFIjK', '$2y$13$ecT3h6RypLdNZjJgpjXoX.YMKC5s1mNr.oxTkckDeSu3sX66m5PCq', 'zcTJRTTcxe3YZEn7GuzVL3ilCU1-5Rwo_1431114197', 'en-US', 0, '', '2015-05-08 22:43:17', '2015-05-26 14:52:49', '2015-05-08 13:10:56'),
@@ -2563,7 +2571,15 @@ CREATE TABLE IF NOT EXISTS `student_job_application` (
   `application_answer_2` text COLLATE utf8_unicode_ci,
   `application_hidden` tinyint(11) NOT NULL,
   `application_date_apply` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `student_job_application`
+--
+
+INSERT INTO `student_job_application` (`application_id`, `student_id`, `job_id`, `application_answer_1`, `application_answer_2`, `application_hidden`, `application_date_apply`) VALUES
+(29, 13, 15, NULL, NULL, 0, '2015-06-03 16:16:24'),
+(30, 13, 14, NULL, 'jdiwqdoadc', 0, '2015-06-03 16:16:32');
 
 -- --------------------------------------------------------
 
@@ -2973,7 +2989,7 @@ ALTER TABLE `note`
 -- AUTO_INCREMENT for table `notification_employer`
 --
 ALTER TABLE `notification_employer`
-  MODIFY `notification_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `notification_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `notification_student`
 --
@@ -2998,7 +3014,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `student_job_application`
 --
 ALTER TABLE `student_job_application`
-  MODIFY `application_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+  MODIFY `application_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `student_job_qualification`
 --
