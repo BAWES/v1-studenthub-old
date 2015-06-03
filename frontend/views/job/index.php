@@ -177,7 +177,7 @@ $this->registerJs($js);
 
 <div class="panel panel-with-shadow">
     <div class="panel-heading">
-        <div class="panel-title"><h4>Filters</h4></div>
+        <div class="panel-title"><h4><?= Yii::t("frontend", "Filters") ?></h4></div>
     </div><!--.panel-heading-->
     <div class="panel-body">
         <div class="row">
