@@ -3,7 +3,7 @@
 ?>
 
 <div class="modal-header">
-    <h4 class="modal-title"><?= Yii::t("frontend", "Interview Questions") ?></h4>
+    <h4 class="modal-title"><?= Yii::t("employer", "Interview Questions") ?></h4>
 </div>
 <div class="modal-body">
     <?php if($model->job_question_1){ ?>
