@@ -78,7 +78,7 @@ class JobController extends \yii\web\Controller {
      * Ordered by publish date (newest jobs on top)
      */
     public function actionIndex() {
-        $query = Yii::$app->user->identity->getActiveQualifiedJobs();
+        $query = Yii::$app->user->identity->getActiveQualifiedJobs()->orderBy("job_updated_datetime DESC");
         
         //Allow searching and filtering on this dataprovider + possibly pagination?
         
