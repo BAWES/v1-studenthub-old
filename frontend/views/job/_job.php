@@ -4,8 +4,21 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 /* @var $model common\models\Job */
-?>
+/* @var $jobsApplied array */
 
+
+/**
+ * Check if student already applied for this job
+ */
+$jobAlreadyApplied = false;
+foreach($jobsApplied as $job){
+    if($job['job_id'] == $model->job_id){
+        $jobAlreadyApplied = true;
+        break;
+    }
+}
+
+?>
 
 <div class="card card-user card-user-white" style="border-top: 5px solid #337ab7">
 
@@ -48,7 +61,7 @@ use yii\helpers\Url;
             <div class="btn-group">
                 <a href="#jobApply" data-job="<?= $model->job_id ?>" 
                     <?= $hasQuestions?"data-questions='".Url::to(['job/questions', 'id' => $model->job_id])."'":"" ?> style="font-weight:bold;" 
-                   class="job-apply btn btn-cyan btn-ripple <?= $hasQuestions?"job-hasQuestions":"" ?>"><?= Yii::t("frontend", "Apply") ?></a>
+                   class="job-apply btn btn-ripple <?= $jobAlreadyApplied?"disabled btn-success":"btn-cyan" ?> <?= $hasQuestions?"job-hasQuestions":"" ?>"><?= $jobAlreadyApplied?"<i class='glyphicon glyphicon-ok'></i>":Yii::t("frontend", "Apply") ?></a>
             </div>
         </div>
     </div><!--.card-footer-->

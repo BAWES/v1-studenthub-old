@@ -85,9 +85,21 @@ class JobController extends \yii\web\Controller {
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        
+        /**
+         * Get list of Jobs this student has already applied for
+         * So user is not allowed to apply on already applied-for jobs
+         */
+        $jobsApplied = \common\models\StudentJobApplication::find()
+                            ->select('job_id')
+                            ->where(['student_id' => Yii::$app->user->identity->student_id])
+                            ->asArray()
+                            ->all();
+        
                 
         return $this->render('index',[
             'dataProvider' => $dataProvider,
+            'jobsApplied' => $jobsApplied,
         ]);
     }
     

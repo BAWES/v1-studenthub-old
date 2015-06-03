@@ -5,6 +5,7 @@ use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $jobsApplied array */
 
 $this->title = Yii::t('frontend', 'Browse Jobs');
 $this->params['breadcrumbs'][] = Yii::t('frontend', 'Browse Jobs');
@@ -112,6 +113,10 @@ function applyTo(job, answer1, answer2){
         if(response.valid == true){
             toastr.success(response.message);
             //Update card markup so student can no longer apply again
+            currentCard.find(".job-apply")
+                        .removeClass("btn-cyan")
+                        .addClass("disabled btn-success")
+                        .html("<i class=\'glyphicon glyphicon-ok\'></i>");
         }else{
             $.each(response.message, function() {
                 $.each(this, function(key, value) {
@@ -148,6 +153,7 @@ $this->registerJs($js);
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'col-md-4', 'style' => ''],
         'itemView' => "_job",
+        'viewParams' => ['jobsApplied' => $jobsApplied],
     ])
     ?>
 </div>
