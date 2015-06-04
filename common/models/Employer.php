@@ -34,6 +34,9 @@ use yii\helpers\Url;
  * @property string $employer_language_pref
  * @property string $employer_support_field
  * @property string $employer_limit_email 
+ * @property string $employer_social_twitter
+ * @property string $employer_social_facebook
+ * @property string $employer_social_instagram
  * @property string $employer_updated_datetime 
  * @property string $employer_datetime
  *
@@ -142,6 +145,9 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
             'employer_support_field' => Yii::t('app', 'Employer Support Field'),
             'employer_language_pref' => Yii::t('app', 'Language Preference'),
             'employer_limit_email' => Yii::t('app', 'Limit Email'),
+            'employer_social_twitter' => 'Twitter',
+            'employer_social_facebook' => 'Facebook',
+            'employer_social_instagram' => 'Instagram',
             'employer_updated_datetime' => Yii::t('app', 'Datetime Updated'),
             'employer_datetime' => Yii::t('app', 'Datetime Registered'),
         ];
