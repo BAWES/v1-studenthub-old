@@ -25,7 +25,9 @@ $this->registerCss($css);
             <ul class="navigation">
                 <li data-anchor="slide1" data-nav-link>ABOUT THE COMPANY</li>
                 <li data-anchor="slide2" data-nav-link>JOB INFORMATION</li>
-                <li data-anchor="slide3" data-nav-link>SOCIAL MEDIA</li>
+                <?php if($model->employer->employer_social_instagram || $model->employer->employer_social_facebook || $model->employer->employer_social_twitter){ ?>
+                    <li data-anchor="slide3" data-nav-link>SOCIAL MEDIA</li>
+                <?php } ?>
                 <li data-anchor="slide4" data-nav-link>APPLY</li>
             </ul>
             <div class="selector"></div>
@@ -104,46 +106,53 @@ $this->registerCss($css);
     </div><!--.container-->
 </div><!--.slide-->
 
+<?php if($model->employer->employer_social_instagram || $model->employer->employer_social_facebook || $model->employer->employer_social_twitter){ ?>
 <div class="slide bg-image-with-shadow" style="background-image: url('<?= Url::to('@web/img') ?>/bg-overview.jpg'); " data-nav="slide3">
     <div class="container">
         <h3 class="text-white text-center toUpper">Follow <?= $model->employer->employer_company_name ?> on</h3>
 
         <ul class="row list-horizontal white">
+            
+            <?php if($model->employer->employer_social_instagram){ ?>
             <li class="col-sm-4" data-bottom-top="top:-50px" data-center="top:0px">
                 <div class="list-icon">
-                    <a href="" class="fa fa-instagram" style="color: white; text-decoration: none"></a>
+                    <a href="<?= $model->employer->employer_social_instagram ?>" target='_blank' class="fa fa-instagram" style="color: white; text-decoration: none"></a>
                 </div><!--.list-info-->
                 <div class="list-info toUpper">
-                    <h4><a href="#" style="color:white; text-decoration:none;">Instagram</a></h4>					
+                    <h4><a href="<?= $model->employer->employer_social_instagram ?>" target='_blank' style="color:white; text-decoration:none;">Instagram</a></h4>					
                 </div><!--.list-icon-->
-
             </li>
+            <?php } ?>
+            
+            <?php if($model->employer->employer_social_twitter){ ?>
             <li class="col-sm-4" data-bottom-top="top:-50px" data-center="top:0px">
                 <div class="list-icon">
-                    <a href="" class="fa fa-twitter"style="color: white; text-decoration: none"></a>
+                    <a href="https://twitter.com/<?= $model->employer->employer_social_twitter ?>" target='_blank' class="fa fa-twitter"style="color: white; text-decoration: none"></a>
                 </div><!--.list-icon-->
                 <div class="list-info toUpper">
-                    <h4><a href="#" style="color:white; text-decoration:none;">Twitter</a></h4>
+                    <h4><a href="https://twitter.com/<?= $model->employer->employer_social_twitter ?>" target='_blank' style="color:white; text-decoration:none;">Twitter</a></h4>
                 </div><!--.list-info-->
-
-
             </li>
+            <?php } ?>
+            
+            <?php if($model->employer->employer_social_facebook){ ?>
             <li class="col-sm-4" data-bottom-top="top:-50px" data-center="top:0px">
                 <div class="list-icon">
-                    <a href="" class="fa fa-facebook" style="color:white; text-decoration:none"></a>
+                    <a href="https://instagram.com/<?= $model->employer->employer_social_facebook ?>" target='_blank' class="fa fa-facebook" style="color:white; text-decoration:none"></a>
                 </div><!--.list-icon-->
                 <div class="list-info toUpper">
-                    <h4><a href="#" style="color:white; text-decoration:none;">Facebook</a></h4>						
+                    <h4><a href="https://instagram.com/<?= $model->employer->employer_social_facebook ?>" target='_blank' style="color:white; text-decoration:none;">Facebook</a></h4>						
                 </div><!--.list-info-->
-
-
             </li>
-        </ul>                        
+            <?php } ?>
+        </ul>
+        
 
         <a class="btn btn-large btn-floating btn-teal btn-next btn-next-center" data-anchor="slide4" data-nav-link><i class="ion-chevron-down"></i></a>
 
     </div><!--.container-->
 </div><!--.slide-->
+<?php } ?>
 
 <div class="slide" data-nav="slide4">
 
@@ -160,9 +169,9 @@ $this->registerCss($css);
     <div class="container">
 
         <ul class="social-list">
-            <li><a href="https://www.facebook.com/studenthub.co" class="facebook"><i class="ion-social-facebook"></i></a></li>
-            <li><a href="https://twitter.com/studenthubco" class="twitter"><i class="ion-social-twitter"></i></a></li>
-            <li><a href="https://instagram.com/studenthubco/" class="instagram"><i class="ion-social-instagram"></i></a></li>
+            <li><a href="https://www.facebook.com/studenthub.co" target='_blank' class="facebook"><i class="ion-social-facebook"></i></a></li>
+            <li><a href="https://twitter.com/studenthubco" target='_blank' class="twitter"><i class="ion-social-twitter"></i></a></li>
+            <li><a href="https://instagram.com/studenthubco/" target='_blank' class="instagram"><i class="ion-social-instagram"></i></a></li>
         </ul>
 
         <div class="copyright v-text">StudentHub &copy; <?= date('Y') ?></div>
