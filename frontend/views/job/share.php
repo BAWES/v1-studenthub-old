@@ -8,6 +8,9 @@ use yii\helpers\Html;
 
 $this->title = $model->employer->employer_company_name." - ".$model->job_title;
 $this->params['breadcrumbs'][] = Yii::t('frontend', 'Browse Jobs');
+
+$css = ".toUpper{text-transform: uppercase;}";
+$this->registerCss($css);
 ?>
 
 <!-- Content Here -->
@@ -33,10 +36,10 @@ $this->params['breadcrumbs'][] = Yii::t('frontend', 'Browse Jobs');
 
 <div class="slide bg-image-with-shadow" style="background-image: url('<?= Url::to('@web/img') ?>/bg-overview.jpg'); " data-nav="remove">
     <div class="container" style="text-align: center">
-        <h3 class="text-white text-center"><?= $model->job_title ?></h3>
-        <p class="caption text-white text-center">
+        <h3 class="text-white text-center toUpper"><?= $model->job_title ?></h3>
+        <p class="caption text-white text-center" style="font-size:1.2em;">
             <?= $model->employer->employer_company_name ?><br>
-            <i><?= $model->employer->industry->industry_name_en ?></i>
+            <i style='font-size:0.8em'><?= $model->employer->industry->industry_name_en ?></i>
         </p>                        
 
         <a href="<?=Url::to(['site/index'])?>" class="btn btn-success btn-ripple">Apply to Jobs Like This</a>
@@ -103,15 +106,15 @@ $this->params['breadcrumbs'][] = Yii::t('frontend', 'Browse Jobs');
 
 <div class="slide bg-image-with-shadow" style="background-image: url('<?= Url::to('@web/img') ?>/bg-overview.jpg'); " data-nav="slide3">
     <div class="container">
-        <h3 class="text-white text-center">FOLLOW US ON:</h3>
+        <h3 class="text-white text-center toUpper">Follow <?= $model->employer->employer_company_name ?> on</h3>
 
         <ul class="row list-horizontal white">
             <li class="col-sm-4" data-bottom-top="top:-50px" data-center="top:0px">
                 <div class="list-icon">
                     <a href="" class="fa fa-instagram" style="color: white; text-decoration: none"></a>
                 </div><!--.list-info-->
-                <div class="list-info">
-                    <h4><a href="#" style="color:white; text-decoration:none;">INSTAGRAM</a></h4>					
+                <div class="list-info toUpper">
+                    <h4><a href="#" style="color:white; text-decoration:none;">Instagram</a></h4>					
                 </div><!--.list-icon-->
 
             </li>
@@ -119,8 +122,8 @@ $this->params['breadcrumbs'][] = Yii::t('frontend', 'Browse Jobs');
                 <div class="list-icon">
                     <a href="" class="fa fa-twitter"style="color: white; text-decoration: none"></a>
                 </div><!--.list-icon-->
-                <div class="list-info">
-                    <h4><a href="#" style="color:white; text-decoration:none;">TWITTER</a></h4>
+                <div class="list-info toUpper">
+                    <h4><a href="#" style="color:white; text-decoration:none;">Twitter</a></h4>
                 </div><!--.list-info-->
 
 
@@ -129,8 +132,8 @@ $this->params['breadcrumbs'][] = Yii::t('frontend', 'Browse Jobs');
                 <div class="list-icon">
                     <a href="" class="fa fa-facebook" style="color:white; text-decoration:none"></a>
                 </div><!--.list-icon-->
-                <div class="list-info">
-                    <h4><a href="#" style="color:white; text-decoration:none;">FACEBOOK</a></h4>						
+                <div class="list-info toUpper">
+                    <h4><a href="#" style="color:white; text-decoration:none;">Facebook</a></h4>						
                 </div><!--.list-info-->
 
 
@@ -147,7 +150,7 @@ $this->params['breadcrumbs'][] = Yii::t('frontend', 'Browse Jobs');
 
     <div class="container">
         <div class="row text-center">
-            <h2 class="text-black text-center">APPLY TO JOBS LIKE THIS</h2>
+            <h2 class="text-black text-center toUpper">Apply to jobs like this</h2>
             <a href="<?=Url::to(['site/index'])?>" class="btn btn-success btn-xl btn-ripple">Go to StudentHub</a>
         </div><!--.container-->
     </div><!--.slide-->
@@ -157,12 +160,12 @@ $this->params['breadcrumbs'][] = Yii::t('frontend', 'Browse Jobs');
     <div class="container">
 
         <ul class="social-list">
-            <li><a href="javascript:;" class="facebook"><i class="ion-social-facebook"></i></a></li>
-            <li><a href="javascript:;" class="twitter"><i class="ion-social-twitter"></i></a></li>
-            <li><a href="javascript:;" class="instagram"><i class="ion-social-instagram"></i></a></li>
+            <li><a href="https://www.facebook.com/studenthub.co" class="facebook"><i class="ion-social-facebook"></i></a></li>
+            <li><a href="https://twitter.com/studenthubco" class="twitter"><i class="ion-social-twitter"></i></a></li>
+            <li><a href="https://instagram.com/studenthubco/" class="instagram"><i class="ion-social-instagram"></i></a></li>
         </ul>
 
-        <div class="copyright v-text">STUDENTHUB &copy; <?= date('Y') ?></div>
+        <div class="copyright v-text">StudentHub &copy; <?= date('Y') ?></div>
 
     </div><!--.container-->
 </div><!--.footer-->
