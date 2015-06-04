@@ -84,7 +84,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
             ['employer_logo', 'file', 'extensions' => 'jpg, png, gif', 'maxSize' => 10000000,
                 'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for your Logo: {extensions}')],
             //URL Validator
-            ['employer_website', 'url', 'defaultScheme' => 'http'],
+            [['employer_website', 'employer_social_facebook'], 'url', 'defaultScheme' => 'http'],
             //Validate existence of CityID and IndustryId selected
             ['city_id', 'exist',
                 'targetClass' => '\common\models\City',
@@ -101,7 +101,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
             ['employer_password_hash', 'string', 'length' => [5]],
             //Default Values
             ['employer_language_pref', 'default', 'value' => 'en-US'],
-            [['employer_logo', 'employer_website'], 'default'],
+            [['employer_logo', 'employer_website', 'employer_social_twitter', 'employer_social_facebook', 'employer_social_instagram'], 'default'],
             //Email preference rules
             ['employer_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
             ['employer_email_preference', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
@@ -151,6 +151,22 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
             'employer_updated_datetime' => Yii::t('app', 'Datetime Updated'),
             'employer_datetime' => Yii::t('app', 'Datetime Registered'),
         ];
+    }
+    
+    public function beforeSave($insert) {
+        if(parent::beforeSave($insert)){
+            //Remove @ sign from twitter and instagram links
+            if($this->employer_social_twitter){
+                $this->employer_social_twitter = str_replace("@", "", $this->employer_social_twitter);
+            }
+            if($this->employer_social_instagram){
+                $this->employer_social_instagram = str_replace("@", "", $this->employer_social_instagram);
+            }
+            
+            return true;
+        }else{
+            return false;
+        }
     }
     
     /**
