@@ -38,10 +38,10 @@ $this->registerCss($css);
 
 <div class="slide bg-image-with-shadow" style="background-image: url('<?= Url::to('@web/img') ?>/bg-overview.jpg'); " data-nav="remove">
     <div class="container" style="text-align: center">
+        <?= Html::img($model->employer->logo, ['style'=>'width:150px; background:white; padding:5px;', 'class'=>'img-circle']) ?><br/>
         <h3 class="text-white text-center toUpper"><?= $model->job_title ?></h3>
         <p class="caption text-white text-center" style="font-size:1.2em;">
             <?= $model->employer->employer_company_name ?><br>
-            <i style='font-size:0.8em'><?= $model->employer->industry->industry_name_en ?></i>
         </p>                        
 
         <a href="<?=Url::to(['site/index'])?>" class="btn btn-success btn-ripple">Apply to Jobs Like This</a>
@@ -89,8 +89,8 @@ $this->registerCss($css);
         </div><!--.row-->
         <div class="row">
             <div class="col-md-4">
-                <h4 class="text-black text-center"><i class="glyphicon glyphicon-education"></i>&nbsp; DESIRED MAJORS</h4>
-                <p class="caption text-center" style="padding-top: 1em">Finance, Accounting, Business Administration</p>
+                <h4 class="text-black text-center"><i class="fa fa-building-o"></i>&nbsp; INDUSTRY</h4>
+                <p class="caption text-center" style="padding-top: 1em"><?= $model->employer->industry->industry_name_en ?></p>
             </div>
             <div class="col-md-4">
                 <h4 class="text-black text-center"><i class="glyphicon glyphicon-calendar"></i>&nbsp; START DATE</h4>
