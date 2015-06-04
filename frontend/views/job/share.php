@@ -106,26 +106,52 @@ $this->registerCss($css);
     </div><!--.container-->
 </div><!--.slide-->
 
-<?php if($model->employer->employer_social_instagram || $model->employer->employer_social_facebook || $model->employer->employer_social_twitter){ ?>
+<?php
+$colsize = 0;
+if($model->employer->employer_social_instagram){
+    $colsize++;
+}
+if($model->employer->employer_social_twitter){
+    $colsize++;
+}
+if($model->employer->employer_social_facebook){
+    $colsize++;
+}
+switch($colsize){
+    case 1:
+        $colsize = 12;
+        break;
+    case 2:
+        $colsize = 6;
+        break;
+    case 3:
+        $colsize = 4;
+        break;
+}
+?>
+
+<?php if($colsize>0){ ?>
 <div class="slide bg-image-with-shadow" style="background-image: url('<?= Url::to('@web/img') ?>/bg-overview.jpg'); " data-nav="slide3">
     <div class="container">
         <h3 class="text-white text-center toUpper">Follow <?= $model->employer->employer_company_name ?> on</h3>
 
-        <ul class="row list-horizontal white">
+        <ul class="row list-horizontal white" style='text-align:center'>
+            
+            
             
             <?php if($model->employer->employer_social_instagram){ ?>
-            <li class="col-sm-4" data-bottom-top="top:-50px" data-center="top:0px">
+            <li class="col-sm-<?=$colsize?>" data-bottom-top="top:-50px" data-center="top:0px">
                 <div class="list-icon">
-                    <a href="<?= $model->employer->employer_social_instagram ?>" target='_blank' class="fa fa-instagram" style="color: white; text-decoration: none"></a>
+                    <a href="https://instagram.com/<?= $model->employer->employer_social_instagram ?>" target='_blank' class="fa fa-instagram" style="color: white; text-decoration: none"></a>
                 </div><!--.list-info-->
                 <div class="list-info toUpper">
-                    <h4><a href="<?= $model->employer->employer_social_instagram ?>" target='_blank' style="color:white; text-decoration:none;">Instagram</a></h4>					
+                    <h4><a href="https://instagram.com/<?= $model->employer->employer_social_instagram ?>" target='_blank' style="color:white; text-decoration:none;">Instagram</a></h4>					
                 </div><!--.list-icon-->
             </li>
             <?php } ?>
             
             <?php if($model->employer->employer_social_twitter){ ?>
-            <li class="col-sm-4" data-bottom-top="top:-50px" data-center="top:0px">
+            <li class="col-sm-<?=$colsize?>" data-bottom-top="top:-50px" data-center="top:0px">
                 <div class="list-icon">
                     <a href="https://twitter.com/<?= $model->employer->employer_social_twitter ?>" target='_blank' class="fa fa-twitter"style="color: white; text-decoration: none"></a>
                 </div><!--.list-icon-->
@@ -136,12 +162,12 @@ $this->registerCss($css);
             <?php } ?>
             
             <?php if($model->employer->employer_social_facebook){ ?>
-            <li class="col-sm-4" data-bottom-top="top:-50px" data-center="top:0px">
+            <li class="col-sm-<?=$colsize?>" data-bottom-top="top:-50px" data-center="top:0px">
                 <div class="list-icon">
-                    <a href="https://instagram.com/<?= $model->employer->employer_social_facebook ?>" target='_blank' class="fa fa-facebook" style="color:white; text-decoration:none"></a>
+                    <a href="<?= $model->employer->employer_social_facebook ?>" target='_blank' class="fa fa-facebook" style="color:white; text-decoration:none"></a>
                 </div><!--.list-icon-->
                 <div class="list-info toUpper">
-                    <h4><a href="https://instagram.com/<?= $model->employer->employer_social_facebook ?>" target='_blank' style="color:white; text-decoration:none;">Facebook</a></h4>						
+                    <h4><a href="<?= $model->employer->employer_social_facebook ?>" target='_blank' style="color:white; text-decoration:none;">Facebook</a></h4>						
                 </div><!--.list-info-->
             </li>
             <?php } ?>
