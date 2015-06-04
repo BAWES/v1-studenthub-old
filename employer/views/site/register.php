@@ -115,6 +115,12 @@ $this->registerCss($css);
             'placeholder' => Yii::t('register', "Describe your company")
             ]) ?>
         
+        <br/>
+        <h3><?= Yii::t('register', "Social Media") ?></h3>
+        
+        <?= $form->field($model, 'employer_social_twitter')->textInput(['placeholder' => '@companyname']) ?>
+        <?= $form->field($model, 'employer_social_instagram')->textInput(['placeholder' => '@companyname']) ?>
+        <?= $form->field($model, 'employer_social_facebook')->textInput(['placeholder' => 'facebook.com/companyname']) ?>
         
         <br/>
         <h3><?= Yii::t('register', "User Details") ?></h3>
