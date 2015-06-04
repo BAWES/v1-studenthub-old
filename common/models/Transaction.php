@@ -12,7 +12,10 @@ use yii\db\Expression;
  * @property integer $transaction_id
  * @property integer $job_id
  * @property integer $transaction_number_of_applicants
- * @property string $transaction_price_per_applicant
+ * @property integer $transaction_number_of_premium_filters
+ * @property string $transaction_basic_price_per_applicant
+ * @property string $transaction_premium_price_per_applicant
+ * @property string $transaction_total_price_per_applicant
  * @property string $transaction_price_total
  * @property string $transaction_datetime
  *
@@ -34,9 +37,12 @@ class Transaction extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['job_id', 'transaction_number_of_applicants', 'transaction_price_per_applicant', 'transaction_price_total'], 'required'],
-            [['job_id', 'transaction_number_of_applicants'], 'integer'],
-            [['transaction_price_per_applicant', 'transaction_price_total'], 'number'],
+            [['job_id', 'transaction_number_of_applicants', 'transaction_number_of_premium_filters', 'transaction_basic_price_per_applicant',
+                'transaction_premium_price_per_applicant', 'transaction_total_price_per_applicant', 'transaction_price_total'], 'required'],
+            
+            //Numeric input validation
+            [['job_id', 'transaction_number_of_applicants', 'transaction_number_of_premium_filters'], 'integer'],
+            [['transaction_basic_price_per_applicant', 'transaction_premium_price_per_applicant', 'transaction_total_price_per_applicant', 'transaction_price_total'], 'number'],
             
             //Validate that employer has enough credit
             ['job_id', 'validateCredit'],
@@ -98,7 +104,10 @@ class Transaction extends \yii\db\ActiveRecord
             'transaction_id' => Yii::t('app', 'Transaction ID'),
             'job_id' => Yii::t('app', 'Job ID'),
             'transaction_number_of_applicants' => Yii::t('app', 'Number Of Applicants'),
-            'transaction_price_per_applicant' => Yii::t('app', 'Price Per Applicant'),
+            'transaction_number_of_premium_filters' => Yii::t('app', 'Transaction Number Of Premium Filters'),
+            'transaction_basic_price_per_applicant' => Yii::t('app', 'Transaction Basic Price Per Applicant'),
+            'transaction_premium_price_per_applicant' => Yii::t('app', 'Transaction Premium Price Per Applicant'),
+            'transaction_total_price_per_applicant' => Yii::t('app', 'Price Per Applicant'),
             'transaction_price_total' => Yii::t('app', 'Price Total'),
             'transaction_datetime' => Yii::t('app', 'Transaction Datetime'),
         ];

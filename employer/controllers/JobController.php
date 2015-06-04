@@ -277,8 +277,11 @@ class JobController extends Controller {
                 $transaction = new \common\models\Transaction();
                 $transaction->job_id = $model->job_id;
                 $transaction->transaction_number_of_applicants = $model->job_max_applicants;
-                $transaction->transaction_price_per_applicant = $model->costPerApplicant;
-                $transaction->transaction_price_total = $model->listingCost;
+                $transaction->transaction_number_of_premium_filters = $model->filter->premiumFilterCount;
+                $transaction->transaction_basic_price_per_applicant = \common\models\Note::findOne(["note_name" => "pricePerApplicant"])->note_value;
+                $transaction->transaction_premium_price_per_applicant = \common\models\Note::findOne(["note_name" => "pricePerPremiumFilter"])->note_value;
+                $transaction->transaction_total_price_per_applicant = $transaction->transaction_basic_price_per_applicant+($transaction->transaction_premium_price_per_applicant*$transaction->transaction_number_of_premium_filters);
+                $transaction->transaction_price_total = $transaction->transaction_total_price_per_applicant * $transaction->transaction_number_of_applicants;
                 if($transaction->save()){
                     //Redirect to thank you page
                     return $this->redirect(['thanks']);

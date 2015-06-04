@@ -70,7 +70,7 @@ class Job extends \common\models\Job {
     public function getCostPerApplicant(){
         $pricePerApplicant = \common\models\Note::findOne(["note_name" => "pricePerApplicant"])->note_value;
         $pricePerPremiumFilter = \common\models\Note::findOne(["note_name" => "pricePerPremiumFilter"])->note_value;
-        $costPerApplicant = $pricePerApplicant + $pricePerPremiumFilter *  $this->filter->premiumFilterCount;
+        $costPerApplicant = $pricePerApplicant + ($pricePerPremiumFilter *  $this->filter->premiumFilterCount);
         return $costPerApplicant; 
     }
     
