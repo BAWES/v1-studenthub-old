@@ -145,9 +145,9 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
             'employer_support_field' => Yii::t('app', 'Employer Support Field'),
             'employer_language_pref' => Yii::t('app', 'Language Preference'),
             'employer_limit_email' => Yii::t('app', 'Limit Email'),
-            'employer_social_twitter' => 'Twitter',
-            'employer_social_facebook' => 'Facebook',
-            'employer_social_instagram' => 'Instagram',
+            'employer_social_twitter' => Yii::t('app', 'Twitter'),
+            'employer_social_facebook' => Yii::t('app', 'Facebook'),
+            'employer_social_instagram' => Yii::t('app', 'Instagram'),
             'employer_updated_datetime' => Yii::t('app', 'Datetime Updated'),
             'employer_datetime' => Yii::t('app', 'Datetime Registered'),
         ];
