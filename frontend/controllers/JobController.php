@@ -54,7 +54,11 @@ class JobController extends \yii\web\Controller {
     public function actionShare($id){
         $this->layout = "shareable";
         
-        $model = \common\models\Job::findOne($id);
+        $model = \common\models\Job::find()
+                ->with(['jobtype', 'employer', 'employer.industry'])
+                ->where(['job_id' => $id])
+                ->andWhere(['!=', 'job_status', Job::STATUS_DRAFT])
+                ->one();
                 
         if (!$model) {
             throw new NotFoundHttpException('The requested job does not exist.');
