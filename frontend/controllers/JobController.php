@@ -22,6 +22,10 @@ class JobController extends \yii\web\Controller {
                 'rules' => [
                     [
                         'allow' => true,
+                        'actions' => ['share'],
+                    ],
+                    [
+                        'allow' => true,
                         'roles' => ['@'], //only allow authenticated users to job actions
                     ],
                 ],
