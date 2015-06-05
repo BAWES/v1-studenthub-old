@@ -43,12 +43,16 @@ class Payment extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['payment_type_id', 'employer_id', 'payment_employer_credit_before', 'payment_employer_credit_after', 'payment_datetime'], 'required'],
+            [['payment_type_id', 'employer_id'], 'required'],
+            
             [['payment_type_id', 'employer_id', 'job_id', 'payment_job_num_applicants', 'payment_job_num_filters'], 'integer'],
             [['payment_job_initial_price_per_applicant', 'payment_job_filter_price_per_applicant', 'payment_job_total_price_per_applicant', 'payment_total', 'payment_employer_credit_before', 'payment_employer_credit_change', 'payment_employer_credit_after'], 'number'],
             
             //Default values
             ['payment_employer_credit_change', 'default', 'value' => 0],
+            
+            //Minimum value to Gift
+            ['payment_employer_credit_change', 'number', 'min' => 1, 'on' => 'giveaway'],
             
             //Validate credit change
             //If this payment will deduct credit, make sure that this employer has enough credit to deduct from
@@ -95,16 +99,16 @@ class Payment extends \yii\db\ActiveRecord {
             'payment_type_id' => Yii::t('app', 'Payment Type ID'),
             'employer_id' => Yii::t('app', 'Employer ID'),
             'job_id' => Yii::t('app', 'Job ID'),
-            'payment_job_num_applicants' => Yii::t('app', 'Payment Job Num Applicants'),
-            'payment_job_num_filters' => Yii::t('app', 'Payment Job Num Filters'),
-            'payment_job_initial_price_per_applicant' => Yii::t('app', 'Payment Job Initial Price Per Applicant'),
-            'payment_job_filter_price_per_applicant' => Yii::t('app', 'Payment Job Filter Price Per Applicant'),
-            'payment_job_total_price_per_applicant' => Yii::t('app', 'Payment Job Total Price Per Applicant'),
+            'payment_job_num_applicants' => Yii::t('app', 'Job Num Applicants'),
+            'payment_job_num_filters' => Yii::t('app', 'Job Num Filters'),
+            'payment_job_initial_price_per_applicant' => Yii::t('app', 'Job Initial Price Per Applicant'),
+            'payment_job_filter_price_per_applicant' => Yii::t('app', 'Job Filter Price Per Applicant'),
+            'payment_job_total_price_per_applicant' => Yii::t('app', 'Job Total Price Per Applicant'),
             'payment_total' => Yii::t('app', 'Payment Total'),
-            'payment_note' => Yii::t('app', 'Payment Note'),
-            'payment_employer_credit_before' => Yii::t('app', 'Payment Employer Credit Before'),
-            'payment_employer_credit_change' => Yii::t('app', 'Payment Employer Credit Change'),
-            'payment_employer_credit_after' => Yii::t('app', 'Payment Employer Credit After'),
+            'payment_note' => Yii::t('app', 'Note'),
+            'payment_employer_credit_before' => Yii::t('app', 'Credit Before'),
+            'payment_employer_credit_change' => Yii::t('app', 'Credit Change'),
+            'payment_employer_credit_after' => Yii::t('app', 'Credit After'),
             'payment_datetime' => Yii::t('app', 'Payment Datetime'),
         ];
     }
@@ -143,18 +147,24 @@ class Payment extends \yii\db\ActiveRecord {
              * If this payment has a credit-change, update this employers credit
              */
             if ($this->payment_employer_credit_change != 0) {
-                $this->employer->updateCounters(['employer_credit' => $this->payment_amount]);
+                $this->employer->updateCounters(['employer_credit' => $this->payment_employer_credit_change]);
             }
             
             /**
+             * If there is a payment [either job exists or payment amount]
              * Log Message related to this payment
              */
-            $message = "[Payment #".$this->payment_id."] ";
-            $message .= $this->payment_total." KD spend by ".$this->employer->employer_company_name;
-            if($this->payment_employer_credit_change != 0){
-                $message .= "and their credit changed by ".Yii::$app->formatter->asCurrency($this->payment_employer_credit_change);
+            if($this->payment_total || $this->job_id){
+                $paidAmount = $this->payment_total?Yii::$app->formatter->asCurrency($this->payment_total):"KWD 0";
+                
+                $message = "[Payment #".$this->payment_id."] ";
+                $message .= "$paidAmount spent by ".$this->employer->employer_company_name;
+                if($this->payment_employer_credit_change != 0){
+                    $message .= " and their credit changed by ".Yii::$app->formatter->asCurrency($this->payment_employer_credit_change);
+                }
+                Yii::info($message, __METHOD__);
             }
-            Yii::info($message, __METHOD__);
+            
         }
     }
     
@@ -164,6 +174,34 @@ class Payment extends \yii\db\ActiveRecord {
      */
     public static function createPaymentForJob($jobId){
         
+    }
+    
+    /**
+     * Static method that gives an employer a credit gift from an Admin
+     * @param \common\models\Employer $employer
+     * @param int $adminName
+     * @param real $giftAmount
+     * @return \static
+     */
+    public static function giveEmployerGift($employer, $adminName, $giftAmount){
+        $payment = new static();
+        $payment->scenario = "giveaway"; //To validate that change can be no less than 1
+        $payment->employer_id = $employer->employer_id;
+        $payment->payment_type_id = \common\models\PaymentType::TYPE_CREDIT_GIVEAWAY;
+        $payment->payment_note = "Gift from $adminName";
+        $payment->payment_employer_credit_change = $giftAmount;
+        
+        //Validate before saving to make sure the credit-change is not zero or negative
+        if($payment->save()){
+            $message = "[Gift] ".Yii::$app->formatter->asCurrency($payment->payment_employer_credit_change)." to Employer #".$payment->employer_id;
+            $message .= " from $adminName";
+            $message .= " - their new credit amount is ".Yii::$app->formatter->asCurrency($payment->payment_employer_credit_after);
+            Yii::warning($message, __METHOD__);
+        }else{
+            Yii::error(print_r($payment->errors, true), __METHOD__);
+        }        
+        
+        return $payment;
     }
 
     /**

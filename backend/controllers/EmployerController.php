@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use common\models\Employer;
 use common\models\EmployerSearch;
+use common\models\Payment;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,20 +39,21 @@ class EmployerController extends Controller
      * @return mixed
      */
     public function actionGift($id){
-        $model = $this->findModel($id);
+        $employer = $this->findModel($id);
+        $payment = new Payment();
+        $payment->scenario = "giveaway"; //To validate that change can be no less than 1
         
-        $payment = new \common\models\Payment();
-        $payment->employer_id = $model->employer_id;
-        $payment->payment_type_id = \common\models\PaymentType::TYPE_CREDIT_GIVEAWAY;
-        $payment->payment_note = "Gift from ".Yii::$app->user->identity->admin_name;
-        
-        if ($payment->load(Yii::$app->request->post()) && $payment->save()) {
-            Yii::warning("[Gift] ".$payment->payment_amount." KD to Employer #".$payment->employer_id." from ".Yii::$app->user->identity->admin_name, __METHOD__);
-            return $this->redirect(['view', 'id' => $model->employer_id]);
+        if (isset($_POST["Payment"]["payment_employer_credit_change"])) {
+            $giftAmount = $_POST["Payment"]["payment_employer_credit_change"];
+            $adminName = Yii::$app->user->identity->admin_name;
+            
+            Payment::giveEmployerGift($employer, $adminName, $giftAmount);
+
+            return $this->redirect(['view', 'id' => $employer->employer_id]);
         }
         
         return $this->render('gift', [
-            'model' => $model,
+            'employer' => $employer,
             'payment' => $payment,
         ]);
     }
