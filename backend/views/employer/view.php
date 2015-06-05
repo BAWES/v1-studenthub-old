@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                 $payments = $model->payments;
                 foreach($payments as $payment){
-                    echo "<li>".Html::a($payment->payment_total." KD on ".Yii::$app->formatter->asDatetime($payment->payment_datetime), 
+                    echo "<li>".Html::a($payment->payment_total?Yii::$app->formatter->asCurrency($payment->payment_total):"KWD 0"." on ".Yii::$app->formatter->asDatetime($payment->payment_datetime), 
                     ["payment/view", "id" => $payment->payment_id], ['target'=>'_blank'])."</li>";
                 }
                 ?>
