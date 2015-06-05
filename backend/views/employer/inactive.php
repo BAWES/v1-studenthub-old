@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="employer-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <h3>"Never made a transaction"</h3><br/>
+    <h3>"Never made a payment"</h3><br/>
 
 
     <?= GridView::widget([

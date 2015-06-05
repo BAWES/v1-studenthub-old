@@ -60,26 +60,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <hr/>
     
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <h3>Payments <span class="badge">Total: <?= Yii::$app->formatter->asCurrency($model->paymentsTotal) ?></span></h3>
             <ul>
                 <?php
                 $payments = $model->payments;
                 foreach($payments as $payment){
-                    echo "<li>".Html::a($payment->payment_amount." KD on ".Yii::$app->formatter->asDatetime($payment->payment_datetime), 
+                    echo "<li>".Html::a($payment->payment_total." KD on ".Yii::$app->formatter->asDatetime($payment->payment_datetime), 
                     ["payment/view", "id" => $payment->payment_id], ['target'=>'_blank'])."</li>";
-                }
-                ?>
-            </ul>
-        </div>
-        <div class="col-sm-6">
-            <h3>Transactions <span class="badge">Total: <?= Yii::$app->formatter->asCurrency($model->transactionsTotal) ?></span></h3>
-            <ul>
-                <?php
-                $transactions = $model->transactions;
-                foreach($transactions as $transaction){
-                    echo "<li>".Html::a($transaction->transaction_price_total." KD on ".Yii::$app->formatter->asDatetime($transaction->transaction_datetime), 
-                    ["transaction/view", "id" => $transaction->transaction_id], ['target'=>'_blank'])."</li>";
                 }
                 ?>
             </ul>

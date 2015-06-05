@@ -154,10 +154,8 @@ class EmployerController extends Controller
     public function actionInactive(){
         $inactiveEmployerQuery = \common\models\Employer::find()->where(['not in', 'employer_id', 
             (new \yii\db\Query())
-                ->select('employer.employer_id')
-                ->from('employer')
-                ->innerJoin('job', 'employer.employer_id = job.employer_id')
-                ->innerJoin('transaction', 'job.job_id = transaction.job_id')
+                ->select('payment.employer_id')
+                ->from('payment')
             ]);
         
         $dataProvider = new ActiveDataProvider([

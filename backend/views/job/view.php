@@ -81,22 +81,20 @@ switch ($model->job_status){
     
     <hr/>
     
-    <h2>Transactions</h2>
+    <h2>Payments</h2>
     <?php
-    $transactionDataProvider = new ActiveDataProvider([
-            'query' => $model->getTransactions()->orderBy("transaction_datetime DESC"),
+    $paymentDataProvider = new ActiveDataProvider([
+            'query' => $model->getPayments()->orderBy("payment_datetime DESC"),
         ]);
     ?>
     <?= GridView::widget([
-        'dataProvider' => $transactionDataProvider,
+        'dataProvider' => $paymentDataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'transaction_number_of_applicants',
-            'transaction_price_per_applicant:currency',
-            'transaction_price_total:currency',
-            'transaction_datetime:datetime',
+            'payment_total:currency',
+            'payment_datetime:datetime',
 
-            ['class' => 'yii\grid\ActionColumn', 'controller' => 'transaction', 'template' => '{view}'],
+            ['class' => 'yii\grid\ActionColumn', 'controller' => 'payment', 'template' => '{view}'],
         ],
     ]); ?>
     
