@@ -25,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'employer.employer_company_name',
             'jobtype.jobtype_name_en',
             'job_title',
-            'job_pay:boolean',
             'job_max_applicants',
             'job_current_num_applicants',
             // 'job_status',
