@@ -271,21 +271,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
      * @return real total payments made by this employer
      */
     public function getPaymentsTotal() {
-        return $this->getPayments()->sum("payment_amount");
-    }
-    
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTransactions() {
-        return $this->hasMany(Transaction::className(), ['job_id' => 'job_id'])->via("jobs")->orderBy('transaction_datetime DESC');
-    }
-    
-    /**
-     * @return real total transaction payment made by this employer
-     */
-    public function getTransactionsTotal() {
-        return $this->getTransactions()->sum("transaction_price_total");
+        return $this->getPayments()->sum("payment_total");
     }
 
     /*
