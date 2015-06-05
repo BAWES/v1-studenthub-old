@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.3
+-- version 4.3.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 04, 2015 at 12:41 PM
--- Server version: 5.6.22
+-- Generation Time: Jun 05, 2015 at 01:29 PM
+-- Server version: 5.6.23
 -- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -666,8 +666,8 @@ CREATE TABLE IF NOT EXISTS `job` (
 INSERT INTO `job` (`job_id`, `jobtype_id`, `employer_id`, `filter_id`, `job_title`, `job_pay`, `job_startdate`, `job_responsibilites`, `job_other_qualifications`, `job_desired_skill`, `job_compensation`, `job_question_1`, `job_question_2`, `job_max_applicants`, `job_current_num_applicants`, `job_status`, `job_price_per_applicant`, `job_broadcasted`, `job_updated_datetime`, `job_created_datetime`) VALUES
 (11, 2, 1, 6, 'Project Tester', 1, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'No compensation', '', '', 10, 0, 3, '1.000', 0, '2015-05-31 08:56:35', '2015-05-21 08:26:37'),
 (13, 1, 1, 7, 'dwa', 0, NULL, 'dwa', '', 'dwa', '', '', '', 10, 0, 3, '1.000', 0, '2015-05-27 19:41:41', '2015-05-27 19:41:41'),
-(14, 3, 2, 7, 'Success Centre Attendant', 1, '2015-05-26', 'dwadwa', 'yes no maybe3', 'dwadwg', '', '', 'My Question', 66, 44, 1, '1.500', 1, '2015-06-02 16:03:04', '2015-05-21 08:26:37'),
-(15, 2, 1, 6, 'Project Tester', 0, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'Chicken wings on the house', '', '', 80, 25, 1, '1.500', 0, '2015-05-31 08:14:00', '2015-05-21 08:26:37'),
+(14, 3, 2, 7, 'Success Centre Attendant', 1, '2015-05-26', 'dwadwa', 'yes no maybe3', 'dwadwg', '', '', 'My Question', 66, 45, 1, '1.500', 1, '2015-06-02 16:03:04', '2015-05-21 08:26:37'),
+(15, 2, 1, 6, 'Project Tester', 0, NULL, 'dwadwa', 'yes no maybe3', 'dwadwg', 'Chicken wings on the house', '', '', 80, 26, 1, '1.500', 0, '2015-05-31 08:14:00', '2015-05-21 08:26:37'),
 (16, 5, 1, 8, 'dwad', 1, NULL, 'Hello', '', 'Yes', '', '', '', 10, 0, 3, '1.500', 0, '2015-05-27 17:30:06', '2015-05-27 17:30:06'),
 (17, 1, 1, 9, 'Student', 1, NULL, 'dwa', '', 'dwa', '', '', '', 15, 0, 0, '1.250', 0, '2015-05-31 09:20:02', '2015-05-28 08:00:38'),
 (18, 3, 1, NULL, 'dwad', 1, NULL, 'dwa', '', 'dwa', '', '', '', NULL, 0, 0, NULL, 0, '2015-06-01 14:23:21', '2015-06-01 14:23:18'),
@@ -2410,7 +2410,15 @@ CREATE TABLE IF NOT EXISTS `notification_employer` (
   `notification_sent` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'False (0), True (1)',
   `notification_viewed` tinyint(4) NOT NULL,
   `notification_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `notification_employer`
+--
+
+INSERT INTO `notification_employer` (`notification_id`, `employer_id`, `student_id`, `job_id`, `notification_sent`, `notification_viewed`, `notification_datetime`) VALUES
+(24, 1, 13, 15, 0, 0, '2015-06-05 13:22:51'),
+(25, 2, 13, 14, 0, 0, '2015-06-05 13:23:08');
 
 -- --------------------------------------------------------
 
@@ -2455,24 +2463,21 @@ INSERT INTO `notification_student` (`notification_id`, `student_id`, `job_id`, `
 
 CREATE TABLE IF NOT EXISTS `payment` (
   `payment_id` int(11) unsigned NOT NULL,
-  `employer_id` int(11) unsigned NOT NULL,
   `payment_type_id` int(11) unsigned NOT NULL,
-  `payment_amount` decimal(10,3) NOT NULL,
+  `employer_id` int(11) unsigned NOT NULL,
+  `job_id` int(11) unsigned DEFAULT NULL,
+  `payment_job_num_applicants` int(11) DEFAULT NULL,
+  `payment_job_num_filters` int(11) DEFAULT NULL,
+  `payment_job_initial_price_per_applicant` decimal(10,3) DEFAULT NULL,
+  `payment_job_filter_price_per_applicant` decimal(10,3) DEFAULT NULL,
+  `payment_job_total_price_per_applicant` decimal(10,3) DEFAULT NULL,
+  `payment_total` decimal(10,3) DEFAULT NULL,
   `payment_note` text COLLATE utf8_unicode_ci,
+  `payment_employer_credit_before` decimal(10,3) NOT NULL,
+  `payment_employer_credit_change` decimal(10,3) NOT NULL DEFAULT '0.000',
+  `payment_employer_credit_after` decimal(10,3) NOT NULL,
   `payment_datetime` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `payment`
---
-
-INSERT INTO `payment` (`payment_id`, `employer_id`, `payment_type_id`, `payment_amount`, `payment_note`, `payment_datetime`) VALUES
-(6, 1, 1, '35.750', 'Gift from Admin: Khalid', '2015-05-21 08:16:00'),
-(7, 1, 1, '5.000', 'Gift from Admin: Khalid', '2015-05-26 10:03:06'),
-(8, 1, 1, '3.000', 'Gift from Admin: Khalid', '2015-05-26 10:04:08'),
-(9, 1, 1, '3.000', 'Gift from Admin: Khalid', '2015-05-31 10:14:48'),
-(10, 1, 1, '12.000', 'Gift from Khalid', '2015-05-31 10:28:42'),
-(11, 1, 2, '3.000', 'Refunded by Khalid \n Removed a filter', '2015-05-31 10:31:41');
 
 -- --------------------------------------------------------
 
@@ -2492,9 +2497,10 @@ CREATE TABLE IF NOT EXISTS `payment_type` (
 
 INSERT INTO `payment_type` (`payment_type_id`, `payment_type_name_en`, `payment_type_name_ar`) VALUES
 (1, 'StudentHub Giveaway', 'StudentHub Giveaway'),
-(2, 'Refund', 'Refund'),
-(3, 'KNET', 'كي نت'),
-(4, 'Credit Card', 'بطاقة إئتمان');
+(2, 'Refund Credit', 'Refund Credit'),
+(3, 'StudentHub Credit', 'StudentHub Credit'),
+(4, 'KNET', 'كي نت'),
+(5, 'Credit Card', 'بطاقة إئتمان');
 
 -- --------------------------------------------------------
 
@@ -2574,7 +2580,15 @@ CREATE TABLE IF NOT EXISTS `student_job_application` (
   `application_answer_2` text COLLATE utf8_unicode_ci,
   `application_hidden` tinyint(11) NOT NULL,
   `application_date_apply` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `student_job_application`
+--
+
+INSERT INTO `student_job_application` (`application_id`, `student_id`, `job_id`, `application_answer_1`, `application_answer_2`, `application_hidden`, `application_date_apply`) VALUES
+(31, 13, 15, NULL, NULL, 0, '2015-06-05 13:22:51'),
+(32, 13, 14, NULL, 'igihijp;kol''.tyrtghujkl', 0, '2015-06-05 13:23:08');
 
 -- --------------------------------------------------------
 
@@ -2662,34 +2676,6 @@ INSERT INTO `student_major` (`student_id`, `major_id`) VALUES
 (21, 3),
 (21, 6),
 (22, 340);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `transaction`
---
-
-CREATE TABLE IF NOT EXISTS `transaction` (
-  `transaction_id` int(11) unsigned NOT NULL,
-  `job_id` int(11) unsigned NOT NULL,
-  `transaction_number_of_applicants` int(11) NOT NULL,
-  `transaction_number_of_premium_filters` int(11) NOT NULL,
-  `transaction_basic_price_per_applicant` decimal(10,3) NOT NULL,
-  `transaction_premium_price_per_applicant` decimal(10,3) NOT NULL,
-  `transaction_total_price_per_applicant` decimal(10,3) NOT NULL,
-  `transaction_price_total` decimal(10,3) NOT NULL,
-  `transaction_datetime` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `transaction`
---
-
-INSERT INTO `transaction` (`transaction_id`, `job_id`, `transaction_number_of_applicants`, `transaction_number_of_premium_filters`, `transaction_basic_price_per_applicant`, `transaction_premium_price_per_applicant`, `transaction_total_price_per_applicant`, `transaction_price_total`, `transaction_datetime`) VALUES
-(6, 11, 10, 0, '0.000', '0.000', '1.500', '15.000', '2015-05-21 08:26:37'),
-(7, 16, 10, 0, '0.000', '0.000', '1.500', '15.000', '2015-05-27 17:30:06'),
-(8, 13, 10, 0, '0.000', '0.000', '1.000', '10.000', '2015-05-27 19:41:41'),
-(9, 19, 10, 1, '0.750', '0.250', '1.000', '10.000', '2015-06-04 11:58:29');
 
 -- --------------------------------------------------------
 
@@ -2860,7 +2846,7 @@ ALTER TABLE `notification_student`
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
-  ADD PRIMARY KEY (`payment_id`), ADD KEY `employer_id` (`employer_id`), ADD KEY `payment_type_id` (`payment_type_id`);
+  ADD PRIMARY KEY (`payment_id`), ADD KEY `employer_id` (`employer_id`), ADD KEY `payment_type_id` (`payment_type_id`), ADD KEY `job_id` (`job_id`);
 
 --
 -- Indexes for table `payment_type`
@@ -2897,12 +2883,6 @@ ALTER TABLE `student_language`
 --
 ALTER TABLE `student_major`
   ADD KEY `student_id` (`student_id`), ADD KEY `major_id` (`major_id`);
-
---
--- Indexes for table `transaction`
---
-ALTER TABLE `transaction`
-  ADD PRIMARY KEY (`transaction_id`), ADD KEY `job_id` (`job_id`);
 
 --
 -- Indexes for table `university`
@@ -2988,7 +2968,7 @@ ALTER TABLE `note`
 -- AUTO_INCREMENT for table `notification_employer`
 --
 ALTER TABLE `notification_employer`
-  MODIFY `notification_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `notification_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `notification_student`
 --
@@ -3013,17 +2993,12 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `student_job_application`
 --
 ALTER TABLE `student_job_application`
-  MODIFY `application_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+  MODIFY `application_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `student_job_qualification`
 --
 ALTER TABLE `student_job_qualification`
   MODIFY `qualification_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
---
--- AUTO_INCREMENT for table `transaction`
---
-ALTER TABLE `transaction`
-  MODIFY `transaction_id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `university`
 --
@@ -3114,7 +3089,8 @@ ADD CONSTRAINT `notification_student_ibfk_2` FOREIGN KEY (`job_id`) REFERENCES `
 --
 ALTER TABLE `payment`
 ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`employer_id`) REFERENCES `employer` (`employer_id`),
-ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`payment_type_id`) REFERENCES `payment_type` (`payment_type_id`);
+ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`payment_type_id`) REFERENCES `payment_type` (`payment_type_id`),
+ADD CONSTRAINT `payment_ibfk_3` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`);
 
 --
 -- Constraints for table `student`
@@ -3151,12 +3127,6 @@ ADD CONSTRAINT `student_language_ibfk_2` FOREIGN KEY (`language_id`) REFERENCES 
 ALTER TABLE `student_major`
 ADD CONSTRAINT `student_major_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
 ADD CONSTRAINT `student_major_ibfk_2` FOREIGN KEY (`major_id`) REFERENCES `major` (`major_id`);
-
---
--- Constraints for table `transaction`
---
-ALTER TABLE `transaction`
-ADD CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
