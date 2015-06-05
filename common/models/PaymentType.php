@@ -19,6 +19,8 @@ class PaymentType extends \yii\db\ActiveRecord
     const TYPE_CREDIT_GIVEAWAY = 1;
     //Row ID for the Refund payment type
     const TYPE_CREDIT_REFUND = 2;
+    //Row ID for the Credit payment type
+    const TYPE_CREDIT = 3;
     
     /**
      * @inheritdoc
