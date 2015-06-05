@@ -109,7 +109,6 @@ AppAsset::register($this);
                     [
                         'label' => 'Sales',
                         'items' => [
-                            ['label' => 'Transactions', 'url' => ['/transaction/index']],
                             ['label' => 'Payments', 'url' => ['/payment/index']],
                             ['label' => 'Payment Types', 'url' => ['/payment-type/index']],
                             ['label' => 'Inactive Employers', 'url' => ['/employer/inactive']],

@@ -83,13 +83,9 @@ $this->title = 'Dashboard';
                     <td>Payments</td>
                     <td><?= Yii::$app->formatter->asCurrency($totalPayments = \common\models\Payment::total()) ?></td>
                 </tr>
-                <tr>
-                    <td>Transactions</td>
-                    <td><?= Yii::$app->formatter->asCurrency($totalTransactions = \common\models\Transaction::total()) ?></td>
-                </tr>
                 <tr class="danger" style="font-weight:bold;">
                     <td>Unused Credit</td>
-                    <td><?= Yii::$app->formatter->asCurrency($totalPayments - $totalTransactions) ?></td>
+                    <td>xyz</td>
                 </tr>
             </table>
         </div>

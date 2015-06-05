@@ -8,7 +8,6 @@ use common\models\Payment;
 use common\models\PaymentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * PaymentController implements the CRUD actions for Payment model.
@@ -18,12 +17,6 @@ class PaymentController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
