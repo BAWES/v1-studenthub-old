@@ -17,7 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Loading Interview Questions..' => 'جاري تحميل أسئلة المقابلة ..',
+    'Return to Dashboard' => 'العودة إلى لوحة التحكم',
+    'There was an issue processing your payment, please contact us if you require assistance' => 'كان لديك مشكلة مع الدفع، يرجى الاتصال بنا اذا كنت بحاجة إلى المساعدة',
+    'You will receive your invoice by email.' => 'ستستلم فاتورة عن طريق البريد الإلكتروني.',
+    'Your post will revised and we will notify you once it is posted.' => 'سنقوم بمراجعة عملك وإعلامك حالما يتم نشره.',
     'A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub' => 'لن يتم الموافقة على فرصة عملك إذا كان لديه عناوين تطبيق أو بريد إلكتروني في الوصف. وينبغي أن يقدم جميع الطلاب لهذه الوضيفة من خلال موقع StudentHub',
     'A short description about the job' => 'وصف قصير عن العمل',
     'About the Company' => 'عن الشركة',
@@ -60,6 +63,7 @@ return [
     'Languages' => 'اللغات',
     'Leave blank to show "flexible start date"' => 'اتركه فارغا لعرض "تاريخ البدء مرن"',
     'Listing Cost' => 'التكلفة إدراجك',
+    'Loading Interview Questions..' => 'جاري تحميل أسئلة المقابلة ..',
     'Loading Job Details..' => 'جاري تحميل تفاصيل الوظيفة ..',
     'Login' => 'تسجيل الدخول',
     'Majors' => 'التخصصات',

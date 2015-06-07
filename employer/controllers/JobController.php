@@ -265,35 +265,17 @@ class JobController extends Controller {
          */
         if(Yii::$app->request->post()){
             $paymentOption = Yii::$app->request->post('paymentOption');
-            //You're not allowed payment option 1 (StudentHub Sponsor)
-            if($paymentOption == 1) exit();
             
-            
-            $amountDue = $model->amountDue;
-            /**
-             * Does his credit cover the jobs cost? If yes, then process as credit payment
-             */
-            if($amountDue <= 0){
-                //Process Payment Transaction for this Job
-                $transaction = new \common\models\Transaction();
-                $transaction->job_id = $model->job_id;
-                $transaction->transaction_number_of_applicants = $model->job_max_applicants;
-                $transaction->transaction_number_of_premium_filters = $model->filter->premiumFilterCount;
-                $transaction->transaction_basic_price_per_applicant = \common\models\Note::findOne(["note_name" => "pricePerApplicant"])->note_value;
-                $transaction->transaction_premium_price_per_applicant = \common\models\Note::findOne(["note_name" => "pricePerPremiumFilter"])->note_value;
-                $transaction->transaction_total_price_per_applicant = $transaction->transaction_basic_price_per_applicant+($transaction->transaction_premium_price_per_applicant*$transaction->transaction_number_of_premium_filters);
-                $transaction->transaction_price_total = $transaction->transaction_total_price_per_applicant * $transaction->transaction_number_of_applicants;
-                if($transaction->save()){
-                    //Redirect to thank you page
-                    return $this->redirect(['thanks']);
-                }else{
-                    //There are errors, set flash for those errors
-                    foreach($transaction->errors as $error){
-                        Yii::$app->session->setFlash("warning", print_r($error[0], true));
-                    }
-                }
+            //Process Payment for this Job
+            if($model->processPayment()){
+                //Redirect to thank you page
+                return $this->redirect(['success']);
+            }else{
+                //There are errors, set flash for those errors
+                Yii::$app->session->setFlash("error", 
+                        Yii::t('employer',
+                                "There was an issue processing your payment, please contact us if you require assistance"));
             }
-            
         }
         
         
@@ -303,11 +285,13 @@ class JobController extends Controller {
     }
     
     /**
-     * Thank you page after payment
+     * Successful Payment
+     * Renders Thank you page after payment
      */
-    public function actionThanks(){
+    public function actionSuccess(){
         return $this->render('thanks');
     }
+    
     
 
     /**
