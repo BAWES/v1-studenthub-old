@@ -190,34 +190,6 @@ class Payment extends \yii\db\ActiveRecord {
         return $payment;
         
     }
-    
-    /**
-     * Static method that gives an employer a credit gift from an Admin
-     * @param \common\models\Employer $employer
-     * @param int $adminName
-     * @param real $giftAmount
-     * @return \static
-     */
-    public static function giveEmployerGift($employer, $adminName, $giftAmount){
-        $payment = new static();
-        $payment->scenario = "giveaway"; //To validate that change can be no less than 1
-        $payment->employer_id = $employer->employer_id;
-        $payment->payment_type_id = \common\models\PaymentType::TYPE_CREDIT_GIVEAWAY;
-        $payment->payment_note = "Gift from $adminName";
-        $payment->payment_employer_credit_change = $giftAmount;
-        
-        //Validate before saving to make sure the credit-change is not zero or negative
-        if($payment->save()){
-            $message = "[Gift] ".Yii::$app->formatter->asCurrency($payment->payment_employer_credit_change)." to Employer #".$payment->employer_id;
-            $message .= " from $adminName";
-            $message .= " - their new credit amount is ".Yii::$app->formatter->asCurrency($payment->payment_employer_credit_after);
-            Yii::warning($message, __METHOD__);
-        }else{
-            Yii::error(print_r($payment->errors, true), __METHOD__);
-        }        
-        
-        return $payment;
-    }
 
     /**
      * @return \yii\db\ActiveQuery

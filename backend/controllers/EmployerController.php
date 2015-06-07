@@ -44,9 +44,8 @@ class EmployerController extends Controller
         
         if (isset($_POST["Payment"]["payment_employer_credit_change"])) {
             $giftAmount = $_POST["Payment"]["payment_employer_credit_change"];
-            $adminName = Yii::$app->user->identity->admin_name;
             
-            Payment::giveEmployerGift($employer, $adminName, $giftAmount);
+            $employer->giveGift($giftAmount);
 
             return $this->redirect(['view', 'id' => $employer->employer_id]);
         }
