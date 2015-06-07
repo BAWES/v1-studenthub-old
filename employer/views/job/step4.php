@@ -32,9 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <h3 style="margin-top:0"><?= Yii::t("employer", "Order Summary") ?></h3>
 
         <?php
-        $amountDue = $model->listingCost - Yii::$app->user->identity->employer_credit;
-        if ($amountDue < 0)
-            $amountDue = 0;
+        $amountDue = $model->amountDue;
         ?>
 
         <div class="col-md-5">

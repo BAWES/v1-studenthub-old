@@ -269,8 +269,7 @@ class JobController extends Controller {
             if($paymentOption == 1) exit();
             
             
-            $totalCredit = Yii::$app->user->identity->employer_credit;
-            $amountDue = $model->listingCost - $totalCredit;
+            $amountDue = $model->amountDue;
             /**
              * Does his credit cover the jobs cost? If yes, then process as credit payment
              */

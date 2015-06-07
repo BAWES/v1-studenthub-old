@@ -54,6 +54,21 @@ class Job extends \common\models\Job {
         }
     }
     
+    
+    /**
+     * Returns the amount due for payment from employer
+     * @return real the amount due
+     */
+    public function getAmountDue(){
+        $totalCredit = Yii::$app->user->identity->employer_credit;
+        $amountDue = $this->listingCost - $totalCredit;
+        if ($amountDue < 0){
+            $amountDue = 0;
+        }
+        
+        return $amountDue;
+    }
+    
     /**
      * Returns the current listing cost based on current price per applicant + filter price
      * @return real the current cost
