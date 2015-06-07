@@ -168,28 +168,6 @@ class Payment extends \yii\db\ActiveRecord {
             
         }
     }
-    
-    /**
-     * Static method that takes job and creates payment for it
-     * @param \common\models\job $job
-     * @param int $paymentTypeId the payment type
-     * @return \static
-     */
-    public static function createPaymentForJob($job, $paymentTypeId){
-        /**
-         * If this jobs cost can be fully covered by the employers current credit amount
-         * Then set the payment method to credit??
-         * Somewhere there should be some logic that checks whether there should be
-         * full payment, partial payment, or credit payment for this job and update payment fields 
-         * where required
-         */
-        
-        $payment = new static();
-        $payment->payment_type_id = $paymentTypeId;
-        
-        return $payment;
-        
-    }
 
     /**
      * @return \yii\db\ActiveQuery
