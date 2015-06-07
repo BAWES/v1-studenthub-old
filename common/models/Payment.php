@@ -174,6 +174,13 @@ class Payment extends \yii\db\ActiveRecord {
      * @param int $jobId
      */
     public static function createPaymentForJob($jobId){
+        /**
+         * If this jobs cost can be fully covered by the employers current credit amount
+         * Then set the payment method to credit??
+         * Somewhere there should be some logic that checks whether there should be
+         * full payment, partial payment, or credit payment for this job and update payment fields 
+         * where required
+         */
         
     }
     

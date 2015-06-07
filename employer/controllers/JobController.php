@@ -271,7 +271,9 @@ class JobController extends Controller {
             
             $totalCredit = Yii::$app->user->identity->employer_credit;
             $amountDue = $model->listingCost - $totalCredit;
-            //Does his credit cover the jobs cost? If yes, then process
+            /**
+             * Does his credit cover the jobs cost? If yes, then process
+             */
             if($amountDue <= 0){
                 //Process Payment Transaction for this Job
                 $transaction = new \common\models\Transaction();
