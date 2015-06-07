@@ -4,12 +4,11 @@ namespace backend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use common\models\Employer;
+use backend\models\Employer;
 use common\models\EmployerSearch;
 use common\models\Payment;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 
 /**
@@ -69,11 +68,10 @@ class EmployerController extends Controller
         $payment->scenario = "giveaway"; //To validate that change can be no less than 1
         
         if (isset($_POST["Payment"]["payment_employer_credit_change"]) && isset($_POST["Payment"]["payment_note"])) {
-            $giftAmount = $_POST["Payment"]["payment_employer_credit_change"];
+            $refundAmount = $_POST["Payment"]["payment_employer_credit_change"];
             $reason = $_POST["Payment"]["payment_note"];
-            $adminName = Yii::$app->user->identity->admin_name;
             
-            Payment::giveEmployerRefund($employer, $adminName, $giftAmount, $reason);
+            $employer->giveRefund($refundAmount, $reason);
 
             return $this->redirect(['view', 'id' => $employer->employer_id]);
         }
