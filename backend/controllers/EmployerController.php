@@ -64,23 +64,22 @@ class EmployerController extends Controller
      * @return mixed
      */
     public function actionRefund($id){
-        $model = $this->findModel($id);
+        $employer = $this->findModel($id);
+        $payment = new Payment();
+        $payment->scenario = "giveaway"; //To validate that change can be no less than 1
         
-        $payment = new \common\models\Payment();
-        $payment->scenario = "refund";
-        $payment->employer_id = $model->employer_id;
-        $payment->payment_type_id = \common\models\PaymentType::TYPE_CREDIT_REFUND;
-        
-        if ($payment->load(Yii::$app->request->post()) && $payment->validate()) {
-            $payment->payment_note = "Refunded by ".Yii::$app->user->identity->admin_name." ** ".$payment->payment_note;
-            if($payment->save(false)){
-                Yii::warning("[Refund] ".$payment->payment_amount." KD to Employer #".$payment->employer_id." from ".Yii::$app->user->identity->admin_name, __METHOD__);
-                return $this->redirect(['view', 'id' => $model->employer_id]);
-            }
+        if (isset($_POST["Payment"]["payment_employer_credit_change"]) && isset($_POST["Payment"]["payment_note"])) {
+            $giftAmount = $_POST["Payment"]["payment_employer_credit_change"];
+            $reason = $_POST["Payment"]["payment_note"];
+            $adminName = Yii::$app->user->identity->admin_name;
+            
+            Payment::giveEmployerRefund($employer, $adminName, $giftAmount, $reason);
+
+            return $this->redirect(['view', 'id' => $employer->employer_id]);
         }
         
         return $this->render('refund', [
-            'model' => $model,
+            'employer' => $employer,
             'payment' => $payment,
         ]);
     }

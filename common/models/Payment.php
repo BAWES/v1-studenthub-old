@@ -53,6 +53,7 @@ class Payment extends \yii\db\ActiveRecord {
             
             //Minimum value to Gift
             ['payment_employer_credit_change', 'number', 'min' => 1, 'on' => 'giveaway'],
+            [['payment_note', 'payment_employer_credit_change'], 'required', 'on' => 'giveaway'],
             
             //Validate credit change
             //If this payment will deduct credit, make sure that this employer has enough credit to deduct from
@@ -194,6 +195,35 @@ class Payment extends \yii\db\ActiveRecord {
         //Validate before saving to make sure the credit-change is not zero or negative
         if($payment->save()){
             $message = "[Gift] ".Yii::$app->formatter->asCurrency($payment->payment_employer_credit_change)." to Employer #".$payment->employer_id;
+            $message .= " from $adminName";
+            $message .= " - their new credit amount is ".Yii::$app->formatter->asCurrency($payment->payment_employer_credit_after);
+            Yii::warning($message, __METHOD__);
+        }else{
+            Yii::error(print_r($payment->errors, true), __METHOD__);
+        }        
+        
+        return $payment;
+    }
+    
+    /**
+     * Static method that gives an employer a credit gift from an Admin
+     * @param \common\models\Employer $employer
+     * @param int $adminName
+     * @param real $refundAmount
+     * @param string $reason
+     * @return \static
+     */
+    public static function giveEmployerRefund($employer, $adminName, $refundAmount, $reason){
+        $payment = new static();
+        $payment->scenario = "giveaway"; //To validate that change can be no less than 1
+        $payment->employer_id = $employer->employer_id;
+        $payment->payment_type_id = \common\models\PaymentType::TYPE_CREDIT_REFUND;
+        $payment->payment_note = "[Refund from $adminName] Reason: $reason";
+        $payment->payment_employer_credit_change = $refundAmount;
+        
+        //Validate before saving to make sure the credit-change is not zero or negative
+        if($payment->save()){
+            $message = "[Refund] ".Yii::$app->formatter->asCurrency($payment->payment_employer_credit_change)." to Employer #".$payment->employer_id;
             $message .= " from $adminName";
             $message .= " - their new credit amount is ".Yii::$app->formatter->asCurrency($payment->payment_employer_credit_after);
             Yii::warning($message, __METHOD__);
