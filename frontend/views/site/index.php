@@ -43,9 +43,9 @@ $this->registerCss($css);
             <h2>Welcome to StudentHub!</h2>
             <p class="lead">This is where the magic happens!<br> Find 
                 <span data-typer-targets="an Internship.,a job to Volunteer.,Part-Time Job.,a One-Time Job.,a Full-Time Job."></span></p>                                                            
-            <a class="btn btn-danger toastr-notify" data-toastr-type="success" data-toastr-title="Applied!" data-toastr-notification="You have applied for the job!" href="#">Sign Up Now</a>
-            <a class="btn btn-danger toastr-notify" data-toastr-type="success" data-toastr-title="Applied!" data-toastr-notification="You have applied for the job!" href="#">Login</a><br><br>                         
-            <a class="btn btn-success toastr-notify" data-toastr-type="success" data-toastr-title="Applied!" data-toastr-notification="You have applied for the job!" href="#">Not a Student</a>
+            
+            
+            
             <div class="card card-video card-video-modal card-player-blue" style="background-color:white;box-shadow:none;margin:0;height: 100px;">
                 <div class="card-body" style="height:100px">
                     <a href="#" class="play-button-container" data-toggle="modal" data-target="#videojs-modal-1">
@@ -59,7 +59,7 @@ $this->registerCss($css);
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <video id="videojs3" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" poster="../../assets/globals/img/picjumbo/13.jpg">
+                                <video id="videojs3" class="video-js video-js-responsive vjs-default-skin vjs-big-play-centered" controls preload="none" poster="<?= Url::to("@web/img/picjumbo/13.jpg") ?>">
                                     <source src="http://video-js.zencoder.com/oceans-clip.mp4" type="video/mp4">
                                     <source src="http://video-js.zencoder.com/oceans-clip.webm" type="video/webm">
                                     <source src="http://video-js.zencoder.com/oceans-clip.ogv" type="video/ogg">
@@ -72,6 +72,10 @@ $this->registerCss($css);
                 <!-- End of Modal -->
             </div><!--.card-->
             <p class="lead">Check what is StudentHub</p>
+            
+            <a class="btn btn-lg btn-success" href="<?= Url::to(['register/index']) ?>">Sign Up Now</a>
+            <a class="btn btn-lg btn-success" href="<?= Url::to(['site/login']) ?>">Login</a><br><br>                         
+            <a class="btn btn-lg btn-teal" href="<?= Yii::$app->urlManagerEmployer->createUrl("site/index") ?>">Employer? Click here!</a>
         </div>
     </div>
 </div>    
