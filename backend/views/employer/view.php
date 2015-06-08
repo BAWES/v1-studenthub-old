@@ -59,30 +59,9 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <hr/>
     
-    <div class="row">
-        <div class="col-sm-12">
-            <h3>Payments <span class="badge">Total: <?= Yii::$app->formatter->asCurrency($model->paymentsTotal) ?></span></h3>
-            <ul>
-                <?php
-                $payments = $model->payments;
-                foreach($payments as $payment){
-                    echo "<li>".Html::a($payment->payment_total?Yii::$app->formatter->asCurrency($payment->payment_total):"KWD 0"." on ".Yii::$app->formatter->asDatetime($payment->payment_datetime), 
-                    ["payment/view", "id" => $payment->payment_id], ['target'=>'_blank'])."</li>";
-                }
-                ?>
-            </ul>
-        </div>
-    </div>
     
-    <div class="row">
-        <div class="col-md-4">
-            <?= Html::a("Refund in Credits", ['refund', 'id' => $model->employer_id], [
-                'class' => 'btn btn-primary btn-warning btn-block',
-                ]) ?>
-        </div>
-    </div>
     
-    <hr/>
+    
     <h3>Jobs</h3>
     <?php
     $jobDataProvider = new ActiveDataProvider([
@@ -100,5 +79,35 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn', 'controller' => 'job', 'template' => '{view}'],
         ],
     ]); ?>
+    
+    <hr/>
+    
+    <h3>Payments <span class="badge"><?= $model->paymentsTotal ?> KD</span></h3>
+    
+    <?php
+    $paymentDataProvider = new ActiveDataProvider([
+            'query' => $model->getPayments()->orderBy("payment_datetime DESC"),
+        ]);
+    ?>
+    <?= GridView::widget([
+        'dataProvider' => $paymentDataProvider,
+        'columns' => [
+            'payment_id',
+            'paymentType.payment_type_name_en',
+            'payment_total:currency',
+            'payment_employer_credit_change:currency',
+            'payment_datetime:datetime',
+
+            ['class' => 'yii\grid\ActionColumn', 'controller' => 'payment', 'template' => '{view}'],
+        ],
+    ]); ?>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <?= Html::a("Refund in Credits", ['refund', 'id' => $model->employer_id], [
+                'class' => 'btn btn-primary btn-warning btn-block',
+                ]) ?>
+        </div>
+    </div>
 
 </div>

@@ -92,6 +92,7 @@ switch ($model->job_status){
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'payment_total:currency',
+            'payment_employer_credit_change:currency',
             'payment_datetime:datetime',
 
             ['class' => 'yii\grid\ActionColumn', 'controller' => 'payment', 'template' => '{view}'],

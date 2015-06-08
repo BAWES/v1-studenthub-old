@@ -13,8 +13,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="payment-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php if($model->job_id){ ?>
+        <?= Html::a("View Job", ["job/view", "id"=>$model->job_id],['target' => '_blank', 'class' => 'btn btn-primary']) ?>
+    <?php } ?>
     
-    <?= Html::a("View Job", ["job/view", "id"=>$model->job_id],['target' => '_blank', 'class' => 'btn btn-primary']) ?>
     <?= Html::a("View Employer", ["employer/view", "id"=>$model->employer_id],['target' => '_blank', 'class' => 'btn btn-primary']) ?>
 
     <?= DetailView::widget([
