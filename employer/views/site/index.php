@@ -17,6 +17,10 @@ $css = "
     height: auto;
 }
 
+#filterList button{
+border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small;
+}
+
 #cardtutorial .tut{height:180px;}
 ";
 
@@ -84,7 +88,7 @@ $this->registerCss($css);
 
 
 <!-- Positions Available -->
-<div class="row">
+<div class="row" style='direction:ltr;'>
     <div class="card">   
         <div class="panel-body">
             <h2 style="text-align: center"><?= Yii::t('frontend', 'Positions Available') ?></h2>
@@ -122,19 +126,35 @@ $this->registerCss($css);
 
 
 <!-- Filters Available -->
-<div class="row">
+<div class="row" style='direction:ltr;'>
     <div class="card">
         <div class="panel-body" style="text-align:center">
-            <h2 style="text-align: center"> You Can Search Students By</h2> 
+            <h2 style="text-align: center"> <?= Yii::t('frontend', 'You can target students by') ?></h2> 
             <div id=filterList style="text-align:center">
-                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small; margin-bottom: 15px">GPA</button>
-                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">NATIONALITY</button>                        
-                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">DEGREE</button>
-                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">GRADUATION</button>
-                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">MAJOR </button>
-                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">LANGUAGE</button>                                              
-                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">UNIVERSITY</button>
-                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">AND MORE</button>
+                <button type="button" class="btn btn-default" data-toggle="button" style="margin-bottom: 15px">
+                    <?= Yii::t('frontend', 'GPA') ?>
+                </button>
+                <button type="button" class="btn btn-default" data-toggle="button">
+                    <?= Yii::t('frontend', 'NATIONALITY') ?>
+                </button>                        
+                <button type="button" class="btn btn-default" data-toggle="button">
+                    <?= Yii::t('frontend', 'DEGREE') ?>
+                </button>
+                <button type="button" class="btn btn-default" data-toggle="button">
+                    <?= Yii::t('frontend', 'GRADUATION') ?>
+                </button>
+                <button type="button" class="btn btn-default" data-toggle="button">
+                    <?= Yii::t('frontend', 'MAJOR') ?>
+                </button>
+                <button type="button" class="btn btn-default" data-toggle="button">
+                    <?= Yii::t('frontend', 'LANGUAGE') ?>
+                </button>                                              
+                <button type="button" class="btn btn-default" data-toggle="button">
+                    <?= Yii::t('frontend', 'UNIVERSITY') ?>
+                </button>
+                <button type="button" class="btn btn-default" data-toggle="button">
+                    <?= Yii::t('frontend', 'AND MORE') ?>
+                </button>
             </div>
         </div>
     </div>
