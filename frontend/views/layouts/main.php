@@ -153,7 +153,9 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
                 <div class="row">
                     <div class="col-sm-6">
                         <?php /*<h1><?= Html::encode($this->title) ?></h1>*/ ?>
-                        <?= Html::img("@web/images/studenthub-white.png", ['class' => 'img-responsive', 'style' => 'max-width:190px; padding-top:5px;']) ?>
+                        <a href="<?= Url::to(['site/index']) ?>">
+                            <?= Html::img("@web/images/studenthub-white.png", ['class' => 'img-responsive', 'style' => 'max-width:190px; padding-top:5px;']) ?>
+                        </a>
                     </div><!--.col-->
                     <div class="col-sm-6">
                         <?= Breadcrumbs::widget([
