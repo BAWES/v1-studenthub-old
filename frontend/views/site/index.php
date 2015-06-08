@@ -27,11 +27,11 @@ $('[data-typer-targets]').typer({
 
 $('#companyList').owlCarousel({
     autoPlay: 4500, //Set AutoPlay to 3 seconds
-
 });
 ";
 
 \common\assets\HomePageAsset::register($this);
+$this->registerJsFile("@web/scripts/widget-video.js", ['depends' => 'yii\web\YiiAsset']);
 $this->registerJs($js);
 $this->registerCss($css);
 ?>
@@ -133,7 +133,7 @@ $this->registerCss($css);
 <div class="row">
     <div class="card">
         <div class="panel-body">
-            <h2 style="text-align: center"> Companies on StudentHub</h2> 
+            <h2 style="text-align: center">Employers on StudentHub</h2> 
             <div id="companyList" style="text-align:center">
                 <div class="item"><img src="<?= Url::to("@web/images/employers/zain.jpg") ?>" alt="Zain"></div>
                 <div class="item"><img src="<?= Url::to("@web/images/employers/ooredoo.jpg") ?>" alt="Ooredoo"></div>
