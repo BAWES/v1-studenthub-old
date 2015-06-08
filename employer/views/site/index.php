@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
@@ -7,10 +8,10 @@ $this->title = 'StudentHub';
 $css = "
 .spanfix span{display: inline !important;}
 .card.card-video .play-button-container .play-button{background-color:white}
-#owl-demo .item{
+#positionList .item{
     margin: 3px;
 }
-#owl-demo .item img{
+#positionList .item img{
     display: block;
     width: 100%;
     height: auto;
@@ -25,8 +26,17 @@ $('[data-typer-targets]').typer({
     wholeWord: true
 });
 
+$('#positionList').owlCarousel({
+    autoPlay: 4000,
+});
+
 $('#companyList').owlCarousel({
-    autoPlay: 4500, //Set AutoPlay to 3 seconds
+    autoPlay: 4500,
+});
+
+$('#filterList').owlCarousel({
+    autoPlay: 3000,
+    items: 8,
 });
 ";
 
@@ -40,16 +50,11 @@ $this->registerCss($css);
 <div class="row">
     <div class="card spanfix">
         <div class="panel-body" style="text-align:center;">
-            <h2><?= Yii::t('frontend', 'Welcome to StudentHub!') ?></h2>
-            <p class="lead"><?= Yii::t('frontend', 'Find') ?>
-                <span data-typer-targets="<?= Yii::t('frontend', 'an Internship.')?>,
-                      <?= Yii::t('frontend', 'a job to Volunteer.')?>,
-                      <?= Yii::t('frontend', 'a Part-Time Job.')?>,
-                      <?= Yii::t('frontend', 'a One-Time Job.')?>,
-                      <?= Yii::t('frontend', 'a Full-Time Job.')?>"></span></p>                                                            
-            
-            
-            
+            <h2><?= Yii::t('frontend', 'Hire students today!') ?></h2>
+            <p class="lead"><?= Yii::t('frontend', 'Find the perfect candidate!') ?></p>                                                            
+
+
+
             <div class="card card-video card-video-modal card-player-blue" style="background-color:white;box-shadow:none;margin:0;height: 100px;">
                 <div class="card-body" style="height:100px">
                     <a href="#" class="play-button-container" data-toggle="modal" data-target="#videoModal">
@@ -68,64 +73,28 @@ $this->registerCss($css);
                 </div><!--.modal-->
                 <!-- End of Modal -->
             </div><!--.card-->
-            
+
             <p class="lead"><?= Yii::t('frontend', 'Check out our video!') ?></p>
-            
-            <a class="btn btn-lg btn-success" href="<?= Url::to(['register/index']) ?>"><?= Yii::t('frontend', 'Sign Up Now') ?></a>
-            <a class="btn btn-lg btn-success" href="<?= Url::to(['site/login']) ?>"><?= Yii::t('frontend', 'Login') ?></a><br/><br/>
-            <a class="btn btn-lg btn-teal" href="<?= Yii::$app->urlManagerFrontend->createUrl("site/index") ?>"><?= Yii::t('frontend', 'Employer? Click here!') ?></a>
+
+            <a class="btn btn-lg btn-success" href="<?= Url::to(['site/register']) ?>"><?= Yii::t('frontend', 'Sign Up Now') ?></a>
+            <a class="btn btn-lg btn-success" href="<?= Url::to(['site/login']) ?>"><?= Yii::t('frontend', 'Login') ?></a>
         </div>
     </div>
 </div>    
 
 
-<!-- how to start -->
-<div class="row" id='cardtutorial'>
-    <div class="card">
+<!-- Positions Available -->
+<div class="row">
+    <div class="card">   
         <div class="panel-body">
-            <h2 style="text-align: center"><?= Yii::t('frontend', 'How to Start') ?></h2>
-            <div class="col-md-3 col-sm-6">
-                <div class="card card-iconic card-white tut">
-                    <div class="card-body" style="color:black">
-                        <i class="card-icon fa fa-sign-in"></i>
-                        <h4 style="color:black"><?= Yii::t('frontend', 'Sign Up') ?></h4>
-                        <p><?= Yii::t('frontend', 'Create an account and build your CV') ?></p>
-                    </div><!--.card-body-->
-                </div><!--.card-->
-            </div><!--.col-md-3-->
-
-            <div class="col-md-3 col-sm-6">
-                <div class="card card-iconic card-white tut">
-                    <div class="card-body" style="color:black">
-                        <i class="card-icon fa fa-envelope"></i>
-                        <h4 style="color:black"><?= Yii::t('frontend', 'Verify') ?></h4>
-                        <p><?= Yii::t('frontend', 'Verify your identity within the university') ?></p>
-                    </div><!--.card-body-->
-
-                </div><!--.card-->
-            </div><!--.col-md-3-->
-
-            <div class="col-md-3 col-sm-6">
-                <div class="card card-iconic card-white tut">
-                    <div class="card-body" style="color:black">
-                        <i class="card-icon fa fa-building-o"></i>
-                        <h4 style="color:black"><?= Yii::t('frontend', 'Find a Job') ?></h4>
-                        <p><?= Yii::t('frontend', 'Browse from available jobs that you qualify for') ?></p>
-                    </div><!--.card-body-->
-
-                </div><!--.card-->
-            </div><!--.col-md-3-->
-
-            <div class="col-md-3 col-sm-6">
-                <div class="card card-iconic card-white tut">
-                    <div class="card-body" style="color:black">
-                        <i class="card-icon fa fa-check-circle"></i>
-                        <h4 style="color:black"><?= Yii::t('frontend', 'Apply') ?></h4>
-                        <p><?= Yii::t('frontend', 'Apply to jobs with a single click') ?></p>
-                    </div><!--.card-body-->
-
-                </div><!--.card-->
-            </div><!--.col-md-3-->
+            <h2 style="text-align: center"><?= Yii::t('frontend', 'Positions Available') ?></h2>
+            <div id="positionList" style="text-align:center">
+                <div class="item"><img src="<?= Url::to("@web/images/jobtypes/Full-time.jpg") ?>" alt="Full-Time"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/jobtypes/part-time.jpg") ?>" alt="Part-Time"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/jobtypes/one-time.jpg") ?>" alt="One-Time"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/jobtypes/Internship.jpg") ?>" alt="Internship"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/jobtypes/volunteer.jpg") ?>" alt="Volunteer"></div>
+            </div>                    
         </div>
     </div>
 </div>
@@ -150,3 +119,23 @@ $this->registerCss($css);
         </div>
     </div>
 </div> <!--.card-->
+
+
+<!-- Filters Available -->
+<div class="row">
+    <div class="card">
+        <div class="panel-body" style="text-align:center">
+            <h2 style="text-align: center"> You Can Search Students By</h2> 
+            <div id=filterList style="text-align:center">
+                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small; margin-bottom: 15px">GPA</button>
+                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">NATIONALITY</button>                        
+                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">DEGREE</button>
+                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">GRADUATION</button>
+                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">MAJOR </button>
+                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">LANGUAGE</button>                                              
+                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">UNIVERSITY</button>
+                <button type="button" class="btn btn-default" data-toggle="button" style="border-radius: 50%;width: 125px;height: 125px;text-align: center;line-height: 125px;font-size:small">AND MORE</button>
+            </div>
+        </div>
+    </div>
+</div>
