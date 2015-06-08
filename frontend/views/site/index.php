@@ -32,8 +32,6 @@ $('#companyList').owlCarousel({
 
 \common\assets\HomePageAsset::register($this);
 $this->registerCssFile("@web/plugins/video.js/dist/video-js/video-js.min.css");
-$this->registerJsFile("@web/scripts/widget-video.js", ['depends' => 'yii\web\YiiAsset']);
-$this->registerJsFile("@web/plugins/video.js/dist/video-js/video.js", ['depends' => 'yii\web\YiiAsset']);
 $this->registerJs($js);
 $this->registerCss($css);
 ?>
