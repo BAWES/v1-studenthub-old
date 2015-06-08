@@ -154,20 +154,21 @@ $this->registerJs($jsInclude, View::POS_READY, 'my-options');
             <div class="page-header full-content bg-teal" style="<?= isset($this->blocks['header-tabs']) ? 'min-height: 141px;' : '' ?>">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h1><?= Html::encode($this->title) ?></h1>
+                        <?php /*<h1><?= Html::encode($this->title) ?></h1>*/ ?>
+                        <?= Html::img("@web/images/studenthub-white.png", ['class' => 'img-responsive', 'style' => 'max-width:190px; padding-top:5px;']) ?>
                     </div><!--.col-->
                     <div class="col-sm-6">
-<?=
-Breadcrumbs::widget([
-    'homeLink' => [
-        'label' => '<i class="ion-home"></i>',
-        'encode' => false,
-        'url' => \Yii::$app->getHomeUrl(),
-    ],
-    'tag' => 'ol',
-    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-])
-?>
+                        <?=
+                        Breadcrumbs::widget([
+                            'homeLink' => [
+                                'label' => '<i class="ion-home"></i>',
+                                'encode' => false,
+                                'url' => \Yii::$app->getHomeUrl(),
+                            ],
+                            'tag' => 'ol',
+                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        ])
+                        ?>
                     </div><!--.col-->
                 </div><!--.row-->
 
