@@ -12,7 +12,7 @@ $css = "
     margin: 3px;
 }
 #positionList .item img{
-    display: block;
+    display: none;
     width: 100%;
     height: auto;
 }
@@ -42,6 +42,8 @@ $('#filterList').owlCarousel({
     autoPlay: 3000,
     items: 8,
 });
+
+$('#positionList .item img').show();
 ";
 
 \common\assets\HomePageAsset::register($this);
