@@ -20,14 +20,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'payment_id',
-            'payment_type_id',
-            'employer_id',
+            'paymentType.payment_type_name_en',
+            'employer.employer_company_name',
             'job_id',
             'payment_employer_credit_change:currency',
             'payment_total:currency',
             'payment_datetime',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],
         ],
     ]); ?>
 

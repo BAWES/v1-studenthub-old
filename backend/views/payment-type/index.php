@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'payment_type_name_en',
             'paymentCount',
             'totalPayments:currency',
+            'totalCreditChange:currency',
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],
         ],

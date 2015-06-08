@@ -77,6 +77,13 @@ class PaymentType extends \yii\db\ActiveRecord
      * @return real total payments amount made on this type
      */
     public function getTotalPayments(){
-        return $this->getPayments()->sum("payment_amount");
+        return $this->getPayments()->sum("payment_total");
+    }
+    
+    /**
+     * @return real total credit change from this type
+     */
+    public function getTotalCreditChange(){
+        return $this->getPayments()->sum("payment_employer_credit_change");
     }
 }
