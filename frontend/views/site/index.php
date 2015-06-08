@@ -2,7 +2,7 @@
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-$this->title = 'Welcome to StudentHub';
+$this->title = 'StudentHub';
 
 $css = "
 .spanfix span{display: inline !important;}
