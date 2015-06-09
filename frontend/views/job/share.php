@@ -14,9 +14,10 @@ $this->registerMetaTag(['name' => 'description', 'content' => Html::encode($mode
  * Facebook Meta Tags
  */
 $this->registerMetaTag(['name' => 'og:title', 'content' => Html::encode($this->title)]);
+$this->registerMetaTag(['name' => 'og:url', 'content' => Html::encode(Url::current([],true))]);
 $this->registerMetaTag(['name' => 'og:site_name', 'content' => "StudentHub"]);
 $this->registerMetaTag(['name' => 'og:description', 'content' => Html::encode($model->job_responsibilites)]);
-$this->registerMetaTag(['name' => 'og:image', 'content' => Html::encode(Url::to('@web/img/StudentHub-logo.jpg', true))]);
+$this->registerMetaTag(['name' => 'og:image', 'content' => Html::encode(Url::to('@web/img/logo-square.jpg', true))]);
 
 /**
  * Twitter Meta Tags
@@ -24,7 +25,7 @@ $this->registerMetaTag(['name' => 'og:image', 'content' => Html::encode(Url::to(
 $this->registerMetaTag(['name' => 'twitter:card', 'content' => 'summary']);
 $this->registerMetaTag(['name' => 'twitter:creator', 'content' => '@bawestech']);
 $this->registerMetaTag(['name' => 'twitter:site', 'content' => '@studenthubco']);
-$this->registerMetaTag(['name' => 'twitter:image', 'content' => Html::encode(Url::to('@web/img/StudentHub-logo.jpg', true))]);
+$this->registerMetaTag(['name' => 'twitter:image', 'content' => Html::encode(Url::to('@web/img/logo-square.jpg', true))]);
 
 
 $css = ".toUpper{text-transform: uppercase;}";
