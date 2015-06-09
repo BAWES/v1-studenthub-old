@@ -108,7 +108,7 @@ class JobController extends \yii\web\Controller {
     public function actionIndex() {
         $filter = new \frontend\models\FilterForm;
         
-        $query = Yii::$app->user->identity->getActiveQualifiedJobs()->orderBy("job_updated_datetime DESC");
+        $query = Yii::$app->user->identity->getActiveQualifiedJobs()->orderBy("job_created_datetime DESC");
         $jobsQuery = clone $query;
         
         /**
