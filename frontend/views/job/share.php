@@ -18,7 +18,7 @@ $this->registerCss($css);
     <div class="container">
 
         <div class="logo">
-            <img src="<?= Url::to('@web/img') ?>/StudentHub-logo.jpg" alt="Logo">
+            <img src="<?= Url::to('@web/img/StudentHub-logo.jpg') ?>" alt="Logo">
         </div><!--.logo-->
 
         <div class="animated-selector">
@@ -36,7 +36,7 @@ $this->registerCss($css);
     </div><!--.container-->
 </div><!--.header-->
 
-<div class="slide bg-image-with-shadow" style="background-image: url('<?= Url::to('@web/img') ?>/bg-overview.jpg'); " data-nav="remove">
+<div class="slide bg-image-with-shadow" style="background-image: url('<?= Url::to('@web/img/bg-overview.jpg') ?>'); " data-nav="remove">
     <div class="container" style="text-align: center">
         <?= Html::img($model->employer->logo, ['style'=>'width:150px; background:white; padding:5px;', 'class'=>'img-circle']) ?><br/>
         <h3 class="text-white text-center toUpper"><?= $model->job_title ?></h3>
@@ -131,7 +131,7 @@ switch($colsize){
 ?>
 
 <?php if($colsize>0){ ?>
-<div class="slide bg-image-with-shadow" style="background-image: url('<?= Url::to('@web/img') ?>/bg-overview.jpg'); " data-nav="slide3">
+<div class="slide bg-image-with-shadow" style="background-image: url('<?= Url::to('@web/img/bg-overview.jpg') ?>'); " data-nav="slide3">
     <div class="container">
         <h3 class="text-white text-center toUpper">Follow <?= $model->employer->employer_company_name ?> on</h3>
 
