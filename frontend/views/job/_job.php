@@ -50,10 +50,14 @@ foreach($jobsApplied as $job){
         <div class="btn-group btn-group-justified">
             <div class="btn-group">
                 <a href="#loadDetail" data-job="<?= Url::to(['job/detail', 'id' => $model->job_id]) ?>" 
-                   class="btn btn-indigo btn-ripple jobDetail" data-toggle="modal" data-target="#about-job"><i class="fa fa-info"></i></a>
+                   class="btn btn-indigo btn-ripple jobDetail" data-toggle="modal" data-target="#about-job">
+                    <i class="fa fa-info"></i>
+                </a>
             </div>
             <div class="btn-group">
-                <a href="#sharablePage" class="btn btn-blue btn-ripple" data-toggle="modal" data-target="#share"><i class="fa fa-share-alt"></i></a>
+                <a href="#sharablePage" data-job="<?= Url::to(['job/share-dialog', 'id' => $model->job_id]) ?>" class="btn btn-blue btn-ripple jobShare" data-toggle="modal" data-target="#shareDialog">
+                    <i class="fa fa-share-alt"></i>
+                </a>
             </div>
             <?php
             $hasQuestions = $model->hasInterviewQuestions()?true:false;
@@ -61,7 +65,8 @@ foreach($jobsApplied as $job){
             <div class="btn-group">
                 <a href="#jobApply" data-job="<?= $model->job_id ?>" 
                     <?= $hasQuestions?"data-questions='".Url::to(['job/questions', 'id' => $model->job_id])."'":"" ?> style="font-weight:bold;" 
-                   class="job-apply btn btn-ripple <?= $jobAlreadyApplied?"disabled btn-success":"btn-cyan" ?> <?= $hasQuestions?"job-hasQuestions":"" ?>"><?= $jobAlreadyApplied?"<i class='glyphicon glyphicon-ok'></i>":Yii::t("frontend", "Apply") ?></a>
+                   class="job-apply btn btn-ripple <?= $jobAlreadyApplied?"disabled btn-success":"btn-cyan" ?> <?= $hasQuestions?"job-hasQuestions":"" ?>"><?= $jobAlreadyApplied?"<i class='glyphicon glyphicon-ok'></i>":Yii::t("frontend", "Apply") ?>
+                </a>
             </div>
         </div>
     </div><!--.card-footer-->

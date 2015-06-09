@@ -172,6 +172,18 @@ class JobController extends \yii\web\Controller {
     }
     
     /**
+     * Displays share dialog for a job via AJAX
+     * @param integer $id job id
+     * @return mixed
+     */
+    public function actionShareDialog($id) {
+        
+        return $this->renderPartial('_sharedialog', [
+            'model' => $this->findJob($id),
+        ]);
+    }
+    
+    /**
      * Displays job details for student via AJAX
      * @param integer $id
      * @return mixed

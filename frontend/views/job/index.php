@@ -24,9 +24,37 @@ label{display:none;}
 
 
 /**
- * Loading Job Details Functionality
+ * Share Job Functionality
  */
 $js = '
+var $shareJob = $("#shareDialog").find(".modal-content");
+var shareLoadingIndicator = $shareJob.html();
+
+$("#jobList").on("click", ".jobShare", function(){
+    var sharedataLink = $(this).attr("data-job");
+
+    $.ajax({
+        url: sharedataLink,
+        cache: false,
+        beforeSend: function () {
+            $shareJob.html(loadingIndicator);
+        },
+        success: function(response, textStatus, jqXHR)
+        {
+            $shareJob.html(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            console.log(textStatus);
+        }
+    });
+});
+';
+
+/**
+ * Loading Job Details Functionality
+ */
+$js .= '
 var $aboutJob = $("#about-job").find(".modal-content");
 var loadingIndicator = $aboutJob.html();
 var currentCard;
@@ -170,6 +198,14 @@ $("#filterForm").on("change","select",function(){
 });
 ';
 
+
+/**
+ * Facebook Share Functionality
+ */
+$js .= "
+
+";
+
 $this->registerCssFile("@web/plugins/bootstrap-social/bootstrap-social.css", ['depends' => 'common\assets\TemplateAsset']);
 $this->registerCss($css);
 $this->registerJs($js);
@@ -228,34 +264,14 @@ $this->registerJs($js);
 </div>
 
 <!-- Share Modal -->
-<div class="modal scale fade" id="share" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal scale fade" id="shareDialog" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Share</h4>                                                
+                <h4 class="modal-title" style="text-align: center"><?= Yii::t('employer', "Loading Job Details..") ?></h4>
             </div>
             <div class="modal-body">
-                <div class="row shareButtons" style="padding-bottom: 1em;">
-                    <div class="col-xs-4">
-                        <a href='#shareLink' target='_blank' class="btn btn-facebook">
-                            <i class="fa fa-facebook"></i>
-                        </a>                                                
-                    </div>
-                    <div class="col-xs-4">
-                        <a href='#shareLink' target='_blank' class="btn btn-twitter">
-                            <i class="fa fa-twitter"></i>
-                        </a>                                                
-                    </div>
-                    <div class="col-xs-4">
-                        <a href='#shareLink' target='_blank' class="btn btn-linkedin">
-                            <i class="fa fa-linkedin"></i>
-                        </a> 
-                    </div>
-                </div>
-                <div class="form-group" style='margin-top:10px; margin-bottom:0;'>
-                    <h4>Link</h4>
-                    <input id="linktoCopy" type="text" class="form-control" value="http://www.studenthub.co/job/zain/call-center-1">
-                </div>
+                <div class="loading-bar indeterminate margin-top-10"></div>
             </div>
         </div><!--.modal-content-->
     </div><!--.modal-dialog-->
