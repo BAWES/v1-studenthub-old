@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 08, 2015 at 10:33 AM
+-- Generation Time: Jun 09, 2015 at 09:05 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -2613,7 +2613,7 @@ CREATE TABLE IF NOT EXISTS `student` (
 --
 
 INSERT INTO `student` (`student_id`, `degree_id`, `country_id`, `university_id`, `student_firstname`, `student_lastname`, `student_dob`, `student_status`, `student_enrolment_year`, `student_graduating_year`, `student_gpa`, `student_english_level`, `student_gender`, `student_transportation`, `student_contact_number`, `student_interestingfacts`, `student_photo`, `student_cv`, `student_skill`, `student_hobby`, `student_club`, `student_sport`, `student_experience_company`, `student_experience_position`, `student_verification_attachment`, `student_email_verification`, `student_id_verification`, `student_id_number`, `student_email_preference`, `student_email`, `student_auth_key`, `student_password_hash`, `student_password_reset_token`, `student_language_pref`, `student_banned`, `student_support_field`, `student_limit_email`, `student_updated_datetime`, `student_datetime`) VALUES
-(13, 2, 9, 1, 'dwadwa', 'dwadwa', '1984-04-12', 1, 2013, 2017, '2.00', 2, 0, 0, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 0, 'khalid@gust.edu.kw', 'V0nH70XkhjxuBSP3k4Mi-Rq5c_Lj6bvc', '$2y$13$Cvawm4VAyY48MYelhBOlQ.MC7jvtZHbyLdXFduJRosxFywTEv21yi', NULL, 'en-US', 0, '', '2015-05-10 10:03:03', '2015-06-03 16:15:05', '2015-04-27 10:51:37'),
+(13, 2, 9, 1, 'dwadwa', 'dwadwa', '1984-04-12', 1, 2013, 2017, '2.00', 2, 0, 0, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 0, 'khalid@gust.edu.kw', 'V0nH70XkhjxuBSP3k4Mi-Rq5c_Lj6bvc', '$2y$13$Cvawm4VAyY48MYelhBOlQ.MC7jvtZHbyLdXFduJRosxFywTEv21yi', NULL, 'en-US', 0, '', '2015-05-10 10:03:03', '2015-06-09 08:15:56', '2015-04-27 10:51:37'),
 (14, 2, 3, 1, 'Khalid', 'Mutawa', '1990-05-08', 1, 2013, 2014, '3.00', 2, 1, 1, '99811042', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 1, 'gust0003887@gust.edu.kw', '441qQzDCYen0l4WffdcHa-3HwSSf6l9s', '$2y$13$lXNk5kJBFQGp5ucQDP8D5el9ASYVZusUHXDfZnYxJ9if5XPBuRuwG', '', 'en-US', 0, '', '0000-00-00 00:00:00', '2015-05-02 17:15:37', '2015-05-02 17:15:37'),
 (15, 4, 3, 2, 'Mohammed', 'Ashkanani', '1989-05-30', 1, 2013, 2015, '3.00', 2, 1, 1, '99811042', NULL, 'lTJL5P-XkYyxOz-YyHCj3e-a3wzDsWN8.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 't72RPXKpgRUrK5cjkNLNCTUeE0_sIFBm.png', 1, 1, NULL, 1, 'test@test.com', '2JdqmrQUWWHgk3HypwDYvgeVxDKvJaBU', '$2y$13$XP2e3uNZc53RWHM9rz7HuufcL6ZWL2wTa5LNi8Ia29NG5lb7nFHOe', '', 'en-US', 0, '', '2015-05-08 12:57:33', '2015-05-08 22:57:38', '2015-05-08 12:57:33'),
 (16, 4, 4, 2, 'Saoud', 'Turki', '1992-09-09', 0, 2013, 2017, '3.00', 2, 1, 0, '99811042', NULL, 'Rz-RICTfOL9Tps8BcYlFNrg8VWIsOleh.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pG5MolYl7fX6z2eSSdJBArWnzDk1Nhi_.png', 1, 1, NULL, 1, 'km@km.com', 'qm6tV2DTlQE8oX5xelqo_EY2oAarFIjK', '$2y$13$ecT3h6RypLdNZjJgpjXoX.YMKC5s1mNr.oxTkckDeSu3sX66m5PCq', 'zcTJRTTcxe3YZEn7GuzVL3ilCU1-5Rwo_1431114197', 'en-US', 0, '', '2015-05-08 22:43:17', '2015-05-26 14:52:49', '2015-05-08 13:10:56'),

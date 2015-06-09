@@ -27,7 +27,6 @@ $this->registerJsFile(Url::to('@web/plugins/modernizr/modernizr.min.js'), ['posi
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
 
-        <meta name="description" content="StudentHub Recruitment Platform">
         <meta name="author" content="BAWES - Built Awesome">
 
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">

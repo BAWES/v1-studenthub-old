@@ -6,8 +6,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Job */
 
-$this->title = $model->employer->employer_company_name." - ".$model->job_title;
-$this->params['breadcrumbs'][] = Yii::t('frontend', 'Browse Jobs');
+$this->title = $model->employer->employer_company_name." - ".$model->job_title." @ StudentHub";
+
+$this->registerMetaTag(['name' => 'description', 'content' => Html::encode($model->job_responsibilites)]);
 
 $css = ".toUpper{text-transform: uppercase;}";
 $this->registerCss($css);
