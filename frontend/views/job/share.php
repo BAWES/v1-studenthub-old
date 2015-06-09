@@ -21,7 +21,7 @@ $this->registerMetaTag(['name' => 'og:image', 'content' => Html::encode(Url::to(
 /**
  * Twitter Meta Tags
  */
-$this->registerMetaTag(['name' => 'twitter:card', 'content' => Html::encode($model->job_responsibilites)]);
+$this->registerMetaTag(['name' => 'twitter:card', 'content' => 'summary']);
 $this->registerMetaTag(['name' => 'twitter:creator', 'content' => '@bawestech']);
 $this->registerMetaTag(['name' => 'twitter:site', 'content' => '@studenthubco']);
 $this->registerMetaTag(['name' => 'twitter:image', 'content' => Html::encode(Url::to('@web/img/StudentHub-logo.jpg', true))]);
