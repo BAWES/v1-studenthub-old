@@ -6,9 +6,26 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Job */
 
-$this->title = $model->employer->employer_company_name." - ".$model->job_title." @ StudentHub";
+$this->title = $model->employer->employer_company_name." - ".$model->job_title;
 
 $this->registerMetaTag(['name' => 'description', 'content' => Html::encode($model->job_responsibilites)]);
+
+/**
+ * Facebook Meta Tags
+ */
+$this->registerMetaTag(['name' => 'og:title', 'content' => Html::encode($this->title)]);
+$this->registerMetaTag(['name' => 'og:site_name', 'content' => "StudentHub"]);
+$this->registerMetaTag(['name' => 'og:description', 'content' => Html::encode($model->job_responsibilites)]);
+$this->registerMetaTag(['name' => 'og:image', 'content' => Html::encode(Url::to('@web/img/StudentHub-logo.jpg', true))]);
+
+/**
+ * Twitter Meta Tags
+ */
+$this->registerMetaTag(['name' => 'twitter:card', 'content' => Html::encode($model->job_responsibilites)]);
+$this->registerMetaTag(['name' => 'twitter:creator', 'content' => '@bawestech']);
+$this->registerMetaTag(['name' => 'twitter:site', 'content' => '@studenthubco']);
+$this->registerMetaTag(['name' => 'twitter:image', 'content' => Html::encode(Url::to('@web/img/StudentHub-logo.jpg', true))]);
+
 
 $css = ".toUpper{text-transform: uppercase;}";
 $this->registerCss($css);
