@@ -38,15 +38,7 @@ class JobController extends \yii\web\Controller {
             ],
             'corsFilter' => [
                 'class' => \yii\filters\Cors::className(),
-                'actions' => ['share-dialog'],
-                'cors' => [
-                    'Origin' => ['https://employer.studenthub.co'],
-                    'Access-Control-Request-Method' => ['POST', 'PUT', 'GET'],
-                    'Access-Control-Allow-Credentials' => true,
-                    'Access-Control-Max-Age' => 3600,
-                    'Access-Control-Expose-Headers' => ['X-Pagination-Current-Page'],
-                ],
-
+                //'actions' => ['share-dialog'],
             ],
         ];
     }
