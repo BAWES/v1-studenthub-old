@@ -198,14 +198,6 @@ $("#filterForm").on("change","select",function(){
 });
 ';
 
-
-/**
- * Facebook Share Functionality
- */
-$js .= "
-
-";
-
 $this->registerCssFile("@web/plugins/bootstrap-social/bootstrap-social.css", ['depends' => 'common\assets\TemplateAsset']);
 $this->registerCss($css);
 $this->registerJs($js);
