@@ -181,10 +181,13 @@ class JobController extends \yii\web\Controller {
      * @return mixed
      */
     public function actionShareDialog($id) {
+        $model = \common\models\Job::findOne($id);
         
-        return $this->renderPartial('_sharedialog', [
-            'model' => $this->findJob($id),
-        ]);
+        if($model){
+            return $this->renderPartial('_sharedialog', [
+                'model' => $model,
+            ]);
+        }
     }
     
     /**
