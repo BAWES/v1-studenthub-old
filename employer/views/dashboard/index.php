@@ -66,6 +66,9 @@ $("#jobDashboard").on("click", ".jobShare", function(){
     $.ajax({
         url: sharedataLink,
         cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
         beforeSend: function () {
             $shareJob.html(loadingIndicator);
         },
