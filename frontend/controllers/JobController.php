@@ -36,10 +36,6 @@ class JobController extends \yii\web\Controller {
                     'apply' => ['post'],
                 ],
             ],
-            'corsFilter' => [
-                'class' => \yii\filters\Cors::className(),
-                //'actions' => ['share-dialog'],
-            ],
         ];
     }
 
@@ -181,6 +177,7 @@ class JobController extends \yii\web\Controller {
      * @return mixed
      */
     public function actionShareDialog($id) {
+        header("Access-Control-Allow-Origin: *");
         
         return $this->renderPartial('_sharedialog', [
             'model' => $this->findJob($id),
