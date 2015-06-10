@@ -32,7 +32,7 @@ Pleasure.init();
 Layout.init();
 ";
 $this->registerJs($jsInclude, View::POS_READY, 'my-options');
-
+$this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
 
 ?>
 <?php $this->beginPage() ?>
