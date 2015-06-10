@@ -22,7 +22,7 @@ class JobController extends \yii\web\Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['share'],
+                        'actions' => ['share', 'share-dialog'],
                     ],
                     [
                         'allow' => true,
