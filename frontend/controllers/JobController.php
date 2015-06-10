@@ -36,6 +36,10 @@ class JobController extends \yii\web\Controller {
                     'apply' => ['post'],
                 ],
             ],
+            'corsFilter' => [
+                'class' => \yii\filters\Cors::className(),
+                'actions' => ['share-dialog'],
+            ],
         ];
     }
 
