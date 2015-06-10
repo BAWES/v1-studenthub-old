@@ -52,6 +52,36 @@ $("#jobDashboard").on("click", ".jobDetail", function(){
 });
 ';
 
+/**
+ * Share Job Functionality
+ */
+$js .= '
+var $shareJob = $("#shareDialog").find(".modal-content");
+var shareLoadingIndicator = $shareJob.html();
+
+$("#jobDashboard").on("click", ".jobShare", function(){
+    
+    var sharedataLink = $(this).attr("data-job");
+
+    $.ajax({
+        url: sharedataLink,
+        cache: false,
+        beforeSend: function () {
+            $shareJob.html(loadingIndicator);
+        },
+        success: function(response, textStatus, jqXHR)
+        {
+            $shareJob.html(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            console.log(textStatus);
+        }
+    });
+});
+';
+
+$this->registerCssFile("@web/plugins/bootstrap-social/bootstrap-social.css", ['depends' => 'common\assets\TemplateAsset']);
 $this->registerCssFile("@web/css/dashboard.css", ['depends' => 'common\assets\TemplateAsset']);
 $this->registerCss($css);
 $this->registerJs($js);
@@ -154,6 +184,9 @@ function getActive(&$activeStatus){
 
                 </div>
             </div><!-- panel-body -->
+            
+            
+            <!-- Job Details Modal -->
             <div class="modal fade full-height <?= $this->params['isArabic']?"from-left":"from-right"?> " id="about-job" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -169,6 +202,23 @@ function getActive(&$activeStatus){
                     </div>
                 </div><!--.modal-->
             </div>
+            
+            <!-- Job Share Modal -->
+            <div class="modal scale fade" id="shareDialog" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" style="text-align: center"><?= Yii::t('employer', "Loading Job Details..") ?></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="loading-bar indeterminate margin-top-10"></div>
+                        </div>
+                    </div><!--.modal-content-->
+                </div><!--.modal-dialog-->
+            </div><!--.modal-->
+            
+            
+            
         </div><!--panel-->
 
     </div><!--col-md-12-->

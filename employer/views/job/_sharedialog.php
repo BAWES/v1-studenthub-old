@@ -5,7 +5,7 @@ use yii\helpers\Url;
 
 /* @var $model employer\models\Job */
 
-$shareUrl = Url::to(['job/share', 'id' => $model->job_id], true);
+$shareUrl = Yii::$app->urlManagerFrontend->createAbsoluteUrl(['job/share', 'id' => $model->job_id], true);
 ?>
 
 <div class="modal-content">

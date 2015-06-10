@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use common\models\Job;
 
 /* @var $model employer\models\Job */
 ?>
@@ -11,7 +12,10 @@ use yii\helpers\Url;
 
         <div class="card-heading heading-center text-color-white" style="margin-bottom: 0px; height:132px">
             <h3 class="card-title"><?= $model->job_title? $model->job_title : Yii::t("employer", "No Title Set") ?></h3>
-
+            <?php if($model->job_status != Job::STATUS_DRAFT) { ?>
+            <a class="btn btn-danger btn-ripple jobShare" data-job="<?= Url::to(['job/share-dialog', 'id' => $model->job_id]) ?>"
+               style='position: absolute; bottom:0; left:0;' data-toggle="modal" data-target="#shareDialog"><span class="ion-android-share-alt"></span></a>
+            <?php } ?>
         </div><!--.card-heading-->
 
         <div class="card-body applicants">
