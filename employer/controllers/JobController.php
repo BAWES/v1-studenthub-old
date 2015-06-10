@@ -48,18 +48,6 @@ class JobController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
-    
-    /**
-     * Displays share dialog for a job via AJAX
-     * @param integer $id job id
-     * @return mixed
-     */
-    public function actionShareDialog($id) {
-        
-        return $this->renderPartial('_sharedialog', [
-            'model' => $this->findModel($id),
-        ]);
-    }
 
     /**
      * Displays a single Job model.
