@@ -352,12 +352,13 @@ class JobController extends Controller {
             }else{
                 /**
                  * Transaction not approved by bank
-                 * Store into db and give url to redirect to
+                 * Store updated status/details into db and give url to redirect to
                  */
 
-                //will most likely take back to the job step 4 with flash that transaction has problem, need to get jobid from udf2/3
-                //Change redirect link below to job page step 4
-                $redirectLink = Url::to(['job/payment-error'], true);
+                
+                //Get Job ID from UDF2
+                $redirectJobId = (int) str_replace("Job-", "", $udf2);
+                $redirectLink = Url::to(['job/payment-error', 'id' => $directJobId], true);
             }
 
             //Tell KNET where to redirect the user to now
@@ -376,16 +377,17 @@ class JobController extends Controller {
     /**
      * Error in Payment
      */
-    public function actionPaymentError(){
-        
+    /**
+     * Error in payment for this job
+     * @param int $id the job id linked to the payment error
+     */
+    public function actionPaymentError($id){
         
         Yii::$app->session->setFlash("error", 
                         Yii::t('employer',
                                 "There was an issue processing your payment, please contact us if you require assistance"));
         
-        /**
-         * Redirect to Step 4 of this job so they re-try their payment
-         */
+        return $this->redirect(['create-step4', 'id' => $id]);
     }
     
     
