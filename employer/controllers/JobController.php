@@ -325,8 +325,6 @@ class JobController extends Controller {
      * Action that will accept the KNET response then determine if it was a success or failure
      */
     public function actionKnetResponse(){
-        Yii::info("ATTEMPTED KNET RESPONSE!", __METHOD__);
-        
         if(Yii::$app->request->isPost){
             $PaymentID = Yii::$app->request->post('paymentid');
             $presult = Yii::$app->request->post('result');
@@ -341,7 +339,6 @@ class JobController extends Controller {
             $udf4 = Yii::$app->request->post('udf4');
             $udf5 = Yii::$app->request->post('udf5');
             
-            Yii::info("GOT KNET RESPONSE!", __METHOD__);
 
             if($presult == "CAPTURED"){
                 /**
@@ -351,7 +348,6 @@ class JobController extends Controller {
                 
 
                 //process job from model, need to get jobid from udf2/3
-                Yii::info("CAPTURED!", __METHOD__);
                 
                 $redirectLink = Url::to(['job/success'], true);
             }else{
@@ -360,7 +356,6 @@ class JobController extends Controller {
                  * Store updated status/details into db and give url to redirect to
                  */
                 
-                Yii::info("ERROR! IN KNET PAYMENT", __METHOD__);
                 
                 //Get Job ID from UDF2
                 $redirectJobId = (int) str_replace("Job-", "", $udf2);
@@ -368,7 +363,6 @@ class JobController extends Controller {
             }
 
             //Tell KNET where to redirect the user to now
-            Yii::info("REDIRECT=".$redirectLink, __METHOD__);
             echo "REDIRECT=".$redirectLink;
         }
     }
