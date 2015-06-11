@@ -23,7 +23,7 @@ class JobController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['success', 'payment-error', 'knet-response'],
+                        'actions' => ['success', 'knet-error', 'knet-response'],
                     ],
                     [
                         'allow' => true,
@@ -326,18 +326,18 @@ class JobController extends Controller {
      */
     public function actionKnetResponse(){
         if(Yii::$app->request->isPost){
-            $PaymentID = $_POST['paymentid'];
-            $presult = $_POST['result'];
-            $postdate = $_POST['postdate'];
-            $tranid = $_POST['tranid'];
-            $auth = $_POST['auth'];
-            $ref = $_POST['ref'];
-            $trackid = $_POST['trackid'];
-            $udf1 = $_POST['udf1'];
-            $udf2 = $_POST['udf2'];
-            $udf3 = $_POST['udf3'];
-            $udf4 = $_POST['udf4'];
-            $udf5 = $_POST['udf5'];
+            $PaymentID = Yii::$app->request->post('paymentid');
+            $presult = Yii::$app->request->post('result');
+            $postdate = Yii::$app->request->post('postdate');
+            $tranid = Yii::$app->request->post('tranid');
+            $auth = Yii::$app->request->post('auth');
+            $ref = Yii::$app->request->post('ref');
+            $trackid = Yii::$app->request->post('trackid');
+            $udf1 = Yii::$app->request->post('udf1');
+            $udf2 = Yii::$app->request->post('udf2');
+            $udf3 = Yii::$app->request->post('udf3');
+            $udf4 = Yii::$app->request->post('udf4');
+            $udf5 = Yii::$app->request->post('udf5');
 
             if($presult == "CAPTURED"){
                 /**
@@ -375,22 +375,16 @@ class JobController extends Controller {
     }
     
     /**
-     * Error in Payment
+     * Error in knet payment for this job
      */
-    /**
-     * Error in payment for this job
-     * @param int $id the job id linked to the payment error
-     */
-    public function actionPaymentError($id = null){
+    public function actionKnetError(){
         /**
          * If there is no job id sent via get param, get the job id from UDF2 of the payment gateway
          */
-        if(!$id && isset($_POST['UDF2'])){
+        if(isset($_POST['UDF2'])){
             $udf2 = $_POST['UDF2'];
             $id = (int) str_replace("Job-", "", $udf2);
-        }
-        
-        if($id){
+            
             Yii::$app->session->setFlash("error", 
                         Yii::t('employer',
                                 "There was an issue processing your payment, please contact us if you require assistance"));
