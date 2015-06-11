@@ -19,7 +19,7 @@ return [
                 [
                     'class' => 'yii\log\DbTarget',
                     'levels' => ['info', 'error', 'warning'],
-                    //'categories' => ['backend\*', 'employer\*', 'frontend\*', 'common\*'],
+                    'categories' => ['backend\*', 'employer\*', 'frontend\*', 'common\*'],
                 ],
             ],
         ],
