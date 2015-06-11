@@ -390,12 +390,14 @@ class JobController extends Controller {
         /**
          * If there is no job id sent via get param, get the job id from UDF2 of the payment gateway
          */
-        if(!$id){
+        if(!$id && isset($_GET['UDF2'])){
             $udf2 = $_GET['UDF2'];
-            $redirectJobId = (int) str_replace("Job-", "", $udf2);
+            $id = (int) str_replace("Job-", "", $udf2);
         }
         
-        return $this->redirect(['create-step4', 'id' => $id]);
+        if($id){
+            return $this->redirect(['create-step4', 'id' => $id]);
+        }else throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance".');
     }
     
     
