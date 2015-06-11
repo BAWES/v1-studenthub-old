@@ -358,7 +358,7 @@ class JobController extends Controller {
                 
                 //Get Job ID from UDF2
                 $redirectJobId = (int) str_replace("Job-", "", $udf2);
-                $redirectLink = Url::to(['job/payment-error', 'id' => $directJobId], true);
+                $redirectLink = Url::to(['job/payment-error', 'id' => $redirectJobId], true);
             }
 
             //Tell KNET where to redirect the user to now
@@ -381,11 +381,19 @@ class JobController extends Controller {
      * Error in payment for this job
      * @param int $id the job id linked to the payment error
      */
-    public function actionPaymentError($id){
+    public function actionPaymentError($id = null){
         
         Yii::$app->session->setFlash("error", 
                         Yii::t('employer',
                                 "There was an issue processing your payment, please contact us if you require assistance"));
+        
+        /**
+         * If there is no job id sent via get param, get the job id from UDF2 of the payment gateway
+         */
+        if(!$id){
+            $udf2 = $_GET['UDF2'];
+            $redirectJobId = (int) str_replace("Job-", "", $udf2);
+        }
         
         return $this->redirect(['create-step4', 'id' => $id]);
     }
