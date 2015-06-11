@@ -325,6 +325,8 @@ class JobController extends Controller {
      * Action that will accept the KNET response then determine if it was a success or failure
      */
     public function actionKnetResponse(){
+        Yii::info("ATTEMPTED KNET RESPONSE!", __METHOD__);
+        
         if(Yii::$app->request->isPost){
             $PaymentID = Yii::$app->request->post('paymentid');
             $presult = Yii::$app->request->post('result');
