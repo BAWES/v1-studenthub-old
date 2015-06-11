@@ -287,12 +287,12 @@ class JobController extends Controller {
                     $payUrl = $pipe->getPaymentPage();
                     
                     //Save transaction details into DB here
-                    echo $pipe->getDebugMsg();
+                   /* echo $pipe->getDebugMsg();
                     echo "<br/><br/>";
-                    echo $pipe->getResponseURL();
+                    echo $pipe->getResponseURL();*/
                     
                     //Redirect to KNET payment page
-                    //return $this->redirect("$payUrl?PaymentID=$payId");
+                    return $this->redirect("$payUrl?PaymentID=$payId");
                     
                 }else{
                     //Error initiating transaction, output error as flash
@@ -326,7 +326,7 @@ class JobController extends Controller {
      * Action that will accept the KNET response then determine if it was a success or failure
      */
     public function actionKnetResponse(){
-        if(Yii::$app->request->isPost){
+        //if(Yii::$app->request->isPost){
             $PaymentID = Yii::$app->request->post('paymentid');
             $presult = Yii::$app->request->post('result');
             $postdate = Yii::$app->request->post('postdate');
@@ -365,7 +365,7 @@ class JobController extends Controller {
 
             //Tell KNET where to redirect the user to now
             echo "REDIRECT=".$redirectLink;
-        }
+        //}
     }
     
     /**
