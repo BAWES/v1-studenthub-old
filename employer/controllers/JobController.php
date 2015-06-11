@@ -362,7 +362,7 @@ class JobController extends Controller {
             }
 
             //Tell KNET where to redirect the user to now
-            Yii::info("REDIRECT=".$redirectLink, __METHOD__);
+            //Yii::info("REDIRECT=".$redirectLink, __METHOD__);
             echo "REDIRECT=".$redirectLink;
         }
     }
