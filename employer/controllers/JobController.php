@@ -275,6 +275,10 @@ class JobController extends Controller {
              * Process Payment for this Job
              */
             if($paymentOption == \common\models\PaymentType::TYPE_KNET){
+                
+                ini_set('display_startup_errors',1);
+ini_set('display_errors',1);
+error_reporting(-1);
                 /**
                  * START KNET PAYMENT PROCESSING
                  */
