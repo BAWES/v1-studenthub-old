@@ -1,5 +1,8 @@
 <?php
 namespace common\components\knet;
+
+use ZipArchive;
+
 /*
  * e24PaymentPipe
  *
@@ -481,7 +484,7 @@ class e24PaymentPipe {
 				curl_setopt($c, CURLOPT_URL, $stringbuffer);
                 curl_setopt($c, CURLOPT_POST, true);
                 curl_setopt($c, CURLOPT_POSTFIELDS, $s);
-                curl_setopt($c, CURLOPT_SSL_VERIFYHOST, true);
+                curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 2);
                 curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
                 $this->debugMsg.=("<br>about to write DataOutputSteam....");
                 curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);

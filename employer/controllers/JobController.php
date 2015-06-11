@@ -3,6 +3,7 @@
 namespace employer\controllers;
 
 use Yii;
+use yii\helpers\Url;
 use employer\models\Job;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -20,6 +21,10 @@ class JobController extends Controller {
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['success', 'payment-error', 'knet-response'],
+                    ],
                     [
                         'allow' => true,
                         'roles' => ['@'], //only allow authenticated users to job actions
@@ -266,12 +271,45 @@ class JobController extends Controller {
         if(Yii::$app->request->post()){
             $paymentOption = Yii::$app->request->post('paymentOption');
             
-            //Process Payment for this Job
-            if($model->processPayment()){
+            /**
+             * Process Payment for this Job
+             */
+            if($paymentOption == \common\models\PaymentType::TYPE_KNET){
+                /**
+                 * START KNET PAYMENT PROCESSING
+                 */
+                $pipe = $model->initiateKNETPayment();
+                
+                
+                if($pipe instanceof \common\components\knet\e24PaymentPipe){
+                    //Successfully initiated KNET payment
+                    $payId = $pipe->getPaymentId();
+                    $payUrl = $pipe->getPaymentPage();
+                    
+                    //Save transaction details into DB here
+                    echo $pipe->getDebugMsg();
+                    echo "<br/><br/>";
+                    echo "$payUrl?PaymentID=$payId";
+                    
+                    
+                    //Redirect to KNET payment page
+                    //return $this->redirect("$payUrl?PaymentID=$payId");
+                    
+                }else{
+                    //Error initiating transaction, output error as flash
+                    Yii::$app->session->setFlash("error", $pipe);
+                }
+                
+                /**
+                 * END KNET PAYMENT PROCESSING
+                 */
+            }else if($model->processPayment(\common\models\PaymentType::TYPE_CREDIT)){
                 //Redirect to thank you page
                 return $this->redirect(['success']);
             }else{
-                //There are errors, set flash for those errors
+                /**
+                 * Error in processing payment
+                 */
                 Yii::$app->session->setFlash("error", 
                         Yii::t('employer',
                                 "There was an issue processing your payment, please contact us if you require assistance"));
@@ -285,11 +323,71 @@ class JobController extends Controller {
     }
     
     /**
+     * Once KNET processes the users creditcard, it will send us the transaction result via a post request
+     * Action that will accept the KNET response then determine if it was a success or failure
+     */
+    public function actionKnetResponse(){
+        if(Yii::$app->request->isPost){
+            $PaymentID = $_POST['paymentid'];
+            $presult = $_POST['result'];
+            $postdate = $_POST['postdate'];
+            $tranid = $_POST['tranid'];
+            $auth = $_POST['auth'];
+            $ref = $_POST['ref'];
+            $trackid = $_POST['trackid'];
+            $udf1 = $_POST['udf1'];
+            $udf2 = $_POST['udf2'];
+            $udf3 = $_POST['udf3'];
+            $udf4 = $_POST['udf4'];
+            $udf5 = $_POST['udf5'];
+
+            if($presult == "CAPTURED"){
+                /**
+                 * Transaction is approved by bank
+                 * Store into db and give url to redirect to
+                 */
+                
+
+                //process job from model, need to get jobid from udf2/3
+                
+                $redirectLink = Url::to(['job/success'], true);
+            }else{
+                /**
+                 * Transaction not approved by bank
+                 * Store into db and give url to redirect to
+                 */
+
+                //will most likely take back to the job step 4 with flash that transaction has problem, need to get jobid from udf2/3
+                //Change redirect link below to job page step 4
+                $redirectLink = Url::to(['job/payment-error'], true);
+            }
+
+            //Tell KNET where to redirect the user to now
+            echo "REDIRECT=".$redirectLink;
+        }
+    }
+    
+    /**
      * Successful Payment
      * Renders Thank you page after payment
      */
     public function actionSuccess(){
         return $this->render('thanks');
+    }
+    
+    /**
+     * Error in Payment
+     */
+    public function actionPaymentError(){
+        
+        
+        Yii::$app->session->setFlash("error", 
+                        Yii::t('employer',
+                                "There was an issue processing your payment, please contact us if you require assistance"));
+        
+        /**
+         * Redirect to Step 4 of this job so they re-try their payment
+         */
     }
     
     

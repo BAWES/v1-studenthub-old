@@ -3,6 +3,7 @@
 namespace employer\models;
 
 use Yii;
+use yii\helpers\Url;
 use yii\db\Expression;
 
 /**
@@ -54,12 +55,58 @@ class Job extends \common\models\Job {
         }
     }
     
+    /**
+     * Initiate payment for this job using KNET
+     * Returns instance of the pipe when intitiation is successful, otherwise returns error message
+     * 
+     * @return mixed
+     */
+    public function initiateKNETPayment(){
+        $amountDue = $this->amountDue;
+        
+        $pipe = new \common\components\knet\e24PaymentPipe;
+        $pipe->setAction(1);
+        $pipe->setCurrency(414);
+        $pipe->setAlias("bawes");
+        $pipe->setResourcePath(Yii::$app->params['KNETResourcePath']);
+        $pipe->setLanguage(Yii::$app->view->params['isArabic']?"ARA":"ENG");
+        
+        //Random ID to track this order
+        $trackID = date('YmdHis') . rand(5, 15);
+        $pipe->setTrackId($trackID);
+        
+        //Response and Error Urls
+        $pipe->setResponseURL(Url::to(['job/knet-response'], true));
+        $pipe->setErrorURL(Url::to(['job/payment-error'], true));
+        
+        //Set User Defined Fields for Easier Searching
+        $pipe->setUdf2("Job-".$this->job_id);
+        $pipe->setUdf3("Employer-".$this->employer_id);
+        
+        //Payment Amount
+        $pipe->setAmt($amountDue);
+        
+        //Initialize the payment with KNET
+        if($pipe->performPaymentInitialization()!=$pipe->SUCCESS){
+            //Log error and return error message
+            $message = "Result=".$pipe->SUCCESS."\n\n";
+            $message .= "Error=".$pipe->getErrorMsg()."\n\n";
+            $message .= "Debug=".$pipe->getDebugMsg();
+            Yii::error($message);
+            
+            return $pipe->getErrorMsg();
+        }else{
+            //Return the actual payment pipe for further processing
+            return $pipe;
+        }
+    }
     
     /**
      * Process payment for this job
+     * @param string $paymentType eg:\common\models\PaymentType::TYPE_CREDIT
      * @return boolean whether the payment processed successfully or not
      */
-    public function processPayment(){
+    public function processPayment($paymentType){
         $payment = new \common\models\Payment();
         $payment->employer_id = $this->employer_id;
         $payment->job_id = $this->job_id;
@@ -77,7 +124,6 @@ class Job extends \common\models\Job {
         
         /*
          * If there is no amount due for this job, process it as a credit payment
-         * Maybe refactor this at a later stage once payment gateway is ready to install
          */
         if(!$this->amountDue){
             $payment->payment_type_id = \common\models\PaymentType::TYPE_CREDIT;
@@ -90,8 +136,12 @@ class Job extends \common\models\Job {
             }
         }else{
             /**
-             * Payment gateway here? Maybe?
+             * Check if payment has been processed for payment gateway payment type
+             * Make sure payment is for amount due only, and do credit change for partial
              */
+            if($paymentType == \common\models\PaymentType::TYPE_KNET){
+                
+            }
             
             
             /**
