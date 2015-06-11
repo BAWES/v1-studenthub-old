@@ -21,7 +21,7 @@ return [
             'name' => 'app-employer',
         ],
         'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 3,
+            'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
