@@ -382,22 +382,21 @@ class JobController extends Controller {
      * @param int $id the job id linked to the payment error
      */
     public function actionPaymentError($id = null){
-        
-        Yii::$app->session->setFlash("error", 
-                        Yii::t('employer',
-                                "There was an issue processing your payment, please contact us if you require assistance"));
-        
         /**
          * If there is no job id sent via get param, get the job id from UDF2 of the payment gateway
          */
-        if(!$id && isset($_GET['UDF2'])){
-            $udf2 = $_GET['UDF2'];
+        if(!$id && isset($_POST['UDF2'])){
+            $udf2 = $_POST['UDF2'];
             $id = (int) str_replace("Job-", "", $udf2);
         }
         
         if($id){
+            Yii::$app->session->setFlash("error", 
+                        Yii::t('employer',
+                                "There was an issue processing your payment, please contact us if you require assistance"));
+            
             return $this->redirect(['create-step4', 'id' => $id]);
-        }else throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance".');
+        }else throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance.');
     }
     
     
