@@ -287,13 +287,11 @@ class JobController extends Controller {
                     $payUrl = $pipe->getPaymentPage();
                     
                     //Save transaction details into DB here
-                    echo $pipe->getDebugMsg();
-                    echo "<br/><br/>";
-                    echo "$payUrl?PaymentID=$payId";
+                    //echo $pipe->getDebugMsg();
                     
                     
                     //Redirect to KNET payment page
-                    //return $this->redirect("$payUrl?PaymentID=$payId");
+                    return $this->redirect("$payUrl?PaymentID=$payId");
                     
                 }else{
                     //Error initiating transaction, output error as flash
