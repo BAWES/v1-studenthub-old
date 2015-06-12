@@ -53,6 +53,17 @@ class JobController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
+    
+    /**
+     * Displays applicants for a single Job model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionApplicants($id){
+        return $this->render('applicants', [
+                    'model' => $this->findModel($id),
+        ]);
+    }
 
     /**
      * Displays a single Job model.

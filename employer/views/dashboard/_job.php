@@ -82,7 +82,7 @@ use common\models\Job;
                 <i class="fa fa-ellipsis-h"></i>
             </a>
             <ul>
-                <li class="<?= $this->params['isArabic']?"pull-right":"pull-left"?>"><a href="#" class='btn btn-sm btn-teal fixmenow'><span><?= Yii::t('employer', 'View Applicants') ?></span></a></li>
+                <li class="<?= $this->params['isArabic']?"pull-right":"pull-left"?>"><a href="<?= Url::to(['job/applicants', 'id' => $model->job_id]) ?>" class='btn btn-sm btn-teal fixmenow'><span><?= Yii::t('employer', 'View Applicants') ?></span></a></li>
             </ul>
         </div>
 
