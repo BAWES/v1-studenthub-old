@@ -11,6 +11,7 @@ use yii\widgets\ListView;
 /* @var $pendingJobsDataProvider yii\data\ArrayDataProvider */
 
 $this->title = Yii::t("employer", 'Dashboard');
+$this->params['breadcrumbs'][] = $this->title;
 
 $css = "
 @media (max-width:352px) {
