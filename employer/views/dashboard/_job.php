@@ -42,27 +42,30 @@ use common\models\Job;
                     <br><br>
                     
                     <?=  Yii::t("employer", "{currentApplicants, number} out of {maxApplicants, number} Applicants",[
-                        'currentApplicants' => 0,
-                        'maxApplicants' => 20,
+                        'currentApplicants' => $model->job_current_num_applicants,
+                        'maxApplicants' => $model->job_max_applicants,
                     ]) ?>
+                    
+                    <?php
+                    //Calculate applicant progress percentage
+                    $percentage = ($model->job_current_num_applicants / $model->job_max_applicants) * 100;
+                    ?>
                     <div class="progress progress-xs active" style='margin-bottom:10px;'>
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                            <span class="sr-only">80% Complete</span>
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?= $percentage ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $percentage ?>%">
+                            <span class="sr-only"><?= $percentage ?>% Complete</span>
                         </div>
                     </div>
                     
                 </div>
             </div>
             
+            <?php if($model->applicants){ ?>
             <ul id="users">
-                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Emanuele Costa"><img src="img/faces/1.jpg" alt=""></a></li>
-                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Sjors Huisman"><img src="img/faces/2.jpg" alt=""></a></li>
-                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Isla Olsen"><img src="img/faces/3.jpg" alt=""></a></li>
-                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Lydia Gagné"><img src="img/faces/4.jpg" alt=""></a></li>
-                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Nicoline Thomsen"><img src="img/faces/5.jpg" alt=""></a></li>
-                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Christian Roth"><img src="img/faces/6.jpg" alt=""></a></li>
-                <li><a href="#" data-toggle="tooltip" data-placement="top" data-original-title="Jonas Verbeke"><img src="img/faces/7.jpg" alt=""></a></li>
+                <?php foreach($model->applicants as $student){ ?>
+                    <li><a href="#student" style="cursor:default;" data-toggle="tooltip" data-placement="top" data-original-title="<?= $student->student_firstname ?>"><img src="<?= $student->photo ?>" alt=""></a></li>
+                <?php } ?>
             </ul>
+            <?php } ?>
             
         </div><!--.card-body-->
         

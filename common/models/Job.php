@@ -40,6 +40,7 @@ use yii\helpers\ArrayHelper;
  * @property StudentJobQualification[] $studentJobQualifications
  * @property JobProcessQueue[] $jobProcessQueues
  * @property Payment[] $payments
+ * @property Student[] $applicants
  */
 class Job extends \yii\db\ActiveRecord
 {
@@ -284,6 +285,14 @@ class Job extends \yii\db\ActiveRecord
     public function getStudentJobApplications()
     {
         return $this->hasMany(StudentJobApplication::className(), ['job_id' => 'job_id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getApplicants()
+    {
+        return $this->hasMany(Student::className(), ['student_id' => 'student_id'])->via('studentJobApplications');;
     }
     
     /**
