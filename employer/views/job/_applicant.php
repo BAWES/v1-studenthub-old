@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use common\models\Job;
 
-/* @var $model employer\models\Job */
+/* @var $model common\models\Student */
 ?>
 
 <div class="col-md-4">
@@ -12,34 +12,36 @@ use common\models\Job;
     <div class="card card-user card-clickable card-clickable-over-content">
 
         <div class="card-heading heading-center text-color-white">
-            <img src="../../assets/globals/img/faces/5.jpg" alt="" class="user-image">
-            <h3 class="card-title"><a href="#">Saleem Aboabdo</a></h3>
-            <div class="subhead">Gulf University for Science and Technology</div>
+            <img src="<?= $model->photo ?>" alt="" class="user-image">
+            <h3 class="card-title"><?= $model->student_firstname." ".$model->student_lastname ?></h3>
+            <div class="subhead"><?= $this->params['isArabic']?$model->university->university_name_ar:$model->university->university_name_en ?></div>
         </div><!--.card-heading-->
 
         <div class="card-body">
-            <div class="row">	
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <p>Masters Degree, Year 4<br><br>
+                        <i class="fa fa-graduation-cap" data-toggle="tooltip" data-placement="top" data-original-title="Degree"></i> Management Information Systems</p>
+                </div>
                 <div class="col-md-6 col-sm-6">
-                    <p>Masters Degree, Year 4<br>
-                        <b>Degree:</b> Management Information Systems<br>
-                        GPA: 3.0<br>
-                        Nationality: Kuwaiti <br>
+                    <p>
+                        <i class="fa fa-calculator" data-toggle="tooltip" data-placement="top" data-original-title="GPA"></i> 3.0<br>
+                        <i class="glyphicon glyphicon-globe" data-toggle="tooltip" data-placement="top" data-original-title="Nationality"></i> Kuwaiti
                     </p>
                 </div>
                 <div class="col-md-6 col-sm-6">
-                    Sport(s): Yes<br>
-                    Club(s): Yes<br>
-                    Email: gust0001234@gust.edu.kw<br>
-                    Phone #: +965 99999999<br>
-                    Applied: 01/01/2001
+                    <p>
+                        <i class="fa fa-futbol-o" data-toggle="tooltip" data-placement="top" data-original-title="Sport(s)"></i> Yes<br> 
+                        <i class="fa fa-users" data-toggle="tooltip" data-placement="top" data-original-title="Club(s)"></i> Yes
                     </p>
+                </div>
+                <div class="col-xs-8">
+                    <button class="btn btn-primary btn-sm" style="margin-top:1.5em" data-toggle="modal" data-target="#contactDetailsDialog">
+                        Show Contact Details
+                    </button>   
                 </div>
             </div>
-        </div><!--.card-body-->
-
-        <div class="card-footer">
-            <button class="btn btn-xs btn-default pull-left">Add as a Friend</button>
-            <a href="#" class="pull-right"><small>8 friends in common</small></a>
-        </div><!--.card-footer-->
+            <a class="btn btn-floating" data-toggle="modal" data-target="#panel-modal2" style="position:absolute; <?= $this->params['isArabic']?"left":"right" ?>:15px; bottom:15px"><i class="fa fa-ellipsis-h"></i></a>
+        </div><!--.card-body-->                                            
     </div><!--.card-->
 </div><!--.col-md-4-->

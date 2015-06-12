@@ -8,6 +8,8 @@ use yii\widgets\ListView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Applicants');
+$this->params['breadcrumbs'][] = ['label' => $model->job_title, 'url' => ['dashboard/index']];
+;
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = "
@@ -94,12 +96,65 @@ $this->registerCss($css);
 <div class="job-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    
-    <?= ListView::widget([
+
+    <?=
+    ListView::widget([
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
         'itemView' => '_applicant',
-    ]) ?>
+    ])
+    ?>
 
 
 </div>
+
+
+<!-- Contact Details Modal -->
+<div class="modal scale fade" id="contactDetailsDialog" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="text-align: center"><?= Yii::t('employer', "Loading Contact Details..") ?></h4>
+            </div>
+            <div class="modal-body">
+                <div class="loading-bar indeterminate margin-top-10"></div>
+            </div>
+        </div><!--.modal-content-->
+    </div><!--.modal-dialog-->
+</div><!--.modal-->
+
+
+
+<!-- More Details Modal -->
+<div class="modal fade full-height from-<?= $this->params['isArabic']?"left":"right"?>" id="panel-modal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Saleem Aboabdo</h4>
+                <img src="../../assets/globals/img/faces/2.jpg" alt="" class="img-circle pull-<?= $this->params['isArabic']?"left":"right"?>">
+            </div>
+            <div class="modal-body">                                                
+                <p> Masters Degree, Year 4<br>
+                    <b>University:</b> Gulf University for Science and Technology<br>                                                    
+                    <b>Major:</b> Management Information Systems<br>
+                    <b>GPA:</b> 3.0<br><br>
+                    <b>Gender:</b> Male<br>
+                    <b>Nationality:</b> Kuwaiti<br> 
+                    <b>Languages:</b> English, Arabic, Spanish<br>
+                    <b>English Language Level:</b> Fair<br><br>                                                    
+                    <b>Sport(s):</b> Football, Basketball, Volleyball<br>
+                    <b>Club(s):</b> Anime Club, Film Club<br>
+                    <b>Have a method of Transportation:</b> Yes<br><br>
+                    <b>Skill(s):</b> Teamwork, Time Management, Photoshop, Microsoft Office<br>
+                    <b>Hobbies:</b> Cooking, Playing Guitar, Playing Video Games<br>
+                    <b>Fun Fact:</b> I like to travel<br><br>
+                    <b>Applied:</b> 01/01/2001                                                                                                                                                                                                                
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-flat-primary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-flat-primary" data-dismiss="modal">View CV</button>
+            </div>
+        </div>
+    </div>                                
+</div><!--.modal-->
