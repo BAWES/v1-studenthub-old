@@ -248,7 +248,7 @@ $this->registerJs($js);
     <?=
     ListView::widget([
         'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'col-md-4', 'style' => ''],
+        'itemOptions' => ['class' => 'col-md-4 col-sm-6', 'style' => ''],
         'itemView' => "_job",
         'viewParams' => ['jobsApplied' => $jobsApplied],
     ])
