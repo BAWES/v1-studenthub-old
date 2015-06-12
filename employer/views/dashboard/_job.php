@@ -59,9 +59,12 @@ use common\models\Job;
                 </div>
             </div>
             
-            <?php if($model->applicants){ ?>
+            <?php
+            $applicants = $model->getApplicants()->limit(8)->all();
+            ?>
+            <?php if($applicants){ ?>
             <ul id="users">
-                <?php foreach($model->applicants as $student){ ?>
+                <?php foreach($applicants as $student){ ?>
                     <li><a href="#student" style="cursor:default;" data-toggle="tooltip" data-placement="top" data-original-title="<?= $student->student_firstname ?>"><img src="<?= $student->photo ?>" alt=""></a></li>
                 <?php } ?>
             </ul>
