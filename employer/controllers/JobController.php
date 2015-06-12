@@ -40,19 +40,6 @@ class JobController extends Controller {
         ];
     }
 
-    /**
-     * Lists all Job models.
-     * @return mixed
-     */
-    public function actionIndex() {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Job::find(),
-        ]);
-
-        return $this->render('index', [
-                    'dataProvider' => $dataProvider,
-        ]);
-    }
     
     /**
      * Displays applicants for a single Job model.
@@ -60,8 +47,15 @@ class JobController extends Controller {
      * @return mixed
      */
     public function actionApplicants($id){
+        $model = $this->findModel($id);
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => $model->getApplicants(),
+        ]);
+        
         return $this->render('applicants', [
-                    'model' => $this->findModel($id),
+                    'model' => $model,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
