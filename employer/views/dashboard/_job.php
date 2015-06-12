@@ -7,7 +7,7 @@ use common\models\Job;
 /* @var $model employer\models\Job */
 ?>
 
-<div class="col-md-4" style="margin-top:10px;">
+<div class="col-md-4 col-sm-6" style="margin-top:10px;">
     <div class="card card-user card-clickable card-clickable-over-content card-event">
 
         <div class="card-heading heading-center text-color-white" style="margin-bottom: 0px; height:132px">
