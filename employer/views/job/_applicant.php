@@ -7,7 +7,7 @@ use common\models\Job;
 /* @var $model common\models\Student */
 ?>
 
-<div class="col-md-4">
+<div class="col-md-4 col-sm-6">
 
     <div class="card card-user card-clickable card-clickable-over-content">
 
@@ -23,25 +23,25 @@ use common\models\Job;
                     <p>Masters Degree, Year 4<br><br>
                         <i class="fa fa-graduation-cap" data-toggle="tooltip" data-placement="top" data-original-title="Degree"></i> Management Information Systems</p>
                 </div>
-                <div class="col-md-6 col-sm-6">
+                <div class="col-xs-6">
                     <p>
                         <i class="fa fa-calculator" data-toggle="tooltip" data-placement="top" data-original-title="GPA"></i> 3.0<br>
                         <i class="glyphicon glyphicon-globe" data-toggle="tooltip" data-placement="top" data-original-title="Nationality"></i> Kuwaiti
                     </p>
                 </div>
-                <div class="col-md-6 col-sm-6">
+                <div class="col-xs-6">
                     <p>
                         <i class="fa fa-futbol-o" data-toggle="tooltip" data-placement="top" data-original-title="Sport(s)"></i> Yes<br> 
                         <i class="fa fa-users" data-toggle="tooltip" data-placement="top" data-original-title="Club(s)"></i> Yes
                     </p>
                 </div>
                 <div class="col-xs-8">
-                    <button class="btn btn-primary btn-sm" style="margin-top:1.5em" data-toggle="modal" data-target="#contactDetailsDialog">
+                    <button class="btn btn-teal btn-sm" style="margin-top:1.5em" data-toggle="modal" data-target="#contactDetailsDialog">
                         Show Contact Details
                     </button>   
                 </div>
             </div>
-            <a class="btn btn-floating" data-toggle="modal" data-target="#panel-modal2" style="position:absolute; <?= $this->params['isArabic']?"left":"right" ?>:15px; bottom:15px"><i class="fa fa-ellipsis-h"></i></a>
+            <a class="btn btn-floating moredetails" data-toggle="modal" data-target="#panel-modal2" style="position:absolute; <?= $this->params['isArabic']?"left":"right" ?>:15px; bottom:15px"><i class="fa fa-ellipsis-h"></i></a>
         </div><!--.card-body-->                                            
     </div><!--.card-->
 </div><!--.col-md-4-->

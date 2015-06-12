@@ -13,6 +13,9 @@ $this->params['breadcrumbs'][] = ['label' => $model->job_title, 'url' => ['dashb
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = "
+.card.card-user .card-heading{background-color:#009587}
+a.moredetails{color:#009587}
+
 .subhead{
 	font-size: 13px;
 	padding-top: 7px;
