@@ -96,7 +96,6 @@ h3 a{
 
 .modal-body ul li{margin-left:30px; list-style-type:circle;}
 .modal-body h4{margin-bottom:0}
-.modal-body p{text-indent:5px;}
 ";
 
 

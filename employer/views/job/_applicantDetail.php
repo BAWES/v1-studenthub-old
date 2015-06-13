@@ -38,18 +38,40 @@ use common\models\Student;
         <?= Yii::$app->formatter->asDecimal($model->student_gpa,2) ?>
     </p>
     
-    
-        <b>Nationality:</b> Kuwaiti<br> 
-        <b>Languages:</b> English, Arabic, Spanish<br>
-        <b>English Language Level:</b> Fair<br><br>                                                    
-        <b>Sport(s):</b> Football, Basketball, Volleyball<br>
-        <b>Club(s):</b> Anime Club, Film Club<br>
-        <b>Have a method of Transportation:</b> Yes<br><br>
-        <b>Skill(s):</b> Teamwork, Time Management, Photoshop, Microsoft Office<br>
-        <b>Hobbies:</b> Cooking, Playing Guitar, Playing Video Games<br>
-        <b>Fun Fact:</b> I like to travel<br><br>
-        <b>Applied:</b> 01/01/2001                                                                                                                                                                                                                
+    <!-- English Language Level -->
+    <h4>English Language Level</h4>
+    <p>
+        <?= $model->englishLanguageLevel ?>
     </p>
+    
+    <!-- Nationality -->
+    <h4>Nationality</h4>
+    <p>
+        <?= $this->params['isArabic']?$model->country->country_nationality_name_ar:$model->country->country_nationality_name_en ?>
+    </p>
+    
+    <!-- Languages Spoken -->
+    <h4>Language Spoken</h4>
+    <ul>
+        <?php foreach($model->languages as $language){ ?>
+            <li><?= $this->params['isArabic']?$language->language_name_ar:$language->language_name_en ?></li>
+        <?php } ?>
+    </ul>
+    
+    <!-- Transportation -->
+    <h4>Transportation</h4>
+    <p>
+        <?= $model->transportation ?>
+    </p>
+    
+    
+    
+    <b>Skill(s):</b> Teamwork, Time Management, Photoshop, Microsoft Office<br>
+    <b>Hobbies:</b> Cooking, Playing Guitar, Playing Video Games<br>
+    <b>Sport(s):</b> Football, Basketball, Volleyball<br>
+    <b>Club(s):</b> Anime Club, Film Club<br>
+    <b>Fun Fact:</b> I like to travel<br><br>
+    <b>Applied:</b> 01/01/2001                                                                                                                                                                                                                
 </div>
 <div class="modal-footer">
     <a href="#"
