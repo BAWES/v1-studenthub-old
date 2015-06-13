@@ -78,7 +78,7 @@ class JobController extends Controller {
                         ]);
             
             if($application){
-                $student = $application->student;
+                $student = $application->getStudent()->with(['country','languages','majors','degree','university'])->one();
 
                 return $this->renderPartial('_applicantDetail', [
                             'model' => $student,
