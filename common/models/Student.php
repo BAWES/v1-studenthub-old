@@ -344,8 +344,8 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function getTransportation(){
         if($this->student_transportation == self::TRANSPORTATION_AVAILABLE){
-            return "Available";
-        }else return "Unavailable";
+            return Yii::t('register', "Available");
+        }else return Yii::t('register', "Unavailable");
     }
     
     /**
