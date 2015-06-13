@@ -58,6 +58,34 @@ class JobController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
+    
+    /**
+     * Displays student applicant details for employer via AJAX
+     * @param integer $studentId
+     * @param integer $jobId
+     * @return mixed
+     */
+    public function actionStudentDetail($studentId, $jobId) {
+        /**
+         * Make sure the given student ID is an actual applicant
+         * for a job that this employer gave
+         */
+        $job = $this->findModel($jobId);
+        if($job){
+            $application = \common\models\StudentJobApplication::findOne([
+                            'student_id' => $studentId,
+                            'job_id' => $jobId,
+                        ]);
+            
+            if($application){
+                $student = $application->student;
+
+                return $this->renderPartial('_applicantDetail', [
+                            'model' => $student,
+                ]);
+            }
+        }
+    }
 
     /**
      * Displays a single Job model.

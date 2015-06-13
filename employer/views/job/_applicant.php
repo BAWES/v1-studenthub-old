@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use common\models\Job;
 
 /* @var $model common\models\Student */
+/* @var $jobId int */
 ?>
 
 <div class="col-md-4 col-sm-6">
@@ -36,12 +37,18 @@ use common\models\Job;
                     </p>
                 </div>
                 <div class="col-xs-8">
-                    <button class="btn btn-teal btn-sm" style="margin-top:1.5em" data-toggle="modal" data-target="#contactDetailsDialog">
+                    <button class="btn btn-teal btn-sm" 
+                            style="margin-top:1.5em" data-toggle="modal" data-target="#contactDetailsDialog">
                         Show Contact Details
                     </button>   
                 </div>
             </div>
-            <a class="btn btn-floating moredetails" data-toggle="modal" data-target="#panel-modal2" style="position:absolute; <?= $this->params['isArabic']?"left":"right" ?>:15px; bottom:15px"><i class="fa fa-ellipsis-h"></i></a>
+            <a class="btn btn-floating studentDetail" 
+               data-student="<?= Url::to(['job/student-detail', 'studentId' => $model->student_id, 'jobId' => $jobId]) ?>"
+               data-toggle="modal" data-target="#studentDetail" 
+               style="position:absolute; <?= $this->params['isArabic']?"left":"right" ?>:15px; bottom:15px">
+                    <i class="fa fa-ellipsis-h"></i>
+            </a>
         </div><!--.card-body-->                                            
     </div><!--.card-->
 </div><!--.col-md-4-->

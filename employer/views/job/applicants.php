@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $css = "
 .card.card-user .card-heading{background-color:#009587}
-a.moredetails{color:#009587}
+a.studentDetail{color:#009587}
 
 .subhead{
 	font-size: 13px;
@@ -93,7 +93,43 @@ h3 a{
     top: -28px;
     left:10px;
 }
+
+.modal-body ul li{margin-left:30px; list-style-type:circle;}
+.modal-body h4{margin-bottom:0}
+.modal-body p{text-indent:5px;}
 ";
+
+
+
+/**
+ * Load Student Details Functionality
+ */
+$js = '
+var $studentDetail = $("#studentDetail").find(".modal-content");
+var loadingIndicator = $studentDetail.html();
+
+$("body").on("click", ".studentDetail", function(){
+    var detailLink = $(this).attr("data-student");
+    
+    $.ajax({
+        url: detailLink,
+        cache: false,
+        beforeSend: function () {
+            $studentDetail.html(loadingIndicator);
+        },
+        success: function(response, textStatus, jqXHR)
+        {
+            $studentDetail.html(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            console.log(textStatus);
+        }
+    });
+});
+';
+
+$this->registerJs($js);
 $this->registerCss($css);
 ?>
 <div class="job-index">
@@ -105,6 +141,7 @@ $this->registerCss($css);
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
         'itemView' => '_applicant',
+        'viewParams' => ['jobId' => $model->job_id],
     ])
     ?>
 
@@ -129,35 +166,18 @@ $this->registerCss($css);
 
 
 <!-- More Details Modal -->
-<div class="modal fade full-height from-<?= $this->params['isArabic']?"left":"right"?>" id="panel-modal2" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade full-height from-<?= $this->params['isArabic'] ? "left" : "right" ?>" id="studentDetail" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Saleem Aboabdo</h4>
-                <img src="../../assets/globals/img/faces/2.jpg" alt="" class="img-circle pull-<?= $this->params['isArabic']?"left":"right"?>">
+                <h4 class="modal-title" style="text-align: center"><?= Yii::t('employer', "Loading Student Details..") ?></h4>
             </div>
-            <div class="modal-body">                                                
-                <p> Masters Degree, Year 4<br>
-                    <b>University:</b> Gulf University for Science and Technology<br>                                                    
-                    <b>Major:</b> Management Information Systems<br>
-                    <b>GPA:</b> 3.0<br><br>
-                    <b>Gender:</b> Male<br>
-                    <b>Nationality:</b> Kuwaiti<br> 
-                    <b>Languages:</b> English, Arabic, Spanish<br>
-                    <b>English Language Level:</b> Fair<br><br>                                                    
-                    <b>Sport(s):</b> Football, Basketball, Volleyball<br>
-                    <b>Club(s):</b> Anime Club, Film Club<br>
-                    <b>Have a method of Transportation:</b> Yes<br><br>
-                    <b>Skill(s):</b> Teamwork, Time Management, Photoshop, Microsoft Office<br>
-                    <b>Hobbies:</b> Cooking, Playing Guitar, Playing Video Games<br>
-                    <b>Fun Fact:</b> I like to travel<br><br>
-                    <b>Applied:</b> 01/01/2001                                                                                                                                                                                                                
-                </p>
+            <div class="modal-body">
+                <div class="loading-bar indeterminate margin-top-10"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-flat-primary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-flat-primary" data-dismiss="modal">View CV</button>
+                <button type="button" class="btn btn-teal btn-ripple" data-dismiss="modal"><?= Yii::t('app', "Close") ?></button>
             </div>
         </div>
-    </div>                                
+    </div>
 </div><!--.modal-->
