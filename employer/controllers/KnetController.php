@@ -20,7 +20,7 @@ class KnetController extends Controller {
      * Once KNET processes the users card, it will send us the transaction result via a post request
      * Action that will accept the KNET response then determine if it was a success or failure
      */
-    public function actionResponse(){
+    public function actionJobPaymentResponse(){
         $paymentId = Yii::$app->request->post('paymentid');
         $presult = Yii::$app->request->post('result');
         $postdate = Yii::$app->request->post('postdate');
