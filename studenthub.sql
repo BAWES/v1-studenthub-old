@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 12, 2015 at 10:01 PM
+-- Generation Time: Jun 14, 2015 at 08:01 AM
 -- Server version: 5.6.23
 -- PHP Version: 5.6.7
 
@@ -402,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `employer` (
 --
 
 INSERT INTO `employer` (`employer_id`, `industry_id`, `city_id`, `employer_company_name`, `employer_logo`, `employer_website`, `employer_company_desc`, `employer_num_employees`, `employer_contact_firstname`, `employer_contact_lastname`, `employer_contact_number`, `employer_credit`, `employer_email_preference`, `employer_email`, `employer_email_verification`, `employer_auth_key`, `employer_password_hash`, `employer_password_reset_token`, `employer_language_pref`, `employer_support_field`, `employer_limit_email`, `employer_social_twitter`, `employer_social_facebook`, `employer_social_instagram`, `employer_updated_datetime`, `employer_datetime`) VALUES
-(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '4.000', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$yD4XFIMwChLBjsRxTFQ5GuEvQTDIBtV8MCtouOC0rj4qhrNyyGvGa', NULL, 'en-US', '0', '2015-05-10 09:49:40', 'dwadawd', NULL, 'dwa', '2015-06-12 21:44:07', '2015-05-02 16:15:30'),
+(1, 1, 4, 'BAWES', NULL, 'http://bawes.net', 'Develop awesome stuff\r\nThe best of the best\r\nWe are awesome', 3, 'Khalid', 'Al-Mutawa', '99811042', '4.000', 0, 'khalid@bawes.net', 1, 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', '$2y$13$yD4XFIMwChLBjsRxTFQ5GuEvQTDIBtV8MCtouOC0rj4qhrNyyGvGa', NULL, 'en-US', '0', '2015-05-10 09:49:40', 'dwadawd', NULL, 'dwa', '2015-06-13 14:01:57', '2015-05-02 16:15:30'),
 (2, 3, 1, 'Test Company', NULL, NULL, 'sqSQ', NULL, 'DWAD', 'dwadwa', '99811042', '17.245', 1, 'dwadwadw@dwad.com', 1, 'RkJCWLIjxJPziHMmyx-GTHgf9Q8RBndT', '$2y$13$KONg0F9VYiie8LDelIsuZeSo6Hd4AuB/1Xq2GflzO7Eqw4Rdl3wOK', '', 'en-US', '0', '2015-05-03 20:55:19', '', '0', '', '2015-05-03 20:55:19', '2015-05-02 16:27:38'),
 (3, 1, 1, 'Khalid', 'LNOOgViwpx86Op575JBj37xHjINuJnF9.png', NULL, 'Free Stuff', NULL, 'dwad', 'dwad', '99811042', '13.000', 1, 'dwda@gust.edom', 0, 'rsI8d0rOnrvuOZt0W4j3eAbP6Gge0Yo3', '$2y$13$xUE.p13lHQnJSjsN6rifZuhbtacDdYBxgVO/GdY9xxZA8pEchL2kC', '', 'en-US', '0', '2015-05-03 20:55:19', '', '0', '', '2015-05-03 20:55:19', '2015-05-02 18:43:14'),
 (4, 1, 1, 'Khalid', NULL, NULL, 'dwa', NULL, 'Khalid', 'M', '99811042', '0.000', 0, 'm6awa3@gmail.com', 0, 'nILkFnFe18sI5O1ZsXVRoMTXIOz_sIIi', '$2y$13$0Eg4BM0F0bFi8/ePjoSrd.W2dVPu5KLY.3o.iEUKzIKgheM4yNq0O', NULL, 'en-US', '0', '2015-05-05 22:07:17', '', '0', '', '2015-05-05 22:07:17', '2015-05-03 20:00:29'),
@@ -2742,11 +2742,11 @@ CREATE TABLE IF NOT EXISTS `student_major` (
 --
 
 INSERT INTO `student_major` (`student_id`, `major_id`) VALUES
-(14, 131),
-(14, 6),
-(21, 3),
-(21, 6),
-(22, 340);
+(13, 131),
+(13, 6),
+(15, 3),
+(15, 6),
+(15, 340);
 
 -- --------------------------------------------------------
 

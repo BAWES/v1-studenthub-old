@@ -4,8 +4,9 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use common\models\Job;
 
-/* @var $model common\models\Student */
-/* @var $jobId int */
+/* @var $model common\models\StudentJobApplication */
+
+$student = $model->student;
 ?>
 
 <div class="col-md-4 col-sm-6">
@@ -13,9 +14,9 @@ use common\models\Job;
     <div class="card card-user card-clickable card-clickable-over-content">
 
         <div class="card-heading heading-center text-color-white">
-            <img src="<?= $model->photo ?>" alt="" class="user-image">
-            <h3 class="card-title"><?= $model->student_firstname." ".$model->student_lastname ?></h3>
-            <div class="subhead"><?= $this->params['isArabic']?$model->university->university_name_ar:$model->university->university_name_en ?></div>
+            <img src="<?= $student->photo ?>" alt="" class="user-image">
+            <h3 class="card-title"><?= $student->student_firstname." ".$student->student_lastname ?></h3>
+            <div class="subhead"><?= $this->params['isArabic']?$student->university->university_name_ar:$student->university->university_name_en ?></div>
         </div><!--.card-heading-->
 
         <div class="card-body">
@@ -44,7 +45,7 @@ use common\models\Job;
                 </div>
             </div>
             <a class="btn btn-floating studentDetail" 
-               data-student="<?= Url::to(['job/student-detail', 'studentId' => $model->student_id, 'jobId' => $jobId]) ?>"
+               data-student="<?= Url::to(['job/student-detail', 'applicationId' => $model->application_id]) ?>"
                data-toggle="modal" data-target="#studentDetail" 
                style="position:absolute; <?= $this->params['isArabic']?"left":"right" ?>:15px; bottom:15px">
                     <i class="fa fa-ellipsis-h"></i>

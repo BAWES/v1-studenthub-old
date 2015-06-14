@@ -140,7 +140,6 @@ $this->registerCss($css);
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
         'itemView' => '_applicant',
-        'viewParams' => ['jobId' => $model->job_id],
     ])
     ?>
 

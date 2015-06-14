@@ -50,7 +50,8 @@ class JobController extends Controller {
         $model = $this->findModel($id);
         
         $dataProvider = new ActiveDataProvider([
-            'query' => $model->getApplicants(),
+            'query' => $model->getStudentJobApplications()
+                ->with(['student', 'student.university', 'student.degree', 'student.majors']),
         ]);
         
         return $this->render('applicants', [
@@ -61,15 +62,30 @@ class JobController extends Controller {
     
     /**
      * Displays student applicant details for employer via AJAX
-     * @param integer $studentId
-     * @param integer $jobId
+     * @param integer $applicationId
      * @return mixed
      */
-    public function actionStudentDetail($studentId, $jobId) {
+    public function actionStudentDetail($applicationId) {
         /**
          * Make sure the given student ID is an actual applicant
          * for a job that this employer gave
          */
+        $application = \common\models\StudentJobApplication::find()
+                        ->where(['application_id' => $applicationId])
+                        ->with([
+                                'job', 'student', 'student.country', 'student.languages',
+                                'student.majors', 'student.degree', 'student.university',
+                            ])
+                        ->one();
+        
+        if($application && ($application->job->employer_id == Yii::$app->user->identity->employer_id)){
+            return $this->renderPartial('_applicantDetail', [
+                        'model' => $application,
+            ]);
+        }
+        
+        //'employer_id' => Yii::$app->user->identity->employer_id,
+        
         $job = $this->findModel($jobId);
         if($job){
             $application = \common\models\StudentJobApplication::findOne([
