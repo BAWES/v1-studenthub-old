@@ -392,7 +392,6 @@ class JobController extends Controller {
      * Action that will accept the KNET response then determine if it was a success or failure
      */
     public function actionKnetResponse(){
-        if(Yii::$app->request->isPost){
             $paymentId = Yii::$app->request->post('paymentid');
             $presult = Yii::$app->request->post('result');
             $postdate = Yii::$app->request->post('postdate');
@@ -431,7 +430,7 @@ class JobController extends Controller {
 
             //Tell KNET where to redirect the user to now
             echo "REDIRECT=".$redirectLink;
-        }
+        
     }
     
     /**
