@@ -16,7 +16,7 @@ use yii\filters\VerbFilter;
  */
 class JobController extends Controller {
     
-    public $enableCsrfValidation = false;
+    //public $enableCsrfValidation = false;
 
     public function behaviors() {
         return [
@@ -53,8 +53,8 @@ class JobController extends Controller {
         }
         
         //Disable CSRF validation for KNET response
-        if ($action->actionMethod == 'knet-response' || $action->actionMethod == 'knet-error' || $action->actionMethod == 'success') {
-            $this->enableCsrfValidation = false;
+        if ($action->actionMethod == 'knet-response') {
+            Yii::app()->request->enableCsrfValidation = false;
         }
 
         return true;
