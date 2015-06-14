@@ -15,6 +15,8 @@ use yii\filters\VerbFilter;
  * JobController implements the CRUD actions for Job model.
  */
 class JobController extends Controller {
+    
+    public $enableCsrfValidation = false;
 
     public function behaviors() {
         return [
