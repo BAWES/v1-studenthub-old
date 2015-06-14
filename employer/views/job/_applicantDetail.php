@@ -106,7 +106,7 @@ $student = $model->student;
     </p>
     <?php } ?>
     
-    <pre><?= Yii::t("employer", "Applied on {dateApplied, date}", ['dateApplied' => $model->application_date_apply]) ?></pre>                                                                                                                                                                                                               
+    <pre> <?= Yii::t("employer", "Applied on {dateApplied}", ['dateApplied' => Yii::$app->formatter->asDatetime($model->application_date_apply, 'short')]) ?></pre>                                                                                                                                                                                                               
 </div>
 <div class="modal-footer">
     <a href="#"
