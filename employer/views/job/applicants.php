@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $css = "
 .card.card-user .card-heading{background-color:#009587}
 a.studentDetail{color:#009587}
-
+.summary{text-align:center;}
 .subhead{
 	font-size: 13px;
 	padding-top: 7px;
@@ -142,7 +142,7 @@ $this->registerCss($css);
 ?>
 <div class="job-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2 style="text-align:center;"><?= Html::encode($this->title) ?></h2>
 
     <?=
     ListView::widget([

@@ -25,7 +25,7 @@ return [
     'Admin Password' => '',
     'Admin Password Reset Token' => '',
     'Admins' => '',
-    'Applicants' => '',
+    'Applicants' => 'طالبي العمل',
     'Application Answer 1' => '',
     'Application Answer 2' => '',
     'Application Date Apply' => '',

@@ -39,6 +39,24 @@ class JobController extends Controller {
             ],
         ];
     }
+    
+    
+    /**
+    * @inheritdoc
+    */
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+          return false;
+        }
+
+        //Disable CSRF validation for KNET response
+        if ($action == 'knet-response') {
+            Yii::$app->controller->enableCsrfValidation = false;
+        }
+
+        return true;
+    }
 
     
     /**
