@@ -83,7 +83,7 @@ class KnetController extends Controller {
                     Yii::t('employer',
                             "There was an issue processing your payment, please contact us if you require assistance"));
 
-        return $this->redirect(['create-step4', 'id' => $id]);
+        return $this->redirect(['job/create-step4', 'id' => $id]);
     }
     
     /**
