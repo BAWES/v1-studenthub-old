@@ -22,25 +22,58 @@ $student = $model->student;
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <p>Masters Degree, Year 4<br><br>
-                        <i class="fa fa-graduation-cap" data-toggle="tooltip" data-placement="top" data-original-title="Degree"></i> Management Information Systems</p>
-                </div>
-                <div class="col-xs-6">
                     <p>
-                        <i class="fa fa-calculator" data-toggle="tooltip" data-placement="top" data-original-title="GPA"></i> 3.0<br>
-                        <i class="glyphicon glyphicon-globe" data-toggle="tooltip" data-placement="top" data-original-title="Nationality"></i> Kuwaiti
+                        <?= $this->params['isArabic']?$student->degree->degree_name_ar."، ":$student->degree->degree_name_en.", " ?>
+                         
+                        <?php
+                        $yearJoined = $student->student_enrolment_year;
+                        $yearGraduating = $student->student_graduating_year;
+                        $currentYear = date('Y');
+                        
+                        $yearsStudied = $currentYear - $yearJoined;
+                        if($yearsStudied <= 0) $yearsStudied = 1;
+                        
+                        if($currentYear == $yearGraduating){
+                            //output graduating this year
+                            echo Yii::t("employer", "Graduating Soon");
+                        }else if($yearGraduating < $currentYear){
+                            //output that hes a graduate
+                            echo "Graduate Class of $yearGraduating";
+                            echo Yii::t("employer", "Graduate Class of {yearGraduating}", ['yearGraduating' => $yearGraduating]);
+                        }else{
+                            //output how many years hes been studying
+                            echo Yii::t("employer", "{0, ordinal} Year", $yearsStudied);
+                        }
+                        ?>
+                        <br><br>
+                        <i class="fa fa-graduation-cap" data-toggle="tooltip" data-placement="top" data-original-title="<?= Yii::t('frontend', 'Major') ?>"></i>
+                        <?= $this->params['isArabic']?$student->majors[0]->major_name_ar:$student->majors[0]->major_name_en ?>
                     </p>
                 </div>
                 <div class="col-xs-6">
                     <p>
-                        <i class="fa fa-futbol-o" data-toggle="tooltip" data-placement="top" data-original-title="Sport(s)"></i> Yes<br> 
-                        <i class="fa fa-users" data-toggle="tooltip" data-placement="top" data-original-title="Club(s)"></i> Yes
+                        <i class="fa fa-calculator" data-toggle="tooltip" data-placement="top" data-original-title="<?= Yii::t('frontend', 'GPA') ?>"></i>
+                        <?= Yii::$app->formatter->asDecimal($student->student_gpa, 2) ?>
+                        
+                        <br>
+                        <i class="glyphicon glyphicon-globe" data-toggle="tooltip" data-placement="top" data-original-title="<?= Yii::t('frontend', 'Nationality') ?>"></i> 
+                        <?= $this->params['isArabic']?$student->country->country_name_ar:$student->country->country_name_en ?>
+                    </p>
+                </div>
+                <div class="col-xs-6">
+                    <p>
+                        <i class="fa fa-futbol-o" data-toggle="tooltip" data-placement="top" data-original-title="<?= Yii::t('employer', 'Sports') ?>"></i> 
+                         <?= $student->student_sport?Yii::t('employer', 'Yes'):Yii::t('employer', 'No') ?>
+                         
+                        <br> 
+                        <i class="fa fa-users" data-toggle="tooltip" data-placement="top" data-original-title="<?= Yii::t('employer', 'Clubs') ?>"></i> 
+                        <?= $student->student_club?Yii::t('employer', 'Yes'):Yii::t('employer', 'No') ?>
                     </p>
                 </div>
                 <div class="col-xs-8">
                     <button class="btn btn-teal btn-sm" 
                             style="margin-top:1.5em" data-toggle="modal" data-target="#contactDetailsDialog">
-                        Show Contact Details
+                        <?= Yii::t('employer', 'Show Contact Details') ?>
                     </button>   
                 </div>
             </div>
