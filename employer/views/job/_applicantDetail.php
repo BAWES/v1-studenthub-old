@@ -17,14 +17,33 @@ $student = $model->student;
 <div class="modal-body">                                                
     <h4>
         <?= $this->params['isArabic']?$student->degree->degree_name_ar:$student->degree->degree_name_en ?>,
-        Year 4
+        <?php
+        $yearJoined = $student->student_enrolment_year;
+        $yearGraduating = $student->student_graduating_year;
+        $currentYear = date('Y');
+
+        $yearsStudied = $currentYear - $yearJoined;
+        if($yearsStudied <= 0) $yearsStudied = 1;
+
+        if($currentYear == $yearGraduating){
+            //output graduating this year
+            echo Yii::t("employer", "Graduating Soon");
+        }else if($yearGraduating < $currentYear){
+            //output that hes a graduate
+            echo "Graduate Class of $yearGraduating";
+            echo Yii::t("employer", "Graduate Class of {yearGraduating}", ['yearGraduating' => $yearGraduating]);
+        }else{
+            //output how many years hes been studying
+            echo Yii::t("employer", "{0, ordinal} Year", $yearsStudied);
+        }
+        ?>
     </h4>
     <p>
         <?= $this->params['isArabic']?$student->university->university_name_ar:$student->university->university_name_en ?>
     </p>
     
     <!-- Majors -->
-    <h4>Major</h4>
+    <h4><?= Yii::t('frontend', 'Major') ?></h4>
     <ul>
         <?php foreach($student->majors as $major){ ?>
             <li><?= $this->params['isArabic']?$major->major_name_ar:$major->major_name_en ?></li>
@@ -32,31 +51,31 @@ $student = $model->student;
     </ul>
     
     <!-- GPA -->
-    <h4>Current GPA</h4>
+    <h4><?= Yii::t('frontend', 'Current GPA') ?></h4>
     <p>
         <?= Yii::$app->formatter->asDecimal($student->student_gpa,2) ?>
     </p>
     
     <!-- English Language Level -->
-    <h4>English Language Level</h4>
+    <h4><?= Yii::t('frontend', 'English Language Level') ?></h4>
     <p>
         <?= $student->englishLanguageLevel ?>
     </p>
     
     <!-- Nationality -->
-    <h4>Gender</h4>
+    <h4><?= Yii::t('frontend', 'Gender') ?></h4>
     <p>
         <?= $student->gender ?>
     </p>
     
     <!-- Nationality -->
-    <h4>Nationality</h4>
+    <h4><?= Yii::t('frontend', 'Nationality') ?></h4>
     <p>
         <?= $this->params['isArabic']?$student->country->country_nationality_name_ar:$student->country->country_nationality_name_en ?>
     </p>
     
     <!-- Languages Spoken -->
-    <h4>Languages Spoken</h4>
+    <h4><?= Yii::t('frontend', 'Languages Spoken') ?></h4>
     <ul>
         <?php foreach($student->languages as $language){ ?>
             <li><?= $this->params['isArabic']?$language->language_name_ar:$language->language_name_en ?></li>
@@ -64,14 +83,14 @@ $student = $model->student;
     </ul>
     
     <!-- Transportation -->
-    <h4>Transportation</h4>
+    <h4><?= Yii::t('frontend', 'Transportation') ?></h4>
     <p>
         <?= $student->transportation ?>
     </p>
     
     <!-- Skills -->
     <?php if($student->student_skill){ ?>
-    <h4>Skills</h4>
+    <h4><?= Yii::t('frontend', 'Skills') ?></h4>
     <p>
         <?= Yii::$app->formatter->asNtext($student->student_skill) ?>
     </p>
@@ -79,7 +98,7 @@ $student = $model->student;
     
     <!-- Hobbies -->
     <?php if($student->student_hobby){ ?>
-    <h4>Hobbies</h4>
+    <h4><?= Yii::t('frontend', 'Hobbies') ?></h4>
     <p>
         <?= Yii::$app->formatter->asNtext($student->student_hobby) ?>
     </p>
@@ -87,7 +106,7 @@ $student = $model->student;
     
     <!-- Hobbies -->
     <?php if($student->student_sport){ ?>
-    <h4>Sports</h4>
+    <h4><?= Yii::t('frontend', 'Sports') ?></h4>
     <p>
         <?= Yii::$app->formatter->asNtext($student->student_sport) ?>
     </p>
@@ -95,7 +114,7 @@ $student = $model->student;
     
     <!-- Clubs -->
     <?php if($student->student_club){ ?>
-    <h4>Sports</h4>
+    <h4><?= Yii::t('frontend', 'Sports') ?></h4>
     <p>
         <?= Yii::$app->formatter->asNtext($student->student_club) ?>
     </p>
@@ -103,7 +122,7 @@ $student = $model->student;
     
     <!-- Fun Fact -->
     <?php if($student->student_interestingfacts){ ?>
-    <h4>Fun Fact</h4>
+    <h4><?= Yii::t('frontend', 'Fun Fact') ?></h4>
     <p>
         <?= Yii::$app->formatter->asNtext($student->student_interestingfacts) ?>
     </p>

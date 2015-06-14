@@ -19,7 +19,7 @@
 return [
     'Applied on {dateApplied}' => 'تاريخ التقديم {dateApplied}',
     'Clubs' => 'النوادي',
-    'Graduate Class of {yearGraduating}' => 'تخرج سنة {yearGraduating}',
+    'Graduate Class of {yearGraduating}' => 'تخرج عام {yearGraduating}',
     'Graduating Soon' => 'يتخرج قريبا',
     'Loading Contact Details..' => 'جاري تحميل تفاصيل الاتصال ..',
     'Loading Student Details..' => 'جاري تحميل تفاصيل طالب ..',
