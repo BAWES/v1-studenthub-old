@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Available' => 'متوفر',
+    'Unavailable' => 'غير متوفر',
     'Thanks! Your Job will soon be posted for students to apply on' => '@@شكرا! سيتم قريبا نشر وظيفتك للطلاب @@',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Average # of Employees' => 'عدد الموظفين',
