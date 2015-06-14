@@ -41,24 +41,6 @@ class JobController extends Controller {
             ],
         ];
     }
-    
-    
-    /**
-    * @inheritdoc
-    */
-    public function beforeAction($action)
-    {
-        if (!parent::beforeAction($action)) {
-          return false;
-        }
-        
-        //Disable CSRF validation for KNET response
-        if ($action->actionMethod == 'knet-response') {
-            Yii::app()->request->enableCsrfValidation = false;
-        }
-
-        return true;
-    }
 
     
     /**
@@ -390,7 +372,7 @@ class JobController extends Controller {
     }
     
     /**
-     * Once KNET processes the users creditcard, it will send us the transaction result via a post request
+     * Once KNET processes the users card, it will send us the transaction result via a post request
      * Action that will accept the KNET response then determine if it was a success or failure
      */
     public function actionKnetResponse(){
