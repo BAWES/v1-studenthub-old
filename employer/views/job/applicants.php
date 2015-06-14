@@ -93,11 +93,20 @@ h3 a{
     top: -28px;
     left:10px;
 }
-
-.modal-body ul li{margin-left:30px; list-style-type:circle;}
-.modal-body h4{margin-bottom:0}
 ";
 
+//Modal adjustments
+if($this->params['isArabic']){
+    $css .= "
+    .modal-body ul li{margin-right:30px; list-style-type:circle;}
+    .modal-body h4{margin-bottom:0}
+    ";
+}else{
+    $css .= "
+    .modal-body ul li{margin-left:30px; list-style-type:circle;}
+    .modal-body h4{margin-bottom:0}
+    ";
+}
 
 
 /**

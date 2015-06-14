@@ -335,8 +335,8 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function getGender(){
         if($this->student_gender == self::GENDER_MALE){
-            return "Male";
-        }else return "Female";
+            return Yii::t("app", "Male");
+        }else return Yii::t("app", "Female");
     }
     
     /**

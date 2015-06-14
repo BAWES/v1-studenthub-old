@@ -13,9 +13,6 @@ $student = $model->student;
     <h4 class="modal-title" style="font-weight:bold;"><?= $student->student_firstname." ".$student->student_lastname ?></h4>
     <img src="<?= $student->photo ?>" alt="" style="max-width:80px"
          class="img-circle pull-<?= $this->params['isArabic'] ? "left" : "right" ?>">
-    <i style="font-size:70px; color:<?=$student->student_gender == Student::GENDER_MALE?"#3e50b4":"#e81d62"?>;
-       position:absolute; top:180px; <?= $this->params['isArabic'] ? "left" : "right" ?>:50px;"
-         class="ion ion-<?=$student->student_gender == Student::GENDER_MALE?"man":"woman"?>"></i>
 </div>
 <div class="modal-body">                                                
     <h4>
@@ -44,6 +41,12 @@ $student = $model->student;
     <h4>English Language Level</h4>
     <p>
         <?= $student->englishLanguageLevel ?>
+    </p>
+    
+    <!-- Nationality -->
+    <h4>Gender</h4>
+    <p>
+        <?= $student->gender ?>
     </p>
     
     <!-- Nationality -->

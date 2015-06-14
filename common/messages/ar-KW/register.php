@@ -17,10 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Available' => 'متوفر',
-    'Unavailable' => 'غير متوفر',
     'Thanks! Your Job will soon be posted for students to apply on' => '@@شكرا! سيتم قريبا نشر وظيفتك للطلاب @@',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
+    'Available' => 'متوفر',
     'Average # of Employees' => 'عدد الموظفين',
     'Browse Jobs' => 'ابحث عن عمل',
     'Change' => 'تغيير',
@@ -102,6 +101,7 @@ return [
     'Thanks for signing up, please click on the link sent to you by email to verify your account' => 'شكرا جزيلا على الاشتراك، يرجى الضغط على الرابط المرسل لك عن طريق البريد الإلكتروني للتحقق من حسابك',
     'Thanks for verifying your email' => 'شكرا للتحقق من بريدك الالكتروني',
     'The following questions are optional but will increase your chances of being contacted by employers' => 'الأسئلة التالية اختيارية ولكن سوف تزيد فرصك لعثور على وظيفة',
+    'Unavailable' => 'غير متوفر',
     'University not listed?' => 'جامعة غير مذكورة؟',
     'Upload CV (optional)' => 'تحميل السيرة الذاتية (اختياري)',
     'Upload ID Card' => 'تحميل بطاقة الهوية',
