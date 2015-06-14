@@ -76,8 +76,8 @@ class Job extends \common\models\Job {
         $pipe->setTrackId($trackID);
         
         //Response and Error Urls
-        $pipe->setResponseURL(Url::to(['job/knet-response'], 'https'));
-        $pipe->setErrorURL(Url::to(['job/knet-error'], 'https'));
+        $pipe->setResponseURL(Url::to(['knet/response'], 'https'));
+        $pipe->setErrorURL(Url::to(['knet/error'], 'https'));
         
         //Set User Defined Fields for Easier Searching
         $pipe->setUdf2("Job-".$this->job_id);
