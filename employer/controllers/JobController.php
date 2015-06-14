@@ -49,9 +49,9 @@ class JobController extends Controller {
         if (!parent::beforeAction($action)) {
           return false;
         }
-
+        
         //Disable CSRF validation for KNET response
-        if ($action == 'knet-response') {
+        if ($action->actionMethod == 'knet-response') {
             Yii::$app->controller->enableCsrfValidation = false;
         }
 
