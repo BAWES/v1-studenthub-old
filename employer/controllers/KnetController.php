@@ -40,6 +40,7 @@ class KnetController extends Controller {
              * Transaction is approved by bank
              * Store into db and give url to redirect to
              */
+            
 
 
             //process job from model, need to get jobid from udf2/3
@@ -50,11 +51,12 @@ class KnetController extends Controller {
              * Transaction not approved by bank
              * Store updated status/details into db and give url to redirect to
              */
+            
 
 
-            //Get Job ID from UDF2
+            //Get Job ID from UDF2 then redirect to error page for that job
             $redirectJobId = (int) str_replace("Job-", "", $udf2);
-            $redirectLink = Url::to(['knet/error', 'id' => $redirectJobId], true);
+            $redirectLink = Url::to(['knet/job-payment-error', 'id' => $redirectJobId], true);
         }
 
         //Tell KNET where to redirect the user to now
@@ -69,23 +71,27 @@ class KnetController extends Controller {
         return $this->redirect(['job/success']);
     }
     
+    
     /**
      * Error in knet payment for this job
+     * Set flash error and redirect back to job step 4 for them to attempt payment again
+     * @param int $id
+     * @throws NotFoundHttpException
+     */
+    public function actionJobPaymentError($id){
+        Yii::$app->session->setFlash("error", 
+                    Yii::t('employer',
+                            "There was an issue processing your payment, please contact us if you require assistance"));
+
+        return $this->redirect(['create-step4', 'id' => $id]);
+    }
+    
+    /**
+     * Generic Error in knet payment
+     * @throws NotFoundHttpException
      */
     public function actionError(){
-        /**
-         * If there is no job id sent via get param, get the job id from UDF2 of the payment gateway
-         */
-        if(isset($_POST['UDF2'])){
-            $udf2 = $_POST['UDF2'];
-            $id = (int) str_replace("Job-", "", $udf2);
-            
-            Yii::$app->session->setFlash("error", 
-                        Yii::t('employer',
-                                "There was an issue processing your payment, please contact us if you require assistance"));
-            
-            return $this->redirect(['create-step4', 'id' => $id]);
-        }else throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance.');
+        throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance.');
     }
 
 }
