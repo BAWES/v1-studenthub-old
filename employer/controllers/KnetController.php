@@ -66,7 +66,7 @@ class KnetController extends Controller {
      * Renders Thank you page after payment
      */
     public function actionSuccess(){
-        return $this->redirect(['job/thanks']);
+        return $this->redirect(['job/success']);
     }
     
     /**
