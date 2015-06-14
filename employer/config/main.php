@@ -13,12 +13,6 @@ return [
     'bootstrap' => ['log','common\components\LanguageSetting'],
     'modules' => [],
     'components' => [
-        'request' => [
-            'class' => 'common\components\Request',
-            'noCsrfRoutes' => [
-                'job/knet-response'
-            ]
-        ],
         'user' => [
             'identityClass' => 'common\models\Employer',
             'enableAutoLogin' => true,
