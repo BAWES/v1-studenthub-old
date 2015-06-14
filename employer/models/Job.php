@@ -82,7 +82,8 @@ class Job extends \common\models\Job {
         //Set User Defined Fields for Easier Searching
         $pipe->setUdf2("Job-".$this->job_id);
         $pipe->setUdf3("Employer-".$this->employer_id);
-        $pipe->setUdf5("ptlf employer-".$this->employer_id."-job-".$this->job_id); //Details sent to Bank Report va UDF5
+        //Details sent to Bank Report va UDF5
+        $pipe->setUdf5("ptlf employer-".$this->employer_id."-job-".$this->job_id);
         
         //Payment Amount
         $pipe->setAmt($amountDue);
