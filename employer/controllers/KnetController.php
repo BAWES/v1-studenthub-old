@@ -87,7 +87,7 @@ class KnetController extends Controller {
     }
     
     /**
-     * Generic Error in knet payment
+     * Generic Error in KNET payment
      * @throws NotFoundHttpException
      */
     public function actionError(){
