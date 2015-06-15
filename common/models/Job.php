@@ -39,6 +39,7 @@ use yii\helpers\ArrayHelper;
  * @property StudentJobApplication[] $studentJobApplications
  * @property StudentJobQualification[] $studentJobQualifications
  * @property JobProcessQueue[] $jobProcessQueues
+ * @property KnetPayment[] $knetPayments
  * @property Payment[] $payments
  * @property Student[] $applicants
  */
@@ -309,6 +310,14 @@ class Job extends \yii\db\ActiveRecord
     public function getJobProcessQueues()
     {
         return $this->hasMany(JobProcessQueue::className(), ['job_id' => 'job_id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getKnetPayments()
+    {
+        return $this->hasMany(KnetPayment::className(), ['job_id' => 'job_id']);
     }
 
     /**

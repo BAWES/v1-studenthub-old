@@ -43,6 +43,7 @@ use yii\helpers\Url;
  * @property Industry $industry
  * @property City $city
  * @property Job[] $jobs
+ * @property KnetPayment[] $knetPayments
  * @property NotificationEmployer[] $notificationEmployers
  * @property Payment[] $payments
  */
@@ -251,6 +252,14 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function getJobs() {
         return $this->hasMany(Job::className(), ['employer_id' => 'employer_id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getKnetPayments()
+    {
+        return $this->hasMany(KnetPayment::className(), ['employer_id' => 'employer_id']);
     }
 
     /**

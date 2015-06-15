@@ -24,28 +24,29 @@ use yii\db\Expression;
  * @property string $payment_udf4
  * @property string $payment_udf5
  * @property string $payment_datetime 
+ * 
+ * @property Employer $employer
+ * @property Job $job
  */
-class KnetPayment extends \yii\db\ActiveRecord
-{
+class KnetPayment extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'knet_payment';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['payment_id', 'employer_id'], 'required'],
             [['payment_id', 'employer_id', 'job_id'], 'integer'],
         ];
     }
-    
+
     public function behaviors() {
         return [
             [
@@ -60,8 +61,7 @@ class KnetPayment extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'payment_id' => Yii::t('app', 'Payment ID'),
             'employer_id' => Yii::t('app', 'Employer ID'),
@@ -77,7 +77,22 @@ class KnetPayment extends \yii\db\ActiveRecord
             'payment_udf3' => Yii::t('app', 'Payment Udf3'),
             'payment_udf4' => Yii::t('app', 'Payment Udf4'),
             'payment_udf5' => Yii::t('app', 'Payment Udf5'),
-            'payment_datetime' => Yii::t('app', 'Payment Datetime'), 
+            'payment_datetime' => Yii::t('app', 'Payment Datetime'),
         ];
     }
+
+    /**
+     * @return \yii\db\ActiveQuery 
+     */
+    public function getEmployer() {
+        return $this->hasOne(Employer::className(), ['employer_id' => 'employer_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery 
+     */
+    public function getJob() {
+        return $this->hasOne(Job::className(), ['job_id' => 'job_id']);
+    }
+
 }
