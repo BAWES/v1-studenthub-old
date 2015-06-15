@@ -22,7 +22,7 @@ class KnetController extends Controller {
      */
     public function actionJobPaymentResponse(){
         $paymentId = Yii::$app->request->post('paymentid');
-        $presult = Yii::$app->request->post('result');
+        $result = Yii::$app->request->post('result');
         $postdate = Yii::$app->request->post('postdate');
         $tranid = Yii::$app->request->post('tranid');
         $auth = Yii::$app->request->post('auth');
@@ -33,9 +33,14 @@ class KnetController extends Controller {
         $udf3 = Yii::$app->request->post('udf3');
         $udf4 = Yii::$app->request->post('udf4');
         $udf5 = Yii::$app->request->post('udf5');
+        
+        /**
+         * THROW EXCEPTION IF THIS PAYMENT ID DOESN'T EXIST IN OUR DB
+         * OR IF ITS RECORD HAS DIFFERENT TRACK ID FROM OURS
+         */
 
 
-        if($presult == "CAPTURED"){
+        if($result == "CAPTURED"){
             /**
              * Transaction is approved by bank
              * Store into db and give url to redirect to

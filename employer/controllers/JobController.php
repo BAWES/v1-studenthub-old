@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use common\models\KnetPayment;
 
 /**
  * JobController implements the CRUD actions for Job model.
@@ -336,9 +337,17 @@ class JobController extends Controller {
                     //Successfully initiated KNET payment
                     $payId = $pipe->getPaymentId();
                     $payUrl = $pipe->getPaymentPage();
-                    
-                    //Save transaction details into DB here
                     //echo $pipe->getDebugMsg();
+                    
+                    
+                    //Save initial transaction details into DB 
+                    $payment = new KnetPayment();
+                    $payment->payment_id = $payId;
+                    $payment->employer_id = Yii::$app->user->identity->employer_id;
+                    $payment->job_id = $model->job_id;
+                    $payment->payment_trackid = $pipe->getTrackId();
+                    $payment->save();                    
+                    
                     
                     
                     //Redirect to KNET payment page
