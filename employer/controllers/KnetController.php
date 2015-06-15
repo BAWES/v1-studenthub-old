@@ -21,7 +21,7 @@ class KnetController extends Controller {
      * Once KNET processes the users card, it will send us the transaction result via a post request
      * Action that will accept the KNET response then determine if it was a success or failure
      */
-    public function actionJobPaymentResponse(){
+    public function actionPaymentResponse(){
         $paymentId = Yii::$app->request->post('paymentid');
         $result = Yii::$app->request->post('result');
         $postdate = Yii::$app->request->post('postdate');
@@ -72,10 +72,8 @@ class KnetController extends Controller {
             }else{
                 /**
                  * Transaction not approved by bank
-                 * Store updated status/details into db and give url to redirect to
                  */
-
-
+                $redirectLink = Url::to(['knet/payment-error'], true);
 
                 /**
                  * If this payment is for a job, redirect to step 4 for them to re-attempt payment
@@ -117,7 +115,7 @@ class KnetController extends Controller {
      * Generic Error in KNET payment
      * @throws NotFoundHttpException
      */
-    public function actionError(){
+    public function actionPaymentError(){
         throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance.');
     }
 
