@@ -19,7 +19,7 @@ class KnetPaymentSearch extends KnetPayment
     {
         return [
             [['payment_id', 'employer_id', 'job_id'], 'integer'],
-            [['payment_result', 'payment_trackid', 'payment_postdate', 'payment_tranid', 'payment_auth', 'payment_ref', 'payment_udf1', 'payment_udf2', 'payment_udf3', 'payment_udf4', 'payment_udf5'], 'safe'],
+            [['payment_result', 'payment_trackid', 'payment_postdate', 'payment_amount', 'payment_tranid', 'payment_auth', 'payment_ref', 'payment_udf1', 'payment_udf2', 'payment_udf3', 'payment_udf4', 'payment_udf5'], 'safe'],
         ];
     }
 
