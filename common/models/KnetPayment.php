@@ -9,7 +9,7 @@ use yii\db\Expression;
 /**
  * This is the model class for table "knet_payment".
  *
- * @property integer $payment_id
+ * @property string $payment_id
  * @property integer $employer_id
  * @property integer $job_id
  * @property string $payment_result
