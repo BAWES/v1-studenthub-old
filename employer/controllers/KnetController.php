@@ -53,19 +53,20 @@ class KnetController extends Controller {
             $payment->payment_udf5 = $udf5;
             $payment->save();
             
+            /**
+             * Check if transaction is approved by bank
+             */
             if($result == "CAPTURED"){
-                /**
-                 * Transaction is approved by bank
-                 * Store into db and give url to redirect to
-                 */
-
+                
 
                 /**
                  * IF PAYMENT IS FOR JOB, process the job, otherwise no need
                  */
-
-
-                //process job from model, need to get jobid from udf2/3
+                if($payment->job_id){
+                    //process job / create payment / blabla invoicing and emailing
+                }else{
+                    //payment not for job? still need to create payment n stuff and emailing but without processing
+                }
 
                 $redirectLink = Url::to(['knet/success'], true);
             }else{

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 15, 2015 at 10:41 AM
+-- Generation Time: Jun 15, 2015 at 10:59 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -739,6 +739,7 @@ CREATE TABLE IF NOT EXISTS `knet_payment` (
   `payment_id` varchar(128) NOT NULL DEFAULT '',
   `employer_id` int(11) unsigned NOT NULL,
   `job_id` int(11) unsigned DEFAULT NULL,
+  `payment_amount` double(10,3) NOT NULL,
   `payment_result` varchar(128) NOT NULL DEFAULT '',
   `payment_trackid` varchar(128) NOT NULL,
   `payment_postdate` varchar(64) DEFAULT '',

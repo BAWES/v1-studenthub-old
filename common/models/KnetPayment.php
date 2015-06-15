@@ -12,6 +12,7 @@ use yii\db\Expression;
  * @property string $payment_id
  * @property integer $employer_id
  * @property integer $job_id
+ * @property double $payment_amount
  * @property string $payment_result
  * @property string $payment_postdate
  * @property string $payment_tranid
@@ -44,6 +45,7 @@ class KnetPayment extends \yii\db\ActiveRecord {
         return [
             [['payment_id', 'employer_id'], 'required'],
             [['payment_id', 'employer_id', 'job_id'], 'integer'],
+            [['payment_amount'], 'number'],
         ];
     }
 
@@ -66,6 +68,7 @@ class KnetPayment extends \yii\db\ActiveRecord {
             'payment_id' => Yii::t('app', 'Payment ID'),
             'employer_id' => Yii::t('app', 'Employer ID'),
             'job_id' => Yii::t('app', 'Job ID'),
+            'payment_amount' => Yii::t('app', 'Payment Amount'),
             'payment_result' => Yii::t('app', 'Payment Result'),
             'payment_postdate' => Yii::t('app', 'Payment Postdate'),
             'payment_tranid' => Yii::t('app', 'Payment Tranid'),

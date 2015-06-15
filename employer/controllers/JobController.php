@@ -347,6 +347,7 @@ class JobController extends Controller {
                     $payment->job_id = $model->job_id;
                     $payment->payment_trackid = $pipe->getTrackId();
                     $payment->payment_result = "ATTEMPT";
+                    $payment->payment_amount = $pipe->getAmt();
                     $payment->save();
                     
                     
