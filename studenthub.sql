@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 15, 2015 at 10:07 AM
+-- Generation Time: Jun 15, 2015 at 10:41 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -736,8 +736,8 @@ INSERT INTO `job_process_queue` (`queue_id`, `job_id`, `queue_datetime`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `knet_payment` (
-  `payment_id` int(11) unsigned NOT NULL,
-  `employer_id` int(11) NOT NULL,
+  `payment_id` varchar(128) NOT NULL DEFAULT '',
+  `employer_id` int(11) unsigned NOT NULL,
   `job_id` int(11) unsigned DEFAULT NULL,
   `payment_result` varchar(128) NOT NULL DEFAULT '',
   `payment_trackid` varchar(128) NOT NULL,
@@ -2900,7 +2900,7 @@ ALTER TABLE `job_process_queue`
 -- Indexes for table `knet_payment`
 --
 ALTER TABLE `knet_payment`
-  ADD PRIMARY KEY (`payment_id`);
+  ADD PRIMARY KEY (`payment_id`), ADD KEY `employer_id` (`employer_id`), ADD KEY `job_id` (`job_id`);
 
 --
 -- Indexes for table `language`
@@ -3170,6 +3170,13 @@ ADD CONSTRAINT `job_ibfk_3` FOREIGN KEY (`filter_id`) REFERENCES `filter` (`filt
 --
 ALTER TABLE `job_process_queue`
 ADD CONSTRAINT `job_process_queue_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`);
+
+--
+-- Constraints for table `knet_payment`
+--
+ALTER TABLE `knet_payment`
+ADD CONSTRAINT `knet_payment_ibfk_1` FOREIGN KEY (`employer_id`) REFERENCES `employer` (`employer_id`),
+ADD CONSTRAINT `knet_payment_ibfk_2` FOREIGN KEY (`job_id`) REFERENCES `job` (`job_id`);
 
 --
 -- Constraints for table `notification_employer`
