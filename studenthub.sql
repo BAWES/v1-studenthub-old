@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 15, 2015 at 09:44 AM
+-- Generation Time: Jun 15, 2015 at 10:07 AM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.7
 
@@ -749,7 +749,8 @@ CREATE TABLE IF NOT EXISTS `knet_payment` (
   `payment_udf2` varchar(128) DEFAULT '',
   `payment_udf3` varchar(128) DEFAULT '',
   `payment_udf4` varchar(128) DEFAULT '',
-  `payment_udf5` varchar(128) DEFAULT ''
+  `payment_udf5` varchar(128) DEFAULT '',
+  `payment_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "knet_payment".
@@ -21,6 +23,7 @@ use Yii;
  * @property string $payment_udf3
  * @property string $payment_udf4
  * @property string $payment_udf5
+ * @property string $payment_datetime 
  */
 class KnetPayment extends \yii\db\ActiveRecord
 {
@@ -40,6 +43,17 @@ class KnetPayment extends \yii\db\ActiveRecord
         return [
             [['payment_id', 'employer_id'], 'required'],
             [['payment_id', 'employer_id', 'job_id'], 'integer'],
+        ];
+    }
+    
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'payment_datetime',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
 
@@ -63,6 +77,7 @@ class KnetPayment extends \yii\db\ActiveRecord
             'payment_udf3' => Yii::t('app', 'Payment Udf3'),
             'payment_udf4' => Yii::t('app', 'Payment Udf4'),
             'payment_udf5' => Yii::t('app', 'Payment Udf5'),
+            'payment_datetime' => Yii::t('app', 'Payment Datetime'), 
         ];
     }
 }
