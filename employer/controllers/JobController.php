@@ -346,7 +346,8 @@ class JobController extends Controller {
                     $payment->employer_id = Yii::$app->user->identity->employer_id;
                     $payment->job_id = $model->job_id;
                     $payment->payment_trackid = $pipe->getTrackId();
-                    $payment->save();                    
+                    $payment->payment_result = "ATTEMPT";
+                    $payment->save();
                     
                     
                     
@@ -380,50 +381,6 @@ class JobController extends Controller {
         ]);
     }
     
-    /**
-     * Once KNET processes the users card, it will send us the transaction result via a post request
-     * Action that will accept the KNET response then determine if it was a success or failure
-     */
-    public function actionKnetResponse(){
-        $paymentId = Yii::$app->request->post('paymentid');
-        $presult = Yii::$app->request->post('result');
-        $postdate = Yii::$app->request->post('postdate');
-        $tranid = Yii::$app->request->post('tranid');
-        $auth = Yii::$app->request->post('auth');
-        $ref = Yii::$app->request->post('ref');
-        $trackid = Yii::$app->request->post('trackid');
-        $udf1 = Yii::$app->request->post('udf1');
-        $udf2 = Yii::$app->request->post('udf2');
-        $udf3 = Yii::$app->request->post('udf3');
-        $udf4 = Yii::$app->request->post('udf4');
-        $udf5 = Yii::$app->request->post('udf5');
-
-
-        if($presult == "CAPTURED"){
-            /**
-             * Transaction is approved by bank
-             * Store into db and give url to redirect to
-             */
-
-
-            //process job from model, need to get jobid from udf2/3
-
-            $redirectLink = Url::to(['job/success'], true);
-        }else{
-            /**
-             * Transaction not approved by bank
-             * Store updated status/details into db and give url to redirect to
-             */
-
-
-            //Get Job ID from UDF2
-            $redirectJobId = (int) str_replace("Job-", "", $udf2);
-            $redirectLink = Url::to(['job/payment-error', 'id' => $redirectJobId], true);
-        }
-
-        //Tell KNET where to redirect the user to now
-        echo "REDIRECT=".$redirectLink;
-    }
     
     /**
      * Successful Payment
@@ -431,25 +388,6 @@ class JobController extends Controller {
      */
     public function actionSuccess(){
         return $this->render('thanks');
-    }
-    
-    /**
-     * Error in knet payment for this job
-     */
-    public function actionKnetError(){
-        /**
-         * If there is no job id sent via get param, get the job id from UDF2 of the payment gateway
-         */
-        if(isset($_POST['UDF2'])){
-            $udf2 = $_POST['UDF2'];
-            $id = (int) str_replace("Job-", "", $udf2);
-            
-            Yii::$app->session->setFlash("error", 
-                        Yii::t('employer',
-                                "There was an issue processing your payment, please contact us if you require assistance"));
-            
-            return $this->redirect(['create-step4', 'id' => $id]);
-        }else throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance.');
     }
     
     
