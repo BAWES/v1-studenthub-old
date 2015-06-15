@@ -23,9 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'payment_id',
             'employer_id',
-            'job_id',
+            'payment_amount:currency',
             'payment_result',
-            'payment_trackid',
             'payment_datetime:datetime',
             // 'payment_tranid',
             // 'payment_auth',

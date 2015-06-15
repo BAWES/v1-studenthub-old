@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'payment_id',
             'employer_id',
             'job_id',
+            'payment_amount:currency',
             'payment_result',
             'payment_trackid',
             'payment_postdate',
@@ -32,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'payment_udf3',
             'payment_udf4',
             'payment_udf5',
+            'payment_datetime:datetime',
         ],
     ]) ?>
 
