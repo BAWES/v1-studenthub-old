@@ -64,6 +64,7 @@ class KnetPaymentSearch extends KnetPayment
         $query->andFilterWhere(['like', 'payment_result', $this->payment_result])
             ->andFilterWhere(['like', 'payment_trackid', $this->payment_trackid])
             ->andFilterWhere(['like', 'payment_postdate', $this->payment_postdate])
+            ->andFilterWhere(['like', 'payment_amount', $this->payment_amount])
             ->andFilterWhere(['like', 'payment_tranid', $this->payment_tranid])
             ->andFilterWhere(['like', 'payment_auth', $this->payment_auth])
             ->andFilterWhere(['like', 'payment_ref', $this->payment_ref])
