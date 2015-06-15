@@ -113,6 +113,7 @@ AppAsset::register($this);
                             ['label' => 'Payment Types', 'url' => ['/payment-type/index']],
                             ['label' => 'Inactive Employers', 'url' => ['/employer/inactive']],
                             ['label' => 'Inactive Students', 'url' => ['/student/inactive']],
+                            ['label' => 'KNET Payments', 'url' => ['/knet-payment/index']],
                         ],
                     ],
                     //User Management
