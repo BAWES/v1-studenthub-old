@@ -5,6 +5,7 @@ namespace employer\controllers;
 use Yii;
 use yii\helpers\Url;
 use employer\models\Job;
+use common\models\KnetPayment;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -38,34 +39,54 @@ class KnetController extends Controller {
          * THROW EXCEPTION IF THIS PAYMENT ID DOESN'T EXIST IN OUR DB
          * OR IF ITS RECORD HAS DIFFERENT TRACK ID FROM OURS
          */
-
-
-        if($result == "CAPTURED"){
-            /**
-             * Transaction is approved by bank
-             * Store into db and give url to redirect to
-             */
+        $payment = KnetPayment::findOne(['payment_id' => $paymentId, 'payment_trackid' => $trackid]);
+        if($payment){
+            $payment->payment_result = $result;
+            $payment->payment_postdate = $postdate;
+            $payment->payment_tranid = $tranid;
+            $payment->payment_auth = $auth;
+            $payment->payment_ref = $ref;
+            $payment->payment_udf1 = $udf1;
+            $payment->payment_udf2 = $udf2;
+            $payment->payment_udf3 = $udf3;
+            $payment->payment_udf4 = $udf4;
+            $payment->payment_udf5 = $udf5;
+            $payment->save();
             
+            if($result == "CAPTURED"){
+                /**
+                 * Transaction is approved by bank
+                 * Store into db and give url to redirect to
+                 */
 
 
-            //process job from model, need to get jobid from udf2/3
-
-            $redirectLink = Url::to(['knet/success'], true);
-        }else{
-            /**
-             * Transaction not approved by bank
-             * Store updated status/details into db and give url to redirect to
-             */
-            
+                /**
+                 * IF PAYMENT IS FOR JOB, process the job, otherwise no need
+                 */
 
 
-            //Get Job ID from UDF2 then redirect to error page for that job
-            $redirectJobId = (int) str_replace("Job-", "", $udf2);
-            $redirectLink = Url::to(['knet/job-payment-error', 'id' => $redirectJobId], true);
+                //process job from model, need to get jobid from udf2/3
+
+                $redirectLink = Url::to(['knet/success'], true);
+            }else{
+                /**
+                 * Transaction not approved by bank
+                 * Store updated status/details into db and give url to redirect to
+                 */
+
+
+
+                /**
+                 * If this payment is for a job, redirect to step 4 for them to re-attempt payment
+                 */
+                if($payment->job_id){
+                    $redirectLink = Url::to(['knet/job-payment-error', 'id' => $payment->job_id], true);
+                }
+            }
+
+            //Tell KNET where to redirect the user to now
+            echo "REDIRECT=".$redirectLink;
         }
-
-        //Tell KNET where to redirect the user to now
-        echo "REDIRECT=".$redirectLink;
     }
     
     /**
