@@ -60,9 +60,15 @@ var loadingIndicator = $aboutJob.html();
 var currentCard;
 var fromModal = false;
 
+$("#about-job").on("hide.bs.modal", function (e) {
+  fromModal = false;
+})
+$("#about-job").on("show.bs.modal", function (e) {
+  fromModal = true;
+})
+
 $("#jobList").on("click", ".jobDetail", function(){
     currentCard = $(this).parent().parent().parent().parent();
-    fromModal = true;
     var detailLink = $(this).attr("data-job");
 
     $.ajax({
