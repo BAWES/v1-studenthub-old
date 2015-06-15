@@ -19,7 +19,8 @@ class KnetPaymentSearch extends KnetPayment
     {
         return [
             [['payment_id', 'employer_id', 'job_id'], 'integer'],
-            [['payment_result', 'payment_trackid', 'payment_postdate', 'payment_amount', 'payment_tranid', 'payment_auth', 'payment_ref', 'payment_udf1', 'payment_udf2', 'payment_udf3', 'payment_udf4', 'payment_udf5'], 'safe'],
+            [['payment_result', 'payment_trackid', 'payment_postdate', 'payment_amount', 'payment_tranid', 'payment_auth', 'payment_ref', 
+                'payment_udf1', 'payment_udf2', 'payment_udf3', 'payment_udf4', 'payment_udf5', 'payment_datetime'], 'safe'],
         ];
     }
 
@@ -72,7 +73,8 @@ class KnetPaymentSearch extends KnetPayment
             ->andFilterWhere(['like', 'payment_udf2', $this->payment_udf2])
             ->andFilterWhere(['like', 'payment_udf3', $this->payment_udf3])
             ->andFilterWhere(['like', 'payment_udf4', $this->payment_udf4])
-            ->andFilterWhere(['like', 'payment_udf5', $this->payment_udf5]);
+            ->andFilterWhere(['like', 'payment_udf5', $this->payment_udf5])
+            ->andFilterWhere(['like', 'payment_datetime', $this->payment_datetime]);
 
         return $dataProvider;
     }
