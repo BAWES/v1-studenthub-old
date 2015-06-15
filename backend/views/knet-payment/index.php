@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'payment_udf4',
             // 'payment_udf5',
 
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],
         ],
     ]); ?>
 
