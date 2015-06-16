@@ -13,7 +13,15 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('employer', 'Dashboard'), 'u
 $this->params['breadcrumbs'][] = $this->title;
 
 $js = "
-$('#makePayment').click(function(){
+var paymentBtn = $('#makePayment');
+
+$('#terms').change(function(){
+    if(this.checked){
+        paymentBtn.removeClass('disabled');
+    }else paymentBtn.addClass('disabled');
+});
+
+paymentBtn.click(function(){
     $(this).addClass('disabled');
 });
 ";
@@ -98,7 +106,7 @@ $this->registerJs($js);
                 </div>
 
                 <?= Html::submitButton(Yii::t('employer', 'Make Payment') , [
-                    'class' => 'btn btn-primary btn-block btn-ripple',
+                    'class' => 'btn btn-primary btn-block btn-ripple disabled',
                     'id' => 'makePayment',
                     'style' => 'margin-top: 7px;',
                 ]) ?>

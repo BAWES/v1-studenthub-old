@@ -322,57 +322,62 @@ class JobController extends Controller {
          */
         if(Yii::$app->request->post()){
             $paymentOption = Yii::$app->request->post('paymentOption');
+            $termsAgreed = Yii::$app->request->post("terms", 0);
             
-            /**
-             * Process Payment for this Job
-             */
-            if($paymentOption == \common\models\PaymentType::TYPE_KNET){
+            if($termsAgreed){
                 /**
-                 * START KNET PAYMENT PROCESSING
+                 * Process Payment for this Job
                  */
-                $pipe = $model->initiateKNETPayment();
-                
-                
-                if($pipe instanceof \common\components\knet\e24PaymentPipe){
-                    //Successfully initiated KNET payment
-                    $payId = $pipe->getPaymentId();
-                    $payUrl = $pipe->getPaymentPage();
-                    //echo $pipe->getDebugMsg();
-                    
-                    
-                    //Save initial transaction details into DB 
-                    $payment = new KnetPayment();
-                    $payment->payment_id = $payId;
-                    $payment->employer_id = Yii::$app->user->identity->employer_id;
-                    $payment->job_id = $model->job_id;
-                    $payment->payment_trackid = $pipe->getTrackId();
-                    $payment->payment_result = "ATTEMPT";
-                    $payment->payment_amount = $pipe->getAmt();
-                    $payment->save();
-                    
-                    
-                    
-                    //Redirect to KNET payment page
-                    return $this->redirect("$payUrl?PaymentID=$payId");
-                    
+                if($paymentOption == \common\models\PaymentType::TYPE_KNET){
+                    /**
+                     * START KNET PAYMENT PROCESSING
+                     */
+                    $pipe = $model->initiateKNETPayment();
+
+
+                    if($pipe instanceof \common\components\knet\e24PaymentPipe){
+                        //Successfully initiated KNET payment
+                        $payId = $pipe->getPaymentId();
+                        $payUrl = $pipe->getPaymentPage();
+                        //echo $pipe->getDebugMsg();
+
+
+                        //Save initial transaction details into DB 
+                        $payment = new KnetPayment();
+                        $payment->payment_id = $payId;
+                        $payment->employer_id = Yii::$app->user->identity->employer_id;
+                        $payment->job_id = $model->job_id;
+                        $payment->payment_trackid = $pipe->getTrackId();
+                        $payment->payment_result = "ATTEMPT";
+                        $payment->payment_amount = $pipe->getAmt();
+                        $payment->save();
+
+
+
+                        //Redirect to KNET payment page
+                        return $this->redirect("$payUrl?PaymentID=$payId");
+
+                    }else{
+                        //Error initiating transaction, output error as flash
+                        Yii::$app->session->setFlash("error", $pipe);
+                    }
+
+                    /**
+                     * END KNET PAYMENT PROCESSING
+                     */
+                }else if($model->processPayment(\common\models\PaymentType::TYPE_CREDIT)){
+                    //Redirect to thank you page
+                    return $this->redirect(['success']);
                 }else{
-                    //Error initiating transaction, output error as flash
-                    Yii::$app->session->setFlash("error", $pipe);
+                    /**
+                     * Error in processing payment
+                     */
+                    Yii::$app->session->setFlash("error", 
+                            Yii::t('employer',
+                                    "There was an issue processing your payment, please contact us if you require assistance"));
                 }
-                
-                /**
-                 * END KNET PAYMENT PROCESSING
-                 */
-            }else if($model->processPayment(\common\models\PaymentType::TYPE_CREDIT)){
-                //Redirect to thank you page
-                return $this->redirect(['success']);
             }else{
-                /**
-                 * Error in processing payment
-                 */
-                Yii::$app->session->setFlash("error", 
-                        Yii::t('employer',
-                                "There was an issue processing your payment, please contact us if you require assistance"));
+                Yii::$app->session->setFlash('error', Yii::t("frontend", "Please agree to the terms and conditions"));
             }
         }
         
