@@ -95,7 +95,7 @@ class KnetPayment extends \yii\db\ActiveRecord {
      * @return \yii\db\ActiveQuery 
      */
     public function getJob() {
-        return $this->hasOne(Job::className(), ['job_id' => 'job_id']);
+        return $this->hasOne(\employer\models\Job::className(), ['job_id' => 'job_id']);
     }
 
 }

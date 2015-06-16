@@ -106,9 +106,11 @@ class Job extends \common\models\Job {
     /**
      * Process payment for this job
      * @param string $paymentType eg:\common\models\PaymentType::TYPE_CREDIT
+     * @param double $amountPaid the amount customer paid in cash/gateway
+     * @param string $note note to be added to this payment
      * @return boolean whether the payment processed successfully or not
      */
-    public function processPayment($paymentType){
+    public function processPayment($paymentType = \common\models\PaymentType::TYPE_CREDIT, $amountPaid = 0, $note = ""){
         $payment = new \common\models\Payment();
         $payment->employer_id = $this->employer_id;
         $payment->job_id = $this->job_id;
@@ -118,40 +120,45 @@ class Job extends \common\models\Job {
         $payment->payment_job_filter_price_per_applicant = \common\models\Note::findOne(["note_name" => "pricePerPremiumFilter"])->note_value;
         $payment->payment_job_total_price_per_applicant = $payment->payment_job_initial_price_per_applicant + 
                                                             ($payment->payment_job_filter_price_per_applicant * $payment->payment_job_num_filters);
+        $payment->payment_type_id = $paymentType;
+        $payment->payment_note = $note;
         
         /**
          * The amount that needs to be paid for this job (whether by credit or by gateway)
          */
         $listingCost = $payment->payment_job_total_price_per_applicant * $payment->payment_job_num_applicants;
         
+        
         /*
          * If there is no amount due for this job, process it as a credit payment
          */
-        if(!$this->amountDue){
-            $payment->payment_type_id = \common\models\PaymentType::TYPE_CREDIT;
-            $payment->payment_employer_credit_change = $listingCost * -1; //subtract credit
+        if(!$this->amountDue && $amountPaid == 0 && $paymentType == \common\models\PaymentType::TYPE_CREDIT){
+            /**
+             * Subtract from employer credit the listing cost
+             */
+            $payment->payment_employer_credit_change = $listingCost * -1;
             
             if($payment->save()){
                 return true;
             }else{
                 Yii::error(print_r($payment->errors, true), __METHOD__);
             }
-        }else{
-            /**
-             * Check if payment has been processed for payment gateway payment type
-             * Make sure payment is for amount due only, and do credit change for partial
-             */
-            if($paymentType == \common\models\PaymentType::TYPE_KNET){
-                
-            }
-            
-            
+        }else if($paymentType == \common\models\PaymentType::TYPE_KNET){
             /**
              * Make sure to divide Amount due between credit_change and payment_total
-             * To see how much of it was paid by credit, and how much was paid by gateway
+             * To see how much of it was paid by credit, and how much was paid using the gateway
              */
-            
+            $payment->payment_employer_credit_change = ($listingCost - $amountPaid) * -1; //subtract credit
+            $payment->payment_total = $amountPaid;
+
+            if($payment->save()){
+                return true;
+            }else{
+                Yii::error(print_r($payment->errors, true), __METHOD__);
+            }
         }
+            
+        
         
         return false;
     }
