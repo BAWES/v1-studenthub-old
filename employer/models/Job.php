@@ -128,6 +128,7 @@ class Job extends \common\models\Job {
          */
         $listingCost = $payment->payment_job_total_price_per_applicant * $payment->payment_job_num_applicants;
         
+        Yii::error("debug2", __METHOD__);
         
         /*
          * If there is no amount due for this job, process it as a credit payment
@@ -144,6 +145,7 @@ class Job extends \common\models\Job {
                 Yii::error(print_r($payment->errors, true), __METHOD__);
             }
         }else if($paymentType == \common\models\PaymentType::TYPE_KNET){
+            Yii::error("debug3", __METHOD__);
             /**
              * Make sure to divide Amount due between credit_change and payment_total
              * To see how much of it was paid by credit, and how much was paid using the gateway
