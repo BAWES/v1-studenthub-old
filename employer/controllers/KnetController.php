@@ -116,6 +116,18 @@ class KnetController extends Controller {
     }
     
     /**
+     * Successful Payment for Credit
+     * Renders Thank you page after payment
+     */
+    public function actionCreditPaymentSuccess(){
+        Yii::$app->session->setFlash("success", 
+                    Yii::t('employer',
+                            "Thanks for purchasing credit! You may now use them for faster job posting"));
+        
+        return $this->redirect(['credit/index']);
+    }
+    
+    /**
      * Error in knet payment for buying credit
      * Set flash error and redirect back to credit purchase page
      */
