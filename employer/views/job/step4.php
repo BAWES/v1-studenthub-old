@@ -75,20 +75,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <h3 style="margin-top:0; font-weight:bold;"><?= Yii::$app->formatter->asDecimal($amountDue, 3) ?> <?= Yii::t("employer", "KD") ?></h3>
 
             <?php $form = ActiveForm::begin(); ?>
-                <?php
-                if($amountDue > 0){
-                    $paymentTypes = \common\models\PaymentType::find()->where(['not in', 'payment_type_id', [1,2,3]])->all();
-                    $i = 0;
-                    foreach($paymentTypes as $type){
-                        $i++;
-                ?>
+                <?php if($amountDue > 0){ ?>
                     <div class="radioer">
-                        <input required type="radio" name="paymentOption" id="option<?=$i?>" value="<?= $type->payment_type_id ?>" <?= $i==1?"checked=''":"" ?>>
-                        <label for="option<?=$i?>"><?= $this->params['isArabic']?$type->payment_type_name_ar:$type->payment_type_name_en ?></label>
+                        <input required type="radio" name="paymentOption" id="option1" value="<?= \common\models\PaymentType::TYPE_KNET ?>" checked=''>
+                        <label for="option1"><?= $this->params['isArabic']?"كي نت":"KNET" ?></label>
                     </div>
-                <?php } 
-                }
-                ?>
+                <?php } ?>
 
                 <?= Html::submitButton(Yii::t('employer', 'Make Payment') , [
                     'class' => 'btn btn-primary btn-block btn-ripple',
