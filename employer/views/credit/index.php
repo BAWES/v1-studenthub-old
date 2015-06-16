@@ -18,6 +18,10 @@ $('#terms').change(function(){
         paymentBtn.removeClass('disabled');
     }else paymentBtn.addClass('disabled');
 });
+
+paymentBtn.click(function(){
+    $(this).addClass('disabled');
+});
 ";
 
 $this->registerJs($js);
