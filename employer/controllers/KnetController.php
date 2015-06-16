@@ -60,13 +60,16 @@ class KnetController extends Controller {
                 
 
                 /**
-                 * IF PAYMENT IS FOR JOB, process the job, otherwise no need
+                 * IF PAYMENT IS FOR JOB, process the job
+                 * If payment is for credit, process the credit
+                 * He should always get an invoice for his purchase
                  */
+                $note = "KNET Payment #".$payment->payment_id;
                 if($payment->job_id){
-                    $note = "KNET Payment #".$payment->payment_id;
                     $payment->job->processPayment(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
                 }else{
-                    //payment not for job? still need to create payment n stuff and emailing but without processing
+                    //Payment was made by this employer for credit
+                    $payment->employer->processPayment(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
                 }
 
                 $redirectLink = Url::to(['knet/success'], true);
@@ -78,10 +81,11 @@ class KnetController extends Controller {
 
                 /**
                  * If this payment is for a job, redirect to step 4 for them to re-attempt payment
+                 * If this payment is for credit, redirect to credit purchase page
                  */
                 if($payment->job_id){
                     $redirectLink = Url::to(['knet/job-payment-error', 'id' => $payment->job_id], true);
-                }
+                }else $redirectLink = Url::to(['knet/credit-payment-error'], true);
             }
 
             //Tell KNET where to redirect the user to now
@@ -110,6 +114,20 @@ class KnetController extends Controller {
                             "There was an issue processing your payment, please contact us if you require assistance"));
 
         return $this->redirect(['job/create-step4', 'id' => $id]);
+    }
+    
+    /**
+     * Error in knet payment for buying credit
+     * Set flash error and redirect back to credit purchase page
+     * @param int $id
+     * @throws NotFoundHttpException
+     */
+    public function actionCreditPaymentError($id){
+        Yii::$app->session->setFlash("error", 
+                    Yii::t('employer',
+                            "There was an issue processing your payment, please contact us if you require assistance"));
+
+        return $this->redirect(['credit/index']);
     }
     
     /**

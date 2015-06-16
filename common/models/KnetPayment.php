@@ -88,7 +88,7 @@ class KnetPayment extends \yii\db\ActiveRecord {
      * @return \yii\db\ActiveQuery 
      */
     public function getEmployer() {
-        return $this->hasOne(Employer::className(), ['employer_id' => 'employer_id']);
+        return $this->hasOne(\employer\models\Employer::className(), ['employer_id' => 'employer_id']);
     }
 
     /**

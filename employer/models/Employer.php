@@ -11,6 +11,28 @@ use yii\db\Expression;
  * 
  */
 class Employer extends \common\models\Employer {
+    
+    /**
+     * Process a credit purchase that this employer made
+     * @param int $paymentType
+     * @param real $amountPaid
+     * @param string $note
+     * @return \common\models\Payment
+     */
+    public function processCreditPurchase($paymentType = \common\models\PaymentType::TYPE_KNET, $amountPaid = 0, $note = ""){
+        $payment = new \common\models\Payment();
+        $payment->employer_id = $this->employer_id;
+        
+        $payment->payment_type_id = $paymentType;
+        $payment->payment_employer_credit_change = $amountPaid;
+        $payment->payment_note = $note;
+        
+        if(!$payment->save()){
+            Yii::error(print_r($payment->errors, true), __METHOD__);
+        }        
+        
+        return $payment;
+    }
 
     /**
      * Sends an email requesting a user to verify his email address
