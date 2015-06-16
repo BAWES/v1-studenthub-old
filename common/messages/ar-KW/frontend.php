@@ -17,7 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Languages Spoken' => 'اللغات',
+    'Invalid payment method' => 'طريقة الدفع غير صالحة',
+    'Please agree to the terms and conditions' => 'يرجى الموافقة على الشروط والأحكام',
+    'Terms & Conditions' => 'الشروط والأحكام',
     'AND MORE' => 'و اكثر',
     'All Industries' => 'كافة القطاعات',
     'All Job Types' => 'جميع أنواع الوظائف',
@@ -55,6 +57,7 @@ return [
     'Invalid input for {attribute}' => 'إدخال غير صالح لل{attribute}',
     'Job Type' => 'نوع العمل',
     'LANGUAGE' => 'لغة',
+    'Languages Spoken' => 'اللغات',
     'Link' => 'الرابط',
     'Login' => 'تسجيل دخول',
     'Logout' => 'تسجيل الخروج',
