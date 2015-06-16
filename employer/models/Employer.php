@@ -24,6 +24,7 @@ class Employer extends \common\models\Employer {
         $payment->employer_id = $this->employer_id;
         
         $payment->payment_type_id = $paymentType;
+        $payment->payment_total = $amountPaid;
         $payment->payment_employer_credit_change = $amountPaid;
         $payment->payment_note = $note;
         
