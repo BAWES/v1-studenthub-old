@@ -448,11 +448,11 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                             
                             <div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1" style="text-align:center;">
                                 
-                                    <p>Buying credit allows you to post jobs quickly without having to go through payment processing.</p>
+                                    <p><?= Yii::t("employer", "Buying credit allows you to post jobs quickly without having to go through payment processing.") ?></p>
                                     
-                                    <h4 style="margin-bottom:0;">Current Credit</h4>
+                                    <h4 style="margin-bottom:0;"><?= Yii::t("employer", "Current Credit") ?></h4>
                                     <h2 style="margin-top:0;"><?= Yii::$app->formatter->asDecimal(Yii::$app->user->identity->employer_credit, 3) ?> <?= Yii::t("employer", "KD") ?></h2>
-                                    <a href="#" class="btn btn-success btn-block btn-lg">Buy Credit</a>
+                                    <a href="<?= Url::to(['credit/index']) ?>" class="btn btn-success btn-block btn-lg">Buy Credit</a>
 
                             </div><!--.col-->
 
