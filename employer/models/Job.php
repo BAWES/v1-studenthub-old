@@ -132,7 +132,7 @@ class Job extends \common\models\Job {
         /*
          * If there is no amount due for this job, process it as a credit payment
          */
-        if((!$this->amountDue) && $amountPaid == 0 && $paymentType == \common\models\PaymentType::TYPE_CREDIT){
+        if(!$this->amountDue && $amountPaid == 0 && $paymentType == \common\models\PaymentType::TYPE_CREDIT){
             /**
              * Subtract from employer credit the listing cost
              */
@@ -144,7 +144,6 @@ class Job extends \common\models\Job {
                 Yii::error(print_r($payment->errors, true), __METHOD__);
             }
         }else if($paymentType == \common\models\PaymentType::TYPE_KNET){
-            Yii::error("debug3", __METHOD__);
             /**
              * Make sure to divide Amount due between credit_change and payment_total
              * To see how much of it was paid by credit, and how much was paid using the gateway
@@ -158,8 +157,6 @@ class Job extends \common\models\Job {
                 Yii::error(print_r($payment->errors, true), __METHOD__);
             }
         }
-        
-            
         
         
         return false;
