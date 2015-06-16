@@ -114,6 +114,7 @@ return [
     'Notification Viewed' => '',
     'Open' => '',
     'Password Reset Token' => '',
+    'Payment Amount' => '',
     'Payment Auth' => '',
     'Payment Datetime' => '',
     'Payment ID' => '',

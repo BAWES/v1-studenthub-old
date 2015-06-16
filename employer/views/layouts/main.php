@@ -368,7 +368,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                 <div class="user-layer">
                     <ul class="nav nav-tabs nav-justified" role="tablist">
                         <li class="active"><a href="#notifications" data-toggle="tab">Notifications <span class="badge">3</span></a></li>
-                        <li><a href="#credit" data-toggle="tab">Credit</a></li>
+                        <li><a href="#credit" data-toggle="tab"><?= Yii::t("employer", "Credit") ?></a></li>
                         <li><a href="#settings" data-toggle="tab">Settings</a></li>
                     </ul>
 
@@ -452,7 +452,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                                     
                                     <h4 style="margin-bottom:0;"><?= Yii::t("employer", "Current Credit") ?></h4>
                                     <h2 style="margin-top:0;"><?= Yii::$app->formatter->asDecimal(Yii::$app->user->identity->employer_credit, 3) ?> <?= Yii::t("employer", "KD") ?></h2>
-                                    <a href="<?= Url::to(['credit/index']) ?>" class="btn btn-success btn-block btn-lg">Buy Credit</a>
+                                    <a href="<?= Url::to(['credit/index']) ?>" class="btn btn-success btn-block btn-lg"><?= Yii::t("employer", "Buy Credit") ?></a>
 
                             </div><!--.col-->
 
