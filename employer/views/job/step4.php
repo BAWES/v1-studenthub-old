@@ -88,6 +88,14 @@ $this->registerJs($js);
                         <label for="option1"><?= $this->params['isArabic']?"كي نت":"KNET" ?></label>
                     </div>
                 <?php } ?>
+            
+            
+                <div class="checkboxer" style='margin-top:1em;'>
+                    <input type="checkbox" value="1" id="terms" name="terms">
+                    <label for="terms"><?= Yii::t("employer", "I agree to the <a href='{url}' target='_blank'>terms & conditions</a>", [
+                        'url'=> Yii::$app->urlManagerFrontend->createAbsoluteUrl(['site/terms'])])?>
+                    </label>
+                </div>
 
                 <?= Html::submitButton(Yii::t('employer', 'Make Payment') , [
                     'class' => 'btn btn-primary btn-block btn-ripple',

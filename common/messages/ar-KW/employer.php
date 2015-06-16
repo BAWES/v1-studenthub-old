@@ -59,6 +59,7 @@ return [
     'Have a question for the applicants? (optional)' => 'هل لديك سؤال للمتقدمين؟ (اختياري)',
     'How much credit would you like to purchase' => 'الكمية من الرصيد التي أريد شراؤها',
     'I agree to the <a href=\'{url}\' target=\'_blank\'>terms & conditions</a> of StudentHub' => 'أنا أوافق على <a href=\'{url}\' target=\'_blank\'>شروط وأحكام</a> الموقع',
+    'I agree to the <a href=\'{url}\' target=\'_blank\'>terms & conditions</a>' => 'أنا أوافق على <a href=\'{url}\' target=\'_blank\'>شروط وأحكام</a> الموقع',
     'If you forgot your password you can' => 'إذا كنت قد نسيت كلمة المرور الخاصة بك يمكنك ',
     'Industry' => 'قطاع',
     'Interview Questions' => 'أسئلة المقابلة',
