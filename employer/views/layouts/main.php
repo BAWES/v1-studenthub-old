@@ -451,7 +451,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                                     <p>Buying credit allows you to post jobs quickly without having to go through payment processing.</p>
                                     
                                     <h4 style="margin-bottom:0;">Current Credit</h4>
-                                    <h2 style="margin-top:0;">0.000 KD</h2>
+                                    <h2 style="margin-top:0;"><?= Yii::$app->formatter->asDecimal(Yii::$app->user->identity->employer_credit, 3) ?> <?= Yii::t("employer", "KD") ?></h2>
                                     <a href="#" class="btn btn-success btn-block btn-lg">Buy Credit</a>
 
                             </div><!--.col-->
