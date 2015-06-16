@@ -40,12 +40,36 @@ class CreditController extends \yii\web\Controller {
      * Renders Employer Dashboard containing all jobs posted + link to create a new job
      */
     public function actionIndex() {
-        $jobs = Yii::$app->user->identity->jobs;
         
-        
+        if(Yii::$app->request->post("creditPurchase")){
+            $creditPurchaseAmount = (int) Yii::$app->request->post("creditPurchase");
+            $paymentMethod = (int) Yii::$app->request->post("paymentOption");
+            $termsAgreed = Yii::$app->request->post("terms", 0);
+            
+            
+            if(!$termsAgreed){
+                Yii::$app->session->setFlash('error', Yii::t("frontend", "Please agree to the terms and conditions"));
+            }else if($creditPurchaseAmount >= 10){
+                /**
+                 * Process credit purchase
+                 */
                 
-        return $this->render('index',[
-        ]);
+                if($paymentMethod == \common\models\PaymentType::TYPE_KNET){
+                    /**
+                     * Purchase Credit Using KNET
+                     */
+                    
+                    
+                    
+                }else{
+                    Yii::$app->session->setFlash('error', Yii::t("frontend", "Invalid payment method"));
+                }
+                
+                
+            }
+        }
+        
+        return $this->render('index');
     }
 
     
