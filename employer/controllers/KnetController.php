@@ -62,7 +62,7 @@ class KnetController extends Controller {
                 /**
                  * IF PAYMENT IS FOR JOB, process the job, otherwise no need
                  */
-                if($payment->job_id){
+                if($payment->job){
                     $note = "KNET Payment #".$payment->payment_id;
                     //$payment->job->processPayment(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
                 }else{
