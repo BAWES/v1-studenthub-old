@@ -5,7 +5,6 @@ namespace common\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
-use employer\models\Job;
 
 /**
  * This is the model class for table "knet_payment".
@@ -96,7 +95,7 @@ class KnetPayment extends \yii\db\ActiveRecord {
      * @return \yii\db\ActiveQuery 
      */
     public function getJob() {
-        return $this->hasOne(Job::className(), ['job_id' => 'job_id']);
+        return $this->hasOne(\employer\models\Job::className(), ['job_id' => 'job_id']);
     }
 
 }
