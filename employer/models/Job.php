@@ -128,7 +128,6 @@ class Job extends \common\models\Job {
          */
         $listingCost = $payment->payment_job_total_price_per_applicant * $payment->payment_job_num_applicants;
         
-        Yii::error("debug2", __METHOD__);
         
         /*
          * If there is no amount due for this job, process it as a credit payment
@@ -162,7 +161,7 @@ class Job extends \common\models\Job {
             
         
         
-        return false;
+        //return false;
     }
     
     
