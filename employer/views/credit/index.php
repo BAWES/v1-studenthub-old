@@ -77,7 +77,7 @@ $this->registerJs($js);
                 </div>
                 
                 <?= Html::submitButton(Yii::t('employer', 'Make Payment') , [
-                            'class' => 'btn btn-primary btn-block btn-ripple ',
+                            'class' => 'btn btn-primary btn-block btn-ripple disabled',
                             'id' => 'makePayment',
                             'style' => 'margin-top: 7px;',
                         ]) ?>
