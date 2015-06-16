@@ -64,7 +64,7 @@ class KnetController extends Controller {
                  */
                 if($payment->job_id){
                     $note = "KNET Payment #".$payment->payment_id;
-                    $payment->job->processPayment(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
+                    //$payment->job->processPayment(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
                 }else{
                     //payment not for job? still need to create payment n stuff and emailing but without processing
                 }
