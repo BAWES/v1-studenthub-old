@@ -58,7 +58,8 @@ class KnetController extends Controller {
              */
             if($result == "CAPTURED"){
                 
-
+                $redirectLink = Url::to(['knet/success'], true);
+                
                 /**
                  * IF PAYMENT IS FOR JOB, process the job
                  * If payment is for credit, process the credit
@@ -69,10 +70,11 @@ class KnetController extends Controller {
                     $payment->job->processPayment(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
                 }else{
                     //Payment was made by this employer for credit
-                    $payment->employer->processPayment(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
+                    $payment->employer->processCreditPurchase(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
+                    $redirectLink = Url::to(['knet/credit-payment-success'], true);
                 }
 
-                $redirectLink = Url::to(['knet/success'], true);
+                
             }else{
                 /**
                  * Transaction not approved by bank
