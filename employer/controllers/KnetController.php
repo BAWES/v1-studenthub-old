@@ -106,7 +106,6 @@ class KnetController extends Controller {
      * Error in knet payment for this job
      * Set flash error and redirect back to job step 4 for them to attempt payment again
      * @param int $id
-     * @throws NotFoundHttpException
      */
     public function actionJobPaymentError($id){
         Yii::$app->session->setFlash("error", 
@@ -119,10 +118,8 @@ class KnetController extends Controller {
     /**
      * Error in knet payment for buying credit
      * Set flash error and redirect back to credit purchase page
-     * @param int $id
-     * @throws NotFoundHttpException
      */
-    public function actionCreditPaymentError($id){
+    public function actionCreditPaymentError(){
         Yii::$app->session->setFlash("error", 
                     Yii::t('employer',
                             "There was an issue processing your payment, please contact us if you require assistance"));
