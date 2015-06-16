@@ -11,6 +11,13 @@ $this->title = Yii::t('employer', 'Post a Job Opening');
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('employer', 'Dashboard'), 'url' => ['dashboard/index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$js = "
+$('#makePayment').click(function(){
+    $(this).addClass('disabled');
+});
+";
+$this->registerJs($js);
 ?>
 
 <div class="panel">
@@ -84,6 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= Html::submitButton(Yii::t('employer', 'Make Payment') , [
                     'class' => 'btn btn-primary btn-block btn-ripple',
+                    'id' => 'makePayment',
                     'style' => 'margin-top: 7px;',
                 ]) ?>
             <?php ActiveForm::end(); ?>
