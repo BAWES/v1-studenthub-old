@@ -367,9 +367,9 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                 <!-- BEGIN USER LAYER -->
                 <div class="user-layer">
                     <ul class="nav nav-tabs nav-justified" role="tablist">
-                        <li class="active"><a href="#notifications" data-toggle="tab">Notifications <span class="badge">3</span></a></li>
+                        <li class="active"><a href="#notifications" data-toggle="tab"><?= Yii::t("frontend", "Notifications") ?> <span class="badge"><?= Yii::$app->formatter->asInteger(3) ?></span></a></li>
                         <li><a href="#credit" data-toggle="tab"><?= Yii::t("employer", "Credit") ?></a></li>
-                        <li><a href="#settings" data-toggle="tab">Settings</a></li>
+                        <li><a href="#settings" data-toggle="tab"><?= Yii::t("frontend", "Settings") ?></a></li>
                     </ul>
 
                     <div class="row no-gutters tab-content">
@@ -378,7 +378,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                             <div class="col-md-6 col-md-offset-3">
                                 <div class="row" style="margin-bottom:5px;">
                                     <div class="col-xs-10 col-xs-offset-1">
-                                        <a href="#" class="btn btn-success btn-block">Mark All as Read</a>
+                                        <a href="#" class="btn btn-success btn-block"><?= Yii::t("frontend", "Mark All as Read") ?></a>
                                     </div>
                                 </div>
                                 
@@ -463,13 +463,13 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                             <div class="col-md-6 col-md-offset-3">
 
                                 <div class="settings-panel" style="padding-top:0;">
-                                    <div class="legend">Notification Preferences</div>
+                                    <div class="legend"><?= Yii::t("frontend", "Notification Preferences") ?></div>
                                     <ul>
                                         <li>
                                             <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Daily as jobs are posted"><span class="filter-option pull-left">Daily as jobs are posted</span>&nbsp;<span class="caret"></span></button>
                                         </li>                                                    
                                     </ul>                                                   
-                                    <div class="legend">Account Information</div>
+                                    <div class="legend"><?= Yii::t("frontend", "Account Information") ?></div>
                                     <ul>
                                         <li>
                                             <a href="">Change Password </a>                                                                
