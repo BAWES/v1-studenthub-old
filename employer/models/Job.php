@@ -168,7 +168,7 @@ class Job extends \common\models\Job {
      * @return real the amount due
      */
     public function getAmountDue(){
-        $totalCredit = Yii::$app->user->identity->employer_credit;
+        $totalCredit = $this->employer->employer_credit;
         $amountDue = $this->listingCost - $totalCredit;
         if ($amountDue < 0){
             $amountDue = 0;
