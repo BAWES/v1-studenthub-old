@@ -31,14 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                 foreach($payments as $payment){
                 ?>
-                    
                     <tr>
                         <td><?= Yii::$app->formatter->asDate($payment->payment_datetime) ?></td>
                         <td><?= $this->params['isArabic']?$payment->paymentType->payment_type_name_ar:$payment->paymentType->payment_type_name_en ?></td>
-                        <td><a href="#"><?= Yii::$app->formatter->asInteger(10000, ['thousandSeparator' => ''], ['thousandSeparator' => '']) ?></a></td>
-                        <td><?= Yii::$app->formatter->asCurrency($payment->payment_total) ?></td>
+                        <td><a href="#"><?= Yii::$app->formatter->asInteger($payment->payment_id) ?></a></td>
+                        <td>
+                        <?= $payment->payment_total?Yii::$app->formatter->asDecimal($payment->payment_total, 3):Yii::$app->formatter->asDecimal(0, 3) ?>
+                        <?= Yii::t("employer", "KD") ?>
+                        </td>
                     </tr>
-                
                 <?php } ?>
                 
             </tbody>
