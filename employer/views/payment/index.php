@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use common\models\PaymentType;
 
 /* @var $this yii\web\View */
 /* @var $payments array */
@@ -21,10 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <table class="table table-bordered table-striped table-condensed">
             <thead>
                 <tr>
-                    <th style="text-align:center">Date</th>
-                    <th style="text-align:center">Type</th>
-                    <th style="text-align:center">Invoice #</th>										
-                    <th style="text-align:center">Amount</th>										
+                    <th style="text-align:center"><?= Yii::t("frontend", "Date") ?></th>
+                    <th style="text-align:center"><?= Yii::t("frontend", "Type") ?></th>
+                    <th style="text-align:center"><?= Yii::t("frontend", "Invoice #") ?></th>										
+                    <th style="text-align:center"><?= Yii::t("frontend", "Amount") ?></th>										
                 </tr>
             </thead>
             <tbody style="text-align:center;">
@@ -36,8 +37,26 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><?= $this->params['isArabic']?$payment->paymentType->payment_type_name_ar:$payment->paymentType->payment_type_name_en ?></td>
                         <td><a href="#"><?= Yii::$app->formatter->asInteger($payment->payment_id) ?></a></td>
                         <td>
-                        <?= $payment->payment_total?Yii::$app->formatter->asDecimal($payment->payment_total, 3):Yii::$app->formatter->asDecimal(0, 3) ?>
-                        <?= Yii::t("employer", "KD") ?>
+                            <?php 
+                            $paymentDisplay = $payment->payment_total?$payment->payment_total:0;
+                            /**
+                             * Show credit change on giveaway, refund, or credit purchase
+                             */
+                            switch($payment->payment_type_id){
+                                case PaymentType::TYPE_CREDIT_GIVEAWAY:
+                                    $paymentDisplay = $payment->payment_employer_credit_change;
+                                    break;
+                                case PaymentType::TYPE_CREDIT_REFUND:
+                                    $paymentDisplay = $payment->payment_employer_credit_change;
+                                    break;
+                                case PaymentType::TYPE_CREDIT:
+                                    $paymentDisplay = $payment->payment_employer_credit_change * -1;
+                                    break;
+                            }
+                            
+                            ?>
+                            <?= Yii::$app->formatter->asDecimal($paymentDisplay, 3) ?>
+                            <?= Yii::t("employer", "KD") ?>
                         </td>
                     </tr>
                 <?php } ?>
