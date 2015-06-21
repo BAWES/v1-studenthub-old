@@ -205,6 +205,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                 } else {
                     $menuItems[] = ['label' => Yii::t('employer', 'Dashboard'), 'url' => ['/dashboard/index']];
                     $menuItems[] = ['label' => Yii::t('employer', 'Buy Credit'), 'url' => ['/credit/index']];
+                    $menuItems[] = ['label' => Yii::t('employer', 'Payment History'), 'url' => ['/payment/index']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/site/contact']];
                     $menuItems[] = [
                         'label' => Yii::t('frontend', 'Logout'),
