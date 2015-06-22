@@ -41,7 +41,7 @@ $this->registerJs($js);
                                     <h4><?= Yii::t("frontend", "Invoice #") ?><?= $payment->payment_id ?></h4>
                                     <h5><?= Yii::$app->formatter->asDate($payment->payment_datetime) ?></h5>
                                     <p>
-                                        <?= Yii::$app->formatter->asNtext($payment->payment_note) ?>
+                                        <?= $payment->payment_note?Yii::$app->formatter->asNtext($payment->payment_note):"" ?>
                                     </p>
                             </div><!--.col-md-6-->
                     </div><!--.row-->
