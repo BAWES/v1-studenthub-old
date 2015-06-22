@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Credit' => 'الرصيد',
+    'Payment History' => 'سجل الدفعات',
     'A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub' => 'لن يتم الموافقة على فرصة عملك إذا كان لديه عناوين تطبيق أو بريد إلكتروني في الوصف. وينبغي أن يقدم جميع الطلاب لهذه الوضيفة من خلال موقع StudentHub',
     'A short description about the job' => 'وصف قصير عن العمل',
     'About the Company' => 'عن الشركة',
@@ -32,6 +32,7 @@ return [
     'Clubs' => 'النوادي',
     'Compensation' => 'التعويض',
     'Cost Per Applicant' => 'التكلفة لكل متقدم',
+    'Credit' => 'الرصيد',
     'Current Credit' => 'الرصيد الحالي',
     'Dashboard' => 'لوحه التحكم',
     'Decide carefully! You may not be able to change these questions without contacting us once you publish your job posting' => 'لا يمكن تغيير هذه الأسئلة دون الاتصال بنا بعد نشر وظيفتك',
@@ -58,8 +59,8 @@ return [
     'Graduation Year' => 'سنة التخرج',
     'Have a question for the applicants? (optional)' => 'هل لديك سؤال للمتقدمين؟ (اختياري)',
     'How much credit would you like to purchase' => 'الكمية من الرصيد التي أريد شراؤها',
-    'I agree to the <a href=\'{url}\' target=\'_blank\'>terms & conditions</a> of StudentHub' => 'أنا أوافق على <a href=\'{url}\' target=\'_blank\'>شروط وأحكام</a> الموقع',
     'I agree to the <a href=\'{url}\' target=\'_blank\'>terms & conditions</a>' => 'أنا أوافق على <a href=\'{url}\' target=\'_blank\'>شروط وأحكام</a> الموقع',
+    'I agree to the <a href=\'{url}\' target=\'_blank\'>terms & conditions</a> of StudentHub' => 'أنا أوافق على <a href=\'{url}\' target=\'_blank\'>شروط وأحكام</a> الموقع',
     'If you forgot your password you can' => 'إذا كنت قد نسيت كلمة المرور الخاصة بك يمكنك ',
     'Industry' => 'قطاع',
     'Interview Questions' => 'أسئلة المقابلة',

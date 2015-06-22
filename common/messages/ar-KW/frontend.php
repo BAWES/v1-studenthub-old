@@ -17,10 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Account Information' => 'معلومات الحساب',
-    'Mark All as Read' => 'تعيين كافة الإشعارات مقرؤة',
-    'Notification Preferences' => 'إعدادات الإشعار',
+    'Amount' => 'المبلغ',
+    'Date' => 'التاريخ',
+    'Invoice #' => 'الفاتورة #',
+    'Type' => 'النوع',
     'AND MORE' => 'و اكثر',
+    'Account Information' => 'معلومات الحساب',
     'All Industries' => 'كافة القطاعات',
     'All Job Types' => 'جميع أنواع الوظائف',
     'Any Compensation' => 'أي تعويض',
@@ -64,8 +66,10 @@ return [
     'Logout' => 'تسجيل الخروج',
     'MAJOR' => 'تخصص',
     'Major' => 'تخصص',
+    'Mark All as Read' => 'تعيين كافة الإشعارات مقرؤة',
     'NATIONALITY' => 'جنسية',
     'Nationality' => 'جنسية',
+    'Notification Preferences' => 'إعدادات الإشعار',
     'Notifications' => 'الإشعارات',
     'Paid Jobs' => 'الوظائف ذات الأجور',
     'Payment' => 'دفع',
