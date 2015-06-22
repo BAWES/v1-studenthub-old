@@ -5,7 +5,8 @@ use common\models\PaymentType;
 /* @var $this yii\web\View */
 /* @var $payment common\models\Payment */
 
-$this->title = Yii::t("employer", 'Invoice');
+$this->title = Yii::t("employer", 'Invoice #{invoiceNum, number}', ['invoiceNum' => $payment->payment_id]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t("employer", 'Payment History'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -79,12 +80,16 @@ $this->registerJs($js);
                                     <tr>
                                             <td colspan="2"></td>
                                             <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>"><strong><?= Yii::t("frontend", "Credit Discount") ?></strong></td>
-                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">6.000</td>
+                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">
+                                                <?= $payment->payment_employer_credit_change?Yii::$app->formatter->asDecimal($payment->payment_employer_credit_change, 3):Yii::$app->formatter->asDecimal(0, 3); ?>
+                                            </td>
                                     </tr>
                                     <tr>
                                             <td colspan="2"></td>
                                             <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?> active"><strong><?= Yii::t("frontend", "Grand Total") ?></strong></td>
-                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?> active">6.500</td>
+                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?> active">
+                                                <?= $payment->payment_total?Yii::$app->formatter->asDecimal($payment->payment_total, 3):Yii::$app->formatter->asDecimal(0, 3); ?>
+                                            </td>
                                     </tr>                                                                                
                             </tbody>
                     </table>
