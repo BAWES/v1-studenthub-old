@@ -48,7 +48,7 @@ $this->registerJs($js);
                     <table class="table">
                             <thead>
                                     <tr>
-                                            <th class="<?= $this->params['isArabic']?'text-right':'text-left' ?>"><?= Yii::t("frontend", "Product") ?></th>
+                                            <th class="<?= $this->params['isArabic']?'text-right':'text-left' ?>"><?= Yii::t("frontend", "Item") ?></th>
                                             <th class="<?= $this->params['isArabic']?'text-left':'text-right' ?>"><?= Yii::t("frontend", "Quantity") ?></th>
                                             <th class="<?= $this->params['isArabic']?'text-left':'text-right' ?>"><?= Yii::t("frontend", "Cost") ?></th>
                                             <th class="<?= $this->params['isArabic']?'text-left':'text-right' ?>"><?= Yii::t("frontend", "Total") ?></th>
@@ -57,20 +57,31 @@ $this->registerJs($js);
                             <tbody>
                                     <tr>
                                             <td>
-                                                Job Posting                                                                                                
+                                                <?= Yii::t("frontend", "Job Posting") ?>
                                             </td>
-                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">10</td>
-                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">0.750</td>
-                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">7.500</td>
+                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">
+                                                <?= Yii::$app->formatter->asInteger($payment->payment_job_num_applicants) ?>
+                                            </td>
+                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">
+                                                <?= Yii::$app->formatter->asDecimal($payment->payment_job_initial_price_per_applicant, 3) ?>
+                                            </td>
+                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">
+                                                <?= Yii::$app->formatter->asDecimal($payment->payment_job_num_applicants*$payment->payment_job_initial_price_per_applicant, 3) ?>
+                                            </td>
                                     </tr>
                                     <tr>
                                             <td>
-                                                Premium Filter (X2)
-                                                <small></small>
+                                                <?= Yii::t("frontend", "Premium Filters") ?>
                                             </td>
-                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">10</td>
-                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">0.500</td>
-                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">5.000</td>
+                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">
+                                                <?= Yii::$app->formatter->asInteger($payment->payment_job_num_applicants) ?>
+                                            </td>
+                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">
+                                                0.500
+                                            </td>
+                                            <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">
+                                                5.000
+                                            </td>
                                     </tr>										
                                     <tr>
                                             <td colspan="2"></td>

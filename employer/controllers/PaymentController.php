@@ -60,12 +60,22 @@ class PaymentController extends \yii\web\Controller {
      * @param integer $id
      */
     public function actionView($id) {
-        
         $payment = $this->findModel($id);
         
-        return $this->render('view', [
-            'payment' => $payment,
-        ]);
+        /**
+         * Render the appropriate invoice based on scenario
+         * If the payment is for a job, show job details
+         * Otherwise just show credit movement
+         */
+        if($payment->job_id){
+            return $this->render('job-invoice', [
+                'payment' => $payment,
+            ]);
+        }else{
+            return $this->render('reg-invoice', [
+                'payment' => $payment,
+            ]);
+        }
     }
 
     /**

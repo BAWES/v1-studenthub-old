@@ -21,7 +21,7 @@ return [
     'Credit Discount' => 'خصم رصيد',
     'Grand Total' => 'المجموع الإجمالي',
     'Print' => 'طباعة',
-    'Product' => 'المنتج',
+    'Item' => 'المنتج',
     'Quantity' => 'الكمية',
     'Sub Total' => 'حاصل الجمع',
     'Total' => 'مجموع',
