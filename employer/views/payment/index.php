@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <tr>
                         <td><?= Yii::$app->formatter->asDate($payment->payment_datetime) ?></td>
                         <td><?= $this->params['isArabic']?$payment->paymentType->payment_type_name_ar:$payment->paymentType->payment_type_name_en ?></td>
-                        <td><a href="#"><?= Yii::$app->formatter->asInteger($payment->payment_id) ?></a></td>
+                        <td><a href="<?= Url::to(['payment/view', 'id'=>$payment->payment_id]) ?>"><?= Yii::$app->formatter->asInteger($payment->payment_id) ?></a></td>
                         <td>
                             <?php 
                             $paymentDisplay = $payment->payment_total?$payment->payment_total:0;

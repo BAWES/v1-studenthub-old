@@ -54,6 +54,19 @@ class PaymentController extends \yii\web\Controller {
             'payments' => $payments,
         ]);
     }
+    
+    /**
+     * Display an invoice belonging to this Employer
+     * @param integer $id
+     */
+    public function actionView($id) {
+        
+        $payment = $this->findModel($id);
+        
+        return $this->render('view', [
+            'payment' => $payment,
+        ]);
+    }
 
     /**
      * Finds the Payment model based on its primary key value.

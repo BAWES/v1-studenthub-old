@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Payment History' => 'سجل الدفعات',
+    'Invoice' => 'الفاتورة',
     'A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub' => 'لن يتم الموافقة على فرصة عملك إذا كان لديه عناوين تطبيق أو بريد إلكتروني في الوصف. وينبغي أن يقدم جميع الطلاب لهذه الوضيفة من خلال موقع StudentHub',
     'A short description about the job' => 'وصف قصير عن العمل',
     'About the Company' => 'عن الشركة',
@@ -93,6 +93,7 @@ return [
     'Order Summary' => 'ملخص الطلب',
     'Other Qualifications' => 'المؤهلات الأخرى',
     'Password reset link sent, please check your email for further instructions.' => 'تم ارسال الرابط الى إعادة تعيين كلمة المرور، يرجى التحقق من بريدك الالكتروني لمزيد من التعليمات.',
+    'Payment History' => 'سجل الدفعات',
     'Payment Method' => 'طريقة الدفع',
     'Pending' => 'انتظار',
     'Please choose your new password' => 'يرجى اختيار كلمة مرور جديدة',
