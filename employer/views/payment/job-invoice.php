@@ -112,6 +112,19 @@ $this->registerJs($js);
                                     </tr>                                                                                
                             </tbody>
                     </table>
+                
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-6 col-md-5 col-md-offset-7">
+                        <div style="margin-bottom:0; margin-top:2em" class="alert alert-primary" role="alert"><strong><?= Yii::t("frontend", "Credit Before") ?></strong> 
+                            <?= $payment->payment_employer_credit_before ? Yii::$app->formatter->asDecimal($payment->payment_employer_credit_before, 3) : Yii::$app->formatter->asDecimal(0, 3); ?> 
+                            <?= Yii::t("employer", "KD") ?>
+                        </div>
+                        <div class="alert alert-success" role="alert"><strong><?= Yii::t("frontend", "Credit After") ?></strong> 
+                            <?= $payment->payment_employer_credit_after ? Yii::$app->formatter->asDecimal($payment->payment_employer_credit_after, 3) : Yii::$app->formatter->asDecimal(0, 3); ?> 
+                            <?= Yii::t("employer", "KD") ?>
+                        </div>
+                    </div>
+                </div>
             </div><!--.invoice-body-->
             <div class="invoice-footer"></div><!--.invoice-footer-->
         </div>
