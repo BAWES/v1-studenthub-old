@@ -59,7 +59,11 @@ $this->registerJs($js);
                     <tbody>
                         <tr>
                             <td>
-                                <?= Yii::t("frontend", "Credit Purchase") ?>
+                                <?php if($payment->payment_type_id == \common\models\PaymentType::TYPE_KNET){ ?>
+                                    <?= Yii::t("frontend", "Credit Purchase") ?>
+                                <?php }else{ ?>
+                                    <?= $this->params['isArabic'] ? $payment->paymentType->payment_type_name_ar : $payment->paymentType->payment_type_name_en ?>
+                                <?php } ?>
                             </td>
                             <td class="<?= $this->params['isArabic'] ? 'text-left' : 'text-right' ?>">
                                 <?= $payment->payment_employer_credit_change ? Yii::$app->formatter->asDecimal($payment->payment_employer_credit_change, 3) : Yii::$app->formatter->asDecimal(0, 3); ?> 
