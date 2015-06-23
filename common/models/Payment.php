@@ -199,7 +199,7 @@ class Payment extends \yii\db\ActiveRecord {
                     'html' => "employer/$invoiceType-html",
                         ], [
                     'employer' => $employer,
-                    'payment' => $this,
+                    'payment' => static::findOne($this->payment_id),
                 ])
                 ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                 ->setTo($employer->employer_email)
@@ -214,7 +214,7 @@ class Payment extends \yii\db\ActiveRecord {
                     'html' => "employer/$invoiceType-ar-html",
                         ], [
                     'employer' => $employer,
-                    'payment' => $this,
+                    'payment' => static::findOne($this->payment_id),
                 ])
                 ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                 ->setTo($employer->employer_email)
