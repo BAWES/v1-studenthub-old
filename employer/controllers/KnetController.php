@@ -60,12 +60,16 @@ class KnetController extends Controller {
                 
                 $redirectLink = Url::to(['knet/success'], true);
                 
+                $note = "KNET \n"
+                    . "Track ID #".$payment->payment_trackid."\n"
+                    . "Reference ID #".$payment->payment_ref."\n"
+                    . "Result ".$payment->payment_result;
+                
                 /**
                  * IF PAYMENT IS FOR JOB, process the job
                  * If payment is for credit, process the credit
                  * He should always get an invoice for his purchase
                  */
-                $note = "KNET Payment #".$payment->payment_id;
                 if($payment->job_id){
                     $payment->job->processPayment(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
                 }else{
