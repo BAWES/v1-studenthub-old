@@ -73,7 +73,7 @@ class PaymentController extends \yii\web\Controller {
             ]);
         }else{
             return $this->render('reg-invoice', [
-                'paymenactionTestt' => $payment,
+                'payment' => $payment,
             ]);
         }
     }
