@@ -74,8 +74,8 @@ class KnetController extends Controller {
                     $payment->job->processPayment(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
                 }else{
                     //Payment was made by this employer for credit
-                    $payment->employer->processCreditPurchase(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
-                    $redirectLink = Url::to(['knet/credit-payment-success'], true);
+                    $model = $payment->employer->processCreditPurchase(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
+                    $redirectLink = Url::to(['knet/credit-payment-success', 'id'=>$model->payment_id], true);
                 }
 
                 
@@ -123,14 +123,16 @@ class KnetController extends Controller {
     
     /**
      * Successful Payment for Credit
-     * Renders Thank you page after payment
+     * Renders Thank you message after payment
+     * and sends to the invoice page
+     * @param int $id the payment ID
      */
-    public function actionCreditPaymentSuccess(){
+    public function actionCreditPaymentSuccess($id){
         Yii::$app->session->setFlash("success", 
                     Yii::t('employer',
                             "Thanks for purchasing credit! You may now use them for faster job posting"));
         
-        return $this->redirect(['credit/index']);
+        return $this->redirect(['payment/view', 'id' => $id]);
     }
     
     /**
