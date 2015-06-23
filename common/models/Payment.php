@@ -166,6 +166,10 @@ class Payment extends \yii\db\ActiveRecord {
                 Yii::info($message, __METHOD__);
             }
             
+            /**
+             * Send the Invoice by Email
+             */
+            $this->emailInvoice();
         }
     }
     
