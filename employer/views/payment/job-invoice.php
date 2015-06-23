@@ -38,7 +38,7 @@ $this->registerJs($js);
                                     <img src="<?= Url::to('@web/images/sh-logo.jpg') ?>" alt="" style="width: 300px; margin-top:-30px; margin-left:-20px">
                             </div><!--.col-md-6-->
                             <div class="col-md-6 col-sm-6 invoice-id" style="text-align:<?= $this->params['isArabic']?'left':'right' ?>">
-                                    <h4><?= Yii::t("frontend", "Invoice #") ?><?= $payment->payment_id ?></h4>
+                                    <h4><?= $this->title ?></h4>
                                     <h5><?= Yii::$app->formatter->asDate($payment->payment_datetime) ?></h5>
                                     <p>
                                         <?= $payment->payment_note?Yii::$app->formatter->asNtext($payment->payment_note):"" ?>
