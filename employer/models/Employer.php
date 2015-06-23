@@ -55,7 +55,7 @@ class Employer extends \common\models\Employer {
                                     ], [
                                 'employer' => $this
                             ])
-                            ->setFrom(['contact@studenthub.co' => 'StudentHub'])
+                            ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                             ->setTo($this->employer_email)
                             ->setSubject('[StudentHub] Email Verification')
                             ->send();
