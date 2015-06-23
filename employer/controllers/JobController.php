@@ -365,9 +365,9 @@ class JobController extends Controller {
                     /**
                      * END KNET PAYMENT PROCESSING
                      */
-                }else if($model->processPayment(\common\models\PaymentType::TYPE_CREDIT)){
+                }else if($paymentModel = $model->processPayment(\common\models\PaymentType::TYPE_CREDIT)){
                     //Redirect to thank you page
-                    return $this->redirect(['success']);
+                    return $this->redirect(['success', 'id' => $paymentModel->payment_id]);
                 }else{
                     /**
                      * Error in processing payment
@@ -391,11 +391,13 @@ class JobController extends Controller {
     /**
      * Successful Payment
      * Renders Thank you page after payment
+     * @param integer $id
      */
-    public function actionSuccess(){
-        return $this->render('thanks');
+    public function actionSuccess($id){
+        return $this->render('thanks', [
+            'paymentId' => $id,
+        ]);
     }
-    
     
 
     /**

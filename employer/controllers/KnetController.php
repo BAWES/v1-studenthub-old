@@ -58,8 +58,6 @@ class KnetController extends Controller {
              */
             if($result == "CAPTURED"){
                 
-                $redirectLink = Url::to(['knet/success'], true);
-                
                 $note = "KNET \n"
                     . "Track ID #".$payment->payment_trackid."\n"
                     . "Reference ID #".$payment->payment_ref."\n"
@@ -71,11 +69,12 @@ class KnetController extends Controller {
                  * He should always get an invoice for his purchase
                  */
                 if($payment->job_id){
-                    $payment->job->processPayment(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
+                    $model = $payment->job->processPayment(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
+                    $redirectLink = Url::to(['knet/success', 'id' => $model->payment_id], true);
                 }else{
                     //Payment was made by this employer for credit
                     $model = $payment->employer->processCreditPurchase(\common\models\PaymentType::TYPE_KNET, $payment->payment_amount, $note);
-                    $redirectLink = Url::to(['knet/credit-payment-success', 'id'=>$model->payment_id], true);
+                    $redirectLink = Url::to(['knet/credit-payment-success', 'id' => $model->payment_id], true);
                 }
 
                 
@@ -102,16 +101,17 @@ class KnetController extends Controller {
     /**
      * Successful Payment
      * Renders Thank you page after payment
+     * @param integer $id the payment invoice id
      */
-    public function actionSuccess(){
-        return $this->redirect(['job/success']);
+    public function actionSuccess($id){
+        return $this->redirect(['job/success', 'id' => $id]);
     }
     
     
     /**
      * Error in knet payment for this job
      * Set flash error and redirect back to job step 4 for them to attempt payment again
-     * @param int $id
+     * @param integer $id the payment invoice id
      */
     public function actionJobPaymentError($id){
         Yii::$app->session->setFlash("error", 

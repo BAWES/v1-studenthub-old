@@ -108,7 +108,7 @@ class Job extends \common\models\Job {
      * @param string $paymentType eg:\common\models\PaymentType::TYPE_CREDIT
      * @param double $amountPaid the amount customer paid in cash/gateway
      * @param string $note note to be added to this payment
-     * @return boolean whether the payment processed successfully or not
+     * @return \common\models\Payment on successful payment - return false if unsuccessful
      */
     public function processPayment($paymentType = \common\models\PaymentType::TYPE_CREDIT, $amountPaid = 0, $note = ""){
         $payment = new \common\models\Payment();
@@ -139,7 +139,7 @@ class Job extends \common\models\Job {
             $payment->payment_employer_credit_change = $listingCost * -1;
             
             if($payment->save()){
-                return true;
+                return $payment;
             }else{
                 Yii::error(print_r($payment->errors, true), __METHOD__);
             }
@@ -152,7 +152,7 @@ class Job extends \common\models\Job {
             $payment->payment_total = $amountPaid;
 
             if($payment->save()){
-                return true;
+                return $payment;
             }else{
                 Yii::error(print_r($payment->errors, true), __METHOD__);
             }

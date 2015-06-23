@@ -2,6 +2,8 @@
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
+/* @var $paymentId int */
+
 $this->title = Yii::t('register', 'Thank You!');
 $this->params['breadcrumbs'][] = Yii::t('register', 'Thank You!');
 ?>
@@ -15,6 +17,9 @@ $this->params['breadcrumbs'][] = Yii::t('register', 'Thank You!');
             <?= Yii::t('employer', 'Your post will revised and we will notify you once it is posted.') ?>
         </p>
 
+        <a href="<?= Url::to(['payment/view', 'id' => $paymentId]) ?>" class="btn btn-lg btn-success btn-ripple">
+            <?= Yii::t('employer', 'View Invoice') ?>
+        </a>
         <a href="<?= Url::to(['dashboard/index', '#' => 'tab_pendingJobs']) ?>" class="btn btn-lg btn-success btn-ripple">
             <?= Yii::t('employer', 'Return to Dashboard') ?>
         </a>
