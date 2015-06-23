@@ -193,7 +193,6 @@ class Payment extends \yii\db\ActiveRecord {
             //Send English Email
             return Yii::$app->mailer->compose([
                     'html' => "employer/$invoiceType-html",
-                    'text' => "employer/$invoiceType-text",
                         ], [
                     'employer' => $employer,
                     'payment' => $this,
@@ -209,7 +208,6 @@ class Payment extends \yii\db\ActiveRecord {
             //Send Arabic Email
             return Yii::$app->mailer->compose([
                     'html' => "employer/$invoiceType-ar-html",
-                    'text' => "employer/$invoiceType-ar-text",
                         ], [
                     'employer' => $employer,
                     'payment' => $this,
