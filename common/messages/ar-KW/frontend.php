@@ -17,10 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Credit After' => 'الرصيد بعد',
-    'Credit Before' => 'الرصيد قبل',
-    'Job Posting' => 'عرض عمل',
-    'Premium Filters ({0})' => 'فلاتر متميزة ({0})',
+    'Credit Purchase' => 'شراء رصيد',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'All Industries' => 'كافة القطاعات',
@@ -36,6 +33,8 @@ return [
     'Contact' => 'إتصل بنا',
     'Cost' => 'تكلفة',
     'Create an account and build your CV' => 'إنشاء حساب وبناء سيرتك الذاتية',
+    'Credit After' => 'الرصيد بعد',
+    'Credit Before' => 'الرصيد قبل',
     'Credit Discount' => 'خصم رصيد',
     'Current GPA' => 'المعدل الحالي',
     'DEGREE' => 'شهادة',
@@ -65,6 +64,7 @@ return [
     'Invalid payment method' => 'طريقة الدفع غير صالحة',
     'Invoice #' => 'الفاتورة #',
     'Item' => 'المنتج',
+    'Job Posting' => 'عرض عمل',
     'Job Type' => 'نوع العمل',
     'LANGUAGE' => 'لغة',
     'Languages Spoken' => 'اللغات',
@@ -85,6 +85,7 @@ return [
     'Please upload a photo of your university id card' => 'يرجى تحميل صورة من بطاقة الهوية جامعتك',
     'Please use your university email eg: {emailName}@{universityDomain}' => 'الرجاء استخدام البريد الإلكتروني الجامعي الخاص بك على سبيل المثال: {emailName}@{universityDomain}',
     'Positions Available' => 'الوظائف المتاحة',
+    'Premium Filters ({0})' => 'فلاتر متميزة ({0})',
     'Print' => 'طباعة',
     'Quantity' => 'الكمية',
     'Register' => 'تسجيل',
