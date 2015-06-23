@@ -837,6 +837,24 @@ use yii\helpers\Url;
                 line-height: 125%;
                 margin-left: 10px;
             }
+            
+            /***
+            Invoice css
+            ***/
+            table.thead td{
+                font-weight: bold;
+                background: #f2f2f2;
+                padding: 5px;
+            }
+            table.thead td.expander{
+                padding: 0px 0px 5px!important;
+            }
+            table.padded td{
+                padding: 5px;
+            }
+            table.padded td.expander{
+                padding: 0px 0px 5px!important;
+            }
 
         </style>
         <?php $this->head() ?>
