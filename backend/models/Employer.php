@@ -24,7 +24,7 @@ class Employer extends \common\models\Employer {
         $payment->scenario = "giveaway"; //To validate that change can be no less than 1
         $payment->employer_id = $this->employer_id;
         $payment->payment_type_id = \common\models\PaymentType::TYPE_CREDIT_REFUND;
-        $payment->payment_note = "[Refund from $adminName] Reason: $reason";
+        $payment->payment_note = "Refund from $adminName - Reason: $reason";
         $payment->payment_employer_credit_change = $amount;
         
         //Validate before saving to make sure the credit-change is not zero or negative
@@ -52,7 +52,7 @@ class Employer extends \common\models\Employer {
         $payment->scenario = "giveaway"; //To validate that change can be no less than 1
         $payment->employer_id = $this->employer_id;
         $payment->payment_type_id = \common\models\PaymentType::TYPE_CREDIT_GIVEAWAY;
-        $payment->payment_note = "[Gift] from $adminName";
+        $payment->payment_note = "Gift from $adminName";
         $payment->payment_employer_credit_change = $amount;
         
         //Validate before saving to make sure the credit-change is not zero or negative
