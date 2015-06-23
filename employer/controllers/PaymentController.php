@@ -77,6 +77,11 @@ class PaymentController extends \yii\web\Controller {
             ]);
         }
     }
+    
+    public function actionTest(){
+        $payment = $this->findModel(24);
+        $payment->emailInvoice();
+    }
 
     /**
      * Finds the Payment model based on its primary key value.

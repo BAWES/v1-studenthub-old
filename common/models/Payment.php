@@ -168,6 +168,59 @@ class Payment extends \yii\db\ActiveRecord {
             
         }
     }
+    
+    /**
+     * Sends an invoice by email to the employer it belongs to
+     * Different invoice based on whether its for a job or not
+     * In the Employers current language preference
+     */
+    public function emailInvoice(){        
+        $employer = $this->employer;
+        
+        /**
+         * If Payment is for a job, show a different type of invoice
+         */
+        $invoiceType = "reg-invoice";
+        if($this->job_id){
+            $invoiceType = "job-invoice";
+        }
+        
+        
+        if($employer->employer_language_pref == "en-US"){
+            //Set language based on preference stored in DB
+            Yii::$app->view->params['isArabic'] = false;
+            
+            //Send English Email
+            return Yii::$app->mailer->compose([
+                    'html' => "employer/$invoiceType-html",
+                    'text' => "employer/$invoiceType-text",
+                        ], [
+                    'employer' => $employer,
+                    'payment' => $this,
+                ])
+                ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                ->setTo($employer->employer_email)
+                ->setSubject('[StudentHub] Invoice #'.$this->payment_id)
+                ->send();
+        }else{
+            //Set language based on preference stored in DB
+            Yii::$app->view->params['isArabic'] = true;
+            
+            //Send Arabic Email
+            return Yii::$app->mailer->compose([
+                    'html' => "employer/$invoiceType-ar-html",
+                    'text' => "employer/$invoiceType-ar-text",
+                        ], [
+                    'employer' => $employer,
+                    'payment' => $this,
+                ])
+                ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                ->setTo($employer->employer_email)
+                ->setSubject('[StudentHub] فاتورة #'.Yii::$app->formatter->asInteger($this->payment_id))
+                ->send();
+        }
+        
+    }
 
     /**
      * @return \yii\db\ActiveQuery
