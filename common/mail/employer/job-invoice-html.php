@@ -7,7 +7,7 @@
     <td>
         <h1>Hi, <?= $employer->employer_contact_firstname ?></h1>
         <p class="lead">Thanks for being a part of <strong>StudentHub</strong>.</p>
-        <p>The following is your recent invoice.</p>
+        <p>Invoice #<?= $payment->payment_id ?> <br/> <?= Yii::$app->formatter->asDate($payment->payment_datetime) ?></p>
         <p>
             <?= $payment->payment_note?Yii::$app->formatter->asNtext($payment->payment_note):"" ?>
         </p>
@@ -33,36 +33,77 @@
                         </table>
                         <table class="padded">
                             <tbody><tr>
-                                    <td class="six">Hippy Sunglasses</td>
-                                    <td class="three" style="text-align:right;">1</td>
-                                    <td class="three" style="text-align:right;">$99</td>
+                                    <td class="six">
+                                        Job Posting
+                                    </td>
+                                    <td class="three" style="text-align:right;">
+                                        <?= Yii::$app->formatter->asInteger($payment->payment_job_num_applicants) ?>
+                                    </td>
+                                    <td class="three" style="text-align:right;">
+                                        <?= Yii::$app->formatter->asDecimal($payment->payment_job_num_applicants*$payment->payment_job_initial_price_per_applicant, 3) ?> KD
+                                    </td>
                                     <td class="expander"></td>
                                 </tr>
                             </tbody>
                         </table>
+                        
+                        <?php if($payment->payment_job_num_filters > 0){ ?>
                         <table class="padded">
                             <tbody><tr>
-                                    <td class="six">Beard Oil</td>
-                                    <td class="three" style="text-align:right;">2</td>
-                                    <td class="three" style="text-align:right;">$50</td>
+                                    <td class="six">
+                                        Premium Filters (<?= $payment->payment_job_num_filters ?>)
+                                    </td>
+                                    <td class="three" style="text-align:right;">
+                                        <?= Yii::$app->formatter->asInteger($payment->payment_job_num_applicants) ?>
+                                    </td>
+                                    <td class="three" style="text-align:right;">
+                                        <?= Yii::$app->formatter->asDecimal($payment->payment_job_num_applicants*($payment->payment_job_filter_price_per_applicant*$payment->payment_job_num_filters), 3) ?> KD
+                                    </td>
                                     <td class="expander"></td>
                                 </tr>
                             </tbody>
                         </table>
-                        <table class="padded">
-                            <tbody><tr>
-                                    <td class="six">Trouser straps</td>
-                                    <td class="three" style="text-align:right;">5</td>
-                                    <td class="three" style="text-align:right;">$40</td>
-                                    <td class="expander"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <?php } ?>
+                        
                         <table class="padded">
                             <tbody><tr>
                                     <td class="six"></td>
-                                    <td class="three" style="text-align:right;">Total</td>
-                                    <td class="three" style="text-align:right;">$189</td>
+                                    <td class="three" style="text-align:right;">
+                                        Sub Total
+                                    </td>
+                                    <td class="three" style="text-align:right;">
+                                        <?= Yii::$app->formatter->asDecimal($payment->payment_job_total_price_per_applicant*$payment->payment_job_num_applicants, 3) ?> KD
+                                    </td>
+                                    <td class="expander"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <table class="padded">
+                            <tbody><tr>
+                                    <td class="six"></td>
+                                    <td class="three" style="text-align:right;">
+                                        Credit Discount
+                                    </td>
+                                    <td class="three" style="text-align:right;">
+                                        <?= $payment->payment_employer_credit_change?Yii::$app->formatter->asDecimal($payment->payment_employer_credit_change, 3):Yii::$app->formatter->asDecimal(0, 3); ?> KD
+                                    </td>
+                                    <td class="expander"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <table class="padded">
+                            <tbody><tr>
+                                    <td class="six"></td>
+                                    <td class="three" style="text-align:right;">
+                                        <b>Grand Total</b>
+                                    </td>
+                                    <td class="three" style="text-align:right;">
+                                        <b>
+                                            <?= $payment->payment_total?Yii::$app->formatter->asDecimal($payment->payment_total, 3):Yii::$app->formatter->asDecimal(0, 3); ?> KD
+                                        </b>
+                                    </td>
                                     <td class="expander"></td>
                                 </tr>
                             </tbody>

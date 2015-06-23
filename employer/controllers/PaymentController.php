@@ -79,7 +79,7 @@ class PaymentController extends \yii\web\Controller {
     }
     
     public function actionTest(){
-        $payment = $this->findModel(24);
+        $payment = $this->findModel(23);
         $payment->emailInvoice();
     }
 

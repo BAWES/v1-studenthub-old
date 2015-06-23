@@ -7,7 +7,7 @@
     <td>
         <h1>Hi, <?= $employer->employer_contact_firstname ?></h1>
         <p class="lead">Thanks for being a part of <strong>StudentHub</strong>.</p>
-        <p>The following is your recent invoice.</p>
+        <p>Invoice #<?= $payment->payment_id ?> <br/> <?= Yii::$app->formatter->asDate($payment->payment_datetime) ?></p>
         <p>
             <?= $payment->payment_note?Yii::$app->formatter->asNtext($payment->payment_note):"" ?>
         </p>
