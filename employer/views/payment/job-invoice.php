@@ -66,10 +66,12 @@ $this->registerJs($js);
                                                 <?= Yii::$app->formatter->asInteger($payment->payment_job_num_applicants) ?>
                                             </td>
                                             <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">
-                                                <?= Yii::$app->formatter->asDecimal($payment->payment_job_initial_price_per_applicant, 3) ?>
+                                                <?= Yii::$app->formatter->asDecimal($payment->payment_job_initial_price_per_applicant, 3) ?> 
+                                                <?= Yii::t("employer", "KD") ?>
                                             </td>
                                             <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">
-                                                <?= Yii::$app->formatter->asDecimal($payment->payment_job_num_applicants*$payment->payment_job_initial_price_per_applicant, 3) ?>
+                                                <?= Yii::$app->formatter->asDecimal($payment->payment_job_num_applicants*$payment->payment_job_initial_price_per_applicant, 3) ?> 
+                                                <?= Yii::t("employer", "KD") ?>
                                             </td>
                                     </tr>
                                     
@@ -82,10 +84,12 @@ $this->registerJs($js);
                                                 <?= Yii::$app->formatter->asInteger($payment->payment_job_num_applicants) ?>
                                             </td>
                                             <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">
-                                                <?= Yii::$app->formatter->asDecimal($payment->payment_job_filter_price_per_applicant*$payment->payment_job_num_filters, 3) ?>
+                                                <?= Yii::$app->formatter->asDecimal($payment->payment_job_filter_price_per_applicant*$payment->payment_job_num_filters, 3) ?> 
+                                                <?= Yii::t("employer", "KD") ?>
                                             </td>
                                             <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">
-                                                <?= Yii::$app->formatter->asDecimal($payment->payment_job_num_applicants*($payment->payment_job_filter_price_per_applicant*$payment->payment_job_num_filters), 3) ?>
+                                                <?= Yii::$app->formatter->asDecimal($payment->payment_job_num_applicants*($payment->payment_job_filter_price_per_applicant*$payment->payment_job_num_filters), 3) ?> 
+                                                <?= Yii::t("employer", "KD") ?>
                                             </td>
                                     </tr>
                                     <?php } ?>
@@ -93,21 +97,24 @@ $this->registerJs($js);
                                             <td colspan="2"></td>
                                             <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>"><strong><?= Yii::t("frontend", "Sub Total") ?></strong></td>
                                             <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">
-                                                <?= Yii::$app->formatter->asDecimal($payment->payment_job_total_price_per_applicant*$payment->payment_job_num_applicants, 3) ?>
+                                                <?= Yii::$app->formatter->asDecimal($payment->payment_job_total_price_per_applicant*$payment->payment_job_num_applicants, 3) ?> 
+                                                <?= Yii::t("employer", "KD") ?>
                                             </td>
                                     </tr>
                                     <tr>
                                             <td colspan="2"></td>
                                             <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>"><strong><?= Yii::t("frontend", "Credit Discount") ?></strong></td>
                                             <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?>">
-                                                <?= $payment->payment_employer_credit_change?Yii::$app->formatter->asDecimal($payment->payment_employer_credit_change, 3):Yii::$app->formatter->asDecimal(0, 3); ?>
+                                                <?= $payment->payment_employer_credit_change?Yii::$app->formatter->asDecimal($payment->payment_employer_credit_change, 3):Yii::$app->formatter->asDecimal(0, 3); ?> 
+                                                <?= Yii::t("employer", "KD") ?>
                                             </td>
                                     </tr>
                                     <tr>
                                             <td colspan="2"></td>
                                             <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?> active"><strong><?= Yii::t("frontend", "Grand Total") ?></strong></td>
                                             <td class="<?= $this->params['isArabic']?'text-left':'text-right' ?> active">
-                                                <?= $payment->payment_total?Yii::$app->formatter->asDecimal($payment->payment_total, 3):Yii::$app->formatter->asDecimal(0, 3); ?>
+                                                <?= $payment->payment_total?Yii::$app->formatter->asDecimal($payment->payment_total, 3):Yii::$app->formatter->asDecimal(0, 3); ?> 
+                                                <?= Yii::t("employer", "KD") ?>
                                             </td>
                                     </tr>                                                                                
                             </tbody>
