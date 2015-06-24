@@ -103,7 +103,7 @@ class JobController extends Controller
             
             $message = "[Job Force Close] ";
             $message .= "Job #".$model->job_id." force closed by $adminName";
-            Yii::warning($message, __METHOD__);
+            Yii::error($message, __METHOD__);
             
             Yii::$app->getSession()->setFlash('success', "<h2 style='margin:0;'>Job has been closed</h2>");
         }
