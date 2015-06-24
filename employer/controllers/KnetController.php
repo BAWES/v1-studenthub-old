@@ -129,7 +129,7 @@ class KnetController extends Controller {
         
         $knetPayment = KnetPayment::findOne($payId);
         if($knetPayment){
-            $message = "<br/>KNET<br/>"
+            $message = "<br/>KNET "
                     . "Track ID #".$knetPayment->payment_trackid."<br/>"
                     . "Payment ID #".$knetPayment->payment_id."<br/>"
                     . "Result: ".$knetPayment->payment_result;
@@ -153,7 +153,7 @@ class KnetController extends Controller {
         
         $knetPayment = KnetPayment::findOne($payId);
         if($knetPayment){
-            $message = "<br/>KNET<br/>"
+            $message = "<br/>KNET "
                     . "Track ID #".$knetPayment->payment_trackid."<br/>"
                     . "Payment ID #".$knetPayment->payment_id."<br/>"
                     . "Result: ".$knetPayment->payment_result;
