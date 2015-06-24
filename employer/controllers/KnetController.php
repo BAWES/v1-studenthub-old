@@ -125,18 +125,19 @@ class KnetController extends Controller {
      * @param integer $payId KNET Payment ID
      */
     public function actionJobPaymentError($id, $payId){
-        Yii::$app->session->setFlash("error", 
-                    Yii::t('employer',
-                            "There was an issue processing your payment, please contact us if you require assistance"));
+        $message = "";
         
         $knetPayment = KnetPayment::findOne($payId);
         if($knetPayment){
-            $note = "KNET \n"
-                    . "Track ID #".$knetPayment->payment_trackid."\n"
-                    . "Reference ID #".$knetPayment->payment_ref."\n"
-                    . "Result ".$knetPayment->payment_result;
-            Yii::$app->session->setFlash("error", $note);
-        }        
+            $message = "<br/>KNET<br/>"
+                    . "Track ID #".$knetPayment->payment_trackid."<br/>"
+                    . "Payment ID #".$knetPayment->payment_ref."<br/>"
+                    . "Result: ".$knetPayment->payment_result;
+        } 
+        
+        Yii::$app->session->setFlash("error", 
+                    Yii::t('employer',
+                            "There was an issue processing your payment, please contact us if you require assistance").$message);
 
         return $this->redirect(['job/create-step4', 'id' => $id]);
     }
@@ -148,18 +149,19 @@ class KnetController extends Controller {
      * @param integer $payId KNET Payment ID
      */
     public function actionCreditPaymentError($payId){
-        Yii::$app->session->setFlash("error", 
-                    Yii::t('employer',
-                            "There was an issue processing your payment, please contact us if you require assistance"));
+        $message = "";
         
         $knetPayment = KnetPayment::findOne($payId);
         if($knetPayment){
-            $note = "KNET \n"
-                    . "Track ID #".$knetPayment->payment_trackid."\n"
-                    . "Reference ID #".$knetPayment->payment_ref."\n"
-                    . "Result ".$knetPayment->payment_result;
-            Yii::$app->session->setFlash("error", $note);
-        }
+            $message = "<br/>KNET<br/>"
+                    . "Track ID #".$knetPayment->payment_trackid."<br/>"
+                    . "Payment ID #".$knetPayment->payment_ref."<br/>"
+                    . "Result: ".$knetPayment->payment_result;
+        } 
+        
+        Yii::$app->session->setFlash("error", 
+                    Yii::t('employer',
+                            "There was an issue processing your payment, please contact us if you require assistance").$message);
 
         return $this->redirect(['credit/index']);
     }
