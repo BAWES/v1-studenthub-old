@@ -49,29 +49,31 @@ $this->registerJs($js);
 
             </div><!--.invoice-heading-->
             <div class="invoice-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="<?= $this->params['isArabic'] ? 'text-right' : 'text-left' ?>"><?= Yii::t("frontend", "Item") ?></th>
-                            <th class="<?= $this->params['isArabic'] ? 'text-left' : 'text-right' ?>"><?= Yii::t("frontend", "Total") ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <?php if($payment->payment_type_id == \common\models\PaymentType::TYPE_KNET){ ?>
-                                    <?= Yii::t("frontend", "Credit Purchase") ?>
-                                <?php }else{ ?>
-                                    <?= $this->params['isArabic'] ? $payment->paymentType->payment_type_name_ar : $payment->paymentType->payment_type_name_en ?>
-                                <?php } ?>
-                            </td>
-                            <td class="<?= $this->params['isArabic'] ? 'text-left' : 'text-right' ?>">
-                                <?= $payment->payment_employer_credit_change ? Yii::$app->formatter->asDecimal($payment->payment_employer_credit_change, 3) : Yii::$app->formatter->asDecimal(0, 3); ?> 
-                                <?= Yii::t("employer", "KD") ?>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="<?= $this->params['isArabic'] ? 'text-right' : 'text-left' ?>"><?= Yii::t("frontend", "Item") ?></th>
+                                <th class="<?= $this->params['isArabic'] ? 'text-left' : 'text-right' ?>"><?= Yii::t("frontend", "Total") ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <?php if($payment->payment_type_id == \common\models\PaymentType::TYPE_KNET){ ?>
+                                        <?= Yii::t("frontend", "Credit Purchase") ?>
+                                    <?php }else{ ?>
+                                        <?= $this->params['isArabic'] ? $payment->paymentType->payment_type_name_ar : $payment->paymentType->payment_type_name_en ?>
+                                    <?php } ?>
+                                </td>
+                                <td class="<?= $this->params['isArabic'] ? 'text-left' : 'text-right' ?>">
+                                    <?= $payment->payment_employer_credit_change ? Yii::$app->formatter->asDecimal($payment->payment_employer_credit_change, 3) : Yii::$app->formatter->asDecimal(0, 3); ?> 
+                                    <?= Yii::t("employer", "KD") ?>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-6 col-md-5 col-md-offset-7">

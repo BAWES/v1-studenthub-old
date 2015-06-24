@@ -48,6 +48,7 @@ $this->registerJs($js);
 
             </div><!--.invoice-heading-->
             <div class="invoice-body">
+                <div class="table-responsive">
                     <table class="table">
                             <thead>
                                     <tr>
@@ -119,6 +120,7 @@ $this->registerJs($js);
                                     </tr>                                                                                
                             </tbody>
                     </table>
+                </div>
                 
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-6 col-md-5 col-md-offset-7">
