@@ -95,6 +95,7 @@ class JobController extends Controller
      * @return mixed
      */
     public function actionForceClose($id){
+        $adminName = Yii::$app->user->identity->admin_name;
         $model = $this->findModel($id);
         
         if($model->job_status == Job::STATUS_OPEN){
