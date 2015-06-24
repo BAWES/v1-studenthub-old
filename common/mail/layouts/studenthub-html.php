@@ -923,10 +923,10 @@ use yii\helpers\Url;
                                                         <td>
                                                             <table class="wrapper social-icons">
                                                                 <tr>
-                                                                    <td><a href="#"><img src="<?= $message->embed(Url::to("@web/img/email/icon-instagram.png", true)); ?>" alt="social icon"/></a></td>
-                                                                    <td><a href="#"><img src="<?= $message->embed(Url::to("@web/img/email/icon-facebook.png", true)); ?>" alt="social icon"/></a></td>
-                                                                    <td><a href="#"><img src="<?= $message->embed(Url::to("@web/img/email/icon-twitter.png", true)); ?>" alt="social icon"/></a></td>
-                                                                    <td><a href="#"><img src="<?= $message->embed(Url::to("@web/img/email/icon-youtube.png", true)); ?>" alt="social icon"/></a></td>
+                                                                    <td><a href="https://instagram.com/studenthubco/"><img src="<?= $message->embed(Url::to("@web/img/email/icon-instagram.png", true)); ?>" alt="social icon"/></a></td>
+                                                                    <td><a href="https://www.facebook.com/studenthub.co"><img src="<?= $message->embed(Url::to("@web/img/email/icon-facebook.png", true)); ?>" alt="social icon"/></a></td>
+                                                                    <td><a href="http://twitter.com/studenthubco"><img src="<?= $message->embed(Url::to("@web/img/email/icon-twitter.png", true)); ?>" alt="social icon"/></a></td>
+                                                                    <td><a href="https://www.youtube.com/channel/UCf0zeKTi2IawY3KF0L1aWKw"><img src="<?= $message->embed(Url::to("@web/img/email/icon-youtube.png", true)); ?>" alt="social icon"/></a></td>
                                                                 </tr>
                                                         </td>
                                                         <td class="expander"></td>
