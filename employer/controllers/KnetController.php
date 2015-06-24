@@ -81,16 +81,12 @@ class KnetController extends Controller {
             }else{
                 /**
                  * Transaction not approved by bank
-                 */
-                $redirectLink = Url::to(['knet/payment-error'], true);
-
-                /**
                  * If this payment is for a job, redirect to step 4 for them to re-attempt payment
                  * If this payment is for credit, redirect to credit purchase page
                  */
                 if($payment->job_id){
-                    $redirectLink = Url::to(['knet/job-payment-error', 'id' => $payment->job_id], true);
-                }else $redirectLink = Url::to(['knet/credit-payment-error'], true);
+                    $redirectLink = Url::to(['knet/job-payment-error', 'id' => $payment->job_id, 'payId' => $payment->payment_id], true);
+                }else $redirectLink = Url::to(['knet/credit-payment-error', 'payId' => $payment->payment_id], true);
             }
 
             //Tell KNET where to redirect the user to now
@@ -109,19 +105,6 @@ class KnetController extends Controller {
     
     
     /**
-     * Error in knet payment for this job
-     * Set flash error and redirect back to job step 4 for them to attempt payment again
-     * @param integer $id the payment invoice id
-     */
-    public function actionJobPaymentError($id){
-        Yii::$app->session->setFlash("error", 
-                    Yii::t('employer',
-                            "There was an issue processing your payment, please contact us if you require assistance"));
-
-        return $this->redirect(['job/create-step4', 'id' => $id]);
-    }
-    
-    /**
      * Successful Payment for Credit
      * Renders Thank you message after payment
      * and sends to the invoice page
@@ -136,13 +119,47 @@ class KnetController extends Controller {
     }
     
     /**
-     * Error in knet payment for buying credit
-     * Set flash error and redirect back to credit purchase page
+     * Error in knet payment for this job
+     * Set flash error and redirect back to job step 4 for them to attempt payment again
+     * @param integer $id the payment invoice id
+     * @param integer $payId KNET Payment ID
      */
-    public function actionCreditPaymentError(){
+    public function actionJobPaymentError($id, $payId){
         Yii::$app->session->setFlash("error", 
                     Yii::t('employer',
                             "There was an issue processing your payment, please contact us if you require assistance"));
+        
+        $knetPayment = KnetPayment::findOne($payId);
+        if($knetPayment){
+            $note = "KNET \n"
+                    . "Track ID #".$knetPayment->payment_trackid."\n"
+                    . "Reference ID #".$knetPayment->payment_ref."\n"
+                    . "Result ".$knetPayment->payment_result;
+            Yii::$app->session->setFlash("error", $note);
+        }        
+
+        return $this->redirect(['job/create-step4', 'id' => $id]);
+    }
+    
+    
+    /**
+     * Error in knet payment for buying credit
+     * Set flash error and redirect back to credit purchase page
+     * @param integer $payId KNET Payment ID
+     */
+    public function actionCreditPaymentError($payId){
+        Yii::$app->session->setFlash("error", 
+                    Yii::t('employer',
+                            "There was an issue processing your payment, please contact us if you require assistance"));
+        
+        $knetPayment = KnetPayment::findOne($payId);
+        if($knetPayment){
+            $note = "KNET \n"
+                    . "Track ID #".$knetPayment->payment_trackid."\n"
+                    . "Reference ID #".$knetPayment->payment_ref."\n"
+                    . "Result ".$knetPayment->payment_result;
+            Yii::$app->session->setFlash("error", $note);
+        }
 
         return $this->redirect(['credit/index']);
     }
