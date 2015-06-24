@@ -131,7 +131,7 @@ class KnetController extends Controller {
         if($knetPayment){
             $message = "<br/>KNET "
                     . "Track ID #".$knetPayment->payment_trackid."<br/>"
-                    . "Payment ID #".$knetPayment->payment_id."<br/>"
+                    . "Reference ID #".$knetPayment->payment_ref."<br/>"
                     . "Result: ".$knetPayment->payment_result;
         } 
         
@@ -155,7 +155,7 @@ class KnetController extends Controller {
         if($knetPayment){
             $message = "<br/>KNET "
                     . "Track ID #".$knetPayment->payment_trackid."<br/>"
-                    . "Payment ID #".$knetPayment->payment_id."<br/>"
+                    . "Reference ID #".$knetPayment->payment_ref."<br/>"
                     . "Result: ".$knetPayment->payment_result;
         } 
         
