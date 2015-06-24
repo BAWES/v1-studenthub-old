@@ -22,11 +22,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
 
             'payment_id',
+            'payment_tranid',
             'employer_id',
             'payment_amount:currency',
             'payment_result',
             'payment_datetime:datetime',
-            // 'payment_tranid',
+            
             // 'payment_auth',
             // 'payment_ref',
             // 'payment_udf1',
