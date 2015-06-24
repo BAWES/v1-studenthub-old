@@ -90,7 +90,24 @@ class JobController extends Controller
     }
     
     /**
-     * Edits an active jobs filter and 
+     * Force closes an Open job
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionForceClose($id){
+        $model = $this->findModel($id);
+        
+        if($model->job_status == Job::STATUS_OPEN){
+            $model->close();
+            
+            Yii::$app->getSession()->setFlash('success', "<h2 style='margin:0;'>Job has been closed</h2>");
+        }
+        
+        return $this->redirect(['view', 'id' => $model->job_id]);
+    }
+    
+    /**
+     * Edits an active jobs filter 
      * @param integer $id
      * @return mixed
      */

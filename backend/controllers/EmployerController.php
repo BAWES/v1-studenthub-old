@@ -46,6 +46,8 @@ class EmployerController extends Controller
             $giftAmount = $_POST["Payment"]["payment_employer_credit_change"];
             
             $employer->giveGift($giftAmount);
+            
+            Yii::$app->getSession()->setFlash('success', "<h2 style='margin:0;'>You gave a gift of $giftAmount KD</h2>");
 
             return $this->redirect(['view', 'id' => $employer->employer_id]);
         }
@@ -71,6 +73,8 @@ class EmployerController extends Controller
             $reason = $_POST["Payment"]["payment_note"];
             
             $employer->giveRefund($refundAmount, $reason);
+            
+            Yii::$app->getSession()->setFlash('success', "<h2 style='margin:0;'>You gave a refund of $refundAmount KD</h2>");
 
             return $this->redirect(['view', 'id' => $employer->employer_id]);
         }

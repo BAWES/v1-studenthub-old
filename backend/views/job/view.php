@@ -57,6 +57,7 @@ switch ($model->job_status){
     <?php } ?>
 
     <br/>
+    
 
     <?= DetailView::widget([
         'model' => $model,
@@ -78,6 +79,12 @@ switch ($model->job_status){
             'job_created_datetime:datetime',
         ],
     ]) ?>
+    
+    <?php if($model->job_status == Job::STATUS_OPEN){ ?>
+        <a href="<?= Url::to(['job/force-close', 'id' => $model->job_id]) ?>" 
+           data-confirm="Are you sure you wish to close this job? This is permanent"
+           class="btn btn-danger">Force Close Job</a><br/>
+    <?php } ?>
     
     <hr/>
     
