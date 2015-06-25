@@ -5,6 +5,7 @@ namespace employer\controllers;
 use Yii;
 use yii\helpers\Url;
 use employer\models\Job;
+use common\models\StudentJobApplication;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -73,7 +74,7 @@ class JobController extends Controller {
          * Make sure the given student ID is an actual applicant
          * for a job that this employer gave
          */
-        $application = \common\models\StudentJobApplication::find()
+        $application = StudentJobApplication::find()
                         ->where(['application_id' => $applicationId])
                         ->with([
                                 'job', 'student', 'student.country', 'student.languages',
@@ -86,23 +87,36 @@ class JobController extends Controller {
                         'model' => $application,
             ]);
         }
+    }
+    
+    /**
+     * Displays student applicant contact details for employer via AJAX
+     * @param integer $applicationId
+     * @return mixed
+     */
+    public function actionStudentContact($applicationId) {
+        /**
+         * Make sure the given student ID is an actual applicant
+         * for a job that this employer gave
+         */
+        $application = StudentJobApplication::find()
+                        ->where(['application_id' => $applicationId])
+                        ->with([
+                                'student',
+                            ])
+                        ->one();
         
-        //'employer_id' => Yii::$app->user->identity->employer_id,
         
-        $job = $this->findModel($jobId);
-        if($job){
-            $application = \common\models\StudentJobApplication::findOne([
-                            'student_id' => $studentId,
-                            'job_id' => $jobId,
-                        ]);
+        if($application && ($application->job->employer_id == Yii::$app->user->identity->employer_id)){
+            /**
+            * Set that this student has been contacted by employer then render his details
+            */
+            $application->application_contacted = StudentJobApplication::CONTACTED_TRUE;
+            $application->save(false);
             
-            if($application){
-                $student = $application->getStudent()->with(['country','languages','majors','degree','university'])->one();
-
-                return $this->renderPartial('_applicantDetail', [
-                            'model' => $student,
-                ]);
-            }
+            return $this->renderPartial('_applicantContact', [
+                        'model' => $application,
+            ]);
         }
     }
 

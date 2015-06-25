@@ -71,7 +71,8 @@ $student = $model->student;
                     </p>
                 </div>
                 <div class="col-xs-8">
-                    <button class="btn btn-teal btn-sm" 
+                    <button class="btn btn-teal btn-sm contactDetail" 
+                            data-student="<?= Url::to(['job/student-contact', 'applicationId' => $model->application_id]) ?>"
                             style="margin-top:1.5em" data-toggle="modal" data-target="#contactDetailsDialog">
                         <?= Yii::t('employer', 'Show Contact Details') ?>
                     </button>   

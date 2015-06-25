@@ -17,7 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'View Invoice' => 'عرض الفاتورة',
+    'Email' => 'البريد الإلكتروني',
+    'Phone' => 'هاتف',
     'A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub' => 'لن يتم الموافقة على فرصة عملك إذا كان لديه عناوين تطبيق أو بريد إلكتروني في الوصف. وينبغي أن يقدم جميع الطلاب لهذه الوضيفة من خلال موقع StudentHub',
     'A short description about the job' => 'وصف قصير عن العمل',
     'About the Company' => 'عن الشركة',
@@ -143,6 +144,7 @@ return [
     'Universities' => 'الجامعات',
     'Update' => 'التحديث',
     'View Applicants' => 'عرض المتقدمين',
+    'View Invoice' => 'عرض الفاتورة',
     'Which of our products have you used before, and what do you like most about them?' => 'أي من منتجاتنا التي استخدمتها من قبل، وماذا أحببت عنهم؟',
     'Yes' => 'نعم',
     'You are not allowed to edit closed jobs' => 'لا يسمح لك تعديل وظائف مغلقة',

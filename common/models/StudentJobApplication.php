@@ -14,6 +14,7 @@ use yii\db\Expression;
  * @property integer $job_id
  * @property string $application_answer_1
  * @property string $application_answer_2
+ * @property integer $application_contacted
  * @property integer $application_hidden
  * @property string $application_date_apply
  *
@@ -26,6 +27,11 @@ class StudentJobApplication extends \yii\db\ActiveRecord
     //This option allows employers to hide or show an applicant
     const HIDDEN_TRUE = 1;
     const HIDDEN_FALSE = 0;
+    
+    //Options for `application_contacted` column
+    //This option lets us know if a student had his contact viewed
+    const CONTACTED_TRUE = 1;
+    const CONTACTED_FALSE = 0;
     
     /**
      * @inheritdoc
@@ -69,6 +75,7 @@ class StudentJobApplication extends \yii\db\ActiveRecord
             'job_id' => Yii::t('app', 'Job ID'),
             'application_answer_1' => Yii::t('app', 'Application Answer 1'),
             'application_answer_2' => Yii::t('app', 'Application Answer 2'),
+            'application_contacted' => Yii::t('app', 'Application Contacted'),
             'application_hidden' => Yii::t('app', 'Application Hidden'),
             'application_date_apply' => Yii::t('app', 'Application Date Apply'),
         ];

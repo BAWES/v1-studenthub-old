@@ -137,6 +137,34 @@ $("body").on("click", ".studentDetail", function(){
 });
 ';
 
+/**
+ * Load Contact Details Functionality
+ */
+$js .= '
+var $contactDetail = $("#contactDetailsDialog").find(".modal-content");
+var contactloadingIndicator = $contactDetail.html();
+
+$("body").on("click", ".contactDetail", function(){
+    var detailLink = $(this).attr("data-student");
+    
+    $.ajax({
+        url: detailLink,
+        cache: false,
+        beforeSend: function () {
+            $contactDetail.html(loadingIndicator);
+        },
+        success: function(response, textStatus, jqXHR)
+        {
+            $contactDetail.html(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            console.log(textStatus);
+        }
+    });
+});
+';
+
 $this->registerJs($js);
 $this->registerCss($css);
 ?>
