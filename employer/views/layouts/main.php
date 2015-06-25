@@ -12,6 +12,13 @@ use yii\helpers\Url;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+//Get Notifications and Number
+$notifications = $numNotifications = 0;
+if(!Yii::$app->user->isGuest){
+    $notifications = Yii::$app->user->identity->notifications;
+    $numNotifications = count($notifications);
+}
+
 //Disable Search
 $searchEnabled = false;
 
@@ -124,7 +131,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                 <div class="nav-user">
                     <div class="user">
                         <img src="<?= Yii::$app->user->identity->logo ?>" alt="">
-                        <span class="badge">3</span>
+                        <span class="badge"><?= Yii::$app->formatter->asInteger($numNotifications) ?></span>
                     </div><!--.user-->
                     <div class="cross">
                         <span class="line"></span>
@@ -380,7 +387,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                 <!-- BEGIN USER LAYER -->
                 <div class="user-layer">
                     <ul class="nav nav-tabs nav-justified" role="tablist">
-                        <li class="active"><a href="#notifications" data-toggle="tab"><?= Yii::t("frontend", "Notifications") ?> <span class="badge"><?= Yii::$app->formatter->asInteger(3) ?></span></a></li>
+                        <li class="active"><a href="#notifications" data-toggle="tab"><?= Yii::t("frontend", "Notifications") ?> <span class="badge"><?= Yii::$app->formatter->asInteger($numNotifications) ?></span></a></li>
                         <li><a href="#credit" data-toggle="tab"><?= Yii::t("employer", "Credit") ?></a></li>
                         <li><a href="#settings" data-toggle="tab"><?= Yii::t("frontend", "Settings") ?></a></li>
                     </ul>

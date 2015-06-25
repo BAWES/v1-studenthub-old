@@ -578,6 +578,16 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function getNotificationStudents() {
         return $this->hasMany(NotificationStudent::className(), ['student_id' => 'student_id']);
     }
+    
+    /**
+     * @param int $limit
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNotifications($limit = 30) {
+        return $this->hasMany(NotificationStudent::className(), ['student_id' => 'student_id'])
+                ->limit($limit)
+                ->orderBy("notification_datetime DESC");
+    }
 
     /**
      * @return \yii\db\ActiveQuery

@@ -12,6 +12,13 @@ use yii\helpers\Url;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+//Get Notifications and Number
+$notifications = $numNotifications = 0;
+if(!Yii::$app->user->isGuest){
+    $notifications = Yii::$app->user->identity->notifications;
+    $numNotifications = count($notifications);
+}
+
 //Disable Search
 $searchEnabled = false;
 
@@ -126,7 +133,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
             <div class="nav-user">
                 <div class="user">
                     <img src="<?= Yii::$app->user->identity->photo ?>" alt="">
-                    <span class="badge">3</span>
+                    <span class="badge"><?= Yii::$app->formatter->asInteger($numNotifications) ?></span>
                 </div><!--.user-->
                 <div class="cross">
                     <span class="line"></span>
@@ -392,7 +399,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                 <!-- BEGIN USER LAYER -->
                 <div class="user-layer">
                     <ul class="nav nav-tabs nav-justified" role="tablist">
-                        <li class="active"><a href="#notifications" data-toggle="tab"><?= Yii::t("frontend", "Notifications") ?> <span class="badge"><?= Yii::$app->formatter->asInteger(3) ?></span></a></li>
+                        <li class="active"><a href="#notifications" data-toggle="tab"><?= Yii::t("frontend", "Notifications") ?> <span class="badge"><?= Yii::$app->formatter->asInteger($numNotifications) ?></span></a></li>
                         <li><a href="#settings" data-toggle="tab"><?= Yii::t("frontend", "Settings") ?></a></li>
                     </ul>
 
@@ -407,60 +414,19 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                                 </div>
                                 
                                 <ul class="list-material">
+                                    
+                                    
                                     <li class="has-action-left has-action-right has-long-story">
-                                        <a href="#" class="visible">
-                                            <div class="list-action-left">
-                                                <img src="../../assets/globals/img/faces/13.jpg" class="face-radius" alt="">
-                                            </div>
-                                            <div class="list-content">
-                                                <span class="caption">New Position in <b>Zain: Position Name</b></span><br>
-                                            </div>
-                                            <div class="list-action-right">
-                                                <span class="top">2 hr</span>
-                                                <i class="ion-record text-green bottom"></i>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="has-action-left has-action-right has-long-story">
-                                        <a href="#" class="visible">
-                                            <div class="list-action-left">
-                                                <img src="../../assets/globals/img/faces/13.jpg" class="face-radius" alt="">
-                                            </div>
-                                            <div class="list-content">
-                                                <span class="caption"><b>Saleem Aboabdo</b> applied for: <b>Position Name</b></span><br>
-                                            </div>
-                                            <div class="list-action-right">
-                                                <span class="top">16:55</span>
-                                                <i class="ion-record text-green bottom"></i>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="has-action-left has-action-right has-long-story">
-                                        <a href="#" class="visible">
-                                            <div class="list-action-left">
-                                                <img src="../../assets/globals/img/faces/13.jpg" class="face-radius" alt="">
-                                            </div>
-                                            <div class="list-content">
-                                                <span class="caption">Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</span>
-                                            </div>
-                                            <div class="list-action-right">
-                                                <span class="top">Yesterday</span>
-                                                <i class="ion-record text-green bottom"></i>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="has-action-left has-action-right has-long-story">
-                                        <a href="#" class="visible">
-                                            <div class="list-action-left">
-                                                <img src="../../assets/globals/img/faces/14.jpg" class="face-radius" alt="">
-                                            </div>
-                                            <div class="list-content">
-                                                <span class="caption">Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.</span>
-                                            </div>
-                                            <div class="list-action-right">
-                                                <span class="top">2 days ago</span>										
-                                            </div>
-                                        </a>
+                                        <div class="list-action-left">
+                                            <img src="../../assets/globals/img/faces/13.jpg" class="face-radius" alt="">
+                                        </div>
+                                        <div class="list-content">
+                                            <span class="caption">New Position in <b>Zain: Position Name</b></span><br>
+                                        </div>
+                                        <div class="list-action-right">
+                                            <span class="top">2 hr</span>
+                                            <i class="ion-record text-green bottom"></i>
+                                        </div>
                                     </li>
                                     
                                 </ul>

@@ -268,6 +268,16 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
     public function getNotificationEmployers() {
         return $this->hasMany(NotificationEmployer::className(), ['employer_id' => 'employer_id']);
     }
+    
+    /**
+     * @param int $limit
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNotifications($limit = 30) {
+        return $this->hasMany(NotificationEmployer::className(), ['employer_id' => 'employer_id'])
+                ->limit($limit)
+                ->orderBy("notification_datetime DESC");
+    }
 
     /**
      * @return \yii\db\ActiveQuery
