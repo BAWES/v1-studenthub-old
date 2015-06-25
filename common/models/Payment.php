@@ -203,7 +203,6 @@ class Payment extends \yii\db\ActiveRecord {
                 ])
                 ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                 ->setTo($employer->employer_email)
-                ->setBcc(\Yii::$app->params['supportEmail'])
                 ->setSubject('[StudentHub] Invoice #'.$this->payment_id)
                 ->send();
         }else{
@@ -219,7 +218,6 @@ class Payment extends \yii\db\ActiveRecord {
                 ])
                 ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                 ->setTo($employer->employer_email)
-                ->setBcc(\Yii::$app->params['supportEmail'])
                 ->setSubject('[StudentHub] فاتورة #'.Yii::$app->formatter->asInteger($this->payment_id))
                 ->send();
         }
