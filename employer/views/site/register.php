@@ -74,6 +74,25 @@ $this->registerCss($css);
         ]);
         ?>
         
+        <h3><?= Yii::t('register', "User Details") ?></h3>
+
+        <?= $form->field($model, 'employer_email_preference',[
+                'template' => $selectTemplate,
+            ])->dropDownList([
+                Employer::NOTIFICATION_DAILY => Yii::t('register', "Daily when students apply"),
+                Employer::NOTIFICATION_WEEKLY => Yii::t('register', "Weekly Summary"),
+                Employer::NOTIFICATION_OFF => Yii::t('register', "Off"),
+            ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
+        <?= $form->field($model, 'employer_contact_firstname')->textInput(['placeholder' => Yii::t('register', 'First Name')]) ?>
+        <?= $form->field($model, 'employer_contact_lastname')->textInput(['placeholder' => Yii::t('register', 'Last Name')]) ?>
+        <?= $form->field($model, 'employer_contact_number')->input('tel', [
+            'placeholder' => Yii::t('register', 'Phone Number'),
+            'maxlength' => 8,
+            ]) ?>
+        <?= $form->field($model, 'employer_email')->input('email', ['placeholder' => 'email@company.com']) ?>
+        <?= $form->field($model, 'employer_password_hash')->passwordInput(['placeholder' => '***']) ?>
+        
+        <br/>
         <h3><?= Yii::t('register', "Company Details") ?></h3>
         
         <?= $form->field($model, 'employer_company_name')->textInput(['placeholder' => Yii::t('register', 'Company Name')]) ?>
@@ -123,25 +142,6 @@ $this->registerCss($css);
         <?= $form->field($model, 'employer_social_facebook')->textInput(['placeholder' => 'https://facebook.com/companyname']) ?>
         
         <br/>
-        <h3><?= Yii::t('register', "User Details") ?></h3>
-
-
-        <?= $form->field($model, 'employer_email_preference',[
-                'template' => $selectTemplate,
-            ])->dropDownList([
-                Employer::NOTIFICATION_DAILY => Yii::t('register', "Daily when students apply"),
-                Employer::NOTIFICATION_WEEKLY => Yii::t('register', "Weekly Summary"),
-                Employer::NOTIFICATION_OFF => Yii::t('register', "Off"),
-            ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
-        <?= $form->field($model, 'employer_contact_firstname')->textInput(['placeholder' => Yii::t('register', 'First Name')]) ?>
-        <?= $form->field($model, 'employer_contact_lastname')->textInput(['placeholder' => Yii::t('register', 'Last Name')]) ?>
-        <?= $form->field($model, 'employer_contact_number')->input('tel', [
-            'placeholder' => Yii::t('register', 'Phone Number'),
-            'maxlength' => 8,
-            ]) ?>
-        <?= $form->field($model, 'employer_email')->input('email', ['placeholder' => 'email@company.com']) ?>
-        <?= $form->field($model, 'employer_password_hash')->passwordInput(['placeholder' => '***']) ?>
-        
         
         <div class="col-md-5 col-md-offset-3">
                 <?= Html::submitButton(Yii::t('register', 'Sign Up'), ['class' => 'btn btn-success btn-block btn-ripple', 'name' => 'signup-button']) ?>
