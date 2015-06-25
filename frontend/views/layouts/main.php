@@ -12,6 +12,8 @@ use yii\helpers\Url;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+//Disable Search
+$searchEnabled = false;
 
 //RTL Settings
 if($this->params['isArabic']){
@@ -114,9 +116,12 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
             </div><!--.nav-menu-->
 
             <?php if (!Yii::$app->user->isGuest) { ?>
+            
+            <?php if ($searchEnabled) { ?>
             <div class="nav-search">
                 <span class="search"></span>
             </div><!--.nav-search-->
+            <?php } ?>
 
             <div class="nav-user">
                 <div class="user">
@@ -242,7 +247,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
             <!-- END OF MENU LAYER -->
 
             <!-- BEGIN SEARCH LAYER -->
-            <?php if (!Yii::$app->user->isGuest) { ?>
+            <?php if (!Yii::$app->user->isGuest && $searchEnabled) { ?>
             <div class="search-layer">
                 <div class="search">
                     <form action="pages-search-results.html">
