@@ -131,7 +131,10 @@ $student = $model->student;
     <pre> <?= Yii::t("employer", "Applied on {dateApplied}", ['dateApplied' => Yii::$app->formatter->asDatetime($model->application_date_apply, 'short')]) ?></pre>                                                                                                                                                                                                               
 </div>
 <div class="modal-footer">
-    <a href="#"
-       class="btn btn-success btn-ripple"><?= Yii::t('app', "View CV") ?></a>
+    <?php if($student->student_cv){ ?>
+        <a href="<?= $student->cv ?>" target="_blank" class="btn btn-success btn-ripple">
+            <?= Yii::t('app', "View CV") ?>
+        </a>
+    <?php } ?>
     <button type="button" class="btn btn-flat btn-ripple" data-dismiss="modal"><?= Yii::t('app', "Close") ?></button>
 </div>
