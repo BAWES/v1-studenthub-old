@@ -51,7 +51,7 @@ $this->registerJsFile("https://www.google.com/recaptcha/api.js", ['position' => 
                         ])->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
                 
                     <div class="form-group" style="margin-top:30px;">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                        <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                     </div>
                 <?php ActiveForm::end(); ?>
             </div>
