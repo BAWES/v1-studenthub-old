@@ -16,7 +16,7 @@ use yii\helpers\Url;
 $notifications = $numNotifications = 0;
 if(!Yii::$app->user->isGuest){
     $notifications = Yii::$app->user->identity->notifications;
-    $numNotifications = count($notifications);
+    $numNotifications = Yii::$app->user->identity->unreadNotificationCount;
 }
 
 //Disable Search
@@ -415,20 +415,32 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                                 
                                 <ul class="list-material">
                                     
-                                    
+                                    <?php foreach($notifications as $notification){ ?>
                                     <li class="has-action-left has-action-right has-long-story">
                                         <div class="list-action-left">
-                                            <img src="../../assets/globals/img/faces/13.jpg" class="face-radius" alt="">
+                                            <img src="<?= $notification->job->employer->logo ?>" class="face-radius" alt="">
                                         </div>
                                         <div class="list-content">
-                                            <span class="caption">New Position in <b>Zain: Position Name</b></span><br>
+                                            <span class="caption" style="margin-left:10px;">
+                                                <?= Yii::t("frontend", "New job posted by {company}",[
+                                                    'company' => $notification->job->employer->employer_company_name,
+                                                ]) ?>
+                                                <br/> 
+                                                <b><?= $notification->job->job_title ?></b>
+                                            </span>
                                         </div>
                                         <div class="list-action-right">
-                                            <span class="top">2 hr</span>
-                                            <i class="ion-record text-green bottom"></i>
+                                            <span class="top">
+                                                <?= Yii::$app->formatter->asRelativeTime($notification->notification_datetime) ?>
+                                            </span>
+                                            <?php if($notification->notification_viewed == common\models\NotificationStudent::VIEWED_FALSE){ ?>
+                                                <i class="ion-record text-green bottom"></i>
+                                            <?php }else{ ?>
+                                                <i class="ion-record text-grey bottom"></i>
+                                            <?php } ?>
                                         </div>
                                     </li>
-                                    
+                                    <?php } ?>
                                 </ul>
 
                             </div><!--.col-->

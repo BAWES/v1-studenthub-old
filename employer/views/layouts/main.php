@@ -16,7 +16,7 @@ use yii\helpers\Url;
 $notifications = $numNotifications = 0;
 if(!Yii::$app->user->isGuest){
     $notifications = Yii::$app->user->identity->notifications;
-    $numNotifications = count($notifications);
+    $numNotifications = Yii::$app->user->identity->unreadNotificationCount;
 }
 
 //Disable Search

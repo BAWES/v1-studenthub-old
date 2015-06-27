@@ -279,6 +279,15 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
                 ->limit($limit)
                 ->orderBy("notification_datetime DESC");
     }
+    
+    /**
+     * @return int
+     */
+    public function getUnreadNotificationCount(){
+        return $this->getNotifications(99)
+                ->where(['notification_viewed' => NotificationEmployer::VIEWED_FALSE])
+                ->count();
+    }
 
     /**
      * @return \yii\db\ActiveQuery
