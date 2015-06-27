@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Credit Purchase' => 'شراء رصيد',
+    'New job posted by {company}' => 'وظيفة جديدة أضيفت من قبل شركة {company}',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'All Industries' => 'كافة القطاعات',
@@ -36,6 +36,7 @@ return [
     'Credit After' => 'الرصيد بعد',
     'Credit Before' => 'الرصيد قبل',
     'Credit Discount' => 'خصم رصيد',
+    'Credit Purchase' => 'شراء رصيد',
     'Current GPA' => 'المعدل الحالي',
     'DEGREE' => 'شهادة',
     'Date' => 'التاريخ',
