@@ -403,61 +403,40 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                                 </div>
                                 
                                 <ul class="list-material">
-                                    <li class="has-action-left has-action-right has-long-story">
-                                        <a href="#" class="visible">
-                                            <div class="list-action-left">
-                                                <img src="../../assets/globals/img/faces/13.jpg" class="face-radius" alt="">
-                                            </div>
-                                            <div class="list-content">
-                                                <span class="caption">New Position in <b>Zain: Position Name</b></span><br>
-                                            </div>
-                                            <div class="list-action-right">
-                                                <span class="top">2 hr</span>
-                                                <i class="ion-record text-green bottom"></i>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="has-action-left has-action-right has-long-story">
-                                        <a href="#" class="visible">
-                                            <div class="list-action-left">
-                                                <img src="../../assets/globals/img/faces/13.jpg" class="face-radius" alt="">
-                                            </div>
-                                            <div class="list-content">
-                                                <span class="caption"><b>Saleem Aboabdo</b> applied for: <b>Position Name</b></span><br>
-                                            </div>
-                                            <div class="list-action-right">
-                                                <span class="top">16:55</span>
-                                                <i class="ion-record text-green bottom"></i>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="has-action-left has-action-right has-long-story">
-                                        <a href="#" class="visible">
-                                            <div class="list-action-left">
-                                                <img src="../../assets/globals/img/faces/13.jpg" class="face-radius" alt="">
-                                            </div>
-                                            <div class="list-content">
-                                                <span class="caption">Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</span>
-                                            </div>
-                                            <div class="list-action-right">
-                                                <span class="top">Yesterday</span>
-                                                <i class="ion-record text-green bottom"></i>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="has-action-left has-action-right has-long-story">
-                                        <a href="#" class="visible">
-                                            <div class="list-action-left">
-                                                <img src="../../assets/globals/img/faces/14.jpg" class="face-radius" alt="">
-                                            </div>
-                                            <div class="list-content">
-                                                <span class="caption">Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.</span>
-                                            </div>
-                                            <div class="list-action-right">
-                                                <span class="top">2 days ago</span>										
-                                            </div>
-                                        </a>
-                                    </li>
+                                    
+                                    <?php foreach($notifications as $notification){ ?>
+                                        <?php if($notification->job){ ?>
+                                        <li class="has-action-left has-action-right has-long-story">
+                                            <a href="<?= Url::to(['job/applicants', 'id' => $notification->job_id]) ?>" class="visible">
+                                                <div class="list-action-left">
+                                                    <img src="<?= $notification->student->photo ?>" class="face-radius" alt="">
+                                                </div>
+                                                <div class="list-content">
+
+                                                    <span class="caption" style="margin-left:10px;">
+                                                        <?= Yii::t("frontend", "{student} applied for the job",[
+                                                            'student' => $notification->student->student_firstname." ".$notification->student->student_lastname,
+                                                        ]) ?>
+                                                        <br/> 
+                                                        <b><?= $notification->job->job_title ?></b>
+                                                    </span>
+
+                                                </div>
+                                                <div class="list-action-right">
+                                                    <span class="top">
+                                                        <?= Yii::$app->formatter->asRelativeTime($notification->notification_datetime) ?>
+                                                    </span>
+                                                    <?php if($notification->notification_viewed == common\models\NotificationEmployer::VIEWED_FALSE){ ?>
+                                                        <i class="ion-record text-green bottom"></i>
+                                                    <?php }else{ ?>
+                                                        <i class="ion-record text-grey bottom"></i>
+                                                    <?php } ?>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <?php } ?>
+                                    <?php } ?>
+                                    
                                     
                                 </ul>
 

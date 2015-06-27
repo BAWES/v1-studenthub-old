@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'New job posted by {company}' => 'وظيفة جديدة أضيفت من قبل شركة {company}',
+    '{student} applied for the job' => '{student} طلب للحصول على وظيفة',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'All Industries' => 'كافة القطاعات',
@@ -77,6 +77,7 @@ return [
     'Mark All as Read' => 'تعيين كافة الإشعارات مقرؤة',
     'NATIONALITY' => 'جنسية',
     'Nationality' => 'جنسية',
+    'New job posted by {company}' => 'وظيفة جديدة أضيفت من قبل شركة {company}',
     'Notification Preferences' => 'إعدادات الإشعار',
     'Notifications' => 'الإشعارات',
     'Paid Jobs' => 'الوظائف ذات الأجور',
