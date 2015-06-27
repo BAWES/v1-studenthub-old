@@ -17,7 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    '{student} applied for the job' => '{student} طلب للحصول على وظيفة',
+    'Thank you for contacting us. We will respond to you as soon as possible.' => 'شكر لتواصلك معنا. وسوف نقوم بالرد عليك في أقرب وقت ممكن.',
+    'There was an error sending email.' => 'كان هناك خلل أثناء إرسال البريد الإلكتروني.',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'All Industries' => 'كافة القطاعات',
@@ -137,4 +138,5 @@ return [
     'a job to Volunteer.' => 'وظيفة للتطوع.',
     'an Internship.' => 'على دورة تدريبية.',
     'flexible' => 'مرن',
+    '{student} applied for the job' => '{student} طلب للحصول على وظيفة',
 ];
