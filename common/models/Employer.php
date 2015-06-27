@@ -275,6 +275,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function getNotifications($limit = 30) {
         return $this->hasMany(NotificationEmployer::className(), ['employer_id' => 'employer_id'])
+                ->with(['employer', 'student', 'job'])
                 ->limit($limit)
                 ->orderBy("notification_datetime DESC");
     }

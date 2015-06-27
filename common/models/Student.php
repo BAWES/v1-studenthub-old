@@ -585,6 +585,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function getNotifications($limit = 30) {
         return $this->hasMany(NotificationStudent::className(), ['student_id' => 'student_id'])
+                ->with(['student', 'job'])
                 ->limit($limit)
                 ->orderBy("notification_datetime DESC");
     }
