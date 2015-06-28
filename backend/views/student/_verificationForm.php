@@ -24,6 +24,10 @@ if($model->student_id_verification == common\models\Student::ID_NOT_VERIFIED){
     <?php $form = ActiveForm::begin([
         'method' => 'post',
     ]); ?>
+        
+    <h3>
+        <?= $model->university->university_name_en ?>
+    </h3>
 
     <?= $form->field($verifyIdForm, 'idNumber') ?>
 

@@ -234,6 +234,20 @@ class Student extends \common\models\Student {
         $this->generateAuthKey();
         if ($this->save($validate)) {
             $this->sendVerificationEmail();
+            
+            /**
+             * Send email here to Admins notifying that a new student has signed up
+             */
+            Yii::$app->mailer->compose([
+                    'html' => "admin/new-student-html",
+                        ], [
+                    'student' => $this,
+                ])
+                ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                ->setTo([\Yii::$app->params['supportEmail']])
+                ->setSubject('[StudentHub] New Student - '.$this->student_firstname." ".$this->student_lastname)
+                ->send();
+            
             return $this;
         }
 

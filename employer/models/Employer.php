@@ -87,6 +87,20 @@ class Employer extends \common\models\Employer {
         $this->generateAuthKey();
         if ($this->save($validate)) {
             $this->sendVerificationEmail();
+            
+            /**
+             * Send email here to Admins notifying that a new employer has signed up
+             */
+            Yii::$app->mailer->compose([
+                    'html' => "admin/new-employer-html",
+                        ], [
+                    'employer' => $this,
+                ])
+                ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                ->setTo([\Yii::$app->params['supportEmail']])
+                ->setSubject('[StudentHub] New Employer - '.$this->employer_company_name)
+                ->send();
+            
             return $this;
         }
 
