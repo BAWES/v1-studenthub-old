@@ -202,7 +202,7 @@ class Payment extends \yii\db\ActiveRecord {
                     'payment' => static::findOne($this->payment_id),
                 ])
                 ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
-                ->setTo($employer->employer_email)
+                ->setTo([$employer->employer_email, \Yii::$app->params['supportEmail']])
                 ->setSubject('[StudentHub] Invoice #'.$this->payment_id)
                 ->send();
         }else{
@@ -217,7 +217,7 @@ class Payment extends \yii\db\ActiveRecord {
                     'payment' => static::findOne($this->payment_id),
                 ])
                 ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
-                ->setTo($employer->employer_email)
+                ->setTo([$employer->employer_email, \Yii::$app->params['supportEmail']])
                 ->setSubject('[StudentHub] فاتورة #'.Yii::$app->formatter->asInteger($this->payment_id))
                 ->send();
         }
