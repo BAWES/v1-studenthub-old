@@ -17,8 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Thank you for contacting us. We will respond to you as soon as possible.' => 'شكر لتواصلك معنا. وسوف نقوم بالرد عليك في أقرب وقت ممكن.',
-    'There was an error sending email.' => 'كان هناك خلل أثناء إرسال البريد الإلكتروني.',
+    'Please <a href=\'{contactLink}\'>contact us</a> to transfer your account to another university' => 'يرجى <a href=\'{contactLink}\'> الاتصال بنا </a> لنقل حسابك إلى جامعة أخرى',
+    'Transferred to another University?' => 'هل نقلت إلى جامعة أخرى؟',
+    'Transferred?' => 'نقلت؟',
+    'University' => 'الجامعة',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'All Industries' => 'كافة القطاعات',
@@ -103,7 +105,9 @@ return [
     'Student Portal' => 'بوابة الطالب',
     'Sub Total' => 'حاصل الجمع',
     'Terms & Conditions' => 'الشروط والأحكام',
+    'Thank you for contacting us. We will respond to you as soon as possible.' => 'شكر لتواصلك معنا. وسوف نقوم بالرد عليك في أقرب وقت ممكن.',
     'The format of your date of birth is invalid, should be yyyy/mm/dd' => 'شكل تاريخ ميلادك غير صالح، ينبغي أن يكون شهر / يوم / سنة',
+    'There was an error sending email.' => 'كان هناك خلل أثناء إرسال البريد الإلكتروني.',
     'This city does not exist.' => 'لا وجود لهذه المدينة.',
     'This degree does not exist.' => 'عدم وجود هذه الشهادة',
     'This email address is already registered.' => 'هذا البريد الإلكتروني لديه حساب',

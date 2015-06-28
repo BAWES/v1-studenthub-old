@@ -453,11 +453,11 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                             <div class="col-md-6 col-md-offset-3">
 
                                 <div class="settings-panel" style="padding-top:0;">
-                                    <div class="legend">University</div>
+                                    <div class="legend"><?= Yii::t("frontend", "University") ?></div>
                                     <ul>
                                         <li>
-                                            <p>Gulf University for Science and Technology</p>
-                                            <button class="btn btn-default" data-toggle="modal" data-target="#smallModal">Transferred to another University?</button>
+                                            <p><?= $this->params['isArabic']?Yii::$app->user->identity->university->university_name_ar:Yii::$app->user->identity->university->university_name_en ?></p>
+                                            <button class="btn btn-default" data-toggle="modal" data-target="#smallModal"><?= Yii::t("frontend", "Transferred to another University?") ?></button>
                                         </li>
                                     </ul>
                                     <div class="legend"><?= Yii::t("frontend", "Notification Preferences") ?></div>
@@ -496,10 +496,12 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Transferred?</h4>                                                
+                                    <h4 class="modal-title"><?= Yii::t("frontend", "Transferred?") ?></h4>                                                
                                 </div>
                                 <div class="modal-body">
-                                    Please <a href="<?= Url::to(["site/contact"]) ?>">contact us</a> to transfer your account to another university
+                                    <?= Yii::t("frontend", "Please <a href='{contactLink}'>contact us</a> to transfer your account to another university",[
+                                        'contactLink' => Url::to(["site/contact"]),
+                                    ]) ?>
                                 </div>
                             </div><!--.modal-content-->
                         </div><!--.modal-dialog-->
