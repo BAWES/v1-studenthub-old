@@ -409,7 +409,10 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                             <div class="col-md-6 col-md-offset-3">
                                 <div class="row" style="margin-bottom:5px;">
                                     <div class="col-xs-10 col-xs-offset-1">
-                                        <a href="#" class="btn btn-success btn-block"><?= Yii::t("frontend", "Mark All as Read") ?></a>
+                                        <a href="<?= Url::to(['site/clear-notifications']) ?>" 
+                                           class="btn btn-success btn-block">
+                                            <?= Yii::t("frontend", "Mark All as Read") ?>
+                                        </a>
                                     </div>
                                 </div>
                                 

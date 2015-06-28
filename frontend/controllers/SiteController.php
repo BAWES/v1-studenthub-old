@@ -170,6 +170,27 @@ class SiteController extends Controller
         return $this->redirect(['login']);
     }
     
+    /**
+     * Clear Notifications
+     * Sets all notifications for this student as read
+     */
+    public function actionClearNotifications() {
+        $userId = Yii::$app->user->identity->student_id;
+
+        //If User logged in, clear his notifications
+        if ($userId) {
+            //$user = \common\models\Employer::findOne((int) $identity->employer_id);
+            \common\models\NotificationStudent::updateAll([
+                    'notification_viewed' => \common\models\NotificationStudent::VIEWED_TRUE,
+                ], [
+                    'student_id' => $userId,
+                ]);
+        }
+
+        //return to previous page after clearing notifications
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+    
     //set language to English
     public function actionEnglish()
     {

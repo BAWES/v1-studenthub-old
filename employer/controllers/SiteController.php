@@ -257,6 +257,27 @@ class SiteController extends Controller {
             ]);
         }
     }
+    
+    /**
+     * Clear Notifications
+     * Sets all notifications for this employer as read
+     */
+    public function actionClearNotifications() {
+        $userId = Yii::$app->user->identity->employer_id;
+
+        //If User logged in, clear his notifications
+        if ($userId) {
+            //$user = \common\models\Employer::findOne((int) $identity->employer_id);
+            \common\models\NotificationEmployer::updateAll([
+                    'notification_viewed' => \common\models\NotificationEmployer::VIEWED_TRUE,
+                ], [
+                    'employer_id' => $userId,
+                ]);
+        }
+
+        //return to previous page after clearing notifications
+        return $this->redirect(Yii::$app->request->referrer);
+    }
 
     //set language to English
     public function actionEnglish() {
