@@ -13,7 +13,7 @@
             
             <br/>
             
-            Student Email: <?= $student->student_email ?> <br/>
+            Language Preference: <?= $student->student_language_pref ?> <br/>
             ID Verification: <?= $student->idVerificationStatus ?> <br/>
         </p>
     </td>
