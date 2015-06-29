@@ -83,6 +83,7 @@ class Student extends \common\models\Student {
             'student_contact_number', 'student_verification_attachment'];
         
         $scenarios['changeEmailPreference'] = ['student_email_preference'];
+        $scenarios['changePassword'] = ['student_password_hash'];
 
         return $scenarios;
     }

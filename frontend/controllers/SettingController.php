@@ -42,14 +42,9 @@ class SettingController extends \yii\web\Controller {
      * @return mixed
      */
     public function actionChangeNotificationPreference(){
-        
         $model = \frontend\models\Student::findOne(Yii::$app->user->identity->student_id);
                 
-        if ($model) {
-            /**
-             * Change his notification preference as provided
-             */
-            
+        if ($model) {            
             $model->scenario = "changeEmailPreference";
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 /**
@@ -61,6 +56,29 @@ class SettingController extends \yii\web\Controller {
         
         //return to previous page 
         return $this->redirect(Yii::$app->request->referrer);
+    }
+    
+    
+    /**
+     * Allows user to change their password
+     */
+    public function actionChangePassword(){
+        $model = \frontend\models\Student::findOne(Yii::$app->user->identity->student_id);
+        
+        if($model){
+            $model->scenario = "changePassword";
+            
+            if ($model->load(Yii::$app->request->post())) {
+                $model->setPassword($model->student_password_hash);
+                if($model->save()){
+                    Yii::$app->getSession()->setFlash('success', Yii::t('student', 'New password was saved.'));
+                }
+            }
+        }
+        
+        return $this->render('changePassword', [
+            'model' => $model,
+        ]);
     }
     
 
