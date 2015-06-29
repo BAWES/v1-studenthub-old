@@ -183,9 +183,9 @@ $this->registerCss($css);
             'placeholder' => Yii::t('register', 'Sports I play')
             ]) ?>
         
-        <?= $form->field($model, 'student_experience_company')->textInput() ?>
+        <?= $form->field($model, 'student_experience_company')->textInput(['placeholder' => Yii::t('register', 'Company')]) ?>
         
-        <?= $form->field($model, 'student_experience_position')->textInput() ?>
+        <?= $form->field($model, 'student_experience_position')->textInput(['placeholder' => Yii::t('register', 'Position')]) ?>
         
         
         
