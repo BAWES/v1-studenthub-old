@@ -17,9 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Please contact us if you wish to change your email' => 'يرجى الاتصال بنا إذا كنت ترغب في تغيير عنوان البريد الإلكتروني الخاص بك',
-    'Update Personal Information' => 'تحديث المعلومات الشخصية',
-    'Updated your personal information' => 'تم تحديث المعلومات الشخصية الخاصة بك',
+    'I do not have a method of transportation' => 'ليس لدي وسيلة نقل',
+    'I have a method of transportation' => 'لدي وسيلة نقل',
     'Thanks! Your Job will soon be posted for students to apply on' => '@@شكرا! سيتم قريبا نشر وظيفتك للطلاب @@',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Available' => 'متوفر',
@@ -84,6 +83,7 @@ return [
     'Password' => 'كلمة المرور',
     'Phone Number' => 'رقم الهاتف',
     'Please click on the link sent to you by email to verify your account' => 'يرجى الضغط على الرابط المرسل لك عن طريق البريد الإلكتروني للتحقق من حسابك',
+    'Please contact us if you wish to change your email' => 'يرجى الاتصال بنا إذا كنت ترغب في تغيير عنوان البريد الإلكتروني الخاص بك',
     'Please feel free to contact us if you need assistance.' => 'لا تتردد في الاتصال بنا اذا كنت بحاجة إلى المساعدة.',
     'Please upload a photo of your student ID card' => 'يرجى تحميل صورة من بطاقة هوية الطالب الخاص بك',
     'Position' => 'وظيفه',
@@ -107,6 +107,8 @@ return [
     'The following questions are optional but will increase your chances of being contacted by employers' => 'الأسئلة التالية اختيارية ولكن سوف تزيد فرصك لعثور على وظيفة',
     'Unavailable' => 'غير متوفر',
     'University not listed?' => 'جامعة غير مذكورة؟',
+    'Update Personal Information' => 'تحديث المعلومات الشخصية',
+    'Updated your personal information' => 'تم تحديث المعلومات الشخصية الخاصة بك',
     'Upload CV (optional)' => 'تحميل السيرة الذاتية (اختياري)',
     'Upload ID Card' => 'تحميل بطاقة الهوية',
     'Upload Logo (Optional)' => 'تحميل شعار (اختياري)',

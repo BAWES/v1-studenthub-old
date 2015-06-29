@@ -125,9 +125,15 @@ $this->registerCss($css);
         ?>
         
         
+        
         <?= $form->field($model, 'student_firstname')->textInput() ?>
         
         <?= $form->field($model, 'student_lastname')->textInput() ?>
+        
+        <?= $form->field($model, 'student_gender', ['template' => $selectTemplate])->dropDownList([
+                                                    Student::GENDER_MALE => Yii::t('register', 'Male'),
+                                                    Student::GENDER_FEMALE => Yii::t('register', 'Female'),
+                                                ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
         
         <?= $form->field($model, 'student_email')->textInput([
             'disabled' => 'disabled',
@@ -136,9 +142,16 @@ $this->registerCss($css);
             'data-original-title' => Yii::t('register', 'Please contact us if you wish to change your email'),
             ]) ?>
         
+        
         <?= $form->field($model, 'student_contact_number')->textInput() ?>
         
         <?= $form->field($model, 'student_dob')->input('date') ?>
+        
+        <?= $form->field($model, 'student_english_level', ['template' => $selectTemplate])->dropDownList([
+                                                    Student::ENGLISH_WEAK => Yii::t('register', 'Weak'),
+                                                    Student::ENGLISH_FAIR => Yii::t('register', 'Fair'),
+                                                    Student::ENGLISH_GOOD => Yii::t('register', 'Good'),
+                                                ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
         
         <?= $form->field($model, 'student_skill', [
             'template' => $selectizeTemplate,
@@ -170,6 +183,10 @@ $this->registerCss($css);
             'placeholder' => Yii::t('register', 'Sports I play')
             ]) ?>
         
+        <?= $form->field($model, 'student_experience_company')->textInput() ?>
+        
+        <?= $form->field($model, 'student_experience_position')->textInput() ?>
+        
         
         
         <?= $form->field($model, 'student_interestingfacts')->textarea([
@@ -177,6 +194,11 @@ $this->registerCss($css);
             'class' => 'form-control js-auto-size',
             'placeholder' => Yii::t('register', 'I like to travel'),
             ]) ?>
+        
+        <?= $form->field($model, 'student_transportation', ['template' => $selectTemplate])->dropDownList([
+                                                    Student::TRANSPORTATION_AVAILABLE => Yii::t('register', 'I have a method of transportation'),
+                                                    Student::TRANSPORTATION_NOT_AVAILABLE => Yii::t('register', 'I do not have a method of transportation'),
+                                                ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
         
         
         <br/>
