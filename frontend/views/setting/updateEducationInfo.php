@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use frontend\models\Student;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -11,6 +12,8 @@ use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('register', 'Update Education Information');
 $this->params['breadcrumbs'][] = $this->title;
+
+Yii::$app->formatter->thousandSeparator = "";
 
 //Set Datepicker Locale to AR if language selected
 $datePickerLocale = "";
@@ -35,7 +38,18 @@ div.required label:after {
     color: red;
 }";
 
-$js = '
+$majorSearchUrl = Url::to(['register/major-list']);
+$js = "
+var selectizeMajors = $('.selectize-majors').selectize({
+    selectOnTab: true,
+    create: false,
+    onItemAdd: function(value, item){
+        selectizeMajors[0].selectize.close();
+    }
+});
+";
+
+$js .= '
  $(".js-auto-size").textareaAutoSize();
  
 $(".selectize-text").selectize({
@@ -133,11 +147,61 @@ $this->registerCss($css);
             'data-original-title' => Yii::t('register', 'Please contact us if you transferred universities'),
             ]) ?>
         
+        <?= $form->field($model, 'majorsSelected', ['template' => $selectTemplate])->listBox(
+                ArrayHelper::map(common\models\Major::find()->all(), "major_id", $this->params['isArabic'] ? "major_name_ar" : "major_name_en"), [
+                    'class' => 'selectize-majors', 
+                    'data-width' => 'auto',
+                    'title' => Yii::t('register', 'Select a major'),
+                    'multiple' => 'true',
+                    ]) ?>
+        
+        <?php
+        /**
+         * Enrolment Year
+         */
+        $enrolYearOptions = [];
+        $currentYear = date("Y");
+        $numberOfYears = 9;
+        for ($i = 0; $i < $numberOfYears; $i++) {
+            $option = $currentYear - $i;
+            $enrolYearOptions[$option] = Yii::$app->formatter->asInteger($option);
+        }
+        ?>
+        <?= $form->field($model, 'student_enrolment_year', ['template' => $selectTemplate])->dropDownList($enrolYearOptions, [
+            'class' => 'selectpicker', 
+            'data-width' => 'auto',
+            ]) ?>
+        
+        <?php
+        /**
+         * Graduating year
+         */
+        $gradYearOptions = [];
+        $currentYear = date("Y") - 3;
+        $numberOfYears = 11;
+        for ($i = 0; $i < $numberOfYears; $i++) {
+            $option = $currentYear + $i;
+            $gradYearOptions[$option] = Yii::$app->formatter->asInteger($option);
+        }
+        ?>
+        <?= $form->field($model, 'student_graduating_year', ['template' => $selectTemplate])->dropDownList($gradYearOptions, [
+            'class' => 'selectpicker', 
+            'data-width' => 'auto',
+            ]) ?>
+        
         <?= $form->field($model, 'degree_id', ['template' => $selectTemplate])->dropDownList(
                 ArrayHelper::map(common\models\Degree::find()->all(), "degree_id", $this->params['isArabic'] ? "degree_name_ar" : "degree_name_en"), [
                     'class' => 'selectpicker', 
                     'data-width' => 'auto',
                     ]) ?>
+        
+        <?= $form->field($model, 'student_status', ['template' => $selectTemplate])->dropDownList([
+                                                    Student::STATUS_FULL_TIME => Yii::t('register', 'Full-time Student'),
+                                                    Student::STATUS_PART_TIME => Yii::t('register', 'Part-time Student'),
+                                                ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
+        
+        
+        <?= $form->field($model, 'student_gpa')->input('number', ['step' => 'any']) ?>
         
         
         <br/>

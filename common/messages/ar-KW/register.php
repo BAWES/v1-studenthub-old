@@ -17,9 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Update Education Information' => 'تحديث معلومات التعليم',
-    'Updated your education information' => 'تم تحديث معلومات التعليم',
-    'Thanks! Your Job will soon be posted for students to apply on' => '@@شكرا! سيتم قريبا نشر وظيفتك للطلاب @@',
+    'Full-time Student' => 'طالب بدوام كامل',
+    'Part-time Student' => 'طالب بدوام جزئي',
+    'Please contact us if you transferred universities' => 'يرجى الاتصال بنا في حال تحويل الجامعة',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Available' => 'متوفر',
     'Average # of Employees' => 'عدد الموظفين',
@@ -109,7 +109,9 @@ return [
     'The following questions are optional but will increase your chances of being contacted by employers' => 'الأسئلة التالية اختيارية ولكن سوف تزيد فرصك لعثور على وظيفة',
     'Unavailable' => 'غير متوفر',
     'University not listed?' => 'جامعة غير مذكورة؟',
+    'Update Education Information' => 'تحديث معلومات التعليم',
     'Update Personal Information' => 'تحديث المعلومات الشخصية',
+    'Updated your education information' => 'تم تحديث معلومات التعليم',
     'Updated your personal information' => 'تم تحديث المعلومات الشخصية الخاصة بك',
     'Upload CV (optional)' => 'تحميل السيرة الذاتية (اختياري)',
     'Upload ID Card' => 'تحميل بطاقة الهوية',
