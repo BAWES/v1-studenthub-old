@@ -42,7 +42,6 @@ class SettingController extends \yii\web\Controller {
      * @return mixed
      */
     public function actionChangeNotificationPreference(){
-        
         $model = \employer\models\Employer::findOne(Yii::$app->user->identity->employer_id);
                 
         if ($model) {
@@ -61,6 +60,16 @@ class SettingController extends \yii\web\Controller {
         
         //return to previous page 
         return $this->redirect(Yii::$app->request->referrer);
+    }
+    
+    
+    /**
+     * Allows user to change their password
+     */
+    public function actionChangePassword(){
+        
+        
+        return $this->render('changePassword');
     }
     
 
