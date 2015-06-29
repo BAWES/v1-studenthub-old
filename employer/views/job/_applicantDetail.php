@@ -131,7 +131,7 @@ $job = $model->job;
     
     <!-- Clubs -->
     <?php if($student->student_club){ ?>
-    <h4><?= Yii::t('frontend', 'Sports') ?></h4>
+    <h4><?= Yii::t('frontend', 'Clubs') ?></h4>
     <p>
         <?= Yii::$app->formatter->asNtext($student->student_club) ?>
     </p>
