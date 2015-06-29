@@ -73,6 +73,14 @@ $job = $model->job;
         <?= Yii::$app->formatter->asDecimal($student->student_gpa,2) ?>
     </p>
     
+    <!-- Previous job experience -->
+    <?php if($student->student_experience_company && $student->student_experience_position){ ?>
+    <h4><?= Yii::t('frontend', 'Favorite Work Experience') ?></h4>
+    <p>
+        <?= $student->student_experience_position ?> @ <?= $student->student_experience_company ?>
+    </p>
+    <?php } ?>
+    
     <!-- English Language Level -->
     <h4><?= Yii::t('frontend', 'English Language Level') ?></h4>
     <p>
@@ -121,7 +129,7 @@ $job = $model->job;
     </p>
     <?php } ?>
     
-    <!-- Hobbies -->
+    <!-- Sports -->
     <?php if($student->student_sport){ ?>
     <h4><?= Yii::t('frontend', 'Sports') ?></h4>
     <p>
