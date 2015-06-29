@@ -7,6 +7,7 @@ use common\models\Student;
 /* @var $model common\models\StudentJobApplication */
 
 $student = $model->student;
+$job = $model->job;
 ?>
 
 <div class="modal-header">
@@ -42,6 +43,22 @@ $student = $model->student;
         <?= $this->params['isArabic']?$student->university->university_name_ar:$student->university->university_name_en ?>
     </p>
     
+    <!-- Interview Question #1 -->
+    <?php if($job->job_question_1){ ?>
+        <h4><?= $job->job_question_1 ?></h4>
+        <p>
+            <?= $model->application_answer_1 ?>
+        </p>
+    <?php } ?>
+        
+    <!-- Interview Question #2 -->
+    <?php if($job->job_question_2){ ?>
+        <h4><?= $job->job_question_2 ?></h4>
+        <p>
+            <?= $model->application_answer_2 ?>
+        </p>
+    <?php } ?>
+    
     <!-- Majors -->
     <h4><?= Yii::t('frontend', 'Major') ?></h4>
     <ul>
@@ -62,7 +79,7 @@ $student = $model->student;
         <?= $student->englishLanguageLevel ?>
     </p>
     
-    <!-- Nationality -->
+    <!-- Gender -->
     <h4><?= Yii::t('frontend', 'Gender') ?></h4>
     <p>
         <?= $student->gender ?>
