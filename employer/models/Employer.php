@@ -13,6 +13,17 @@ use yii\db\Expression;
 class Employer extends \common\models\Employer {
     
     /**
+     * Scenarios for validation and massive assignment
+     */
+    public function scenarios() {
+        $scenarios = parent::scenarios();
+        
+        $scenarios['changeEmailPreference'] = ['employer_email_preference'];
+
+        return $scenarios;
+    }
+    
+    /**
      * Process a credit purchase that this employer made
      * @param int $paymentType
      * @param real $amountPaid

@@ -74,15 +74,15 @@ class Student extends \common\models\Student {
     }
 
     /**
-     * Scenarios for validation, we have two scenarios
-     * 1) firstStep scenario - validates a limited number of items for the first step
-     * 2) default scenario - validates all attributes
+     * Scenarios for validation and massive assignment
      */
     public function scenarios() {
         $scenarios = parent::scenarios();
         //Validate only these attributes on firstStep
         $scenarios['registrationFirstStep'] = ['step', 'university_id', 'student_email', 'student_password_hash',
             'student_contact_number', 'student_verification_attachment'];
+        
+        $scenarios['changeEmailPreference'] = ['student_email_preference'];
 
         return $scenarios;
     }

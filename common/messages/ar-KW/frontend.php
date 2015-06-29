@@ -17,10 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Please <a href=\'{contactLink}\'>contact us</a> to transfer your account to another university' => 'يرجى <a href=\'{contactLink}\'> الاتصال بنا </a> لنقل حسابك إلى جامعة أخرى',
-    'Transferred to another University?' => 'هل نقلت إلى جامعة أخرى؟',
-    'Transferred?' => 'نقلت؟',
-    'University' => 'الجامعة',
+    'Your email notification preferences have been updated' => 'تم تحديث تفضيلات البريد الإلكتروني الخاص بك',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'All Industries' => 'كافة القطاعات',
@@ -85,6 +82,7 @@ return [
     'Notifications' => 'الإشعارات',
     'Paid Jobs' => 'الوظائف ذات الأجور',
     'Payment' => 'دفع',
+    'Please <a href=\'{contactLink}\'>contact us</a> to transfer your account to another university' => 'يرجى <a href=\'{contactLink}\'> الاتصال بنا </a> لنقل حسابك إلى جامعة أخرى',
     'Please agree to the terms and conditions' => 'يرجى الموافقة على الشروط والأحكام',
     'Please answer the interview question' => 'الرجاء الإجابة على الأسئلة',
     'Please upload a photo of your university id card' => 'يرجى تحميل صورة من بطاقة الهوية جامعتك',
@@ -119,9 +117,12 @@ return [
     'This nationality does not exist.' => 'عدم وجود هذه الجنسية',
     'This university does not exist.' => 'هذه الجامعة لا وجود لها',
     'Total' => 'المجموع',
+    'Transferred to another University?' => 'هل نقلت إلى جامعة أخرى؟',
+    'Transferred?' => 'نقلت؟',
     'Transportation' => 'النقل',
     'Type' => 'النوع',
     'UNIVERSITY' => 'جامعة',
+    'University' => 'الجامعة',
     'University does not exist' => 'الجامعة لا وجود لها',
     'Unpaid Jobs' => 'وظائف دون أجر',
     'Verify' => 'تحقق',

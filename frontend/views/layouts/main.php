@@ -50,6 +50,7 @@ $analytics = "
 $this->registerJs($analytics);
 
 //Select dropdown in settings popup
+//and the changing of notification preferences
 $js = '
 function isMobile(){
     var check = false;
@@ -58,8 +59,12 @@ function isMobile(){
 }
 if(isMobile()){
     $(".selectpicker").selectpicker("mobile");
-}';
+}
 
+$("#notificationForm select").change(function(){
+    $("#notificationForm").submit();
+});
+';
 $this->registerJs($js);
 
 
@@ -481,7 +486,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                                             <?php
                                             $form = ActiveForm::begin([
                                                     'id' => 'notificationForm', 
-                                                    'action' => ['site/change-notification-preferences'],
+                                                    'action' => ['setting/change-notification-preference'],
                                                 ]); 
                                             ?>
 
