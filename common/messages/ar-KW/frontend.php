@@ -100,6 +100,7 @@ return [
     'Sign Up Now' => 'اشترك الآن',
     'Skills' => 'المهارات',
     'Sports' => 'الرياضة',
+    'Clubs' => 'الأندية',
     'Student Portal' => 'بوابة الطالب',
     'Sub Total' => 'حاصل الجمع',
     'Terms & Conditions' => 'الشروط والأحكام',
