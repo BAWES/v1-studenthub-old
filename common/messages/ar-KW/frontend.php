@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Your email notification preferences have been updated' => 'تم تحديث تفضيلات البريد الإلكتروني الخاص بك',
+    'Favorite Work Experience' => 'كانت تجربتي العمل المفضلة في',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'All Industries' => 'كافة القطاعات',
@@ -30,6 +30,7 @@ return [
     'Browse from available jobs that you qualify for' => 'تصفح من فرص العمل المتاحة التي مؤهلا لها',
     'Check out our video!' => 'شاهد فيديو يشرح موقعنا',
     'Clear Filters' => 'حذف الفلاتر',
+    'Clubs' => 'الأندية',
     'Contact' => 'إتصل بنا',
     'Cost' => 'التكلفة',
     'Create an account and build your CV' => 'إنشاء حساب وبناء سيرتك الذاتية',
@@ -100,7 +101,6 @@ return [
     'Sign Up Now' => 'اشترك الآن',
     'Skills' => 'المهارات',
     'Sports' => 'الرياضة',
-    'Clubs' => 'الأندية',
     'Student Portal' => 'بوابة الطالب',
     'Sub Total' => 'حاصل الجمع',
     'Terms & Conditions' => 'الشروط والأحكام',
@@ -137,6 +137,7 @@ return [
     'You have applied!' => 'قمت بالتقديم!',
     'You must be at least {age} years old' => 'عمرك يجب ان يكون على الاقل {age} سنة',
     'Your CV upload is invalid' => 'تحميل السيرة الذاتية الخاصة بك غير صالح',
+    'Your email notification preferences have been updated' => 'تم تحديث تفضيلات البريد الإلكتروني الخاص بك',
     'Your photo upload is invalid' => 'تحميل الصور الخاصة بك غير صالح',
     'a Full-Time Job.' => 'وظيفة بدوام كامل.',
     'a One-Time Job.' => 'وظيفة لمرة واحدة.',
