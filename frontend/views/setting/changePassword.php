@@ -8,7 +8,7 @@ use frontend\models\Student;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\Student */
 
-$this->title = Yii::t('register', 'Register as an Employer');
+$this->title = Yii::t('register', 'Change Password');
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = "
@@ -33,7 +33,7 @@ $this->registerCss($css);
 <div class="panel">
     <div class="panel-heading">
         <div class="panel-title">
-            <h4><?= Yii::t('register', 'Change Password') ?></h4>
+            <h4><?= $this->title ?></h4>
         </div>
     </div>
 
