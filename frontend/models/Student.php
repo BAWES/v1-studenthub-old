@@ -84,6 +84,11 @@ class Student extends \common\models\Student {
         
         $scenarios['changeEmailPreference'] = ['student_email_preference'];
         $scenarios['changePassword'] = ['student_password_hash'];
+        
+        $scenarios['updatePersonalInfo'] = ['student_firstname', 'student_lastname', 'student_dob', 'student_club',
+            'student_contact_number', 'student_interestingfacts', 'student_skill', 'student_hobby', 'student_sport',
+            'student_experience_company', 'student_experience_position',
+            'student_english_level', 'student_gender', 'student_transportation'];
 
         return $scenarios;
     }

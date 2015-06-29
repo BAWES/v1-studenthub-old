@@ -17,13 +17,16 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Change Password' => 'تغيير كلمة المرور',
+    'Please contact us if you wish to change your email' => 'يرجى الاتصال بنا إذا كنت ترغب في تغيير عنوان البريد الإلكتروني الخاص بك',
+    'Update Personal Information' => 'تحديث المعلومات الشخصية',
+    'Updated your personal information' => 'تم تحديث المعلومات الشخصية الخاصة بك',
     'Thanks! Your Job will soon be posted for students to apply on' => '@@شكرا! سيتم قريبا نشر وظيفتك للطلاب @@',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Available' => 'متوفر',
     'Average # of Employees' => 'عدد الموظفين',
     'Browse Jobs' => 'ابحث عن عمل',
     'Change' => 'تغيير',
+    'Change Password' => 'تغيير كلمة المرور',
     'Clubs im in' => 'النوادي الاذي أنا بها',
     'Company' => 'شركة',
     'Company Details' => 'تفاصيل الشركة',

@@ -506,7 +506,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                                             <a href="<?= Url::to(['setting/change-password']) ?>"><?= Yii::t('register', 'Change Password') ?></a>                                                                
                                         </li>
                                         <li>
-                                            <a href="">Personal Information </a>
+                                            <a href="<?= Url::to(['setting/update-personal-info']) ?>"><?= Yii::t('register', 'Update Personal Information') ?></a>
                                         </li>
                                         <li>
                                             <a href="">University Information </a>

@@ -81,5 +81,25 @@ class SettingController extends \yii\web\Controller {
         ]);
     }
     
+    
+    /**
+     * Allows user to change their personal information
+     */
+    public function actionUpdatePersonalInfo(){
+        $model = \frontend\models\Student::findOne(Yii::$app->user->identity->student_id);
+        
+        if($model){
+            $model->scenario = "updatePersonalInfo";
+            
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your personal information'));
+            }
+        }
+        
+        return $this->render('updatePersonalInfo', [
+            'model' => $model,
+        ]);
+    }
+    
 
 }
