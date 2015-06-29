@@ -151,7 +151,7 @@ $this->registerCss($css);
             ]) ?>
         
         
-        <?= $form->field($model, 'student_contact_number')->textInput() ?>
+        <?= $form->field($model, 'student_contact_number')->input('tel') ?>
         
         <?= $form->field($model, 'student_dob')->input('date') ?>
         
