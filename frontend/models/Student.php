@@ -90,7 +90,8 @@ class Student extends \common\models\Student {
             'student_experience_company', 'student_experience_position', 'languagesSelected', 'country_id',
             'student_english_level', 'student_gender', 'student_transportation'];
         
-        $scenarios['updateEducationInfo'] = ['degree_id', 'majorsSelected'];
+        $scenarios['updateEducationInfo'] = ['degree_id', 'majorsSelected', 'student_status', 'student_enrolment_year',
+            'student_graduating_year', 'student_gpa'];
 
         return $scenarios;
     }

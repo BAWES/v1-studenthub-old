@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use frontend\models\Student;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -124,81 +125,19 @@ $this->registerCss($css);
         ]);
         ?>
         
-        
-        
-        <?= $form->field($model, 'student_firstname')->textInput() ?>
-        
-        <?= $form->field($model, 'student_lastname')->textInput() ?>
-        
-        <?= $form->field($model, 'student_gender', ['template' => $selectTemplate])->dropDownList([
-                                                    Student::GENDER_MALE => Yii::t('register', 'Male'),
-                                                    Student::GENDER_FEMALE => Yii::t('register', 'Female'),
-                                                ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
-        
-        <?= $form->field($model, 'student_email')->textInput([
+        <?= $form->field($model, 'university_id')->textInput([
             'disabled' => 'disabled',
+            'value' => $this->params['isArabic']?$model->university->university_name_ar:$model->university->university_name_en,
             'data-toggle' => 'tooltip',
             'data-placement' => 'bottom',
-            'data-original-title' => Yii::t('register', 'Please contact us if you wish to change your email'),
+            'data-original-title' => Yii::t('register', 'Please contact us if you transferred universities'),
             ]) ?>
         
-        
-        <?= $form->field($model, 'student_contact_number')->textInput() ?>
-        
-        <?= $form->field($model, 'student_dob')->input('date') ?>
-        
-        <?= $form->field($model, 'student_english_level', ['template' => $selectTemplate])->dropDownList([
-                                                    Student::ENGLISH_WEAK => Yii::t('register', 'Weak'),
-                                                    Student::ENGLISH_FAIR => Yii::t('register', 'Fair'),
-                                                    Student::ENGLISH_GOOD => Yii::t('register', 'Good'),
-                                                ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
-        
-        <?= $form->field($model, 'student_skill', [
-            'template' => $selectizeTemplate,
-        ])->textInput([
-            'class' => 'form-control selectize-text',
-            'placeholder' => Yii::t('register', 'Teamwork, time management, and photoshop')
-            ]) ?>
-        
-        <?= $form->field($model, 'student_hobby', [
-            'template' => $selectizeTemplate,
-        ])->textInput([
-            'class' => 'form-control selectize-text',
-            'placeholder' => Yii::t('register', 'Cooking, playing guitar, and hiking')
-            ]) ?>
-        
-        
-        <?= $form->field($model, 'student_club', [
-            'template' => $selectizeTemplate,
-        ])->textInput([
-            'class' => 'form-control selectize-text',
-            'placeholder' => Yii::t('register', 'Clubs im in')
-            ]) ?>
-        
-        
-        <?= $form->field($model, 'student_sport', [
-            'template' => $selectizeTemplate,
-        ])->textInput([
-            'class' => 'form-control selectize-text',
-            'placeholder' => Yii::t('register', 'Sports I play')
-            ]) ?>
-        
-        <?= $form->field($model, 'student_experience_company')->textInput(['placeholder' => Yii::t('register', 'Company')]) ?>
-        
-        <?= $form->field($model, 'student_experience_position')->textInput(['placeholder' => Yii::t('register', 'Position')]) ?>
-        
-        
-        
-        <?= $form->field($model, 'student_interestingfacts')->textarea([
-            'rows' => 1,
-            'class' => 'form-control js-auto-size',
-            'placeholder' => Yii::t('register', 'I like to travel'),
-            ]) ?>
-        
-        <?= $form->field($model, 'student_transportation', ['template' => $selectTemplate])->dropDownList([
-                                                    Student::TRANSPORTATION_AVAILABLE => Yii::t('register', 'I have a method of transportation'),
-                                                    Student::TRANSPORTATION_NOT_AVAILABLE => Yii::t('register', 'I do not have a method of transportation'),
-                                                ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
+        <?= $form->field($model, 'degree_id', ['template' => $selectTemplate])->dropDownList(
+                ArrayHelper::map(common\models\Degree::find()->all(), "degree_id", $this->params['isArabic'] ? "degree_name_ar" : "degree_name_en"), [
+                    'class' => 'selectpicker', 
+                    'data-width' => 'auto',
+                    ]) ?>
         
         
         <br/>
