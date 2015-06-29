@@ -131,6 +131,13 @@ $this->registerCss($css);
         
         <?= $form->field($model, 'student_lastname')->textInput() ?>
         
+        <?= $form->field($model, 'country_id', ['template' => $selectTemplate])->dropDownList(
+                ArrayHelper::map(common\models\Country::find()->all(), "country_id", $this->params['isArabic'] ? "country_nationality_name_ar" : "country_nationality_name_en"), [
+                    'class' => 'selectpicker', 
+                    'data-width' => 'auto',
+                    'data-live-search' => 'true',
+                    ]) ?>
+        
         <?= $form->field($model, 'student_gender', ['template' => $selectTemplate])->dropDownList([
                                                     Student::GENDER_MALE => Yii::t('register', 'Male'),
                                                     Student::GENDER_FEMALE => Yii::t('register', 'Female'),
