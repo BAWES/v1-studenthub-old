@@ -87,7 +87,7 @@ class Student extends \common\models\Student {
         
         $scenarios['updatePersonalInfo'] = ['student_firstname', 'student_lastname', 'student_dob', 'student_club',
             'student_contact_number', 'student_interestingfacts', 'student_skill', 'student_hobby', 'student_sport',
-            'student_experience_company', 'student_experience_position',
+            'student_experience_company', 'student_experience_position', 'languagesSelected',
             'student_english_level', 'student_gender', 'student_transportation'];
         
         $scenarios['updateEducationInfo'] = ['degree_id', 'majorsSelected'];
@@ -100,10 +100,29 @@ class Student extends \common\models\Student {
      */
     public function attributeLabels() {
         return array_merge(parent::attributeLabels(), [
-            'majorsSelected' => Yii::t('app', 'Majors selected'),
-            'languagesSelected' => Yii::t('app', 'Languages selected'),
+            'majorsSelected' => Yii::t('app', 'Major(s) Studied'),
+            'languagesSelected' => Yii::t('app', 'Languages Spoken'),
             'step' => Yii::t('app', 'Step'),
         ]);
+    }
+    
+    
+    /**
+     * Populate languagesSelected variable with the current records selected languages
+     */
+    public function populateLanguagesSelected() {
+        foreach($this->languages as $language){
+            $this->languagesSelected[] = $language->language_id;
+        }        
+    }
+    
+    /**
+     * Populate majorsSelected variable with the current records selected languages
+     */
+    public function populateMajorsSelected() {
+        foreach($this->majors as $major){
+            $this->majorsSelected[] = $major->major_id;
+        }        
     }
 
     public function beforeSave($insert) {

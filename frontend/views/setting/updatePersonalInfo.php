@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use frontend\models\Student;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -152,6 +153,14 @@ $this->registerCss($css);
                                                     Student::ENGLISH_FAIR => Yii::t('register', 'Fair'),
                                                     Student::ENGLISH_GOOD => Yii::t('register', 'Good'),
                                                 ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
+        
+        <?= $form->field($model, 'languagesSelected', ['template' => $selectTemplate])->listBox(
+                ArrayHelper::map(common\models\Language::find()->all(), "language_id", $this->params['isArabic'] ? "language_name_ar" : "language_name_en"), [
+                    'class' => 'selectpicker', 
+                    'data-width' => 'auto',
+                    'title' => Yii::t('register', 'Language(s)'),
+                    'multiple' => 'true',
+                    ]) ?>
         
         <?= $form->field($model, 'student_skill', [
             'template' => $selectizeTemplate,

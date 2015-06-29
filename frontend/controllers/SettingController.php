@@ -90,6 +90,7 @@ class SettingController extends \yii\web\Controller {
         
         if($model){
             $model->scenario = "updatePersonalInfo";
+            $model->populateLanguagesSelected();
             
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your personal information'));
@@ -109,6 +110,7 @@ class SettingController extends \yii\web\Controller {
         
         if($model){
             $model->scenario = "updateEducationInfo";
+            $model->populateMajorsSelected();
             
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your education information'));

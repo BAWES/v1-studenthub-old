@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'I do not have a method of transportation' => 'ليس لدي وسيلة نقل',
-    'I have a method of transportation' => 'لدي وسيلة نقل',
+    'Update Education Information' => 'تحديث معلومات التعليم',
+    'Updated your education information' => 'تم تحديث معلومات التعليم',
     'Thanks! Your Job will soon be posted for students to apply on' => '@@شكرا! سيتم قريبا نشر وظيفتك للطلاب @@',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Available' => 'متوفر',
@@ -49,9 +49,11 @@ return [
     'I am currently a ' => 'أنا حالياً طالب ',
     'I am not' => 'انا لست',
     'I do not have' => 'ليس لدي',
+    'I do not have a method of transportation' => 'ليس لدي وسيلة نقل',
     'I do not play' => ' لا أمارس',
     'I enrolled in' => 'التحقت في ',
     'I have' => 'لدي',
+    'I have a method of transportation' => 'لدي وسيلة نقل',
     'I have skills in ' => 'لدي مهارات في',
     'I like to travel' => 'أنا أحب السفر',
     'I play' => 'أمارس',
