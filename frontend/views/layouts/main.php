@@ -509,13 +509,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                                             <a href="<?= Url::to(['setting/update-personal-info']) ?>"><?= Yii::t('register', 'Update Personal Information') ?></a>
                                         </li>
                                         <li>
-                                            <a href="">University Information </a>
-                                        </li>
-                                        <li>
-                                            <a href="">Contact Information </a>
-                                        </li>
-                                        <li>
-                                            <a href="">Other Information </a>
+                                            <a href="<?= Url::to(['setting/update-education-info']) ?>"><?= Yii::t('register', 'Update Education Information') ?></a>
                                         </li>
                                     </ul>                                                                                                                                                           
 

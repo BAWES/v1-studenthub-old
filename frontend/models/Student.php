@@ -89,6 +89,8 @@ class Student extends \common\models\Student {
             'student_contact_number', 'student_interestingfacts', 'student_skill', 'student_hobby', 'student_sport',
             'student_experience_company', 'student_experience_position',
             'student_english_level', 'student_gender', 'student_transportation'];
+        
+        $scenarios['updateEducationInfo'] = ['degree_id', 'majorsSelected'];
 
         return $scenarios;
     }
