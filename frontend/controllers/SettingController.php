@@ -4,6 +4,8 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use yii\web\UploadedFile;
+use yii\base\DynamicModel;
 use yii\web\NotFoundHttpException;
 
 class SettingController extends \yii\web\Controller {
@@ -119,6 +121,66 @@ class SettingController extends \yii\web\Controller {
         
         return $this->render('updateEducationInfo', [
             'model' => $model,
+        ]);
+    }
+    
+    /**
+     * Allows user to change their profile photo
+     */
+    public function actionChangeProfilePhoto(){
+        $hasErrors = false;
+        $model = \common\models\Student::findOne(Yii::$app->user->identity->student_id);
+        
+        
+        if($model){
+            $model->scenario = "changeProfilePhoto";
+            $oldPhoto = $model->student_photo;
+            $oldPhotoUrl = $model->photo;
+            
+            if ($model->load(Yii::$app->request->post())) {
+                $model->student_photo = UploadedFile::getInstance($model, 'student_photo');
+                $uploadedFile = $model->student_photo;
+                                
+                /**
+                 * Dynamic Model to validate filetype on the go
+                 */
+                $dynModel = DynamicModel::validateData(compact('uploadedFile'), [
+                    [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png, gif', 'maxSize' => 10000000,
+                        'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for your Photo: {extensions}')],
+                ]);
+                if ($dynModel->hasErrors()) {
+                    // validation fails
+                    $hasErrors = true;
+                    foreach ($dynModel->errors as $error => $errorText) {
+                        Yii::$app->getSession()->setFlash('error', $errorText);
+                    }
+                }
+
+                if(!$hasErrors){
+                    //file upload is valid - Upload file to amazon S3
+                    $model->uploadPhoto();
+                    if($model->save()){
+                        //Delete old photo if exists
+                        if($oldPhoto){
+                            Yii::$app->resourceManager->delete("student-photo/" . $oldPhoto);
+                        }
+
+                        Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your profile photo'));
+                    }else{
+                        $hasErrors = true;
+                        foreach ($model->errors as $error => $errorText) {
+                            Yii::$app->getSession()->setFlash('error', $errorText);
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        return $this->render('changeProfilePhoto', [
+            'model' => $model,
+            'hasErrors' => $hasErrors,
+            'oldPhotoUrl' => $oldPhotoUrl,
         ]);
     }
     

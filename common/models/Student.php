@@ -8,6 +8,8 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use yii\web\IdentityInterface;
 use common\models\University;
+use yii\filters\AccessControl;
+use yii\web\UploadedFile;
 use yii\helpers\Url;
 
 /**
@@ -216,6 +218,17 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         ];
     }
     
+    /**
+     * Scenarios for validation and massive assignment
+     */
+    public function scenarios() {
+        $scenarios = parent::scenarios();
+        
+        $scenarios['changeProfilePhoto'] = ['student_photo'];
+
+        return $scenarios;
+    }
+    
     public function behaviors() {
         return [
             [
@@ -296,6 +309,31 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         }
     }
     
+    /**
+     * Uploads the new logo if $this->student_photo is an instance of UploadedFile
+     */
+    public function uploadPhoto() {
+        if($this->student_photo instanceof UploadedFile){
+            $filename = Yii::$app->security->generateRandomString() . "." . $this->student_photo->extension;
+
+            //Resize file using imagine
+            $newTmpName = $this->student_photo->tempName . "." . $this->student_photo->extension;
+
+            $imagine = new \Imagine\Gd\Imagine();
+            $image = $imagine->open($this->student_photo->tempName);
+            $image->resize($image->getSize()->widen(500));
+            $image->save($newTmpName);
+            
+            //Overwrite old filename for S3 uploading
+            $this->student_photo->tempName = $newTmpName;
+
+            //Save to S3 Temporary folder
+            $awsResult = Yii::$app->resourceManager->save($this->student_photo, "student-photo/" . $filename);
+            if($awsResult){
+                $this->student_photo = $filename;
+            }
+        }
+    }
     
     /**
      * @return string path to the student photo

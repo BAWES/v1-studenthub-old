@@ -17,9 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Full-time Student' => 'طالب بدوام كامل',
-    'Part-time Student' => 'طالب بدوام جزئي',
-    'Please contact us if you transferred universities' => 'يرجى الاتصال بنا في حال تحويل الجامعة',
+    'Change Profile Photo' => 'تغيير الصورة الشخصية',
+    'Save' => 'حفظ',
+    'Select Photo' => 'اختر الصورة',
+    'Updated your profile photo' => 'تم تحديث الصورة الشخصية',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Available' => 'متوفر',
     'Average # of Employees' => 'عدد الموظفين',
@@ -41,6 +42,7 @@ return [
     'Female' => 'أنثى',
     'First Name' => 'الاسم الأول',
     'Full-time' => 'بدوام كامل',
+    'Full-time Student' => 'طالب بدوام كامل',
     'GPA' => 'معدل',
     'Gender' => 'جنس',
     'Good' => 'قوي',
@@ -82,9 +84,11 @@ return [
     'Only files with these extensions are allowed for your Logo: {extensions}' => 'يسمح فقط الملفات مع هذه الملحقات لشعار الشركة {extensions}',
     'Only files with these extensions are allowed for your Photo: {extensions}' => 'يسمح فقط الملفات مع هذه الملحقات للصورة {extensions}',
     'Part-time' => 'دوام جزئى',
+    'Part-time Student' => 'طالب بدوام جزئي',
     'Password' => 'كلمة المرور',
     'Phone Number' => 'رقم الهاتف',
     'Please click on the link sent to you by email to verify your account' => 'يرجى الضغط على الرابط المرسل لك عن طريق البريد الإلكتروني للتحقق من حسابك',
+    'Please contact us if you transferred universities' => 'يرجى الاتصال بنا في حال تحويل الجامعة',
     'Please contact us if you wish to change your email' => 'يرجى الاتصال بنا إذا كنت ترغب في تغيير عنوان البريد الإلكتروني الخاص بك',
     'Please feel free to contact us if you need assistance.' => 'لا تتردد في الاتصال بنا اذا كنت بحاجة إلى المساعدة.',
     'Please upload a photo of your student ID card' => 'يرجى تحميل صورة من بطاقة هوية الطالب الخاص بك',
