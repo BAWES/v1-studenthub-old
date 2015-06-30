@@ -81,7 +81,7 @@ if(isMobile()){
     $(".selectpicker").selectpicker("mobile");
 }
 
-var form = $("form");
+var form = $("form#job-form");
 var saveAsDraft = false;
 $("#saveAsDraft").click(function(){
     saveAsDraft = true;
@@ -200,6 +200,7 @@ $this->registerJs($js);
 $this->registerCss($css);
 
 $form = ActiveForm::begin([
+            'id' => 'job-form',
             'layout' => 'horizontal',
             'fieldConfig' => [
                 'template' => $fieldTemplate,

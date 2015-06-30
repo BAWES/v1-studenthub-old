@@ -74,7 +74,7 @@ if (!isMobile()) {
 
 $(".switchSelect").bootstrapSwitch();
 
-var form = $("form");
+var form = $("form#job-form");
 var saveAsDraft = false;
 $("#saveAsDraft").click(function(){
     saveAsDraft = true;
