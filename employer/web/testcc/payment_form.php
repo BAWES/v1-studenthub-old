@@ -6,8 +6,8 @@
 </head>
 <body>
 <form id="payment_form" action="payment_confirmation.php" method="post">
-    <input type="hidden" name="access_key" value="<REPLACE WITH ACCESS KEY>">
-    <input type="hidden" name="profile_id" value="<REPLACE WITH PROFILE ID>">
+    <input type="hidden" name="access_key" value="574f600374cf368db32d6328c0528741">
+    <input type="hidden" name="profile_id" value="nbk_bawes_acct">
     <input type="hidden" name="transaction_uuid" value="<?php echo uniqid() ?>">
     <input type="hidden" name="signed_field_names" value="access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency">
     <input type="hidden" name="unsigned_field_names">
