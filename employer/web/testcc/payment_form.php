@@ -12,7 +12,7 @@
     <input type="hidden" name="signed_field_names" value="access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency">
     <input type="hidden" name="unsigned_field_names">
     <input type="hidden" name="signed_date_time" value="<?php echo gmdate("Y-m-d\TH:i:s\Z"); ?>">
-    <input type="hidden" name="locale" value="ar">
+    <input type="hidden" name="locale" value="en">
     <fieldset>
         <legend>Payment Details</legend>
         <div id="paymentDetailsSection" class="section">
