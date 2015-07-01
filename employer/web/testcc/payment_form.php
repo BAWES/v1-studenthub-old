@@ -76,7 +76,6 @@ $phone = "99811042";
     <input type="hidden" id="signature" name="signature" value="<?= $signature ?>"/>
     
     <input type="submit" id="submit" name="submit" value="Submit"/>
-    <script type="text/javascript" src="payment_form.js"></script>
 </form>
 </body>
 </html>
