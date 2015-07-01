@@ -44,7 +44,7 @@ class KnetPayment extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['payment_id', 'employer_id'], 'required'],
-            [['payment_id', 'employer_id', 'job_id'], 'integer'],
+            [['employer_id', 'job_id'], 'integer'],
             [['payment_amount'], 'number'],
         ];
     }
