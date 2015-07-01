@@ -30,6 +30,13 @@
         }
         echo "<input type=\"hidden\" id=\"signature\" name=\"signature\" value=\"" . sign($params) . "\"/>\n";
     ?>
+
+    <input type="hidden" name="unsigned_field_names" value="bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone">
+    <input type="hidden" name="bill_to_forename" value="noreal">
+    <input type="hidden" name="bill_to_surname" value="name">
+    <input type="hidden" name="bill_to_email" value="khalid@bawes.net">
+    <input type="hidden" name="bill_to_phone" value="99811042">
+    
 <input type="submit" id="submit" value="Confirm"/>
 </form>
 </body>
