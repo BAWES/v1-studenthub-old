@@ -114,6 +114,7 @@ AppAsset::register($this);
                             ['label' => 'Inactive Employers', 'url' => ['/employer/inactive']],
                             ['label' => 'Inactive Students', 'url' => ['/student/inactive']],
                             ['label' => 'KNET Payments', 'url' => ['/knet-payment/index']],
+                            ['label' => 'Cybersource Payments', 'url' => ['/cybersource-payment/index']],
                         ],
                     ],
                     //User Management
