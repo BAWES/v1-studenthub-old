@@ -33,6 +33,8 @@ use yii\db\Expression;
  */
 class CybersourcePayment extends \yii\db\ActiveRecord
 {
+    private $secretKey = "164f5b8a9c5e47bbaedf912a50ceded6d8d657f03a554434a22b3c5bb89fe7570e9c2ab8cd144a5992ff75f983a500aa030a7140e2164f43b57b35ea21a165315ef6d4d4c96b4022b39d6371cd30567da22426026f8543a4b51dd885aa7f4dff22460e0eff7e4d53bddb3e015fc46f249987de6acf34497da06d405661aa5530";
+    
     /**
      * @inheritdoc
      */
@@ -94,6 +96,46 @@ class CybersourcePayment extends \yii\db\ActiveRecord
             'payment_signature' => Yii::t('app', 'Payment Signature'),
             'payment_datetime' => Yii::t('app', 'Payment Datetime'),
         ];
+    }
+    
+    
+    /**
+     * Checks if provided parameters with signature matches
+     * our own secret key signing
+     * @param string $params
+     * @return boolean
+     */
+    public static function checkParamsValid($params){
+        if (strcmp($params["signature"], self::sign($params))==0) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Signs the parameters using the secret key to avoid tampering
+     * @param array $params
+     * @return string
+     */
+    public static function sign ($params) {
+        return self::signData(self::buildDataToSign($params), $this->secretKey);
+    }
+
+    public static function signData($data, $secretKey) {
+        return base64_encode(hash_hmac('sha256', $data, $secretKey, true));
+    }
+    
+    public static function buildDataToSign($params) {
+        $signedFieldNames = explode(",",$params["signed_field_names"]);
+        foreach ($signedFieldNames as $field) {
+           $dataToSign[] = $field . "=" . $params[$field];
+        }
+        return self::commaSeparate($dataToSign);
+    }
+    
+    public static function commaSeparate ($dataToSign) {
+        return implode(",",$dataToSign);
     }
 
     /**

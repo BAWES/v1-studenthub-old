@@ -4,11 +4,10 @@ namespace employer\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use yii\data\ArrayDataProvider;
 use yii\helpers\Url;
 use common\models\KnetPayment;
 
-class CreditController extends \yii\web\Controller {
+class CybersourceController extends \yii\web\Controller {
 
     /**
      * @inheritdoc
@@ -39,7 +38,17 @@ class CreditController extends \yii\web\Controller {
     }
     
     /**
-     * Renders Employer Dashboard containing all jobs posted + link to create a new job
+     * Function to initiate a credit purchase
+     * @param real $creditAmount
+     */
+    public function actionCreditPurchase($creditAmount){
+        /**
+         * Initiate cybersource payment here
+         */
+    }
+    
+    /**
+     * Index page, currently including useless data - delete if unused
      */
     public function actionIndex() {
         
