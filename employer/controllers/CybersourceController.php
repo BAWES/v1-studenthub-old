@@ -49,12 +49,29 @@ class CybersourceController extends \yii\web\Controller {
                 //Signature is valid, proceed with processing if payment/etc is correct
                 $payment = CybersourcePayment::findOne(['payment_track_uuid' => Yii::$app->request->post('req_reference_number')]);
                 if($payment){
+                    //Customer Details
                     $payment->payment_first_name = Yii::$app->request->post('req_bill_to_forename');
                     $payment->payment_last_name = Yii::$app->request->post('req_bill_to_surname');
                     $payment->payment_email = Yii::$app->request->post('req_bill_to_email');
                     $payment->payment_phone = Yii::$app->request->post('req_bill_to_phone');
+                    $payment->payment_country = Yii::$app->request->post('req_bill_to_address_country');
+                    
+                    //Card Details
+                    $payment->payment_card_type = Yii::$app->request->post('req_card_type');
+                    $payment->payment_card_number = Yii::$app->request->post('req_card_number');
+                    $payment->payment_card_expiry = Yii::$app->request->post('req_card_expiry_date');
+                    
+                    //Response Details
                     $payment->payment_message = Yii::$app->request->post('message');
                     $payment->payment_decision = Yii::$app->request->post('decision');
+                    $payment->payment_auth_code = Yii::$app->request->post('auth_code');
+                    $payment->payment_signature = Yii::$app->request->post('signature');
+                    
+                    
+                    
+                    //Card types - switch from number to string representation
+                    //001 - Visa
+                    
                     
                     $payment->save();
                     
