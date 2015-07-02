@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'payment_country',
             'payment_card_number',
             'payment_card_expiry',
-            'payment_amount',
+            'payment_amount:currency',
             'payment_message:ntext',
             'payment_decision',
             'payment_reason_code',
