@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 02, 2015 at 01:56 PM
+-- Generation Time: Jul 02, 2015 at 02:20 PM
 -- Server version: 5.6.22
 -- PHP Version: 5.6.10
 
@@ -356,6 +356,7 @@ CREATE TABLE IF NOT EXISTS `cybersource_payment` (
   `payment_email` varchar(128) DEFAULT '',
   `payment_phone` varchar(64) DEFAULT '',
   `payment_country` varchar(64) DEFAULT '',
+  `payment_card_type` varchar(64) NOT NULL,
   `payment_card_number` varchar(64) DEFAULT '',
   `payment_card_expiry` varchar(24) DEFAULT '',
   `payment_amount` double(10,3) NOT NULL,

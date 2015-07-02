@@ -19,7 +19,7 @@ class CybersourcePaymentSearch extends CybersourcePayment
     {
         return [
             [['payment_id', 'employer_id', 'job_id'], 'integer'],
-            [['payment_track_uuid', 'payment_first_name', 'payment_last_name', 'payment_email', 'payment_phone', 'payment_country', 'payment_card_number', 'payment_card_expiry', 'payment_message', 'payment_decision', 'payment_reason_code', 'payment_auth_code', 'payment_signature', 'payment_datetime'], 'safe'],
+            [['payment_track_uuid', 'payment_first_name', 'payment_last_name', 'payment_email', 'payment_phone', 'payment_country', 'payment_card_number', 'payment_card_type', 'payment_card_expiry', 'payment_message', 'payment_decision', 'payment_reason_code', 'payment_auth_code', 'payment_signature', 'payment_datetime'], 'safe'],
             [['payment_amount'], 'number'],
         ];
     }
@@ -70,6 +70,7 @@ class CybersourcePaymentSearch extends CybersourcePayment
             ->andFilterWhere(['like', 'payment_email', $this->payment_email])
             ->andFilterWhere(['like', 'payment_phone', $this->payment_phone])
             ->andFilterWhere(['like', 'payment_country', $this->payment_country])
+            ->andFilterWhere(['like', 'payment_card_type', $this->payment_card_type])
             ->andFilterWhere(['like', 'payment_card_number', $this->payment_card_number])
             ->andFilterWhere(['like', 'payment_card_expiry', $this->payment_card_expiry])
             ->andFilterWhere(['like', 'payment_message', $this->payment_message])

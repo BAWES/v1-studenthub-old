@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'payment_country',
             // 'payment_card_number',
             // 'payment_card_expiry',
+            'payment_card_type',
             'payment_amount',
             'payment_message:ntext',
             'payment_decision',

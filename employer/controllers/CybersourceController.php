@@ -49,9 +49,16 @@ class CybersourceController extends \yii\web\Controller {
                 //Signature is valid, proceed with processing if payment/etc is correct
                 $payment = CybersourcePayment::findOne(['payment_track_uuid' => Yii::$app->request->post('req_reference_number')]);
                 if($payment){
-                    echo "Transaction source by ".$payment->employer->employer_company_name;
-                    //Update transaction details here, and see if payment made or not
+                    $payment->payment_first_name = Yii::$app->request->post('req_bill_to_forename');
+                    $payment->payment_last_name = Yii::$app->request->post('req_bill_to_surname');
+                    $payment->payment_email = Yii::$app->request->post('req_bill_to_email');
+                    $payment->payment_phone = Yii::$app->request->post('req_bill_to_phone');
+                    $payment->payment_message = Yii::$app->request->post('message');
+                    $payment->payment_decision = Yii::$app->request->post('decision');
                     
+                    $payment->save();
+                    
+                    //Process payment based on result here
                 }else{
                     Yii::error("Received valid signed response from Cybersource - no match found in payment database", __METHOD__);
                     throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance.');

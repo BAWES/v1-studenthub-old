@@ -18,6 +18,7 @@ use yii\db\Expression;
  * @property string $payment_email
  * @property string $payment_phone
  * @property string $payment_country
+ * @property string $payment_card_type
  * @property string $payment_card_number
  * @property string $payment_card_expiry
  * @property double $payment_amount
@@ -155,6 +156,7 @@ class CybersourcePayment extends \yii\db\ActiveRecord
             'payment_email' => Yii::t('app', 'Payment Email'),
             'payment_phone' => Yii::t('app', 'Payment Phone'),
             'payment_country' => Yii::t('app', 'Payment Country'),
+            'payment_card_type' => Yii::t('app', 'Payment Card Type'),
             'payment_card_number' => Yii::t('app', 'Payment Card Number'),
             'payment_card_expiry' => Yii::t('app', 'Payment Card Expiry'),
             'payment_amount' => Yii::t('app', 'Payment Amount'),

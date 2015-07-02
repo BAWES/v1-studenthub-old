@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'payment_email:email',
             'payment_phone',
             'payment_country',
+            'payment_card_type',
             'payment_card_number',
             'payment_card_expiry',
             'payment_amount:currency',
