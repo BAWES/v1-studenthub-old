@@ -180,15 +180,15 @@ class CybersourcePayment extends \yii\db\ActiveRecord
      */
     public function generateSignature(){
         $params = [];
-        $params['access_key'] = $this->accessKey;
-        $params['profile_id'] = $this->profileId;
-        $params['transaction_type'] = $this->transactionType;
+        $params['access_key'] = self::ACCESS_KEY;
+        $params['profile_id'] = self::PROFILE_ID;
+        $params['transaction_type'] = self::TRANSACTION_TYPE;
         $params['locale'] = $this->locale;
         $params['transaction_uuid'] = $this->payment_track_uuid;
         $params['reference_number'] = $this->payment_track_uuid;
         $params['unsigned_field_names'] = $this->unsignedFields;
         $params['amount'] = $this->payment_amount;
-        $params['currency'] = $this->currency;
+        $params['currency'] = self::CURRENCY;
         $params['signed_field_names'] = $this->signedFields;
         $params['signed_date_time'] = $this->signedDatetime;
         
