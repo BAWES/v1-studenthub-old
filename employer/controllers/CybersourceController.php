@@ -36,7 +36,7 @@ class CybersourceController extends \yii\web\Controller {
      * @throws NotFoundHttpException
      */
     public function actionPaymentResponse(){
-        if(Yii::$app->request->post('signature')){
+        //if(Yii::$app->request->post('signature')){
             $params = [];
             //Get all request params sent to us from Cybersource
             foreach($_REQUEST as $name => $value) {
@@ -57,9 +57,9 @@ class CybersourceController extends \yii\web\Controller {
                     throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance.');
                 }
             }
-        }else{
-            throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance.');
-        }
+        //}else{
+        //    throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance.');
+        //}
     }
     
     /**
