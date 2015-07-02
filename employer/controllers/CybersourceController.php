@@ -101,10 +101,6 @@ class CybersourceController extends \yii\web\Controller {
         $payment = new CybersourcePayment();
         $payment->initiatePayment($employer, $amount, $jobId);
         
-        $date = date('m/d/Y h:i:s a', time());
-        echo $date;
-        Yii::warning("test", __METHOD__);
-        
         return $this->render('pay',[
             'payment' => $payment,
         ]);
