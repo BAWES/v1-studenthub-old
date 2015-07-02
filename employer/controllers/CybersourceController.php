@@ -76,6 +76,7 @@ class CybersourceController extends \yii\web\Controller {
                     //Response Details
                     $payment->payment_message = Yii::$app->request->post('message');
                     $payment->payment_decision = Yii::$app->request->post('decision');
+                    $payment->payment_reason_code = Yii::$app->request->post('reason_code');
                     $payment->payment_auth_code = Yii::$app->request->post('auth_code');
                     $payment->payment_signature = Yii::$app->request->post('signature');
                     
