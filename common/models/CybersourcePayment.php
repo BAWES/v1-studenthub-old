@@ -52,17 +52,13 @@ class CybersourcePayment extends \yii\db\ActiveRecord
     public $signedDatetime;
     public $unsignedFields;
     
-    
     /**
-     * Creates a CybersourcePayment model given an employer/jobId.
-     *
+     * Initiates a new Payment given the parameters
      * @param  \common\models\Employer         $employer
      * @param  double                          $payAmount
      * @param  int                             $jobId
-     * @throws \yii\base\InvalidParamException
      */
-    public function __construct($employer, $payAmount, $jobId = false, $config = [])
-    {
+    public function initiatePayment($employer, $payAmount, $jobId = false){
         if ($payAmount <= 0) {
             throw new InvalidParamException('Invalid payment amount');
         }
@@ -110,9 +106,6 @@ class CybersourcePayment extends \yii\db\ActiveRecord
         if(!$this->save()){
             Yii::error(print_r($this->errors, true), __METHOD__);
         }
-        
-        
-        parent::__construct($config);
     }
     
     

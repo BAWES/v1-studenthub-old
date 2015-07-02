@@ -68,7 +68,8 @@ class CybersourceController extends \yii\web\Controller {
         $amount = 100.000;
         $jobId = false;
         
-        $payment = new CybersourcePayment($employer, $amount, $jobId);
+        $payment = new CybersourcePayment();
+        $payment->initiatePayment($employer, $amount, $jobId);
         
         return $this->render('pay',[
             'payment' => $payment,
