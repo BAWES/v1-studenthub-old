@@ -12,6 +12,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use common\models\KnetPayment;
+use common\models\CybersourcePayment;
+
 
 /**
  * JobController implements the CRUD actions for Job model.
@@ -348,13 +350,11 @@ class JobController extends Controller {
                      */
                     $pipe = $model->initiateKNETPayment();
 
-
                     if($pipe instanceof \common\components\knet\e24PaymentPipe){
                         //Successfully initiated KNET payment
                         $payId = $pipe->getPaymentId();
                         $payUrl = $pipe->getPaymentPage();
                         //echo $pipe->getDebugMsg();
-
 
                         //Save initial transaction details into DB 
                         $payment = new KnetPayment();
@@ -366,8 +366,6 @@ class JobController extends Controller {
                         $payment->payment_amount = $pipe->getAmt();
                         $payment->save();
 
-
-
                         //Redirect to KNET payment page
                         return $this->redirect("$payUrl?PaymentID=$payId");
 
@@ -376,9 +374,16 @@ class JobController extends Controller {
                         Yii::$app->session->setFlash("error", $pipe);
                     }
 
+                }else if($paymentOption == \common\models\PaymentType::TYPE_CREDITCARD){
                     /**
-                     * END KNET PAYMENT PROCESSING
+                     * START CYBERSOURCE PAYMENT PROCESSING
                      */
+                    $payment = new CybersourcePayment();
+                    $payment->initiatePayment(Yii::$app->user->identity, $model->amountDue, $model->job_id);
+
+                    return $this->render('cybersource',[
+                        'payment' => $payment,
+                    ]);
                 }else if($paymentModel = $model->processPayment(\common\models\PaymentType::TYPE_CREDIT)){
                     //Redirect to thank you page
                     return $this->redirect(['success', 'id' => $paymentModel->payment_id]);
