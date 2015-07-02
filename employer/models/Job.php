@@ -143,7 +143,8 @@ class Job extends \common\models\Job {
             }else{
                 Yii::error(print_r($payment->errors, true), __METHOD__);
             }
-        }else if($paymentType == \common\models\PaymentType::TYPE_KNET){
+        }else if($paymentType == \common\models\PaymentType::TYPE_KNET || 
+                $paymentType == \common\models\PaymentType::TYPE_CREDITCARD){
             /**
              * Make sure to divide Amount due between credit_change and payment_total
              * To see how much of it was paid by credit, and how much was paid using the gateway

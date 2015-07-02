@@ -31,6 +31,26 @@ class CybersourceController extends \yii\web\Controller {
     }
     
     /**
+     * Function to initiate payment
+     * if no job provided, it is for credit
+     * @param double $amount
+     * @param int $jobId
+     */
+    public function actionPay($amount = 0, $jobId = false){
+        $employer = Yii::$app->user->identity;
+        
+        $amount = 100.000;
+        $jobId = false;
+        
+        $payment = new CybersourcePayment();
+        $payment->initiatePayment($employer, $amount, $jobId);
+        
+        return $this->render('pay',[
+            'payment' => $payment,
+        ]);
+    }
+    
+    /**
      * Action that will accept the Cybersource response then determine if it was a success or failure
      * and what to do next
      * @throws NotFoundHttpException
@@ -78,12 +98,41 @@ class CybersourceController extends \yii\web\Controller {
                     $payment->payment_reason_code = Yii::$app->request->post('reason_code');
                     $payment->payment_auth_code = Yii::$app->request->post('auth_code');
                     $payment->payment_signature = Yii::$app->request->post('signature');
-                    
-                    
-                    
                     $payment->save();
                     
-                    //Process payment based on result here
+                    /**
+                     * Check if transaction is approved by payment gateway
+                     */
+                    if($payment->payment_decision == "ACCEPT"){
+
+                        $note = $payment->payment_card_type." \n"
+                           . $payment->payment_card_number."\n"
+                           . "Track ID #".$payment->payment_track_uuid."\n"
+                           . "Result ".$payment->payment_message;
+
+                        /**
+                         * IF PAYMENT IS FOR JOB, process the job
+                         * If payment is for credit, process the credit
+                         * He should always get an invoice for his purchase
+                         */
+                        if($payment->job_id){
+                           $model = $payment->job->processPayment(\common\models\PaymentType::TYPE_CREDITCARD, $payment->payment_amount, $note);
+                           return $this->redirect(['cybersource/success', 'id' => $model->payment_id]);
+                        }else{
+                           //Payment was made by this employer for credit
+                           $model = $payment->employer->processCreditPurchase(\common\models\PaymentType::TYPE_CREDITCARD, $payment->payment_amount, $note);
+                           return $this->redirect(['cybersource/credit-payment-success', 'id' => $model->payment_id]);
+                        }
+                    }else{
+                       /**
+                        * Transaction not approved by gateway
+                        * If this payment is for a job, redirect to step 4 for them to re-attempt payment
+                        * If this payment is for credit, redirect to credit purchase page
+                        */
+                       if($payment->job_id){
+                           return $this->redirect(['cybersource/job-payment-error', 'id' => $payment->job_id, 'payId' => $payment->payment_id]);
+                       }else return $this->redirect(['cybersource/credit-payment-error', 'payId' => $payment->payment_id]);
+                    }
                 }else{
                     Yii::error("Received valid signed response from Cybersource - no match found in payment database", __METHOD__);
                     throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance.');
@@ -92,26 +141,6 @@ class CybersourceController extends \yii\web\Controller {
         }else{
             throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance.');
         }
-    }
-    
-    /**
-     * Function to initiate payment
-     * if no job provided, it is for credit
-     * @param double $amount
-     * @param int $jobId
-     */
-    public function actionPay($amount = 0, $jobId = false){
-        $employer = Yii::$app->user->identity;
-        
-        $amount = 100.000;
-        $jobId = false;
-        
-        $payment = new CybersourcePayment();
-        $payment->initiatePayment($employer, $amount, $jobId);
-        
-        return $this->render('pay',[
-            'payment' => $payment,
-        ]);
     }
     
     
@@ -142,18 +171,17 @@ class CybersourceController extends \yii\web\Controller {
     /**
      * Error in creditcard payment for this job
      * Set flash error and redirect back to job step 4 for them to attempt payment again
-     * @param integer $id the payment invoice id
-     * @param integer $payId KNET Payment ID
+     * @param integer $id the job id
+     * @param integer $payId Cybersource Payment ID
      */
     public function actionJobPaymentError($id, $payId){
         $message = "";
         
-        $knetPayment = KnetPayment::findOne($payId);
-        if($knetPayment){
-            $message = "<br/>KNET "
-                    . "Track ID #".$knetPayment->payment_trackid."<br/>"
-                    . "Reference ID #".$knetPayment->payment_ref."<br/>"
-                    . "Result: ".$knetPayment->payment_result;
+        $payment = CybersourcePayment::findOne($payId);
+        if($payment){
+            $message = "<br/>"
+                    . "Payment Track ID #".$payment->payment_track_uuid."<br/>"
+                    . "Result: ".$payment->payment_message;
         } 
         
         Yii::$app->session->setFlash("error", 
@@ -167,17 +195,16 @@ class CybersourceController extends \yii\web\Controller {
     /**
      * Error in knet payment for buying credit
      * Set flash error and redirect back to credit purchase page
-     * @param integer $payId KNET Payment ID
+     * @param integer $payId Cybersource Payment ID
      */
     public function actionCreditPaymentError($payId){
         $message = "";
         
-        $knetPayment = KnetPayment::findOne($payId);
-        if($knetPayment){
-            $message = "<br/>KNET "
-                    . "Track ID #".$knetPayment->payment_trackid."<br/>"
-                    . "Reference ID #".$knetPayment->payment_ref."<br/>"
-                    . "Result: ".$knetPayment->payment_result;
+        $payment = CybersourcePayment::findOne($payId);
+        if($payment){
+            $message = "<br/>"
+                    . "Payment Track ID #".$payment->payment_track_uuid."<br/>"
+                    . "Result: ".$payment->payment_message;
         } 
         
         Yii::$app->session->setFlash("error", 
