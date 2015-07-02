@@ -31,26 +31,6 @@ class CybersourceController extends \yii\web\Controller {
     }
     
     /**
-     * Function to initiate payment
-     * if no job provided, it is for credit
-     * @param double $amount
-     * @param int $jobId
-     */
-    public function actionPay($amount = 0, $jobId = false){
-        $employer = Yii::$app->user->identity;
-        
-        $amount = 100.000;
-        $jobId = false;
-        
-        $payment = new CybersourcePayment();
-        $payment->initiatePayment($employer, $amount, $jobId);
-        
-        return $this->render('pay',[
-            'payment' => $payment,
-        ]);
-    }
-    
-    /**
      * Action that will accept the Cybersource response then determine if it was a success or failure
      * and what to do next
      * @throws NotFoundHttpException
