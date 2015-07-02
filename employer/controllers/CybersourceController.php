@@ -57,7 +57,19 @@ class CybersourceController extends \yii\web\Controller {
                     $payment->payment_country = Yii::$app->request->post('req_bill_to_address_country');
                     
                     //Card Details
-                    $payment->payment_card_type = Yii::$app->request->post('req_card_type');
+                    $cardType = "";
+                    switch(Yii::$app->request->post('req_card_type')){
+                        case "001":
+                            $cardType = "Visa";
+                            break;
+                        case "002":
+                            $cardType = "Mastercard";
+                            break;
+                        case "005":
+                            $cardType = "Diners";
+                            break;
+                    }
+                    $payment->payment_card_type = $cardType;
                     $payment->payment_card_number = Yii::$app->request->post('req_card_number');
                     $payment->payment_card_expiry = Yii::$app->request->post('req_card_expiry_date');
                     
@@ -67,10 +79,6 @@ class CybersourceController extends \yii\web\Controller {
                     $payment->payment_auth_code = Yii::$app->request->post('auth_code');
                     $payment->payment_signature = Yii::$app->request->post('signature');
                     
-                    
-                    
-                    //Card types - switch from number to string representation
-                    //001 - Visa
                     
                     
                     $payment->save();
