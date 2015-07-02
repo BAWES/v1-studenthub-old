@@ -40,9 +40,12 @@ class CybersourceController extends \yii\web\Controller {
     /**
      * Function to initiate payment
      * if no job provided, it is for credit
+     * @param double $amount
+     * @param int $jobId
      */
-    public function actionPay(){
+    public function actionPay($amount = 0, $jobId = false){
         $employer = Yii::$app->user->identity;
+        
         $amount = 100.000;
         $jobId = false;
         
