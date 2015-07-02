@@ -33,7 +33,86 @@ use yii\db\Expression;
  */
 class CybersourcePayment extends \yii\db\ActiveRecord
 {
-    private $secretKey = "164f5b8a9c5e47bbaedf912a50ceded6d8d657f03a554434a22b3c5bb89fe7570e9c2ab8cd144a5992ff75f983a500aa030a7140e2164f43b57b35ea21a165315ef6d4d4c96b4022b39d6371cd30567da22426026f8543a4b51dd885aa7f4dff22460e0eff7e4d53bddb3e015fc46f249987de6acf34497da06d405661aa5530";
+    const PAYMENT_URL = "https://testsecureacceptance.cybersource.com/pay";
+    
+    //Secret key used for signing details (tamper protection)
+    private static $_secretKey = "164f5b8a9c5e47bbaedf912a50ceded6d8d657f03a554434a22b3c5bb89fe7570e9c2ab8cd144a5992ff75f983a500aa030a7140e2164f43b57b35ea21a165315ef6d4d4c96b4022b39d6371cd30567da22426026f8543a4b51dd885aa7f4dff22460e0eff7e4d53bddb3e015fc46f249987de6acf34497da06d405661aa5530";
+    
+    //NBK BANK AND TRANSACTION DETAILS
+    public $accessKey = "574f600374cf368db32d6328c0528741";
+    public $profileId = "nbk_bawes_acct";
+    public $transactionType = "authorization";
+    public $currency = "KWD";
+    
+    //LOCAL DETAILS - can be either en-US or ar-XN
+    public $locale = "en-US";
+    
+    //Signed and unsigned fields
+    public $signedFields;
+    public $signedDatetime;
+    public $unsignedFields;
+    
+    
+    /**
+     * Creates a CybersourcePayment model given an employer/jobId.
+     *
+     * @param  \common\models\Employer         $employer
+     * @param  double                          $payAmount
+     * @param  int                             $jobId
+     * @throws \yii\base\InvalidParamException
+     */
+    public function __construct($employer, $payAmount, $jobId = false, $config = [])
+    {
+        if ($payAmount <= 0) {
+            throw new InvalidParamException('Invalid payment amount');
+        }
+        
+        //Initial transaction messages
+        $this->payment_decision = "Payment Attempt";
+        $this->payment_message = "Payment Attempt";
+        
+        //Set Payment Amount
+        $this->payment_amount = $payAmount;
+        
+        //Generate Unique Track Id
+        $this->payment_track_uuid = uniqid();
+        
+        //Set employer details for this payment
+        $this->employer_id = $employer->employer_id;
+        $this->payment_first_name = $employer->employer_contact_firstname;
+        $this->payment_last_name = $employer->employer_contact_lastname;
+        $this->payment_email = $employer->employer_email;
+        $this->payment_phone = $employer->employer_contact_number;
+        
+        //If this payment is for a job, add job id
+        if($jobId){
+            $jobId = (int) $jobId;
+            if($jobId > 0){
+                $this->job_id = $jobId;
+            }
+        }
+        
+        //Set Locale based on Employer language pref
+        if($employer->employer_language_pref == "ar-KW"){
+            $this->locale = "ar-XN";
+        }
+        
+        //Signed Fields [Tamper Prevented]
+        $this->signedFields = "access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency";
+        $this->signedDatetime = gmdate("Y-m-d\TH:i:s\Z");
+
+        //Unsigned Fields [Customers allowed to edit]
+        $this->unsignedFields = "bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone";
+        
+        //Generate payment signature
+        $this->payment_signature = $this->generateSignature();
+        
+        $this->save();
+        
+        
+        parent::__construct($config);
+    }
+    
     
     /**
      * @inheritdoc
@@ -52,11 +131,6 @@ class CybersourcePayment extends \yii\db\ActiveRecord
             [['employer_id', 'payment_amount', 'payment_message', 'payment_datetime'], 'required'],
             [['employer_id', 'job_id'], 'integer'],
             [['payment_amount'], 'number'],
-            [['payment_message'], 'string'],
-            [['payment_datetime'], 'safe'],
-            [['payment_track_uuid', 'payment_first_name', 'payment_last_name', 'payment_email', 'payment_signature'], 'string', 'max' => 128],
-            [['payment_phone', 'payment_country', 'payment_card_number', 'payment_decision', 'payment_reason_code', 'payment_auth_code'], 'string', 'max' => 64],
-            [['payment_card_expiry'], 'string', 'max' => 24]
         ];
     }
     
@@ -98,6 +172,27 @@ class CybersourcePayment extends \yii\db\ActiveRecord
         ];
     }
     
+    /**
+     * Generates payment signature for the current params
+     * @return string
+     */
+    public function generateSignature(){
+        $params = [];
+        $params['access_key'] = $this->accessKey;
+        $params['profile_id'] = $this->profileId;
+        $params['transaction_type'] = $this->transactionType;
+        $params['locale'] = $this->locale;
+        $params['transaction_uuid'] = $this->payment_track_uuid;
+        $params['reference_number'] = $this->payment_track_uuid;
+        $params['unsigned_field_names'] = $this->unsignedFields;
+        $params['amount'] = $this->payment_amount;
+        $params['currency'] = $this->currency;
+        $params['signed_field_names'] = $this->signedFields;
+        $params['signed_date_time'] = $this->signedDatetime;
+        
+        return self::sign($params);
+    }
+    
     
     /**
      * Checks if provided parameters with signature matches
@@ -119,7 +214,7 @@ class CybersourcePayment extends \yii\db\ActiveRecord
      * @return string
      */
     public static function sign ($params) {
-        return self::signData(self::buildDataToSign($params), $this->secretKey);
+        return self::signData(self::buildDataToSign($params), self::$_secretKey);
     }
 
     public static function signData($data, $secretKey) {
