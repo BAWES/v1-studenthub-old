@@ -100,7 +100,6 @@ class CreditController extends \yii\web\Controller {
                         $payUrl = $pipe->getPaymentPage();
                         //echo $pipe->getDebugMsg();
 
-
                         //Save initial transaction details into DB 
                         $payment = new KnetPayment();
                         $payment->payment_id = $payId;
@@ -109,8 +108,6 @@ class CreditController extends \yii\web\Controller {
                         $payment->payment_result = "ATTEMPT";
                         $payment->payment_amount = $pipe->getAmt();
                         $payment->save();
-
-
 
                         //Redirect to KNET payment page
                         return $this->redirect("$payUrl?PaymentID=$payId");
