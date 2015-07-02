@@ -103,7 +103,7 @@ class CybersourceController extends \yii\web\Controller {
     public function actionPay($amount = 0, $jobId = false){
         $employer = Yii::$app->user->identity;
         
-        $amount = 7012.00;
+        $amount = 100.000;
         $jobId = false;
         
         $payment = new CybersourcePayment();
