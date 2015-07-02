@@ -233,7 +233,7 @@ class CybersourcePayment extends \yii\db\ActiveRecord
      */
     public function getEmployer()
     {
-        return $this->hasOne(Employer::className(), ['employer_id' => 'employer_id']);
+        return $this->hasOne(\employer\models\Employer::className(), ['employer_id' => 'employer_id']);
     }
 
     /**
@@ -241,6 +241,6 @@ class CybersourcePayment extends \yii\db\ActiveRecord
      */
     public function getJob()
     {
-        return $this->hasOne(Job::className(), ['job_id' => 'job_id']);
+        return $this->hasOne(\employer\models\Job::className(), ['job_id' => 'job_id']);
     }
 }
