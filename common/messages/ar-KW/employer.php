@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Email' => 'البريد الإلكتروني',
-    'Phone' => 'هاتف',
+    'Credit Card Payment' => 'الدفع ببطاقات الائتمان',
+    'Redirecting to Payment Gateway' => 'جاري التوجه إلى بوابة الدفع',
     'A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub' => 'لن يتم الموافقة على فرصة عملك إذا كان لديه عناوين تطبيق أو بريد إلكتروني في الوصف. وينبغي أن يقدم جميع الطلاب لهذه الوضيفة من خلال موقع StudentHub',
     'A short description about the job' => 'وصف قصير عن العمل',
     'About the Company' => 'عن الشركة',
@@ -46,6 +46,7 @@ return [
     'Each option increases applicant cost by {0, number, 0.000} KD' => 'التكلفة الأساسية لكل فلتر {0, number, 0.000} د.ك.',
     'Edit Basic Job Details' => 'تحرير تفاصيل الوظيفة الأساسية',
     'Edit your Job Opening' => 'تحرير',
+    'Email' => 'البريد الإلكتروني',
     'English Level' => 'مستوى اللغة الانجليزية',
     'Filter students by Degree' => 'تصفية الطلاب بشهادة',
     'Filter students by English Level' => 'تصفية الطلاب من خلال مستوى اللغة الانجليزية',
@@ -98,6 +99,7 @@ return [
     'Payment History' => 'سجل الدفعات',
     'Payment Method' => 'طريقة الدفع',
     'Pending' => 'انتظار',
+    'Phone' => 'هاتف',
     'Please choose your new password' => 'يرجى اختيار كلمة مرور جديدة',
     'Please click the verification link sent to you by email to activate your account.<br/><a href=\'{resendLink}\'>Resend verification email</a>' => 'الرجاء الضغط على الرابط الذي أرسل لك عن طريق البريد الإلكتروني لتفعيل حسابك. <br/> <a href=\'{resendLink}\'> إعادة إرسال</a> البريد الإلكتروني',
     'Please fill out the following fields to login' => 'يرجى ملء الحقول التالية للدخول',

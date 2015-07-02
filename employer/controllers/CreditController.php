@@ -7,6 +7,7 @@ use yii\filters\AccessControl;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Url;
 use common\models\KnetPayment;
+use common\models\CybersourcePayment;
 
 class CreditController extends \yii\web\Controller {
 
@@ -114,8 +115,16 @@ class CreditController extends \yii\web\Controller {
                         //Redirect to KNET payment page
                         return $this->redirect("$payUrl?PaymentID=$payId");
                     }
-                    
-                    
+                }else if($paymentMethod == \common\models\PaymentType::TYPE_CREDITCARD){
+                    /**
+                     * Purchase Credit Using Cybersource
+                     */
+                    $payment = new CybersourcePayment();
+                    $payment->initiatePayment(Yii::$app->user->identity, $creditPurchaseAmount);
+
+                    return $this->render('cybersource',[
+                        'payment' => $payment,
+                    ]);
                 }else{
                     Yii::$app->session->setFlash('error', Yii::t("frontend", "Invalid payment method"));
                 }

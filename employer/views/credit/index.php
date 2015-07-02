@@ -87,6 +87,11 @@ $this->registerJs($js);
                     <label for="option1"><?= $this->params['isArabic']?"كي نت":"KNET" ?></label>
                 </div>
                 
+                <div class="radioer">
+                    <input required type="radio" name="paymentOption" id="option2" value="<?= \common\models\PaymentType::TYPE_CREDITCARD ?>">
+                    <label for="option2"><?= $this->params['isArabic']?"بطاقة إئتمان":"Credit card" ?></label>
+                </div>
+                
                 <div class="checkboxer" style='margin-top:1em;'>
                     <input type="checkbox" value="1" id="terms" name="terms">
                     <label for="terms"><?= Yii::t("employer", "I agree to the <a href='{url}' target='_blank'>terms & conditions</a> of StudentHub", [

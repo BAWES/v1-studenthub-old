@@ -7,11 +7,11 @@ use common\models\CybersourcePayment;
 /* @var $this yii\web\View */
 /* @var $payment common\models\CybersourcePayment */
 
-$this->title = "Cybersource Payment";
+$this->title = Yii::t("employer", 'Credit Card Payment');
 $this->params['breadcrumbs'][] = $this->title;
 
 $js = "
-
+$('#csPayment').submit();
 ";
 
 $this->registerJs($js);
@@ -26,7 +26,12 @@ $this->registerJs($js);
     </div>
 
     <div class="panel-body">
-        <form id="payment_form" action="<?= CybersourcePayment::PAYMENT_URL ?>" method="POST">
+        <h3 style='text-align:center'>
+            <?= Yii::t("employer", "Redirecting to Payment Gateway") ?>
+        </h3>
+        <div class="loading-bar indeterminate margin-top-10"></div>
+        
+        <form id="csPayment" action="<?= CybersourcePayment::PAYMENT_URL ?>" method="POST">
             <input type="hidden" name="access_key" value="<?= CybersourcePayment::ACCESS_KEY ?>">
             <input type="hidden" name="profile_id" value="<?= CybersourcePayment::PROFILE_ID ?>">
             <input type="hidden" name="transaction_type" value="<?= CybersourcePayment::TRANSACTION_TYPE ?>">
@@ -57,8 +62,6 @@ $this->registerJs($js);
 
             <!-- Parameter Signature -->
             <input type="hidden" id="signature" name="signature" value="<?= $payment->payment_signature ?>"/>
-            
-            <input type="submit" id="submit" name="submit" value="Submit"/>
         </form>
     </div>
 
