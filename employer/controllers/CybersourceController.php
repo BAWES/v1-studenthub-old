@@ -38,10 +38,9 @@ class CybersourceController extends \yii\web\Controller {
     public function actionPaymentResponse(){
         if(Yii::$app->request->post('signature')){
             $params = [];
-            //Get all request params sent to us from Cybersource
+            //Get all request params sent to us from Cybersource - use to check validity of signature
             foreach($_REQUEST as $name => $value) {
                 $params[$name] = $value;
-                echo "<span>" . $name . "</span><input type=\"text\" name=\"" . $name . "\" size=\"50\" value=\"" . $value . "\" readonly=\"true\"/><br/>";
             }
 
             //Check if tampered by verifying signature
