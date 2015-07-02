@@ -107,8 +107,7 @@ class CybersourceController extends \yii\web\Controller {
 
                         $note = $payment->payment_card_type." \n"
                            . $payment->payment_card_number."\n"
-                           . "Track ID #".$payment->payment_track_uuid."\n"
-                           . "Result ".$payment->payment_message;
+                           . "Track ID #".$payment->payment_track_uuid;
 
                         /**
                          * IF PAYMENT IS FOR JOB, process the job
