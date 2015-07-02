@@ -46,10 +46,16 @@ class CybersourceController extends \yii\web\Controller {
 
             //Check if tampered by verifying signature
             if(CybersourcePayment::checkParamsValid($params)){
-                echo "<h1>Signature is valid</h1>";
-                /**
-                 * Find payment, Save updated params, and process where required/send error if invalid
-                 */
+                //Signature is valid, proceed with processing if payment/etc is correct
+                $payment = CybersourcePayment::findOne(['payment_track_uuid' => Yii::$app->request->post('signature')]);
+                if($payment){
+                    echo "Transaction source by ".$payment->employer->employer_company_name;
+                    //Update transaction details here, and see if payment made or not
+                    
+                }else{
+                    Yii::error("Received valid signed response from Cybersource - no match found in payment database", __METHOD__);
+                    throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance.');
+                }
             }
         }else{
             throw new NotFoundHttpException('There was an issue processing your payment, please contact us if you require assistance.');
