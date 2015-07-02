@@ -3,7 +3,6 @@
 namespace employer\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
 use common\models\CybersourcePayment;
 use yii\web\NotFoundHttpException;
 
@@ -11,25 +10,6 @@ class CybersourceController extends \yii\web\Controller {
     
     public $enableCsrfValidation = false;
 
-    /**
-     * @inheritdoc
-     */
-    public function behaviors() {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['pay'], //only for pay action
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => ['pay'], //only for pay action
-                        'roles' => ['@'], //only allow authenticated users to actions
-                    ],
-                ],
-            ],
-        ];
-    }
-    
     /**
      * Action that will accept the Cybersource response then determine if it was a success or failure
      * and what to do next
