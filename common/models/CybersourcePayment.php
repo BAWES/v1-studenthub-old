@@ -36,13 +36,13 @@ class CybersourcePayment extends \yii\db\ActiveRecord
     const PAYMENT_URL = "https://testsecureacceptance.cybersource.com/pay";
     
     //Secret key used for signing details (tamper protection)
-    private static $_secretKey = "164f5b8a9c5e47bbaedf912a50ceded6d8d657f03a554434a22b3c5bb89fe7570e9c2ab8cd144a5992ff75f983a500aa030a7140e2164f43b57b35ea21a165315ef6d4d4c96b4022b39d6371cd30567da22426026f8543a4b51dd885aa7f4dff22460e0eff7e4d53bddb3e015fc46f249987de6acf34497da06d405661aa5530";
+    const SECRET_KEY = "164f5b8a9c5e47bbaedf912a50ceded6d8d657f03a554434a22b3c5bb89fe7570e9c2ab8cd144a5992ff75f983a500aa030a7140e2164f43b57b35ea21a165315ef6d4d4c96b4022b39d6371cd30567da22426026f8543a4b51dd885aa7f4dff22460e0eff7e4d53bddb3e015fc46f249987de6acf34497da06d405661aa5530";
+    const ACCESS_KEY = "574f600374cf368db32d6328c0528741";
+    const PROFILE_ID = "nbk_bawes_acct";
     
-    //NBK BANK AND TRANSACTION DETAILS
-    public $accessKey = "574f600374cf368db32d6328c0528741";
-    public $profileId = "nbk_bawes_acct";
-    public $transactionType = "authorization";
-    public $currency = "KWD";
+    //Transaction Details
+    const TRANSACTION_TYPE = "authorization";
+    const CURRENCY = "KWD";
     
     //LOCAL DETAILS - can be either en-US or ar-XN
     public $locale = "en-US";
@@ -107,7 +107,9 @@ class CybersourcePayment extends \yii\db\ActiveRecord
         //Generate payment signature
         $this->payment_signature = $this->generateSignature();
         
-        $this->save();
+        if(!$this->save()){
+            Yii::error(print_r($this->errors, true), __METHOD__);
+        }
         
         
         parent::__construct($config);
@@ -128,7 +130,7 @@ class CybersourcePayment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['employer_id', 'payment_amount', 'payment_message', 'payment_datetime'], 'required'],
+            [['employer_id', 'payment_amount', 'payment_message'], 'required'],
             [['employer_id', 'job_id'], 'integer'],
             [['payment_amount'], 'number'],
         ];
@@ -214,7 +216,7 @@ class CybersourcePayment extends \yii\db\ActiveRecord
      * @return string
      */
     public static function sign ($params) {
-        return self::signData(self::buildDataToSign($params), self::$_secretKey);
+        return self::signData(self::buildDataToSign($params), self::SECRET_KEY);
     }
 
     public static function signData($data, $secretKey) {
