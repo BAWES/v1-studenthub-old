@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 02, 2015 at 09:38 PM
+-- Generation Time: Jul 04, 2015 at 09:08 PM
 -- Server version: 5.6.23
 -- PHP Version: 5.6.7
 
@@ -2752,6 +2752,7 @@ CREATE TABLE IF NOT EXISTS `student_job_application` (
   `job_id` int(11) unsigned NOT NULL,
   `application_answer_1` text COLLATE utf8_unicode_ci,
   `application_answer_2` text COLLATE utf8_unicode_ci,
+  `application_contacted` tinyint(4) NOT NULL DEFAULT '0',
   `application_hidden` tinyint(11) NOT NULL,
   `application_date_apply` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -2760,9 +2761,9 @@ CREATE TABLE IF NOT EXISTS `student_job_application` (
 -- Dumping data for table `student_job_application`
 --
 
-INSERT INTO `student_job_application` (`application_id`, `student_id`, `job_id`, `application_answer_1`, `application_answer_2`, `application_hidden`, `application_date_apply`) VALUES
-(38, 15, 15, NULL, NULL, 0, '2015-06-14 18:13:37'),
-(39, 13, 15, 'yes', 'no', 0, '2015-06-29 10:54:28');
+INSERT INTO `student_job_application` (`application_id`, `student_id`, `job_id`, `application_answer_1`, `application_answer_2`, `application_contacted`, `application_hidden`, `application_date_apply`) VALUES
+(38, 15, 15, NULL, NULL, 1, 0, '2015-06-14 18:13:37'),
+(39, 13, 15, 'yes', 'no', 0, 0, '2015-06-29 10:54:28');
 
 -- --------------------------------------------------------
 
