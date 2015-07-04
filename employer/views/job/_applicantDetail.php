@@ -31,7 +31,6 @@ $job = $model->job;
             echo Yii::t("employer", "Graduating Soon");
         }else if($yearGraduating < $currentYear){
             //output that hes a graduate
-            echo "Graduate Class of $yearGraduating";
             echo Yii::t("employer", "Graduate Class of {yearGraduating}", ['yearGraduating' => $yearGraduating]);
         }else{
             //output how many years hes been studying
