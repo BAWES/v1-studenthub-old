@@ -50,7 +50,7 @@ $this->registerCss($css);
         
         <?php if($model->student_cv){ ?>
         <div class="col-md-5 col-md-offset-3" style="text-align:center">
-            <?= Html::a("View currently uploaded CV", $hasErrors?$oldCvUrl:$model->cv) ?>
+            <?= Html::a(Yii::t("register", "View your currently uploaded CV"), $hasErrors?$oldCvUrl:$model->cv) ?>
         </div>
         <?php } ?>
         

@@ -229,7 +229,7 @@ class SettingController extends \yii\web\Controller {
                             Yii::$app->resourceManager->delete("student-cv/" . $oldCv);
                         }
 
-                        Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your CV'));
+                        Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your CV has been updated'));
                     }else{
                         $hasErrors = true;
                         foreach ($model->errors as $error => $errorText) {
