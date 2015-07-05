@@ -1337,16 +1337,16 @@
         },
         {
             "name": "kartik-v/yii2-widget-select2",
-            "version": "v2.0.1",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-select2.git",
-                "reference": "d2d65a7e3b88b965f231a5949dc693807c03fff8"
+                "reference": "585e8797d7982e0c9d09370b98b451a028a59439"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/d2d65a7e3b88b965f231a5949dc693807c03fff8",
-                "reference": "d2d65a7e3b88b965f231a5949dc693807c03fff8",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/585e8797d7982e0c9d09370b98b451a028a59439",
+                "reference": "585e8797d7982e0c9d09370b98b451a028a59439",
                 "shasum": ""
             },
             "require": {
@@ -1381,7 +1381,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-06-17 17:16:38"
+            "time": "2015-07-01 15:20:59"
         },
         {
             "name": "kartik-v/yii2-widget-sidenav",
@@ -1631,20 +1631,20 @@
         },
         {
             "name": "kartik-v/yii2-widget-typeahead",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-typeahead.git",
-                "reference": "96be042ccdcfaede22446ba0ff0dc7f8334adeaf"
+                "reference": "e369cd55cb2fb9d3a82b57ea6c9a62d69f14fb94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-typeahead/zipball/96be042ccdcfaede22446ba0ff0dc7f8334adeaf",
-                "reference": "96be042ccdcfaede22446ba0ff0dc7f8334adeaf",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-typeahead/zipball/e369cd55cb2fb9d3a82b57ea6c9a62d69f14fb94",
+                "reference": "e369cd55cb2fb9d3a82b57ea6c9a62d69f14fb94",
                 "shasum": ""
             },
             "require": {
-                "kartik-v/yii2-krajee-base": "*"
+                "kartik-v/yii2-krajee-base": "~1.7"
             },
             "type": "yii2-extension",
             "autoload": {
@@ -1654,7 +1654,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD 3-Clause"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -1675,7 +1675,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-11-08 18:36:23"
+            "time": "2015-06-28 18:05:41"
         },
         {
             "name": "kartik-v/yii2-widgets",
