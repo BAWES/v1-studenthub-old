@@ -19,6 +19,7 @@ class Employer extends \common\models\Employer {
         $scenarios = parent::scenarios();
         
         $scenarios['changeEmailPreference'] = ['employer_email_preference'];
+        $scenarios['changePassword'] = ['employer_password_hash'];
 
         return $scenarios;
     }

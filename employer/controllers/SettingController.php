@@ -67,9 +67,22 @@ class SettingController extends \yii\web\Controller {
      * Allows user to change their password
      */
     public function actionChangePassword(){
+        $model = \employer\models\Employer::findOne(Yii::$app->user->identity->employer_id);
         
+        if($model){
+            $model->scenario = "changePassword";
+            
+            if ($model->load(Yii::$app->request->post())) {
+                $model->setPassword($model->employer_password_hash);
+                if($model->save()){
+                    Yii::$app->getSession()->setFlash('success', Yii::t('student', 'New password was saved.'));
+                }
+            }
+        }
         
-        return $this->render('changePassword');
+        return $this->render('changePassword', [
+            'model' => $model,
+        ]);
     }
     
 
