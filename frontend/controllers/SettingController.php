@@ -186,5 +186,67 @@ class SettingController extends \yii\web\Controller {
         ]);
     }
     
+    
+    
+    /**
+     * Allows user to change their uploaded CV
+     */
+    public function actionUpdateCv(){
+        $hasErrors = false;
+        $model = \common\models\Student::findOne(Yii::$app->user->identity->student_id);
+        
+        
+        if($model){
+            $model->scenario = "updateCv";
+            $oldCv = $model->student_cv;
+            $oldCvUrl = $model->cv;
+            
+            if ($model->load(Yii::$app->request->post())) {
+                $model->student_cv = UploadedFile::getInstance($model, 'student_cv');
+                $uploadedFile = $model->student_cv;
+                                
+                /**
+                 * Dynamic Model to validate filetype on the go
+                 */
+                $dynModel = DynamicModel::validateData(compact('uploadedFile'), [
+                    [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf, doc, docx', 'maxSize' => 10000000,
+                    'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for CV: {extensions}')],
+                ]);
+                if ($dynModel->hasErrors()) {
+                    // validation fails
+                    $hasErrors = true;
+                    foreach ($dynModel->errors as $error => $errorText) {
+                        Yii::$app->getSession()->setFlash('error', $errorText);
+                    }
+                }
+
+                if(!$hasErrors){
+                    //file upload is valid - Upload file to amazon S3
+                    $model->uploadCv();
+                    if($model->save()){
+                        //Delete old cv if exists
+                        if($oldCv){
+                            Yii::$app->resourceManager->delete("student-cv/" . $oldCv);
+                        }
+
+                        Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your CV'));
+                    }else{
+                        $hasErrors = true;
+                        foreach ($model->errors as $error => $errorText) {
+                            Yii::$app->getSession()->setFlash('error', $errorText);
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        return $this->render('updateCv', [
+            'model' => $model,
+            'hasErrors' => $hasErrors,
+            'oldCvUrl' => $oldCvUrl,
+        ]);
+    }
+    
 
 }

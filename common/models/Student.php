@@ -225,6 +225,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         $scenarios = parent::scenarios();
         
         $scenarios['changeProfilePhoto'] = ['student_photo'];
+        $scenarios['updateCv'] = ['student_cv'];
 
         return $scenarios;
     }
@@ -310,7 +311,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     }
     
     /**
-     * Uploads the new logo if $this->student_photo is an instance of UploadedFile
+     * Uploads the new photo if $this->student_photo is an instance of UploadedFile
      */
     public function uploadPhoto() {
         if($this->student_photo instanceof UploadedFile){
@@ -343,6 +344,21 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             //Return link to photo uploaded in S3 bucket
             return Url::to("@student-photo/".$this->student_photo);
         }else return Url::to("@web/images/student-photo.png");
+    }
+    
+    /**
+     * Uploads the new cv if $this->student_cv is an instance of UploadedFile
+     */
+    public function uploadCv() {
+        if($this->student_cv instanceof UploadedFile){
+            $filename = Yii::$app->security->generateRandomString() . "." . $this->student_cv->extension;
+
+            //Save to S3 Temporary folder
+            $awsResult = Yii::$app->resourceManager->save($this->student_cv, "student-cv/" . $filename);
+            if($awsResult){
+                $this->student_cv = $filename;
+            }
+        }
     }
     
     /**
