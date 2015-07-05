@@ -165,6 +165,8 @@ class SettingController extends \yii\web\Controller {
                             Yii::$app->resourceManager->delete("student-photo/" . $oldPhoto);
                         }
 
+                        Yii::$app->user->identity->student_photo = $model->student_photo;
+                        
                         Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your profile photo'));
                     }else{
                         $hasErrors = true;
