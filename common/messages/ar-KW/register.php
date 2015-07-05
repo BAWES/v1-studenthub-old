@@ -17,8 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Update Social Media Details' => 'تحديث تفاصيل التواصل الاجتماعي',
-    'Your social media details have been updated' => 'تم تحديث تفاصيل وسائل الاعلام الاجتماعية الخاصة بك',
+    'Your personal information has been updated' => 'تم تحديث المعلومات الشخصية الخاصة بك',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Available' => 'متوفر',
     'Average # of Employees' => 'عدد الموظفين',
@@ -123,6 +122,7 @@ return [
     'Update Education Information' => 'تحديث معلومات التعليم',
     'Update Logo' => 'تحديث الشعار',
     'Update Personal Information' => 'تحديث المعلومات الشخصية',
+    'Update Social Media Details' => 'تحديث تفاصيل التواصل الاجتماعي',
     'Updated your education information' => 'تم تحديث معلومات التعليم',
     'Updated your personal information' => 'تم تحديث المعلومات الشخصية الخاصة بك',
     'Updated your profile photo' => 'تم تحديث الصورة الشخصية',
@@ -143,6 +143,7 @@ return [
     'Your account will activate as soon as we verify your Student ID' => 'سوف يتم تفعيل الحساب الخاص بك بعد التحقق من هوية الطالب',
     'Your company information has been updated' => 'تم تحديث معلومات الشركة',
     'Your logo has been updated' => 'تم تحديث شعارك',
+    'Your social media details have been updated' => 'تم تحديث تفاصيل وسائل الاعلام الاجتماعية الخاصة بك',
     'a method of transportation.' => 'طريقة اتنقل بها',
     'and I was born on' => 'وأنا ولدت في تاريخ',
     'and will graduate in' => 'وسوف اتخرج في ',

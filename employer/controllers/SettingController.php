@@ -58,6 +58,25 @@ class SettingController extends \yii\web\Controller {
     }
     
     /**
+     * Allows user to change their personal information
+     */
+    public function actionUpdatePersonalInfo(){
+        $model = \employer\models\Employer::findOne(Yii::$app->user->identity->employer_id);
+        
+        if($model){
+            $model->scenario = "updatePersonalInfo";
+            
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your personal information has been updated'));
+            }
+        }
+        
+        return $this->render('updatePersonalInfo', [
+            'model' => $model,
+        ]);
+    }
+    
+    /**
      * Allows user to change their social media details
      */
     public function actionUpdateSocialDetails(){
