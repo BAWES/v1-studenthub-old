@@ -39,7 +39,7 @@ class SettingController extends \yii\web\Controller {
     }
     
     /**
-     * Allows user to change their personal information
+     * Allows user to change their company information
      */
     public function actionUpdateCompanyInfo(){
         $model = \employer\models\Employer::findOne(Yii::$app->user->identity->employer_id);
@@ -53,6 +53,25 @@ class SettingController extends \yii\web\Controller {
         }
         
         return $this->render('updateCompanyInfo', [
+            'model' => $model,
+        ]);
+    }
+    
+    /**
+     * Allows user to change their social media details
+     */
+    public function actionUpdateSocialDetails(){
+        $model = \employer\models\Employer::findOne(Yii::$app->user->identity->employer_id);
+        
+        if($model){
+            $model->scenario = "updateSocialDetails";
+            
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your social media details have been updated'));
+            }
+        }
+        
+        return $this->render('updateSocialDetails', [
             'model' => $model,
         ]);
     }

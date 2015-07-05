@@ -22,6 +22,7 @@ class Employer extends \common\models\Employer {
         $scenarios['changePassword'] = ['employer_password_hash'];
         
         $scenarios['updateCompanyInfo'] = ['employer_company_name', 'employer_website', 'city_id', 'industry_id', 'employer_num_employees', 'employer_company_desc'];
+        $scenarios['updateSocialDetails'] = ['employer_social_twitter', 'employer_social_instagram', 'employer_social_facebook'];
 
         return $scenarios;
     }

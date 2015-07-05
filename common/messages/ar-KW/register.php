@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Update Company Information' => 'تحديث معلومات الشركة',
-    'Your company information has been updated' => 'تم تحديث معلومات الشركة',
+    'Update Social Media Details' => 'تحديث تفاصيل التواصل الاجتماعي',
+    'Your social media details have been updated' => 'تم تحديث تفاصيل وسائل الاعلام الاجتماعية الخاصة بك',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Available' => 'متوفر',
     'Average # of Employees' => 'عدد الموظفين',
@@ -118,6 +118,7 @@ return [
     'University not listed?' => 'جامعة غير مذكورة؟',
     'Update CV' => 'تحديث السيرة الذاتية',
     'Update CV Attachment' => 'تحديث مرفق السيرة الذاتية',
+    'Update Company Information' => 'تحديث معلومات الشركة',
     'Update Company Logo' => 'التحديث شعار الشركة',
     'Update Education Information' => 'تحديث معلومات التعليم',
     'Update Logo' => 'تحديث الشعار',
@@ -140,6 +141,7 @@ return [
     'You may still sign up and our agents will get in touch with you for account activation.' => 'يمكنك التسجيل على الرغم من عدم وجود جامعتك لدينا وإن توفرت الفرصة سوف نقوم بالإتصال بك لتفعيل الحساب ',
     'Your CV has been updated' => 'تم تحديث السيرة الذاتية الخاصة بك',
     'Your account will activate as soon as we verify your Student ID' => 'سوف يتم تفعيل الحساب الخاص بك بعد التحقق من هوية الطالب',
+    'Your company information has been updated' => 'تم تحديث معلومات الشركة',
     'Your logo has been updated' => 'تم تحديث شعارك',
     'a method of transportation.' => 'طريقة اتنقل بها',
     'and I was born on' => 'وأنا ولدت في تاريخ',
