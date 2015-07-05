@@ -17,10 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Select Logo File' => 'تحديد ملف',
-    'Update Company Logo' => 'التحديث شعار الشركة',
-    'Update Logo' => 'تحديث الشعار',
-    'Your logo has been updated' => 'تم تحديث شعارك',
+    'Update Company Information' => 'تحديث معلومات الشركة',
+    'Your company information has been updated' => 'تم تحديث معلومات الشركة',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Available' => 'متوفر',
     'Average # of Employees' => 'عدد الموظفين',
@@ -101,6 +99,7 @@ return [
     'Save' => 'حفظ',
     'Select CV File' => 'حدد ملف السيرة الذاتية',
     'Select Industry' => 'مجال العمل',
+    'Select Logo File' => 'تحديد ملف',
     'Select Photo' => 'اختر الصورة',
     'Select a major' => 'اختيار التخصص',
     'Select your University' => 'اختر جامعتك',
@@ -119,7 +118,9 @@ return [
     'University not listed?' => 'جامعة غير مذكورة؟',
     'Update CV' => 'تحديث السيرة الذاتية',
     'Update CV Attachment' => 'تحديث مرفق السيرة الذاتية',
+    'Update Company Logo' => 'التحديث شعار الشركة',
     'Update Education Information' => 'تحديث معلومات التعليم',
+    'Update Logo' => 'تحديث الشعار',
     'Update Personal Information' => 'تحديث المعلومات الشخصية',
     'Updated your education information' => 'تم تحديث معلومات التعليم',
     'Updated your personal information' => 'تم تحديث المعلومات الشخصية الخاصة بك',
@@ -139,6 +140,7 @@ return [
     'You may still sign up and our agents will get in touch with you for account activation.' => 'يمكنك التسجيل على الرغم من عدم وجود جامعتك لدينا وإن توفرت الفرصة سوف نقوم بالإتصال بك لتفعيل الحساب ',
     'Your CV has been updated' => 'تم تحديث السيرة الذاتية الخاصة بك',
     'Your account will activate as soon as we verify your Student ID' => 'سوف يتم تفعيل الحساب الخاص بك بعد التحقق من هوية الطالب',
+    'Your logo has been updated' => 'تم تحديث شعارك',
     'a method of transportation.' => 'طريقة اتنقل بها',
     'and I was born on' => 'وأنا ولدت في تاريخ',
     'and will graduate in' => 'وسوف اتخرج في ',

@@ -39,6 +39,25 @@ class SettingController extends \yii\web\Controller {
     }
     
     /**
+     * Allows user to change their personal information
+     */
+    public function actionUpdateCompanyInfo(){
+        $model = \employer\models\Employer::findOne(Yii::$app->user->identity->employer_id);
+        
+        if($model){
+            $model->scenario = "updateCompanyInfo";
+            
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your company information has been updated'));
+            }
+        }
+        
+        return $this->render('updateCompanyInfo', [
+            'model' => $model,
+        ]);
+    }
+    
+    /**
      * Change users notification preference via AJAX
      * @param integer $preference
      * @return mixed

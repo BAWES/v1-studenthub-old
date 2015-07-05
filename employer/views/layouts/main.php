@@ -509,6 +509,9 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                                     <div class="legend"><?= Yii::t("frontend", "Account Information") ?></div>
                                     <ul>
                                         <li>
+                                            <a href="<?= Url::to(['setting/update-company-info']) ?>"><?= Yii::t('register', 'Update Company Information') ?></a>
+                                        </li>
+                                        <li>
                                             <a href="<?= Url::to(['setting/update-logo']) ?>"><?= Yii::t('register', 'Update Company Logo') ?></a>
                                         </li>
                                         <li>

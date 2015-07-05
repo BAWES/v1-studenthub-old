@@ -20,6 +20,8 @@ class Employer extends \common\models\Employer {
         
         $scenarios['changeEmailPreference'] = ['employer_email_preference'];
         $scenarios['changePassword'] = ['employer_password_hash'];
+        
+        $scenarios['updateCompanyInfo'] = ['employer_company_name', 'employer_website', 'city_id', 'industry_id', 'employer_num_employees', 'employer_company_desc'];
 
         return $scenarios;
     }
