@@ -17,7 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'View your currently uploaded CV' => 'عرض السيرة الذاتية الخاصة بك',
+    'Select Logo File' => 'تحديد ملف',
+    'Update Company Logo' => 'التحديث شعار الشركة',
+    'Update Logo' => 'تحديث الشعار',
+    'Your logo has been updated' => 'تم تحديث شعارك',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Available' => 'متوفر',
     'Average # of Employees' => 'عدد الموظفين',
@@ -127,6 +130,7 @@ return [
     'Upload Logo (Optional)' => 'تحميل شعار (اختياري)',
     'Upload Photo (optional)' => 'تحميل صورة (اختياري)',
     'User Details' => 'تفاصيل المستخدم',
+    'View your currently uploaded CV' => 'عرض السيرة الذاتية الخاصة بك',
     'Weak' => 'ضعيف',
     'Weekly Summary' => 'ملخص أسبوعي',
     'Weekly summary' => 'ملخص أسبوعي',

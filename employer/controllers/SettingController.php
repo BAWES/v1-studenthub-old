@@ -131,7 +131,7 @@ class SettingController extends \yii\web\Controller {
 
                         Yii::$app->user->identity->employer_logo = $model->employer_logo;
                         
-                        Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your logo'));
+                        Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your logo has been updated'));
                     }else{
                         $hasErrors = true;
                         foreach ($model->errors as $error => $errorText) {
