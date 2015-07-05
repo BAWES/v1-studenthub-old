@@ -181,9 +181,50 @@ class Job extends \yii\db\ActiveRecord
      */
     public function checkMaxApplicantsReached(){
         /**
+         * Send a congrats email to Employer if this is his first application for this job
+         */
+        if($this->job_current_num_applicants == 1){
+            if($this->employer->employer_language_pref == "en-US"){
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = false;
+
+                //Send English Email
+                return Yii::$app->mailer->compose([
+                        'html' => "employer/first-applicant-html",
+                            ], [
+                        'employer' => $this->employer,
+                        'job' => $this,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$this->employer->employer_email])
+                    ->setSubject('[StudentHub] You got your first applicant for '.$this->job_title."!")
+                    ->send();
+            }else{
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = true;
+
+                //Send Arabic Email
+                return Yii::$app->mailer->compose([
+                        'html' => "employer/first-applicant-ar-html",
+                            ], [
+                        'employer' => $this->employer,
+                        'job' => $this,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$this->employer->employer_email])
+                    ->setSubject('[StudentHub] حصلت على طالب الأول للحصول على وظيفة '.$this->job_title."!")
+                    ->send();
+            }
+        }
+        
+        
+        /**
          * Close the job once it reaches max number of applicants
          */
-        if($this->job_current_num_applicants >= $this->job_max_applicants){
+        if(($this->job_current_num_applicants >= $this->job_max_applicants) && ($this->job_status != self::STATUS_CLOSED)){
+            
+            //Send Email about reaching max applicants here
+            
             $this->close();
         }
     }
