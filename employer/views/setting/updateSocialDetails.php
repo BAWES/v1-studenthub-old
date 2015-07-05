@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use frontend\models\Student;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
