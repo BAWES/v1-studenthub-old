@@ -108,6 +108,17 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
             ['employer_email_preference', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
         ];
     }
+    
+    /**
+     * Scenarios for validation and massive assignment
+     */
+    public function scenarios() {
+        $scenarios = parent::scenarios();
+        
+        $scenarios['updateLogo'] = ['employer_logo'];
+
+        return $scenarios;
+    }
 
     public function behaviors() {
         return [

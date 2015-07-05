@@ -4,6 +4,8 @@ namespace employer\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use yii\web\UploadedFile;
+use yii\base\DynamicModel;
 use yii\web\NotFoundHttpException;
 
 class SettingController extends \yii\web\Controller {
@@ -82,6 +84,69 @@ class SettingController extends \yii\web\Controller {
         
         return $this->render('changePassword', [
             'model' => $model,
+        ]);
+    }
+    
+    /**
+     * Allows user to change their profile photo
+     */
+    public function actionUpdateLogo(){
+        $hasErrors = false;
+        $model = \common\models\Employer::findOne(Yii::$app->user->identity->employer_id);
+        
+        
+        if($model){
+            $model->scenario = "updateLogo";
+            
+            $oldLogo = $model->employer_logo;
+            $oldLogoUrl = $model->logo;
+            
+            if ($model->load(Yii::$app->request->post())) {
+                $model->employer_logo = UploadedFile::getInstance($model, 'employer_logo');
+                $uploadedFile = $model->employer_logo;
+                                
+                /**
+                 * Dynamic Model to validate filetype on the go
+                 */
+                $dynModel = DynamicModel::validateData(compact('uploadedFile'), [
+                    [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png, gif', 'maxSize' => 10000000,
+                        'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for your Logo: {extensions}')],
+                ]);
+                if ($dynModel->hasErrors()) {
+                    // validation fails
+                    $hasErrors = true;
+                    foreach ($dynModel->errors as $error => $errorText) {
+                        Yii::$app->getSession()->setFlash('error', $errorText);
+                    }
+                }
+
+                if(!$hasErrors){
+                    //file upload is valid - Upload file to amazon S3
+                    $model->uploadLogo();
+                    if($model->save()){
+                        //Delete old logo if exists
+                        if($oldLogo){
+                            Yii::$app->resourceManager->delete("employer-logo/" . $oldLogo);
+                        }
+
+                        Yii::$app->user->identity->employer_logo = $model->employer_logo;
+                        
+                        Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your logo'));
+                    }else{
+                        $hasErrors = true;
+                        foreach ($model->errors as $error => $errorText) {
+                            Yii::$app->getSession()->setFlash('error', $errorText);
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        return $this->render('updateLogo', [
+            'model' => $model,
+            'hasErrors' => $hasErrors,
+            'oldLogoUrl' => $oldLogoUrl,
         ]);
     }
     
