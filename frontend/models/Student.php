@@ -20,6 +20,8 @@ class Student extends \common\models\Student {
     //majors and languages selected during registration
     public $majorsSelected;
     public $languagesSelected;
+    
+    public $terms; /*terms and conditions placeholder*/
 
     /**
      * @inheritdoc
@@ -28,6 +30,7 @@ class Student extends \common\models\Student {
         return array_merge(parent::rules(), [
             //Always required
             [['step', 'majorsSelected', 'languagesSelected'], 'required'],
+            [['terms'], 'required', 'message' => Yii::t("frontend", "Please accept the terms and conditions")],
             //Check if uploaded files exists in temporarybucket filePath (ONLY if new record)
             [['student_verification_attachment'], '\common\components\S3FileExistValidator', 'filePath' => 'temporary/',
                 'message' => Yii::t("frontend", "Please upload a photo of your university id card"),

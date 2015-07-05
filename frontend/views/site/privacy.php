@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-$this->title = Yii::t("frontend", "Terms & Conditions");
+$this->title = Yii::t("frontend", "Privacy Policy");
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel-body">
         
         <div class="row">
-            Terms go here
+            Privacy policy goes here
         </div>
     </div>
 

@@ -17,7 +17,9 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Favorite Work Experience' => 'كانت تجربتي العمل المفضلة في',
+    'Please accept the terms and conditions' => 'يرجى قبول الشروط والأحكام',
+    'Privacy Policy' => 'سياسة الخصوصية',
+    'Terms & Privacy Policy' => 'الشروط وسياسة الخصوصية',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'All Industries' => 'كافة القطاعات',
@@ -46,6 +48,7 @@ return [
     'Employers on StudentHub' => 'اصحاب العمل على موقعنا',
     'English Language Level' => 'مستوى اللغة الانجليزية',
     'Enrollment year must be before graduation year.' => 'يجب أن تكون سنة الالتحاق قبل سنة التخرج.',
+    'Favorite Work Experience' => 'كانت تجربتي العمل المفضلة في',
     'Filters' => 'فلاتر',
     'Find' => 'ابحث عن ',
     'Find a Job' => 'ابحث على عمل',

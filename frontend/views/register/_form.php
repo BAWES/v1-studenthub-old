@@ -444,4 +444,20 @@ Yii::$app->formatter->thousandSeparator = "";
             </div>
         </div>
     </div>
+    
+</div>
+
+<div class="row" style="margin-top:1.5em">
+    <div class="note note-primary note-top-striped">
+        <h4><?= Yii::t('frontend', 'Terms & Privacy Policy') ?></h4>
+        <div class="checkboxer" style='margin-top:1em;'>
+            <input type="checkbox" value="1" id="terms" name="terms">
+            <label for="terms">
+                <?= Yii::t("employer", "I agree to the <a href='{url}' target='_blank'>terms & conditions</a> and <a href='{urlPrivacy}' target='_blank'>privacy policy</a> of StudentHub", [
+                    'url'=> Url::to(['site/terms-conditions']),
+                    'urlPrivacy'=> Url::to(['site/privacy-policy'])
+                ])?>
+            </label>
+        </div>
+    </div>
 </div>

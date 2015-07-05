@@ -4950,7 +4950,7 @@ label {
   margin: 5px 20px 15px 36px;
   line-height: 26px;
   font-weight: normal;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;

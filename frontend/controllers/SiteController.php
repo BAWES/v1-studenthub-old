@@ -69,9 +69,20 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
-    public function actionTerms()
+    /**
+     * Terms and Conditions Page
+     */
+    public function actionTermsConditions()
     {
         return $this->render('terms');
+    }
+    
+    /**
+     * Privacy Policy Page
+     */
+    public function actionPrivacyPolicy()
+    {
+        return $this->render('privacy');
     }
 
     
