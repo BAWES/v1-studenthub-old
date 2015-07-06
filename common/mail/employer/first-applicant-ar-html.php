@@ -9,7 +9,7 @@ $shareUrl = Url::to(['job/share', 'id' => $job->job_id], true);
 ?>
 <tr>
     <td>
-        <h1>مرحبا <?= $employer->employer_contact_firstname ?>،</h1>
+        <h1>مرحبا <?= $employer->employer_contact_firstname ?></h1>
         <p class="lead">
             يسرنا إعلامك بتلقيك المتقدم الأول للحصول على وظيفة. و نأمل أن يكون العديد منه
         </p>
