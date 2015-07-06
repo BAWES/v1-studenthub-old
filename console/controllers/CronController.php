@@ -46,6 +46,7 @@ class CronController extends \yii\console\Controller {
                         'student_id_verification' => Student::ID_VERIFIED,
                         ]);
         
+        //Loop through students in batches of 50
         foreach($students->each(50) as $student){
             /**
              * Send this student all his "unsent" notifications
@@ -72,6 +73,7 @@ class CronController extends \yii\console\Controller {
                         'employer_email_verification' => Employer::EMAIL_VERIFIED,
                         ]);
         
+        //Loop through employers in batches of 50
         foreach($employers->each(50) as $employer){
             /**
              * Send this employer all his "unsent" notifications
