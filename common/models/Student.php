@@ -635,10 +635,21 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      * @param int $limit
      * @return \yii\db\ActiveQuery
      */
-    public function getNotifications($limit = 30) {
+    public function getNotifications($limit = 20) {
         return $this->hasMany(NotificationStudent::className(), ['student_id' => 'student_id'])
                 ->with(['student', 'job', 'job.employer'])
                 ->limit($limit)
+                ->orderBy("notification_datetime DESC");
+    }
+    
+    /**
+     * Returns all unsent notifications (not emailed)
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUnsentNotifications() {
+        return $this->hasMany(NotificationStudent::className(), ['student_id' => 'student_id'])
+                ->with(['job', 'job.employer'])
+                ->where(['notification_sent' => NotificationStudent::SENT_FALSE])
                 ->orderBy("notification_datetime DESC");
     }
     
@@ -849,5 +860,5 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function removePasswordResetToken() {
         $this->student_password_reset_token = null;
     }
-
+    
 }

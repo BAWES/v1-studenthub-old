@@ -284,10 +284,21 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
      * @param int $limit
      * @return \yii\db\ActiveQuery
      */
-    public function getNotifications($limit = 30) {
+    public function getNotifications($limit = 20) {
         return $this->hasMany(NotificationEmployer::className(), ['employer_id' => 'employer_id'])
                 ->with(['employer', 'student', 'job'])
                 ->limit($limit)
+                ->orderBy("notification_datetime DESC");
+    }
+    
+    /**
+     * Returns all unsent notifications (not emailed)
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUnsentNotifications() {
+        return $this->hasMany(NotificationEmployer::className(), ['employer_id' => 'employer_id'])
+                ->with(['student', 'job'])
+                ->where(['notification_sent' => NotificationEmployer::SENT_FALSE])
                 ->orderBy("notification_datetime DESC");
     }
     
