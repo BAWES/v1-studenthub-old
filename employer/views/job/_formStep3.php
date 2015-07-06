@@ -216,7 +216,7 @@ $form = ActiveForm::begin([
         ]);
 ?>
 
-<h3 style="margin-bottom:0; margin-top:0"><?= Yii::t("employer", "Audience Targetting") ?></h3>
+<h3 style="margin-bottom:0; margin-top:0"><?= Yii::t("employer", "Audience Targeting") ?></h3>
 <h5 style='margin-bottom:1.5em;'><?= Yii::t("employer", "Basic cost per applicant is {0, number, 0.000} KD", $pricePerApplicant) ?></h5>
 
 <?=

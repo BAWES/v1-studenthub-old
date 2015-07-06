@@ -24,7 +24,7 @@ return [
     'Amount Due' => 'المبلغ المستحق',
     'Applied Filters' => 'فلاتر المطبقة',
     'Applied on {dateApplied}' => 'تاريخ التقديم {dateApplied}',
-    'Audience Targetting' => 'الجمهور المستهدف',
+    'Audience Targeting' => 'الجمهور المستهدف',
     'Basic cost per applicant is {0, number, 0.000} KD' => 'التكلفة الأساسية لكل متقدم {0, number, 0.000} د.ك.',
     'Buy Credit' => 'شراء رصيد',
     'Buying credit allows you to post jobs quickly without having to go through payment processing.' => 'شراء رصيد يسمح لك لإضافة وظائف بسرعة دون الحاجة إلى إجراء عمليات الدفع.',
