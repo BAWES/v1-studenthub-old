@@ -78,17 +78,49 @@ class VerifyIdForm extends Model
     /**
      * Saves Student ID + Marks student as ID Verified
      * Make sure to run validation before calling this method
-     *
-     * @return boolean if ID was verified
      */
     public function verifyIdentity()
     {
         $student = $this->_student;
+        $student->scenario = "idVerification";
         $student->student_id_number = $this->idNumber;
         $student->student_id_verification = Student::ID_VERIFIED;
+        $student->save();
         
         Yii::info("[Student #".$student->student_id."] had his identity verified by ".Yii::$app->user->identity->admin_name, __METHOD__);
+        
+        /**
+         * Email to Employer notifying that his job has been forcefully closed
+         */
+        if($student->student_language_pref == "en-US"){
+            //Set language based on preference stored in DB
+            Yii::$app->view->params['isArabic'] = false;
 
-        return $student->save();
+            //Send English Email
+            Yii::$app->mailer->compose([
+                    'html' => "student/id-verified-html",
+                        ], [
+                    'student' => $student,
+                ])
+                ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                ->setTo([$student->student_email])
+                ->setSubject("[StudentHub] Your Student Id has been verified")
+                ->send();
+        }else{
+            //Set language based on preference stored in DB
+            Yii::$app->view->params['isArabic'] = true;
+
+            //Send Arabic Email
+            Yii::$app->mailer->compose([
+                    'html' => "student/id-verified-ar-html",
+                        ], [
+                    'student' => $student,
+                ])
+                ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                ->setTo([$student->student_email])
+                ->setSubject("[StudentHub] تم التحقق من هوية الطالب")
+                ->send();
+        }
+        
     }
 }
