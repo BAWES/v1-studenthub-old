@@ -189,7 +189,7 @@ class Job extends \yii\db\ActiveRecord
                 Yii::$app->view->params['isArabic'] = false;
 
                 //Send English Email
-                return Yii::$app->mailer->compose([
+                Yii::$app->mailer->compose([
                         'html' => "employer/first-applicant-html",
                             ], [
                         'employer' => $this->employer,
@@ -204,7 +204,7 @@ class Job extends \yii\db\ActiveRecord
                 Yii::$app->view->params['isArabic'] = true;
 
                 //Send Arabic Email
-                return Yii::$app->mailer->compose([
+                Yii::$app->mailer->compose([
                         'html' => "employer/first-applicant-ar-html",
                             ], [
                         'employer' => $this->employer,
@@ -223,7 +223,40 @@ class Job extends \yii\db\ActiveRecord
          */
         if(($this->job_current_num_applicants >= $this->job_max_applicants) && ($this->job_status != self::STATUS_CLOSED)){
             
-            //Send Email about reaching max applicants here
+            /**
+             * Send Email about reaching max applicants and job going to be closed
+             */
+            if($this->employer->employer_language_pref == "en-US"){
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = false;
+
+                //Send English Email
+                Yii::$app->mailer->compose([
+                        'html' => "employer/job-finished-html",
+                            ], [
+                        'employer' => $this->employer,
+                        'job' => $this,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$this->employer->employer_email])
+                    ->setSubject("[StudentHub] Your listing has been taken down")
+                    ->send();
+            }else{
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = true;
+
+                //Send Arabic Email
+                Yii::$app->mailer->compose([
+                        'html' => "employer/job-finished-ar-html",
+                            ], [
+                        'employer' => $this->employer,
+                        'job' => $this,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$this->employer->employer_email])
+                    ->setSubject("[StudentHub] تم إغلاق فرصة عملك")
+                    ->send();
+            }
             
             $this->close();
         }
