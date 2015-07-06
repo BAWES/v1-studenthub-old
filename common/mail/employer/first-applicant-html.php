@@ -14,14 +14,14 @@ $shareUrl = Url::to(['job/share', 'id' => $job->job_id], true);
             We're excited to let you know that you just received your first applicant (of what we hope will be many).
         </p>
         <p>
-            You can view that applicant by logging into the employer portal.
+            You can view that applicant by logging onto the employer portal.
         </p>
         <p>
             Want to get more applicants? We recommend sharing your job on social media platforms to attract more applicants
         </p>
         <p>
-            Moving forward, you’ll get a recap email when you receive applicants (based on your notification preferences). 
-            Keep your eye on those emails, and don’t forget to contact students right after they apply, 
+            Moving forward, you’ll get a notification email when you receive applicants (based on your notification preferences). 
+            Don’t forget to contact students right after they apply, 
             <strong>before they get hired by someone else ;)</strong>
         </p>
         <p>
