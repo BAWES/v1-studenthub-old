@@ -224,6 +224,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function scenarios() {
         $scenarios = parent::scenarios();
         
+        $scenarios['idVerification'] = ['student_id_number', 'student_id_verification'];
         $scenarios['changeProfilePhoto'] = ['student_photo'];
         $scenarios['updateCv'] = ['student_cv'];
 
