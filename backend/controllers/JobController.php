@@ -106,6 +106,41 @@ class JobController extends Controller
             Yii::error($message, __METHOD__);
             
             Yii::$app->getSession()->setFlash('success', "<h2 style='margin:0;'>Job has been closed</h2>");
+            
+            /**
+             * Email to Employer notifying that his job has been forcefully closed
+             */
+            if($model->employer->employer_language_pref == "en-US"){
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = false;
+
+                //Send English Email
+                Yii::$app->mailer->compose([
+                        'html' => "employer/job-forceclosed-html",
+                            ], [
+                        'employer' => $model->employer,
+                        'job' => $model,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$model->employer->employer_email])
+                    ->setSubject("[StudentHub] Your job posting has been closed")
+                    ->send();
+            }else{
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = true;
+
+                //Send Arabic Email
+                Yii::$app->mailer->compose([
+                        'html' => "employer/job-forceclosed-ar-html",
+                            ], [
+                        'employer' => $model->employer,
+                        'job' => $model,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$model->employer->employer_email])
+                    ->setSubject("[StudentHub] تم إغلاق فرصة عملك")
+                    ->send();
+            }
         }
         
         return $this->redirect(['view', 'id' => $model->job_id]);
