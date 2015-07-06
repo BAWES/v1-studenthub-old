@@ -43,6 +43,41 @@ class Job extends \common\models\Job {
             $this->save(false);
             Yii::info("[Job #".$this->job_id."] has been approved by ".Yii::$app->user->identity->admin_name, __METHOD__);
             
+            /**
+             * Email to Employer that his job has been approved
+             */
+            if($this->employer->employer_language_pref == "en-US"){
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = false;
+
+                //Send English Email
+                Yii::$app->mailer->compose([
+                        'html' => "employer/job-approved-html",
+                            ], [
+                        'employer' => $this->employer,
+                        'job' => $this,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$this->employer->employer_email])
+                    ->setSubject("[StudentHub] Your job posting has been approved and posted!")
+                    ->send();
+            }else{
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = true;
+
+                //Send Arabic Email
+                Yii::$app->mailer->compose([
+                        'html' => "employer/job-approved-ar-html",
+                            ], [
+                        'employer' => $this->employer,
+                        'job' => $this,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$this->employer->employer_email])
+                    ->setSubject("[StudentHub] تم الموافقة على وظيفتك و تم نشرها")
+                    ->send();
+            }
+            
             return true;
         }
         return false;
