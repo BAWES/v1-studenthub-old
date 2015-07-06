@@ -216,7 +216,7 @@ class SiteController extends Controller
         if (Yii::$app->user->id) {
             $user = \common\models\Student::findOne((int) Yii::$app->user->id);
             $user->student_language_pref = 'en-US';
-            $user->save();
+            $user->save(false);
         }
         
         //return to previous page before language selection
@@ -237,7 +237,7 @@ class SiteController extends Controller
         if (Yii::$app->user->id) {
             $user = \common\models\Student::findOne((int) Yii::$app->user->id);
             $user->student_language_pref = 'ar-KW';
-            $user->save();
+            $user->save(false);
         }
         
         //return to previous page before language selection
