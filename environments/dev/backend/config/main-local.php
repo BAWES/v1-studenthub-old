@@ -6,6 +6,14 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '',
         ],
+        'urlManagerEmployer' => [
+            'class' => 'yii\web\UrlManager',
+            'scriptUrl' => '/~BAWES/studenthub/employer/web/index.php',
+        ],
+        'urlManagerFrontend' => [
+            'class' => 'yii\web\UrlManager',
+            'scriptUrl' => '/~BAWES/studenthub/frontend/web/index.php',
+        ],
     ],
 ];
 
