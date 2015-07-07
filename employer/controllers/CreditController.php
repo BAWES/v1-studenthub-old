@@ -56,7 +56,7 @@ class CreditController extends \yii\web\Controller {
                 /**
                  * Process credit purchase
                  */
-                if($paymentMethod == \common\models\PaymentType::TYPE_KNET){
+                if($paymentMethod == \common\models\PaymentType::TYPE_KNET && Yii::$app->params['knetEnabled']){
                     /**
                      * Purchase Credit Using KNET
                      */
@@ -112,7 +112,7 @@ class CreditController extends \yii\web\Controller {
                         //Redirect to KNET payment page
                         return $this->redirect("$payUrl?PaymentID=$payId");
                     }
-                }else if($paymentMethod == \common\models\PaymentType::TYPE_CREDITCARD){
+                }else if($paymentMethod == \common\models\PaymentType::TYPE_CREDITCARD && Yii::$app->params['cybersourceEnabled']){
                     /**
                      * Purchase Credit Using Cybersource
                      */

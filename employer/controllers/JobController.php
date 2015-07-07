@@ -344,7 +344,7 @@ class JobController extends Controller {
                 /**
                  * Process Payment for this Job
                  */
-                if($paymentOption == \common\models\PaymentType::TYPE_KNET){
+                if($paymentOption == \common\models\PaymentType::TYPE_KNET && Yii::$app->params['knetEnabled']){
                     /**
                      * START KNET PAYMENT PROCESSING
                      */
@@ -374,7 +374,7 @@ class JobController extends Controller {
                         Yii::$app->session->setFlash("error", $pipe);
                     }
 
-                }else if($paymentOption == \common\models\PaymentType::TYPE_CREDITCARD){
+                }else if($paymentOption == \common\models\PaymentType::TYPE_CREDITCARD && Yii::$app->params['cybersourceEnabled']){
                     /**
                      * START CYBERSOURCE PAYMENT PROCESSING
                      */

@@ -82,15 +82,19 @@ $this->registerJs($js);
                 </select>
                 
                 <h4 style='margin-top:1em; margin-bottom:0.6em;'><?= Yii::t("employer", "Payment Method") ?></h4>
-                <div class="radioer">
-                    <input required type="radio" name="paymentOption" id="option1" value="<?= \common\models\PaymentType::TYPE_KNET ?>" checked=''>
-                    <label for="option1"><?= $this->params['isArabic']?"كي نت":"KNET" ?></label>
-                </div>
+                <?php if(Yii::$app->params['knetEnabled']){ ?>
+                    <div class="radioer">
+                        <input required type="radio" name="paymentOption" id="option1" value="<?= \common\models\PaymentType::TYPE_KNET ?>" checked=''>
+                        <label for="option1"><?= $this->params['isArabic']?"كي نت":"KNET" ?></label>
+                    </div>
+                <?php } ?>
                 
-                <div class="radioer">
-                    <input required type="radio" name="paymentOption" id="option2" value="<?= \common\models\PaymentType::TYPE_CREDITCARD ?>">
-                    <label for="option2"><?= $this->params['isArabic']?"بطاقة إئتمان":"Credit card" ?></label>
-                </div>
+                <?php if(Yii::$app->params['cybersourceEnabled']){ ?>
+                    <div class="radioer">
+                        <input required type="radio" name="paymentOption" id="option2" value="<?= \common\models\PaymentType::TYPE_CREDITCARD ?>">
+                        <label for="option2"><?= $this->params['isArabic']?"بطاقة إئتمان":"Credit card" ?></label>
+                    </div>
+                <?php } ?>
                 
                 <div class="checkboxer" style='margin-top:1em;'>
                     <input type="checkbox" value="1" id="terms" name="terms">

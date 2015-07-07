@@ -91,15 +91,19 @@ $this->registerJs($js);
 
             <?php $form = ActiveForm::begin(); ?>
                 <?php if($amountDue > 0){ ?>
-                    <div class="radioer">
-                        <input required type="radio" name="paymentOption" id="option1" value="<?= \common\models\PaymentType::TYPE_KNET ?>" checked=''>
-                        <label for="option1"><?= $this->params['isArabic']?"كي نت":"KNET" ?></label>
-                    </div>
+                    <?php if(Yii::$app->params['knetEnabled']){ ?>
+                        <div class="radioer">
+                            <input required type="radio" name="paymentOption" id="option1" value="<?= \common\models\PaymentType::TYPE_KNET ?>" checked=''>
+                            <label for="option1"><?= $this->params['isArabic']?"كي نت":"KNET" ?></label>
+                        </div>
+                    <?php } ?>
             
-                    <div class="radioer">
-                        <input required type="radio" name="paymentOption" id="option2" value="<?= \common\models\PaymentType::TYPE_CREDITCARD ?>">
-                        <label for="option2"><?= $this->params['isArabic']?"بطاقة إئتمان":"Credit card" ?></label>
-                    </div>
+                    <?php if(Yii::$app->params['cybersourceEnabled']){ ?>
+                        <div class="radioer">
+                            <input required type="radio" name="paymentOption" id="option2" value="<?= \common\models\PaymentType::TYPE_CREDITCARD ?>">
+                            <label for="option2"><?= $this->params['isArabic']?"بطاقة إئتمان":"Credit card" ?></label>
+                        </div>
+                    <?php } ?>
                 <?php } ?>
             
             
