@@ -42,7 +42,7 @@ class CybersourcePayment extends \yii\db\ActiveRecord
     const PROFILE_ID = "nbk_bawes_acct";
     
     //Transaction Details
-    const TRANSACTION_TYPE = "authorization";
+    const TRANSACTION_TYPE = "sale";
     const CURRENCY = "KWD";
     
     //LOCAL DETAILS - can be either en-US or ar-XN
