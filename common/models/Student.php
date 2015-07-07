@@ -901,7 +901,6 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             /**
              * Send this student all his "unsent" notifications
              * then set all his notifications as "sent"
-             * Preferably you add this to the Student model: $student->emailNotificationSummary
              */
             
             

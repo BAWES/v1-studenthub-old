@@ -486,7 +486,6 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
             /**
              * Send this employer all his "unsent" notifications
              * then set all his notifications as "sent"
-             * Preferably you add this to the Student model: $employer->emailNotificationSummary
              */
             
             
