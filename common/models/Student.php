@@ -878,15 +878,16 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         
         //Loop through students in batches of 50
         foreach($students->each(50) as $student){
-            
-            
             $sentEmail = $student->sendNotificationEmail();
             if($sentEmail){
                 //Email was sent to this student
                 $studentCount++;
             }
-            
         }
+        
+        /**
+         * Set notifications as "SENT" for students in the above criteria
+         */
         
         Yii::info("[Daily Notifications] Notifications emailed to $studentCount students", __METHOD__);
     }
@@ -900,7 +901,6 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         if(count($unsentNotifications) > 0){
             /**
              * Send this student all his "unsent" notifications
-             * then set all his notifications as "sent"
              */
             
             

@@ -464,14 +464,16 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
         
         //Loop through employers in batches of 50
         foreach($employers->each(50) as $employer){
-            
             $sentEmail = $employer->sendNotificationEmail();
             if($sentEmail){
                 //Email was sent to this student
                 $employerCount++;
             }
-            
         }
+        
+        /**
+         * Set notifications as "SENT" for students in the above criteria
+         */
         
         Yii::info("[Daily Notifications] Notifications emailed to $employerCount employers", __METHOD__);
     }
@@ -485,7 +487,6 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
         if(count($unsentNotifications) > 0){
             /**
              * Send this employer all his "unsent" notifications
-             * then set all his notifications as "sent"
              */
             
             
