@@ -105,17 +105,16 @@ class SiteController extends Controller
     //Test function - for testing random things
     public function actionTest()
     {
-        //Test activation email
-        /*
-        $student = \frontend\models\Student::findOne(13);
-        $student->sendVerificationEmail();
-         * 
+        $output = "<h2>Initiating Daily Email Broadcast for Students</h2>";
+        $output .= \common\models\Student::broadcastDailyNotificationEmail();
+        
+        /**
+         * Start Employer Logic
          */
-        /*
-        $employer = \employer\models\Employer::findOne(1);
-        $employer->sendVerificationEmail();
-         * 
-         */
+        $output .= "<h2>Initiating Daily Email Broadcast for Employers</h2>";
+        $output .= \common\models\Employer::broadcastDailyNotificationEmail();
+        
+        return $this->render('test', ['output' => $output]);
     }
 
     public function actionLogout()

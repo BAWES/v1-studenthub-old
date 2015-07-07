@@ -445,5 +445,55 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
     public function removePasswordResetToken() {
         $this->employer_password_reset_token = null;
     }
+    
+    /**
+     * Static function that broadcasts the daily notification email to all Students
+     */
+    public static function broadcastDailyNotificationEmail(){
+        
+        
+        //Find All Employers which have notification preference set to Daily
+        $employers = static::find()
+                    ->with('unsentNotifications')
+                    ->where([
+                        'employer_email_preference' => static::NOTIFICATION_DAILY,
+                        'employer_email_verification' => static::EMAIL_VERIFIED,
+                        ]);
+        
+        $employerCount = 0;
+        
+        //Loop through employers in batches of 50
+        foreach($employers->each(50) as $employer){
+            
+            $sentEmail = $employer->sendNotificationEmail();
+            if($sentEmail){
+                //Email was sent to this student
+                $employerCount++;
+            }
+            
+        }
+        
+        Yii::info("[Daily Notifications] Notifications emailed to $employerCount employers", __METHOD__);
+    }
+    
+    /**
+     * Sends a summary of unsent notifications via Email
+     * @return boolean sent or not sent
+     */
+    public function sendNotificationEmail(){        
+        $unsentNotifications = $this->unsentNotifications;
+        if(count($unsentNotifications) > 0){
+            /**
+             * Send this employer all his "unsent" notifications
+             * then set all his notifications as "sent"
+             * Preferably you add this to the Student model: $employer->emailNotificationSummary
+             */
+            
+            
+            return true;
+        }
+        
+        return false;
+    }
 
 }

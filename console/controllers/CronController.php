@@ -35,57 +35,10 @@ class CronController extends \yii\console\Controller {
      * Method called by cron once a day to send email to all Students and Employers
      */
     public function actionDailyEmail(){
-        $this->stdout("Initiating Daily Email Broadcast for Students\n", Console::FG_GREEN, Console::BOLD);
+        Student::broadcastDailyNotificationEmail();
+        Employer::broadcastDailyNotificationEmail();
         
-        //Find All Students which have notification preference set to Daily
-        $students = Student::find()
-                    ->with('unsentNotifications')
-                    ->where([
-                        'student_email_preference' => Student::NOTIFICATION_DAILY,
-                        'student_email_verification' => Student::EMAIL_VERIFIED,
-                        'student_id_verification' => Student::ID_VERIFIED,
-                        ]);
-        
-        //Loop through students in batches of 50
-        foreach($students->each(50) as $student){
-            /**
-             * Send this student all his "unsent" notifications
-             * then set all his notifications as "sent"
-             * Preferably you add this to the Student model: $student->emailNotificationSummary
-             */
-            $unsentNotifications = $student->unsentNotifications;
-            if(count($unsentNotifications) > 0){
-                $this->stdout("Sending Email to ".$student->student_firstname." with ".count($unsentNotifications)
-                            ." unsent notifications \n");
-            }
-        }
-        
-        /**
-         * Start Employer Logic
-         */
-        $this->stdout("Initiating Daily Email Broadcast for Employers\n", Console::FG_GREEN, Console::BOLD);
-        
-        //Find All Employers which have notification preference set to Daily
-        $employers = Employer::find()
-                    ->with('unsentNotifications')
-                    ->where([
-                        'employer_email_preference' => Employer::NOTIFICATION_DAILY,
-                        'employer_email_verification' => Employer::EMAIL_VERIFIED,
-                        ]);
-        
-        //Loop through employers in batches of 50
-        foreach($employers->each(50) as $employer){
-            /**
-             * Send this employer all his "unsent" notifications
-             * then set all his notifications as "sent"
-             * Preferably you add this to the Student model: $employer->emailNotificationSummary
-             */
-            $unsentNotifications = $employer->unsentNotifications;
-            if(count($unsentNotifications) > 0){
-                $this->stdout("Sending Email to ".$employer->employer_contact_firstname." with ".count($unsentNotifications)
-                            ." unsent notifications \n");
-            }
-        }
+        return self::EXIT_CODE_NORMAL;
     }
     
     /**

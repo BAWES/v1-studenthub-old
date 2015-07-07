@@ -861,4 +861,54 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         $this->student_password_reset_token = null;
     }
     
+    /**
+     * Static function that broadcasts the daily notification email to all Students
+     */
+    public static function broadcastDailyNotificationEmail(){
+        //Find All Students which have notification preference set to Daily
+        $students = static::find()
+                    ->with('unsentNotifications')
+                    ->where([
+                        'student_email_preference' => static::NOTIFICATION_DAILY,
+                        'student_email_verification' => static::EMAIL_VERIFIED,
+                        'student_id_verification' => static::ID_VERIFIED,
+                        ]);
+        
+        $studentCount = 0;
+        
+        //Loop through students in batches of 50
+        foreach($students->each(50) as $student){
+            
+            
+            $sentEmail = $student->sendNotificationEmail();
+            if($sentEmail){
+                //Email was sent to this student
+                $studentCount++;
+            }
+            
+        }
+        
+        Yii::info("[Daily Notifications] Notifications emailed to $studentCount students", __METHOD__);
+    }
+    
+    /**
+     * Sends a summary of unsent notifications via Email
+     * @return boolean sent or not sent
+     */
+    public function sendNotificationEmail(){
+        $unsentNotifications = $this->unsentNotifications;
+        if(count($unsentNotifications) > 0){
+            /**
+             * Send this student all his "unsent" notifications
+             * then set all his notifications as "sent"
+             * Preferably you add this to the Student model: $student->emailNotificationSummary
+             */
+            
+            
+            return true;
+        }
+        
+        return false;
+    }
+    
 }
