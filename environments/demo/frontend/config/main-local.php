@@ -11,7 +11,7 @@ return [
         ],
         'urlManagerEmployer' => [
             'class' => 'yii\web\UrlManager',
-            'baseUrl' => '//employer.studenthub.co',
+            'baseUrl' => '//employer.studenthubdemo.co',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
         ],
