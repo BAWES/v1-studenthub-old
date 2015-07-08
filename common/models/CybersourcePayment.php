@@ -56,9 +56,9 @@ class CybersourcePayment extends \yii\db\ActiveRecord
     public $billAddressState = "Al Hxxxx";
     
     //Signed and unsigned fields
-    public $signedFields;
+    public $signedFields = "";
     public $signedDatetime;
-    public $unsignedFields;
+    public $unsignedFields = "";
     
     /**
      * Initiates a new Payment given the parameters
