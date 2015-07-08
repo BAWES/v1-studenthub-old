@@ -28,7 +28,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <a href="http://www.studenthub.co">Browse Jobs</a>
+                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['job/index']) ?>">Browse Jobs</a>
                     </td>
                 </tr>
             </tbody>

@@ -24,7 +24,7 @@ class CronController extends \yii\console\Controller {
         Yii::$app->mailer->compose([
                 'html' => "student/notification-html",
                     ], [
-                'student' => \common\models\Student::findOne(5),
+                'student' => \common\models\Student::findOne(10),
                 'notifications' => [],
             ])
             ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
