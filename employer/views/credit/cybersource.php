@@ -11,7 +11,7 @@ $this->title = Yii::t("employer", 'Credit Card Payment');
 $this->params['breadcrumbs'][] = $this->title;
 
 $js = "
-//$('#csPayment').submit();
+$('#csPayment').submit();
 ";
 
 $this->registerJs($js);
