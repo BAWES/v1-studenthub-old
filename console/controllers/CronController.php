@@ -17,7 +17,20 @@ class CronController extends \yii\console\Controller {
      * Used for testing only
      */
     public function actionIndex(){
-        $this->stdout("Test Function \n", Console::FG_RED, Console::BOLD);
+        $this->stdout("Test Email Function \n", Console::FG_RED, Console::BOLD);
+        //Test Emailing via CRON
+        
+        //Send English Email
+        Yii::$app->mailer->compose([
+                'html' => "student/notification-html",
+                    ], [
+                'student' => \common\models\Student::findOne(5),
+                'notifications' => [],
+            ])
+            ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+            ->setTo(["khalid@bawes.net"])
+            ->setSubject("[StudentHub] X New Job Openings Available")
+            ->send();
     }
     
     /**

@@ -903,6 +903,38 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
              * Send this student all his "unsent" notifications
              */
             
+            if($this->student_language_pref == "en-US"){
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = false;
+
+                //Send English Email
+                Yii::$app->mailer->compose([
+                        'html' => "student/notification-html",
+                            ], [
+                        'student' => $this,
+                        'notifications' => $unsentNotifications,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$this->student_email])
+                    ->setSubject("[StudentHub] X New Job Openings Available")
+                    ->send();
+            }else{
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = true;
+
+                //Send Arabic Email
+                Yii::$app->mailer->compose([
+                        'html' => "student/notification-ar-html",
+                            ], [
+                        'student' => $this,
+                        'notifications' => $unsentNotifications,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$this->student_email])
+                    ->setSubject("[StudentHub] X وظائف جديدة متوفرة")
+                    ->send();
+            }
+            
             
             return true;
         }
