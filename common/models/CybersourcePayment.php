@@ -182,12 +182,22 @@ class CybersourcePayment extends \yii\db\ActiveRecord
         $params['access_key'] = self::ACCESS_KEY;
         $params['profile_id'] = self::PROFILE_ID;
         $params['transaction_type'] = self::TRANSACTION_TYPE;
+        
         $params['locale'] = $this->locale;
+        
         $params['transaction_uuid'] = $this->payment_track_uuid;
+        
         $params['reference_number'] = $this->payment_track_uuid;
+        
+        $params['signed_field_names'] = $this->signedFields;
+        $params['signed_date_time'] = $this->signedDatetime;
+        
         $params['unsigned_field_names'] = $this->unsignedFields;
-        $params['amount'] = $this->payment_amount;
-        $params['currency'] = self::CURRENCY;
+        
+        $params['bill_to_forename'] = $this->payment_first_name;
+        $params['bill_to_surname'] = $this->payment_last_name;
+        $params['bill_to_email'] = $this->payment_email;
+        $params['bill_to_phone'] = $this->payment_phone;
         
         $params['bill_to_address_city'] = $this->billAddressCity;
         $params['bill_to_address_country'] = $this->billAddressCountry;
@@ -195,13 +205,8 @@ class CybersourcePayment extends \yii\db\ActiveRecord
         $params['bill_to_address_postal_code'] = $this->billAddressPostalCode;
         $params['bill_to_address_state'] = $this->billAddressState;
         
-        $params['bill_to_forename'] = $this->payment_first_name;
-        $params['bill_to_surname'] = $this->payment_last_name;
-        $params['bill_to_email'] = $this->payment_email;
-        $params['bill_to_phone'] = $this->payment_phone;
-        
-        $params['signed_field_names'] = $this->signedFields;
-        $params['signed_date_time'] = $this->signedDatetime;
+        $params['amount'] = $this->payment_amount;
+        $params['currency'] = self::CURRENCY;
         
         return self::sign($params);
     }
