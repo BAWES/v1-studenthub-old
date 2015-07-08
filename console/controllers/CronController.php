@@ -21,6 +21,7 @@ class CronController extends \yii\console\Controller {
         //Test Emailing via CRON
         
         //Send English Email
+        Yii::$app->view->params['isArabic'] = false;
         Yii::$app->mailer->compose([
                 'html' => "student/notification-html",
                     ], [
