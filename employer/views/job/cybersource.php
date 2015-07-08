@@ -50,10 +50,19 @@ $this->registerJs($js);
 
             <!-- Unsigned fields that a user will be able to edit -->
             <input type="hidden" name="unsigned_field_names" value="<?= $payment->unsignedFields ?>">
+            
+            <!-- Billing details (customer) -->
             <input type="hidden" name="bill_to_forename" value="<?= $payment->payment_first_name ?>">
             <input type="hidden" name="bill_to_surname" value="<?= $payment->payment_last_name ?>">
             <input type="hidden" name="bill_to_email" value="<?= $payment->payment_email ?>">
             <input type="hidden" name="bill_to_phone" value="<?= $payment->payment_phone ?>">
+            
+            <!-- Billing details (address) -->
+            <input type="hidden" name="bill_to_address_city" value="<?= $payment->billAddressCity ?>">
+            <input type="hidden" name="bill_to_address_country" value="<?= $payment->billAddressCountry ?>">
+            <input type="hidden" name="bill_to_address_line1" value="<?= $payment->billAddressLine1 ?>">
+            <input type="hidden" name="bill_to_address_postal_code" value="<?= $payment->billAddressPostalCode ?>">
+            <input type="hidden" name="bill_to_address_state" value="Al <?= $payment->billAddressState ?>">
 
             <!-- Payment Details -->
             <input type="hidden" name="amount" value="<?= $payment->payment_amount ?>">

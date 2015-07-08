@@ -48,6 +48,13 @@ class CybersourcePayment extends \yii\db\ActiveRecord
     //LOCAL DETAILS - can be either en-US or ar-XN
     public $locale = "en-US";
     
+    //Default Billing Details
+    public $billAddressCity = "AlXXXXX";
+    public $billAddressCountry = "KW";
+    public $billAddressLine1 = "Khitba";
+    public $billAddressPostalCode = "XXXXXXX";
+    public $billAddressState = "Al Hxxxx";
+    
     //Signed and unsigned fields
     public $signedFields;
     public $signedDatetime;
@@ -95,11 +102,8 @@ class CybersourcePayment extends \yii\db\ActiveRecord
         }
         
         //Signed Fields [Tamper Prevented]
-        $this->signedFields = "access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency";
+        $this->signedFields = "access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_address_country,bill_to_address_city,bill_to_address_line1,bill_to_address_postal_code,bill_to_address_state,bill_to_email,bill_to_forename,bill_to_phone,bill_to_surname";
         $this->signedDatetime = gmdate("Y-m-d\TH:i:s\Z");
-
-        //Unsigned Fields [Customers allowed to edit]
-        $this->unsignedFields = "bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone";
         
         //Generate payment signature
         $this->payment_signature = $this->generateSignature();
@@ -184,6 +188,18 @@ class CybersourcePayment extends \yii\db\ActiveRecord
         $params['unsigned_field_names'] = $this->unsignedFields;
         $params['amount'] = $this->payment_amount;
         $params['currency'] = self::CURRENCY;
+        
+        $params['bill_to_address_city'] = $this->billAddressCity;
+        $params['bill_to_address_country'] = $this->billAddressCountry;
+        $params['bill_to_address_line1'] = $this->billAddressLine1;
+        $params['bill_to_address_postal_code'] = $this->billAddressPostalCode;
+        $params['bill_to_address_state'] = $this->billAddressState;
+        
+        $params['bill_to_forename'] = $this->payment_first_name;
+        $params['bill_to_surname'] = $this->payment_last_name;
+        $params['bill_to_email'] = $this->payment_email;
+        $params['bill_to_phone'] = $this->payment_phone;
+        
         $params['signed_field_names'] = $this->signedFields;
         $params['signed_date_time'] = $this->signedDatetime;
         
