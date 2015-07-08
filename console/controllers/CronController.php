@@ -18,7 +18,6 @@ class CronController extends \yii\console\Controller {
      */
     public function actionIndex(){
         $this->stdout("Test Email Function \n", Console::FG_RED, Console::BOLD);
-        //Test Emailing via CRON
     }
     
     /**
