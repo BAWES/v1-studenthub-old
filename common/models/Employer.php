@@ -297,7 +297,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function getUnsentNotifications() {
         return $this->hasMany(NotificationEmployer::className(), ['employer_id' => 'employer_id'])
-                ->with(['student', 'job'])
+                ->with(['job', 'student'])
                 ->where(['notification_sent' => NotificationEmployer::SENT_FALSE])
                 ->orderBy("notification_datetime DESC");
     }
@@ -450,8 +450,6 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
      * Static function that broadcasts the daily notification email to all Students
      */
     public static function broadcastDailyNotificationEmail(){
-        
-        
         //Find All Employers which have notification preference set to Daily
         $employers = static::find()
                     ->with('unsentNotifications')
@@ -484,10 +482,41 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function sendNotificationEmail(){        
         $unsentNotifications = $this->unsentNotifications;
-        if(count($unsentNotifications) > 0){
-            /**
-             * Send this employer all his "unsent" notifications
-             */
+        $notificationCount = count($unsentNotifications);
+        
+        if($notificationCount > 0){
+            //Send this employer all his "unsent" notifications            
+            if($this->employer_language_pref == "en-US"){
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = false;
+
+                //Send English Email
+                Yii::$app->mailer->compose([
+                        'html' => "employer/notification-html",
+                            ], [
+                        'employer' => $this,
+                        'notifications' => $unsentNotifications,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$this->employer_email])
+                    ->setSubject("[StudentHub] You've got $notificationCount new applicants!")
+                    ->send();
+            }else{
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = true;
+
+                //Send Arabic Email
+                Yii::$app->mailer->compose([
+                        'html' => "employer/notification-ar-html",
+                            ], [
+                        'employer' => $this,
+                        'notifications' => $unsentNotifications,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$this->employer_email])
+                    ->setSubject("[StudentHub] لقد حصلت على $notificationCount متقدمين جدد")
+                    ->send();
+            }
             
             
             return true;
