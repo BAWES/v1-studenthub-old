@@ -460,8 +460,11 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
         
         $employerCount = 0;
         
+        Yii::info("before loop", __METHOD__);
+        
         //Loop through employers in batches of 50
         foreach($employers->each(50) as $employer){
+            Yii::info("inside loop", __METHOD__);
             $sentEmail = $employer->sendNotificationEmail();
             if($sentEmail){
                 //Email was sent to this student
@@ -480,11 +483,13 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
      * Sends a summary of unsent notifications via Email
      * @return boolean sent or not sent
      */
-    public function sendNotificationEmail(){        
+    public function sendNotificationEmail(){
+        Yii::info("before loop", __METHOD__);
         $unsentNotifications = $this->unsentNotifications;
         $notificationCount = count($unsentNotifications);
         
         if($notificationCount > 0){
+            Yii::info("has notif", __METHOD__);
             //Send this employer all his "unsent" notifications            
             if($this->employer_language_pref == "en-US"){
                 //Set language based on preference stored in DB
