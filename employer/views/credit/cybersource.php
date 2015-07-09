@@ -62,7 +62,6 @@ $this->registerJs($js);
             <input type="hidden" name="bill_to_address_country" value="<?= $payment->billAddressCountry ?>">
             <input type="hidden" name="bill_to_address_line1" value="<?= $payment->billAddressLine1 ?>">
             <input type="hidden" name="bill_to_address_postal_code" value="<?= $payment->billAddressPostalCode ?>">
-            <input type="hidden" name="bill_to_address_state" value="Al <?= $payment->billAddressState ?>">
 
             <!-- Payment Details -->
             <input type="hidden" name="amount" value="<?= $payment->payment_amount ?>">

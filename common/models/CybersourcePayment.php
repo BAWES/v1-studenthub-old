@@ -39,7 +39,7 @@ class CybersourcePayment extends \yii\db\ActiveRecord
     //Secret key used for signing details (tamper protection)
     const SECRET_KEY = "164f5b8a9c5e47bbaedf912a50ceded6d8d657f03a554434a22b3c5bb89fe7570e9c2ab8cd144a5992ff75f983a500aa030a7140e2164f43b57b35ea21a165315ef6d4d4c96b4022b39d6371cd30567da22426026f8543a4b51dd885aa7f4dff22460e0eff7e4d53bddb3e015fc46f249987de6acf34497da06d405661aa5530";
     const ACCESS_KEY = "574f600374cf368db32d6328c0528741";
-    const PROFILE_ID = "nbk_bawes_acct";
+    const PROFILE_ID = "D230D2F7-476C-4E1C-8054-045DF37609D5";
     
     //Transaction Details
     const TRANSACTION_TYPE = "sale";
@@ -49,11 +49,10 @@ class CybersourcePayment extends \yii\db\ActiveRecord
     public $locale = "en-US";
     
     //Default Billing Details
-    public $billAddressCity = "AlXXXXX";
+    public $billAddressCity = "Kuwait";
     public $billAddressCountry = "KW";
-    public $billAddressLine1 = "Khitba";
-    public $billAddressPostalCode = "XXXXXXX";
-    public $billAddressState = "Al Hxxxx";
+    public $billAddressLine1 = "kaifan";
+    public $billAddressPostalCode = "XXXXX";
     
     //Signed and unsigned fields
     public $signedFields = "";
@@ -102,7 +101,7 @@ class CybersourcePayment extends \yii\db\ActiveRecord
         }
         
         //Signed Fields [Tamper Prevented]
-        $this->signedFields = "access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_address_country,bill_to_address_city,bill_to_address_line1,bill_to_address_postal_code,bill_to_address_state,bill_to_email,bill_to_forename,bill_to_phone,bill_to_surname";
+        $this->signedFields = "access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_address_country,bill_to_address_city,bill_to_address_line1,bill_to_address_postal_code,bill_to_email,bill_to_forename,bill_to_phone,bill_to_surname";
         $this->signedDatetime = gmdate("Y-m-d\TH:i:s\Z");
         
         //Generate payment signature
@@ -203,7 +202,6 @@ class CybersourcePayment extends \yii\db\ActiveRecord
         $params['bill_to_address_country'] = $this->billAddressCountry;
         $params['bill_to_address_line1'] = $this->billAddressLine1;
         $params['bill_to_address_postal_code'] = $this->billAddressPostalCode;
-        $params['bill_to_address_state'] = $this->billAddressState;
         
         $params['amount'] = $this->payment_amount;
         $params['currency'] = self::CURRENCY;
