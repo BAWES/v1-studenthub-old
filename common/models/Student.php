@@ -898,7 +898,9 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function sendNotificationEmail(){
         $unsentNotifications = $this->unsentNotifications;
-        if(count($unsentNotifications) > 0){
+        $notificationCount = count($unsentNotifications);
+        
+        if($notificationCount > 0){
             /**
              * Send this student all his "unsent" notifications
              */
@@ -916,7 +918,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     ])
                     ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                     ->setTo([$this->student_email])
-                    ->setSubject("[StudentHub] X New Job Openings Available")
+                    ->setSubject("[StudentHub] $notificationCount New Job Openings Available")
                     ->send();
             }else{
                 //Set language based on preference stored in DB
@@ -931,7 +933,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     ])
                     ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                     ->setTo([$this->student_email])
-                    ->setSubject("[StudentHub] X وظائف جديدة متوفرة")
+                    ->setSubject("[StudentHub] $notificationCount وظائف جديدة متوفرة")
                     ->send();
             }
             

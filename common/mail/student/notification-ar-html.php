@@ -7,9 +7,9 @@
 ?>
 <tr>
     <td>
-        <h1>Hello <?= $student->student_firstname ?>,</h1>
+        <h1>مرحبا <?= $student->student_firstname ?></h1>
         <p class="lead">
-            We're excited to let you know that we have <?= count($notifications) ?> new job listings that you qualify for.
+            لدينا <?= count($notifications) ?> فرص العمل جديدة انت مؤهلا للحصول عليها
         </p>
         <ul>
             <?php foreach($notifications as $notification){ 
@@ -22,8 +22,9 @@
             <?php } ?>
         </ul>
         <p>
-            Regards,<br/>
-            StudentHub Team
+            مع تحيات
+            <br/>
+            StudentHub فريق
         </p>
     </td>
     <td class="expander"></td>
@@ -35,7 +36,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['job/index']) ?>">Apply for Jobs</a>
+                        <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['job/index']) ?>">قدم على وظائف</a>
                     </td>
                 </tr>
             </tbody>
