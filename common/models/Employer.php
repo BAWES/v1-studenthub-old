@@ -463,7 +463,6 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
         
         //Loop through employers in batches of 50
         foreach($employers->each(50) as $employer){
-            Yii::info("Employer #".$employer->employer_id, __METHOD__);
             $sentEmail = $employer->sendNotificationEmail();
             if($sentEmail){
                 //Email was sent to this student
