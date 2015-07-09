@@ -11,7 +11,7 @@
         <p class="lead">
             لدينا <?= count($notifications) ?> فرص العمل جديدة انت مؤهلا للحصول عليها
         </p>
-        <ul>
+        <ul style='direction:rtl;'>
             <?php foreach($notifications as $notification){ 
                 $job = $notification->job;
                 $employer = $job->employer;
