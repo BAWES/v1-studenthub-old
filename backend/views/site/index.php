@@ -12,10 +12,6 @@ $this->title = 'Dashboard';
 
     <div class="row">
         <div>
-            <h1><?= Yii::$app->urlManagerFrontend->createAbsoluteUrl(['job/share', 'id' => 1]) ?></h1>
-            <hr/>
-            <h1><?= Yii::$app->urlManagerEmployer->createAbsoluteUrl(['job/share', 'id' => 1]) ?></h1>
-            <hr/>
         <h1>Recent Activity</h1>
 
         <?php
