@@ -448,18 +448,19 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
     
     /**
      * Static function that broadcasts the daily notification email to all Students
+     * @param int $preference class constant for notification preference
      */
-    public static function broadcastDailyNotificationEmail(){
+    public static function broadcastNotificationEmail($preference){
         //Find All Employers which have notification preference set to Daily
         $employers = static::find()
                     ->with('unsentNotifications')
                     ->where([
-                        'employer_email_preference' => static::NOTIFICATION_DAILY,
+                        'employer_email_preference' => $preference,
                         'employer_email_verification' => static::EMAIL_VERIFIED,
                         ]);
         
+        $employerIdList = []; 
         $employerCount = 0;
-        
         
         //Loop through employers in batches of 50
         foreach($employers->each(50) as $employer){
@@ -467,14 +468,23 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
             if($sentEmail){
                 //Email was sent to this student
                 $employerCount++;
+                //Add Student to email students list
+                $employerIdList[] = $employer->employer_id;
             }
         }
         
         /**
-         * Set notifications as "SENT" for students in the above criteria
+         * Set notifications as `SENT` for employers in the $employerIdList
          */
+        NotificationEmployer::updateAll([
+                //Set notification sent to true
+                'notification_sent' => NotificationStudent::SENT_TRUE,
+            ],[
+                //Where in $employerIdList
+                'employer_id' => $employerIdList,
+            ]);
         
-        Yii::info("[Daily Notifications] Notifications emailed to $employerCount employers", __METHOD__);
+        Yii::info("[Notifications] Notifications emailed to $employerCount employers", __METHOD__);
     }
     
     /**

@@ -863,17 +863,19 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     
     /**
      * Static function that broadcasts the daily notification email to all Students
+     * @param int $preference class constant for notification preference
      */
-    public static function broadcastDailyNotificationEmail(){
+    public static function broadcastNotificationEmail($preference){
         //Find All Students which have notification preference set to Daily
         $students = static::find()
                     ->with('unsentNotifications')
                     ->where([
-                        'student_email_preference' => static::NOTIFICATION_DAILY,
+                        'student_email_preference' => $preference,
                         'student_email_verification' => static::EMAIL_VERIFIED,
                         'student_id_verification' => static::ID_VERIFIED,
                         ]);
         
+        $studentIdList = []; 
         $studentCount = 0;
         
         //Loop through students in batches of 50
@@ -882,14 +884,23 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             if($sentEmail){
                 //Email was sent to this student
                 $studentCount++;
+                //Add Student to email students list
+                $studentIdList[] = $student->student_id;
             }
         }
         
         /**
-         * Set notifications as "SENT" for students in the above criteria
+         * Set notifications as `SENT` for students in the $studentIdList
          */
+        NotificationStudent::updateAll([
+                //Set notification sent to true
+                'notification_sent' => NotificationStudent::SENT_TRUE,
+            ],[
+                //Where in $studentIdList
+                'student_id' => $studentIdList,
+            ]);
         
-        Yii::info("[Daily Notifications] Notifications emailed to $studentCount students", __METHOD__);
+        Yii::info("[Notifications] Notifications emailed to $studentCount students", __METHOD__);
     }
     
     /**

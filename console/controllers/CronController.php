@@ -35,8 +35,8 @@ class CronController extends \yii\console\Controller {
      * Method called by cron once a day to send email to all Students and Employers
      */
     public function actionDailyEmail(){
-        Student::broadcastDailyNotificationEmail();
-        Employer::broadcastDailyNotificationEmail();
+        Student::broadcastNotificationEmail(Student::NOTIFICATION_DAILY);
+        Employer::broadcastNotificationEmail(Employer::NOTIFICATION_DAILY);
         
         return self::EXIT_CODE_NORMAL;
     }
@@ -45,9 +45,10 @@ class CronController extends \yii\console\Controller {
      * Method called by cron once a week to send email to all Students and Employers
      */
     public function actionWeeklyEmail(){
-        $this->stdout("Initiating Weekly Email Broadcast \n", Console::FG_GREEN, Console::BOLD);
+        Student::broadcastNotificationEmail(Student::NOTIFICATION_WEEKLY);
+        Employer::broadcastNotificationEmail(Employer::NOTIFICATION_WEEKLY);
         
-        //Exact same as above logic but Employer::NOTIFICATION_WEEKLY/STUDENT WEEKLY
+        return self::EXIT_CODE_NORMAL;
     }
 
 }
