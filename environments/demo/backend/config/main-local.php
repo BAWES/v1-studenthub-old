@@ -11,13 +11,13 @@ return [
         ],
         'urlManagerEmployer' => [
             'class' => 'yii\web\UrlManager',
-            'baseUrl' => '//employer.studenthubdemo.co',
+            'baseUrl' => 'http://employer.studenthubdemo.co',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
         ],
         'urlManagerFrontend' => [
             'class' => 'yii\web\UrlManager',
-            'baseUrl' => '//studenthubdemo.co',
+            'baseUrl' => 'http://studenthubdemo.co',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
         ],
