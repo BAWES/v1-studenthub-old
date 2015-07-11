@@ -9,7 +9,6 @@ use yii\widgets\ListView;
 
 $this->title = Yii::t('app', 'Applicants');
 $this->params['breadcrumbs'][] = ['label' => $model->job_title, 'url' => ['dashboard/index']];
-;
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = "
