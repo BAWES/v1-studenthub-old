@@ -242,6 +242,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                     $menuItems[] = ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/site/contact']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Register'), 'url' => ['/site/register']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Login'), 'url' => ['/site/login']];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Student Portal'), 'url' => Yii::$app->urlManagerFrontend->createUrl("site/index")];
                 } else {
                     $menuItems[] = ['label' => Yii::t('employer', 'Dashboard'), 'url' => ['/dashboard/index']];
                     $menuItems[] = ['label' => Yii::t('employer', 'Buy Credit'), 'url' => ['/credit/index']];
@@ -253,9 +254,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                         'linkOptions' => ['data-method' => 'post']
                     ];
                 }
-
-                //Link to Student Portal
-                $menuItems[] = ['label' => Yii::t('frontend', 'Student Portal'), 'url' => Yii::$app->urlManagerFrontend->createUrl("site/index")];
+                
 
                 echo Navigation::widget(['items' => $menuItems]);
                 ?>

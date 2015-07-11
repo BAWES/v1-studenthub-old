@@ -255,6 +255,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                     $menuItems[] = ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/site/contact']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Register'), 'url' => ['/register/index']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Login'), 'url' => ['/site/login']];
+                    $menuItems[] = ['label' => Yii::t('frontend','Employer Portal'), 'url' => Yii::$app->urlManagerEmployer->createUrl("site/index")];
                 } else {
                     $menuItems[] = ['label' => Yii::t('frontend', 'Browse Jobs'), 'url' => ['/job/index']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/site/contact']];
@@ -263,10 +264,8 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                         'url' => ['/site/logout'],
                         'linkOptions' => ['data-method' => 'post']
                     ];
-                }                
+                }
                 
-                //Link to Employer Portal
-                $menuItems[] = ['label' => Yii::t('frontend','Employer Portal'), 'url' => Yii::$app->urlManagerEmployer->createUrl("site/index")];
                 
                 echo Navigation::widget(['items' => $menuItems]);
                 ?>
