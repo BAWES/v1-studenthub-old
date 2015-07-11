@@ -247,6 +247,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                     $menuItems[] = ['label' => Yii::t('employer', 'Dashboard'), 'url' => ['/dashboard/index']];
                     $menuItems[] = ['label' => Yii::t('employer', 'Buy Credit'), 'url' => ['/credit/index']];
                     $menuItems[] = ['label' => Yii::t('employer', 'Payment History'), 'url' => ['/payment/index']];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Account Settings'), 'url' => ['/setting/index']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/site/contact']];
                     $menuItems[] = [
                         'label' => Yii::t('frontend', 'Logout'),
@@ -496,7 +497,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                                             ?>
 
                                                 <?= $form->field(Yii::$app->user->identity, 'employer_email_preference')->dropDownList([
-                                                    Employer::NOTIFICATION_DAILY => Yii::t('register', "Daily as jobs are posted"),
+                                                    Employer::NOTIFICATION_DAILY => Yii::t('register', "Daily when students apply"),
                                                     Employer::NOTIFICATION_WEEKLY => Yii::t('register', "Weekly Summary"),
                                                     Employer::NOTIFICATION_OFF => Yii::t('register', "Off"),
                                                 ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
@@ -504,7 +505,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                                             
                                             <?php ActiveForm::end(); ?>
                                         </li>                                                    
-                                    </ul>                                                   
+                                    </ul>
                                     <div class="legend"><?= Yii::t("frontend", "Account Information") ?></div>
                                     <ul>
                                         <li>
@@ -522,7 +523,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                                         <li>
                                             <a href="<?= Url::to(['setting/change-password']) ?>"><?= Yii::t('register', 'Change Password') ?></a>
                                         </li>
-                                    </ul>                                                                                                                                                           
+                                    </ul>
 
 
                                 </div><!--.settings-panel-->

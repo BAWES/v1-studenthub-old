@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;
 /* @var $model \employer\models\Employer */
 
 $this->title = Yii::t('register', 'Update Personal Information');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Account Settings'), 'url' => ['setting/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 
