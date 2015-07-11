@@ -11,6 +11,7 @@ use yii\helpers\Url;
 /* @var $model \frontend\models\Student */
 
 $this->title = Yii::t('register', 'Update Education Information');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Account Settings'), 'url' => ['setting/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 Yii::$app->formatter->thousandSeparator = "";

@@ -39,6 +39,13 @@ class SettingController extends \yii\web\Controller {
     }
     
     /**
+     * List of settings + ability to change settings from a single page
+     */
+    public function actionIndex() {
+        return $this->render('index');
+    }
+    
+    /**
      * Change users notification preference via AJAX
      * @param integer $preference
      * @return mixed

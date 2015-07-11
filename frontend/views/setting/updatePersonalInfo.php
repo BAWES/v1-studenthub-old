@@ -10,6 +10,7 @@ use yii\helpers\ArrayHelper;
 /* @var $model \frontend\models\Student */
 
 $this->title = Yii::t('register', 'Update Personal Information');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Account Settings'), 'url' => ['setting/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 //Set Datepicker Locale to AR if language selected

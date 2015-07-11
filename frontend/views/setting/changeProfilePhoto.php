@@ -10,6 +10,7 @@ use kartik\widgets\FileInput;
 /* @var $oldPhotoUrl string */
 
 $this->title = Yii::t('register', 'Change Profile Photo');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Account Settings'), 'url' => ['setting/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = "

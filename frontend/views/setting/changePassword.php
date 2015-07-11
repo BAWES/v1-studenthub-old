@@ -9,6 +9,7 @@ use frontend\models\Student;
 /* @var $model \frontend\models\Student */
 
 $this->title = Yii::t('register', 'Change Password');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Account Settings'), 'url' => ['setting/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = "

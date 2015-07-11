@@ -11,6 +11,7 @@ use kartik\widgets\FileInput;
 /* @var $oldCvUrl string */
 
 $this->title = Yii::t('register', 'Update CV');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('frontend', 'Account Settings'), 'url' => ['setting/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = "

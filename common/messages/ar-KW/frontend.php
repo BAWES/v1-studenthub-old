@@ -17,9 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Please accept the terms and conditions' => 'يرجى قبول الشروط والأحكام',
-    'Privacy Policy' => 'سياسة الخصوصية',
-    'Terms & Privacy Policy' => 'الشروط وسياسة الخصوصية',
+    'Account Settings' => 'إعدادات الحساب',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'All Industries' => 'كافة القطاعات',
@@ -87,6 +85,7 @@ return [
     'Paid Jobs' => 'الوظائف ذات الأجور',
     'Payment' => 'دفع',
     'Please <a href=\'{contactLink}\'>contact us</a> to transfer your account to another university' => 'يرجى <a href=\'{contactLink}\'> الاتصال بنا </a> لنقل حسابك إلى جامعة أخرى',
+    'Please accept the terms and conditions' => 'يرجى قبول الشروط والأحكام',
     'Please agree to the terms and conditions' => 'يرجى الموافقة على الشروط والأحكام',
     'Please answer the interview question' => 'الرجاء الإجابة على الأسئلة',
     'Please upload a photo of your university id card' => 'يرجى تحميل صورة من بطاقة الهوية جامعتك',
@@ -94,6 +93,7 @@ return [
     'Positions Available' => 'الوظائف المتاحة',
     'Premium Filters ({0})' => 'فلاتر متميزة ({0})',
     'Print' => 'طباعة',
+    'Privacy Policy' => 'سياسة الخصوصية',
     'Quantity' => 'الكمية',
     'Register' => 'تسجيل',
     'Selected language does not exist.' => 'لا وجود اللغة المحددة',
@@ -107,6 +107,7 @@ return [
     'Student Portal' => 'بوابة الطالب',
     'Sub Total' => 'حاصل الجمع',
     'Terms & Conditions' => 'الشروط والأحكام',
+    'Terms & Privacy Policy' => 'الشروط وسياسة الخصوصية',
     'Thank you for contacting us. We will respond to you as soon as possible.' => 'شكر لتواصلك معنا. وسوف نقوم بالرد عليك في أقرب وقت ممكن.',
     'The format of your date of birth is invalid, should be yyyy/mm/dd' => 'شكل تاريخ ميلادك غير صالح، ينبغي أن يكون شهر / يوم / سنة',
     'There was an error sending email.' => 'كان هناك خلل أثناء إرسال البريد الإلكتروني.',
