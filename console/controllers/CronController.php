@@ -18,7 +18,7 @@ class CronController extends \yii\console\Controller {
      */
     public function actionIndex(){
         $this->stdout("Test Email Function \n", Console::FG_RED, Console::BOLD);
-        Yii::error("cron works", __METHOD__);
+        Yii::error("cron works", "common\models\Employer");
     }
     
     /**
