@@ -60,6 +60,7 @@ class SettingController extends \yii\web\Controller {
                  * Set Flash that new email preferences have been set
                  */
                 Yii::$app->getSession()->setFlash('success', Yii::t('frontend', 'Your email notification preferences have been updated'));
+                return $this->redirect(['setting/index']);
             }
         }
         
@@ -81,6 +82,7 @@ class SettingController extends \yii\web\Controller {
                 $model->setPassword($model->student_password_hash);
                 if($model->save()){
                     Yii::$app->getSession()->setFlash('success', Yii::t('student', 'New password was saved.'));
+                    return $this->redirect(['setting/index']);
                 }
             }
         }
@@ -103,6 +105,7 @@ class SettingController extends \yii\web\Controller {
             
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your personal information'));
+                return $this->redirect(['setting/index']);
             }
         }
         
@@ -123,6 +126,7 @@ class SettingController extends \yii\web\Controller {
             
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your education information'));
+                return $this->redirect(['setting/index']);
             }
         }
         
@@ -175,6 +179,7 @@ class SettingController extends \yii\web\Controller {
                         Yii::$app->user->identity->student_photo = $model->student_photo;
                         
                         Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your profile photo'));
+                        return $this->redirect(['setting/index']);
                     }else{
                         $hasErrors = true;
                         foreach ($model->errors as $error => $errorText) {
@@ -237,6 +242,7 @@ class SettingController extends \yii\web\Controller {
                         }
 
                         Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your CV has been updated'));
+                        return $this->redirect(['setting/index']);
                     }else{
                         $hasErrors = true;
                         foreach ($model->errors as $error => $errorText) {

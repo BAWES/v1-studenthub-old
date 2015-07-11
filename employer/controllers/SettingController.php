@@ -56,6 +56,7 @@ class SettingController extends \yii\web\Controller {
             
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your company information has been updated'));
+                return $this->redirect(['setting/index']);
             }
         }
         
@@ -75,6 +76,7 @@ class SettingController extends \yii\web\Controller {
             
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your personal information has been updated'));
+                return $this->redirect(['setting/index']);
             }
         }
         
@@ -94,6 +96,7 @@ class SettingController extends \yii\web\Controller {
             
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your social media details have been updated'));
+                return $this->redirect(['setting/index']);
             }
         }
         
@@ -121,6 +124,7 @@ class SettingController extends \yii\web\Controller {
                  * Set Flash that new email preferences have been set
                  */
                 Yii::$app->getSession()->setFlash('success', Yii::t('frontend', 'Your email notification preferences have been updated'));
+                return $this->redirect(['setting/index']);
             }
         }
         
@@ -142,6 +146,7 @@ class SettingController extends \yii\web\Controller {
                 $model->setPassword($model->employer_password_hash);
                 if($model->save()){
                     Yii::$app->getSession()->setFlash('success', Yii::t('student', 'New password was saved.'));
+                    return $this->redirect(['setting/index']);
                 }
             }
         }
@@ -196,6 +201,7 @@ class SettingController extends \yii\web\Controller {
                         Yii::$app->user->identity->employer_logo = $model->employer_logo;
                         
                         Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your logo has been updated'));
+                        return $this->redirect(['setting/index']);
                     }else{
                         $hasErrors = true;
                         foreach ($model->errors as $error => $errorText) {
