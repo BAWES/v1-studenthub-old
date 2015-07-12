@@ -1,6 +1,7 @@
 <?php
 namespace backend\models;
 
+use Yii;
 use common\models\Admin;
 use yii\base\Model;
 
@@ -46,7 +47,8 @@ class PasswordResetRequestForm extends Model
             }
 
             if ($admin->save()) {
-                return \Yii::$app->mailer->compose(['html' => 'admin/passwordResetToken-html', 'text' => 'admin/passwordResetToken-text'], ['admin' => $admin])
+                Yii::$app->view->params['isArabic'] = false;
+                return Yii::$app->mailer->compose(['html' => 'admin/passwordResetToken-html', 'text' => 'admin/passwordResetToken-text'], ['admin' => $admin])
                     ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name])
                     ->setTo($this->email)
                     ->setSubject('Password reset for ' . \Yii::$app->name)
