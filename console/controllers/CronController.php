@@ -7,6 +7,7 @@ use yii\helpers\Console;
 use common\models\JobProcessQueue;
 use common\models\Student;
 use common\models\Employer;
+use common\models\StudentJobApplication;
 
 /**
  * All Cron actions related to this project
@@ -47,6 +48,16 @@ class CronController extends \yii\console\Controller {
     public function actionWeeklyEmail(){
         Student::broadcastNotificationEmail(Student::NOTIFICATION_WEEKLY);
         Employer::broadcastNotificationEmail(Employer::NOTIFICATION_WEEKLY);
+        
+        return self::EXIT_CODE_NORMAL;
+    }
+    
+    /**
+     * Delete all Student Job Applications
+     * This is for the Demo server
+     */
+    public function actionDeleteApplications(){
+        StudentJobApplication::deleteAll();
         
         return self::EXIT_CODE_NORMAL;
     }
