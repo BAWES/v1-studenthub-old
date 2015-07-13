@@ -17,9 +17,17 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Account Settings' => 'إعدادات الحساب',
+    'Demonstration' => 'جرب برنامجنا',
+    'Email:' => 'البريد الإلكتروني',
+    'Employer Demo' => 'محاولة استخدام كصاحب عمل',
+    'Log on to the employer section to see how the employer portal works. Posting a job opportunity is a simple process.' => 'إدخل إلى قسم صاحب العمل لمعرفة كيف يعمل برنامجنا. نشر فرص العمل هي عملية بسيطة.',
+    'Log on to the student section to see how the student portal works. Students can easily browse and apply for jobs.' => 'إدخل إلى قسم الطلاب لمعرفة كيفية عمل بوابة الطالب. يمكن للطلاب بسهولة تصفح والتقدم للوظائف.',
+    'Password:' => 'كلمة السر',
+    'Student Demo' => 'محاولة استخدام كطالب',
+    'View Demo' => 'جربها',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
+    'Account Settings' => 'إعدادات الحساب',
     'All Industries' => 'كافة القطاعات',
     'All Job Types' => 'جميع أنواع الوظائف',
     'Amount' => 'المبلغ',

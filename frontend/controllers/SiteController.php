@@ -84,6 +84,14 @@ class SiteController extends Controller
     {
         return $this->render('privacy');
     }
+    
+    /**
+     * Demo Page
+     */
+    public function actionDemo()
+    {
+        return $this->render('demo');
+    }
 
     
     public function actionLogin()
