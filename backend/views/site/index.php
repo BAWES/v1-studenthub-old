@@ -3,6 +3,8 @@ use yii\grid\GridView;
 use yii\data\ActiveDataProvider;
 use common\models\Log;
 use yii\log\Logger;
+use common\models\Payment;
+use common\models\PaymentType;
 
 /* @var $this yii\web\View */
 
@@ -63,33 +65,134 @@ $this->title = 'Dashboard';
         ?>
         </div>
     </div>
+    <?php
+    /**
+     * Today Sales
+     */
+    $todayKNET = Payment::total(PaymentType::TYPE_KNET, 1);
+    $todayCC = Payment::total(PaymentType::TYPE_CREDITCARD, 1);
+    $todayCreditPurchase = Payment::total(PaymentType::TYPE_CREDIT, 1);
+    $todayGift = Payment::total(PaymentType::TYPE_CREDIT_GIVEAWAY, 1);
+    $todayRefund = Payment::total(PaymentType::TYPE_CREDIT_REFUND, 1);
 
+
+    /**
+     * Months Sales
+     */
+    $monthKNET = Payment::total(PaymentType::TYPE_KNET, 30);
+    $monthCC = Payment::total(PaymentType::TYPE_CREDITCARD, 30);
+    $monthCreditPurchase = Payment::total(PaymentType::TYPE_CREDIT, 30);
+    $monthGift = Payment::total(PaymentType::TYPE_CREDIT_GIVEAWAY, 30);
+    $monthRefund = Payment::total(PaymentType::TYPE_CREDIT_REFUND, 30);
+
+    /**
+     * Lifetime Sales
+     */
+    $lifetimeKNET = Payment::total(PaymentType::TYPE_KNET);
+    $lifetimeCC = Payment::total(PaymentType::TYPE_CREDITCARD);
+    $lifetimeCreditPurchase = Payment::total(PaymentType::TYPE_CREDIT);
+    $lifetimeGift = Payment::total(PaymentType::TYPE_CREDIT_GIVEAWAY);
+    $lifetimeRefund = Payment::total(PaymentType::TYPE_CREDIT_REFUND);
+
+    ?>
     <div class="row">
-
         <div class="col-md-4">
             <h3>Today's Sales</h3>
-
-        </div>
-
-        <div class="col-md-4">
-            <h3><?= date("F") ?> Sales</h3>
-
-        </div>        
-
-        <div class="col-md-4">
-            <h3 style="margin-bottom:1em;">Payment Summary</h3>
             <table class="table">
                 <tr>
-                    <td>Payments</td>
-                    <td><?= Yii::$app->formatter->asCurrency($totalPayments = \common\models\Payment::total()) ?></td>
+                    <td>KNET</td>
+                    <td><?= Yii::$app->formatter->asCurrency($todayKNET?$todayKNET:0) ?></td>
                 </tr>
-                <tr class="danger" style="font-weight:bold;">
-                    <td>Unused Credit</td>
-                    <td>xyz</td>
+                <tr>
+                    <td>CyberSource</td>
+                    <td><?= Yii::$app->formatter->asCurrency($todayCC?$todayCC:0) ?></td>
                 </tr>
             </table>
         </div>
 
+        <div class="col-md-4">
+            <h3><?= date("F") ?> Sales</h3>
+            <table class="table">
+                <tr>
+                    <td>KNET</td>
+                    <td><?= Yii::$app->formatter->asCurrency($monthKNET?$monthKNET:0) ?></td>
+                </tr>
+                <tr>
+                    <td>CyberSource</td>
+                    <td><?= Yii::$app->formatter->asCurrency($monthCC?$monthCC:0) ?></td>
+                </tr>
+            </table>
+        </div>        
+
+        <div class="col-md-4">
+            <h3>Lifetime Sales</h3>
+            <table class="table">
+                <tr>
+                    <td>KNET</td>
+                    <td><?= Yii::$app->formatter->asCurrency($lifetimeKNET?$lifetimeKNET:0) ?></td>
+                </tr>
+                <tr>
+                    <td>CyberSource</td>
+                    <td><?= Yii::$app->formatter->asCurrency($lifetimeCC?$lifetimeCC:0) ?></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Today's Credit Changes</h3>
+            <table class="table">
+                <tr>
+                    <td>Purchase Job</td>
+                    <td><?= Yii::$app->formatter->asCurrency($todayCreditPurchase?$todayCreditPurchase:0) ?></td>
+                </tr>
+                <tr>
+                    <td>Gift from Admin</td>
+                    <td><?= Yii::$app->formatter->asCurrency($todayGift?$todayGift:0) ?></td>
+                </tr>
+                <tr>
+                    <td>Refunded Credit</td>
+                    <td><?= Yii::$app->formatter->asCurrency($todayRefund?$todayRefund:0) ?></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <h3><?= date("F") ?> Credit Changes</h3>
+            <table class="table">
+                <tr>
+                    <td>Purchase Job</td>
+                    <td><?= Yii::$app->formatter->asCurrency($monthCreditPurchase?$monthCreditPurchase:0) ?></td>
+                </tr>
+                <tr>
+                    <td>Gift from Admin</td>
+                    <td><?= Yii::$app->formatter->asCurrency($monthGift?$monthGift:0) ?></td>
+                </tr>
+                <tr>
+                    <td>Refunded Credit</td>
+                    <td><?= Yii::$app->formatter->asCurrency($monthRefund?$monthRefund:0) ?></td>
+                </tr>
+            </table>
+        </div>        
+
+        <div class="col-md-4">
+            <h3>Lifetime Credit Changes</h3>
+            <table class="table">
+                <tr>
+                    <td>Purchase Job</td>
+                    <td><?= Yii::$app->formatter->asCurrency($lifetimeCreditPurchase?$lifetimeCreditPurchase:0) ?></td>
+                </tr>
+                <tr>
+                    <td>Gift from Admin</td>
+                    <td><?= Yii::$app->formatter->asCurrency($lifetimeGift?$lifetimeGift:0) ?></td>
+                </tr>
+                <tr>
+                    <td>Refunded Credit</td>
+                    <td><?= Yii::$app->formatter->asCurrency($lifetimeRefund?$lifetimeRefund:0) ?></td>
+                </tr>
+            </table>
+        </div>
     </div>
     
     <div class="row">
