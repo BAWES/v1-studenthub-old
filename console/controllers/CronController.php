@@ -55,9 +55,20 @@ class CronController extends \yii\console\Controller {
     /**
      * Delete all Student Job Applications
      * This is for the Demo server
+     * Resets to default state
      */
     public function actionDeleteApplications(){
         StudentJobApplication::deleteAll();
+        
+        //Reset student password to its original value "demo1"
+        $student = Student::findOne(24);
+        $student->student_password_hash = '$2y$13$/Aap7aNh2COOue9UJc5PGuo73bpYx.VQhJtvfAUpJ2vv0QHz0AgE.';
+        $student->save(false);
+        
+        //Reset employer password to its original value "demo1"
+        $employer = Employer::findOne(14);
+        $employer->employer_password_hash = '$2y$13$z4yWLm3PoTEyTyVpUBIzqOXAzq4GtG0Mye2Fk7o.Nx19rbVfP5q9.';
+        $employer->save(false);
         
         return self::EXIT_CODE_NORMAL;
     }
