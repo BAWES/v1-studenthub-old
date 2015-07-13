@@ -128,6 +128,7 @@ function getActive(&$activeStatus){
 
 <?php $activeSet = false; ?>
 
+<?php if($countOpenJobs || $countPendingJobs || $countClosedJobs || $countDraftJobs){ ?>
 <div class="row">
     <div class="col-md-12">
         <div class="panel">
@@ -224,3 +225,4 @@ function getActive(&$activeStatus){
 
     </div><!--col-md-12-->
 </div>
+<?php } ?>

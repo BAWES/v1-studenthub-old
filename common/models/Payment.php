@@ -244,12 +244,38 @@ class Payment extends \yii\db\ActiveRecord {
     public function getJob() {
         return $this->hasOne(Job::className(), ['job_id' => 'job_id']);
     }
-
+    
+    
     /**
+     * @param type $paymentType
+     * @param type $sinceNumDays
      * @return real Sum of all payments made
      */
-    public static function total() {
-        return static::find()->sum("payment_total");
+    public static function total($paymentType, $sinceNumDays = false) {
+        $totalQuery = static::find()->where(['payment_type_id' => $paymentType]);
+        
+        if($sinceNumDays){
+            $sinceNumDays = (int) $sinceNumDays;
+            $expression = new Expression("DATE(payment_datetime) >= DATE_SUB(CURDATE(), INTERVAL $sinceNumDays DAY)");
+            
+            $totalQuery->andWhere($expression);
+        }
+        
+        switch($paymentType){
+            case PaymentType::TYPE_KNET:
+                return $totalQuery->sum("payment_total");
+            case PaymentType::TYPE_CREDITCARD:
+                return $totalQuery->sum("payment_total");
+            case PaymentType::TYPE_CREDIT:
+                return $totalQuery->sum("payment_employer_credit_change")*-1;
+            case PaymentType::TYPE_CREDIT_GIVEAWAY:
+                return $totalQuery->sum("payment_employer_credit_change");
+            case PaymentType::TYPE_CREDIT_REFUND:
+                return $totalQuery->sum("payment_employer_credit_change");
+            
+        }
+        
+        
     }
 
 }
