@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 /* @var $model common\models\Job */
+/* @var $index integer */
 /* @var $jobsApplied array */
 
 
@@ -33,7 +34,7 @@ foreach($jobsApplied as $job){
         <h2 class="card-title text-color-black" <?= $this->params['isArabic']?"style='right:125px; left:auto;'":''?>><?= $model->employer->employer_company_name ?></h2>						
     </div><!--.card-heading-->
 
-    <div class="card-body">
+    <div class="card-body" style="height:200px;">
         <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" 
              style=" top:0; left:0;
              height:30px; position:absolute;width: 100%; background-color: #337ab7; margin-bottom:10px">
