@@ -36,6 +36,9 @@ return [
             //append time stamps to assets for cache busting
             //'appendTimestamp' => true,
         ],
+        'session' => [
+            'class' => 'yii\web\DbSession',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
