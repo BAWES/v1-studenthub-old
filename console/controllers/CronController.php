@@ -69,9 +69,11 @@ class CronController extends \yii\console\Controller {
         StudentJobApplication::deleteAll("job_id != $demoJobId");
         
         /**
-         * Delete all job applications made by the demo student account (24)
+         * Delete all job applications and notifications made by the demo student account (24)
          */
         StudentJobApplication::deleteAll("student_id = $demoStudentId");
+        NotificationEmployer::deleteAll("student_id = $demoStudentId");
+        
         
         /**
          * Set number of applicants to zero for all jobs except for one by demo (49)
