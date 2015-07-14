@@ -66,6 +66,11 @@ class CronController extends \yii\console\Controller {
          */
         StudentJobApplication::deleteAll("job_id != $demoJobId");
         
+        /**
+         * Set number of applicants to zero for all jobs except for one by demo (49)
+         */
+        Job::updateAll(['job_current_num_applicants' => 0], "job_id != $demoJobId");
+        
         /*
          * Delete all jobs/filters/relations that belong to demo account except for demo one (49)
          */
