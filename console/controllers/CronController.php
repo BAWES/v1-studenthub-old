@@ -79,6 +79,13 @@ class CronController extends \yii\console\Controller {
         Job::updateAll(['job_current_num_applicants' => 0], "job_id != $demoJobId");
         
         /**
+         * Set the demo job to have 3 applicants only
+         */
+        $demoJob = Job::findOne($demoJobId);
+        $demoJob->job_current_num_applicants = 3;
+        $demoJob->save(false);
+        
+        /**
          * Mark all notifications as "Unread"
          */
         NotificationStudent::updateAll(['notification_viewed' => NotificationStudent::VIEWED_FALSE]);
