@@ -118,6 +118,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
         <meta name="msapplication-square150x150logo" content="<?= Url::to('@web/images/icons') ?>/mediumtile.png" />
         <meta name="msapplication-wide310x150logo" content="<?= Url::to('@web/images/icons') ?>/widetile.png" />
         <meta name="msapplication-square310x310logo" content="<?= Url::to('@web/images/icons') ?>/largetile.png" />
+        <meta name="theme-color" content="#3f53b1" />
         <!-- END SHORTCUT AND TOUCH ICONS -->
         
         <!-- Allows apple mobile webapp -->
