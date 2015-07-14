@@ -93,6 +93,7 @@ class CronController extends \yii\console\Controller {
             $job->unlinkAll('studentJobQualifications', true);
             $job->unlinkAll('payments', true);
             $job->unlinkAll('notificationEmployers', true);
+            $job->delete();
         }
         
         
