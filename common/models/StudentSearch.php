@@ -18,7 +18,7 @@ class StudentSearch extends Student
     public function rules()
     {
         return [
-            [['student_id', 'degree_id', 'country_id', 'university_id', 'student_status', 'student_english_level', 'student_gender', 'student_transportation', 'student_email_verification', 'student_id_verification', 'student_email_preference', 'student_banned'], 'integer'],
+            [['student_id', 'degree_id', 'country_id', 'university_id', 'student_english_level', 'student_gender', 'student_transportation', 'student_email_verification', 'student_id_verification', 'student_email_preference', 'student_banned'], 'integer'],
             [['student_firstname', 'student_lastname', 'student_dob', 'student_enrolment_year', 'student_graduating_year', 'student_contact_number', 'student_interestingfacts', 'student_photo', 'student_cv', 'student_skill', 'student_hobby', 'student_club', 'student_sport', 'student_experience_company', 'student_experience_position', 'student_verification_attachment', 'student_id_number', 'student_email', 'student_auth_key', 'student_password_hash', 'student_password_reset_token', 'student_language_pref', 'student_limit_email', 'student_updated_datetime', 'student_datetime'], 'safe'],
             [['student_gpa'], 'number'],
         ];
@@ -62,7 +62,6 @@ class StudentSearch extends Student
             'country_id' => $this->country_id,
             'university_id' => $this->university_id,
             'student_dob' => $this->student_dob,
-            'student_status' => $this->student_status,
             'student_enrolment_year' => $this->student_enrolment_year,
             'student_graduating_year' => $this->student_graduating_year,
             'student_gpa' => $this->student_gpa,

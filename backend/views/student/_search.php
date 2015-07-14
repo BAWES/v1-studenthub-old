@@ -29,8 +29,6 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'student_dob') ?>
 
-    <?php // echo $form->field($model, 'student_status') ?>
-
     <?php // echo $form->field($model, 'student_enrolment_year') ?>
 
     <?php // echo $form->field($model, 'student_graduating_year') ?>

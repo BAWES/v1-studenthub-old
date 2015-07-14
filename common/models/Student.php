@@ -8,7 +8,6 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use yii\web\IdentityInterface;
 use common\models\University;
-use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 use yii\helpers\Url;
 
@@ -22,7 +21,6 @@ use yii\helpers\Url;
  * @property string $student_firstname
  * @property string $student_lastname
  * @property string $student_dob
- * @property integer $student_status
  * @property string $student_enrolment_year
  * @property string $student_graduating_year
  * @property string $student_gpa
@@ -68,9 +66,6 @@ use yii\helpers\Url;
  * @property Major[] $majors
  */
 class Student extends \yii\db\ActiveRecord implements IdentityInterface {
-    //Status values for `student_status`
-    const STATUS_FULL_TIME = 1;
-    const STATUS_PART_TIME = 0;
     //Gender values for `student_gender`
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 0;
@@ -115,7 +110,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         return [
             //Required
             [['degree_id', 'country_id', 'university_id', 'student_firstname', 'student_lastname', 'student_english_level', 
-                'student_dob', 'student_status', 'student_enrolment_year', 'student_graduating_year', 'student_gpa', 
+                'student_dob', 'student_enrolment_year', 'student_graduating_year', 'student_gpa', 
                 'student_gender', 'student_contact_number', 'student_email_preference', 'student_email', 
                 'student_password_hash', 'student_transportation'], 'required'],
             //Default values / optional fields for massive assignment
@@ -210,7 +205,6 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             ['student_email', '\common\components\UniversityEmailValidator', 'universityAttribute'=>'university_id'],
             
             //Constant options
-            ['student_status', 'in', 'range' => [self::STATUS_FULL_TIME, self::STATUS_PART_TIME]],
             ['student_gender', 'in', 'range' => [self::GENDER_MALE, self::GENDER_FEMALE]],
             ['student_transportation', 'in', 'range' => [self::TRANSPORTATION_AVAILABLE, self::TRANSPORTATION_NOT_AVAILABLE]],
             ['student_email_preference', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
@@ -254,7 +248,6 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_firstname' => Yii::t('app', 'First Name'),
             'student_lastname' => Yii::t('app', 'Last Name'),
             'student_dob' => Yii::t('app', 'Date of Birth'),
-            'student_status' => Yii::t('app', 'Status'),
             'student_enrolment_year' => Yii::t('app', 'Enrollment Year'),
             'student_graduating_year' => Yii::t('app', 'Graduating Year'),
             'student_gpa' => Yii::t('app', 'GPA'),
@@ -398,15 +391,6 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         if($this->student_transportation == self::TRANSPORTATION_AVAILABLE){
             return Yii::t('register', "Available");
         }else return Yii::t('register', "Unavailable");
-    }
-    
-    /**
-     * @return string the students status
-     */
-    public function getStatus(){
-        if($this->student_status == self::STATUS_FULL_TIME){
-            return Yii::t('register', 'Full-time');
-        }else return Yii::t('register', 'Part-time');
     }
     
     /**

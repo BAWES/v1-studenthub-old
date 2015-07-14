@@ -194,13 +194,7 @@ $this->registerCss($css);
                 ArrayHelper::map(common\models\Degree::find()->all(), "degree_id", $this->params['isArabic'] ? "degree_name_ar" : "degree_name_en"), [
                     'class' => 'selectpicker', 
                     'data-width' => 'auto',
-                    ]) ?>
-        
-        <?= $form->field($model, 'student_status', ['template' => $selectTemplate])->dropDownList([
-                                                    Student::STATUS_FULL_TIME => Yii::t('register', 'Full-time Student'),
-                                                    Student::STATUS_PART_TIME => Yii::t('register', 'Part-time Student'),
-                                                ], ['class' => 'selectpicker', 'data-width' => 'auto']) ?>
-        
+                    ]) ?>        
         
         <?= $form->field($model, 'student_gpa')->input('number', ['step' => 'any']) ?>
         

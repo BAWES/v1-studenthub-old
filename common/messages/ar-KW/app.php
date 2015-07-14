@@ -236,7 +236,6 @@ return [
     'Responsibilites' => 'المسؤوليات',
     'Skills' => 'المهارات',
     'Sports' => 'الرياضة',
-    'Status' => 'الحالة',
     'Subject' => 'الموضوع',
     'Submit' => 'إرسال',
     'The above error occurred while the server was processing your request.' => 'حدثت المشكلة المذكورة أعلاه مع طلبك.',

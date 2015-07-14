@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Your personal information has been updated' => 'تم تحديث المعلومات الشخصية الخاصة بك',
+    'I am currently pursuing a ' => 'اسعى على الحصول على شهادة',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Available' => 'متوفر',
     'Average # of Employees' => 'عدد الموظفين',
@@ -39,14 +39,11 @@ return [
     'Fair' => 'معتدل',
     'Female' => 'أنثى',
     'First Name' => 'الاسم الأول',
-    'Full-time' => 'بدوام كامل',
-    'Full-time Student' => 'طالب بدوام كامل',
     'GPA' => 'معدل',
     'Gender' => 'جنس',
     'Good' => 'قوي',
     'I am' => 'انا',
     'I am a(n) ' => 'و أنا',
-    'I am currently a ' => 'أنا حالياً طالب ',
     'I am not' => 'انا لست',
     'I do not have' => 'ليس لدي',
     'I do not have a method of transportation' => 'ليس لدي وسيلة نقل',
@@ -81,8 +78,6 @@ return [
     'Only files with these extensions are allowed for ID: {extensions}' => 'يسمح فقط الملفات مع هذه الملحقات لهوية الطالب {extensions}',
     'Only files with these extensions are allowed for your Logo: {extensions}' => 'يسمح فقط الملفات مع هذه الملحقات لشعار الشركة {extensions}',
     'Only files with these extensions are allowed for your Photo: {extensions}' => 'يسمح فقط الملفات مع هذه الملحقات للصورة {extensions}',
-    'Part-time' => 'دوام جزئى',
-    'Part-time Student' => 'طالب بدوام جزئي',
     'Password' => 'كلمة المرور',
     'Phone Number' => 'رقم الهاتف',
     'Please click on the link sent to you by email to verify your account' => 'يرجى الضغط على الرابط المرسل لك عن طريق البريد الإلكتروني للتحقق من حسابك',
@@ -143,6 +138,7 @@ return [
     'Your account will activate as soon as we verify your Student ID' => 'سوف يتم تفعيل الحساب الخاص بك بعد التحقق من هوية الطالب',
     'Your company information has been updated' => 'تم تحديث معلومات الشركة',
     'Your logo has been updated' => 'تم تحديث شعارك',
+    'Your personal information has been updated' => 'تم تحديث المعلومات الشخصية الخاصة بك',
     'Your social media details have been updated' => 'تم تحديث تفاصيل وسائل الاعلام الاجتماعية الخاصة بك',
     'a method of transportation.' => 'طريقة اتنقل بها',
     'and I was born on' => 'وأنا ولدت في تاريخ',
@@ -150,6 +146,5 @@ return [
     'degree at' => 'في',
     'in a club.' => 'في النادي.',
     'sports.' => 'الرياضة.',
-    'student pursuing a ' => 'اسعى على الحصول على شهادة ',
     'working as a' => 'أعمل ك-',
 ];
