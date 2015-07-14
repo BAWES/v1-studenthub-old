@@ -79,6 +79,7 @@ class CronController extends \yii\console\Controller {
          * Update Timestamp on all Notifications, set to now
          */
         NotificationEmployer::updateAll(['notification_datetime' => new Expression('NOW()')]);
+        NotificationStudent::updateAll(['notification_datetime' => new Expression('NOW()')]);
         
         
         /**
