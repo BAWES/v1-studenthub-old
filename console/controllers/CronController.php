@@ -4,6 +4,7 @@ namespace console\controllers;
 
 use Yii;
 use yii\helpers\Console;
+use yii\db\Expression;
 use common\models\JobProcessQueue;
 use common\models\Student;
 use common\models\Employer;
@@ -73,6 +74,11 @@ class CronController extends \yii\console\Controller {
          */
         StudentJobApplication::deleteAll("student_id = $demoStudentId");
         NotificationEmployer::deleteAll("student_id = $demoStudentId");
+        
+        /**
+         * Update Timestamp on all Notifications, set to now
+         */
+        NotificationEmployer::updateAll(['notification_datetime' => new Expression('NOW()')]);
         
         
         /**
