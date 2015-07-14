@@ -7,6 +7,7 @@ use yii\helpers\Console;
 use common\models\JobProcessQueue;
 use common\models\Student;
 use common\models\Employer;
+use common\models\Job;
 use common\models\StudentJobApplication;
 
 /**
@@ -53,22 +54,49 @@ class CronController extends \yii\console\Controller {
     }
     
     /**
-     * Delete all Student Job Applications
-     * This is for the Demo server
-     * Resets to default state
+     * Resets the demo to default state
      */
-    public function actionDeleteApplications(){
-        StudentJobApplication::deleteAll();
+    public function actionResetDemo(){
+        $demoEmployerId = 14;
+        $demoStudentId = 24;
+        $demoJobId = 49;
         
-        //Reset student password to its original value "demo1"
-        $student = Student::findOne(24);
+        /**
+         * Delete all job applications except for the one by demo (49)
+         */
+        StudentJobApplication::deleteAll("job_id != $demoJobId");
+        
+        /*
+         * Delete all jobs/filters/relations that belong to demo account except for demo one (49)
+         */
+        $demoJobs = Job::find()->where(['employer_id' => $demoEmployerId])
+                                ->andWhere("job_id != $demoJobId")
+                                ->all();
+        foreach($demoJobs as $job){
+            //Clear all details linked to this job then delete this job
+            $job->unlinkAll('notificationEmployers', true);
+            $job->unlinkAll('notificationStudents', true);
+            $job->unlinkAll('studentJobApplications', true);
+            $job->unlinkAll('studentJobQualifications', true);
+            $job->unlinkAll('payments', true);
+            $job->unlinkAll('notificationEmployers', true);
+        }
+        
+        
+        /**
+         * Reset demo student password to its original value "demo1"
+         */
+        $student = Student::findOne($demoStudentId);
         $student->student_password_hash = '$2y$13$/Aap7aNh2COOue9UJc5PGuo73bpYx.VQhJtvfAUpJ2vv0QHz0AgE.';
         $student->save(false);
         
-        //Reset employer password to its original value "demo1"
-        $employer = Employer::findOne(14);
+        /**
+         * Reset demo employer password to its original value "demo1"
+         */
+        $employer = Employer::findOne($demoEmployerId);
         $employer->employer_password_hash = '$2y$13$z4yWLm3PoTEyTyVpUBIzqOXAzq4GtG0Mye2Fk7o.Nx19rbVfP5q9.';
         $employer->save(false);
+        
         
         return self::EXIT_CODE_NORMAL;
     }
