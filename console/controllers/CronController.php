@@ -83,21 +83,6 @@ class CronController extends \yii\console\Controller {
         }
         
         
-        /**
-         * Reset demo student password to its original value "demo1"
-         */
-        $student = Student::findOne($demoStudentId);
-        $student->student_password_hash = '$2y$13$/Aap7aNh2COOue9UJc5PGuo73bpYx.VQhJtvfAUpJ2vv0QHz0AgE.';
-        $student->save(false);
-        
-        /**
-         * Reset demo employer password to its original value "demo1"
-         */
-        $employer = Employer::findOne($demoEmployerId);
-        $employer->employer_password_hash = '$2y$13$z4yWLm3PoTEyTyVpUBIzqOXAzq4GtG0Mye2Fk7o.Nx19rbVfP5q9.';
-        $employer->save(false);
-        
-        
         return self::EXIT_CODE_NORMAL;
     }
 
