@@ -7,6 +7,8 @@ use yii\helpers\Console;
 use common\models\JobProcessQueue;
 use common\models\Student;
 use common\models\Employer;
+use common\models\NotificationStudent;
+use common\models\NotificationEmployer;
 use common\models\Job;
 use common\models\StudentJobApplication;
 
@@ -70,6 +72,12 @@ class CronController extends \yii\console\Controller {
          * Set number of applicants to zero for all jobs except for one by demo (49)
          */
         Job::updateAll(['job_current_num_applicants' => 0], "job_id != $demoJobId");
+        
+        /**
+         * Mark all notifications as "Unread"
+         */
+        NotificationStudent::updateAll(['notification_viewed' => NotificationStudent::VIEWED_FALSE]);
+        NotificationEmployer::updateAll(['notification_viewed' => NotificationEmployer::VIEWED_FALSE]);
         
         /*
          * Delete all jobs/filters/relations that belong to demo account except for demo one (49)
