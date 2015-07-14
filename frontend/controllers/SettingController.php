@@ -78,7 +78,7 @@ class SettingController extends \yii\web\Controller {
         if($model){
             $model->scenario = "changePassword";
             
-            if ($model->load(Yii::$app->request->post())) {
+            if ($model->load(Yii::$app->request->post()) && !Yii::$app->params['isDemo']) {
                 $model->setPassword($model->student_password_hash);
                 if($model->save()){
                     Yii::$app->getSession()->setFlash('success', Yii::t('student', 'New password was saved.'));
@@ -103,9 +103,11 @@ class SettingController extends \yii\web\Controller {
             $model->scenario = "updatePersonalInfo";
             $model->populateLanguagesSelected();
             
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your personal information'));
-                return $this->redirect(['setting/index']);
+            if(!Yii::$app->params['isDemo']){
+                if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                    Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your personal information'));
+                    return $this->redirect(['setting/index']);
+                }
             }
         }
         
@@ -124,9 +126,11 @@ class SettingController extends \yii\web\Controller {
             $model->scenario = "updateEducationInfo";
             $model->populateMajorsSelected();
             
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your education information'));
-                return $this->redirect(['setting/index']);
+            if(!Yii::$app->params['isDemo']){
+                if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                    Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Updated your education information'));
+                    return $this->redirect(['setting/index']);
+                }
             }
         }
         
@@ -148,7 +152,7 @@ class SettingController extends \yii\web\Controller {
             $oldPhoto = $model->student_photo;
             $oldPhotoUrl = $model->photo;
             
-            if ($model->load(Yii::$app->request->post())) {
+            if ($model->load(Yii::$app->request->post()) && !Yii::$app->params['isDemo']) {
                 $model->student_photo = UploadedFile::getInstance($model, 'student_photo');
                 $uploadedFile = $model->student_photo;
                                 
@@ -213,7 +217,7 @@ class SettingController extends \yii\web\Controller {
             $oldCv = $model->student_cv;
             $oldCvUrl = $model->cv;
             
-            if ($model->load(Yii::$app->request->post())) {
+            if ($model->load(Yii::$app->request->post()) && !Yii::$app->params['isDemo']) {
                 $model->student_cv = UploadedFile::getInstance($model, 'student_cv');
                 $uploadedFile = $model->student_cv;
                                 

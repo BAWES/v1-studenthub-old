@@ -54,9 +54,11 @@ class SettingController extends \yii\web\Controller {
         if($model){
             $model->scenario = "updateCompanyInfo";
             
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your company information has been updated'));
-                return $this->redirect(['setting/index']);
+            if(!Yii::$app->params['isDemo']){
+                if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                    Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your company information has been updated'));
+                    return $this->redirect(['setting/index']);
+                }
             }
         }
         
@@ -74,9 +76,11 @@ class SettingController extends \yii\web\Controller {
         if($model){
             $model->scenario = "updatePersonalInfo";
             
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your personal information has been updated'));
-                return $this->redirect(['setting/index']);
+            if(!Yii::$app->params['isDemo']){
+                if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                    Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your personal information has been updated'));
+                    return $this->redirect(['setting/index']);
+                }
             }
         }
         
@@ -94,9 +98,11 @@ class SettingController extends \yii\web\Controller {
         if($model){
             $model->scenario = "updateSocialDetails";
             
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your social media details have been updated'));
-                return $this->redirect(['setting/index']);
+            if(!Yii::$app->params['isDemo']){
+                if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                    Yii::$app->getSession()->setFlash('success', Yii::t('register', 'Your social media details have been updated'));
+                    return $this->redirect(['setting/index']);
+                }
             }
         }
         
@@ -142,7 +148,7 @@ class SettingController extends \yii\web\Controller {
         if($model){
             $model->scenario = "changePassword";
             
-            if ($model->load(Yii::$app->request->post())) {
+            if ($model->load(Yii::$app->request->post()) && !Yii::$app->params['isDemo']) {
                 $model->setPassword($model->employer_password_hash);
                 if($model->save()){
                     Yii::$app->getSession()->setFlash('success', Yii::t('student', 'New password was saved.'));
@@ -170,7 +176,7 @@ class SettingController extends \yii\web\Controller {
             $oldLogo = $model->employer_logo;
             $oldLogoUrl = $model->logo;
             
-            if ($model->load(Yii::$app->request->post())) {
+            if ($model->load(Yii::$app->request->post()) && !Yii::$app->params['isDemo']) {
                 $model->employer_logo = UploadedFile::getInstance($model, 'employer_logo');
                 $uploadedFile = $model->employer_logo;
                                 
