@@ -256,7 +256,7 @@ class Payment extends \yii\db\ActiveRecord {
         
         if($sinceNumDays){
             $sinceNumDays = (int) $sinceNumDays;
-            $expression = new Expression("DATE(payment_datetime) >= DATE_SUB(CURDATE(), INTERVAL $sinceNumDays DAY)");
+            $expression = new Expression("DATE(payment_datetime) > DATE_SUB(CURDATE(), INTERVAL $sinceNumDays DAY)");
             
             $totalQuery->andWhere($expression);
         }

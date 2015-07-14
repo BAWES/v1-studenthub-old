@@ -79,11 +79,11 @@ $this->title = 'Dashboard';
     /**
      * Months Sales
      */
-    $monthKNET = Payment::total(PaymentType::TYPE_KNET, 30);
-    $monthCC = Payment::total(PaymentType::TYPE_CREDITCARD, 30);
-    $monthCreditPurchase = Payment::total(PaymentType::TYPE_CREDIT, 30);
-    $monthGift = Payment::total(PaymentType::TYPE_CREDIT_GIVEAWAY, 30);
-    $monthRefund = Payment::total(PaymentType::TYPE_CREDIT_REFUND, 30);
+    $monthKNET = Payment::total(PaymentType::TYPE_KNET, 31);
+    $monthCC = Payment::total(PaymentType::TYPE_CREDITCARD, 31);
+    $monthCreditPurchase = Payment::total(PaymentType::TYPE_CREDIT, 31);
+    $monthGift = Payment::total(PaymentType::TYPE_CREDIT_GIVEAWAY, 31);
+    $monthRefund = Payment::total(PaymentType::TYPE_CREDIT_REFUND, 31);
 
     /**
      * Lifetime Sales
