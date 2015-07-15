@@ -19,6 +19,6 @@ $this->params['breadcrumbs'][] = Yii::t('register', 'Email Verified');
             <?= Yii::t('register', 'You may now fully access <b>StudentHub</b>') ?>
         </p>
         
-        <a href="#" class="btn btn-primary"><?= Yii::t('register', 'Post your first Job opening') ?></a>
+        <a href="<?= yii\helpers\Url::to(["job/create"]) ?>" class="btn btn-primary"><?= Yii::t('register', 'Post your first Job opening') ?></a>
     </div>
 </div>

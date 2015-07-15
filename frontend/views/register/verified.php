@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = Yii::t('register', 'Email Verified');
         <p>
             <?= Yii::t('register', 'You may now fully access <b>StudentHub</b>') ?>
         </p>
-        <a href="#" class="btn btn-primary"><?= Yii::t('register', 'Browse Jobs') ?></a>
+        <a href="<?= yii\helpers\Url::to(["job/index"]) ?>" class="btn btn-primary"><?= Yii::t('register', 'Browse Jobs') ?></a>
         
         
         

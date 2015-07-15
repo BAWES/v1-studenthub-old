@@ -101,6 +101,10 @@ class Employer extends \common\models\Employer {
     public function signup($validate = false) {
         $this->setPassword($this->employer_password_hash);
         $this->generateAuthKey();
+        
+        //Set Language preference to current language
+        $this->employer_language_pref = Yii::$app->language;
+        
         if ($this->save($validate)) {
             $this->sendVerificationEmail();
             
