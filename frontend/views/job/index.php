@@ -103,6 +103,8 @@ var questionsLoadingIndicator = $interviewQuestionsContent.html();
 $("body").on("click", ".job-apply", function(){
     if(!fromModal){
         currentCard = $(this).parent().parent().parent().parent();
+    }else{
+        $(this).addClass("disabled");
     }
     
     fromModal = false;
