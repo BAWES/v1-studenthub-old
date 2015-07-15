@@ -61,7 +61,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'country.country_name_en',
             'university.university_name_en',
             'student_dob:date',
-            'status',
             'student_enrolment_year',
             'student_graduating_year',
             'student_gpa',
