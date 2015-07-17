@@ -18,7 +18,9 @@ $this->params['breadcrumbs'][] = Yii::t('frontend', 'Browse Jobs');
 $css = "
 .shareButtons div{text-align:center;}
 .summary{text-align:center;}
-.empty{text-align:center; font-size:1.7em;}
+.empty{text-align:center; font-size:1.5em; font-weight:bold;}
+.empty p{font-weight:normal;}
+.empty a{text-decoration:none;}
 label{display:none;}
 ";
 
@@ -272,6 +274,14 @@ $this->registerJs($js);
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'col-md-4 col-sm-6', 'style' => ''],
         'itemView' => "_job",
+        'emptyText' => Yii::t("frontend", "There are no jobs currently available")
+                        . "<p>"
+                        . Yii::t("frontend", "You will be notified when there are new jobs")
+                        . "</p>"
+                        . "<a class='btn btn-primary' href='".Url::to(['setting/index'])."'>"
+                        . Yii::t("frontend", "Update your notification preferences")
+                        . "</a>",
+        'emptyTextOptions' => ['class' => 'alert alert-info empty'],
         'viewParams' => ['jobsApplied' => $jobsApplied],
     ])
     ?>
