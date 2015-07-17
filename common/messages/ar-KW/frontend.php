@@ -24,7 +24,7 @@ return [
     'Log on to the student section to see how the student portal works. Students can easily browse and apply for jobs.' => 'إدخل إلى قسم الطلاب لمعرفة كيفية عمل بوابة الطالب. يمكن للطلاب بسهولة تصفح والتقدم للوظائف.',
     'Password:' => 'كلمة السر',
     'Student Demo' => 'محاولة استخدام كطالب',
-    'View Demo' => 'جربها',
+    'Try Demo' => 'جرب الموقع',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'Account Settings' => 'إعدادات الحساب',

@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </p>
             
             <a href="http://employer.studenthubdemo.co" target="_blank" class="btn btn-teal">
-                <?= Yii::t("frontend", "View Demo") ?>
+                <?= Yii::t("frontend", "Try Demo") ?>
             </a>
             
             <br/><br/>
@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </p>
             
             <a href="http://studenthubdemo.co" target="_blank" class="btn btn-primary">
-                <?= Yii::t("frontend", "View Demo") ?>
+                <?= Yii::t("frontend", "Try Demo") ?>
             </a>
             
             <br/><br/>
