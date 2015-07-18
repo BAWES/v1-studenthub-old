@@ -243,6 +243,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                     $menuItems[] = ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/site/contact']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Register'), 'url' => ['/site/register']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Login'), 'url' => ['/site/login']];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Try Demo'), 'url' => Yii::$app->urlManagerFrontend->createUrl("site/demo")];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Student Portal'), 'url' => Yii::$app->urlManagerFrontend->createUrl("site/index")];
                 } else {
                     $menuItems[] = ['label' => Yii::t('employer', 'Dashboard'), 'url' => ['/dashboard/index']];
