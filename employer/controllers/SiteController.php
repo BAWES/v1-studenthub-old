@@ -129,6 +129,13 @@ class SiteController extends Controller {
         }
 
         $model = new LoginForm();
+        
+        //If this is demo platform, specify login access details from start
+        if(Yii::$app->params['isDemo']){
+            $model->email = "demo@studenthub.co";
+            $model->password = "demo1";
+        }
+        
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->redirect(['dashboard/index']);
         } else {

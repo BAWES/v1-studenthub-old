@@ -96,11 +96,18 @@ class SiteController extends Controller
     
     public function actionLogin()
     {
-        if (!\Yii::$app->user->isGuest) {
+        if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
         $model = new LoginForm();
+        
+        //If this is demo platform, specify login access details from start
+        if(Yii::$app->params['isDemo']){
+            $model->email = "demo@studenthub.co";
+            $model->password = "demo1";
+        }
+        
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
