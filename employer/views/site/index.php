@@ -161,3 +161,15 @@ $this->registerCss($css);
         </div>
     </div>
 </div>
+
+<!-- demo row -->
+<div class="row" style='direction:ltr;'>
+    <div class="card">
+        <div class="panel-body" style="text-align: center">
+            <h2><?= Yii::t('frontend', 'Having Doubts?') ?></h2>
+            <a class="btn btn-teal btn-xl" href="<?= Yii::$app->urlManagerFrontend->createUrl("site/demo") ?>">
+                <?= Yii::t('frontend', 'Try a demo of our platform') ?>
+            </a>
+        </div>
+    </div>
+</div> <!--.card-->

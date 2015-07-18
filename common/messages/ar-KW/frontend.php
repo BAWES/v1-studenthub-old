@@ -17,9 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'There are no jobs currently available' => 'لا توجد وظائف متوفرة حاليا',
-    'Update your notification preferences' => 'تحديث إعدادات الإشعار',
-    'You will be notified when there are new jobs' => 'سيتم إعلامك عندما تكون هناك وظيفة جديدة',
+    'Having Doubts?' => 'هل لديك الشكوك؟',
+    'Try a demo of our platform' => 'جرب نموذج من موقعنا',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'Account Settings' => 'إعدادات الحساب',
@@ -120,6 +119,7 @@ return [
     'Terms & Privacy Policy' => 'الشروط وسياسة الخصوصية',
     'Thank you for contacting us. We will respond to you as soon as possible.' => 'شكر لتواصلك معنا. وسوف نقوم بالرد عليك في أقرب وقت ممكن.',
     'The format of your date of birth is invalid, should be yyyy/mm/dd' => 'شكل تاريخ ميلادك غير صالح، ينبغي أن يكون شهر / يوم / سنة',
+    'There are no jobs currently available' => 'لا توجد وظائف متوفرة حاليا',
     'There was an error sending email.' => 'كان هناك خلل أثناء إرسال البريد الإلكتروني.',
     'This city does not exist.' => 'لا وجود لهذه المدينة.',
     'This degree does not exist.' => 'عدم وجود هذه الشهادة',
@@ -141,6 +141,7 @@ return [
     'University' => 'الجامعة',
     'University does not exist' => 'الجامعة لا وجود لها',
     'Unpaid Jobs' => 'وظائف دون أجر',
+    'Update your notification preferences' => 'تحديث إعدادات الإشعار',
     'Verify' => 'تحقق',
     'Verify your identity within the university' => 'تحقق من هويتك داخل الجامعة',
     'Welcome to StudentHub!' => 'أهلا',
@@ -151,6 +152,7 @@ return [
     'You have already applied for this job' => 'قدمت عليهم قبل شوي',
     'You have applied!' => 'قمت بالتقديم!',
     'You must be at least {age} years old' => 'عمرك يجب ان يكون على الاقل {age} سنة',
+    'You will be notified when there are new jobs' => 'سيتم إعلامك عندما تكون هناك وظيفة جديدة',
     'Your CV upload is invalid' => 'تحميل السيرة الذاتية الخاصة بك غير صالح',
     'Your email notification preferences have been updated' => 'تم تحديث تفضيلات البريد الإلكتروني الخاص بك',
     'Your photo upload is invalid' => 'تحميل الصور الخاصة بك غير صالح',
