@@ -26,6 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'student_contact_number',
             'student_email:email',
             'student_id_number',
+            'jobApplicationCount',
+            'jobContactedCount',
             'student_datetime:datetime',
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],

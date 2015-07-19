@@ -57,6 +57,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'student_id_number',
+            'jobApplicationCount',
+            'jobContactedCount',
             'degree.degree_name_en',
             'country.country_name_en',
             'university.university_name_en',

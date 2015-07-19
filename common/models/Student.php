@@ -278,6 +278,8 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_limit_email' => Yii::t('app', 'Limit Email'),
             'student_updated_datetime' => Yii::t('app', 'Updated on'),
             'student_datetime' => Yii::t('app', 'Created on'),
+            'jobApplicationCount' => '# Jobs Applied',
+            'jobContactedCount' => '# Jobs Contacted',
         ];
     }
     
@@ -699,6 +701,24 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      */
     public function getStudentJobApplications() {
         return $this->hasMany(StudentJobApplication::className(), ['student_id' => 'student_id']);
+    }
+    
+    /**
+     * Get number of jobs this student applied to
+     * @return int
+     */
+    public function getJobApplicationCount() {
+        return $this->getStudentJobApplications()->count();
+    }
+    
+    /**
+     * Get number of jobs this student applied and contact details viewed
+     * @return int
+     */
+    public function getJobContactedCount() {
+        return $this->getStudentJobApplications()
+                ->where(['application_contacted' => StudentJobApplication::CONTACTED_TRUE])
+                ->count();
     }
     
     /**
