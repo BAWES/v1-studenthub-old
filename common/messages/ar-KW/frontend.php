@@ -17,7 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Back to Home' => 'العودة إلى الصفحة الرئيسية',
+    'Interested?' => 'مهتم؟',
+    'Join StudentHub as an Employer Today!' => 'انضم إلينا كصاحب عمل اليوم!',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'Account Settings' => 'إعدادات الحساب',
@@ -27,6 +28,7 @@ return [
     'Any Compensation' => 'أي تعويض',
     'Apply' => 'قدم',
     'Apply to jobs with a single click' => 'التقديم للوظائف بسهولة',
+    'Back to Home' => 'العودة إلى الصفحة الرئيسية',
     'Browse Jobs' => 'تصفح فرص العمل',
     'Browse from available jobs that you qualify for' => 'تصفح من فرص العمل المتاحة التي مؤهلا لها',
     'Check out our video!' => 'شاهد فيديو يشرح موقعنا',

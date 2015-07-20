@@ -56,5 +56,12 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     
-    
+</div>
+
+
+<div class="panel" style="text-align:center; padding-top:0.5em; padding-bottom:1em">
+    <h2><?= Yii::t("frontend", "Interested?") ?></h2>
+    <a href="<?= Yii::$app->urlManagerEmployer->createUrl("site/index") ?>" class="btn btn-primary">
+        <?= Yii::t("frontend", "Join StudentHub as an Employer Today!") ?>
+    </a>
 </div>
