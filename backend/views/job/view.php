@@ -73,12 +73,31 @@ switch ($model->job_status){
             'job_question_2:ntext',
             'job_max_applicants',
             'job_current_num_applicants',
+            'studentContactedCount',
             'job_price_per_applicant:currency',
             'job_broadcasted:boolean',
             'job_updated_datetime:datetime',
             'job_created_datetime:datetime',
         ],
     ]) ?>
+    
+    <?php
+    $applicants = $model->applicants;
+    if($applicants){
+    ?>
+    <h2>Applicants</h2>
+    <ul>
+        <?php foreach($applicants as $applicant){ ?>
+        <li>
+            <a href="<?= Url::to(['student/view', 'id' => $applicant->student_id]) ?>" target="_blank">
+                <?= $applicant->student_firstname." ".$applicant->student_lastname ?>
+            </a>
+        </li>
+        <?php } ?>
+    </ul><br/><br/>
+    <?php } ?>
+    
+    <hr/>
     
     <?php if($model->job_status == Job::STATUS_OPEN){ ?>
         <a href="<?= Url::to(['job/force-close', 'id' => $model->job_id]) ?>" 

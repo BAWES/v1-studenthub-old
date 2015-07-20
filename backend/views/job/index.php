@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'job_title',
             'job_max_applicants',
             'job_current_num_applicants',
-            // 'job_status',
+            'studentContactedCount',
             'job_created_datetime:datetime',
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view}'],

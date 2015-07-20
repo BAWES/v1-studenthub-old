@@ -142,6 +142,7 @@ class Job extends \yii\db\ActiveRecord
             'job_broadcasted' => Yii::t('app', 'Job Broadcasted'),
             'job_updated_datetime' => Yii::t('app', 'Job Updated Datetime'),
             'job_created_datetime' => Yii::t('app', 'Job Created Datetime'),
+            'studentContactedCount' => '# Students Contacted',
         ];
     }
     
@@ -360,6 +361,16 @@ class Job extends \yii\db\ActiveRecord
     public function getStudentJobApplications()
     {
         return $this->hasMany(StudentJobApplication::className(), ['job_id' => 'job_id']);
+    }
+    
+    /**
+     * Get number of jobs this student applied and contact details viewed
+     * @return int
+     */
+    public function getStudentContactedCount() {
+        return $this->getStudentJobApplications()
+                ->where(['application_contacted' => StudentJobApplication::CONTACTED_TRUE])
+                ->count();
     }
     
     /**
