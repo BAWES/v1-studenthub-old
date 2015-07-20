@@ -17,10 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Contact' => 'اتصل بنا',
-    'Discounts & Promotions' => 'خصومات وعروض للطلاب',
-    'Student Discounts & Promotions' => 'خصومات وعروض للطلاب',
-    'View the full list' => 'عرض القائمة الكاملة',
+    'Please contact us if you have any discounts and promotions you wish to offer students on our platform.' => 'يرجى الاتصال بنا إذا كان لديك أي خصومات والعروض التي ترغب في تقديمها للطلاب.',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'Account Settings' => 'إعدادات الحساب',
@@ -35,6 +32,7 @@ return [
     'Check out our video!' => 'شاهد فيديو يشرح موقعنا',
     'Clear Filters' => 'حذف الفلاتر',
     'Clubs' => 'الأندية',
+    'Contact' => 'اتصل بنا',
     'Contact Us' => 'إتصل بنا',
     'Cost' => 'التكلفة',
     'Create an account and build your CV' => 'إنشاء حساب وبناء سيرتك الذاتية',
@@ -46,6 +44,7 @@ return [
     'DEGREE' => 'شهادة',
     'Date' => 'التاريخ',
     'Demonstration' => 'جرب برنامجنا',
+    'Discounts & Promotions' => 'خصومات وعروض للطلاب',
     'Email:' => 'البريد الإلكتروني',
     'Employer Demo' => 'محاولة استخدام كصاحب عمل',
     'Employer Portal' => 'بوابة صاحب العمل',
@@ -116,6 +115,7 @@ return [
     'Skills' => 'المهارات',
     'Sports' => 'الرياضة',
     'Student Demo' => 'محاولة استخدام كطالب',
+    'Student Discounts & Promotions' => 'خصومات وعروض للطلاب',
     'Student Portal' => 'بوابة الطالب',
     'Sub Total' => 'حاصل الجمع',
     'Terms & Conditions' => 'الشروط والأحكام',
@@ -148,6 +148,7 @@ return [
     'Update your notification preferences' => 'تحديث إعدادات الإشعار',
     'Verify' => 'تحقق',
     'Verify your identity within the university' => 'تحقق من هويتك داخل الجامعة',
+    'View the full list' => 'عرض القائمة الكاملة',
     'Welcome to StudentHub!' => 'أهلا',
     'Woohoo!' => 'هييااا!!!',
     'Work start date is' => 'تاريخ بدء العمل',
