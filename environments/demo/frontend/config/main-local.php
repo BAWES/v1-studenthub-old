@@ -9,6 +9,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/' => 'site/index',
                 'demo' => 'site/demo', 
                 'employers' => 'site/employers', 
                 'promotions' => 'site/promotions', 
@@ -23,6 +24,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/' => 'site/index',
                 'employers' => 'site/employers', 
                 'promotions' => 'site/promotions', 
                 'contact' => 'site/contact', 
