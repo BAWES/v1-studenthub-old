@@ -20,4 +20,13 @@ class JobQuery extends \yii\db\ActiveQuery{
                     ->andWhere(['job_broadcasted' => Job::BROADCASTED_YES]);
     }
     
+    /**
+     * Live Jobs Only
+     * (Status Open or Status Closed)
+     */
+    public function live()
+    {
+        return $this->where(['in', 'job_status', [Job::STATUS_OPEN, JOB::STATUS_CLOSED]]);
+    }
+    
 }

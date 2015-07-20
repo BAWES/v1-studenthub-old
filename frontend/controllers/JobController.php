@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -22,7 +23,7 @@ class JobController extends \yii\web\Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['share', 'share-dialog'],
+                        'actions' => ['share', 'share-dialog', 'rss'],
                     ],
                     [
                         'allow' => true,
@@ -74,6 +75,51 @@ class JobController extends \yii\web\Controller {
         
         return $this->render('share',[
             'model' => $model,
+        ]);
+    }
+    
+    /**
+     * RSS Feed of all jobs published (open and closed)
+     */
+    public function actionRss(){
+        $dataProvider = new ActiveDataProvider([
+            'query' => Job::find()->live()->with('employer')->orderBy('job_created_datetime DESC'),
+            'pagination' => [
+                'pageSize' => 10
+            ],
+        ]);
+
+        $response = Yii::$app->getResponse();
+        $headers = $response->getHeaders();
+
+        $headers->set('Content-Type', 'application/rss+xml; charset=utf-8');
+
+        $response->content = \Zelenin\yii\extensions\Rss\RssView::widget([
+            'dataProvider' => $dataProvider,
+            'channel' => [
+                'title' => Yii::$app->name,
+                'link' => Url::toRoute('/', true),
+                'description' => 'Live Update of Jobs on StudentHub',
+                'language' => "en-US"
+            ],
+            'items' => [
+                'title' => function ($model, $widget) {
+                        return "Job Opportunity: ".$model->job_title." @ ".$model->employer->employer_company_name;
+                    },
+                'description' => function ($model, $widget) {
+                        return \yii\helpers\StringHelper::truncateWords($model->job_responsibilites, 50);
+                    },
+                'link' => function ($model, $widget) {
+                        return Url::toRoute(['job/share', 'id' => $model->job_id], true);
+                    },
+                'author' => function ($model, $widget) {
+                        return $model->employer->employer_company_name;
+                    },
+                'pubDate' => function ($model, $widget) {
+                        $date = \DateTime::createFromFormat('Y-m-d H:i:s', $model->job_created_datetime);
+                        return $date->format(DATE_RSS);
+                    }
+            ]
         ]);
     }
     
