@@ -68,6 +68,22 @@ class SiteController extends Controller {
         
         return $this->render('index');
     }
+    
+    /**
+     * Promotions and Discounts Page
+     */
+    public function actionPromotions()
+    {
+        return $this->render('promotions');
+    }
+    
+    /**
+     * Employers on StudentHub Page
+     */
+    public function actionEmployers()
+    {
+        return $this->render('employers');
+    }
 
     public function actionRegister() {
         $model = new \employer\models\Employer();

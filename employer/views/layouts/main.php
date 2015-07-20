@@ -240,14 +240,18 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
 
                 if (Yii::$app->user->isGuest) {
                     $menuItems[] = ['label' => Yii::t('frontend', 'Home'), 'url' => ['/site/index']];
-                    $menuItems[] = ['label' => Yii::t('frontend', 'Contact Us'), 'url' => ['/site/contact']];
+                    
                     $menuItems[] = ['label' => Yii::t('frontend', 'Register'), 'url' => ['/site/register']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Login'), 'url' => ['/site/login']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Try Demo'), 'url' => Yii::$app->urlManagerFrontend->createUrl("site/demo")];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Discounts & Promotions'), 'url' => ['/site/promotions']];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Employers on StudentHub'), 'url' => ['/site/employers']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Student Portal'), 'url' => Yii::$app->urlManagerFrontend->createUrl("site/index")];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Contact Us'), 'url' => ['/site/contact']];
                 } else {
                     $menuItems[] = ['label' => Yii::t('employer', 'Dashboard'), 'url' => ['/dashboard/index']];
                     $menuItems[] = ['label' => Yii::t('employer', 'Buy Credit'), 'url' => ['/credit/index']];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Discounts & Promotions'), 'url' => ['/site/promotions']];
                     $menuItems[] = ['label' => Yii::t('employer', 'Payment History'), 'url' => ['/payment/index']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Account Settings'), 'url' => ['/setting/index']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Contact Us'), 'url' => ['/site/contact']];
