@@ -18,7 +18,7 @@
  */
 return [
     'Interested?' => 'مهتم؟',
-    'Join StudentHub as an Employer Today!' => 'انضم إلينا كصاحب عمل اليوم!',
+    'Join StudentHub Today!' => 'انضم إلينا اليوم!',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'Account Settings' => 'إعدادات الحساب',
