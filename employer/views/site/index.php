@@ -121,6 +121,12 @@ $this->registerCss($css);
                 <div class="item"><img src="<?= Url::to("@web/images/employers/koot.jpg") ?>" alt="Koot"></div>
                 <div class="item"><img src="<?= Url::to("@web/images/employers/hyundai.jpg") ?>" alt="Hyundai"></div>
             </div>
+            
+            <div class="row" style="text-align:center">
+                <a class="btn btn-teal" href="<?= Url::to(['site/employers']) ?>">
+                    <?= Yii::t('frontend', 'View the full list') ?>
+                </a>
+            </div>
         </div>
     </div>
 </div> <!--.card-->
