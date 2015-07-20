@@ -115,6 +115,10 @@ class JobController extends \yii\web\Controller {
                 'author' => function ($model, $widget) {
                         return $model->employer->employer_company_name;
                     },
+                'guid' => function ($model, $widget) {
+                        $date = \DateTime::createFromFormat('Y-m-d H:i:s', $model->job_created_datetime);
+                        return Url::toRoute(['job/share', 'id' => $model->job_id], true) . ' ' . $date->format(DATE_RSS);
+                    },
                 'pubDate' => function ($model, $widget) {
                         $date = \DateTime::createFromFormat('Y-m-d H:i:s', $model->job_created_datetime);
                         return $date->format(DATE_RSS);
