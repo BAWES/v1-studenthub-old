@@ -33,7 +33,7 @@ return [
     'Check out our video!' => 'شاهد فيديو يشرح موقعنا',
     'Clear Filters' => 'حذف الفلاتر',
     'Clubs' => 'الأندية',
-    'Contact' => 'إتصل بنا',
+    'Contact Us' => 'إتصل بنا',
     'Cost' => 'التكلفة',
     'Create an account and build your CV' => 'إنشاء حساب وبناء سيرتك الذاتية',
     'Credit After' => 'الرصيد بعد',
