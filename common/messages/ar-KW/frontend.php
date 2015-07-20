@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Please contact us if you have any discounts and promotions you wish to offer students on our platform.' => 'يرجى الاتصال بنا إذا كان لديك أي خصومات والعروض التي ترغب في تقديمها للطلاب.',
+    'Back to Home' => 'العودة إلى الصفحة الرئيسية',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'Account Settings' => 'إعدادات الحساب',
@@ -98,6 +98,7 @@ return [
     'Please accept the terms and conditions' => 'يرجى قبول الشروط والأحكام',
     'Please agree to the terms and conditions' => 'يرجى الموافقة على الشروط والأحكام',
     'Please answer the interview question' => 'الرجاء الإجابة على الأسئلة',
+    'Please contact us if you have any discounts and promotions you wish to offer students on our platform.' => 'يرجى الاتصال بنا إذا كان لديك أي خصومات والعروض التي ترغب في تقديمها للطلاب.',
     'Please upload a photo of your university id card' => 'يرجى تحميل صورة من بطاقة الهوية جامعتك',
     'Please use your university email eg: {emailName}@{universityDomain}' => 'الرجاء استخدام البريد الإلكتروني الجامعي الخاص بك على سبيل المثال: {emailName}@{universityDomain}',
     'Positions Available' => 'الوظائف المتاحة',
@@ -149,6 +150,7 @@ return [
     'Verify' => 'تحقق',
     'Verify your identity within the university' => 'تحقق من هويتك داخل الجامعة',
     'View the full list' => 'عرض القائمة الكاملة',
+    'We plan to add discounts and promotions for students in the future' => 'ننوي إضافة خصومات وعروض للطلاب في المستقبل',
     'Welcome to StudentHub!' => 'أهلا',
     'Woohoo!' => 'هييااا!!!',
     'Work start date is' => 'تاريخ بدء العمل',

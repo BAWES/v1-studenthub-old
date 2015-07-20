@@ -16,7 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel-body">
         
         <div class="row">
-            Promotions go here
+            <div class="col-lg-6">
+                <?= Yii::t("frontend", "We plan to add discounts and promotions for students in the future") ?>
+                <br/><br/>
+                <a href="<?= yii\helpers\Url::to(['site/index']) ?>" class="btn btn-primary">
+                    <?= Yii::t("frontend", "Back to Home") ?>
+                </a>
+            </div>
         </div>
     </div>
 
