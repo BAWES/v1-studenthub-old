@@ -8,6 +8,13 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'rules' => [
+                'employers' => 'site/employers', 
+                'promotions' => 'site/promotions', 
+                'contact' => 'site/contact', 
+                'login' => 'site/login', 
+                'register' => 'site/register', 
+            ],
         ],
         'urlManagerFrontend' => [
             'class' => 'yii\web\UrlManager',
