@@ -22,6 +22,13 @@ return [
             'baseUrl' => '//employer.studenthubdemo.co',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'rules' => [
+                'employers' => 'site/employers', 
+                'promotions' => 'site/promotions', 
+                'contact' => 'site/contact', 
+                'login' => 'site/login', 
+                'register' => 'site/register', 
+            ],
         ],
     ],
 ];
