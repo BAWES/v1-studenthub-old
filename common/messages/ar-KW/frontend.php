@@ -17,8 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Having Doubts?' => 'هل لديك الشكوك؟',
-    'Try a demo of our platform' => 'جرب نموذج من موقعنا',
+    'Contact' => 'اتصل بنا',
+    'Discounts & Promotions' => 'خصومات وعروض للطلاب',
+    'Student Discounts & Promotions' => 'خصومات وعروض للطلاب',
+    'View the full list' => 'عرض القائمة الكاملة',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'Account Settings' => 'إعدادات الحساب',
@@ -62,6 +64,7 @@ return [
     'Gender' => 'جنس',
     'Graduation year end must be greater than or equal to the graduation year start.' => 'يجب أن يكون في نهاية العام التخرج أكبر من أو تساوي السنة بداية التخرج.',
     'Grand Total' => 'المجموع الإجمالي',
+    'Having Doubts?' => 'هل لديك الشكوك؟',
     'Hire students today!' => 'أهلا',
     'Hobbies' => 'الهوايات',
     'Home' => 'الرئيسية',
@@ -136,6 +139,7 @@ return [
     'Transferred?' => 'نقلت؟',
     'Transportation' => 'النقل',
     'Try Demo' => 'جرب الموقع',
+    'Try a demo of our platform' => 'جرب نموذج من موقعنا',
     'Type' => 'النوع',
     'UNIVERSITY' => 'جامعة',
     'University' => 'الجامعة',
