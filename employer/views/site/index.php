@@ -95,11 +95,17 @@ $this->registerCss($css);
         <div class="panel-body">
             <h2 style="text-align: center"><?= Yii::t('frontend', 'Positions Available') ?></h2>
             <div id="positionList" style="text-align:center">
-                <div class="item"><img src="<?= Url::to("@web/images/jobtypes/Full-time.jpg") ?>" alt="Full-Time"></div>
-                <div class="item"><img src="<?= Url::to("@web/images/jobtypes/part-time.jpg") ?>" alt="Part-Time"></div>
-                <div class="item"><img src="<?= Url::to("@web/images/jobtypes/one-time.jpg") ?>" alt="One-Time"></div>
-                <div class="item"><img src="<?= Url::to("@web/images/jobtypes/Internship.jpg") ?>" alt="Internship"></div>
-                <div class="item"><img src="<?= Url::to("@web/images/jobtypes/volunteer.jpg") ?>" alt="Volunteer"></div>
+                <?php
+                $jobTypeFolder = "jobtypes";
+                if($this->params['isArabic']){
+                    $jobTypeFolder = "jobtypes-ar";
+                }
+                ?>
+                <div class="item"><img src="<?= Url::to("@web/images/$jobTypeFolder/Full-time.jpg") ?>" alt="Full-Time"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/$jobTypeFolder/part-time.jpg") ?>" alt="Part-Time"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/$jobTypeFolder/one-time.jpg") ?>" alt="One-Time"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/$jobTypeFolder/Internship.jpg") ?>" alt="Internship"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/$jobTypeFolder/volunteer.jpg") ?>" alt="Volunteer"></div>
             </div>                    
         </div>
     </div>
