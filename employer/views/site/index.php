@@ -112,16 +112,15 @@ $this->registerCss($css);
         <div class="panel-body">
             <h2 style="text-align: center"><?= Yii::t('frontend', 'Employers on StudentHub') ?></h2> 
             <div id="companyList" style="text-align:center">
-                <div class="item"><img src="<?= Url::to("@web/images/employers/zain.jpg") ?>" alt="Zain"></div>
-                <div class="item"><img src="<?= Url::to("@web/images/employers/ooredoo.jpg") ?>" alt="Ooredoo"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/employers/koot.jpg") ?>" alt="Koot"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/employers/ghaliah.jpg") ?>" alt="Ghaliah"></div>
                 <div class="item"><img src="<?= Url::to("@web/images/employers/circuitplus.jpg") ?>" alt="Circuit Plus"></div>
                 <div class="item"><img src="<?= Url::to("@web/images/employers/fashionet.jpg") ?>" alt="Fashionet"></div>
                 <div class="item"><img src="<?= Url::to("@web/images/employers/ghaliah.jpg") ?>" alt="Ghaliah"></div>
-                <div class="item"><img src="<?= Url::to("@web/images/employers/NBK.jpg") ?>" alt="NBK"></div>
-                <div class="item"><img src="<?= Url::to("@web/images/employers/fashionet.jpg") ?>" alt="Fashionet"></div>
-                <div class="item"><img src="<?= Url::to("@web/images/employers/ghaliah.jpg") ?>" alt="Ghaliah"></div>
-                <div class="item"><img src="<?= Url::to("@web/images/employers/NBK.jpg") ?>" alt="NBK"></div>
-            </div>   
+                <div class="item"><img src="<?= Url::to("@web/images/employers/deal.jpg") ?>" alt="Deal GTC"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/employers/koot.jpg") ?>" alt="Koot"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/employers/hyundai.jpg") ?>" alt="Hyundai"></div>
+            </div>
         </div>
     </div>
 </div> <!--.card-->
