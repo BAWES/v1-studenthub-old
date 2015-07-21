@@ -923,10 +923,11 @@ use yii\helpers\Url;
                                                         <td>
                                                             <table class="wrapper social-icons">
                                                                 <tr>
-                                                                    <td><a href="https://instagram.com/studenthubco/"><img src="<?= $message->embed(Url::to("@web/img/email/icon-instagram.png", true)); ?>" alt="social icon"/></a></td>
-                                                                    <td><a href="https://www.facebook.com/studenthub.co"><img src="<?= $message->embed(Url::to("@web/img/email/icon-facebook.png", true)); ?>" alt="social icon"/></a></td>
-                                                                    <td><a href="http://twitter.com/studenthubco"><img src="<?= $message->embed(Url::to("@web/img/email/icon-twitter.png", true)); ?>" alt="social icon"/></a></td>
-                                                                    <td><a href="https://www.youtube.com/channel/UCf0zeKTi2IawY3KF0L1aWKw"><img src="<?= $message->embed(Url::to("@web/img/email/icon-youtube.png", true)); ?>" alt="social icon"/></a></td>
+                                                                    <td><a href="https://instagram.com/studenthubco/"><img src="<?= $message->embed(Url::to("@web/img/email/icon-instagram.png", true)); ?>" alt="instagram"/></a></td>
+                                                                    <td><a href="https://www.facebook.com/studenthub.co"><img src="<?= $message->embed(Url::to("@web/img/email/icon-facebook.png", true)); ?>" alt="facebook"/></a></td>
+                                                                    <td><a href="http://twitter.com/studenthubco"><img src="<?= $message->embed(Url::to("@web/img/email/icon-twitter.png", true)); ?>" alt="twitter"/></a></td>
+                                                                    <td><a href="https://www.linkedin.com/company/10018543"><img src="<?= $message->embed(Url::to("@web/img/email/icon-linkedin.png", true)); ?>" alt="linkedin"/></a></td>
+                                                                    <td><a href="https://www.youtube.com/channel/UCf0zeKTi2IawY3KF0L1aWKw"><img src="<?= $message->embed(Url::to("@web/img/email/icon-youtube.png", true)); ?>" alt="youtube"/></a></td>
                                                                 </tr>
                                                         </td>
                                                         <td class="expander"></td>
@@ -950,26 +951,26 @@ use yii\helpers\Url;
                                                                 <strong>Contact us at:</strong><br>
                                                                         contact@studenthub.co<br>
                                                                             <a href="http://studenthub.co">studenthub.co</a><br/>
-                                                                            </p>
-                                                                            </td>
-                                                                            <td class="expander"></td>
-                                                                            </tr>
-                                                                            </table>
+                                                            </p>
+                                                        </td>
+                                                        <td class="expander"></td>
+                                                    </tr>
+                                                </table>
 
-                                                                            </td>
-                                                                            </tr>
-                                                                            </table>
+                                            </td>
+                                        </tr>
+                                    </table>
 
-                                                                            <!-- container end below -->
-                                                                            </td>
-                                                                            </tr>
-                                                                            </table>
+                                <!-- container end below -->
+                                </td>
+                            </tr>
+                        </table>
 
-                                                                            </center>
-                                                                            </td>
-                                                                            </tr>
-                                                                            </table>
-                                                                            <?php $this->endBody() ?>
-                                                                            </body>
-                                                                            </html>
-                                                                            <?php $this->endPage() ?>
+                    </center>
+                </td>
+            </tr>
+        </table>
+        <?php $this->endBody() ?>
+    </body>
+</html>
+<?php $this->endPage() ?>
