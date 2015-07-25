@@ -121,6 +121,9 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
         <meta name="theme-color" content="#3f53b1" />
         <!-- END SHORTCUT AND TOUCH ICONS -->
         
+        <!-- RSS -->
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="<?= Url::to(['job/rss'], true) ?>" />
+        
         <!-- Allows apple mobile webapp -->
         <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>   
         
