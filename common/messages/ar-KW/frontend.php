@@ -65,7 +65,7 @@ return [
     'Gender' => 'جنس',
     'Graduation year end must be greater than or equal to the graduation year start.' => 'يجب أن يكون في نهاية العام التخرج أكبر من أو تساوي السنة بداية التخرج.',
     'Grand Total' => 'المجموع الإجمالي',
-    'Having Doubts?' => 'هل لديك الشكوك؟',
+    'Having Doubts?' => 'هل لديك شكوك؟',
     'Hire students today!' => 'أهلا',
     'Hobbies' => 'الهوايات',
     'Home' => 'الرئيسية',
