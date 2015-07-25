@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use yii\db\Expression;
+use yii\helpers\Url;
 use common\models\JobProcessQueue;
 use common\models\StudentJobQualification;
 use common\models\NotificationStudent;
@@ -144,10 +145,31 @@ class Job extends \common\models\Job {
             Yii::info("[Broadcast] Job #".$this->job_id." has been broadcasted to $studentCount students", __METHOD__);
             $this->job_broadcasted = self::BROADCASTED_YES;
             $this->save(false);
+            
+            $this->broadcastSocialMedia();
+            
         }else Yii::warning("[Broadcast] Job #".$this->job_id." has no qualified students", __METHOD__);
             
 
         return $studentCount;
+    }
+    
+    
+    /**
+     * Send email to Buffer so this job gets broadcasted on social media platforms
+     * This should only function if the app isn't on demo platform
+     */
+    public function broadcastSocialMedia(){
+        if(Yii::$app->params['isDemo']){
+            Yii::$app->mailer->compose([
+                    'htmlLayout' => false,
+                ])
+                ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                ->setTo(["buffer-a476578e6c7d182b43a9@to.bufferapp.com"])
+                ->setSubject("Job Opportunity: ".$this->job_title." @ ".$this->employer->employer_company_name)
+                ->setTextBody(Url::toRoute(['job/share', 'id' => $this->job_id], true))
+                ->send();
+        }
     }
 
 }
