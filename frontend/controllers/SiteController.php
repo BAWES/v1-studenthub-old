@@ -137,8 +137,6 @@ class SiteController extends Controller
     public function actionTest()
     {
         //random code here
-        $job = \backend\models\Job::findOne(27);
-        $job->broadcastSocialMedia();
     }
 
     public function actionLogout()

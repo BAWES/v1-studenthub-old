@@ -160,7 +160,7 @@ class Job extends \common\models\Job {
      * This should only function if the app isn't on demo platform
      */
     public function broadcastSocialMedia(){
-        if(Yii::$app->params['isDemo']){
+        if(!Yii::$app->params['isDemo']){
             Yii::$app->mailer->compose([
                     'htmlLayout' => false,
                 ])
