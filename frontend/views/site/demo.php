@@ -65,9 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
             <br/><br/>
             
-            <a href="http://studenthubdemo.co" target="_blank">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/lSOwbL1Mbs8" frameborder="0" allowfullscreen></iframe>
-            </a>
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/lSOwbL1Mbs8" frameborder="0" allowfullscreen></iframe>
         </div>
 
     </div>
