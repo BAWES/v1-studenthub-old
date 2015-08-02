@@ -31,9 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
             <br/><br/>
             
-            <a href="http://employer.studenthubdemo.co" target="_blank">
-                <img src="<?= Url::to("@web/images/employer-portal.png") ?>" style="width:100%;">
-            </a>
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/Y0bJZ1ImIHQ" frameborder="0" allowfullscreen></iframe>
             
         </div>
 
