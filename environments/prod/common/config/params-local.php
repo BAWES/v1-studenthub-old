@@ -1,7 +1,7 @@
 <?php
 return [
     'KNETResourcePath' => '/var/www/html/common/components/knet/',
-    'cybersourceEnabled' => false,
+    'cybersourceEnabled' => true,
     'knetEnabled' => true,
     'isDemo' => false,
     'adminEmail' => 'contact@studenthub.co',
