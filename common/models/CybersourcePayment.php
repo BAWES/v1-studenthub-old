@@ -34,12 +34,13 @@ use yii\db\Expression;
  */
 class CybersourcePayment extends \yii\db\ActiveRecord
 {
-    const PAYMENT_URL = "https://testsecureacceptance.cybersource.com/pay";
+    //const PAYMENT_URL = "https://testsecureacceptance.cybersource.com/pay";
+    const PAYMENT_URL = "https://secureacceptance.cybersource.com/pay";
     
     //Secret key used for signing details (tamper protection)
-    const SECRET_KEY = "164f5b8a9c5e47bbaedf912a50ceded6d8d657f03a554434a22b3c5bb89fe7570e9c2ab8cd144a5992ff75f983a500aa030a7140e2164f43b57b35ea21a165315ef6d4d4c96b4022b39d6371cd30567da22426026f8543a4b51dd885aa7f4dff22460e0eff7e4d53bddb3e015fc46f249987de6acf34497da06d405661aa5530";
-    const ACCESS_KEY = "574f600374cf368db32d6328c0528741";
-    const PROFILE_ID = "D230D2F7-476C-4E1C-8054-045DF37609D5";
+    const SECRET_KEY = "e09f70105dc34fa6990aef3d88161e9d0fd7795a63c64c69b2b76ebc11307abc8d1fe55e892f4d4d8ba49dccb4122d45cce304912200402e8f4d09cff99616403f751b74fc594ad589dadfaa0ab03886d1508a7b1e6647f1af26553f2435c913d52b8e11802e4ed9b8ebe9e65a4b96d8f6eef23c69a7483fbae82a317b21b930";
+    const ACCESS_KEY = "a7467f5eb3be3a81b23a74ff536c4726";
+    const PROFILE_ID = "552E5BD8-C19C-45D0-8DD8-1713AECE4A93";
     
     //Transaction Details
     const TRANSACTION_TYPE = "sale";
