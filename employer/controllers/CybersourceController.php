@@ -16,6 +16,7 @@ class CybersourceController extends \yii\web\Controller {
      * @throws NotFoundHttpException
      */
     public function actionPaymentResponse(){
+        print_r($_REQUEST);
         if(Yii::$app->request->post('signature')){
             $params = [];
             //Get all request params sent to us from Cybersource - use to check validity of signature
