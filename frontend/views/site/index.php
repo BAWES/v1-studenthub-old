@@ -38,7 +38,10 @@ $this->registerCss($css);
 
 <!-- main row -->
 <div class="row">
-    <div class="card spanfix">
+    <div class="card spanfix" id="frontendCard" style="background: white url(<?= $this->params['isArabic']?Url::to("@web/images/girlbg-ar.png"):Url::to("@web/images/girlbg.png") ?>);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: <?= $this->params['isArabic']?"0 0":"100% 0" ?> ;">
         <div class="panel-body" style="text-align:center;">
             <h2><?= Yii::t('frontend', 'Welcome to StudentHub!') ?></h2>
             <p class="lead"><?= Yii::t('frontend', 'Find') ?>
@@ -50,7 +53,7 @@ $this->registerCss($css);
             
             
             
-            <div class="card card-video card-video-modal card-player-blue" style="background-color:white;box-shadow:none;margin:0;height: 100px;">
+            <div class="card card-video card-video-modal card-player-blue" style="background:none;box-shadow:none;margin:0;height: 100px;">
                 <div class="card-body" style="height:100px">
                     <a href="#" class="play-button-container" data-toggle="modal" data-target="#videoModal">
                         <div class="play-button"></div>

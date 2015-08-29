@@ -35,6 +35,10 @@ TABLE OF CONTENTS:
 /*
 Khalid stuff
 */
+/* Hide background from homepage on small screens */
+@media (max-width: 1150px) {
+#frontendCard{background-image:none !important;}
+}
 #notificationForm label{display:none}
 /*
 1 - Global Libraries
