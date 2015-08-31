@@ -56,7 +56,7 @@ $student = $model->student;
                         
                         <br>
                         <i class="glyphicon glyphicon-globe" data-toggle="tooltip" data-placement="top" data-original-title="<?= Yii::t('frontend', 'Nationality') ?>"></i> 
-                        <?= $this->params['isArabic']?$student->country->country_name_ar:$student->country->country_name_en ?>
+                        <?= $this->params['isArabic']?$student->country->country_nationality_name_ar:$student->country->country_nationality_name_en ?>
                     </p>
                 </div>
                 <div class="col-xs-6">
