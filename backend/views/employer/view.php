@@ -54,6 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'emailVerificationStatus',
             'employer_updated_datetime:datetime',
             'employer_datetime:datetime',
+            'employer_social_twitter',
+            'employer_social_facebook',
+            'employer_social_instagram',
         ],
     ]) ?>
     
