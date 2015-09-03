@@ -111,6 +111,28 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer10.jpg") ?>" style="width:100%" alt="TABCo. International Food Catering K.S.C.C">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer11.jpg") ?>" style="width:100%" alt="Expression Institute for Private Training">
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
 
