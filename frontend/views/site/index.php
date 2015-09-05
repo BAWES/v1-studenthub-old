@@ -64,7 +64,7 @@ $this->registerCss($css);
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/lSOwbL1Mbs8" frameborder="0" allowfullscreen></iframe>
+                                <iframe width="100%" height="315" src="<?= $this->params['isArabic']?"https://www.youtube.com/embed/y2bWymwHjeU":"https://www.youtube.com/embed/fOjTsGc9fEc"?>" frameborder="0" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
