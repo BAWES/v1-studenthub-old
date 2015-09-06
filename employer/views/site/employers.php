@@ -210,6 +210,61 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer19.jpg") ?>" style="width:100%" alt="Little me">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer20.jpg") ?>" style="width:100%" alt="Design Box">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer21.jpg") ?>" style="width:100%" alt="KuwaitNET">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer22.jpg") ?>" style="width:100%" alt="Agility">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer23.jpg") ?>" style="width:100%" alt="Studio AIO">
+                </div>
+            </div>
+        </div>
+    </div>
+    
     
 </div>
 
