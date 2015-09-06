@@ -100,8 +100,8 @@ $this->registerJs($js);
                     <input type="checkbox" value="1" id="terms" name="terms">
                     <label for="terms">
                         <?= Yii::t("employer", "I agree to the <a href='{url}' target='_blank'>terms & conditions</a> and <a href='{urlPrivacy}' target='_blank'>privacy policy</a> of StudentHub", [
-                        'url'=> Yii::$app->urlManagerFrontend->createAbsoluteUrl(['site/terms-conditions']),
-                        'urlPrivacy'=> Yii::$app->urlManagerFrontend->createAbsoluteUrl(['site/privacy-policy'])])?>
+                        'url'=> Yii::$app->urlManagerFrontend->createUrl(['site/terms-conditions']),
+                        'urlPrivacy'=> Yii::$app->urlManagerFrontend->createUrl(['site/privacy-policy'])])?>
                     </label>
                 </div>
                 
