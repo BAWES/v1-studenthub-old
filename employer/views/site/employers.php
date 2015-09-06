@@ -28,7 +28,18 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
-                    <img src="<?= Url::to("@web/images/employer-list/employer2.jpg") ?>" style="width:100%" alt="Koot Brand">
+                    <img src="<?= Url::to("@web/images/employer-list/employer2.jpg") ?>" style="width:100%" alt="Koot">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer22.jpg") ?>" style="width:100%" alt="Agility">
                 </div>
             </div>
         </div>
@@ -50,7 +61,40 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer10.jpg") ?>" style="width:100%" alt="TABCo. International Food Catering K.S.C.C">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer12.jpg") ?>" style="width:100%" alt="Elevation Burger">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer4.jpg") ?>" style="width:100%" alt="Hyundai Elevators">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer23.jpg") ?>" style="width:100%" alt="Studio AIO">
                 </div>
             </div>
         </div>
@@ -73,6 +117,17 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer6.jpg") ?>" style="width:100%" alt="Bevv Studios">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer21.jpg") ?>" style="width:100%" alt="KuwaitNET">
                 </div>
             </div>
         </div>
@@ -116,29 +171,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
-                    <img src="<?= Url::to("@web/images/employer-list/employer10.jpg") ?>" style="width:100%" alt="TABCo. International Food Catering K.S.C.C">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Logo -->
-    <div class="col-md-2 col-sm-3 col-xs-6">
-        <div class="panel">
-            <div class="panel-heading">
-                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer11.jpg") ?>" style="width:100%" alt="Expression Institute for Private Training">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Logo -->
-    <div class="col-md-2 col-sm-3 col-xs-6">
-        <div class="panel">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <img src="<?= Url::to("@web/images/employer-list/employer12.jpg") ?>" style="width:100%" alt="Elevation Burger">
                 </div>
             </div>
         </div>
@@ -231,40 +264,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-    
-    <!-- Logo -->
-    <div class="col-md-2 col-sm-3 col-xs-6">
-        <div class="panel">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <img src="<?= Url::to("@web/images/employer-list/employer21.jpg") ?>" style="width:100%" alt="KuwaitNET">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Logo -->
-    <div class="col-md-2 col-sm-3 col-xs-6">
-        <div class="panel">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <img src="<?= Url::to("@web/images/employer-list/employer22.jpg") ?>" style="width:100%" alt="Agility">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Logo -->
-    <div class="col-md-2 col-sm-3 col-xs-6">
-        <div class="panel">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <img src="<?= Url::to("@web/images/employer-list/employer23.jpg") ?>" style="width:100%" alt="Studio AIO">
-                </div>
-            </div>
-        </div>
-    </div>
-    
     
 </div>
 
