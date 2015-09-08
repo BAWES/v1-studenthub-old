@@ -179,49 +179,50 @@ class Payment extends \yii\db\ActiveRecord {
      * In the Employers current language preference
      */
     public function emailInvoice(){        
-        $employer = $this->employer;
-        
-        /**
-         * If Payment is for a job, show a different type of invoice
-         */
-        $invoiceType = "reg-invoice";
-        if($this->job_id){
-            $invoiceType = "job-invoice";
+        if(!Yii::$app->params['isDemo']){ //dont send email if its demo
+            $employer = $this->employer;
+
+            /**
+             * If Payment is for a job, show a different type of invoice
+             */
+            $invoiceType = "reg-invoice";
+            if($this->job_id){
+                $invoiceType = "job-invoice";
+            }
+
+
+            if($employer->employer_language_pref == "en-US"){
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = false;
+
+                //Send English Email
+                return Yii::$app->mailer->compose([
+                        'html' => "employer/$invoiceType-html",
+                            ], [
+                        'employer' => $employer,
+                        'payment' => static::findOne($this->payment_id),
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$employer->employer_email, \Yii::$app->params['supportEmail']])
+                    ->setSubject('[StudentHub] Invoice #'.$this->payment_id)
+                    ->send();
+            }else{
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = true;
+
+                //Send Arabic Email
+                return Yii::$app->mailer->compose([
+                        'html' => "employer/$invoiceType-ar-html",
+                            ], [
+                        'employer' => $employer,
+                        'payment' => static::findOne($this->payment_id),
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$employer->employer_email, \Yii::$app->params['supportEmail']])
+                    ->setSubject('[StudentHub] فاتورة #'.Yii::$app->formatter->asInteger($this->payment_id))
+                    ->send();
+            }
         }
-        
-        
-        if($employer->employer_language_pref == "en-US"){
-            //Set language based on preference stored in DB
-            Yii::$app->view->params['isArabic'] = false;
-            
-            //Send English Email
-            return Yii::$app->mailer->compose([
-                    'html' => "employer/$invoiceType-html",
-                        ], [
-                    'employer' => $employer,
-                    'payment' => static::findOne($this->payment_id),
-                ])
-                ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
-                ->setTo([$employer->employer_email, \Yii::$app->params['supportEmail']])
-                ->setSubject('[StudentHub] Invoice #'.$this->payment_id)
-                ->send();
-        }else{
-            //Set language based on preference stored in DB
-            Yii::$app->view->params['isArabic'] = true;
-            
-            //Send Arabic Email
-            return Yii::$app->mailer->compose([
-                    'html' => "employer/$invoiceType-ar-html",
-                        ], [
-                    'employer' => $employer,
-                    'payment' => static::findOne($this->payment_id),
-                ])
-                ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
-                ->setTo([$employer->employer_email, \Yii::$app->params['supportEmail']])
-                ->setSubject('[StudentHub] فاتورة #'.Yii::$app->formatter->asInteger($this->payment_id))
-                ->send();
-        }
-        
     }
 
     /**
