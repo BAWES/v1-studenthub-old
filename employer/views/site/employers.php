@@ -265,6 +265,28 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer24.jpg") ?>" style="width:100%" alt="Flare Fitness Co.">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer25.jpg") ?>" style="width:100%" alt="Taqabal Mental Health Awareness Campaign">
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
 <div class="panel" style="text-align:center; padding-top:0.5em; padding-bottom:1em">
