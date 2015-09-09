@@ -86,6 +86,11 @@ class SiteController extends Controller {
     }
 
     public function actionRegister() {
+        //If demo, redirect to employer signup on live site
+        if(Yii::$app->params['isDemo']){
+            return $this->redirect("https://employer.studenthub.co/register");
+        }
+        
         $model = new \employer\models\Employer();
 
         if ($model->load(Yii::$app->request->post())) {
