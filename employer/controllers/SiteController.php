@@ -103,7 +103,7 @@ class SiteController extends Controller {
                 }
 
                 $model->signup();
-                return $this->render('thanks');
+                return $this->redirect(['thanks']);
             } else {
                 foreach ($model->errors as $error => $errorText) {
                     Yii::$app->getSession()->setFlash('error', $errorText);
@@ -114,6 +114,13 @@ class SiteController extends Controller {
         return $this->render('register', [
                     'model' => $model,
         ]);
+    }
+    
+    /**
+     * Employer Registration Thank You Page
+     */
+    public function actionThanks(){
+        return $this->render('thanks');
     }
 
     /**
