@@ -241,7 +241,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                 if (Yii::$app->user->isGuest) {
                     $menuItems[] = ['label' => Yii::t('frontend', 'Home'), 'url' => ['/site/index']];
                     
-                    $menuItems[] = ['label' => Yii::t('frontend', 'Register'), 'url' => ['/site/register']];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Register'), 'url' => ['/site/registration']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Login'), 'url' => ['/site/login']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Try Demo'), 'url' => Yii::$app->urlManagerFrontend->createUrl("site/demo")];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Discounts & Promotions'), 'url' => ['/site/promotions']];

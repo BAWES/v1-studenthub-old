@@ -85,7 +85,7 @@ $this->registerCss($css);
 
             <p class="lead"><?= Yii::t('frontend', 'Check out our video!') ?></p>
 
-            <a class="btn btn-lg btn-success" href="<?= Url::to(['site/register']) ?>"><?= Yii::t('frontend', 'Sign Up Now') ?></a>
+            <a class="btn btn-lg btn-success" href="<?= Url::to(['site/registration']) ?>"><?= Yii::t('frontend', 'Sign Up Now') ?></a>
             <a class="btn btn-lg btn-success" href="<?= Url::to(['site/login']) ?>"><?= Yii::t('frontend', 'Login') ?></a>
         </div>
     </div>

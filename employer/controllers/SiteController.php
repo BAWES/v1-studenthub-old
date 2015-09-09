@@ -27,10 +27,10 @@ class SiteController extends Controller {
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'register'],
+                'only' => ['logout', 'registration'],
                 'rules' => [
                     [
-                        'actions' => ['register'],
+                        'actions' => ['registration'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -85,10 +85,10 @@ class SiteController extends Controller {
         return $this->render('employers');
     }
 
-    public function actionRegister() {
+    public function actionRegistration() {
         //If demo, redirect to employer signup on live site
         if(Yii::$app->params['isDemo']){
-            return $this->redirect("https://employer.studenthub.co/register");
+            return $this->redirect("https://employer.studenthub.co/registration");
         }
         
         $model = new \employer\models\Employer();
