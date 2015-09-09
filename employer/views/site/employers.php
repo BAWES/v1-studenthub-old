@@ -28,6 +28,17 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer29.jpg") ?>" style="width:100%" alt="Richter Creative Office">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer2.jpg") ?>" style="width:100%" alt="Koot">
                 </div>
             </div>
