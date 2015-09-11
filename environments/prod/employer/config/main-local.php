@@ -14,7 +14,7 @@ return [
                 'promotions' => 'site/promotions', 
                 'contact' => 'site/contact', 
                 'login' => 'site/login', 
-                'register' => 'site/register', 
+                'registration' => 'site/registration', 
             ],
         ],
         'urlManagerFrontend' => [
