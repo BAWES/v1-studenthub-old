@@ -114,6 +114,11 @@ class RegisterController extends \yii\web\Controller {
      * Renders University Selection (Step 1);
      */
     public function actionIndex() {
+        //If demo, redirect to employer signup on live site
+        if(Yii::$app->params['isDemo']){
+            return $this->redirect("https://studenthub.co/register");
+        }
+        
         return $this->render('index');
     }
 
@@ -122,6 +127,11 @@ class RegisterController extends \yii\web\Controller {
      * @param int $university University ID 
      */
     public function actionRegister($university) {
+        //If demo, redirect to employer signup on live site
+        if(Yii::$app->params['isDemo']){
+            return $this->redirect("https://studenthub.co/register");
+        }
+        
         $universityID = (int) $university;
         $universityModel = $this->findUniversity($universityID);
 
