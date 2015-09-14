@@ -31,5 +31,18 @@ return [
                 'encryption' => 'tls',
             ],
         ],
+        'sendgridMailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@common/mail',
+            'htmlLayout' => 'layouts/studenthub-html',
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.sendgrid.net',
+                'username' => 'studenthub',
+                'password' => 'studenthubemailer!23',
+                'port' => '587',
+                'encryption' => 'tls',
+            ],
+        ],
     ],
 ];
