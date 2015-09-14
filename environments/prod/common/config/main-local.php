@@ -18,7 +18,7 @@ return [
             // Name of the cache component used to store schema information
             'schemaCache' => 'cache',
         ],
-        'mailer' => [
+        'mandrillMailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
             'htmlLayout' => 'layouts/studenthub-html',
@@ -31,7 +31,7 @@ return [
                 'encryption' => 'tls',
             ],
         ],
-        'sendgridMailer' => [
+        'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
             'htmlLayout' => 'layouts/studenthub-html',
