@@ -14,7 +14,8 @@
         "kartik-v/yii2-widgets": "*",
         "2amigos/yii2-resource-manager-component": "*",
         "himiklab/yii2-recaptcha-widget" : "*",
-        "zelenin/yii2-rss": "dev-master"
+        "zelenin/yii2-rss": "dev-master",
+        "openbuildings/swiftmailer-css-inliner": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -42,6 +42,11 @@ return [
                 'password' => 'studenthubemailer!23',
                 'port' => '587',
                 'encryption' => 'tls',
+                'plugins' => [
+                    [
+                        'class' => 'Openbuildings\Swiftmailer\CssInlinerPlugin',
+                    ],
+                ],
             ],
         ],
     ],
