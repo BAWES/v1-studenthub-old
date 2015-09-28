@@ -259,13 +259,13 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                     $menuItems[] = ['label' => Yii::t('frontend', 'Register'), 'url' => ['/register/index']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Login'), 'url' => ['/site/login']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Try Demo'), 'url' => ['/site/demo']];
-                    $menuItems[] = ['label' => Yii::t('frontend', 'Discounts & Promotions'), 'url' => ['/site/promotions']];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Blog'), 'url' => 'https://blog.studenthub.co'];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Employers on StudentHub'), 'url' => ['/site/employers']];
                     $menuItems[] = ['label' => Yii::t('frontend','Employer Portal'), 'url' => Yii::$app->urlManagerEmployer->createUrl("site/index")];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Contact Us'), 'url' => ['/site/contact']];
                 } else {
                     $menuItems[] = ['label' => Yii::t('frontend', 'Browse Jobs'), 'url' => ['/job/index']];
-                    $menuItems[] = ['label' => Yii::t('frontend', 'Discounts & Promotions'), 'url' => ['/site/promotions']];
+                    $menuItems[] = ['label' => Yii::t('frontend', 'Blog'), 'url' => 'https://blog.studenthub.co'];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Employers on StudentHub'), 'url' => ['/site/employers']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Account Settings'), 'url' => ['/setting/index']];
                     $menuItems[] = ['label' => Yii::t('frontend', 'Contact Us'), 'url' => ['/site/contact']];

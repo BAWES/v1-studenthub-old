@@ -17,8 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Interested?' => 'مهتم؟',
-    'Join StudentHub Today!' => 'انضم إلينا اليوم!',
+    'Blog' => 'مدونة',
+    'Discounts & Promotions' => '@@خصومات وعروض للطلاب@@',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
     'Account Settings' => 'إعدادات الحساب',
@@ -46,7 +46,6 @@ return [
     'DEGREE' => 'شهادة',
     'Date' => 'التاريخ',
     'Demonstration' => 'جرب برنامجنا',
-    'Discounts & Promotions' => 'خصومات وعروض للطلاب',
     'Email:' => 'البريد الإلكتروني',
     'Employer Demo' => 'محاولة استخدام كصاحب عمل',
     'Employer Portal' => 'بوابة صاحب العمل',
@@ -72,12 +71,14 @@ return [
     'How to Start' => 'كيف أبدأ',
     'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.' => 'إذا كان لديك استفسارات أو أسئلة، يرجى ملء النموذج التالي للاتصال بنا. شكرا.',
     'Industry' => 'قطاع',
+    'Interested?' => 'مهتم؟',
     'Invalid input for {attribute}' => 'إدخال غير صالح لل{attribute}',
     'Invalid payment method' => 'طريقة الدفع غير صالحة',
     'Invoice #' => 'الفاتورة #',
     'Item' => 'المنتج',
     'Job Posting' => 'عرض عمل',
     'Job Type' => 'نوع العمل',
+    'Join StudentHub Today!' => 'انضم إلينا اليوم!',
     'LANGUAGE' => 'لغة',
     'Languages Spoken' => 'اللغات',
     'Link' => 'الرابط',
