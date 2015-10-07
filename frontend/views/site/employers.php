@@ -127,6 +127,17 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer52.jpg") ?>" style="width:100%" alt="The Scientific Center Management Company">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer41.jpg") ?>" style="width:100%" alt="KwtMagazine">
                 </div>
             </div>
@@ -568,17 +579,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer51.jpg") ?>" style="width:100%" alt="Mubaader Services">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Logo -->
-    <div class="col-md-2 col-sm-3 col-xs-6">
-        <div class="panel">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <img src="<?= Url::to("@web/images/employer-list/employer52.jpg") ?>" style="width:100%" alt="The Scientific Center Management Company">
                 </div>
             </div>
         </div>
