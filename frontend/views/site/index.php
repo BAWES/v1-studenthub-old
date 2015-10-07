@@ -143,10 +143,10 @@ $this->registerCss($css);
                 <div class="item"><img src="<?= Url::to("@web/images/employers/richter.jpg") ?>" alt="Koot"></div>
                 <div class="item"><img src="<?= Url::to("@web/images/employers/ghaliah.jpg") ?>" alt="Ghaliah"></div>
                 <div class="item"><img src="<?= Url::to("@web/images/employers/agility.jpg") ?>" alt="Agility"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/employers/scientific.jpg") ?>" alt="Scientific Center"></div>
                 <div class="item"><img src="<?= Url::to("@web/images/employers/fashionet.jpg") ?>" alt="Fashionet"></div>
                 <div class="item"><img src="<?= Url::to("@web/images/employers/elevation.jpg") ?>" alt="Elevation Burger"></div>
                 <div class="item"><img src="<?= Url::to("@web/images/employers/deal.jpg") ?>" alt="Deal GTC"></div>
-                <div class="item"><img src="<?= Url::to("@web/images/employers/koot.jpg") ?>" alt="Koot"></div>
                 <div class="item"><img src="<?= Url::to("@web/images/employers/hyundai.jpg") ?>" alt="Hyundai"></div>
             </div>
             
