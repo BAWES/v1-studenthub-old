@@ -88,6 +88,11 @@ class LoginForm extends Model
                                 ]),
                             ]));
                     
+                    //Add Warning for AUK students to check spam folder
+                    if($student->university_id == 4){
+                        Yii::$app->session->setFlash("error", "AUK Students - Please check your SPAM folder while we resolve the issue with the University IT Department.");
+                    }
+                    
                 }else if($student->student_id_verification == Student::ID_NOT_VERIFIED){
                     //ID not verified, show warning
                     Yii::$app->session->setFlash("warning", 
