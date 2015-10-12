@@ -226,6 +226,17 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer55.jpg") ?>" style="width:100%" alt="Baroue">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer38.jpg") ?>" style="width:100%" alt="Rijeemy Center">
                 </div>
             </div>
@@ -601,6 +612,17 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer54.jpg") ?>" style="width:100%" alt="My Clique Establishment">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer56.jpg") ?>" style="width:100%" alt="Invita Kuwait for Information Technology KSC">
                 </div>
             </div>
         </div>
