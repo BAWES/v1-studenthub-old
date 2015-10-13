@@ -489,14 +489,14 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             $filter = $job->filter;
             if($filter){
                 //Check GPA filter_gpa
-                if($filter->filter_gpa){
+                if($filter->filter_gpa && $studentQualifies){
                     if($this->student_gpa < $filter->filter_gpa){
                         $studentQualifies = false;
                     }
                 }
                 
                 //Check Graduation year
-                if($filter->filter_graduation_year_start && $filter->filter_graduation_year_end){
+                if($filter->filter_graduation_year_start && $filter->filter_graduation_year_end && $studentQualifies){
                     if($this->student_graduating_year < $filter->filter_graduation_year_start || 
                             $this->student_graduating_year > $filter->filter_graduation_year_end){
                         $studentQualifies = false;
@@ -504,28 +504,28 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 }
                 
                 //Check English level
-                if($filter->filter_english_level){
+                if($filter->filter_english_level && $studentQualifies){
                     if($this->student_english_level != $filter->filter_english_level){
                         $studentQualifies = false;
                     }
                 }
                 
                 //Check Degree
-                if($filter->degree_id){
+                if($filter->degree_id && $studentQualifies){
                     if($this->degree_id != $filter->degree_id){
                         $studentQualifies = false;
                     }
                 }
                 
                 //Check Transportation filter_transportation
-                if($filter->filter_transportation){
+                if($filter->filter_transportation && $studentQualifies){
                     if($this->student_transportation != $filter->filter_transportation){
                         $studentQualifies = false;
                     }
                 }
                 
                 //Check Nationality filter
-                if($filter->countries){
+                if($filter->countries && $studentQualifies){
                     //If student doesn't belong to the requested filter, he does not qualify
                     $studentQualifies = false;
                     foreach($filter->countries as $country){
@@ -536,7 +536,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 }
                 
                 //Check University Filter
-                if($filter->universities){
+                if($filter->universities && $studentQualifies){
                     //If student doesn't belong to the requested filter, he does not qualify
                     $studentQualifies = false;
                     foreach($filter->universities as $university){
@@ -547,7 +547,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 }
                 
                 //Check Language Filter
-                if($filter->languages){
+                if($filter->languages && $studentQualifies){
                     //If student doesn't belong to the requested filter, he does not qualify
                     $studentQualifies = false;
                     foreach($filter->languages as $filterLanguage){
@@ -560,7 +560,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 }
                 
                 //Check Major Filter
-                if($filter->majors){
+                if($filter->majors && $studentQualifies){
                     //If student doesn't belong to the requested filter, he does not qualify
                     $studentQualifies = false;
                     foreach($filter->majors as $filterMajor){
