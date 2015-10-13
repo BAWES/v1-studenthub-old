@@ -82,16 +82,24 @@ switch ($model->job_status){
     ]) ?>
     
     <?php
-    $applicants = $model->applicants;
-    if($applicants){
+    $jobApplications = $model->getStudentJobApplications()->with("student")->all();
+    if($jobApplications){
     ?>
     <h2>Applicants</h2>
     <ul>
-        <?php foreach($applicants as $applicant){ ?>
+        <?php foreach($jobApplications as $application){ ?>
         <li>
-            <a href="<?= Url::to(['student/view', 'id' => $applicant->student_id]) ?>" target="_blank">
-                <?= $applicant->student_firstname." ".$applicant->student_lastname ?>
+            <a href="<?= Url::to(['student/view', 'id' => $application->student->student_id]) ?>" target="_blank">
+                <?= $application->student->student_firstname." ".$application->student->student_lastname ?>
             </a>
+            <ul>
+                <?php if($application->application_answer_1){ ?>
+                <li><b><?= $model->job_question_1 ?></b><br/><?= $application->application_answer_1 ?></li>
+                <?php } ?>
+                <?php if($application->application_answer_2){ ?>
+                <li><b><?= $model->job_question_2 ?></b><br/><?= $application->application_answer_2 ?></li>
+                <?php } ?>
+            </ul>
         </li>
         <?php } ?>
     </ul><br/><br/>
