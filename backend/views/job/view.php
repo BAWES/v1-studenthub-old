@@ -89,9 +89,15 @@ switch ($model->job_status){
     <ul>
         <?php foreach($jobApplications as $application){ ?>
         <li>
-            <a href="<?= Url::to(['student/view', 'id' => $application->student->student_id]) ?>" target="_blank">
+            <a href="<?= Url::to(['student/view', 'id' => $application->student->student_id]) ?>" 
+               style='font-size:1.5em'
+               target="_blank">
                 <?= $application->student->student_firstname." ".$application->student->student_lastname ?>
-            </a>
+            </a> <a href='<?= Url::to(['job/remove-application', 'id' => $application->application_id]) ?>'
+                       data-confirm="Are you sure you wish to remove application and qualification? This is permanent"
+                       style="color:red; font-size:0.7em;">
+                        Remove Application + Qualification + Refund spot + Re-open if closed
+                    </a>
             <ul>
                 <?php if($application->application_answer_1){ ?>
                 <li><b><?= $model->job_question_1 ?></b><br/><?= $application->application_answer_1 ?></li>

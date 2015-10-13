@@ -90,6 +90,44 @@ class JobController extends Controller
     }
     
     /**
+     * Removes a student application and qualification to a job
+     * Refunds the application spot that was taken by that application
+     * Re-opens the job if closed
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionRemoveApplication($id){
+        $jobApplication = \common\models\StudentJobApplication::find()->with('job')->where(['application_id'=>$id])->one();
+        
+        $job = $jobApplication->job;
+        $jobId = $jobApplication->job_id;
+        $studentId = $jobApplication->student_id;
+        
+        //Delete the application
+        $jobApplication->delete();
+        
+        //Delete the qualification
+        \common\models\StudentJobQualification::deleteAll([
+            'student_id' => $studentId,
+            'job_id' => $jobId,
+        ]);
+        
+        
+        //Update counter for number of applicants for that job -1
+        $job->updateCounters(['job_current_num_applicants' => -1]);
+        
+        
+        //Check if job closed, re-open
+        if($job->job_status == Job::STATUS_CLOSED){
+            $job->job_status = Job::STATUS_OPEN;
+            $job->save(false);
+        }
+        
+        
+        return $this->redirect(['view', 'id' => $jobId]);
+    }
+    
+    /**
      * Force closes an Open job
      * @param integer $id
      * @return mixed
