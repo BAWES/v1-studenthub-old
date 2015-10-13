@@ -36,10 +36,22 @@ switch ($model->job_status) {
 <div class="job-view">
 
     <h1>Job Reach</h1>
+    
+    <?php $qualifiedStudents = $model->getQualifiedStudents()->all() ?>
 
-    <p style="font-size:1.5em; margin-bottom:2em;">
-    <?= $this->title ?> will reach <?= $model->qualifiedStudentsCount ?> students
+    <p style="font-size:1.5em;" >
+    <?= $this->title ?> will reach <?= count($qualifiedStudents) ?> students
     </p>
+    
+    <ul style="margin-bottom:2em;">
+        <?php foreach($qualifiedStudents as $student){ ?>
+        <li>
+            <a href="<?= Url::to(['student/view', 'id' => $student->student_id]) ?>" target="_blank">
+                <?= $student->student_firstname . " " . $student->student_lastname ?>
+            </a>
+        </li>
+        <?php } ?>
+    </ul>
     
     <a href="<?= Url::to(['job/view', 'id' => $model->job_id]) ?>" class="btn btn-primary">Back to Job Details</a>
 
