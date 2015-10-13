@@ -430,7 +430,7 @@ $this->registerJs($js);
                 <div class="note note-primary note-top-striped" style="margin-top:35px;">
                     <h4><?= Yii::t('register', "Student ID Verification") ?></h4>
                     <p>
-                        <?= Yii::t('register', "Please upload a photo of your student ID card") ?><br/><br/>
+                        <?= Yii::t('register', "Please upload a photo of your student ID card or graduation certificate") ?><br/><br/>
                     </p>
                     <div class="fileinput fileinput-new" data-provides="fileinput">
                         <div class="fileinput-new thumbnail" data-trigger="fileinput" style="width: 250px; height: 200px;">

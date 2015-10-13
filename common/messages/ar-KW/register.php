@@ -84,7 +84,7 @@ return [
     'Please contact us if you transferred universities' => 'يرجى الاتصال بنا في حال تحويل الجامعة',
     'Please contact us if you wish to change your email' => 'يرجى الاتصال بنا إذا كنت ترغب في تغيير عنوان البريد الإلكتروني الخاص بك',
     'Please feel free to contact us if you need assistance.' => 'لا تتردد في الاتصال بنا اذا كنت بحاجة إلى المساعدة.',
-    'Please upload a photo of your student ID card' => 'يرجى تحميل صورة من بطاقة هوية الطالب الخاص بك',
+    'Please upload a photo of your student ID card or graduation certificate' => 'يرجى تحميل صورة من بطاقة هوية الطالب أو الشهادة الجامعية',
     'Position' => 'وظيفه',
     'Post your first Job opening' => 'تسجيل أول عرض عمل',
     'Register as an Employer' => 'تسجيل كصاحب عمل',
