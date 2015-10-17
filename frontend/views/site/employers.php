@@ -639,6 +639,17 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer58.jpg") ?>" style="width:100%" alt="Make">
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
 
