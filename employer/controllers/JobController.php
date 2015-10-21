@@ -20,7 +20,8 @@ use common\models\CybersourcePayment;
  */
 class JobController extends Controller {
     
-    //public $enableCsrfValidation = false;
+    //Disable CSRF Validation, as some employers are using old browsers
+    public $enableCsrfValidation = false;
 
     public function behaviors() {
         return [
