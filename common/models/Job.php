@@ -173,6 +173,9 @@ class Job extends \yii\db\ActiveRecord
         if($this->job_status != self::STATUS_CLOSED){
             $this->job_status = self::STATUS_CLOSED;
             $this->save(false);
+            
+            //Remove this job from Student Notifications when its closed
+            NotificationStudent::deleteAll(['job_id' => $this->job_id]);
         }
     }
     
