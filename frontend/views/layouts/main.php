@@ -90,7 +90,6 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
 
-        <meta name="description" content="StudentHub Recruitment Platform">
         <meta name="author" content="BAWES - Built Awesome">
 
         <!-- Apple Webapp -->

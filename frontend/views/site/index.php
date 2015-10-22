@@ -2,7 +2,12 @@
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-$this->title = 'StudentHub';
+$this->title = 'StudentHub - Jobs for Students and Fresh Graduates in Kuwait';
+$this->registerMetaTag([
+      'name' => 'description',
+      'content' => 'StudentHub is an online recruitment platform that helps students and fresh graduates find jobs in Kuwait. Jobs opportunities include full time, part time, internship, and volunteer work. Build your cv and with a single click, apply for a job.'
+]);
+
 
 $css = "
 .spanfix span{display: inline !important;}
