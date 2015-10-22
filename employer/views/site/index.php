@@ -59,7 +59,7 @@ $this->registerCss($css);
     background-repeat: no-repeat;
     background-position: <?= $this->params['isArabic']?"0 0":"100% 0" ?> ;">
         <div class="panel-body" style="text-align:center;">
-            <h2><?= Yii::t('frontend', 'Hire students today!') ?></h2>
+            <h1 style='font-size:38px;'><?= Yii::t('frontend', 'Hire students today!') ?></h1>
             <p class="lead"><?= Yii::t('frontend', 'Find the perfect candidate!') ?></p>                                                            
 
 
