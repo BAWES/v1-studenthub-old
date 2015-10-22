@@ -13,6 +13,10 @@ use yii\bootstrap\ActiveForm;
 /* @var $availablePaymentOptions array */
 
 $this->title = Yii::t('frontend', 'Browse Jobs');
+$this->registerMetaTag([
+      'name' => 'description',
+      'content' => 'A list of jobs you currently qualify for'
+]);
 $this->params['breadcrumbs'][] = Yii::t('frontend', 'Browse Jobs');
 
 $css = "

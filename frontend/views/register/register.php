@@ -6,6 +6,10 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('register', 'Registration');
 $this->params['breadcrumbs'][] = Yii::t('register', 'Registration');
+$this->registerMetaTag([
+      'name' => 'description',
+      'content' => 'Register as a student on StudentHub, the most effective platform for finding a job in Kuwait'
+]);
 
 
 $css = "

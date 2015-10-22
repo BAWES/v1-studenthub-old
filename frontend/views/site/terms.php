@@ -5,6 +5,11 @@ use yii\helpers\Url;
 $this->title = Yii::t("frontend", "Terms & Conditions");
 $this->params['breadcrumbs'][] = $this->title;
 
+$this->registerMetaTag([
+      'name' => 'description',
+      'content' => 'Our terms and conditions at StudentHub'
+]);
+
 $this->registerCss(" 
 .termsC ul li{list-style-type: upper-roman; margin-left:3em;}
 ");

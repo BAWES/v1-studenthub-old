@@ -4,6 +4,11 @@
 $this->title = Yii::t("frontend", "Privacy Policy");
 $this->params['breadcrumbs'][] = $this->title;
 
+$this->registerMetaTag([
+      'name' => 'description',
+      'content' => 'At StudentHub, we take privacy seriously, check out our privacy policy for more info.'
+]);
+
 ?>
 
 <div class="panel">

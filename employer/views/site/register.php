@@ -10,6 +10,10 @@ use common\models\Employer;
 /* @var $model \common\models\Employer */
 
 $this->title = Yii::t('register', 'Register as an Employer');
+$this->registerMetaTag([
+      'name' => 'description',
+      'content' => 'Register as an employer on StudentHub, the most effective recruitment platform for hiring students and fresh graduates in Kuwait'
+]);
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = "

@@ -2,6 +2,10 @@
 /* @var $this yii\web\View */
 $this->title = Yii::t('register', 'Registration');
 $this->params['breadcrumbs'][] = Yii::t('register', 'Registration');
+$this->registerMetaTag([
+      'name' => 'description',
+      'content' => 'Sign up as a Student or Fresh Graduate, select which university you are associated with.'
+]);
 
 use yii\helpers\Url;
 ?>

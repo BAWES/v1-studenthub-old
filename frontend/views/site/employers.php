@@ -4,6 +4,11 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 $this->title = Yii::t("frontend", "Employers on StudentHub");
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerMetaTag([
+      'name' => 'description',
+      'content' => 'The full list of employers who are recruiting using StudentHub'
+]);
+
 ?>
 <div class="panel">
     <h2 style="padding:0.8em; text-align:center;"><?= $this->title ?></h2>

@@ -1,6 +1,10 @@
 <?php
 /* @var $this yii\web\View */
 $this->title = Yii::t('register', 'Thank You!');
+$this->registerMetaTag([
+      'name' => 'description',
+      'content' => 'Thanks for signing up on StudentHub'
+]);
 $this->params['breadcrumbs'][] = Yii::t('register', 'Thank You!');
 
 ?>
