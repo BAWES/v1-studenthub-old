@@ -198,7 +198,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
                     <div class="col-sm-6">
                         <?php /*<h1><?= Html::encode($this->title) ?></h1>*/ ?>
                         <a href="<?= Url::to(['site/index']) ?>">
-                            <?= Html::img("@web/images/studenthub-white.png", ['style' => 'max-width:190px; padding-top:5px;']) ?>
+                            <?= Html::img("@web/images/studenthub-white.png", ['style' => 'max-width:190px; padding-top:5px;', 'alt' => 'StudentHub Logo']) ?>
                         </a>
                     </div><!--.col-->
                     <div class="col-sm-6">
