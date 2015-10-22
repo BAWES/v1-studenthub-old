@@ -91,6 +91,7 @@ $this->registerCss(".logo{font-family: 'RobotoDraft', sans-serif !important;}");
         <title><?= Html::encode($this->title) ?></title>
 
         <meta name="author" content="BAWES - Built Awesome">
+        <link href="https://plus.google.com/+Studenthubx" rel="publisher" />
 
         <!-- Apple Webapp -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
