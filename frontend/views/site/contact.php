@@ -8,6 +8,10 @@ use yii\captcha\Captcha;
 /* @var $model \frontend\models\ContactForm */
 
 $this->title = Yii::t("frontend", "Contact");
+$this->registerMetaTag([
+      'name' => 'description',
+      'content' => 'If you have business inquiries or other questions, please contact us.'
+]);
 $this->params['breadcrumbs'][] = $this->title;
 
 $fieldTemplate = "{label}\n{beginWrapper}\n"
