@@ -17,7 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Blog' => 'مدونة',
+    'This job does not pay but may provide some other form of compensation.' => 'قد يتوفر التعويض بشكل آخر.',
+    'Unpaid Job' => 'وظيفة غير مدفوعة الأجر',
     'Discounts & Promotions' => '@@خصومات وعروض للطلاب@@',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
@@ -29,6 +30,7 @@ return [
     'Apply' => 'قدم',
     'Apply to jobs with a single click' => 'التقديم للوظائف بسهولة',
     'Back to Home' => 'العودة إلى الصفحة الرئيسية',
+    'Blog' => 'مدونة',
     'Browse Jobs' => 'تصفح فرص العمل',
     'Browse from available jobs that you qualify for' => 'تصفح من فرص العمل المتاحة التي مؤهلا لها',
     'Check out our video!' => 'شاهد فيديو يشرح موقعنا',

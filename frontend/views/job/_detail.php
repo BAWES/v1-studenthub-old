@@ -92,6 +92,8 @@ use yii\helpers\Url;
     
     <?php if($model->job_pay){ ?>
     <div class="alert alert-danger"><span class="ion-android-favorite"></span> <strong><?= Yii::t('frontend', 'Woohoo!') ?></strong> <?= Yii::t('frontend',"This job pays!") ?></div>
+    <?php }else{ ?>
+    <div class="alert alert-warning"><span class="ion-alert-circled"></span> <strong><?= Yii::t('frontend', 'Unpaid Job') ?></strong> <?= Yii::t('frontend',"This job does not pay but may provide some other form of compensation.") ?></div>
     <?php } ?>
 </div>
 <div class="modal-footer">
