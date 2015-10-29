@@ -20,6 +20,9 @@ use yii\web\UploadedFile;
  */
 class SiteController extends Controller {
 
+    //Disable CSRF Validation, as some employers are using old browsers
+    public $enableCsrfValidation = false;
+    
     /**
      * @inheritdoc
      */
