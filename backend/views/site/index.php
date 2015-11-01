@@ -71,6 +71,7 @@ $this->title = 'Dashboard';
      */
     $todayKNET = Payment::total(PaymentType::TYPE_KNET, 1);
     $todayCC = Payment::total(PaymentType::TYPE_CREDITCARD, 1);
+    $todayCash = Payment::total(PaymentType::TYPE_CASH, 1);
     $todayCreditPurchase = Payment::total(PaymentType::TYPE_CREDIT, 1);
     $todayGift = Payment::total(PaymentType::TYPE_CREDIT_GIVEAWAY, 1);
     $todayRefund = Payment::total(PaymentType::TYPE_CREDIT_REFUND, 1);
@@ -81,6 +82,7 @@ $this->title = 'Dashboard';
      */
     $monthKNET = Payment::total(PaymentType::TYPE_KNET, 31);
     $monthCC = Payment::total(PaymentType::TYPE_CREDITCARD, 31);
+    $monthCash = Payment::total(PaymentType::TYPE_CASH, 31);
     $monthCreditPurchase = Payment::total(PaymentType::TYPE_CREDIT, 31);
     $monthGift = Payment::total(PaymentType::TYPE_CREDIT_GIVEAWAY, 31);
     $monthRefund = Payment::total(PaymentType::TYPE_CREDIT_REFUND, 31);
@@ -90,6 +92,7 @@ $this->title = 'Dashboard';
      */
     $lifetimeKNET = Payment::total(PaymentType::TYPE_KNET);
     $lifetimeCC = Payment::total(PaymentType::TYPE_CREDITCARD);
+    $lifetimeCash = Payment::total(PaymentType::TYPE_CASH);
     $lifetimeCreditPurchase = Payment::total(PaymentType::TYPE_CREDIT);
     $lifetimeGift = Payment::total(PaymentType::TYPE_CREDIT_GIVEAWAY);
     $lifetimeRefund = Payment::total(PaymentType::TYPE_CREDIT_REFUND);
@@ -107,6 +110,10 @@ $this->title = 'Dashboard';
                     <td>CyberSource</td>
                     <td><?= Yii::$app->formatter->asCurrency($todayCC?$todayCC:0) ?></td>
                 </tr>
+                <tr>
+                    <td>Cash</td>
+                    <td><?= Yii::$app->formatter->asCurrency($todayCash?$todayCash:0) ?></td>
+                </tr>
             </table>
         </div>
 
@@ -121,6 +128,10 @@ $this->title = 'Dashboard';
                     <td>CyberSource</td>
                     <td><?= Yii::$app->formatter->asCurrency($monthCC?$monthCC:0) ?></td>
                 </tr>
+                <tr>
+                    <td>Cash</td>
+                    <td><?= Yii::$app->formatter->asCurrency($monthCash?$monthCash:0) ?></td>
+                </tr>
             </table>
         </div>        
 
@@ -134,6 +145,10 @@ $this->title = 'Dashboard';
                 <tr>
                     <td>CyberSource</td>
                     <td><?= Yii::$app->formatter->asCurrency($lifetimeCC?$lifetimeCC:0) ?></td>
+                </tr>
+                <tr>
+                    <td>Cash</td>
+                    <td><?= Yii::$app->formatter->asCurrency($lifetimeCash?$lifetimeCash:0) ?></td>
                 </tr>
             </table>
         </div>

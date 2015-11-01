@@ -111,6 +111,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'btn btn-primary btn-warning btn-block',
                 ]) ?>
         </div>
+        <div class="col-md-4">
+            <?= Html::a("Add Cash Payment", ['cash-payment', 'id' => $model->employer_id], [
+                'class' => 'btn btn-primary btn-block',
+                ]) ?>
+        </div>
     </div>
 
 </div>

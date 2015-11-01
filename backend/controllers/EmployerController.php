@@ -84,6 +84,33 @@ class EmployerController extends Controller
             'payment' => $payment,
         ]);
     }
+    
+    /**
+     * Give Refund in credit to Employer
+     * @param int $id Employer ID
+     * @return mixed
+     */
+    public function actionCashPayment($id){
+        $employer = $this->findModel($id);
+        $payment = new Payment();
+        $payment->scenario = "giveaway"; //To validate that change can be no less than 1
+        
+        if (isset($_POST["Payment"]["payment_employer_credit_change"]) && isset($_POST["Payment"]["payment_note"])) {
+            $paymentAmount = $_POST["Payment"]["payment_employer_credit_change"];
+            $reason = $_POST["Payment"]["payment_note"];
+            
+            $employer->giveCashPayment($paymentAmount, $reason);
+            
+            Yii::$app->getSession()->setFlash('success', "<h2 style='margin:0;'>You added a cash payment of $paymentAmount KD</h2>");
+
+            return $this->redirect(['view', 'id' => $employer->employer_id]);
+        }
+        
+        return $this->render('cashpay', [
+            'employer' => $employer,
+            'payment' => $payment,
+        ]);
+    }
 
     /**
      * Lists all Employer models.

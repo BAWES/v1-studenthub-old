@@ -25,6 +25,8 @@ class PaymentType extends \yii\db\ActiveRecord
     const TYPE_KNET = 4;
     //Row ID for the Credit payment type
     const TYPE_CREDITCARD = 5;
+    //Row ID for the Cash payment type
+    const TYPE_CASH = 6;
     
     /**
      * @inheritdoc

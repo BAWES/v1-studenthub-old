@@ -49,6 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 case PaymentType::TYPE_CREDIT_REFUND:
                                     $paymentDisplay = $payment->payment_employer_credit_change;
                                     break;
+                                case PaymentType::TYPE_CASH:
+                                    $paymentDisplay = $payment->payment_employer_credit_change;
+                                    break;
                                 case PaymentType::TYPE_CREDIT:
                                     $paymentDisplay = $payment->payment_employer_credit_change * -1;
                                     break;

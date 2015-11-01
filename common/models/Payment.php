@@ -273,6 +273,8 @@ class Payment extends \yii\db\ActiveRecord {
                 return $totalQuery->sum("payment_employer_credit_change");
             case PaymentType::TYPE_CREDIT_REFUND:
                 return $totalQuery->sum("payment_employer_credit_change");
+            case PaymentType::TYPE_CASH:
+                return $totalQuery->sum("payment_employer_credit_change");
             
         }
         

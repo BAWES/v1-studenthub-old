@@ -10,6 +10,35 @@ use Yii;
  * 
  */
 class Employer extends \common\models\Employer {
+    
+    /**
+     * Allows Admin to give employer credit in return for cash payment
+     * @param real $amount the amount of credit for cash
+     * @param string $reason the reason or info about the payment
+     * @return \common\models\Payment
+     */
+    public function giveCashPayment($amount, $reason) {
+        $adminName = Yii::$app->user->identity->admin_name;
+        
+        $payment = new \common\models\Payment();
+        $payment->scenario = "giveaway"; //To validate that change can be no less than 1
+        $payment->employer_id = $this->employer_id;
+        $payment->payment_type_id = \common\models\PaymentType::TYPE_CASH;
+        $payment->payment_note = "Payment processed by $adminName - Note: $reason";
+        $payment->payment_employer_credit_change = $amount;
+        
+        //Validate before saving to make sure the credit-change is not zero or negative
+        if($payment->save()){
+            $message = "[Cash Payment] ".Yii::$app->formatter->asCurrency($payment->payment_employer_credit_change)." from Employer #".$payment->employer_id;
+            $message .= " to $adminName";
+            $message .= " - their new credit amount is ".Yii::$app->formatter->asCurrency($payment->payment_employer_credit_after);
+            Yii::warning($message, __METHOD__);
+        }else{
+            Yii::error(print_r($payment->errors, true), __METHOD__);
+        }        
+        
+        return $payment;
+    }
 
     /**
      * Allows Admin to give employer a refund

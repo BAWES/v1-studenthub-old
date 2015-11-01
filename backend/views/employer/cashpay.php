@@ -7,10 +7,10 @@ use yii\widgets\ActiveForm;
 /* @var $employer common\models\Employer */
 /* @var $payment common\models\Payment */
 
-$this->title = "Refund";
+$this->title = "Cash Payment";
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Employers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $employer->employer_company_name, 'url' => ['view', 'id' => $employer->employer_id]];
-$this->params['breadcrumbs'][] = "Refund";
+$this->params['breadcrumbs'][] = "Cash Payment";
 ?>
 <div class="employer-gift">
 
@@ -20,10 +20,10 @@ $this->params['breadcrumbs'][] = "Refund";
     <?php $form = ActiveForm::begin(); ?>
     
     <?= $form->field($payment, 'payment_employer_credit_change')->input('number', ['step' => 'any', 'placeholder' => 'Amount in KD']) ?>
-    <?= $form->field($payment, 'payment_note')->textarea(['placeholder' => 'Reason for refund']) ?>
+    <?= $form->field($payment, 'payment_note')->textarea(['placeholder' => 'Note']) ?>
         
     <div class="form-group">
-        <?= Html::submitButton("Process Refund", ['class' => 'btn btn-primary', 'data-confirm' => 'Are you sure you wish to refund?']) ?>
+        <?= Html::submitButton("Process Cash Payment", ['class' => 'btn btn-primary', 'data-confirm' => 'Are you sure you wish to add this cash payment?']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
