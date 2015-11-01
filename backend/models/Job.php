@@ -97,6 +97,8 @@ class Job extends \common\models\Job {
          */
         StudentJobQualification::deleteAll(['job_id' => $this->job_id]);
         NotificationStudent::deleteAll(['job_id' => $this->job_id]);
+        
+        $studentsBroadcasted = [];
 
         /**
          * Find and filter students who qualify, for each student that qualifies - create notification and qualification record
@@ -107,6 +109,11 @@ class Job extends \common\models\Job {
             $notifyStudents = [];
             
             foreach($students as $student){
+                //Skip if student already passed-through this loop
+                if(isset($studentsBroadcasted[$student->student_id])){
+                    continue;
+                }
+                
                 /**
                  * Set Job Qualification for this student and append its attributes to the array for batch insert
                  */
@@ -122,6 +129,9 @@ class Job extends \common\models\Job {
                  */
                 $studentCount++;
                 $batchCount++;
+                
+                //Mark student as passed-through
+                $studentsBroadcasted[$student->student_id] = "Sent";
             }
             
             /**
