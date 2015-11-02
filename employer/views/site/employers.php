@@ -43,7 +43,7 @@ $this->registerMetaTag([
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
-                    <img src="<?= Url::to("@web/images/employer-list/employer30.jpg") ?>" style="width:100%" alt="Zain FUN">
+                    <img src="<?= Url::to("@web/images/employer-list/employer65.jpg") ?>" style="width:100%" alt="Ooredoo Kuwait">
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@ $this->registerMetaTag([
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
-                    <img src="<?= Url::to("@web/images/employer-list/employer2.jpg") ?>" style="width:100%" alt="Koot">
+                    <img src="<?= Url::to("@web/images/employer-list/employer30.jpg") ?>" style="width:100%" alt="Zain FUN">
                 </div>
             </div>
         </div>
@@ -154,6 +154,28 @@ $this->registerMetaTag([
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer64.jpg") ?>" style="width:100%" alt="Thunaeya International Group">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer66.jpg") ?>" style="width:100%" alt="Khaleejesque Media Est.">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer67.jpg") ?>" style="width:100%" alt="Arzaq Capital Holding Company">
                 </div>
             </div>
         </div>
@@ -351,17 +373,6 @@ $this->registerMetaTag([
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
-                    <img src="<?= Url::to("@web/images/employer-list/employer14.jpg") ?>" style="width:100%" alt="965Cafe">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Logo -->
-    <div class="col-md-2 col-sm-3 col-xs-6">
-        <div class="panel">
-            <div class="panel-heading">
-                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer15.jpg") ?>" style="width:100%" alt="Kuwait Events">
                 </div>
             </div>
@@ -506,6 +517,17 @@ $this->registerMetaTag([
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer40.jpg") ?>" style="width:100%" alt="Channels Media">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer2.jpg") ?>" style="width:100%" alt="Koot">
                 </div>
             </div>
         </div>
@@ -715,6 +737,17 @@ $this->registerMetaTag([
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer62.jpg") ?>" style="width:100%" alt="Shighileedi">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer14.jpg") ?>" style="width:100%" alt="965Cafe">
                 </div>
             </div>
         </div>
