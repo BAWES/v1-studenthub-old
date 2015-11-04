@@ -152,7 +152,7 @@ $this->registerCss($css);
                 <div class="item"><img src="<?= Url::to("@web/images/employers/scientific.jpg") ?>" alt="Scientific Center"></div>
                 <div class="item"><img src="<?= Url::to("@web/images/employers/elevation.jpg") ?>" alt="Elevation Burger"></div>
                 <div class="item"><img src="<?= Url::to("@web/images/employers/ooredoo.jpg") ?>" alt="Ooredoo"></div>
-                <div class="item"><img src="<?= Url::to("@web/images/employers/hyundai.jpg") ?>" alt="Hyundai"></div>
+                <div class="item"><img src="<?= Url::to("@web/images/employers/gulfbank.jpg") ?>" alt="Gulf Bank"></div>
             </div>
             
             <div class="row" style="text-align:center">
