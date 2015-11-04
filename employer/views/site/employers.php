@@ -21,7 +21,7 @@ $this->registerMetaTag([
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
-                    <img src="<?= Url::to("@web/images/employer-list/employer1.jpg") ?>" style="width:100%" alt="Ghaliah">
+                    <img src="<?= Url::to("@web/images/employer-list/employer70.jpg") ?>" style="width:100%" alt="Gulf Bank">
                 </div>
             </div>
         </div>
@@ -77,6 +77,17 @@ $this->registerMetaTag([
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer69.jpg") ?>" style="width:100%" alt="Warba Bank">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer1.jpg") ?>" style="width:100%" alt="Ghaliah">
                 </div>
             </div>
         </div>
@@ -319,6 +330,17 @@ $this->registerMetaTag([
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer39.jpg") ?>" style="width:100%" alt="Reach Education">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer71.jpg") ?>" style="width:100%" alt="Protein Box">
                 </div>
             </div>
         </div>
