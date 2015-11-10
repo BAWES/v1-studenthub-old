@@ -32,17 +32,6 @@ $this->registerMetaTag([
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
-                    <img src="<?= Url::to("@web/images/employer-list/employer29.jpg") ?>" style="width:100%" alt="Richter Creative Office">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Logo -->
-    <div class="col-md-2 col-sm-3 col-xs-6">
-        <div class="panel">
-            <div class="panel-heading">
-                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer65.jpg") ?>" style="width:100%" alt="Ooredoo Kuwait">
                 </div>
             </div>
@@ -87,7 +76,29 @@ $this->registerMetaTag([
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer74.jpg") ?>" style="width:100%" alt="NBK Capital">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer72.jpg") ?>" style="width:100%" alt="AlQurain Automotive Trading Company">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer29.jpg") ?>" style="width:100%" alt="Richter Creative Office">
                 </div>
             </div>
         </div>
