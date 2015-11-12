@@ -825,6 +825,17 @@ $this->registerMetaTag([
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer75.jpg") ?>" style="width:100%" alt="Juice in a Glass">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer14.jpg") ?>" style="width:100%" alt="965Cafe">
                 </div>
             </div>
