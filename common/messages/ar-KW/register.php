@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'I am currently pursuing a ' => 'اسعى على الحصول على شهادة',
+    'I am currently pursuing a ' => 'حالياً اعمل على الحصول على شهادة ',
     'A fun fact about me is' => 'حقيقة ممتعة عني',
     'Available' => 'متوفر',
     'Average # of Employees' => 'عدد الموظفين',
@@ -70,7 +70,7 @@ return [
     'My favorite work experience was at' => 'كانت تجربتي العمل المفضلة في',
     'My name is' => 'أنا إسمي',
     'My phone number is' => 'رقم هاتفي هو',
-    'My university email is' => 'بريدي الإلكتروني للجامعة',
+    'My email is' => 'بريدي الإلكتروني',
     'Nationality' => 'جنسية',
     'Next Step' => 'الخطوة التالية',
     'Off' => 'لا ترسل لي رسائل',

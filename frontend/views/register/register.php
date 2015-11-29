@@ -387,14 +387,14 @@ $this->registerJs($js);
                 $requiresVerification = true;
             }
 
-            $emailLabel = $requiresVerification ? "email@mydomain.com" : "email@" . $university->university_domain;
+            $emailLabel = $requiresVerification ? "email@gmail.com" : "email@" . $university->university_domain;
             ?>
 
             <input type="hidden" id="currentStep" name="step" value="1"/>
             <input type="hidden" id="univId" name="university_id" value="<?= $university->university_id ?>"/>
 
             <div class="questionRow">
-                <p style="width:180px;"><?= Yii::t('register', 'My university email is') ?></p>
+                <p style="width:180px;"><?= Yii::t('register', 'My email is') ?></p>
 
                 <div class="inputer floating-label">
                     <div class="input-wrapper">
