@@ -21,7 +21,21 @@ return [
                     'levels' => ['info', 'error', 'warning'],
                     'categories' => ['backend\*', 'employer\*', 'frontend\*', 'common\*'],
                 ],
+                [
+                    'class' => 'common\components\SlackLogger',
+                    'logVars' => [],
+                    'levels' => ['info', 'error', 'warning'],
+                    'categories' => ['backend\*', 'employer\*', 'frontend\*', 'common\*'],
+                ],
             ],
+        ],
+        'slack' => [
+            'class' => 'understeam\slack\Client',
+            'url' => 'https://hooks.slack.com/services/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',
+            'username' => 'studenthub',
+        ],
+        'httpclient' => [
+            'class' =>'understeam\httpclient\Client',
         ],
         'reCaptcha' => [
             'name' => 'reCaptcha',
