@@ -136,7 +136,7 @@ class SiteController extends Controller
     //Test function - for testing random things
     public function actionTest()
     {
-        //random code here
+        //Random test stuff
     }
 
     public function actionLogout()
