@@ -87,7 +87,7 @@ class VerifyIdForm extends Model
         $student->student_id_verification = Student::ID_VERIFIED;
         $student->save();
         
-        Yii::info("[Student #".$student->student_id."] had his identity verified by ".Yii::$app->user->identity->admin_name, __METHOD__);
+        Yii::info("[".$student->student_firstname." ".$student->student_lastname."'s identity has been verified] by ".Yii::$app->user->identity->admin_name, __METHOD__);
         
         /**
          * Email to Employer notifying that his job has been forcefully closed
