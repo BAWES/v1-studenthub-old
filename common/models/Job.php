@@ -186,9 +186,18 @@ class Job extends \yii\db\ActiveRecord
     public function checkMaxApplicantsReached(){
         if(!Yii::$app->params['isDemo']){
             /**
-             * Send a congrats email to Employer if this is his first application for this job
+             * First applicant for the job
              */
             if($this->job_current_num_applicants == 1){
+                /**
+                * Notify Admin
+                */
+                Yii::info("[First Applicant - ".$this->job_title."] ".$this->employer->employer_company_name." has received their first applicant for this job", __METHOD__);
+                
+                
+                /**
+                * Send a congrats email to Employer if this is his first application for this job
+                */
                 if($this->employer->employer_language_pref == "en-US"){
                     //Set language based on preference stored in DB
                     Yii::$app->view->params['isArabic'] = false;
@@ -227,7 +236,11 @@ class Job extends \yii\db\ActiveRecord
              * Close the job once it reaches max number of applicants
              */
             if(($this->job_current_num_applicants >= $this->job_max_applicants) && ($this->job_status != self::STATUS_CLOSED)){
-
+                /**
+                * Notify Admin
+                */
+                Yii::info("[Job Filled Out - ".$this->job_title."] ".$this->employer->employer_company_name." has received all ".$this->job_max_applicants." applicants.", __METHOD__);
+               
                 /**
                  * Send Email about reaching max applicants and job going to be closed
                  */
