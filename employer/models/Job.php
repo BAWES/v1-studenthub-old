@@ -36,6 +36,10 @@ class Job extends \common\models\Job {
                 //When an Active job is updated by employer, status must go back to pending
                 if(($this->job_status != self::STATUS_DRAFT) && ($this->job_status != self::STATUS_CLOSED)){
                     $this->job_status = self::STATUS_PENDING;
+                    
+                    //Notify us that its pending
+                    
+                    Yii::info("[Job Pending Review - ".$this->job_title."] Employer has updated an active job, review the job details", __METHOD__);
                 }
             }
             return true;
