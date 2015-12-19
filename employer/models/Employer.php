@@ -121,6 +121,9 @@ class Employer extends \common\models\Employer {
                 ->setSubject('[StudentHub] New Employer - '.$this->employer_company_name)
                 ->send();
             
+            //Log employer signup
+            Yii::info("[New Employer Signup - ".$this->employer_company_name."] ".$this->employer_company_desc, __METHOD__);
+            
             return $this;
         }
 
