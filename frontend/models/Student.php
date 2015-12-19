@@ -267,6 +267,15 @@ class Student extends \common\models\Student {
             $this->sendVerificationEmail();
             
             /**
+             * Log Message about new Student Signup
+             */
+            $appendMessage = "";
+            if($this->student_id_verification == self::ID_NOT_VERIFIED){
+                $appendMessage = " and will require that his identity be verified";
+            }
+            Yii::info("[New Student Signup] ".$this->student_firstname." ".$this->student_lastname." has just joined StudentHub$appendMessage.", __METHOD__);
+            
+            /**
              * Send email here to Admins notifying that a new student has signed up
              */
             Yii::$app->mailer->compose([
