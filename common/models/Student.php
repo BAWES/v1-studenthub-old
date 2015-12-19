@@ -299,7 +299,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 //Set Email limit
                 $this->student_limit_email = new Expression('NOW()');
                 //Notify us of new student registration
-                Yii::info("New student signup - ".$this->student_firstname." ".$this->student_lastname, __METHOD__);
+                Yii::info("[New Student Signup] ".$this->student_firstname." ".$this->student_lastname." has just joined StudentHub.", __METHOD__);
             }
 
             return true;
@@ -599,7 +599,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             }
         }
         
-        Yii::info("[Student #".$this->student_id."] ".$this->student_firstname." linked to $numJobsQualified active jobs which they qualify for", __METHOD__);
+        Yii::info("[Student linked to Active Jobs] ".$this->student_firstname." ".$this->student_lastname." has been linked to $numJobsQualified active jobs which they qualify for", __METHOD__);
     }
     
 
