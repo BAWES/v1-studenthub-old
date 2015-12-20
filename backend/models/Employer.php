@@ -86,7 +86,7 @@ class Employer extends \common\models\Employer {
         
         //Validate before saving to make sure the credit-change is not zero or negative
         if($payment->save()){
-            $message = "[Gift] ".Yii::$app->formatter->asCurrency($payment->payment_employer_credit_change)." to Employer #".$payment->employer_id;
+            $message = "[Gift sent to ".$payment->employer->employer_company_name."] ".Yii::$app->formatter->asCurrency($payment->payment_employer_credit_change);
             $message .= " from $adminName";
             $message .= " - their new credit amount is ".Yii::$app->formatter->asCurrency($payment->payment_employer_credit_after);
             Yii::warning($message, __METHOD__);
