@@ -37,12 +37,12 @@ class Job extends \common\models\Job {
                     print_r($queue->errors);
                     exit();
                 }else{
-                    Yii::info("[Job #".$this->job_id."] has been added to broadcasting queue", __METHOD__);
+                    Yii::info("[Job #".$this->job_id." - ".$this->job_title."] has been added to broadcasting queue", __METHOD__);
                 }
             }
             
             $this->save(false);
-            Yii::info("[Job #".$this->job_id."] has been approved by ".Yii::$app->user->identity->admin_name, __METHOD__);
+            Yii::info("[Job #".$this->job_id." - ".$this->job_title."] has been approved by ".Yii::$app->user->identity->admin_name, __METHOD__);
             
             /**
              * Email to Employer that his job has been approved
