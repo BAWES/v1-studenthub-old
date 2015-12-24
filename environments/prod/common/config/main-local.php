@@ -4,6 +4,16 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'log' => [
+            'targets' => [
+                [
+                    'class' => 'common\components\SlackLogger',
+                    'logVars' => [],
+                    'levels' => ['info', 'error', 'warning'],
+                    'categories' => ['backend\*', 'employer\*', 'frontend\*', 'common\*'],
+                ],
+            ],
+        ],
         'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=studenthub',

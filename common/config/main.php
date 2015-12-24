@@ -21,12 +21,6 @@ return [
                     'levels' => ['info', 'error', 'warning'],
                     'categories' => ['backend\*', 'employer\*', 'frontend\*', 'common\*'],
                 ],
-                [
-                    'class' => 'common\components\SlackLogger',
-                    'logVars' => [],
-                    'levels' => ['info', 'error', 'warning'],
-                    'categories' => ['backend\*', 'employer\*', 'frontend\*', 'common\*'],
-                ],
             ],
         ],
         'slack' => [

@@ -8,6 +8,16 @@ return [
             'password' => 'studentpass',
             'charset' => 'utf8',
         ],
+        'log' => [
+            'targets' => [
+                [
+                    'class' => 'common\components\SlackLogger',
+                    'logVars' => [],
+                    'levels' => ['info', 'error', 'warning'],
+                    'categories' => ['backend\*', 'employer\*', 'frontend\*', 'common\*'],
+                ],
+            ],
+        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
