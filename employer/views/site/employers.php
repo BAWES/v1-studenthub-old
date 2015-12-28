@@ -648,6 +648,28 @@ $this->registerMetaTag([
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer85.jpg") ?>" style="width:100%" alt="Onest">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer86.jpg") ?>" style="width:100%" alt="dars">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer31.jpg") ?>" style="width:100%" alt="PiXIL International Company">
                 </div>
             </div>
