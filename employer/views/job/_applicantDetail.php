@@ -152,6 +152,13 @@ $job = $model->job;
     </p>
     <?php } ?>
     
+    
+    <!-- Age -->
+    <h4><?= Yii::t('app', 'Date of Birth') ?></h4>
+    <p>
+        <?= Yii::$app->formatter->asDate($student->student_dob) ?>
+    </p>
+    
     <pre> <?= Yii::t("employer", "Applied on {dateApplied}", ['dateApplied' => Yii::$app->formatter->asDatetime($model->application_date_apply, 'short')]) ?></pre>                                                                                                                                                                                                               
 </div>
 <div class="modal-footer">
