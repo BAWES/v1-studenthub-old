@@ -17,8 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'This job does not pay but may provide some other form of compensation.' => 'قد يتوفر التعويض بشكل آخر.',
-    'Unpaid Job' => 'وظيفة غير مدفوعة الأجر',
     'Discounts & Promotions' => '@@خصومات وعروض للطلاب@@',
     'AND MORE' => 'و اكثر',
     'Account Information' => 'معلومات الحساب',
@@ -135,6 +133,7 @@ return [
     'This email address is already registered.' => 'هذا البريد الإلكتروني لديه حساب',
     'This email belongs to {universityName}' => 'هذا البريد الإلكتروني ينتمي إلى {universityName}',
     'This industry does not exist.' => 'لا وجود لهذا القطاع.',
+    'This job does not pay but may provide some other form of compensation.' => 'قد يتوفر التعويض بشكل آخر.',
     'This job is no longer available, please refresh to load updated list' => 'هذه المهمة لم تعد متوفرة، يرجى إعادة تحميل الصفحة لتحميل قائمة محدثة',
     'This job pays!' => 'هذا يدفع!',
     'This job type does not exist.' => 'عدم وجود هذا النوع وظيفة',
@@ -150,6 +149,7 @@ return [
     'UNIVERSITY' => 'جامعة',
     'University' => 'الجامعة',
     'University does not exist' => 'الجامعة لا وجود لها',
+    'Unpaid Job' => 'وظيفة غير مدفوعة الأجر',
     'Unpaid Jobs' => 'وظائف دون أجر',
     'Update your notification preferences' => 'تحديث إعدادات الإشعار',
     'Verify' => 'تحقق',

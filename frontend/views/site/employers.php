@@ -25,8 +25,8 @@ $this->registerCss("
             <div class='col-md-4'>
                 <ol>
                     <li><a href="#banking"><?= Yii::t('employer', 'Banking and Investments') ?></a></li>
-                    <li><a href="#telecom"><?= Yii::t('employer', 'Telecom') ?></a></li>
-                    <li><a href="#logistics"><?= Yii::t('employer', 'Logistics / Transport') ?></a></li>
+                    <li><a href="#telecom"><?= Yii::t('employer', 'Telecommunications') ?></a></li>
+                    <li><a href="#logistics"><?= Yii::t('employer', 'Logistics & Transport') ?></a></li>
                     <li><a href="#general"><?= Yii::t('employer', 'General Trading, Contracting, Retail, and Wholesale') ?></a></li>
                     <li><a href="#automotive"><?= Yii::t('employer', 'Automotive') ?></a></li>
                     
@@ -37,10 +37,10 @@ $this->registerCss("
                 <ol>
                     <li><a href="#marketing"><?= Yii::t('employer', 'Marketing, Media, and Advertising') ?></a></li>
                     <li><a href="#branding"><?= Yii::t('employer', 'Design, Branding, and Copywriting') ?></a></li>
-                    <li><a href="#medical"><?= Yii::t('employer', 'Medical') ?></a></li>
+                    <li><a href="#medical"><?= Yii::t('employer', 'Medical and Health Care') ?></a></li>
                     <li><a href="#archi"><?= Yii::t('employer', 'Architecture') ?></a></li>
                     <li><a href="#manufacture"><?= Yii::t('employer', 'Manufacturing') ?></a></li>
-                    <li><a href="#tech"><?= Yii::t('employer', 'Technology and Tech Startups') ?></a></li>
+                    <li><a href="#tech"><?= Yii::t('employer', 'Technology and Startups') ?></a></li>
                     
                     
                 </ol>
@@ -108,7 +108,7 @@ $this->registerCss("
 <div class="row">
     <!-- Category -->
     <div class="panel" id='telecom'>
-        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Telecom') ?></h3>
+        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Telecommunications') ?></h3>
     </div>
     
     <!-- Logo -->
@@ -138,7 +138,7 @@ $this->registerCss("
 <div class="row">
     <!-- Category -->
     <div class="panel" id='logistics'>
-        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Logistics / Transport') ?></h3>
+        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Logistics & Transport') ?></h3>
     </div>
     
     <!-- Logo -->
@@ -387,7 +387,7 @@ $this->registerCss("
 <div class="row">
     <!-- Category -->
     <div class="panel">
-        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Medical') ?></h3>
+        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Medical and Health Care') ?></h3>
     </div>
     
     <!-- Logo -->
@@ -444,7 +444,7 @@ $this->registerCss("
 <div class="row">
     <!-- Category -->
     <div class="panel" id='tech'>
-        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Technology and Tech Startups') ?></h3>
+        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Technology and Startups') ?></h3>
     </div>
     
     <!-- Logo -->
