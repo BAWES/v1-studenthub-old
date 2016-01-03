@@ -21,25 +21,42 @@ $this->registerCss("
     
     <div class="panel-body">
         <?= Yii::t('employer', 'Browse by Industry') ?>
-        <ol>
-            <li><a href="#banking"><?= Yii::t('employer', 'Banking and Investments') ?></a></li>
-            <li><a href="#telecom"><?= Yii::t('employer', 'Telecom') ?></a></li>
-            <li><a href="#logistics"><?= Yii::t('employer', 'Logistics / Transport') ?></a></li>
-            <li><a href="#general"><?= Yii::t('employer', 'General Trading, Contracting, Retail, and Wholesale') ?></a></li>
-            <li><a href="#automotive"><?= Yii::t('employer', 'Automotive') ?></a></li>
-            <li><a href="#marketing"><?= Yii::t('employer', 'Marketing, Media, and Advertising') ?></a></li>
-            <li><a href="#branding"><?= Yii::t('employer', 'Design, Branding, and Copywriting') ?></a></li>
-            <li><a href="#medical"><?= Yii::t('employer', 'Medical') ?></a></li>
-            <li><a href="#archi"><?= Yii::t('employer', 'Architecture') ?></a></li>
-            <li><a href="#manufacture"><?= Yii::t('employer', 'Manufacturing') ?></a></li>
-            <li><a href="#tech"><?= Yii::t('employer', 'Technology and Tech Startups') ?></a></li>
-            <li><a href="#foodbev"><?= Yii::t('employer', 'Food & Beverage') ?></a></li>
-            <li><a href="#buservices"><?= Yii::t('employer', 'Business Services') ?></a></li>
-            <li><a href="#fashion"><?= Yii::t('employer', 'Fashion & Cosmetics') ?></a></li>
-            <li><a href="#nonprof"><?= Yii::t('employer', 'Non-Profit') ?></a></li>
-            <li><a href="#sports"><?= Yii::t('employer', 'Sports') ?></a></li>
-            <li><a href="#edu"><?= Yii::t('employer', 'Education and Training') ?></a></li>
-        </ol>
+        <div class='row'>
+            <div class='col-md-4'>
+                <ol>
+                    <li><a href="#banking"><?= Yii::t('employer', 'Banking and Investments') ?></a></li>
+                    <li><a href="#telecom"><?= Yii::t('employer', 'Telecom') ?></a></li>
+                    <li><a href="#logistics"><?= Yii::t('employer', 'Logistics / Transport') ?></a></li>
+                    <li><a href="#general"><?= Yii::t('employer', 'General Trading, Contracting, Retail, and Wholesale') ?></a></li>
+                    <li><a href="#automotive"><?= Yii::t('employer', 'Automotive') ?></a></li>
+                    
+                    
+                </ol>
+            </div>
+            <div class='col-md-4'>
+                <ol>
+                    <li><a href="#marketing"><?= Yii::t('employer', 'Marketing, Media, and Advertising') ?></a></li>
+                    <li><a href="#branding"><?= Yii::t('employer', 'Design, Branding, and Copywriting') ?></a></li>
+                    <li><a href="#medical"><?= Yii::t('employer', 'Medical') ?></a></li>
+                    <li><a href="#archi"><?= Yii::t('employer', 'Architecture') ?></a></li>
+                    <li><a href="#manufacture"><?= Yii::t('employer', 'Manufacturing') ?></a></li>
+                    <li><a href="#tech"><?= Yii::t('employer', 'Technology and Tech Startups') ?></a></li>
+                    
+                    
+                </ol>
+            </div>
+            <div class='col-md-4'>
+                <ol>
+                    <li><a href="#foodbev"><?= Yii::t('employer', 'Food & Beverage') ?></a></li>
+                    <li><a href="#buservices"><?= Yii::t('employer', 'Business Services') ?></a></li>
+                    <li><a href="#fashion"><?= Yii::t('employer', 'Fashion & Cosmetics') ?></a></li>
+                    <li><a href="#nonprof"><?= Yii::t('employer', 'Non-Profit') ?></a></li>
+                    <li><a href="#sports"><?= Yii::t('employer', 'Sports') ?></a></li>
+                    <li><a href="#edu"><?= Yii::t('employer', 'Education and Training') ?></a></li>
+                </ol>
+            </div>
+        </div>
+        
     </div>
     
 </div>
