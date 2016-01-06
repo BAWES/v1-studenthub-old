@@ -28,8 +28,8 @@ $this->registerCss("
                     <li><a href="#telecom"><?= Yii::t('employer', 'Telecommunications') ?></a></li>
                     <li><a href="#logistics"><?= Yii::t('employer', 'Logistics & Transport') ?></a></li>
                     <li><a href="#general"><?= Yii::t('employer', 'General Trading, Contracting, Retail, and Wholesale') ?></a></li>
+                    <li><a href="#eventmgmt"><?= Yii::t('employer', 'Event Management') ?></a></li>
                     <li><a href="#automotive"><?= Yii::t('employer', 'Automotive') ?></a></li>
-                    
                     
                 </ol>
             </div>
@@ -41,7 +41,6 @@ $this->registerCss("
                     <li><a href="#archi"><?= Yii::t('employer', 'Architecture') ?></a></li>
                     <li><a href="#manufacture"><?= Yii::t('employer', 'Manufacturing') ?></a></li>
                     <li><a href="#tech"><?= Yii::t('employer', 'Technology and Startups') ?></a></li>
-                    
                     
                 </ol>
             </div>
@@ -386,7 +385,37 @@ $this->registerCss("
     
 <div class="row">
     <!-- Category -->
-    <div class="panel">
+    <div class="panel" id='eventmgmt'>
+        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Event Management') ?></h3>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer89.jpg") ?>" style="width:100%" alt="Vibrant">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer90.jpg") ?>" style="width:100%" alt="Hive Group">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+    
+<div class="row">
+    <!-- Category -->
+    <div class="panel" id='medical'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Medical and Health Care') ?></h3>
     </div>
     
