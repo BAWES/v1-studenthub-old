@@ -41,6 +41,7 @@ $this->registerCss("
                     <li><a href="#archi"><?= Yii::t('employer', 'Architecture') ?></a></li>
                     <li><a href="#manufacture"><?= Yii::t('employer', 'Manufacturing') ?></a></li>
                     <li><a href="#tech"><?= Yii::t('employer', 'Technology and Startups') ?></a></li>
+                    <li><a href="#accounting"><?= Yii::t('employer', 'Accounting') ?></a></li>
                     
                 </ol>
             </div>
@@ -929,6 +930,25 @@ $this->registerCss("
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer56.jpg") ?>" style="width:100%" alt="Invita Kuwait for Information Technology KSC">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="row">
+    <!-- Category -->
+    <div class="panel" id='accounting'>
+        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Accounting') ?></h3>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer91.jpg") ?>" style="width:100%" alt="Keepers Accounting and Advisory Services">
                 </div>
             </div>
         </div>

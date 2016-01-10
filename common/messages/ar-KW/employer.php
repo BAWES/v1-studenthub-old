@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Event Management' => 'إدارة المناسبات',
+    'Accounting' => 'محاسبة',
     'A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub' => 'لن يتم الموافقة على فرصة عملك إذا كان لديه عناوين تطبيق أو بريد إلكتروني في الوصف. وينبغي أن يقدم جميع الطلاب لهذه الوضيفة من خلال موقع StudentHub',
     'A short description about the job' => 'وصف قصير عن العمل',
     'About the Company' => 'عن الشركة',
@@ -55,6 +55,7 @@ return [
     'Education and Training' => 'التعليم والتدريب',
     'Email' => 'البريد الإلكتروني',
     'English Level' => 'مستوى اللغة الانجليزية',
+    'Event Management' => 'إدارة المناسبات',
     'Fashion & Cosmetics' => 'الأزياء ومستحضرات التجميل',
     'Filter students by Degree' => 'تصفية الطلاب بشهادة',
     'Filter students by English Level' => 'تصفية الطلاب من خلال مستوى اللغة الانجليزية',
