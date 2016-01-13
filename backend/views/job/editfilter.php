@@ -214,6 +214,22 @@ backend\assets\MultiselectAsset::register($this);
                 ])
                 ?>
             </div>
+            
+            <!-- Filter by Gender -->
+            <?php
+            $genderOptions = [
+                \common\models\Student::GENDER_MALE => Yii::t('register', 'Male'),
+                \common\models\Student::GENDER_FEMALE => Yii::t('register', 'Female'),
+            ];
+            ?>
+            <?= $form->field($filter, 'genderFilter')->checkbox() ?>
+            <div class="question" style="display: <?= $filter->genderFilter?"block":"none" ?>">
+                <?= $form->field($filter, 'filter_gender')->dropDownList($genderOptions, [
+                                'class' => 'selectpicker', 
+                                'data-width' => '100%',
+                                'prompt' => Yii::t('employer', 'Select Gender'),
+                                ]) ?>
+            </div>
 
 
             <!-- Filter by Transport Availability -->
