@@ -191,7 +191,7 @@ switch ($model->job_status){
             <h4>Gender</h4>
             <?php
             
-                switch($filter->filter_english_level){
+                switch($filter->filter_gender){
                     case \common\models\Student::GENDER_MALE:
                         echo Yii::t('register', 'Male');
                         break;
