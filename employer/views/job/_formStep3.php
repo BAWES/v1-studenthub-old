@@ -337,7 +337,7 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
     ];
     ?>
     <?= $form->field($filter, 'englishFilter')->checkbox() ?>
-    <div class="question" style="display: <?= $filter->englishFilter!==null?"block":"none" ?>">
+    <div class="question" style="display: <?= $filter->englishFilter?"block":"none" ?>">
         <?= $form->field($filter, 'filter_english_level',[
                         'template' => $selectTemplate,
                     ])->dropDownList($englishLevelOptions, [
@@ -368,7 +368,7 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
     ];
     ?>
     <?= $form->field($filter, 'genderFilter')->checkbox() ?>
-    <div class="question" style="display: <?= $filter->genderFilter!==null?"block":"none" ?>">
+    <div class="question" style="display: <?= $filter->genderFilter?"block":"none" ?>">
         <?= $form->field($filter, 'filter_gender',[
                         'template' => $selectTemplate,
                     ])->dropDownList($genderOptions, [
