@@ -166,7 +166,7 @@ switch ($model->job_status){
         </div>
         <?php } ?>
         
-        <?php if($filter->filter_english_level){ ?>
+        <?php if($filter->filter_english_level !== NULL){ ?>
         <div class="col-sm-3">
             <h4>English Level</h4>
             <?php
@@ -180,6 +180,23 @@ switch ($model->job_status){
                         break;
                     case \common\models\Student::ENGLISH_GOOD:
                         echo Yii::t('register', 'Good');
+                        break;
+                }
+            ?>
+        </div>
+        <?php } ?>
+        
+        <?php if($filter->filter_gender !== NULL){ ?>
+        <div class="col-sm-3">
+            <h4>Gender</h4>
+            <?php
+            
+                switch($filter->filter_english_level){
+                    case \common\models\Student::GENDER_MALE:
+                        echo Yii::t('register', 'Male');
+                        break;
+                    case \common\models\Student::GENDER_FEMALE:
+                        echo Yii::t('register', 'Female');
                         break;
                 }
             ?>
