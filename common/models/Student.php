@@ -502,8 +502,15 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 }
                 
                 //Check English level
-                if($filter->filter_english_level && $studentQualifies){
+                if(($filter->filter_english_level !== NULL) && $studentQualifies){
                     if($this->student_english_level != $filter->filter_english_level){
+                        $studentQualifies = false;
+                    }
+                }
+                
+                //Check Gender
+                if(($filter->filter_gender !== NULL) && $studentQualifies){
+                    if($this->student_gender != $filter->filter_gender){
                         $studentQualifies = false;
                     }
                 }

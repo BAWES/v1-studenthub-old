@@ -157,7 +157,7 @@ use yii\helpers\Url;
                         }
                         
                         //English Level Filter
-                        if($filter->filter_english_level){
+                        if($filter->filter_english_level !== NULL){
                             $levelOutput = "";
                             switch($filter->filter_english_level){
                                 case \common\models\Student::ENGLISH_WEAK:
@@ -174,6 +174,24 @@ use yii\helpers\Url;
                             echo "<p>";
                             echo "<b>".Yii::t("employer", "English Level")."</b><br/>";
                             echo $levelOutput;
+                            echo "</p>";
+                        }
+                        
+                        //Gender Filter
+                        if($filter->filter_gender !== NULL){
+                            $genderOutput = "";
+                            switch($filter->filter_english_level){
+                                case \common\models\Student::GENDER_MALE:
+                                    $genderOutput = Yii::t('register', 'Male');
+                                    break;
+                                case \common\models\Student::GENDER_FEMALE:
+                                    $genderOutput = Yii::t('register', 'Female');
+                                    break;
+                            }
+                            
+                            echo "<p>";
+                            echo "<b>".Yii::t("register", "Gender")."</b><br/>";
+                            echo $genderOutput;
                             echo "</p>";
                         }
                         

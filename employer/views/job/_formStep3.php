@@ -359,6 +359,24 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
         ])
         ?>
     </div>
+    
+    <!-- Filter by Gender -->
+    <?php
+    $genderOptions = [
+        \common\models\Student::GENDER_MALE => Yii::t('register', 'Female'),
+        \common\models\Student::GENDER_FEMALE => Yii::t('register', 'Male'),
+    ];
+    ?>
+    <?= $form->field($filter, 'genderFilter')->checkbox() ?>
+    <div class="question" style="display: <?= $filter->genderFilter?"block":"none" ?>">
+        <?= $form->field($filter, 'filter_gender',[
+                        'template' => $selectTemplate,
+                    ])->dropDownList($genderOptions, [
+                        'class' => 'selectpicker', 
+                        'data-width' => '100%',
+                        'prompt' => Yii::t('employer', 'Select Gender'),
+                        ]) ?>
+    </div>
 
 
     <!-- Filter by Transport Availability -->

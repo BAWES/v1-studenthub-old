@@ -316,6 +316,7 @@ class Job extends \yii\db\ActiveRecord
             $students->minimumGPA($filter->filter_gpa);
             $students->graduationYearBetween($filter->filter_graduation_year_start, $filter->filter_graduation_year_end);
             $students->englishLevel($filter->filter_english_level);
+            $students->gender($filter->filter_gender);
             $students->degree($filter->degree_id);
             $students->nationalityFilter(ArrayHelper::getColumn($countryList, "country_id"));
             $students->universityFilter(ArrayHelper::getColumn($universityList, "university_id"));
