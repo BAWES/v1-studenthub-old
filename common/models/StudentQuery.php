@@ -62,6 +62,15 @@ class StudentQuery extends \yii\db\ActiveQuery{
     }
     
     /**
+     * Filter by Gender
+     * @param int $gender Student class constant, showing gender
+     */
+    public function gender($gender)
+    {
+        return $this->andFilterWhere(['student_gender' => $gender]);
+    }
+    
+    /**
      * Filter by Degree
      * @param int $degree ID of the degree
      */
