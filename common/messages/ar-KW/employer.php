@@ -17,10 +17,12 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Accounting' => 'محاسبة',
+    'Filter students by Gender' => 'تصفية الطلاب حسب الجنس',
+    'Select Gender' => 'اختار',
     'A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub' => 'لن يتم الموافقة على فرصة عملك إذا كان لديه عناوين تطبيق أو بريد إلكتروني في الوصف. وينبغي أن يقدم جميع الطلاب لهذه الوضيفة من خلال موقع StudentHub',
     'A short description about the job' => 'وصف قصير عن العمل',
     'About the Company' => 'عن الشركة',
+    'Accounting' => 'محاسبة',
     'Amount Due' => 'المبلغ المستحق',
     'Applied Filters' => 'فلاتر المطبقة',
     'Applied on {dateApplied}' => 'تاريخ التقديم {dateApplied}',
