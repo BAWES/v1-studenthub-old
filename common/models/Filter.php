@@ -14,6 +14,7 @@ use Yii;
  * @property string $filter_graduation_year_start
  * @property string $filter_graduation_year_end
  * @property integer $filter_transportation
+ * @property integer $filter_gender
  *
  * @property FilterUniversity[] $filterUniversities
  * @property University[] $universities
@@ -65,6 +66,7 @@ class Filter extends \yii\db\ActiveRecord
             //Range options
             ['filter_transportation', 'in', 'range' => [Student::TRANSPORTATION_AVAILABLE, Student::TRANSPORTATION_NOT_AVAILABLE]],
             ['filter_english_level', 'in', 'range' => [Student::ENGLISH_WEAK, Student::ENGLISH_FAIR, Student::ENGLISH_GOOD]],
+            ['filter_gender', 'in', 'range' => [Student::GENDER_FEMALE, Student::GENDER_MALE]],
         ];
     }
 
@@ -81,6 +83,7 @@ class Filter extends \yii\db\ActiveRecord
             'filter_graduation_year_start' => Yii::t('app', 'Expected Graduation Year Start'),
             'filter_graduation_year_end' => Yii::t('app', 'Expected Graduation Year End'),
             'filter_transportation' => Yii::t('app', 'Only Students that have a car'),
+            'filter_gender' => Yii::t('app', 'Gender'),
         ];
     }
 

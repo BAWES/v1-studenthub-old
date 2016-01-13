@@ -28,6 +28,7 @@ class Filter extends \common\models\Filter {
     public $languageFilter = false;
     public $englishFilter = false;
     public $nationalityFilter = false;
+    public $genderFilter = false;
         
 
     /**
@@ -42,7 +43,7 @@ class Filter extends \common\models\Filter {
             
             //Allow massive assignment of majors, languages, and filters
             [['majorsSelected', 'languagesSelected', 'nationalitiesSelected',
-                'degreeFilter', 'gpaFilter', 'graduationFilter',
+                'degreeFilter', 'gpaFilter', 'graduationFilter', 'genderFilter',
                 'majorFilter', 'languageFilter', 'englishFilter', 'nationalityFilter'], 'safe'],
             
             /**
@@ -138,6 +139,14 @@ class Filter extends \common\models\Filter {
             }, 'whenClient' => "function (attribute, value) {
                 return $('#filter-graduationfilter').is(':checked');
             }"],
+            //Gender required when filter is ticked
+            ['filter_gender', 'required', 'when' => function($model) {
+                if($this->genderFilter){
+                    return true;
+                }
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#filter-genderfilter').is(':checked');
+            }"],
             
         ]);
     }
@@ -160,6 +169,7 @@ class Filter extends \common\models\Filter {
             'languageFilter' => Yii::t('employer', 'Filter students by Language Spoken'),
             'englishFilter' => Yii::t('employer', 'Filter students by English Level'),
             'nationalityFilter' => Yii::t('employer', 'Filter students by Nationality'),
+            'genderFilter' => Yii::t('employer', 'Filter students by Gender'),
         ]);
     }
     
@@ -215,6 +225,11 @@ class Filter extends \common\models\Filter {
         if(!$this->graduationFilter){
             $this->filter_graduation_year_start = NULL;
             $this->filter_graduation_year_end = NULL;
+        }else $filterRequired = true;
+        
+        //Gender Filter
+        if(!$this->genderFilter){
+            $this->filter_gender = NULL;
         }else $filterRequired = true;
         
         //Transportation Filter
@@ -288,7 +303,7 @@ class Filter extends \common\models\Filter {
         if(!empty($this->nationalitiesSelected)){
             $this->nationalityFilter = true;
         }
-        if($this->filter_english_level){
+        if($this->filter_english_level !== NULL){
             $this->englishFilter = true;
         }
         if($this->filter_graduation_year_start || $this->filter_graduation_year_end){
@@ -299,6 +314,9 @@ class Filter extends \common\models\Filter {
         }
         if($this->degree_id){
             $this->degreeFilter = true;
+        }
+        if($this->filter_gender !== NULL){
+            $this->genderFilter = true;
         }
         
         //Refresh premium filter count
@@ -320,7 +338,7 @@ class Filter extends \common\models\Filter {
         if(!empty($this->nationalitiesSelected)){
             $this->premiumFilterCount += 1;
         }
-        if($this->filter_english_level){
+        if($this->filter_english_level !== NULL){
             $this->premiumFilterCount += 1;
         }
         if($this->filter_graduation_year_start || $this->filter_graduation_year_end){
@@ -333,6 +351,9 @@ class Filter extends \common\models\Filter {
             $this->premiumFilterCount += 1;
         }
         if($this->filter_transportation){
+            $this->premiumFilterCount += 1;
+        }
+        if($this->filter_gender !== NULL){
             $this->premiumFilterCount += 1;
         }
     }
