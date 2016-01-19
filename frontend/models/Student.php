@@ -271,7 +271,7 @@ class Student extends \common\models\Student {
              */
             $appendMessage = "";
             if($this->student_id_verification == self::ID_NOT_VERIFIED){
-                $appendMessage = " and will require that his identity be verified";
+                $appendMessage = " and will require that their identity be verified";
             }
             Yii::info("[New Student Signup] ".$this->student_firstname." ".$this->student_lastname." has just joined StudentHub$appendMessage.", __METHOD__);
             
