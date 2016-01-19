@@ -58,7 +58,7 @@ return [
     'Email' => 'البريد الإلكتروني',
     'English Level' => 'مستوى اللغة الانجليزية',
     'Event Management' => 'إدارة المناسبات',
-    'Fashion & Cosmetics' => 'الأزياء ومستحضرات التجميل',
+    'Fashion, Cosmetics, and Beauty' => 'الأزياء ومستحضرات التجميل',
     'Filter students by Degree' => 'تصفية الطلاب بشهادة',
     'Filter students by English Level' => 'تصفية الطلاب من خلال مستوى اللغة الانجليزية',
     'Filter students by GPA' => 'تصفية الطلاب من خلال المعدل',

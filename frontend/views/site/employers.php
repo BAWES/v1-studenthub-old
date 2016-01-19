@@ -49,7 +49,7 @@ $this->registerCss("
                 <ol>
                     <li><a href="#foodbev"><?= Yii::t('employer', 'Food & Beverage') ?></a></li>
                     <li><a href="#buservices"><?= Yii::t('employer', 'Business Services') ?></a></li>
-                    <li><a href="#fashion"><?= Yii::t('employer', 'Fashion & Cosmetics') ?></a></li>
+                    <li><a href="#fashion"><?= Yii::t('employer', 'Fashion, Cosmetics, and Beauty') ?></a></li>
                     <li><a href="#nonprof"><?= Yii::t('employer', 'Non-Profit') ?></a></li>
                     <li><a href="#sports"><?= Yii::t('employer', 'Sports') ?></a></li>
                     <li><a href="#edu"><?= Yii::t('employer', 'Education and Training') ?></a></li>
@@ -221,6 +221,17 @@ $this->registerCss("
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer53.jpg") ?>" style="width:100%" alt="The Bed Shop">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer93.jpg") ?>" style="width:100%" alt="Lavender Baby and Child">
                 </div>
             </div>
         </div>
@@ -959,7 +970,18 @@ $this->registerCss("
 <div class="row">
     <!-- Category -->
     <div class="panel" id='fashion'>
-        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Fashion & Cosmetics') ?></h3>
+        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Fashion, Cosmetics, and Beauty') ?></h3>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer92.jpg") ?>" style="width:100%" alt="Le Sechoir xx">
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Logo -->
