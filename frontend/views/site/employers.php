@@ -237,6 +237,17 @@ $this->registerCss("
         </div>
     </div>
     
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer95.jpg") ?>" style="width:100%" alt="Tafseel">
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
 <div class="row">
@@ -497,6 +508,17 @@ $this->registerCss("
     <!-- Category -->
     <div class="panel" id='tech'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Technology and Startups') ?></h3>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer96.jpg") ?>" style="width:100%" alt="Sirdab Lab">
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Logo -->
