@@ -157,7 +157,8 @@ class RegisterController extends \yii\web\Controller {
         if($uploadedFile){
             $model = DynamicModel::validateData(compact('uploadedFile'), [
                 [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png, gif, jpeg', 'maxSize' => 10000000,
-                    'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for ID: {extensions}')],
+                    'wrongExtension' => Yii::t('register', '{file} Only files with these extensions are allowed for ID: {extensions}'),
+                    'checkExtensionByMimeType' => false],
             ]);
 
             if ($model->hasErrors()) {
@@ -195,7 +196,8 @@ class RegisterController extends \yii\web\Controller {
         if($uploadedFile){
             $model = DynamicModel::validateData(compact('uploadedFile'), [
                 [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf, doc, docx', 'maxSize' => 10000000,
-                    'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for CV: {extensions}')],
+                    'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for CV: {extensions}'),
+                    'checkExtensionByMimeType' => false],
             ]);
 
             if ($model->hasErrors()) {
@@ -233,7 +235,8 @@ class RegisterController extends \yii\web\Controller {
         if($uploadedFile){
             $model = DynamicModel::validateData(compact('uploadedFile'), [
                 [['uploadedFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'jpg, png, gif, jpeg', 'maxSize' => 10000000,
-                    'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for your Photo: {extensions}')],
+                    'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for your Photo: {extensions}'),
+                    'checkExtensionByMimeType' => false],
             ]);
 
             if ($model->hasErrors()) {
