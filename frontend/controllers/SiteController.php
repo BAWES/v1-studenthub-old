@@ -268,6 +268,11 @@ class SiteController extends Controller
 
     public function actionRequestPasswordReset()
     {
+        //If demo, redirect to employer signup on live site
+        if(Yii::$app->params['isDemo']){
+            return $this->redirect("https://studenthub.co/site/request-password-reset");
+        }
+        
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             
