@@ -41,7 +41,7 @@ $this->registerCss("
                     <li><a href="#archi"><?= Yii::t('employer', 'Architecture') ?></a></li>
                     <li><a href="#manufacture"><?= Yii::t('employer', 'Manufacturing') ?></a></li>
                     <li><a href="#tech"><?= Yii::t('employer', 'Technology and Startups') ?></a></li>
-                    <li><a href="#accounting"><?= Yii::t('employer', 'Accounting') ?></a></li>
+                    <li><a href="#accounting"><?= Yii::t('employer', 'Accounting & Consulting') ?></a></li>
                     
                 </ol>
             </div>
@@ -537,6 +537,17 @@ $this->registerCss("
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer97.jpg") ?>" style="width:100%" alt="The White Book">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer18.jpg") ?>" style="width:100%" alt="3DPme">
                 </div>
             </div>
@@ -670,6 +681,17 @@ $this->registerCss("
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer73.jpg") ?>" style="width:100%" alt="PLUS965">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer98.jpg") ?>" style="width:100%" alt="Wabash Web Development Co. W.L.L.">
                 </div>
             </div>
         </div>
@@ -984,7 +1006,7 @@ $this->registerCss("
 <div class="row">
     <!-- Category -->
     <div class="panel" id='accounting'>
-        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Accounting') ?></h3>
+        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Accounting & Consulting') ?></h3>
     </div>
     
     <!-- Logo -->
@@ -993,6 +1015,28 @@ $this->registerCss("
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer91.jpg") ?>" style="width:100%" alt="Keepers Accounting and Advisory Services">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer99.jpg") ?>" style="width:100%" alt="francorp kuwait">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer100.jpg") ?>" style="width:100%" alt="Reham Diva">
                 </div>
             </div>
         </div>

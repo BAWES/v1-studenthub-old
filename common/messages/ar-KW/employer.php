@@ -22,7 +22,7 @@ return [
     'A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub' => 'لن يتم الموافقة على فرصة عملك إذا كان لديه عناوين تطبيق أو بريد إلكتروني في الوصف. وينبغي أن يقدم جميع الطلاب لهذه الوضيفة من خلال موقع StudentHub',
     'A short description about the job' => 'وصف قصير عن العمل',
     'About the Company' => 'عن الشركة',
-    'Accounting' => 'محاسبة',
+    'Accounting & Consulting' => 'المحاسبة والاستشارات',
     'Amount Due' => 'المبلغ المستحق',
     'Applied Filters' => 'فلاتر المطبقة',
     'Applied on {dateApplied}' => 'تاريخ التقديم {dateApplied}',
