@@ -162,14 +162,14 @@ class Filter extends \common\models\Filter {
             'languagesSelected' => Yii::t('employer', 'Languages'),
             'nationalitiesSelected' => Yii::t('employer', 'Nationalities'),
             
-            'degreeFilter' => Yii::t('employer', 'Filter students by Degree'),
-            'gpaFilter' => Yii::t('employer', 'Filter students by GPA'),
-            'graduationFilter' => Yii::t('employer', 'Filter students by Graduation Year'),
-            'majorFilter' => Yii::t('employer', 'Filter students by Major'),
-            'languageFilter' => Yii::t('employer', 'Filter students by Language Spoken'),
-            'englishFilter' => Yii::t('employer', 'Filter students by English Level'),
-            'nationalityFilter' => Yii::t('employer', 'Filter students by Nationality'),
-            'genderFilter' => Yii::t('employer', 'Filter students by Gender'),
+            'degreeFilter' => Yii::t('employer', 'Filter applicants by Degree'),
+            'gpaFilter' => Yii::t('employer', 'Filter applicants by GPA'),
+            'graduationFilter' => Yii::t('employer', 'Filter applicants by Graduation Year'),
+            'majorFilter' => Yii::t('employer', 'Filter applicants by Major'),
+            'languageFilter' => Yii::t('employer', 'Filter applicants by Language Spoken'),
+            'englishFilter' => Yii::t('employer', 'Filter applicants by English Level'),
+            'nationalityFilter' => Yii::t('employer', 'Filter applicants by Nationality'),
+            'genderFilter' => Yii::t('employer', 'Filter applicants by Gender'),
         ]);
     }
     

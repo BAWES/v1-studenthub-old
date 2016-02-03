@@ -82,8 +82,8 @@ class Filter extends \yii\db\ActiveRecord
             'filter_gpa' => Yii::t('app', 'Minimum GPA'),
             'filter_graduation_year_start' => Yii::t('app', 'Expected Graduation Year Start'),
             'filter_graduation_year_end' => Yii::t('app', 'Expected Graduation Year End'),
-            'filter_transportation' => Yii::t('app', 'Only Students that have a car'),
-            'filter_gender' => Yii::t('app', 'Gender'),
+            'filter_transportation' => Yii::t('app', 'Only applicants that have a car'),
+            'filter_gender' => Yii::t('app', 'Only the following gender'),
         ];
     }
 
