@@ -127,6 +127,17 @@ $this->registerCss("
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer101.jpg") ?>" style="width:100%" alt="Viva Telecommunication Company Kuwait">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer30.jpg") ?>" style="width:100%" alt="Zain FUN">
                 </div>
             </div>
@@ -548,6 +559,17 @@ $this->registerCss("
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer102.jpg") ?>" style="width:100%" alt="Snappcard">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer18.jpg") ?>" style="width:100%" alt="3DPme">
                 </div>
             </div>
@@ -799,6 +821,17 @@ $this->registerCss("
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer44.jpg") ?>" style="width:100%" alt="Doppio">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer103.jpg") ?>" style="width:100%" alt="Crumbs">
                 </div>
             </div>
         </div>
