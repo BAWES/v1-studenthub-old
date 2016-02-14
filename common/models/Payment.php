@@ -253,7 +253,16 @@ class Payment extends \yii\db\ActiveRecord {
      * @return real Sum of all payments made
      */
     public static function total($paymentType, $sinceNumDays = false) {
-        $totalQuery = static::find()->where(['payment_type_id' => $paymentType]);
+        $totalQuery = static::find();
+        
+        //Only get totals for specific payment type if its not a credit payment
+        if($paymentType != PaymentType::TYPE_CREDIT){
+            $totalQuery->where(['payment_type_id' => $paymentType]);
+        }else{
+            //if its a credit type, I only want the purchases that USE credit
+            //Not purchases that ADD credit
+            $totalQuery->where(['<','payment_employer_credit_change', 0]);
+        }
         
         if($sinceNumDays){
             $sinceNumDays = (int) $sinceNumDays;
