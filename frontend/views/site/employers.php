@@ -53,6 +53,7 @@ $this->registerCss("
                     <li><a href="#nonprof"><?= Yii::t('employer', 'Non-Profit') ?></a></li>
                     <li><a href="#sports"><?= Yii::t('employer', 'Sports') ?></a></li>
                     <li><a href="#edu"><?= Yii::t('employer', 'Education and Training') ?></a></li>
+                    <li><a href="#hospitality"><?= Yii::t('employer', 'Hospitality and Services') ?></a></li>
                 </ol>
             </div>
         </div>
@@ -1333,6 +1334,47 @@ $this->registerCss("
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer19.jpg") ?>" style="width:100%" alt="Little me">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="row">
+    <!-- Category -->
+    <div class="panel" id='hospitality'>
+        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Hospitality and Services') ?></h3>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer104.jpg") ?>" style="width:100%" alt="Intercontinental Hotels Group">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer105.jpg") ?>" style="width:100%" alt="Crowne Plaza">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer106.jpg") ?>" style="width:100%" alt="Holiday Inn">
                 </div>
             </div>
         </div>
