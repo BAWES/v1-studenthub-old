@@ -28,3 +28,7 @@ composer.phar
 phpunit.phar
 # local phpunit config
 /phpunit.xml
+
+# Sitemap file generated via Production Env
+employer/web/sitemap.xml
+frontend/web/sitemap.xml
