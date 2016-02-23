@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Hospitality and Services' => 'الضيافة والخدمات',
+    'Real Estate' => 'العقارات',
     'A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub' => 'لن يتم الموافقة على فرصة عملك إذا كان لديه عناوين تطبيق أو بريد إلكتروني في الوصف. وينبغي أن يقدم جميع الطلاب لهذه الوضيفة من خلال موقع StudentHub',
     'A short description about the job' => 'وصف قصير عن العمل',
     'About the Company' => 'عن الشركة',
@@ -73,6 +73,7 @@ return [
     'Graduating Soon' => 'يتخرج قريبا',
     'Graduation Year' => 'سنة التخرج',
     'Have a question for the applicants? (optional)' => 'هل لديك سؤال للمتقدمين؟ (اختياري)',
+    'Hospitality and Services' => 'الضيافة والخدمات',
     'How much credit would you like to purchase' => 'الكمية من الرصيد التي أريد شراؤها',
     'I agree to the <a href=\'{url}\' target=\'_blank\'>terms & conditions</a> and <a href=\'{urlPrivacy}\' target=\'_blank\'>privacy policy</a>' => 'أنا أوافق على <a href=\'{url}\' target=\'_blank\'>شروط وأحكام</a> و  <a href=\'{urlPrivacy}\' target=\'_blank\'>سياسة الخصوصية</a>',
     'I agree to the <a href=\'{url}\' target=\'_blank\'>terms & conditions</a> and <a href=\'{urlPrivacy}\' target=\'_blank\'>privacy policy</a> of StudentHub' => 'أنا أوافق على <a href=\'{url}\' target=\'_blank\'>شروط وأحكام</a> و  <a href=\'{urlPrivacy}\' target=\'_blank\'>سياسة الخصوصية</a> الموقع',

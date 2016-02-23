@@ -30,7 +30,7 @@ $this->registerCss("
                     <li><a href="#general"><?= Yii::t('employer', 'General Trading, Contracting, Retail, and Wholesale') ?></a></li>
                     <li><a href="#eventmgmt"><?= Yii::t('employer', 'Event Management') ?></a></li>
                     <li><a href="#automotive"><?= Yii::t('employer', 'Automotive') ?></a></li>
-                    
+                    <li><a href="#realestate"><?= Yii::t('employer', 'Real Estate') ?></a></li>
                 </ol>
             </div>
             <div class='col-md-4'>
@@ -42,7 +42,6 @@ $this->registerCss("
                     <li><a href="#manufacture"><?= Yii::t('employer', 'Manufacturing') ?></a></li>
                     <li><a href="#tech"><?= Yii::t('employer', 'Technology and Startups') ?></a></li>
                     <li><a href="#accounting"><?= Yii::t('employer', 'Accounting & Consulting') ?></a></li>
-                    
                 </ol>
             </div>
             <div class='col-md-4'>
@@ -294,8 +293,49 @@ $this->registerCss("
 
 <div class="row">
     <!-- Category -->
+    <div class="panel" id='realestate'>
+        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Real Estate') ?></h3>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer107.jpg") ?>" style="width:100%" alt="Mabanee">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer59.jpg") ?>" style="width:100%" alt="Ajar Online General Trading Co.">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="row">
+    <!-- Category -->
     <div class="panel" id='marketing'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Marketing, Media, and Advertising') ?></h3>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer109.jpg") ?>" style="width:100%" alt="era.media">
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Logo -->
@@ -594,17 +634,6 @@ $this->registerCss("
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer6.jpg") ?>" style="width:100%" alt="Bevv Studios">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Logo -->
-    <div class="col-md-2 col-sm-3 col-xs-6">
-        <div class="panel">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <img src="<?= Url::to("@web/images/employer-list/employer59.jpg") ?>" style="width:100%" alt="Ajar Online General Trading Co.">
                 </div>
             </div>
         </div>
@@ -1082,6 +1111,17 @@ $this->registerCss("
     <!-- Category -->
     <div class="panel" id='fashion'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Fashion, Cosmetics, and Beauty') ?></h3>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer108.jpg") ?>" style="width:100%" alt="Bookr Co">
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Logo -->
