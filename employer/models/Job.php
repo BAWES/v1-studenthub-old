@@ -39,8 +39,16 @@ class Job extends \common\models\Job {
                     
                     //Notify us that its pending
                     
-                    Yii::info("[Job Pending Review - ".$this->job_title."] Employer has updated an active job, review the job details", __METHOD__);
+                    Yii::info("[Job Pending Review - ".$this->job_title."] ".$this->employer->employer_company_name." has updated an active job, review the job details", __METHOD__);
                 }
+                
+                //If this is a draft and was updated by an employer, notify us
+                if($this->job_status == self::STATUS_DRAFT){
+                    Yii::info("[Job Draft Updated - ".$this->job_title."] ".$this->employer->employer_company_name." has updated their draft.", __METHOD__);
+                }
+            }else{
+                //Employer created a brand new job
+                Yii::info("[New Job Draft - ".$this->job_title."] ".$this->employer->employer_company_name." has created a new draft.", __METHOD__);
             }
             return true;
         }
