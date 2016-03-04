@@ -94,7 +94,7 @@ return [
     'Logistics & Transport' => 'الخدمات اللوجستية والنقل',
     'Majors' => 'التخصصات',
     'Make Payment' => 'إجراء الدفع',
-    'Manufacturing' => 'تصنيع',
+    'Manufacturing & Construction' => 'الصناعة والبناء',
     'Marketing, Media, and Advertising' => 'التسويق والإعلام والإعلان',
     'Max Applicants' => 'الحد الأقصى لعدد المتقدمين',
     'Maximum Number of Applicants' => 'الحد الأقصى لعدد المتقدمين',

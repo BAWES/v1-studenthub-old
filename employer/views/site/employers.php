@@ -39,7 +39,7 @@ $this->registerCss("
                     <li><a href="#branding"><?= Yii::t('employer', 'Design, Branding, and Copywriting') ?></a></li>
                     <li><a href="#medical"><?= Yii::t('employer', 'Medical and Health Care') ?></a></li>
                     <li><a href="#archi"><?= Yii::t('employer', 'Architecture') ?></a></li>
-                    <li><a href="#manufacture"><?= Yii::t('employer', 'Manufacturing') ?></a></li>
+                    <li><a href="#manufacture"><?= Yii::t('employer', 'Manufacturing & Construction') ?></a></li>
                     <li><a href="#tech"><?= Yii::t('employer', 'Technology and Startups') ?></a></li>
                     <li><a href="#accounting"><?= Yii::t('employer', 'Accounting & Consulting') ?></a></li>
                 </ol>
@@ -169,6 +169,17 @@ $this->registerCss("
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer68.jpg") ?>" style="width:100%" alt="ARAMEX">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer110.jpg") ?>" style="width:100%" alt="Carriage Logistics General Trading Company">
                 </div>
             </div>
         </div>
@@ -529,7 +540,7 @@ $this->registerCss("
 <div class="row">
     <!-- Category -->
     <div class="panel" id='manufacture'>
-        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Manufacturing') ?></h3>
+        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Manufacturing & Construction') ?></h3>
     </div>
     
     <!-- Logo -->
@@ -538,6 +549,17 @@ $this->registerCss("
             <div class="panel-heading">
                 <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer88.jpg") ?>" style="width:100%" alt="ACICO Constructions. Co.">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer111.jpg") ?>" style="width:100%" alt="Outlook Projects">
                 </div>
             </div>
         </div>
