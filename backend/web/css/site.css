@@ -3,6 +3,12 @@ body {
     height: 100%;
 }
 
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
+}
+
 .wrap {
     min-height: 100%;
     height: auto;
