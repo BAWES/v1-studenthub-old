@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Real Estate' => 'العقارات',
+    'Insurance' => 'التأمين',
     'A listing will not be approved if it has application URLs or an email alias within the description. All students should apply for this job through StudentHub' => 'لن يتم الموافقة على فرصة عملك إذا كان لديه عناوين تطبيق أو بريد إلكتروني في الوصف. وينبغي أن يقدم جميع الطلاب لهذه الوضيفة من خلال موقع StudentHub',
     'A short description about the job' => 'وصف قصير عن العمل',
     'About the Company' => 'عن الشركة',
@@ -127,6 +127,7 @@ return [
     'Premium Filters' => 'فلاتر متميزة',
     'Project Manager' => 'مدير المشروع',
     'Question' => 'سؤال',
+    'Real Estate' => 'العقارات',
     'Recommendation Letter / $$$ / Free lunch' => 'رسالة توصية / $$$ / غداء مجاني',
     'Redirecting to Payment Gateway' => 'جاري التوجه إلى بوابة الدفع',
     'Request password reset' => 'طلب إعادة تعيين كلمة المرور',

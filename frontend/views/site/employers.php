@@ -9,7 +9,7 @@ $this->registerMetaTag([
       'content' => 'The full list of employers who are recruiting using StudentHub'
 ]);
 
-$this->registerCss(" 
+$this->registerCss("
 #industryListing li{
     list-style-type:circle;
 }
@@ -18,7 +18,7 @@ $this->registerCss("
 ?>
 <div class="panel" id='industryListing'>
     <h2 style="padding:0.8em; padding-bottom:0; margin-bottom:0; text-align:center;"><?= $this->title ?></h2>
-    
+
     <div class="panel-body">
         <?= Yii::t('employer', 'Browse by Industry') ?>
         <div class='row'>
@@ -42,6 +42,7 @@ $this->registerCss("
                     <li><a href="#manufacture"><?= Yii::t('employer', 'Manufacturing & Construction') ?></a></li>
                     <li><a href="#tech"><?= Yii::t('employer', 'Technology and Startups') ?></a></li>
                     <li><a href="#accounting"><?= Yii::t('employer', 'Accounting & Consulting') ?></a></li>
+                    <li><a href="#insurance"><?= Yii::t('employer', 'Insurance') ?></a></li>
                 </ol>
             </div>
             <div class='col-md-4'>
@@ -56,20 +57,20 @@ $this->registerCss("
                 </ol>
             </div>
         </div>
-        
+
     </div>
-    
+
 </div>
 
 
 
 <div class="row">
-    
+
     <!-- Category -->
     <div class="panel" id='banking'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Banking and Investments') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -80,7 +81,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -91,7 +92,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -102,15 +103,15 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
-    
+
 <div class="row">
     <!-- Category -->
     <div class="panel" id='telecom'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Telecommunications') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -121,7 +122,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -132,7 +133,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -143,7 +144,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -151,7 +152,7 @@ $this->registerCss("
     <div class="panel" id='logistics'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Logistics & Transport') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -162,7 +163,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -173,7 +174,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -184,15 +185,15 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
-    
+
 <div class="row">
     <!-- Category -->
     <div class="panel" id='general'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'General Trading, Contracting, Retail, and Wholesale') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -203,7 +204,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -214,7 +215,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -225,7 +226,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -236,7 +237,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -247,7 +248,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -258,7 +259,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -269,7 +270,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -277,7 +278,7 @@ $this->registerCss("
     <div class="panel" id='automotive'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Automotive') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -288,7 +289,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -299,7 +300,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -307,7 +308,7 @@ $this->registerCss("
     <div class="panel" id='realestate'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Real Estate') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -318,7 +319,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -329,7 +330,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -337,7 +338,7 @@ $this->registerCss("
     <div class="panel" id='marketing'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Marketing, Media, and Advertising') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -348,7 +349,18 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer115.jpg") ?>" style="width:100%" alt="Decaf Production">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -359,7 +371,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -370,7 +382,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -381,7 +393,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -392,7 +404,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -403,7 +415,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -414,7 +426,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -425,7 +437,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -436,7 +448,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -444,7 +456,7 @@ $this->registerCss("
     <div class="panel" id='branding'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Design, Branding, and Copywriting') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -455,7 +467,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -466,15 +478,15 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
-    
+
 <div class="row">
     <!-- Category -->
     <div class="panel" id='eventmgmt'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Event Management') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -485,7 +497,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -496,15 +508,15 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
-    
+
 <div class="row">
     <!-- Category -->
     <div class="panel" id='medical'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Medical and Health Care') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -515,15 +527,15 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
-    
+
 <div class="row">
     <!-- Category -->
     <div class="panel" id='archi'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Architecture') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -534,7 +546,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -542,7 +554,7 @@ $this->registerCss("
     <div class="panel" id='manufacture'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Manufacturing & Construction') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -553,7 +565,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -564,7 +576,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -575,7 +587,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -583,7 +595,29 @@ $this->registerCss("
     <div class="panel" id='tech'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Technology and Startups') ?></h3>
     </div>
-    
+
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer112.jpg") ?>" style="width:100%" alt="National Technology Enterprises Company">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer114.jpg") ?>" style="width:100%" alt="MyU">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -594,7 +628,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -605,7 +639,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -616,7 +650,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -627,7 +661,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -638,7 +672,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -649,7 +683,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -660,7 +694,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -671,7 +705,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -682,7 +716,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -693,7 +727,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -704,7 +738,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -715,7 +749,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -726,7 +760,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -737,7 +771,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -748,7 +782,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -759,7 +793,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -770,7 +804,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -778,7 +812,7 @@ $this->registerCss("
     <div class="panel" id='foodbev'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Food & Beverage') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -789,7 +823,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -800,7 +834,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -811,7 +845,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -822,7 +856,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -833,7 +867,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -844,7 +878,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -855,7 +889,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -866,7 +900,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -877,7 +911,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -888,7 +922,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -899,7 +933,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -910,7 +944,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -921,7 +955,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -932,7 +966,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -943,7 +977,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -954,7 +988,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -965,7 +999,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -976,7 +1010,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -987,7 +1021,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -998,7 +1032,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1009,7 +1043,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1020,7 +1054,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1031,9 +1065,9 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
-    
-    
+
+
+
 </div>
 
 <div class="row">
@@ -1041,7 +1075,7 @@ $this->registerCss("
     <div class="panel" id='buservices'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Business Services') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1052,7 +1086,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1063,7 +1097,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1074,7 +1108,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1085,7 +1119,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -1093,7 +1127,7 @@ $this->registerCss("
     <div class="panel" id='accounting'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Accounting & Consulting') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1104,7 +1138,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1115,7 +1149,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1126,7 +1160,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -1134,7 +1168,7 @@ $this->registerCss("
     <div class="panel" id='fashion'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Fashion, Cosmetics, and Beauty') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1145,7 +1179,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1156,7 +1190,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1167,7 +1201,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1178,7 +1212,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1189,7 +1223,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1200,7 +1234,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1211,7 +1245,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -1219,7 +1253,7 @@ $this->registerCss("
     <div class="panel" id='nonprof'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Non-Profit') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1230,7 +1264,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1241,7 +1275,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1252,7 +1286,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1263,7 +1297,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1274,7 +1308,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -1282,7 +1316,7 @@ $this->registerCss("
     <div class="panel" id='sports'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Sports') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1293,7 +1327,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1304,7 +1338,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1315,7 +1349,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1326,7 +1360,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1337,7 +1371,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -1345,7 +1379,7 @@ $this->registerCss("
     <div class="panel" id='edu'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Education and Training') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1356,7 +1390,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1367,7 +1401,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1378,7 +1412,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1389,7 +1423,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1400,7 +1434,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <div class="row">
@@ -1408,7 +1442,7 @@ $this->registerCss("
     <div class="panel" id='hospitality'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Hospitality and Services') ?></h3>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1419,7 +1453,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1430,7 +1464,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
     <!-- Logo -->
     <div class="col-md-2 col-sm-3 col-xs-6">
         <div class="panel">
@@ -1441,7 +1475,26 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    
+
+</div>
+
+<div class="row">
+    <!-- Category -->
+    <div class="panel" id='insurance'>
+        <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Insurance') ?></h3>
+    </div>
+
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer113.jpg") ?>" style="width:100%" alt="Gulf Takaful Insurance Company">
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
