@@ -16,6 +16,7 @@
         "himiklab/yii2-recaptcha-widget" : "*",
         "zelenin/yii2-rss": "dev-master",
         "openbuildings/swiftmailer-css-inliner": "*",
+        "understeam/yii2-httpclient": "0.3",
         "understeam/yii2-slack": "*"
     },
     "require-dev": {
