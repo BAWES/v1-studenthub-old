@@ -11,12 +11,12 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "yiisoft/yii2-imagine": "~2.0.0",
+        "yiisoft/yii2-httpclient": "dev-master",
         "kartik-v/yii2-widgets": "*",
         "2amigos/yii2-resource-manager-component": "*",
         "himiklab/yii2-recaptcha-widget" : "*",
         "zelenin/yii2-rss": "dev-master",
         "openbuildings/swiftmailer-css-inliner": "*",
-        "understeam/yii2-httpclient": "0.3",
         "understeam/yii2-slack": "*"
     },
     "require-dev": {

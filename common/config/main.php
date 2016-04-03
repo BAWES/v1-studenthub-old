@@ -29,7 +29,7 @@ return [
             'username' => 'studenthub',
         ],
         'httpclient' => [
-            'class' =>'understeam\httpclient\Client',
+            'class' =>'yii\httpclient\Client',
         ],
         'reCaptcha' => [
             'name' => 'reCaptcha',
@@ -40,7 +40,7 @@ return [
         'assetManager' => [
             //Link assets -> create symbolic links to assets
             'linkAssets' => true,
-            
+
             //append time stamps to assets for cache busting
             //'appendTimestamp' => true,
         ],
