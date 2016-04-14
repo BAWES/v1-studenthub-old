@@ -87,7 +87,7 @@ $("#saveAsDraft").click(function(){
     saveAsDraft = true;
     $("<input>").attr("type", "hidden").attr("name", "draft").attr("value", "yes").appendTo(form);
     form.submit();
-    
+
     return false;
 });
 
@@ -138,7 +138,7 @@ $(":checkbox").change(function(){
             nextObject.hide();
         }
     }
-    
+
     //Update order summary
     updateOrder();
 });
@@ -162,27 +162,27 @@ function updateOrder(){
     if(maximumApplicants > 0){
         $numApplicants.text(maximumApplicants);
     }else $numApplicants.text("-");
-    
+
     var newCost = basicCost;
-    
+
     //Get Number of premium filters selected, add price to it
     $("#premium :checkbox").each(function(){
         if($(this).is(":checked")){
             newCost+=pricePerFilter;
         }
     });
-    
+
     var listingCost = newCost * maximumApplicants;
-    
+
     newCost = newCost.toFixed(3);
-    
-    
-    if(isNaN(listingCost)){ 
+
+
+    if(isNaN(listingCost)){
         listingCost = "-";
     }else{
         listingCost = listingCost.toFixed(3) + " KD";
     }
-    
+
     $pricePerApplicant.text(newCost + " KD");
     $listingCost.text(listingCost);
 }
@@ -290,14 +290,14 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
         <?= $form->field($filter, 'filter_graduation_year_start',[
                         'template' => $selectTemplate,
                     ])->dropDownList($graduationYearOptions, [
-                        'class' => 'selectpicker', 
+                        'class' => 'selectpicker',
                         'data-width' => '100%',
                         'prompt' => Yii::t('employer', 'Select Year'),
                         ]) ?>
         <?= $form->field($filter, 'filter_graduation_year_end',[
                         'template' => $selectTemplate,
                     ])->dropDownList($graduationYearOptions, [
-                        'class' => 'selectpicker', 
+                        'class' => 'selectpicker',
                         'data-width' => '100%',
                         'prompt' => Yii::t('employer', 'Select Year'),
                         ]) ?>
@@ -341,7 +341,7 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
         <?= $form->field($filter, 'filter_english_level',[
                         'template' => $selectTemplate,
                     ])->dropDownList($englishLevelOptions, [
-                        'class' => 'selectpicker', 
+                        'class' => 'selectpicker',
                         'data-width' => '100%',
                         'prompt' => Yii::t('employer', 'Select Language Level'),
                         ]) ?>
@@ -359,12 +359,12 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
         ])
         ?>
     </div>
-    
+
     <!-- Filter by Gender -->
     <?php
     $genderOptions = [
-        \common\models\Student::GENDER_MALE => Yii::t('register', 'Female'),
-        \common\models\Student::GENDER_FEMALE => Yii::t('register', 'Male'),
+        \common\models\Student::GENDER_MALE => Yii::t('register', 'Male'),
+        \common\models\Student::GENDER_FEMALE => Yii::t('register', 'Female'),
     ];
     ?>
     <?= $form->field($filter, 'genderFilter')->checkbox() ?>
@@ -372,7 +372,7 @@ $form->field($filter, 'universitiesSelected', ['template' => $selectTemplate])->
         <?= $form->field($filter, 'filter_gender',[
                         'template' => $selectTemplate,
                     ])->dropDownList($genderOptions, [
-                        'class' => 'selectpicker', 
+                        'class' => 'selectpicker',
                         'data-width' => '100%',
                         'prompt' => Yii::t('employer', 'Select Gender'),
                         ]) ?>
