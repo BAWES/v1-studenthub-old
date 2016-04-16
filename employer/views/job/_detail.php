@@ -96,14 +96,14 @@ use yii\helpers\Url;
             </div>
             <div id="collapseQuestions" class="panel-collapse collapse">
                 <div class="panel-body">
-                    
+
                     <?php if($model->job_question_1){ ?>
                     <b><?= Yii::t("employer", "Question") ?></b>
                     <div class="well">
                         <?= Yii::$app->formatter->asNtext($model->job_question_1) ?>
                     </div>
                     <?php } ?>
-                    
+
                     <?php if($model->job_question_2){ ?>
                     <b><?= Yii::t("employer", "Question") ?></b>
                     <div class="well">
@@ -128,7 +128,7 @@ use yii\helpers\Url;
                     $filter = $model->filter;
                     if(!$filter->premiumFilterCount){
                         echo Yii::t("employer", "No filters selected");
-                    }else{ 
+                    }else{
                         //Degree Filter
                         if($filter->degree){
                             echo "<p>";
@@ -136,7 +136,7 @@ use yii\helpers\Url;
                             echo $this->params['isArabic']?$filter->degree->degree_name_ar:$filter->degree->degree_name_en;
                             echo "</p>";
                         }
-                        
+
                         //GPA Filter
                         if($filter->filter_gpa){
                             echo "<p>";
@@ -144,7 +144,7 @@ use yii\helpers\Url;
                             echo Yii::$app->formatter->asDecimal($filter->filter_gpa, 2);
                             echo "</p>";
                         }
-                        
+
                         //Graduation Year Filter
                         if($filter->filter_graduation_year_start){
                             Yii::$app->formatter->thousandSeparator = "";
@@ -155,7 +155,7 @@ use yii\helpers\Url;
                                     .Yii::$app->formatter->asInteger($filter->filter_graduation_year_end);
                             echo "</p>";
                         }
-                        
+
                         //English Level Filter
                         if($filter->filter_english_level !== NULL){
                             $levelOutput = "";
@@ -170,17 +170,17 @@ use yii\helpers\Url;
                                     $levelOutput = Yii::t('register', 'Good');
                                     break;
                             }
-                            
+
                             echo "<p>";
                             echo "<b>".Yii::t("employer", "English Level")."</b><br/>";
                             echo $levelOutput;
                             echo "</p>";
                         }
-                        
+
                         //Gender Filter
                         if($filter->filter_gender !== NULL){
                             $genderOutput = "";
-                            switch($filter->filter_english_level){
+                            switch($filter->filter_gender){
                                 case \common\models\Student::GENDER_MALE:
                                     $genderOutput = Yii::t('register', 'Male');
                                     break;
@@ -188,13 +188,13 @@ use yii\helpers\Url;
                                     $genderOutput = Yii::t('register', 'Female');
                                     break;
                             }
-                            
+
                             echo "<p>";
                             echo "<b>".Yii::t("register", "Gender")."</b><br/>";
                             echo $genderOutput;
                             echo "</p>";
                         }
-                        
+
                         //Transportation Filter
                         if($filter->filter_transportation){
                             echo "<p>";
@@ -202,7 +202,7 @@ use yii\helpers\Url;
                             echo Yii::t("employer", "Student must have a method of transportation");
                             echo "</p>";
                         }
-                        
+
                         //Nationality Filter
                         if($filter->countries){
                             echo "<p>";
@@ -211,9 +211,9 @@ use yii\helpers\Url;
                                 echo "- ";
                                 echo $this->params['isArabic']?$nationality->country_nationality_name_ar:$nationality->country_nationality_name_en."<br/>";
                             }
-                            echo "</p>";             
+                            echo "</p>";
                         }
-                        
+
                         //Major Filter
                         if($filter->majors){
                             echo "<p>";
@@ -222,9 +222,9 @@ use yii\helpers\Url;
                                 echo "- ";
                                 echo $this->params['isArabic']?$major->major_name_ar:$major->major_name_en."<br/>";
                             }
-                            echo "</p>";             
+                            echo "</p>";
                         }
-                        
+
                         //Language Filter
                         if($filter->languages){
                             echo "<p>";
@@ -233,10 +233,10 @@ use yii\helpers\Url;
                                 echo "- ";
                                 echo $this->params['isArabic']?$language->language_name_ar:$language->language_name_en."<br/>";
                             }
-                            echo "</p>";             
+                            echo "</p>";
                         }
-                        
-                    } 
+
+                    }
                     ?>
                 </div>
             </div>
@@ -267,7 +267,7 @@ use yii\helpers\Url;
                     </ul>
                 </div>
             </div>
-        </div>        
+        </div>
 
     </div>
 </div>
