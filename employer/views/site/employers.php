@@ -325,6 +325,17 @@ $this->registerCss("
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer117.jpg") ?>" style="width:100%" alt="AD Group Real Estate">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
                     <img src="<?= Url::to("@web/images/employer-list/employer59.jpg") ?>" style="width:100%" alt="Ajar Online General Trading Co.">
                 </div>
             </div>
@@ -1137,6 +1148,17 @@ $this->registerCss("
     <!-- Category -->
     <div class="panel" id='accounting'>
         <h3 style="padding:0.8em; text-align:center;"><?= Yii::t('employer', 'Accounting & Consulting') ?></h3>
+    </div>
+
+    <!-- Logo -->
+    <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <img src="<?= Url::to("@web/images/employer-list/employer118.jpg") ?>" style="width:100%" alt="KPMG Safi Al Mutawa & Partners">
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Logo -->
