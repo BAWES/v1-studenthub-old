@@ -30,7 +30,7 @@ $checkboxTemplate = "<div class=\"checkboxer\">\n"
     </div>
 
     <div class="panel-body">
-        
+
         <div class="row">
             <div class="col-lg-5">
                 <?php $form = ActiveForm::begin([
@@ -40,29 +40,29 @@ $checkboxTemplate = "<div class=\"checkboxer\">\n"
                         'checkboxTemplate' => $checkboxTemplate,
                     ],
                 ]); ?>
-                
-                
+
+
                 <?= $form->field($model, 'email')->input("email", ['placeholder' => "email@company.com"]) ?>
                 <?= $form->field($model, 'password')->passwordInput(['placeholder' => "***"]) ?>
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
-                
-                
+
+
                 <div class="form-group">
                     <?= Html::submitButton(Yii::t("employer",'Login'), ['class' => 'btn btn-teal', 'name' => 'login-button']) ?>
                 </div>
-                
-                
+
+
                 <div style="color:#999;margin:1.5em 0">
                     <?= Yii::t("employer", "If you forgot your password you can") ?>
                     <?= Html::a(Yii::t("employer",'reset it'), ['site/request-password-reset']) ?>
                     <br/>
                     <?= Yii::t("employer", "Don't have an account? <a href='{url}'>Register</a>", [
-                        'url' => Url::to(['site/register']),
+                        'url' => Url::to(['site/registration']),
                     ]) ?>
                 </div>
-                
-                
-                
+
+
+
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
