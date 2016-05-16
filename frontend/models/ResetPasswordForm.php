@@ -48,7 +48,7 @@ class ResetPasswordForm extends Model
             ['password', 'string', 'min' => 5],
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -70,6 +70,6 @@ class ResetPasswordForm extends Model
         $student->setPassword($this->password);
         $student->removePasswordResetToken();
 
-        return $student->save();
+        return $student->save(false);
     }
 }
