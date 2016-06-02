@@ -180,7 +180,7 @@ return [
     'You will receive your invoice by email.' => 'ستستلم فاتورة عن طريق البريد الإلكتروني.',
     'Your Order' => 'طلبك',
     'Your job details have been updated and will go live as soon as they are verified.' => 'تم تحديث تفاصيل عملك وسوف تعرض حالما يتم التحقق منها.',
-    'Your post will revised and we will notify you once it is posted.' => 'سنقوم بمراجعة عملك وإعلامك حالما يتم نشره.',
+    'Your post will be revised and we will notify you once it is posted.' => 'سنقوم بمراجعة عملك وإعلامك حالما يتم نشره.',
     'cost per applicant' => 'التكلفة لكل المتقدم',
     'etc..' => 'الخ ..',
     'listing cost' => 'التكلفة إدراجك',
