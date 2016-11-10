@@ -3,10 +3,14 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=studenthub',
-            'username' => 'studentuser',
-            'password' => 'studentpass',
+            'dsn' => 'mysql:host=localhost;dbname=Studenthub',
+            'username' => 'khalid',
+            'password' => '12345',
             'charset' => 'utf8',
+        ],
+        'assetManager' => [
+            // Disabling linkAssets because doesn't work on my computer
+            'linkAssets' => false,
         ],
         'log' => [
             'targets' => [
