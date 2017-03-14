@@ -35,6 +35,10 @@ return [
             'frontend/web/assets',
             'employer/runtime',
             'employer/web/assets',
+            'employer-api/runtime',
+            'employer-api/web/assets',
+            'student-api/runtime',
+            'student-api/web/assets',
         ],
         'setExecutable' => [
             'yii',
@@ -43,6 +47,8 @@ return [
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
             'employer/config/main-local.php',
+            'employer-api/config/main-local.php',
+            'student-api/config/main-local.php',
         ],
     ],
     'Production' => [
@@ -54,6 +60,10 @@ return [
             'frontend/web/assets',
             'employer/runtime',
             'employer/web/assets',
+            'employer-api/runtime',
+            'employer-api/web/assets',
+            'student-api/runtime',
+            'student-api/web/assets',
         ],
         'setExecutable' => [
             'yii',
@@ -62,6 +72,8 @@ return [
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
             'employer/config/main-local.php',
+            'employer-api/config/main-local.php',
+            'student-api/config/main-local.php',
         ],
     ],
     'Demo' => [
@@ -73,6 +85,10 @@ return [
             'frontend/web/assets',
             'employer/runtime',
             'employer/web/assets',
+            'employer-api/runtime',
+            'employer-api/web/assets',
+            'student-api/runtime',
+            'student-api/web/assets',
         ],
         'setExecutable' => [
             'yii',
@@ -81,6 +97,8 @@ return [
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
             'employer/config/main-local.php',
+            'employer-api/config/main-local.php',
+            'student-api/config/main-local.php',
         ],
     ],
     'Development Krushn' => [
@@ -92,6 +110,10 @@ return [
             'frontend/web/assets',
             'employer/runtime',
             'employer/web/assets',
+            'employer-api/runtime',
+            'employer-api/web/assets',
+            'student-api/runtime',
+            'student-api/web/assets',
         ],
         'setExecutable' => [
             'yii',
@@ -100,6 +122,8 @@ return [
             'backend/config/main-local.php',
             'frontend/config/main-local.php',
             'employer/config/main-local.php',
+            'employer-api/config/main-local.php',
+            'student-api/config/main-local.php',
         ],
     ],
 ];
