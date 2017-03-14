@@ -6,7 +6,7 @@ use Yii;
 use yii\rest\Controller;
 use yii\filters\auth\HttpBasicAuth;
 
-use common\models\Agent;
+use common\models\Student;
 
 /**
  * Auth controller provides the initial access token that is required for further requests
@@ -39,9 +39,9 @@ class AuthController extends Controller
             'class' => HttpBasicAuth::className(),
             'except' => ['options'],
             'auth' => function ($email, $password) {
-                $agent = Agent::findByEmail($email);
-                if ($agent && $agent->validatePassword($password)) {
-                    return $agent;
+                $student = Student::findByEmail($email);
+                if ($student && $student->validatePassword($password)) {
+                    return $student;
                 }
 
                 return null;
@@ -82,18 +82,18 @@ class AuthController extends Controller
 
 
     /**
-     * Perform validation on the agent account (check if he's allowed login to platform)
+     * Perform validation on the student account (check if he's allowed login to platform)
      * If everything is alright,
      * Returns the BEARER access token required for futher requests to the API
      * @return array
      */
     public function actionLogin()
     {
-        $agent = Yii::$app->user->identity;
+        $student = Yii::$app->user->identity;
 
         // Email and password are correct, check if his email has been verified
-        // If agent email has been verified, then allow him to log in
-        if($agent->agent_email_verified != Agent::EMAIL_VERIFIED){
+        // If student email has been verified, then allow him to log in
+        if($student->student_email_verified != Student::EMAIL_VERIFIED){
             return [
                 "operation" => "error",
                 "errorType" => "email-not-verified",
@@ -101,14 +101,14 @@ class AuthController extends Controller
             ];
         }
 
-        // Return agent access token if everything valid
-        $accessToken = $agent->accessToken->token_value;
+        // Return student access token if everything valid
+        $accessToken = $student->accessToken->token_value;
         return [
             "operation" => "success",
             "token" => $accessToken,
-            "agentId" => $agent->agent_id,
-            "name" => $agent->agent_name,
-            "email" => $agent->agent_email
+            "studentId" => $student->student_id,
+            "name" => $student->student_name,
+            "email" => $student->student_email
         ];
     }
 
