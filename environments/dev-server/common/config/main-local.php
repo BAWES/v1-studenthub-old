@@ -17,7 +17,7 @@ return [
         'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=studenthub',
-            'username' => 'studenthubDevServ',
+            'username' => 'studenthubDevSer',
             'password' => 'dwia@wndiadnWdw',
             'charset' => 'utf8',
         ],
