@@ -195,7 +195,7 @@ class JobController extends \yii\web\Controller {
          */
         
         $jobs = $jobsQuery->asArray()->all();
-        
+
         $availableIndustries = ArrayHelper::map($jobs, "employer.industry.industry_id", Yii::$app->view->params['isArabic']?"employer.industry.industry_name_ar":"employer.industry.industry_name_en");
         $availableJobTypes = ArrayHelper::map(\common\models\Jobtype::find()->all(), "jobtype_id", Yii::$app->view->params['isArabic'] ? "jobtype_name_ar" : "jobtype_name_en");
         $availablePaymentOptions = [
