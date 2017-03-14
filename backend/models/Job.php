@@ -90,6 +90,7 @@ class Job extends \common\models\Job {
      * @return int number of students broadcasted to
      */
     public function broadcast() {
+
         $studentCount = 0;
         
         /**
