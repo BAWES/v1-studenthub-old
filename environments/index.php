@@ -76,6 +76,31 @@ return [
             'student-api/config/main-local.php',
         ],
     ],
+    'Dev-Server' => [
+        'path' => 'dev-server',
+        'setWritable' => [
+            'backend/runtime',
+            'backend/web/assets',
+            'frontend/runtime',
+            'frontend/web/assets',
+            'employer/runtime',
+            'employer/web/assets',
+            'employer-api/runtime',
+            'employer-api/web/assets',
+            'student-api/runtime',
+            'student-api/web/assets',
+        ],
+        'setExecutable' => [
+            'yii',
+        ],
+        'setCookieValidationKey' => [
+            'backend/config/main-local.php',
+            'frontend/config/main-local.php',
+            'employer/config/main-local.php',
+            'employer-api/config/main-local.php',
+            'student-api/config/main-local.php',
+        ],
+    ],
     'Demo' => [
         'path' => 'demo',
         'setWritable' => [
