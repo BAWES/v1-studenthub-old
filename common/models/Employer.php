@@ -9,6 +9,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use yii\web\UploadedFile;
 use yii\helpers\Url;
+use common\models\EmployerToken;
 
 /**
  * This is the model class for table "employer".
@@ -181,6 +182,42 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
         }
     }
     
+    /**
+     * Access tokens used to login on devices
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAccessTokens()
+    {
+        return $this->hasMany(EmployerToken::className(), ['employer_id' => 'employer_id']);
+    }
+
+    /**
+     * Create an Access Token Record for this employer
+     * if the employer already has one, it will return it instead
+     * @return \common\models\EmployerToken
+     */
+    public function getAccessToken() {
+
+        // Return existing inactive token if found
+        $token = EmployerToken::findOne([
+            'employer_id' => $this->employer_id,
+            'token_status' => EmployerToken::STATUS_ACTIVE
+        ]);
+
+        if($token){
+            return $token;
+        }
+
+        // Create new inactive token
+        $token = new EmployerToken();
+        $token->employer_id = $this->employer_id;
+        $token->token_value = EmployerToken::generateUniqueTokenString();
+        $token->token_status = EmployerToken::STATUS_ACTIVE;
+        $token->save(false);
+
+        return $token;
+    }
+
     /**
      * @return string path to the employer logo
      */
