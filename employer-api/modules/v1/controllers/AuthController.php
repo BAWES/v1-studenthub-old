@@ -39,8 +39,8 @@ class AuthController extends Controller
             'class' => HttpBasicAuth::className(),
             'except' => ['options'],
             'auth' => function ($email, $password) {
-                $employer = Employer::findByEmail($email);
-                if ($employer && $employer->validatePassword($password)) {
+                $employer = Employer::findByEmail(base64_decode($email));
+                if ($employer && $employer->validatePassword(base64_decode($password))) {
                     return $employer;
                 }
 
