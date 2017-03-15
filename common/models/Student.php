@@ -3,13 +3,14 @@
 namespace common\models;
 
 use Yii;
+use yii\db\Expression;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
-use yii\db\Expression;
 use yii\web\IdentityInterface;
-use common\models\University;
 use yii\web\UploadedFile;
 use yii\helpers\Url;
+use common\models\University;
+use common\models\StudentToken;
 
 /**
  * This is the model class for table "student".
@@ -965,4 +966,40 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         return false;
     }
     
+    /**
+     * Create an Access Token Record for this student
+     * if the student already has one, it will return it instead
+     * @return \common\models\StudentToken
+     */
+    public function getAccessToken() {
+
+        // Return existing inactive token if found
+        $token = StudentToken::findOne([
+            'student_id' => $this->student_id,
+            'token_status' => StudentToken::STATUS_ACTIVE
+        ]);
+
+        if($token){
+            return $token;
+        }
+
+        // Create new inactive token
+        $token = new StudentToken();
+        $token->student_id = $this->student_id;
+        $token->token_value = StudentToken::generateUniqueTokenString();
+        $token->token_status = StudentToken::STATUS_ACTIVE;
+        $token->save(false);
+
+        return $token;
+    }
+
+    /**
+     * Access tokens used to login on devices
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAccessTokens()
+    {
+        return $this->hasMany(StudentToken::className(), ['student_id' => 'student_id']);
+    }
 }
+
