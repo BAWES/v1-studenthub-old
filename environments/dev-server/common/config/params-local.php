@@ -1,6 +1,6 @@
 <?php
 return [
-    'KNETResourcePath' => '/Users/BAWES/Sites/studenthub/common/components/knet-testing/',
+    'KNETResourcePath' => '/var/www/html/common/components/knet/',
     'cybersourceEnabled' => true,
     'knetEnabled' => true,
     'isDemo' => false,

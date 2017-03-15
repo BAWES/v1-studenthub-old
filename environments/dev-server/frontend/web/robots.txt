@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: https://studenthub.co/sitemap.xml

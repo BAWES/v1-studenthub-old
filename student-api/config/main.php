@@ -25,7 +25,7 @@ return [
             ]
         ],
         'user' => [
-            'identityClass' => 'common\models\Employer',
+            'identityClass' => 'common\models\Student',
             'enableAutoLogin' => false,
             'enableSession' => false,
             'loginUrl' => null
