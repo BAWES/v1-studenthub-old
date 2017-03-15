@@ -5,7 +5,8 @@ namespace employerapi\modules\v1\controllers;
 use Yii;
 use yii\rest\Controller;
 use yii\filters\auth\HttpBasicAuth;
-use common\models\Employer;
+use yii\web\UploadedFile;
+use employerapi\models\Employer;
 
 /**
  * Auth controller provides the initial access token that is required for further requests
@@ -81,7 +82,7 @@ class AuthController extends Controller
 
 
     /**
-     * Perform validation on the agent account (check if he's allowed login to platform)
+     * Perform validation on the employer account (check if he's allowed login to platform)
      * If everything is alright,
      * Returns the BEARER access token required for futher requests to the API
      * @return array
@@ -103,31 +104,46 @@ class AuthController extends Controller
     }
 
     /**
-     * Creates new agent account manually
+     * Creates new employer account manually
      * @return array
      */
     public function actionCreateAccount()
     {
-        $model = new \common\models\Agent();
-        $model->scenario = "manualSignup";
+        $model = new Employer();
+        
+        $model->city_id = Yii::$app->request->getBodyParam("city_id");
+        $model->industry_id = Yii::$app->request->getBodyParam("industry_id");
+        $model->employer_company_name = Yii::$app->request->getBodyParam("company_name");
+        $model->employer_website = Yii::$app->request->getBodyParam("website");
+        $model->employer_company_desc = Yii::$app->request->getBodyParam("company_desc");
+        $model->employer_num_employees = Yii::$app->request->getBodyParam("num_employees");
+        $model->employer_contact_firstname = Yii::$app->request->getBodyParam("contact_firstname");
+        $model->employer_contact_lastname = Yii::$app->request->getBodyParam("contact_lastname");
+        $model->employer_contact_number = Yii::$app->request->getBodyParam("contact_number");
+        $model->employer_email_preference = Yii::$app->request->getBodyParam("email_preference");
+        $model->employer_email = Yii::$app->request->getBodyParam("email");
+        $model->employer_password_hash = Yii::$app->request->getBodyParam("password");
+        $model->employer_language_pref = Yii::$app->request->getBodyParam("language_pref");
+        $model->employer_support_field = Yii::$app->request->getBodyParam("support_field");
+        $model->employer_social_twitter = Yii::$app->request->getBodyParam("social_twitter");
+        $model->employer_social_facebook = Yii::$app->request->getBodyParam("social_facebook");
+        $model->employer_social_instagram = Yii::$app->request->getBodyParam("social_instagram");
 
-        $model->agent_name = Yii::$app->request->getBodyParam("fullname");
-        $model->agent_email = Yii::$app->request->getBodyParam("email");
-        $model->agent_password_hash = Yii::$app->request->getBodyParam("password");
+        //upload logo 
 
-        if (!$model->signup())
+        $model->employer_logo = UploadedFile::getInstance($model, 'logo');
+
+        if ($model->validate() && $model->employer_logo) {
+            //file upload is valid - Upload file to amazon S3
+            $model->uploadLogo();
+        }
+
+        if (!$model->signup(true))
         {
-            if(isset($model->errors['agent_email'])){
-                return [
-                    "operation" => "error",
-                    "message" => $model->errors['agent_email']
-                ];
-            }else{
-                return [
-                    "operation" => "error",
-                    "message" => "We've faced a problem creating your account, please contact us for assistance."
-                ];
-            }
+            return [
+                "operation" => "error",
+                "message" => $model->errors
+            ];
         }
 
         return [
@@ -137,37 +153,21 @@ class AuthController extends Controller
     }
 
     /**
-     * Re-send manual verification email to agent
+     * Re-send manual verification email to employer
      * @return array
      */
     public function actionResendVerificationEmail()
     {
         $emailInput = Yii::$app->request->getBodyParam("email");
 
-        $agent = Agent::findOne([
-            'agent_email' => $emailInput,
+        $employer = Employer::findOne([
+            'employer_email' => $emailInput,
         ]);
 
         $errors = false;
 
-        if ($agent) {
-            //Check if this user sent an email in past few minutes (to limit email spam)
-            $emailLimitDatetime = new \DateTime($agent->agent_limit_email);
-            date_add($emailLimitDatetime, date_interval_create_from_date_string('2 minutes'));
-            $currentDatetime = new \DateTime();
-
-            if ($currentDatetime < $emailLimitDatetime) {
-                $difference = $currentDatetime->diff($emailLimitDatetime);
-                $minuteDifference = (int) $difference->i;
-                $secondDifference = (int) $difference->s;
-
-                $errors = Yii::t('app', "Email was sent previously, you may request another one in {numMinutes, number} minutes and {numSeconds, number} seconds", [
-                            'numMinutes' => $minuteDifference,
-                            'numSeconds' => $secondDifference,
-                ]);
-            } else if ($agent->agent_email_verified == Agent::EMAIL_NOT_VERIFIED) {
-                $agent->sendVerificationEmail();
-            }
+        if ($employer) {
+            $employer->sendVerificationEmail();            
         }
 
         // If errors exist show them
@@ -195,13 +195,15 @@ class AuthController extends Controller
         $verify = Yii::$app->request->getBodyParam("verify");
 
         //Code is his auth key, check if code is valid
-        $agent = Agent::findOne(['agent_auth_key' => $code, 'agent_id' => (int) $verify]);
-        if ($agent) {
+        $employer = Employer::findOne(['employer_auth_key' => $code, 'employer_id' => (int) $verify]);
+
+        if ($employer) {
+
             //If not verified
-            if ($agent->agent_email_verified == Agent::EMAIL_NOT_VERIFIED) {
-                //Verify this agents  email
-                $agent->agent_email_verified = Agent::EMAIL_VERIFIED;
-                $agent->save(false);
+            if ($employer->employer_email_verification == Employer::EMAIL_NOT_VERIFIED) {
+                //Verify this employers  email
+                $employer->employer_email_verification = Employer::EMAIL_VERIFIED;
+                $employer->save(false);
             }
 
             return [
@@ -324,24 +326,24 @@ class AuthController extends Controller
             $displayName = $displayName?$displayName:$email;
             $fullname = isset($payload['name'])?$payload['name']:$displayName;
 
-            $existingAgent = Agent::find()->where(['agent_email' => $email])->one();
-            if ($existingAgent) {
-                //There's already an agent with this email, update his details
-                $existingAgent->agent_name = $fullname;
-                $existingAgent->agent_email_verified = Agent::EMAIL_VERIFIED;
-                $existingAgent->generatePasswordResetToken();
+            $existingemployer = employer::find()->where(['employer_email' => $email])->one();
+            if ($existingemployer) {
+                //There's already an employer with this email, update his details
+                $existingemployer->employer_name = $fullname;
+                $existingemployer->employer_email_verified = employer::EMAIL_VERIFIED;
+                $existingemployer->generatePasswordResetToken();
 
                 // On Save, Log him in / Send Access Token
-                if ($existingAgent->save()) {
-                    Yii::info("[Agent Login Google Native] ".$existingAgent->agent_email, __METHOD__);
+                if ($existingemployer->save()) {
+                    Yii::info("[employer Login Google Native] ".$existingemployer->employer_email, __METHOD__);
 
-                    $accessToken = $existingAgent->accessToken->token_value;
+                    $accessToken = $existingemployer->accessToken->token_value;
                     return [
                         "operation" => 'success',
                         "token" => $accessToken,
-                        "agentId" => $existingAgent->agent_id,
-                        "name" => $existingAgent->agent_name,
-                        "email" => $existingAgent->agent_email
+                        "employerId" => $existingemployer->employer_id,
+                        "name" => $existingemployer->employer_name,
+                        "email" => $existingemployer->employer_email
                     ];
                 }
 
@@ -351,28 +353,28 @@ class AuthController extends Controller
                     'message' => 'Unable to update your account. Please contact us for assistance.'
                 ];
             } else {
-                //Agent Doesn't have an account, create one for him
-                $agent = new Agent([
-                    'agent_name' => $fullname,
-                    'agent_email' => $email,
-                    'agent_email_verified' => Agent::EMAIL_VERIFIED,
-                    'agent_limit_email' => new Expression('NOW()')
+                //employer Doesn't have an account, create one for him
+                $employer = new employer([
+                    'employer_name' => $fullname,
+                    'employer_email' => $email,
+                    'employer_email_verified' => employer::EMAIL_VERIFIED,
+                    'employer_limit_email' => new Expression('NOW()')
                 ]);
-                $agent->setPassword(Yii::$app->security->generateRandomString(6));
-                $agent->generateAuthKey();
-                $agent->generatePasswordResetToken();
+                $employer->setPassword(Yii::$app->security->generateRandomString(6));
+                $employer->generateAuthKey();
+                $employer->generatePasswordResetToken();
 
-                if ($agent->save()) {
-                    //Log agent signup
-                    Yii::info("[New Agent Signup Google Native] ".$agent->agent_email, __METHOD__);
+                if ($employer->save()) {
+                    //Log employer signup
+                    Yii::info("[New employer Signup Google Native] ".$employer->employer_email, __METHOD__);
                     // Log him in / Send Access Token
-                    $accessToken = $agent->accessToken->token_value;
+                    $accessToken = $employer->accessToken->token_value;
                     return [
                         "operation" => 'success',
                         "token" => $accessToken,
-                        "agentId" => $agent->agent_id,
-                        "name" => $agent->agent_name,
-                        "email" => $agent->agent_email
+                        "employerId" => $employer->employer_id,
+                        "name" => $employer->employer_name,
+                        "email" => $employer->employer_email
                     ];
                 }
 

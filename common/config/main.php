@@ -72,6 +72,12 @@ return [
                     'sourceLanguage' => 'en',
                 ],
             ],
+        ],        
+        'urlManagerEmployer' => [
+            'class' => 'yii\web\urlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'baseUrl' => 'https://employer.studenthub.co',
         ],
     ],
 ];

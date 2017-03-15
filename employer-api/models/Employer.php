@@ -1,6 +1,6 @@
 <?php
 
-namespace employer\models;
+namespace employerapi\models;
 
 use Yii;
 use yii\db\Expression;
@@ -53,51 +53,6 @@ class Employer extends \common\models\Employer {
         return $payment;
     }
 
-    
-    /**
-     * Sends an email requesting a user to verify his email address
-     * @return boolean whether the email was sent
-     */
-    public function sendVerificationEmail() {
-
-        //Update employer last email limit timestamp
-        $this->employer_limit_email = new Expression('NOW()');
-        $this->save(false);
-            
-        if($this->employer_language_pref == "en-US"){
-            //Set language based on preference stored in DB
-            Yii::$app->view->params['isArabic'] = false;
-            
-            //Send English Email
-            return Yii::$app->mailer->compose([
-                'html' => 'employer/verificationEmail-html',
-                'text' => 'employer/verificationEmail-text',
-                    ], [
-                'employer' => $this
-            ])
-            ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
-            ->setTo($this->employer_email)
-            ->setSubject('[StudentHub] Email Verification')
-            ->send();
-        }else{
-
-            //Set language based on preference stored in DB
-            Yii::$app->view->params['isArabic'] = true;
-            
-            //Send Arabic Email
-            return Yii::$app->mailer->compose([
-                'html' => 'employer/verificationEmail-ar-html',
-                'text' => 'employer/verificationEmail-ar-text',
-                    ], [
-                'employer' => $this
-            ])
-            ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
-            ->setTo($this->employer_email)
-            ->setSubject('[StudentHub] التحقق من البريد الإلكتروني')
-            ->send();
-        }
-    }
-
     /**
      * Signs user up.
      * @param boolean $validate - whether to validate before Signing up
@@ -133,5 +88,50 @@ class Employer extends \common\models\Employer {
         }
 
         return null;
+    }
+
+    
+    /**
+     * Sends an email requesting a user to verify his email address
+     * @return boolean whether the email was sent
+     */
+    public function sendVerificationEmail() {
+
+        //Update employer last email limit timestamp
+        $this->employer_limit_email = new Expression('NOW()');
+        $this->save(false);
+            
+        if($this->employer_language_pref == "en-US"){
+            //Set language based on preference stored in DB
+            Yii::$app->view->params['isArabic'] = false;
+            
+            //Send English Email
+            return Yii::$app->mailer->compose([
+                'html' => 'employer-api/verificationEmail-html',
+                'text' => 'employer-api/verificationEmail-text',
+                    ], [
+                'employer' => $this
+            ])
+            ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+            ->setTo($this->employer_email)
+            ->setSubject('[StudentHub] Email Verification')
+            ->send();
+        }else{
+
+            //Set language based on preference stored in DB
+            Yii::$app->view->params['isArabic'] = true;
+            
+            //Send Arabic Email
+            return Yii::$app->mailer->compose([
+                'html' => 'employer-api/verificationEmail-ar-html',
+                'text' => 'employer-api/verificationEmail-ar-text',
+                    ], [
+                'employer' => $this
+            ])
+            ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+            ->setTo($this->employer_email)
+            ->setSubject('[StudentHub] التحقق من البريد الإلكتروني')
+            ->send();
+        }
     }
 }
