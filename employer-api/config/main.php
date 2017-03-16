@@ -91,9 +91,9 @@ return [
                     'controller' => 'v1/account',
                     'pluralize' => false,
                     'patterns' => [
-                        'POST update-logo' => 'update-logo',
+                        'POST update' => 'update',
                         // OPTIONS VERBS
-                        'OPTIONS update-logo' => 'options',
+                        'OPTIONS update' => 'options'
                     ]
                 ],
             ],
