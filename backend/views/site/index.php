@@ -61,7 +61,7 @@ $this->title = 'Dashboard';
 
                 ['class' => 'yii\grid\ActionColumn', 'controller' => 'log', 'template' => '{view}'],
             ],
-        ]); 
+        ]);
         ?>
         </div>
     </div>
