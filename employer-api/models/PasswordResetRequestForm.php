@@ -19,30 +19,56 @@ class PasswordResetRequestForm extends Model
         return [
             [['email'], 'required'],
             [['email'], 'email'],
-            [['email'], 'exist', 'skipOnError' => false, 'targetClass' => Staff::className(), 'targetAttribute' => ['email' => 'staff_email']],
+            [['email'], 'exist', 'skipOnError' => false, 'targetClass' => Employer::className(), 'targetAttribute' => ['email' => 'employer_email']],
         ];
     }
 
     /**
-     * Send password reset token to staff email
+     * Sends an email with a link, for resetting the password.
      *
-     * @param staff\models\staff $staff
+     * @param employer\models\Employer $employer
+     * @return boolean whether the email was sent
      */
-    public function sendEmail($staff)
+    public function sendEmail($employer = null)
     {
-        $staff->generatePasswordResetToken();
-        $staff->save();
+        if(!$employer){
+            $employer = Employer::findOne([
+                'employer_email' => $this->email,
+            ]);
+        }
 
-        Yii::$app->mailer->compose("passwordResetRequest",
-            [
-                "name" => $staff->staff_name,
-                "token" => $staff->staff_password_reset_token,
-            ])
-            ->setFrom(Yii::$app->params['supportEmail'])
-            ->setTo($staff->staff_email)
-            ->setSubject('Password reset token')
-            ->send();
+        if ($employer) {
+            if (!Employer::isPasswordResetTokenValid($employer->employer_password_reset_token)) {
+                $employer->generatePasswordResetToken();
+            }
+            
+            //Update employer last email limit timestamp
+            $employer->employer_limit_email = new \yii\db\Expression('NOW()');
+            
+            if ($employer->save(false)) {
+                if($employer->employer_language_pref == "en-US"){
+                    //Set language based on preference stored in DB
+                    Yii::$app->view->params['isArabic'] = false;
+                    
+                    //Send English Email
+                    return \Yii::$app->mailer->compose(['html' => 'employer-api/passwordResetToken-html', 'text' => 'employer-api/passwordResetToken-text'], ['employer' => $employer])
+                        ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                        ->setTo($employer->employer_email)
+                        ->setSubject('[StudentHub] Password Reset')
+                        ->send();
+                }else{
+                    //Set language based on preference stored in DB
+                    Yii::$app->view->params['isArabic'] = true;
+                    
+                    return \Yii::$app->mailer->compose(['html' => 'employer-api/passwordResetToken-ar-html', 'text' => 'employer-api/passwordResetToken-ar-text'], ['employer' => $employer])
+                        ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                        ->setTo($employer->employer_email)
+                        ->setSubject('[StudentHub] إعادة تعيين كلمة المرور')
+                        ->send();
+                }
+            }
+        }
 
-        return true;
+        return false;
     }
 }
