@@ -67,7 +67,16 @@ return [
                         'OPTIONS request-reset-password' => 'options',
                         'OPTIONS resend-verification-email' => 'options',
                     ]
-                ]
+                ],
+                [ // IndustryController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/industry',
+                    'patterns' => [
+                        'POST filter' => 'filter',
+                        // OPTIONS VERBS
+                        'OPTIONS' => 'options',
+                    ]
+                ],
             ],
         ],
     ],
