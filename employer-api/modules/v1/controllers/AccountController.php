@@ -57,28 +57,28 @@ class AccountController extends Controller
     }
 
     /**
-     * Return a List of Accounts Managed by User
+     * Update employer logo 
      */
-    public function actionList()
+    public function actionUpdateLogo()
     {
-        // Get cached managed accounts list from account manager component
-        $managedAccounts = Yii::$app->accountManager->managedAccounts;
+        $employer = Yii::$app->user->identity;
+        
+        $employer->scenario = 'updateLogo';
+        $employer->employer_logo = Yii::$app->request->getBodyParam("logo");
 
-        return $managedAccounts;
-    }
+        if(!$employer->save()) 
+        {
+            return [
+                "operation" => "error",
+                "message" => $employer->errors
+            ];
+        }
 
-    /**
-     * Return stats records for account with $accountId
-     */
-    public function actionStats($accountId)
-    {
-        // Get Instagram account from Account Manager component
-        $instagramAccount = Yii::$app->accountManager->getManagedAccount($accountId);
+        Yii::info("[Employer Logo Updated] ".$employer->employer_email, __METHOD__);
 
-        $records = $instagramAccount->records;
-        return $records;
-
-        // Check SQL Query Count and Duration
-        return Yii::getLogger()->getDbProfiling();
+        return [
+            "operation" => "success",
+            "message" => "Employer Logo Updated Successfully"
+        ];
     }
 }

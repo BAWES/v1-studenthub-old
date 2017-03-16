@@ -25,7 +25,7 @@ return [
             ]
         ],
         'user' => [
-            'identityClass' => 'common\models\Employer',
+            'identityClass' => 'employerapi\models\Employer',
             'enableAutoLogin' => false,
             'enableSession' => false,
             'loginUrl' => null
@@ -74,7 +74,7 @@ return [
                     'patterns' => [
                         'POST filter' => 'filter',
                         // OPTIONS VERBS
-                        'OPTIONS' => 'options',
+                        'OPTIONS filter' => 'options',
                     ]
                 ],
                 [ // CityController
@@ -83,7 +83,17 @@ return [
                     'patterns' => [
                         'POST filter' => 'filter',
                         // OPTIONS VERBS
-                        'OPTIONS' => 'options',
+                        'OPTIONS filter' => 'options',
+                    ]
+                ],
+                [ // AccountController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/account',
+                    'pluralize' => false,
+                    'patterns' => [
+                        'POST update-logo' => 'update-logo',
+                        // OPTIONS VERBS
+                        'OPTIONS update-logo' => 'options',
                     ]
                 ],
             ],
