@@ -18,17 +18,9 @@ class Employer extends \common\models\Employer {
     public function scenarios() {
         $scenarios = parent::scenarios();
         
-        $scenarios['changeEmailPreference'] = ['employer_email_preference'];
-        
         $scenarios['changePassword'] = ['employer_password_hash'];
 
-        $scenarios['updateLogo'] = ['employer_logo'];
-        
-        $scenarios['updateCompanyInfo'] = ['employer_company_name', 'employer_website', 'city_id', 'industry_id', 'employer_num_employees', 'employer_company_desc'];
-        
-        $scenarios['updatePersonalInfo'] = ['employer_contact_firstname', 'employer_contact_lastname', 'employer_contact_number'];
-
-        $scenarios['updateSocialDetails'] = ['employer_social_twitter', 'employer_social_instagram', 'employer_social_facebook'];
+        $scenarios['update'] = ['city_id', 'industry_id', 'company_name', 'website', 'company_desc', 'num_employees', 'contact_firstname', 'contact_lastname', 'contact_number', 'email_preference','email', 'language_pref', 'support_field', 'social_twitter', 'social_facebook', 'social_instagram', 'logo'];
 
         return $scenarios;
     }
