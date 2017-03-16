@@ -159,9 +159,14 @@ class AuthController extends Controller
 
         if ($employer) {
             $employer->sendVerificationEmail();            
+        } 
+        else
+        {
+            $errors['employer_email'] = ['Employer Account not found'];
         }
 
         // If errors exist show them
+
         if($errors){
             return [
                 'operation' => 'error',
