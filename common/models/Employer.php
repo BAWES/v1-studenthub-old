@@ -379,7 +379,10 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
      * @inheritdoc
      */
     public static function findIdentityByAccessToken($token, $type = null) {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        $token = EmployerToken::find()->where(['token_value' => $token])->with('employer')->one();
+        if($token){
+            return $token->employer;
+        }
     }
 
     /**
