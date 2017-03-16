@@ -77,6 +77,15 @@ return [
                         'OPTIONS' => 'options',
                     ]
                 ],
+                [ // CityController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/city',
+                    'patterns' => [
+                        'POST filter' => 'filter',
+                        // OPTIONS VERBS
+                        'OPTIONS' => 'options',
+                    ]
+                ],
             ],
         ],
     ],
