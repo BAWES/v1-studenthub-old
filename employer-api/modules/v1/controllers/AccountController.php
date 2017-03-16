@@ -5,6 +5,7 @@ namespace employerapi\modules\v1\controllers;
 use Yii;
 use yii\rest\Controller;
 use yii\helpers\ArrayHelper;
+use employerapi\models\Employer;
 
 /**
  * Account controller will return the actual Instagram Accounts and all controls associated
@@ -57,28 +58,45 @@ class AccountController extends Controller
     }
 
     /**
-     * Return a List of Accounts Managed by User
+     * Update employer account info
      */
-    public function actionList()
+    public function actionUpdate()
     {
-        // Get cached managed accounts list from account manager component
-        $managedAccounts = Yii::$app->accountManager->managedAccounts;
+        $employer = Employer::findOne(Yii::$app->user->getId());
+        
+        $employer->scenario = 'update';
+        $employer->city_id = Yii::$app->request->getBodyParam("city_id");
+        $employer->industry_id = Yii::$app->request->getBodyParam("industry_id");
+        $employer->employer_company_name = Yii::$app->request->getBodyParam("company_name");
+        $employer->employer_website = Yii::$app->request->getBodyParam("website");
+        $employer->employer_company_desc = Yii::$app->request->getBodyParam("company_desc");
+        $employer->employer_num_employees = Yii::$app->request->getBodyParam("num_employees");
+        $employer->employer_contact_firstname = Yii::$app->request->getBodyParam("contact_firstname");
+        $employer->employer_contact_lastname = Yii::$app->request->getBodyParam("contact_lastname");
+        $employer->employer_contact_number = Yii::$app->request->getBodyParam("contact_number");
+        $employer->employer_email_preference = Yii::$app->request->getBodyParam("email_preference");
+        $employer->employer_email = Yii::$app->request->getBodyParam("email");
+        $employer->employer_password_hash = Yii::$app->request->getBodyParam("password");
+        $employer->employer_language_pref = Yii::$app->request->getBodyParam("language_pref");
+        $employer->employer_support_field = Yii::$app->request->getBodyParam("support_field");
+        $employer->employer_social_twitter = Yii::$app->request->getBodyParam("social_twitter");
+        $employer->employer_social_facebook = Yii::$app->request->getBodyParam("social_facebook");
+        $employer->employer_social_instagram = Yii::$app->request->getBodyParam("social_instagram");
+        $employer->employer_logo = Yii::$app->request->getBodyParam("logo");
 
-        return $managedAccounts;
-    }
+        if(!$employer->save()) 
+        {
+            return [
+                "operation" => "error",
+                "message" => $employer->errors
+            ];
+        }
 
-    /**
-     * Return stats records for account with $accountId
-     */
-    public function actionStats($accountId)
-    {
-        // Get Instagram account from Account Manager component
-        $instagramAccount = Yii::$app->accountManager->getManagedAccount($accountId);
+        Yii::info("[Employer Account Info Updated] ".$employer->employer_email, __METHOD__);
 
-        $records = $instagramAccount->records;
-        return $records;
-
-        // Check SQL Query Count and Duration
-        return Yii::getLogger()->getDbProfiling();
+        return [
+            "operation" => "success",
+            "message" => "Employer Account Info Updated Successfully"
+        ];
     }
 }

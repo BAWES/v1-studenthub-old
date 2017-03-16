@@ -25,7 +25,7 @@ return [
             ]
         ],
         'user' => [
-            'identityClass' => 'common\models\Employer',
+            'identityClass' => 'employerapi\models\Employer',
             'enableAutoLogin' => false,
             'enableSession' => false,
             'loginUrl' => null
@@ -67,7 +67,35 @@ return [
                         'OPTIONS request-reset-password' => 'options',
                         'OPTIONS resend-verification-email' => 'options',
                     ]
-                ]
+                ],
+                [ // IndustryController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/industry',
+                    'patterns' => [
+                        'POST filter' => 'filter',
+                        // OPTIONS VERBS
+                        'OPTIONS filter' => 'options',
+                    ]
+                ],
+                [ // CityController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/city',
+                    'patterns' => [
+                        'POST filter' => 'filter',
+                        // OPTIONS VERBS
+                        'OPTIONS filter' => 'options',
+                    ]
+                ],
+                [ // AccountController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/account',
+                    'pluralize' => false,
+                    'patterns' => [
+                        'POST update' => 'update',
+                        // OPTIONS VERBS
+                        'OPTIONS update' => 'options'
+                    ]
+                ],
             ],
         ],
     ],

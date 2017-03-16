@@ -38,8 +38,8 @@ class AuthController extends Controller
             'class' => HttpBasicAuth::className(),
             'except' => ['options'],
             'auth' => function ($email, $password) {
-                $student = Student::findByEmail($email);
-                if ($student && $student->validatePassword($password)) {
+                $student = Student::findByEmail(base64_decode($email));
+                if ($student && $student->validatePassword(base64_decode($password))) {
                     return $student;
                 }
 

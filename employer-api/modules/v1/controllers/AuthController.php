@@ -5,7 +5,6 @@ namespace employerapi\modules\v1\controllers;
 use Yii;
 use yii\rest\Controller;
 use yii\filters\auth\HttpBasicAuth;
-use yii\web\UploadedFile;
 use employerapi\models\Employer;
 
 /**
@@ -128,15 +127,7 @@ class AuthController extends Controller
         $model->employer_social_twitter = Yii::$app->request->getBodyParam("social_twitter");
         $model->employer_social_facebook = Yii::$app->request->getBodyParam("social_facebook");
         $model->employer_social_instagram = Yii::$app->request->getBodyParam("social_instagram");
-
-        //upload logo 
-
-        $model->employer_logo = UploadedFile::getInstance($model, 'logo');
-
-        if ($model->validate() && $model->employer_logo) {
-            //file upload is valid - Upload file to amazon S3
-            $model->uploadLogo();
-        }
+        $model->employer_logo = Yii::$app->request->getBodyParam("logo");
 
         if (!$model->signup(true))
         {
@@ -168,9 +159,14 @@ class AuthController extends Controller
 
         if ($employer) {
             $employer->sendVerificationEmail();            
+        } 
+        else
+        {
+            $errors['employer_email'] = ['Employer Account not found'];
         }
 
         // If errors exist show them
+
         if($errors){
             return [
                 'operation' => 'error',
