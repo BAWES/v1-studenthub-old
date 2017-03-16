@@ -223,7 +223,7 @@ class AuthController extends Controller
     {
         $emailInput = Yii::$app->request->getBodyParam("email");
 
-        $model = new \staff\models\PasswordResetRequestForm();
+        $model = new \employerapi\models\PasswordResetRequestForm();
         
         $model->email = $emailInput;
 
@@ -231,11 +231,11 @@ class AuthController extends Controller
 
         if ($model->validate()){
 
-            $staff = Employer::findOne([
-                'staff_email' => $model->email,
+            $employer = Employer::findOne([
+                'employer_email' => $model->email,
             ]);
 
-            if ($staff && !$model->sendEmail($staff)) {
+            if ($employer && !$model->sendEmail($employer)) {
                 $errors = 'Sorry, we are unable to reset password for email provided.';
             }
             
