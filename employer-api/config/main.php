@@ -94,7 +94,21 @@ return [
                         'POST update' => 'update',
                         'GET detail' => 'detail',
                         // OPTIONS VERBS
-                        'OPTIONS update' => 'options'
+                        'OPTIONS update' => 'options',
+                        'OPTIONS detail' => 'detail'
+                    ]
+                ],
+                [ // OfficeController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/office',
+                    'patterns' => [
+                        'GET' => 'list',
+                        'POST' => 'create',
+                        'PATCH <id>' => 'update',
+                        'DELETE <id>' => 'delete',
+                        // OPTIONS VERBS
+                        'OPTIONS' => 'options',
+                        'OPTIONS <id>' => 'options'
                     ]
                 ],
             ],
