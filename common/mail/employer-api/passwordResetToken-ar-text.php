@@ -10,3 +10,8 @@ $resetLink = Yii::$app->urlManagerEmployer->createAbsoluteUrl(['site/reset-passw
 اتبع الرابط لإعادة تعيين كلمة المرور الخاصة بك:
 
 <?= $resetLink ?>
+
+إعادة تعيين رمز:
+
+<?= $employer->employer_password_reset_token ?>
+    

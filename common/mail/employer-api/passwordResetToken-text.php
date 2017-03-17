@@ -10,3 +10,7 @@ Hello <?= $employer->employer_contact_firstname ?>,
 Follow the link below to reset your password:
 
 <?= $resetLink ?>
+
+Reset Token :
+
+<?= $employer->employer_password_reset_token ?>
