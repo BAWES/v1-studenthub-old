@@ -13,6 +13,21 @@ use yii\db\Expression;
 class Employer extends \common\models\Employer {
     
     /**
+     * @inheritdoc
+     */
+    public function fields()
+    {
+        $fields = parent::fields();
+
+        // remove fields that contain sensitive information
+        unset($fields['employer_auth_key'],
+        $fields['employer_password_hash'],
+        $fields['employer_password_reset_token']);
+
+        return $fields;
+    }
+
+    /**
      * Scenarios for validation and massive assignment
      */
     public function scenarios() {

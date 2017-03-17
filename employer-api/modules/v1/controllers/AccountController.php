@@ -57,6 +57,14 @@ class AccountController extends Controller
         return $actions;
     }
 
+    /** 
+     * Return account details
+     */ 
+    public function actionDetail()
+    {
+        return Employer::findOne(Yii::$app->user->getId());
+    }
+
     /**
      * Update employer account info
      */
