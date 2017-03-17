@@ -28,3 +28,22 @@ $resetLink = Yii::$app->urlManagerEmployer->createAbsoluteUrl(['site/reset-passw
     </td>
     <td class="expander"></td>
 </tr>
+<tr>
+    <td>
+        <br />
+        
+        <p class="lead">استخدام رمز في التطبيق لتغيير كلمة المرور</p>
+
+        <table class="button success">
+            <tbody>
+                <tr>
+                    <td>
+                        إعادة تعيين رمز: <?= $employer->employer_password_reset_token ?>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </td>
+    <td class="expander"></td>
+
+</tr>
