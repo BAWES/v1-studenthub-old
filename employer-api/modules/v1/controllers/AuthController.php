@@ -90,9 +90,18 @@ class AuthController extends Controller
     {
         $employer = Yii::$app->user->identity;
 
+        // Email and password are correct, check if his email has been verified
+        // If agent email has been verified, then allow him to log in
+        if($employer->employer_email_verification != Employer::EMAIL_VERIFIED){
+            return [
+                "operation" => "error",
+                "errorType" => "email-not-verified",
+                "message" => "Please click the verification link sent to you by email to activate your account",
+            ];
+        }
+
         // Return Employer access token if everything valid
         $accessToken = $employer->accessToken->token_value;
-        
         return [
             "operation" => "success",
             "token" => $accessToken,
@@ -109,7 +118,7 @@ class AuthController extends Controller
     public function actionCreateAccount()
     {
         $model = new Employer();
-        
+
         $model->city_id = Yii::$app->request->getBodyParam("city_id");
         $model->industry_id = Yii::$app->request->getBodyParam("industry_id");
         $model->employer_company_name = Yii::$app->request->getBodyParam("company_name");
@@ -158,8 +167,8 @@ class AuthController extends Controller
         $errors = false;
 
         if ($employer) {
-            $employer->sendVerificationEmail();            
-        } 
+            $employer->sendVerificationEmail();
+        }
         else
         {
             $errors['employer_email'] = ['Employer Account not found'];
@@ -224,7 +233,7 @@ class AuthController extends Controller
         $emailInput = Yii::$app->request->getBodyParam("email");
 
         $model = new \employerapi\models\PasswordResetRequestForm();
-        
+
         $model->email = $emailInput;
 
         $errors = false;
@@ -238,7 +247,7 @@ class AuthController extends Controller
             if ($employer && !$model->sendEmail($employer)) {
                 $errors = 'Sorry, we are unable to reset password for email provided.';
             }
-            
+
         }else if(isset($model->errors['email'])){
             $errors = $model->errors['email'];
         }
