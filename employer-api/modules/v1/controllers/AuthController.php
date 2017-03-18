@@ -246,7 +246,6 @@ class AuthController extends Controller
         $emailInput = Yii::$app->request->getBodyParam("email");
 
         $model = new \employerapi\models\PasswordResetRequestForm();
-
         $model->email = $emailInput;
 
         $errors = false;
@@ -257,8 +256,25 @@ class AuthController extends Controller
                 'employer_email' => $model->email,
             ]);
 
-            if ($employer && !$model->sendEmail($employer)) {
-                $errors = 'Sorry, we are unable to reset password for email provided.';
+            if ($employer) {
+                //Check if this user sent an email in past few minutes (to limit email spam)
+                $emailLimitDatetime = new \DateTime($employer->employer_limit_email);
+                date_add($emailLimitDatetime, date_interval_create_from_date_string('2 minutes'));
+                $currentDatetime = new \DateTime();
+
+                if ($currentDatetime < $emailLimitDatetime) {
+                    $difference = $currentDatetime->diff($emailLimitDatetime);
+                    $minuteDifference = (int) $difference->i;
+                    $secondDifference = (int) $difference->s;
+
+                    $errors = Yii::t('app', "Email was sent previously, you may request another one in {numMinutes, number} minutes and {numSeconds, number} seconds", [
+                                'numMinutes' => $minuteDifference,
+                                'numSeconds' => $secondDifference,
+                    ]);
+
+                } else if (!$model->sendEmail($employer)) {
+                    $errors = Yii::t('agent', 'Sorry, we are unable to reset password for email provided.');
+                }
             }
 
         }else if(isset($model->errors['email'])){
