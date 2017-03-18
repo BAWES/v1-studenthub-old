@@ -91,7 +91,7 @@ class AuthController extends Controller
         $employer = Yii::$app->user->identity;
 
         // Email and password are correct, check if his email has been verified
-        // If agent email has been verified, then allow him to log in
+        // If email has been verified, then allow him to log in
         if($employer->employer_email_verification != Employer::EMAIL_VERIFIED){
             return [
                 "operation" => "error",
@@ -167,15 +167,28 @@ class AuthController extends Controller
         $errors = false;
 
         if ($employer) {
-            $employer->sendVerificationEmail();
-        }
-        else
-        {
+            //Check if this user sent an email in past few minutes (to limit email spam)
+            $emailLimitDatetime = new \DateTime($employer->employer_limit_email);
+            date_add($emailLimitDatetime, date_interval_create_from_date_string('2 minutes'));
+            $currentDatetime = new \DateTime();
+
+            if ($currentDatetime < $emailLimitDatetime) {
+                $difference = $currentDatetime->diff($emailLimitDatetime);
+                $minuteDifference = (int) $difference->i;
+                $secondDifference = (int) $difference->s;
+
+                $errors = Yii::t('app', "Email was sent previously, you may request another one in {numMinutes, number} minutes and {numSeconds, number} seconds", [
+                            'numMinutes' => $minuteDifference,
+                            'numSeconds' => $secondDifference,
+                ]);
+            } else if ($employer->employer_email_verification == Employer::EMAIL_NOT_VERIFIED) {
+                $employer->sendVerificationEmail();
+            }
+        }else{
             $errors['employer_email'] = ['Employer Account not found'];
         }
 
         // If errors exist show them
-
         if($errors){
             return [
                 'operation' => 'error',
