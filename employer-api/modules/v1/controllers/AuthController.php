@@ -289,9 +289,9 @@ class AuthController extends Controller
         $token = Yii::$app->request->getBodyParam("token");
         $newPassword = Yii::$app->request->getBodyParam("newPassword");
 
-        $staff =  Employer::findByPasswordResetToken($token);
+        $employer =  Employer::findByPasswordResetToken($token);
 
-        if(!$staff){
+        if(!$employer){
             return [
                 'operation' => 'error',
                 'message' => 'Invalid password reset token. Please request another password reset email'
@@ -305,9 +305,9 @@ class AuthController extends Controller
             ];
         }
 
-        $staff->setPassword($newPassword);
-        $staff->removePasswordResetToken();
-        $staff->save(false);
+        $employer->setPassword($newPassword);
+        $employer->removePasswordResetToken();
+        $employer->save(false);
 
         return [
             'operation' => 'success',
