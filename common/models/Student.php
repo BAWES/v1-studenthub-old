@@ -176,7 +176,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             [['student_dob'], '\common\components\AgeValidator', 'min' => 16 ],
             
             //Length Requirements
-            ['student_contact_number', 'string', 'length' => 8],
+            ['student_contact_number', 'string', 'length' => 15],
             ['student_password_hash', 'string', 'length' => [5]],
                     
             //University existence validation
