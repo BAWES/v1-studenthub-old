@@ -38,8 +38,8 @@ class AuthController extends Controller
             'class' => HttpBasicAuth::className(),
             'except' => ['options'],
             'auth' => function ($email, $password) {
-                $student = Student::findByEmail(base64_decode($email));
-                if ($student && $student->validatePassword(base64_decode($password))) {
+                $student = Student::findByEmail($email);
+                if ($student && $student->validatePassword($password)) {
                     return $student;
                 }
 
@@ -90,6 +90,16 @@ class AuthController extends Controller
     {
         $student = Yii::$app->user->identity;
 
+        // Email and password are correct, check if his email has been verified
+        // If email has been verified, then allow him to log in
+        if($student->student_email_verification != Student::EMAIL_VERIFIED){
+            return [
+                "operation" => "error",
+                "errorType" => "email-not-verified",
+                "message" => "Please click the verification link sent to you by email to activate your account",
+            ];
+        }
+
         // Return Student access token if everything valid
         $accessToken = $student->accessToken->token_value;
         
@@ -98,6 +108,7 @@ class AuthController extends Controller
             "token" => $accessToken,
             "id" => $student->student_id,
             "name" => $student->student_firstname.' '.$student->student_lastname,
+            "email" => $student->student_email
         ];
     }
 
@@ -117,11 +128,6 @@ class AuthController extends Controller
             'student_password_hash' => Yii::$app->request->getBodyParam('password'),
         ];
         $model->setAttributes($attributes);
-
-        // $model->validate();
-        // var_dump($model->getAttributes());
-        // var_dump($model->getErrors());
-        // exit();
 
         if (!$model->signup(true)) {
             if (isset($model->errors)) {
