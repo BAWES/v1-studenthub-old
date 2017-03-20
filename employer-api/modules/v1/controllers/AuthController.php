@@ -188,31 +188,19 @@ class AuthController extends Controller
     public function actionVerifyEmail()
     {
         $code = Yii::$app->request->getBodyParam("code");
-        $verify = Yii::$app->request->getBodyParam("verify");
+        $verify = (int) Yii::$app->request->getBodyParam("verify");
 
-        //Code is his auth key, check if code is valid
-        $employer = Employer::findOne(['employer_auth_key' => $code, 'employer_id' => (int) $verify]);
-
-        if ($employer) {
-
-            //If not verified
-            if ($employer->employer_email_verification == Employer::EMAIL_NOT_VERIFIED) {
-                //Verify this employers  email
-                $employer->employer_email_verification = Employer::EMAIL_VERIFIED;
-                $employer->save(false);
-            }
-
+        if (Employer::verifyEmail($code, $verify)) {
             return [
                 'operation' => 'success',
                 'message' => 'You have verified your email'
             ];
+        } else {
+            return [
+                'operation' => 'error',
+                'message' => 'Invalid email verification code. Account might already be activated. Please try to login again.'
+            ];
         }
-
-        //inserted code is invalid
-        return [
-            'operation' => 'error',
-            'message' => 'Invalid email verification code. Account might already be activated. Please try to login again.'
-        ];
     }
 
     /**

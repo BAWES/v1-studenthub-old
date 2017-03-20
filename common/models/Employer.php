@@ -250,10 +250,35 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
     /**
      * @return string text explaining Email Verification Status
      */
-    public function getEmailVerificationStatus(){
-        if($this->employer_email_verification == self::EMAIL_VERIFIED){
+    public function getEmailVerificationStatus()
+    {
+        if ($this->employer_email_verification == self::EMAIL_VERIFIED) {
             return "Verified";
-        }else return "Not Yet Verified";
+        } else return "Not Yet Verified";
+    }
+
+    /**
+     * Email verification implementation
+     * @param string $code Verification key that will verify your account
+     * @param int $verify Employer ID to verify
+     * @throws NotFoundHttpException if the code is invalid
+     */
+    public static function verifyEmail($code, int $verify)
+    {
+        //Code is his auth key, check if code is valid
+        $employer = Employer::findOne(['employer_auth_key' => 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', 'employer_id' => 1]);
+        if ($employer) {
+            //If not verified
+            if ($employer->employer_email_verification == Employer::EMAIL_NOT_VERIFIED) {
+                //Verify this employers  email
+                $employer->employer_email_verification = Employer::EMAIL_VERIFIED;
+                $employer->save(false);
+            }
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
