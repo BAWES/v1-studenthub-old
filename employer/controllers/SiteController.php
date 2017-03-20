@@ -132,19 +132,11 @@ class SiteController extends Controller {
      * @param int $verify Employer ID to verify
      * @throws NotFoundHttpException if the code is invalid
      */
-    public function actionEmailVerify($code, $verify) {
-        //Code is his auth key, check if code is valid
-        $employer = Employer::findOne(['employer_auth_key' => $code, 'employer_id' => (int) $verify]);
-        if ($employer) {
-            //If not verified
-            if ($employer->employer_email_verification == Employer::EMAIL_NOT_VERIFIED) {
-                //Verify this employers  email
-                $employer->employer_email_verification = Employer::EMAIL_VERIFIED;
-                $employer->save(false);
-
-                //Log him in
-                Yii::$app->user->login($employer, 0);
-            }
+    public function actionEmailVerify($code, $verify)
+    {
+        if (Employer::verifyEmail($code, $verify)) {
+            //Log him in
+            Yii::$app->user->login($employer, 0);
 
             //Render thanks for verifying + Button to go to his portal
             return $this->render('verified');
