@@ -203,7 +203,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             ['student_email', 'email'],
             ['student_email', 'unique', 'targetClass' => '\common\models\Student', 
                 'message' => \Yii::t('frontend','This email address is already registered.')],
-            ['student_email', '\common\components\UniversityEmailValidator', 'universityAttribute'=>'university_id'],
+            // ['student_email', '\common\components\UniversityEmailValidator', 'universityAttribute'=>'university_id'],
             
             //Constant options
             ['student_gender', 'in', 'range' => [self::GENDER_MALE, self::GENDER_FEMALE]],
@@ -219,6 +219,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function scenarios() {
         $scenarios = parent::scenarios();
         
+        $scenarios['signup'] = ['student_firstname', 'student_lastname', 'student_email', 'student_password_hash'];
         $scenarios['idVerification'] = ['student_id_number', 'student_id_verification'];
         $scenarios['changeProfilePhoto'] = ['student_photo'];
         $scenarios['updateCv'] = ['student_cv'];
@@ -1001,5 +1002,109 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     {
         return $this->hasMany(StudentToken::className(), ['student_id' => 'student_id']);
     }
-}
 
+    /**
+     * Verifies the student email
+     */
+    public function verifyEmail($code)
+    {
+        //Code is his auth key, check if code is valid
+        $student = static::findOne(['student_auth_key'=>$code]);
+        if ($student) {
+            //If not verified
+            if($student->student_email_verification == self::EMAIL_NOT_VERIFIED){
+                //Verify this students email
+                $student->student_email_verification = self::EMAIL_VERIFIED;
+                $student->save(false);
+
+                Yii::info("[Email Verified] " . $student->student_firstname . " " . $student->student_lastname . " has verified their email", __METHOD__);
+
+                //Link the student to currently active jobs that they qualify for
+                self::linkToActiveQualifiedJobs();
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Sends an email requesting a user to verify his email address
+     * @return boolean whether the email was sent
+     */
+    protected function sendVerificationEmail() {
+        //Update student last email limit timestamp
+        $this->student_limit_email = new Expression('NOW()');
+        $this->save(false);
+        
+        if (!$this->student_language_pref || $this->student_language_pref == "en-US") {
+            //Set language based on preference stored in DB
+            Yii::$app->view->params['isArabic'] = false;
+            
+            //Send English Email
+            return Yii::$app->mailer->compose([
+                    'html' => 'student/verificationEmail-html',
+                    'text' => 'student/verificationEmail-text',
+                ], [
+                    'student' => $this
+                ])
+                ->setFrom(['contact@studenthub.co' => 'StudentHub'])
+                ->setTo($this->student_email)
+                ->setSubject('[StudentHub] Email Verification')
+                ->send();
+        } else {
+            //Set language based on preference stored in DB
+            Yii::$app->view->params['isArabic'] = true;
+            
+            //Send Arabic Email
+            return Yii::$app->mailer->compose([
+                    'html' => 'student/verificationEmail-ar-html',
+                    'text' => 'student/verificationEmail-ar-text',
+                ], [
+                    'student' => $this
+                ])
+                ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                ->setTo($this->student_email)
+                ->setSubject('[StudentHub] التحقق من البريد الإلكتروني')
+                ->send();
+        }
+    }
+
+    /**
+     * Sends an email to admins notifying that a new student has signed up
+     * @return boolean whether the email was sent
+     */
+    protected function notifyAdmin() {
+        Yii::$app->mailer->compose([
+                'html' => "admin/new-student-html",
+            ], [
+                'student' => $this,
+            ])
+            ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+            ->setTo([\Yii::$app->params['supportEmail']])
+            ->setSubject('[StudentHub] New Student - ' . $this->student_firstname . " " . $this->student_lastname)
+            ->send();
+    }
+
+    /**
+     * Signs user (student) up.
+     * @param boolean $validate - whether to validate before Signing up
+     * @return boolean is success
+     */
+    public function signup($validate = true)
+    {
+        $this->setPassword($this->student_password_hash);
+        $this->generateAuthKey();
+        if ($this->save($validate)) {
+            $this->sendVerificationEmail();
+            $this->notifyAdmin();
+            
+            Yii::info("[New Student Signup] " . $this->student_firstname . " " . $this->student_lastname . " has just joined StudentHub", __METHOD__);
+            
+            return true;
+        }
+
+        return false;
+    }
+}

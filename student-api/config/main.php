@@ -50,10 +50,18 @@ return [
                     'pluralize' => false,
                     'patterns' => [
                         'GET login' => 'login',
+                        'POST signup' => 'signup',
+                        'POST resend-verification-email' => 'resend-verification-email',
                         'POST request-reset-password' => 'request-reset-password',
+                        'PATCH verify' => 'verify-email',
                         'PATCH update-password' => 'update-password',
                         // OPTIONS VERBS
                         'OPTIONS login' => 'options',
+                        'OPTIONS signup' => 'options',
+                        'OPTIONS resend-verification-email' => 'options',
+                        'OPTIONS request-reset-password' => 'options',
+                        'OPTIONS verify' => 'options',
+                        'OPTIONS update-password' => 'options',
                     ]
                 ],
             ],
