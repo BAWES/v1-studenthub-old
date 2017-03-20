@@ -266,7 +266,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
     public static function verifyEmail($code, int $verify)
     {
         //Code is his auth key, check if code is valid
-        $employer = Employer::findOne(['employer_auth_key' => 'AWLsiuInKDt_5Jz8ARA6c0q2dHX6-joB', 'employer_id' => 1]);
+        $employer = Employer::findOne(['employer_auth_key' => $code, 'employer_id' => $verify]);
         if ($employer) {
             //If not verified
             if ($employer->employer_email_verification == Employer::EMAIL_NOT_VERIFIED) {
