@@ -12,8 +12,6 @@ use yii\db\Expression;
  * @property integer $application_id
  * @property integer $student_id
  * @property integer $job_id
- * @property string $application_answer_1
- * @property string $application_answer_2
  * @property integer $application_contacted
  * @property integer $application_hidden
  * @property string $application_date_apply
@@ -73,8 +71,6 @@ class StudentJobApplication extends \yii\db\ActiveRecord
             'application_id' => Yii::t('app', 'Application ID'),
             'student_id' => Yii::t('app', 'Student ID'),
             'job_id' => Yii::t('app', 'Job ID'),
-            'application_answer_1' => Yii::t('app', 'Application Answer 1'),
-            'application_answer_2' => Yii::t('app', 'Application Answer 2'),
             'application_contacted' => Yii::t('app', 'Application Contacted'),
             'application_hidden' => Yii::t('app', 'Application Hidden'),
             'application_date_apply' => Yii::t('app', 'Application Date Apply'),
