@@ -111,6 +111,19 @@ return [
                         'OPTIONS <id>' => 'options'
                     ]
                 ],
+                [ // JobController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/job',
+                    'patterns' => [
+                        'GET' => 'list',
+                        'POST' => 'create',
+                        'PATCH <id>' => 'update',
+                        'DELETE <id>' => 'delete',
+                        // OPTIONS VERBS
+                        'OPTIONS' => 'options',
+                        'OPTIONS <id>' => 'options'
+                    ]
+                ],
             ],
         ],
     ],
