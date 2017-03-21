@@ -13,11 +13,6 @@ use yii\db\Expression;
  * @property integer $payment_type_id
  * @property integer $employer_id
  * @property integer $job_id
- * @property integer $payment_job_num_applicants
- * @property integer $payment_job_num_filters
- * @property string $payment_job_initial_price_per_applicant
- * @property string $payment_job_filter_price_per_applicant
- * @property string $payment_job_total_price_per_applicant
  * @property string $payment_total
  * @property string $payment_note
  * @property string $payment_employer_credit_before
@@ -45,8 +40,8 @@ class Payment extends \yii\db\ActiveRecord {
         return [
             [['payment_type_id', 'employer_id'], 'required'],
             
-            [['payment_type_id', 'employer_id', 'job_id', 'payment_job_num_applicants', 'payment_job_num_filters'], 'integer'],
-            [['payment_job_initial_price_per_applicant', 'payment_job_filter_price_per_applicant', 'payment_job_total_price_per_applicant', 'payment_total', 'payment_employer_credit_before', 'payment_employer_credit_change', 'payment_employer_credit_after'], 'number'],
+            [['payment_type_id', 'employer_id', 'job_id'], 'integer'],
+            [['payment_total', 'payment_employer_credit_before', 'payment_employer_credit_change', 'payment_employer_credit_after'], 'number'],
             
             //Default values
             ['payment_employer_credit_change', 'default', 'value' => 0],

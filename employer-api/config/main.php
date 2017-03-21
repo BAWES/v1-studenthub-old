@@ -124,6 +124,15 @@ return [
                         'OPTIONS <id>' => 'options'
                     ]
                 ],
+                [ // PaymentController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/payment/credit',
+                    'patterns' => [
+                        'GET <id>' => 'pay',
+                        // OPTIONS VERBS
+                        'OPTIONS <id>' => 'options'
+                    ]
+                ],
             ],
         ],
     ],
