@@ -29,8 +29,6 @@ class CronController extends \yii\console\Controller {
      * Method called by cron every 5 minutes or so
      */
     public function actionMinute() {
-        //Process next job in queue
-        JobProcessQueue::processNextJob();
         
         return self::EXIT_CODE_NORMAL;
     }
