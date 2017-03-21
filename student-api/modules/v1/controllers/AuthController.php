@@ -150,22 +150,29 @@ class AuthController extends Controller
     }
 
     /**
-     * Re-send manual verification email to agent
+     * Re-send manual verification email to student
      * @return array
      */
     public function actionResendVerificationEmail()
     {
         $emailInput = Yii::$app->request->getBodyParam("email");
 
-        $agent = Agent::findOne([
-            'agent_email' => $emailInput,
+        $student = Student::findOne([
+            'student_email' => $emailInput,
         ]);
 
         $errors = false;
 
-        if ($agent) {
+        if ($student) {
+            if($student->student_email_verification == Student::EMAIL_VERIFIED){
+                return [
+                    'operation' => 'error',
+                    'message' => 'You have verified your email'
+                ];
+            }
+
             //Check if this user sent an email in past few minutes (to limit email spam)
-            $emailLimitDatetime = new \DateTime($agent->agent_limit_email);
+            $emailLimitDatetime = new \DateTime($student->student_limit_email);
             date_add($emailLimitDatetime, date_interval_create_from_date_string('2 minutes'));
             $currentDatetime = new \DateTime();
 
@@ -178,9 +185,11 @@ class AuthController extends Controller
                             'numMinutes' => $minuteDifference,
                             'numSeconds' => $secondDifference,
                 ]);
-            } else if ($agent->agent_email_verified == Agent::EMAIL_NOT_VERIFIED) {
-                $agent->sendVerificationEmail();
+            } else if ($student->student_email_verification == Student::EMAIL_NOT_VERIFIED) {
+                $student->sendVerificationEmail();
             }
+        } else {
+            $errors['student_email'] = ['Student Account not found'];
         }
 
         // If errors exist show them
@@ -227,27 +236,44 @@ class AuthController extends Controller
     {
         $emailInput = Yii::$app->request->getBodyParam("email");
 
-        $model = new \staff\models\PasswordResetRequestForm();
+        $model = new \studentapi\models\PasswordResetRequestForm();
         $model->email = $emailInput;
 
         $errors = false;
 
-        if ($model->validate()){
+        if ($model->validate()) {
 
-            $staff = Student::findOne([
-                'staff_email' => $model->email,
+            $student = Student::findOne([
+                'student_email' => $model->email,
             ]);
 
-            if ($staff && !$model->sendEmail($staff)) {
-                $errors = 'Sorry, we are unable to reset password for email provided.';
+            if ($student) {
+                //Check if this user sent an email in past few minutes (to limit email spam)
+                $emailLimitDatetime = new \DateTime($student->student_limit_email);
+                date_add($emailLimitDatetime, date_interval_create_from_date_string('2 minutes'));
+                $currentDatetime = new \DateTime();
+
+                if ($currentDatetime < $emailLimitDatetime) {
+                    $difference = $currentDatetime->diff($emailLimitDatetime);
+                    $minuteDifference = (int) $difference->i;
+                    $secondDifference = (int) $difference->s;
+
+                    $errors = Yii::t('app', "Email was sent previously, you may request another one in {numMinutes, number} minutes and {numSeconds, number} seconds", [
+                                'numMinutes' => $minuteDifference,
+                                'numSeconds' => $secondDifference,
+                    ]);
+
+                } else if (!$model->sendEmail($student)) {
+                    $errors = Yii::t('app', 'Sorry, we are unable to reset password for email provided.');
+                }
             }
-            
-        }else if(isset($model->errors['email'])){
+
+        } else if (isset($model->errors['email'])) {
             $errors = $model->errors['email'];
         }
 
         // If errors exist show them
-        if($errors){
+        if ($errors) {
             return [
                 'operation' => 'error',
                 'message' => $errors
@@ -270,9 +296,9 @@ class AuthController extends Controller
         $token = Yii::$app->request->getBodyParam("token");
         $newPassword = Yii::$app->request->getBodyParam("newPassword");
 
-        $staff =  Student::findByPasswordResetToken($token);
+        $student =  Student::findByPasswordResetToken($token);
 
-        if(!$staff){
+        if(!$student){
             return [
                 'operation' => 'error',
                 'message' => 'Invalid password reset token. Please request another password reset email'
@@ -286,9 +312,9 @@ class AuthController extends Controller
             ];
         }
 
-        $staff->setPassword($newPassword);
-        $staff->removePasswordResetToken();
-        $staff->save(false);
+        $student->setPassword($newPassword);
+        $student->removePasswordResetToken();
+        $student->save(false);
 
         return [
             'operation' => 'success',
