@@ -38,8 +38,8 @@ class AuthController extends Controller
             'class' => HttpBasicAuth::className(),
             'except' => ['options'],
             'auth' => function ($email, $password) {
-                $student = Student::findByEmail(base64_decode($email));
-                if ($student && $student->validatePassword(base64_decode($password))) {
+                $student = Student::findByEmail($email);
+                if ($student && $student->validatePassword($password)) {
                     return $student;
                 }
 
@@ -49,13 +49,13 @@ class AuthController extends Controller
         // avoid authentication on CORS-pre-flight requests (HTTP OPTIONS method)
         // also avoid for public actions like registration and password reset
         $behaviors['authenticator']['except'] = [
-            'options',            
-            'verify-email',
-            'validate',
-            'update-password',
-            'create-account',
+            'options',
+            'signup',
+            'resend-verification-email',
             'request-reset-password',
-            'resend-verification-email'
+            'verify-email',
+            'update-password',
+            'validate',
         ];
 
         return $behaviors;
@@ -90,6 +90,16 @@ class AuthController extends Controller
     {
         $student = Yii::$app->user->identity;
 
+        // Email and password are correct, check if his email has been verified
+        // If email has been verified, then allow him to log in
+        if($student->student_email_verification != Student::EMAIL_VERIFIED){
+            return [
+                "operation" => "error",
+                "errorType" => "email-not-verified",
+                "message" => "Please click the verification link sent to you by email to activate your account",
+            ];
+        }
+
         // Return Student access token if everything valid
         $accessToken = $student->accessToken->token_value;
         
@@ -98,40 +108,44 @@ class AuthController extends Controller
             "token" => $accessToken,
             "id" => $student->student_id,
             "name" => $student->student_firstname.' '.$student->student_lastname,
+            "email" => $student->student_email
         ];
     }
 
     /**
-     * Creates new agent account manually
+     * Signup by student, only firstname, lastname, email and password needed
      * @return array
      */
-    public function actionCreateAccount()
+    public function actionSignup()
     {
-        $model = new \common\models\Agent();
-        $model->scenario = "manualSignup";
+        $model = new \common\models\Student();
+        $model->scenario = "signup";
 
-        $model->agent_name = Yii::$app->request->getBodyParam("fullname");
-        $model->agent_email = Yii::$app->request->getBodyParam("email");
-        $model->agent_password_hash = Yii::$app->request->getBodyParam("password");
+        $attributes = [
+            'student_firstname' => Yii::$app->request->getBodyParam('firstname'),
+            'student_lastname' => Yii::$app->request->getBodyParam('lastname'),
+            'student_email' => Yii::$app->request->getBodyParam('email'),
+            'student_password_hash' => Yii::$app->request->getBodyParam('password'),
+        ];
+        $model->setAttributes($attributes);
 
-        if (!$model->signup())
-        {
-            if(isset($model->errors['agent_email'])){
+        if (!$model->signup(true)) {
+            if (isset($model->errors)) {
                 return [
                     "operation" => "error",
-                    "message" => $model->errors['agent_email']
+                    "message" => $model->errors,
                 ];
-            }else{
+            } else {
                 return [
                     "operation" => "error",
-                    "message" => "We've faced a problem creating your account, please contact us for assistance."
+                    "message" => "We've faced a problem creating your account, please contact us for assistance.",
                 ];
             }
         }
 
         return [
             "operation" => "success",
-            "message" => "Please click on the link sent to you by email to verify your account"
+            "message" => "Please click on the link sent to you by email to verify your account",
         ];
     }
 
@@ -191,29 +205,18 @@ class AuthController extends Controller
     public function actionVerifyEmail()
     {
         $code = Yii::$app->request->getBodyParam("code");
-        $verify = Yii::$app->request->getBodyParam("verify");
 
-        //Code is his auth key, check if code is valid
-        $agent = Agent::findOne(['agent_auth_key' => $code, 'agent_id' => (int) $verify]);
-        if ($agent) {
-            //If not verified
-            if ($agent->agent_email_verified == Agent::EMAIL_NOT_VERIFIED) {
-                //Verify this agents  email
-                $agent->agent_email_verified = Agent::EMAIL_VERIFIED;
-                $agent->save(false);
-            }
-
+        if (Student::verifyEmail($code)) {
             return [
                 'operation' => 'success',
                 'message' => 'You have verified your email'
             ];
+        } else {
+            return [
+                'operation' => 'error',
+                'message' => 'Invalid email verification code. Account might already be activated. Please try to login again.'
+            ];
         }
-
-        //inserted code is invalid
-        return [
-            'operation' => 'error',
-            'message' => 'Invalid email verification code. Account might already be activated. Please try to login again.'
-        ];
     }
 
     /**
