@@ -49,7 +49,6 @@ class CreditController extends \yii\web\Controller {
             $paymentMethod = (int) Yii::$app->request->post("paymentOption");
             $termsAgreed = Yii::$app->request->post("terms", 0);
             
-            
             if(!$termsAgreed){
                 Yii::$app->session->setFlash('error', Yii::t("frontend", "Please agree to the terms and conditions"));
             }else if($creditPurchaseAmount >= 10){
