@@ -466,12 +466,12 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      * Deletes all existing notifications and qualifications belonging to this student
      * This is to be called as soon as student verifies his email
      */
-    public function linkToActiveQualifiedJobs(){
+    public function linkToActiveQualifiedJobs($student){
         /**
          * Delete all existing notifications and qualifications for this student
          */
-        StudentJobQualification::deleteAll(['student_id' => $this->student_id]);
-        NotificationStudent::deleteAll(['student_id' => $this->student_id]);
+        StudentJobQualification::deleteAll(['student_id' => $student->student_id]);
+        NotificationStudent::deleteAll(['student_id' => $student->student_id]);
         
         $allActiveJobs = \common\models\Job::find()
                 ->with(['filter', 'filter.countries', 'filter.languages', 'filter.universities', 'filter.majors'])
@@ -479,8 +479,8 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 ->all();
         
         //Get current students' languages spoken and majors to compare with filter
-        $studentLanguages = $this->languages;
-        $studentMajors = $this->majors;
+        $studentLanguages = $student->languages;
+        $studentMajors = $student->majors;
         
         $numJobsQualified = 0;
         foreach($allActiveJobs as $job){            
@@ -490,43 +490,43 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             if($filter){
                 //Check GPA filter_gpa
                 if($filter->filter_gpa && $studentQualifies){
-                    if($this->student_gpa < $filter->filter_gpa){
+                    if($student->student_gpa < $filter->filter_gpa){
                         $studentQualifies = false;
                     }
                 }
                 
                 //Check Graduation year
                 if($filter->filter_graduation_year_start && $filter->filter_graduation_year_end && $studentQualifies){
-                    if($this->student_graduating_year < $filter->filter_graduation_year_start || 
-                            $this->student_graduating_year > $filter->filter_graduation_year_end){
+                    if($student->student_graduating_year < $filter->filter_graduation_year_start || 
+                            $student->student_graduating_year > $filter->filter_graduation_year_end){
                         $studentQualifies = false;
                     }
                 }
                 
                 //Check English level
                 if(($filter->filter_english_level !== NULL) && $studentQualifies){
-                    if($this->student_english_level != $filter->filter_english_level){
+                    if($student->student_english_level != $filter->filter_english_level){
                         $studentQualifies = false;
                     }
                 }
                 
                 //Check Gender
                 if(($filter->filter_gender !== NULL) && $studentQualifies){
-                    if($this->student_gender != $filter->filter_gender){
+                    if($student->student_gender != $filter->filter_gender){
                         $studentQualifies = false;
                     }
                 }
                 
                 //Check Degree
                 if($filter->degree_id && $studentQualifies){
-                    if($this->degree_id != $filter->degree_id){
+                    if($student->degree_id != $filter->degree_id){
                         $studentQualifies = false;
                     }
                 }
                 
                 //Check Transportation filter_transportation
                 if($filter->filter_transportation && $studentQualifies){
-                    if($this->student_transportation != $filter->filter_transportation){
+                    if($student->student_transportation != $filter->filter_transportation){
                         $studentQualifies = false;
                     }
                 }
@@ -536,7 +536,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     //If student doesn't belong to the requested filter, he does not qualify
                     $studentQualifies = false;
                     foreach($filter->countries as $country){
-                        if($this->country_id == $country->country_id){
+                        if($student->country_id == $country->country_id){
                             $studentQualifies = true;
                         }
                     }
@@ -547,7 +547,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     //If student doesn't belong to the requested filter, he does not qualify
                     $studentQualifies = false;
                     foreach($filter->universities as $university){
-                        if($this->university_id == $university->university_id){
+                        if($student->university_id == $university->university_id){
                             $studentQualifies = true;
                         }
                     }
@@ -589,14 +589,14 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 
                 $qualification = new \common\models\StudentJobQualification();
                 $qualification->job_id = $job->job_id;
-                $qualification->student_id = $this->student_id;
+                $qualification->student_id = $student->student_id;
                 if(!$qualification->save()){
                     Yii::error("Error saving qualification -- ".print_r($qualification->errors, true), __METHOD__);
                 }
                 
                 $notification = new \common\models\NotificationStudent();
                 $notification->job_id = $job->job_id;
-                $notification->student_id = $this->student_id;
+                $notification->student_id = $student->student_id;
                 $notification->notification_sent = \common\models\NotificationStudent::SENT_FALSE;
                 $notification->notification_viewed = \common\models\NotificationStudent::VIEWED_FALSE;
 
@@ -606,7 +606,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             }
         }
         
-        Yii::info("[Student linked to Active Jobs] ".$this->student_firstname." ".$this->student_lastname." has been linked to $numJobsQualified active jobs which they qualify for", __METHOD__);
+        Yii::info("[Student linked to Active Jobs] ".$student->student_firstname." ".$student->student_lastname." has been linked to $numJobsQualified active jobs which they qualify for", __METHOD__);
     }
     
 
@@ -1020,7 +1020,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 Yii::info("[Email Verified] " . $student->student_firstname . " " . $student->student_lastname . " has verified their email", __METHOD__);
 
                 //Link the student to currently active jobs that they qualify for
-                self::linkToActiveQualifiedJobs();
+                //self::linkToActiveQualifiedJobs($student);
             }
 
             return true;
@@ -1033,7 +1033,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      * Sends an email requesting a user to verify his email address
      * @return boolean whether the email was sent
      */
-    protected function sendVerificationEmail() {
+    public function sendVerificationEmail() {
         //Update student last email limit timestamp
         $this->student_limit_email = new Expression('NOW()');
         $this->save(false);
