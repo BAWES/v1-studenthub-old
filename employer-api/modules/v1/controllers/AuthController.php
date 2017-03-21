@@ -167,6 +167,13 @@ class AuthController extends Controller
         $errors = false;
 
         if ($employer) {
+            if($employer->employer_email_verification == Employer::EMAIL_VERIFIED){
+                return [
+                    'operation' => 'error',
+                    'message' => 'You have verified your email'
+                ];
+            }
+
             //Check if this user sent an email in past few minutes (to limit email spam)
             $emailLimitDatetime = new \DateTime($employer->employer_limit_email);
             date_add($emailLimitDatetime, date_interval_create_from_date_string('2 minutes'));
