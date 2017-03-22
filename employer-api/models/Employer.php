@@ -111,6 +111,15 @@ class Employer extends \common\models\Employer {
         $this->employer_limit_email = new Expression('NOW()');
         $this->save(false);
             
+        if($this->employer_new_email)
+        {
+            $email = $this->employer_new_email;
+        }
+        else
+        {
+            $email = $this->employer_email;
+        }        
+
         if($this->employer_language_pref == "en-US"){
             //Set language based on preference stored in DB
             Yii::$app->view->params['isArabic'] = false;
@@ -123,7 +132,7 @@ class Employer extends \common\models\Employer {
                 'employer' => $this
             ])
             ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
-            ->setTo($this->employer_email)
+            ->setTo($email)
             ->setSubject('[StudentHub] Email Verification')
             ->send();
         }else{
@@ -139,7 +148,7 @@ class Employer extends \common\models\Employer {
                 'employer' => $this
             ])
             ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
-            ->setTo($this->employer_email)
+            ->setTo($email)
             ->setSubject('[StudentHub] التحقق من البريد الإلكتروني')
             ->send();
         }

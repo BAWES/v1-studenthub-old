@@ -83,7 +83,6 @@ class AccountController extends Controller
         $employer->employer_contact_lastname = Yii::$app->request->getBodyParam("contact_lastname");
         $employer->employer_contact_number = Yii::$app->request->getBodyParam("contact_number");
         $employer->employer_email_preference = Yii::$app->request->getBodyParam("email_preference");
-        $employer->employer_email = Yii::$app->request->getBodyParam("email");
         $employer->employer_password_hash = Yii::$app->request->getBodyParam("password");
         $employer->employer_language_pref = Yii::$app->request->getBodyParam("language_pref");
         $employer->employer_support_field = Yii::$app->request->getBodyParam("support_field");
@@ -92,9 +91,16 @@ class AccountController extends Controller
         $employer->employer_social_instagram = Yii::$app->request->getBodyParam("social_instagram");
         $employer->employer_logo = Yii::$app->request->getBodyParam("logo");
 
+        $new_email = Yii::$app->request->getBodyParam("email");
+        
+        if($new_email != $employer->employer_email) 
+        {
+            $employer->employer_new_email = $new_email;
+        }
+
         if(!$employer->save()) 
         {
-            return [
+           return [
                 "operation" => "error",
                 "message" => $employer->errors
             ];
@@ -102,6 +108,16 @@ class AccountController extends Controller
 
         Yii::info("[Employer Account Info Updated] ".$employer->employer_email, __METHOD__);
 
+        if($employer->employer_new_email)
+        {
+            $employer->sendVerificationEmail();   
+
+            return [
+                "operation" => "success",
+                "message" => "Employer Account Info Updated Successfully, please check email to verify new email address"
+            ]; 
+        }     
+     
         return [
             "operation" => "success",
             "message" => "Employer Account Info Updated Successfully"

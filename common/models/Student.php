@@ -44,6 +44,7 @@ use common\models\StudentToken;
  * @property string $student_id_number
  * @property integer $student_email_preference
  * @property string $student_email
+ * @property string $student_new_email
  * @property string $student_auth_key
  * @property string $student_password_hash
  * @property string $student_password_reset_token
