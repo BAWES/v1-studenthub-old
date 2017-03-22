@@ -74,7 +74,8 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
             [['industry_id', 'city_id', 'employer_company_desc', 'employer_contact_firstname',
             'employer_password_hash', 'employer_company_name', 'employer_contact_number',
             'employer_contact_lastname', 'employer_email_preference', 'employer_email'], 'required'],
-            [['industry_id', 'city_id', 'employer_contact_number', 'employer_num_employees', 'employer_email_preference'], 'integer'],
+
+            [['industry_id', 'city_id', 'employer_num_employees', 'employer_email_preference'], 'integer'],
             [['employer_company_desc'], 'string'],
             [['employer_company_name', 'employer_website', 'employer_contact_firstname', 'employer_contact_lastname',
             'employer_email', 'employer_password_hash', 'employer_password_reset_token'], 'string', 'max' => 255],
@@ -83,9 +84,13 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
             ['employer_email', 'email'],
             ['employer_email', 'unique', 'targetClass' => '\common\models\Employer',
                 'message' => \Yii::t('frontend', 'This email address is already registered.')],
+
+            ['employer_new_email', 'validateNewEmail'],
+
             //Upload University Logo
             ['employer_logo', 'file', 'extensions' => 'jpg, png, gif', 'maxSize' => 10000000,
                 'wrongExtension' => Yii::t('register', 'Only files with these extensions are allowed for your Logo: {extensions}')],
+
             //URL Validator
             [['employer_website', 'employer_social_facebook'], 'url', 'defaultScheme' => 'http'],
             //Validate existence of CityID and IndustryId selected
@@ -99,8 +104,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
                 'targetAttribute' => 'industry_id',
                 'message' => \Yii::t('frontend', 'This industry does not exist.')
             ],
-            //Length Requirements
-            ['employer_contact_number', 'string', 'length' => 8],
+            
             ['employer_password_hash', 'string', 'length' => [5]],
             //Default Values
             ['employer_language_pref', 'default', 'value' => 'en-US'],
@@ -111,6 +115,18 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
         ];
     }
     
+    public function validateNewEmail()
+    {
+        $count = Employer::find()
+            ->where('employer_id != "'.$this->employer_id.'" AND (employer_new_email="'.$this->employer_new_email.'" OR employer_email="'.$this->employer_new_email.'")')
+            ->count();
+
+        if($count) 
+        {
+            $this->addError('employer_email', 'Email already registered');    
+        }
+    }
+
     /**
      * Scenarios for validation and massive assignment
      */
