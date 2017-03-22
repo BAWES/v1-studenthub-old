@@ -65,6 +65,7 @@ class SiteController extends Controller {
     }
 
     public function actionIndex() {
+
         if(!Yii::$app->user->isGuest){
             return $this->redirect(['dashboard/index']);
         }
@@ -135,6 +136,9 @@ class SiteController extends Controller {
     public function actionEmailVerify($code, $verify)
     {
         if (Employer::verifyEmail($code, $verify)) {
+            
+            $employer = Employer::findOne($verify);
+            
             //Log him in
             Yii::$app->user->login($employer, 0);
 
