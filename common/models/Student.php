@@ -92,6 +92,10 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     const ENGLISH_FAIR = 1;
     const ENGLISH_GOOD = 2;
 
+    //majors and languages selected during update personal information
+    public $majorsSelected;
+    public $languagesSelected;
+
     /**
      * @inheritdoc
      */
@@ -176,7 +180,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             [['student_dob'], '\common\components\AgeValidator', 'min' => 16 ],
             
             //Length Requirements
-            ['student_contact_number', 'string', 'length' => 15],
+            ['student_contact_number', 'string', 'max' => 15],
             ['student_password_hash', 'string', 'length' => [5]],
                     
             //University existence validation
@@ -220,6 +224,10 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         $scenarios = parent::scenarios();
         
         $scenarios['signup'] = ['student_firstname', 'student_lastname', 'student_email', 'student_password_hash'];
+        $scenarios['updatePersonalInfo'] = ['student_firstname', 'student_lastname', 'student_dob', 'student_club',
+            'student_contact_number', 'student_interestingfacts', 'student_skill', 'student_hobby', 'student_sport',
+            'student_experience_company', 'student_experience_position', /*'languagesSelected', 'country_id',*/
+            'student_english_level', 'student_gender', 'student_transportation'];
         $scenarios['idVerification'] = ['student_id_number', 'student_id_verification'];
         $scenarios['changeProfilePhoto'] = ['student_photo'];
         $scenarios['updateCv'] = ['student_cv'];
@@ -282,6 +290,9 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_datetime' => Yii::t('app', 'Created on'),
             'jobApplicationCount' => '# Jobs Applied',
             'jobContactedCount' => '# Jobs Contacted',
+
+            'majorsSelected' => Yii::t('app', 'Major(s) Studied'),
+            'languagesSelected' => Yii::t('app', 'Languages Spoken'),
         ];
     }
     
@@ -767,7 +778,10 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      * @inheritdoc
      */
     public static function findIdentityByAccessToken($token, $type = null) {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        $token = StudentToken::find()->where(['token_value' => $token])->with('student')->one();
+        if($token){
+            return $token->student;
+        }
     }
 
     /**

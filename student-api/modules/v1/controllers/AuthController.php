@@ -121,13 +121,13 @@ class AuthController extends Controller
         $model = new \common\models\Student();
         $model->scenario = "signup";
 
-        $attributes = [
+        $data = [
             'student_firstname' => Yii::$app->request->getBodyParam('firstname'),
             'student_lastname' => Yii::$app->request->getBodyParam('lastname'),
             'student_email' => Yii::$app->request->getBodyParam('email'),
             'student_password_hash' => Yii::$app->request->getBodyParam('password'),
         ];
-        $model->setAttributes($attributes);
+        $model->setAttributes($data);
 
         if (!$model->signup(true)) {
             if (isset($model->errors)) {
