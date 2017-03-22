@@ -104,7 +104,7 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
                 'targetAttribute' => 'industry_id',
                 'message' => \Yii::t('frontend', 'This industry does not exist.')
             ],
-            
+
             ['employer_password_hash', 'string', 'length' => [5]],
             //Default Values
             ['employer_language_pref', 'default', 'value' => 'en-US'],
