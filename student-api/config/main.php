@@ -76,6 +76,15 @@ return [
                         'OPTIONS detail' => 'detail'
                     ]
                 ],
+                [ // UniversityController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/university',
+                    'patterns' => [
+                        'POST filter' => 'filter',
+                        // OPTIONS VERBS
+                        'OPTIONS filter' => 'options',
+                    ]
+                ],
             ],
         ],
     ],
