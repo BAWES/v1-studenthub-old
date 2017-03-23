@@ -25,7 +25,7 @@ use common\models\StudentToken;
  * @property string $student_enrolment_year
  * @property string $student_graduating_year
  * @property string $student_gpa
- * @property integer $student_english_level 
+ * @property integer $student_english_level
  * @property integer $student_gender
  * @property integer $student_transportation
  * @property string $student_contact_number
@@ -49,7 +49,7 @@ use common\models\StudentToken;
  * @property string $student_password_hash
  * @property string $student_password_reset_token
  * @property string $student_language_pref
- * @property integer $student_banned 
+ * @property integer $student_banned
  * @property string $student_support_field
  * @property string $student_limit_email
  * @property string $student_updated_datetime
@@ -103,7 +103,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public static function tableName() {
         return 'student';
     }
-    
+
     public static function find()
     {
         return new StudentQuery(get_called_class());
@@ -115,20 +115,20 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function rules() {
         return [
             //Required
-            [['degree_id', 'country_id', 'university_id', 'student_firstname', 'student_lastname', 'student_english_level', 
-                'student_dob', 'student_enrolment_year', 'student_graduating_year', 'student_gpa', 
-                'student_gender', 'student_contact_number', 'student_email_preference', 'student_email', 
+            [['degree_id', 'country_id', 'university_id', 'student_firstname', 'student_lastname', 'student_english_level',
+                'student_dob', 'student_enrolment_year', 'student_graduating_year', 'student_gpa',
+                'student_gender', 'student_contact_number', 'student_email_preference', 'student_email',
                 'student_password_hash', 'student_transportation'], 'required'],
             //Default values / optional fields for massive assignment
             [['student_cv','student_photo','student_verification_attachment','student_club','student_interestingfacts', 'student_id_number',
                 'student_skill', 'student_hobby', 'student_sport', 'student_experience_company', 'student_experience_position'], 'default'],
             ['student_language_pref', 'default', 'value' => 'en-US'],
             ['student_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
-            
+
             //Enrolment year canot be higher than graduation year
             ['student_enrolment_year', 'compare', 'compareAttribute' => 'student_graduating_year', 'operator' => '<=',
                 'message' => \Yii::t('frontend','Enrollment year must be before graduation year.')],
-            
+
             //ID upload only required when university requires verification
             ['student_verification_attachment', 'required', 'message' => \Yii::t('frontend','Please upload a photo of your university id card'),
                 'when' => function($model) {
@@ -141,13 +141,13 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                         }
                     }
                 }
-                
+
                 return false;
             }],
-                    
+
             //Check if uploaded id image exists in resourceManager bucket filePath (only if old record)
             ['student_verification_attachment', '\common\components\S3FileExistValidator', 'filePath'=>'student-identification/',
-                'resourceManager' => Yii::$app->resourceManager, 
+                'resourceManager' => Yii::$app->resourceManager,
                 'when' => function($model){
                 if(!$model->isNewRecord){
                     return true;
@@ -155,7 +155,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             }],
             //Check if uploaded cv exists in resourceManager bucket filePath (only if old record)
             ['student_cv', '\common\components\S3FileExistValidator', 'filePath'=>'student-cv/',
-                'resourceManager' => Yii::$app->resourceManager, 
+                'resourceManager' => Yii::$app->resourceManager,
                 'when' => function($model){
                 if(!$model->isNewRecord){
                     return true;
@@ -163,27 +163,27 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             }],
             //Check if uploaded photo exists in resourceManager bucket filePath (only if old record)
             ['student_photo', '\common\components\S3FileExistValidator', 'filePath'=>'student-photo/',
-                'resourceManager' => Yii::$app->resourceManager, 
+                'resourceManager' => Yii::$app->resourceManager,
                 'when' => function($model){
                 if(!$model->isNewRecord){
                     return true;
                 }
             }],
-            
-            
+
+
             //Numeric Validation
             [['student_contact_number', 'degree_id', 'country_id', 'university_id'], 'integer'],
             [['student_gpa'], 'number', 'min' => 0.1, 'max' => 4],
-                    
+
             //Date Validation
             [['student_enrolment_year', 'student_graduating_year'], 'date', 'format' => 'yyyy'],
             [['student_dob'], 'date', 'format' => 'yyyy/MM/dd', 'message' => \Yii::t('frontend','The format of your date of birth is invalid, should be yyyy/mm/dd')],
             [['student_dob'], '\common\components\AgeValidator', 'min' => 16 ],
-            
+
             //Length Requirements
             ['student_contact_number', 'string', 'max' => 15],
             ['student_password_hash', 'string', 'length' => [5]],
-                    
+
             //University existence validation
             ['university_id', 'exist',
                 'targetClass' => '\common\models\University',
@@ -202,14 +202,14 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 'targetAttribute' => 'degree_id',
                 'message' => \Yii::t('frontend','This degree does not exist.')
             ],
-            
+
             //Unique emails
             ['student_email', 'filter', 'filter' => 'trim'],
             ['student_email', 'email'],
-            ['student_email', 'unique', 'targetClass' => '\common\models\Student', 
+            ['student_email', 'unique', 'targetClass' => '\common\models\Student',
                 'message' => \Yii::t('frontend','This email address is already registered.')],
             // ['student_email', '\common\components\UniversityEmailValidator', 'universityAttribute'=>'university_id'],
-            
+
             //Constant options
             ['student_gender', 'in', 'range' => [self::GENDER_MALE, self::GENDER_FEMALE]],
             ['student_transportation', 'in', 'range' => [self::TRANSPORTATION_AVAILABLE, self::TRANSPORTATION_NOT_AVAILABLE]],
@@ -217,13 +217,13 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             ['student_english_level', 'in', 'range' => [self::ENGLISH_WEAK, self::ENGLISH_GOOD, self::ENGLISH_FAIR]],
         ];
     }
-    
+
     /**
      * Scenarios for validation and massive assignment
      */
     public function scenarios() {
         $scenarios = parent::scenarios();
-        
+
         $scenarios['signup'] = ['student_firstname', 'student_lastname', 'student_email', 'student_password_hash'];
         $scenarios['updatePersonalInfo'] = ['student_firstname', 'student_lastname', 'student_dob', 'student_club',
             'student_contact_number', 'student_interestingfacts', 'student_skill', 'student_hobby', 'student_sport',
@@ -235,7 +235,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
 
         return $scenarios;
     }
-    
+
     public function behaviors() {
         return [
             [
@@ -296,17 +296,17 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'languagesSelected' => Yii::t('app', 'Languages Spoken'),
         ];
     }
-    
+
     public function beforeValidate() {
         //Adjust date of birth to match validation
         if($this->student_dob){
             $date = new \DateTime($this->student_dob);
             $this->student_dob = $date->format('Y/m/d');
         }
-        
+
         return parent::beforeValidate();
     }
-    
+
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
             if ($insert) {
@@ -317,7 +317,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             return true;
         }
     }
-    
+
     /**
      * Uploads the new photo if $this->student_photo is an instance of UploadedFile
      */
@@ -332,7 +332,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             $image = $imagine->open($this->student_photo->tempName);
             $image->resize($image->getSize()->widen(500));
             $image->save($newTmpName);
-            
+
             //Overwrite old filename for S3 uploading
             $this->student_photo->tempName = $newTmpName;
 
@@ -343,7 +343,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             }
         }
     }
-    
+
     /**
      * @return string path to the student photo
      */
@@ -353,7 +353,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             return Url::to("@student-photo/".$this->student_photo);
         }else return Url::to("@web/images/student-photo.png");
     }
-    
+
     /**
      * Uploads the new cv if $this->student_cv is an instance of UploadedFile
      */
@@ -368,7 +368,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             }
         }
     }
-    
+
     /**
      * @return string path to the student cv if exists
      */
@@ -378,7 +378,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             return Url::to("@student-cv/".$this->student_cv);
         }else return "No CV";
     }
-    
+
     /**
      * @return string path to the verification attachment
      */
@@ -388,7 +388,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             return Url::to("@student-id/".$this->student_verification_attachment);
         }else return "No Attachment";
     }
-    
+
     /**
      * @return string the students gender
      */
@@ -397,7 +397,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             return Yii::t("app", "Male");
         }else return Yii::t("app", "Female");
     }
-    
+
     /**
      * @return string whether the student has transportation
      */
@@ -406,7 +406,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             return Yii::t('register', "Available");
         }else return Yii::t('register', "Unavailable");
     }
-    
+
     /**
      * @return string text explaining ID Verification Status
      */
@@ -415,7 +415,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             return "Verified";
         }else return "Not Yet Verified";
     }
-    
+
     /**
      * @return string text explaining Email Verification Status
      */
@@ -424,7 +424,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             return "Verified";
         }else return "Not Yet Verified";
     }
-    
+
     /**
      * @return string the users email preference
      */
@@ -441,7 +441,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 break;
         }
     }
-    
+
     /**
      * @return string the users English language level
      */
@@ -458,9 +458,9 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 break;
         }
     }
-    
+
     /**
-     * Method that returns true if this student is active 
+     * Method that returns true if this student is active
      * which is determined by email and id verification and ban status
      * @return boolean true if active, false inactive
      */
@@ -472,7 +472,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         }
         return false;
     }
-    
+
     /**
      * Links this student to all active jobs he qualifies for
      * Deletes all existing notifications and qualifications belonging to this student
@@ -484,20 +484,20 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
          */
         StudentJobQualification::deleteAll(['student_id' => $student->student_id]);
         NotificationStudent::deleteAll(['student_id' => $student->student_id]);
-        
+
         $allActiveJobs = \common\models\Job::find()
                 ->with(['filter', 'filter.countries', 'filter.languages', 'filter.universities', 'filter.majors'])
                 ->active()
                 ->all();
-        
+
         //Get current students' languages spoken and majors to compare with filter
         $studentLanguages = $student->languages;
         $studentMajors = $student->majors;
-        
+
         $numJobsQualified = 0;
-        foreach($allActiveJobs as $job){            
+        foreach($allActiveJobs as $job){
             $studentQualifies = true;
-            
+
             $filter = $job->filter;
             if($filter){
                 //Check GPA filter_gpa
@@ -506,43 +506,43 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                         $studentQualifies = false;
                     }
                 }
-                
+
                 //Check Graduation year
                 if($filter->filter_graduation_year_start && $filter->filter_graduation_year_end && $studentQualifies){
-                    if($student->student_graduating_year < $filter->filter_graduation_year_start || 
+                    if($student->student_graduating_year < $filter->filter_graduation_year_start ||
                             $student->student_graduating_year > $filter->filter_graduation_year_end){
                         $studentQualifies = false;
                     }
                 }
-                
+
                 //Check English level
                 if(($filter->filter_english_level !== NULL) && $studentQualifies){
                     if($student->student_english_level != $filter->filter_english_level){
                         $studentQualifies = false;
                     }
                 }
-                
+
                 //Check Gender
                 if(($filter->filter_gender !== NULL) && $studentQualifies){
                     if($student->student_gender != $filter->filter_gender){
                         $studentQualifies = false;
                     }
                 }
-                
+
                 //Check Degree
                 if($filter->degree_id && $studentQualifies){
                     if($student->degree_id != $filter->degree_id){
                         $studentQualifies = false;
                     }
                 }
-                
+
                 //Check Transportation filter_transportation
                 if($filter->filter_transportation && $studentQualifies){
                     if($student->student_transportation != $filter->filter_transportation){
                         $studentQualifies = false;
                     }
                 }
-                
+
                 //Check Nationality filter
                 if($filter->countries && $studentQualifies){
                     //If student doesn't belong to the requested filter, he does not qualify
@@ -553,7 +553,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                         }
                     }
                 }
-                
+
                 //Check University Filter
                 if($filter->universities && $studentQualifies){
                     //If student doesn't belong to the requested filter, he does not qualify
@@ -564,7 +564,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                         }
                     }
                 }
-                
+
                 //Check Language Filter
                 if($filter->languages && $studentQualifies){
                     //If student doesn't belong to the requested filter, he does not qualify
@@ -577,7 +577,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                         }
                     }
                 }
-                
+
                 //Check Major Filter
                 if($filter->majors && $studentQualifies){
                     //If student doesn't belong to the requested filter, he does not qualify
@@ -590,22 +590,22 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                         }
                     }
                 }
-                
+
             }
-            
+
             /**
              * If Student Qualifies for this job, link him and add notification
              */
             if($studentQualifies){
                 $numJobsQualified++;
-                
+
                 $qualification = new \common\models\StudentJobQualification();
                 $qualification->job_id = $job->job_id;
                 $qualification->student_id = $student->student_id;
                 if(!$qualification->save()){
                     Yii::error("Error saving qualification -- ".print_r($qualification->errors, true), __METHOD__);
                 }
-                
+
                 $notification = new \common\models\NotificationStudent();
                 $notification->job_id = $job->job_id;
                 $notification->student_id = $student->student_id;
@@ -617,10 +617,10 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 }
             }
         }
-        
+
         Yii::info("[Student linked to Active Jobs] ".$student->student_firstname." ".$student->student_lastname." has been linked to $numJobsQualified active jobs which they qualify for", __METHOD__);
     }
-    
+
 
     /**
      * @return \yii\db\ActiveQuery
@@ -635,7 +635,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function getNotificationStudents() {
         return $this->hasMany(NotificationStudent::className(), ['student_id' => 'student_id']);
     }
-    
+
     /**
      * @param int $limit
      * @return \yii\db\ActiveQuery
@@ -646,7 +646,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 ->limit($limit)
                 ->orderBy("notification_datetime DESC");
     }
-    
+
     /**
      * Returns all unsent notifications (not emailed)
      * @return \yii\db\ActiveQuery
@@ -657,7 +657,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 ->where(['notification_sent' => NotificationStudent::SENT_FALSE])
                 ->orderBy("notification_datetime DESC");
     }
-    
+
     /**
      * @return int
      */
@@ -689,7 +689,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     {
         return $this->hasMany(Major::className(), ['major_id' => 'major_id'])->viaTable('student_major', ['student_id' => 'student_id']);
     }
-    
+
     /**
      * A list of active jobs this student qualifies for
      * @return \yii\db\ActiveQuery
@@ -722,7 +722,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function getStudentJobApplications() {
         return $this->hasMany(StudentJobApplication::className(), ['student_id' => 'student_id']);
     }
-    
+
     /**
      * Get number of jobs this student applied to
      * @return int
@@ -730,7 +730,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function getJobApplicationCount() {
         return $this->getStudentJobApplications()->count();
     }
-    
+
     /**
      * Get number of jobs this student applied and contact details viewed
      * @return int
@@ -740,7 +740,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 ->where(['application_contacted' => StudentJobApplication::CONTACTED_TRUE])
                 ->count();
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -762,12 +762,12 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function getLanguages() {
         return $this->hasMany(Language::className(), ['language_id' => 'language_id'])->viaTable('student_language', ['student_id' => 'student_id']);
     }
-    
-    
+
+
     /*
      * Start Identity Code
      */
-    
+
     /**
      * @inheritdoc
      */
@@ -887,7 +887,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function removePasswordResetToken() {
         $this->student_password_reset_token = null;
     }
-    
+
     /**
      * Static function that broadcasts the daily notification email to all Students
      * @param int $preference class constant for notification preference
@@ -901,10 +901,10 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                         'student_email_verification' => static::EMAIL_VERIFIED,
                         'student_id_verification' => static::ID_VERIFIED,
                         ]);
-        
-        $studentIdList = []; 
+
+        $studentIdList = [];
         $studentCount = 0;
-        
+
         //Loop through students in batches of 50
         foreach($students->each(50) as $student){
             $sentEmail = $student->sendNotificationEmail();
@@ -915,7 +915,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 $studentIdList[] = $student->student_id;
             }
         }
-        
+
         /**
          * Set notifications as `SENT` for students in the $studentIdList
          */
@@ -926,10 +926,10 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 //Where in $studentIdList
                 'student_id' => $studentIdList,
             ]);
-        
+
         Yii::info("[Notifications] Notifications emailed to $studentCount students", __METHOD__);
     }
-    
+
     /**
      * Sends a summary of unsent notifications via Email
      * @return boolean sent or not sent
@@ -937,12 +937,12 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function sendNotificationEmail(){
         $unsentNotifications = $this->unsentNotifications;
         $notificationCount = count($unsentNotifications);
-        
+
         if($notificationCount > 0){
             /**
              * Send this student all his "unsent" notifications
              */
-            
+
             if($this->student_language_pref == "en-US"){
                 //Set language based on preference stored in DB
                 Yii::$app->view->params['isArabic'] = false;
@@ -974,14 +974,14 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     ->setSubject("[StudentHub] $notificationCount وظائف جديدة متوفرة")
                     ->send();
             }
-            
-            
+
+
             return true;
         }
-        
+
         return false;
     }
-    
+
     /**
      * Create an Access Token Record for this student
      * if the student already has one, it will return it instead
@@ -1021,7 +1021,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     /**
      * Verifies the student email
      */
-    public function verifyEmail($code)
+    public static function verifyEmail($code)
     {
         //Code is his auth key, check if code is valid
         $student = static::findOne(['student_auth_key'=>$code]);
@@ -1052,11 +1052,11 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         //Update student last email limit timestamp
         $this->student_limit_email = new Expression('NOW()');
         $this->save(false);
-        
+
         if (!$this->student_language_pref || $this->student_language_pref == "en-US") {
             //Set language based on preference stored in DB
             Yii::$app->view->params['isArabic'] = false;
-            
+
             //Send English Email
             return Yii::$app->mailer->compose([
                     'html' => 'student/verificationEmail-html',
@@ -1071,7 +1071,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         } else {
             //Set language based on preference stored in DB
             Yii::$app->view->params['isArabic'] = true;
-            
+
             //Send Arabic Email
             return Yii::$app->mailer->compose([
                     'html' => 'student/verificationEmail-ar-html',
@@ -1114,9 +1114,9 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         if ($this->save($validate)) {
             $this->sendVerificationEmail();
             $this->notifyAdmin();
-            
+
             Yii::info("[New Student Signup] " . $this->student_firstname . " " . $this->student_lastname . " has just joined StudentHub", __METHOD__);
-            
+
             return true;
         }
 
