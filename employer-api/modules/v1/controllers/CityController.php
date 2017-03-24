@@ -39,7 +39,7 @@ class CityController extends Controller
         ];
 
         // avoid authentication on CORS-pre-flight requests (HTTP OPTIONS method)
-        $behaviors['authenticator']['except'] = ['options'];
+        $behaviors['authenticator']['except'] = ['options', 'filter'];
 
         return $behaviors;
     }
