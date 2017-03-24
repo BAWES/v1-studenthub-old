@@ -60,7 +60,7 @@ class JobtypeController extends Controller
     }
 
     /**
-     * Return a List of Cities by keyword
+     * Return a List of Jobtypes by keyword
      */
     public function actionFilter()
     {
