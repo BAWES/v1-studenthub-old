@@ -5,10 +5,12 @@ namespace employerapi\modules\v1\controllers;
 use Yii;
 use yii\rest\Controller;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\data\ActiveDataProvider;
 use common\models\Job;
 use common\models\JobOffice;
 use common\models\JobQuestion;
+use common\models\Payment;
 
 /**
  * Job controller - Manage job as Employer
@@ -106,10 +108,11 @@ class JobController extends Controller
         $model->job_other_qualifications = Yii::$app->request->getBodyParam("other_qualifications");
         $model->job_compensation = Yii::$app->request->getBodyParam("compensation");
         $model->job_max_applicants = Yii::$app->request->getBodyParam("max_applicants");
-        $model->job_status = Yii::$app->request->getBodyParam("status");
         $model->salary = Yii::$app->request->getBodyParam("salary");
         $model->salary_currency = Yii::$app->request->getBodyParam("salary_currency");
         
+        $model->job_status = Job::STATUS_DRAFT;
+
         if($model->salary > 0) 
         {
             $model->job_pay = 1;
@@ -326,5 +329,55 @@ class JobController extends Controller
    
         // Check SQL Query Count and Duration
         return Yii::getLogger()->getDbProfiling();
+    }
+
+    /**
+     * List available payment to pay for job posting
+     * @param  integer $id
+     * @return array
+     */
+    public function actionPaymentMethods($id)
+    {
+        $job = Job::findOne([
+                'job_id' => (int) $id,
+                'employer_id' => Yii::$app->user->getId()
+            ]);
+
+        if(!$job) {
+            return [
+                "operation" => "error",
+                "message" => "Job not found"
+            ];
+        }
+
+        //check if job already paid 
+
+        $payment = Payment::findOne(['job_id' => $id]);
+
+        if($payment) 
+        {
+            return [
+                "operation" => "error",
+                "message" => "Job already paid"
+            ];
+        }
+
+        $payment_methods = [];
+
+        //check if client have sufficient credit 
+
+        $employer_credit = Yii::$app->user->identity->employer_credit;
+
+        $fee = Yii::$app->params['jobPostingFee'];
+
+        if($employer_credit > $fee) 
+        {
+            $payment_methods['credits'] = Url::to(['payment/credits/33'], true);
+        }
+
+        return [
+            "operation" => "success",
+            "message" => $payment_methods
+        ];
     }
 }
