@@ -105,25 +105,7 @@ class CreditController extends Controller
 
         //add payment 
 
-        $payment = new Payment;
-        $payment->payment_type_id = PaymentType::TYPE_CREDIT;
-        $payment->employer_id = Yii::$app->user->getId();
-        $payment->job_id = $id;
-        $payment->payment_total = $fee;
-        $payment->payment_note = 'Payment for Job #'.$id;
-        $payment->payment_employer_credit_change = 0 - $fee;
-        
-        if(!$payment->save()) {
-            return [
-                "operation" => "error",
-                "message" => $payment->getErrors()
-            ];
-        }
-
-        return [
-            "operation" => "success",
-            "message" => "Job paid successfully"
-        ];  
+        return Payment::addJobPayment($job);
 
         // Check SQL Query Count and Duration
         return Yii::getLogger()->getDbProfiling();      

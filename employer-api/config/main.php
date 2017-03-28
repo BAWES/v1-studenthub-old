@@ -116,6 +116,7 @@ return [
                     'controller' => 'v1/job',
                     'patterns' => [
                         'GET' => 'list',
+                        'GET payment-methods/<id>' => 'payment-methods',
                         'POST' => 'create',
                         'PATCH <id>' => 'update',
                         'DELETE <id>' => 'delete',

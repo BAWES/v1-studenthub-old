@@ -281,8 +281,37 @@ class Payment extends \yii\db\ActiveRecord {
                 return $totalQuery->sum("payment_employer_credit_change");
             
         }
-        
-        
     }
 
+    /**
+     * Add job payment and Mark job as paid 
+     */ 
+    public static function addJobPayment($job)
+    {
+        $payment = new Payment;
+        $payment->payment_type_id = PaymentType::TYPE_CREDIT;
+        $payment->employer_id = $job->employer_id;
+        $payment->job_id = $job->job_id;
+        $payment->payment_total = Yii::$app->params['jobPostingFee'];
+        $payment->payment_note = 'Payment for Job #'.$job->job_id;
+        $payment->payment_employer_credit_change = 0 - Yii::$app->params['jobPostingFee'];
+        
+        if(!$payment->save())
+        {
+            return [
+                "operation" => "error",
+                "message" => $payment->getErrors()
+            ]; 
+        }
+        
+        // mark job as open 
+
+        $job->job_status = Job::STATUS_OPEN;
+        $job->save(false);
+
+        return [
+            "operation" => "success",
+            "message" => "Job paid successfully"
+        ];  
+    }
 }
