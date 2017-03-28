@@ -9,7 +9,6 @@ use yii\data\ActiveDataProvider;
 use common\models\Job;
 use common\models\JobOffice;
 use common\models\JobQuestion;
-use common\models\JobSkill;
 
 /**
  * Job controller - Manage job as Employer
@@ -93,13 +92,6 @@ class JobController extends Controller
             $job_question = [];
         }
 
-        $job_skill = Yii::$app->request->getBodyParam("job_skills");
-
-        if(!$job_skill)
-        {
-            $job_skill = [];
-        }
-
         $transaction = Yii::$app->db->beginTransaction();
         
         // Attempt to create new job
@@ -110,13 +102,14 @@ class JobController extends Controller
         $model->job_title = Yii::$app->request->getBodyParam("title");
         $model->job_startdate = Yii::$app->request->getBodyParam("startdate");
         $model->job_responsibilites = Yii::$app->request->getBodyParam("responsibilites");
+        $model->job_desired_skill = Yii::$app->request->getBodyParam("desired_skill");
         $model->job_other_qualifications = Yii::$app->request->getBodyParam("other_qualifications");
         $model->job_compensation = Yii::$app->request->getBodyParam("compensation");
         $model->job_max_applicants = Yii::$app->request->getBodyParam("max_applicants");
         $model->job_status = Yii::$app->request->getBodyParam("status");
         $model->salary = Yii::$app->request->getBodyParam("salary");
         $model->salary_currency = Yii::$app->request->getBodyParam("salary_currency");
-
+        
         if($model->salary > 0) 
         {
             $model->job_pay = 1;
@@ -172,24 +165,6 @@ class JobController extends Controller
             }
         }
 
-        //job skill 
-
-        foreach ($job_skill as $key => $value) {
-            $job_skill = new JobSkill;
-            $job_skill->job_id = $model->job_id;
-            $job_skill->skill_id = $value;
-
-            if(!$job_skill->save())
-            {
-                $transaction->rollBack();
-
-                return [
-                    "operation" => "error",
-                    "message" => $job_skill->errors
-                ];
-            }
-        }
-
         $transaction->commit();
 
         return [
@@ -220,13 +195,6 @@ class JobController extends Controller
             $job_question = [];
         }
 
-        $job_skill = Yii::$app->request->getBodyParam("job_skills");
-
-        if(!$job_skill)
-        {
-            $job_skill = [];
-        }
-
         // Attempt to update job 
         $model = Job::findOne([
                 'job_id' => (int) $id,
@@ -246,6 +214,7 @@ class JobController extends Controller
         $model->job_title = Yii::$app->request->getBodyParam("title");
         $model->job_startdate = Yii::$app->request->getBodyParam("startdate");
         $model->job_responsibilites = Yii::$app->request->getBodyParam("responsibilites");
+        $model->job_desired_skill = Yii::$app->request->getBodyParam("desired_skill");
         $model->job_other_qualifications = Yii::$app->request->getBodyParam("other_qualifications");
         $model->job_compensation = Yii::$app->request->getBodyParam("compensation");
         $model->job_max_applicants = Yii::$app->request->getBodyParam("max_applicants");
@@ -312,26 +281,6 @@ class JobController extends Controller
             }
         }
 
-        //job skill 
-
-        JobSkill::deleteAll(['job_id' => $model->job_id]);
-
-        foreach ($job_skill as $key => $value) {
-            $job_skill = new JobSkill;
-            $job_skill->job_id = $model->job_id;
-            $job_skill->skill_id = $value;
-
-            if(!$job_skill->save())
-            {
-                $transaction->rollBack();
-
-                return [
-                    "operation" => "error",
-                    "message" => $job_skill->errors
-                ];
-            }
-        }
-
         $transaction->commit();
 
         return [
@@ -364,8 +313,7 @@ class JobController extends Controller
 
         JobOffice::deleteAll(['job_id' => $id]);
         JobQuestion::deleteAll(['job_id' => $id]);
-        JobSkill::deleteAll(['job_id' => $id]);
-
+        
         Yii::warning("[Job Deleted] ".$job->job_title, __METHOD__);
 
         // Delete job
