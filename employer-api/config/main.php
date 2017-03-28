@@ -142,6 +142,15 @@ return [
                         'OPTIONS <id>' => 'options'
                     ]
                 ],
+                [ // InvoiceController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/invoice',
+                    'patterns' => [
+                        'GET' => 'list',
+                        // OPTIONS VERBS
+                        'OPTIONS' => 'options'
+                    ]
+                ],
             ],
         ],
     ],
