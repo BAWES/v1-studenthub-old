@@ -81,7 +81,7 @@ class Job extends \yii\db\ActiveRecord
             [['job_max_applicants'], 'integer', 'min' => 10],
             
             //Length validation
-            [['job_title', 'job_compensation'], 'string', 'max' => 255],
+            [['job_title', 'job_compensation', 'job_desired_skill'], 'string', 'max' => 255],
             
             //Date Validation
             [['job_startdate'], 'date', 'format' => 'yyyy/MM/dd'],
