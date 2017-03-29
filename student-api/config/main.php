@@ -97,6 +97,7 @@ return [
                     'patterns' => [
                         'GET <id>' => 'view',
                         'POST filter' => 'filter',
+                        'POST apply/<id>' => 'apply',
                         // OPTIONS VERBS
                         'OPTIONS filter' => 'options',
                     ]

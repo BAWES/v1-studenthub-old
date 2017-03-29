@@ -32,7 +32,8 @@ class StudentJobApplicationQuestion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['application_id', 'question_id', 'question', 'answer'], 'integer'],
+            [['application_id', 'question_id'], 'integer'],
+            [['question', 'answer'], 'string'],
             [['application_id'], 'exist', 'skipOnError' => true, 'targetClass' => StudentJobApplication::className(), 'targetAttribute' => ['application_id' => 'application_id']],
             [['question_id'], 'exist', 'skipOnError' => true, 'targetClass' => JobQuestion::className(), 'targetAttribute' => ['question_id' => 'job_question_id']],
         ];
