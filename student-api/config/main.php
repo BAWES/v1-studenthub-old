@@ -86,6 +86,18 @@ return [
                         'POST' => 'create',
                         'POST is-exists' => 'is-exists',
                         // OPTIONS VERBS
+                        'OPTIONS' => 'options',
+                        'OPTIONS filter' => 'options',
+                        'OPTIONS is-exists' => 'options',
+                    ]
+                ],
+                [ // JobController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/job',
+                    'patterns' => [
+                        'GET <id>' => 'view',
+                        'POST filter' => 'filter',
+                        // OPTIONS VERBS
                         'OPTIONS filter' => 'options',
                     ]
                 ],
