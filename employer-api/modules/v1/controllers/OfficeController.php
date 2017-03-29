@@ -116,7 +116,7 @@ class OfficeController extends Controller
      */
     public function actionUpdate($id)
     {
-        // Attempt to create new account
+        // Attempt to find updated account
         $model = EmployerOffice::findOne([
                 'office_id' => (int) $id,
                 'employer_id' => Yii::$app->user->getId()

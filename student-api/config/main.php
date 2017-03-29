@@ -81,6 +81,8 @@ return [
                     'controller' => 'v1/university',
                     'patterns' => [
                         'POST filter' => 'filter',
+                        'POST' => 'create',
+                        'POST is-exists' => 'is-exists',
                         // OPTIONS VERBS
                         'OPTIONS filter' => 'options',
                     ]
