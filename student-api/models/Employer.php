@@ -21,8 +21,15 @@ class Employer extends \common\models\Employer {
 
         // remove fields that contain sensitive information
         unset($fields['employer_auth_key'],
-        $fields['employer_password_hash'],
-        $fields['employer_password_reset_token']);
+            $fields['employer_password_hash'],
+            $fields['employer_password_reset_token'],
+            $fields['employer_language_pref'],
+            $fields['employer_credit'],
+            $fields['employer_email_verification'],
+            $fields['employer_support_field'],
+            $fields['employer_new_email'],
+            $fields['employer_limit_email']
+        );
 
         return $fields;
     }

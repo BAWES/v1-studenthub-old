@@ -7,6 +7,11 @@ use yii\rest\Controller;
 use yii\helpers\ArrayHelper;
 use yii\data\ActiveDataProvider;
 use studentapi\models\Job;
+use studentapi\models\Employer;
+use common\models\JobOffice;
+use common\models\JobQuestion;
+use common\models\StudentJobApplication;
+use common\models\StudentJobApplicationQuestion;
 
 /**
  * Job controller - Search Cities 
@@ -87,35 +92,37 @@ class JobController extends Controller
      */
     public function actionView($id)
     {
-        $job_title = Yii::$app->request->getBodyParam("job_title");
-
-        // list all open job where not applied 
-
         $query = Job::find()
             ->select('
                 {{%job}}.*, 
                 {{%jobtype}}.jobtype_name_ar, 
-                {{%jobtype}}.jobtype_name_en, 
-                {{%employer}}.employer_company_name,
-                {{%employer}}.employer_logo,
-                {{%employer}}.employer_website,
-                {{%employer}}.employer_company_desc,
-                {{%employer}}.employer_num_employees,
-                {{%employer}}.employer_contact_firstname,
-                {{%employer}}.employer_contact_lastname,
-                {{%employer}}.employer_contact_number,
-                {{%employer}}.employer_credit,
-                {{%employer}}.employer_email_preference,
-                {{%employer}}.employer_email,
-                {{%employer}}.employer_social_twitter,
-                {{%employer}}.employer_social_facebook,
-                {{%employer}}.employer_social_instagram
+                {{%jobtype}}.jobtype_name_en
             ')
             ->innerJoin('{{%jobtype}}', '{{%jobtype}}.jobtype_id = {{%job}}.jobtype_id')
-            ->innerJoin('{{%employer}}', '{{%employer}}.employer_id = {{%job}}.employer_id')
-            ->where('job_status = '.Job::STATUS_OPEN);
+            ->where([
+                    'job_status' => Job::STATUS_OPEN,
+                    'job_id' => $id
+                ]);
             
         $job = $query->asArray()->one();
+
+        $job['employer'] = Employer::find()
+            ->where(['employer_id' => $job['employer_id']])
+            ->one();
+
+        //add office locations for jobs 
+
+        $job['offices'] = JobOffice::find()
+            ->select('office_name_ar, office_name_en, office_longitude, office_latitude, office_address, city_name_en, city_name_ar')
+            ->innerJoin('{{%employer_office}}', '{{%employer_office}}.office_id = {{%job_office}}.office_id')
+            ->innerJoin('{{%city}}', '{{%city}}.city_id = {{%employer_office}}.city_id')
+            ->where(['job_id' => $id])
+            ->asArray()
+            ->all();
+
+        //add job questions 
+
+        $job['questions'] = JobQuestion::findAll(['job_id' => $id]);
 
         if($job)
         {
@@ -131,5 +138,95 @@ class JobController extends Controller
                 "message" => 'Job not found!'
             ];
         }
+    }
+
+    /**
+     * Return job apply
+     */
+    public function actionApply($id)
+    {
+        $job = Job::findOne([
+                'job_id' => $id,
+                'job_status' => Job::STATUS_OPEN
+            ]);
+
+        if(!$job)
+        {
+            return [
+                "operation" => "error",
+                "message" => 'Job not found!'
+            ];
+        }
+
+        // check if already applied 
+
+        $application = StudentJobApplication::findOne([
+                'job_id' => $id,
+                'student_id' => Yii::$app->user->identity->student_id
+            ]);
+
+        if($application)
+        {
+            return [
+                "operation" => "error",
+                "message" => 'You have already applied to this job!'
+            ];
+        }
+
+        $transaction = Yii::$app->db->beginTransaction();
+
+        $application = new StudentJobApplication();
+        $application->student_id = Yii::$app->user->identity->student_id;
+        $application->job_id = $id;
+
+        if(!$application->save())
+        {
+            return [
+                "operation" => "error",
+                "message" => $application->getErrors()
+            ];
+        }
+
+        //save questions 
+
+        $questions = Yii::$app->request->getBodyParam('questions');
+
+        foreach ($questions as $key => $value) 
+        {            
+            $jq = JobQuestion::findOne($key); 
+
+            if(!$jq)
+            {
+                $transaction->rollBack();
+
+                return [
+                    "operation" => "error",
+                    "message" => 'Question #'.$key.' not found!'
+                ];
+            }
+
+            $jaq = new StudentJobApplicationQuestion;
+            $jaq->application_id = $application->application_id;
+            $jaq->question_id = $key;
+            $jaq->question = $jq->question;
+            $jaq->answer = $value;
+            
+            if(!$jaq->save())
+            {
+                $transaction->rollBack();
+
+                return [
+                    "operation" => "error",
+                    "message" => $jaq->getErrors()
+                ];
+            }
+        }        
+
+        $transaction->commit();
+
+        return [
+            "operation" => "success",
+            "message" => 'Applied successfully'
+        ];
     }
 }
