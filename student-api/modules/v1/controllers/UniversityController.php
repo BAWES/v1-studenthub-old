@@ -77,4 +77,59 @@ class UniversityController extends Controller
             'query' => $query
         ]);
     }
+
+    /**
+     * Create a University if it isnt exists
+     */
+    public function actionCreate()
+    {
+        // Attempt to create new university
+        $model = new University();
+        
+        $model->university_name_en = Yii::$app->request->getBodyParam("name");
+
+        if (!$model->save())
+        {
+            if (isset($model->errors)) {
+                return [
+                    "operation" => "error",
+                    "message" => $model->errors
+                ];
+            } else {
+                return [
+                    "operation" => "error",
+                    "message" => "We've faced a problem creating the university, please contact us for assistance."
+                ];
+            }
+        }
+
+        return [
+            "operation" => "success",
+            "message" => "University created successfully"
+        ];
+    }
+
+    /**
+     * Check if typed university is exists
+     */
+    public function actionIsExists()
+    {
+        // Attempt to find typed university
+        $model = new University();
+        $model = University::findOne([
+            'university_name_en' => Yii::$app->request->getBodyParam("keyword"),
+        ]);
+        
+        if(!$model){
+            return [
+                    "operation" => "success",
+                    "message" => "not found"
+                ];
+        } else {
+            return [
+                    "operation" => "success",
+                    "message" => "found"
+                ];
+        }
+    }
 }

@@ -41,7 +41,10 @@ class University extends \yii\db\ActiveRecord {
         return [
             [['university_require_verify'], 'integer'],
             [['university_name_en', 'university_name_ar', 'university_domain'], 'string', 'max' => 255],
-            [['university_name_en', 'university_name_ar'], 'required'],
+            // removed as student only submit only En or Ar university name
+            // [['university_name_en', 'university_name_ar'], 'required'],
+            [['university_name_en'], 'unique'],
+            [['university_name_ar'], 'unique'],
             [['university_id_template', 'university_logo', 'university_graphic'], 'file', 'extensions' => 'png, gif, jpg'],
             //Rule for university verification requirement
             ['university_require_verify', 'in', 'range' => [self::VERIFICATION_NOT_REQUIRED, self::VERIFICATION_REQUIRED]],
