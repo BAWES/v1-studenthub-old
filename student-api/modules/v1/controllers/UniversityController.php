@@ -105,7 +105,8 @@ class UniversityController extends Controller
 
         return [
             "operation" => "success",
-            "message" => "University created successfully"
+            "message" => "University created successfully",
+            "id" => $model->university_id,
         ];
     }
 

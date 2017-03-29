@@ -70,9 +70,11 @@ return [
                     'pluralize' => false,
                     'patterns' => [
                         'POST update' => 'update',
+                        'POST update-education-info' => 'update-education-info',
                         'GET detail' => 'detail',
                         // OPTIONS VERBS
                         'OPTIONS update' => 'options',
+                        'OPTIONS update-education-info' => 'options',
                         'OPTIONS detail' => 'detail'
                     ]
                 ],
