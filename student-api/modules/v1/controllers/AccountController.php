@@ -143,4 +143,51 @@ class AccountController extends Controller
         // Check SQL Query Count and Duration
         return Yii::getLogger()->getDbProfiling();
     }
+
+    /**
+     * Allows student to update their education
+     */
+    public function actionUpdateEducationInfo(){
+        $model = \common\models\Student::findOne(Yii::$app->user->identity->student_id);
+        
+        if ($model) {
+            $model->scenario = "updateEducationInfo";
+
+            $model->populateMajorsSelected();
+            $data = [
+                'student_university_id' => Yii::$app->request->getBodyParam('university_id'),
+                'majorsSelected' => Yii::$app->request->getBodyParam('majorsselected'),
+                'student_enrolment_year' => Yii::$app->request->getBodyParam('enrolment_year'),
+                'student_graduating_year' => Yii::$app->request->getBodyParam('graduating_year'),
+                'degree_id' => Yii::$app->request->getBodyParam('degree_id'),
+                'student_gpa' => Yii::$app->request->getBodyParam('gpa'),
+            ];
+            $model->setAttributes($data);
+
+            /*return [
+                "1" => Yii::$app->request->getBodyParams(),
+                "2" => $model->majorsSelected
+            ];*/
+
+            if(!$model->save()) 
+            {
+                return [
+                    "operation" => "error",
+                    "message" => $model->errors
+                ];
+            }
+
+            Yii::info("[Student Education Info Updated] ".$model->student_email, __METHOD__);
+
+            return [
+                "operation" => "success",
+                "message" => "Student Education Info Updated Successfully"
+            ];
+        } else {
+            return [
+                "operation" => "error",
+                "message" => 'Student Account not found'
+            ];
+        }
+    }
 }

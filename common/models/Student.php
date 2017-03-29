@@ -118,7 +118,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             [['degree_id', 'country_id', 'university_id', 'student_firstname', 'student_lastname', 'student_english_level',
                 'student_dob', 'student_enrolment_year', 'student_graduating_year', 'student_gpa',
                 'student_gender', 'student_contact_number', 'student_email_preference', 'student_email',
-                'student_password_hash', 'student_transportation'], 'required'],
+                'student_password_hash', 'student_transportation', 'majorsSelected', 'languagesSelected'], 'required'],
             //Default values / optional fields for massive assignment
             [['student_cv','student_photo','student_verification_attachment','student_club','student_interestingfacts', 'student_id_number',
                 'student_skill', 'student_hobby', 'student_sport', 'student_experience_company', 'student_experience_position'], 'default'],
@@ -215,6 +215,22 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             ['student_transportation', 'in', 'range' => [self::TRANSPORTATION_AVAILABLE, self::TRANSPORTATION_NOT_AVAILABLE]],
             ['student_email_preference', 'in', 'range' => [self::NOTIFICATION_OFF, self::NOTIFICATION_DAILY, self::NOTIFICATION_WEEKLY]],
             ['student_english_level', 'in', 'range' => [self::ENGLISH_WEAK, self::ENGLISH_GOOD, self::ENGLISH_FAIR]],
+
+            //Validate Major and Language selections (if selected)
+            ['majorsSelected', '\common\components\ArrayValidator',
+                'rule' => ['exist',
+                    'targetClass' => '\common\models\Major',
+                    'targetAttribute' => 'major_id',
+                    'message' => \Yii::t('frontend', 'Selected major does not exist.')
+                ]
+            ],
+            ['languagesSelected', '\common\components\ArrayValidator',
+                'rule' => ['exist',
+                    'targetClass' => '\common\models\Language',
+                    'targetAttribute' => 'language_id',
+                    'message' => \Yii::t('frontend', 'Selected language does not exist.')
+                ]
+            ],
         ];
     }
 
@@ -229,6 +245,8 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             'student_contact_number', 'student_interestingfacts', 'student_skill', 'student_hobby', 'student_sport',
             'student_experience_company', 'student_experience_position', /*'languagesSelected', 'country_id',*/
             'student_english_level', 'student_gender', 'student_transportation'];
+        $scenarios['updateEducationInfo'] = ['degree_id', 'majorsSelected', 'student_enrolment_year',
+            'student_graduating_year', 'student_gpa'];
         $scenarios['idVerification'] = ['student_id_number', 'student_id_verification'];
         $scenarios['changeProfilePhoto'] = ['student_photo'];
         $scenarios['updateCv'] = ['student_cv'];
@@ -297,6 +315,24 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         ];
     }
 
+    /**
+     * Populate languagesSelected variable with the current records selected languages
+     */
+    public function populateLanguagesSelected() {
+        foreach($this->languages as $language){
+            $this->languagesSelected[] = $language->language_id;
+        }        
+    }
+    
+    /**
+     * Populate majorsSelected variable with the current records selected languages
+     */
+    public function populateMajorsSelected() {
+        foreach($this->majors as $major){
+            $this->majorsSelected[] = $major->major_id;
+        }        
+    }
+
     public function beforeValidate() {
         //Adjust date of birth to match validation
         if($this->student_dob){
@@ -315,6 +351,38 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             }
 
             return true;
+        }
+    }
+
+    public function afterSave($insert, $changedAttributes) {
+        parent::afterSave($insert, $changedAttributes);
+
+        //Linking selected majors to student
+        if (is_array($this->majorsSelected)) {
+            //Unlink all majors from this Student
+            $this->unlinkAll('majors', true);
+
+            //Link the new majors to this Student
+            foreach ($this->majorsSelected as $majorId) {
+                $major = \common\models\Major::findOne((int) $majorId);
+                if ($major) {
+                    $this->link('majors', $major);
+                }
+            }
+        }
+
+        //Linking selected languages to student
+        if (is_array($this->languagesSelected)) {
+            //Unlink all languages from this Student
+            $this->unlinkAll('languages', true);
+
+            //Link the new majors to this Student
+            foreach ($this->languagesSelected as $languageId) {
+                $language = \common\models\Language::findOne((int) $languageId);
+                if ($language) {
+                    $this->link('languages', $language);
+                }
+            }
         }
     }
 
