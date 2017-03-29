@@ -5,7 +5,7 @@ namespace studentapi\modules\v1\controllers;
 use Yii;
 use yii\rest\Controller;
 use yii\helpers\ArrayHelper;
-use common\models\Student;
+use studentapi\models\Student;
 
 /**
  * Account controller will return the actual Instagram Accounts and all controls associated
@@ -73,7 +73,9 @@ class AccountController extends Controller
         $student = Student::findOne(Yii::$app->user->getId());
 
         if ($student) {
+            
             $student->scenario = 'updatePersonalInfo';
+
             // $student->populateLanguagesSelected();
             $data = [
                 'student_firstname' => Yii::$app->request->getBodyParam('firstname'),
@@ -93,8 +95,15 @@ class AccountController extends Controller
                 'student_gender' => Yii::$app->request->getBodyParam('gender'),
                 'student_transportation' => Yii::$app->request->getBodyParam('transportation'),
             ];
+
             $student->setAttributes($data);
                 
+            $new_email = Yii::$app->request->getBodyParam("email");
+            
+            if($new_email != $student->student_email) 
+            {
+                $student->student_new_email = $new_email;
+            }
 
             if(!$student->save()) 
             {
@@ -106,10 +115,23 @@ class AccountController extends Controller
 
             Yii::info("[Student Account Info Updated] ".$student->student_email, __METHOD__);
 
+            if($student->student_new_email)
+            {
+                $student->generateAuthKey();
+
+                $student->sendVerificationEmail();   
+
+                return [
+                    "operation" => "success",
+                    "message" => "Student Account Info Updated Successfully, please check email to verify new email address"
+                ]; 
+            }     
+
             return [
                 "operation" => "success",
                 "message" => "Student Account Info Updated Successfully"
             ];
+
         } else {
             return [
                 "operation" => "error",

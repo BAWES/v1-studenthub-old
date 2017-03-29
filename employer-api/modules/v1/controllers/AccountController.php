@@ -110,6 +110,8 @@ class AccountController extends Controller
 
         if($employer->employer_new_email)
         {
+            $employer->generateAuthKey();
+
             $employer->sendVerificationEmail();   
 
             return [

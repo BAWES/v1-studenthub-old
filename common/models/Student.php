@@ -115,13 +115,14 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function rules() {
         return [
             //Required
-            [['degree_id', 'country_id', 'university_id', 'student_firstname', 'student_lastname', 'student_english_level',
-                'student_dob', 'student_enrolment_year', 'student_graduating_year', 'student_gpa',
+            [['degree_id', 'country_id', 'university_id', 'student_firstname', 'student_lastname', 'student_english_level','student_dob', 'student_enrolment_year', 'student_graduating_year', 'student_gpa',
                 'student_gender', 'student_contact_number', 'student_email_preference', 'student_email',
-                'student_password_hash', 'student_transportation', 'majorsSelected', 'languagesSelected'], 'required'],
+                'student_password_hash', 'student_transportation'], 'required'],
+
             //Default values / optional fields for massive assignment
             [['student_cv','student_photo','student_verification_attachment','student_club','student_interestingfacts', 'student_id_number',
                 'student_skill', 'student_hobby', 'student_sport', 'student_experience_company', 'student_experience_position'], 'default'],
+
             ['student_language_pref', 'default', 'value' => 'en-US'],
             ['student_email_preference', 'default', 'value' => self::NOTIFICATION_DAILY],
 
@@ -241,12 +242,13 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
         $scenarios = parent::scenarios();
 
         $scenarios['signup'] = ['student_firstname', 'student_lastname', 'student_email', 'student_password_hash'];
-        $scenarios['updatePersonalInfo'] = ['student_firstname', 'student_lastname', 'student_dob', 'student_club',
-            'student_contact_number', 'student_interestingfacts', 'student_skill', 'student_hobby', 'student_sport',
-            'student_experience_company', 'student_experience_position', /*'languagesSelected', 'country_id',*/
-            'student_english_level', 'student_gender', 'student_transportation'];
+
+        $scenarios['updatePersonalInfo'] = ['student_firstname', 'student_lastname', 'student_dob', 'student_club', 'student_contact_number', 'student_interestingfacts', 'student_skill', 'student_hobby', 'student_sport', 'student_experience_company', 'student_experience_position', /*'languagesSelected', 'country_id',*/ 'student_english_level', 'student_gender', 'student_transportation', 'student_new_email'];
+
         $scenarios['updateEducationInfo'] = ['degree_id', 'majorsSelected', 'student_enrolment_year',
             'student_graduating_year', 'student_gpa'];
+
+
         $scenarios['idVerification'] = ['student_id_number', 'student_id_verification'];
         $scenarios['changeProfilePhoto'] = ['student_photo'];
         $scenarios['updateCv'] = ['student_cv'];
@@ -1093,7 +1095,9 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     {
         //Code is his auth key, check if code is valid
         $student = static::findOne(['student_auth_key'=>$code]);
+
         if ($student) {
+
             //If not verified
             if($student->student_email_verification == self::EMAIL_NOT_VERIFIED){
                 //Verify this students email
@@ -1104,6 +1108,15 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
 
                 //Link the student to currently active jobs that they qualify for
                 //self::linkToActiveQualifiedJobs($student);
+            }
+
+            // new email address 
+            
+            if(!empty($student->student_new_email))
+            {
+                $student->student_email = $student->student_new_email;
+                $student->student_new_email = null;
+                $student->save(false);
             }
 
             return true;
@@ -1117,9 +1130,19 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
      * @return boolean whether the email was sent
      */
     public function sendVerificationEmail() {
+        
         //Update student last email limit timestamp
         $this->student_limit_email = new Expression('NOW()');
         $this->save(false);
+
+        if($this->student_new_email)
+        {
+            $email = $this->student_new_email;
+        }
+        else
+        {
+            $email = $this->student_email;
+        }        
 
         if (!$this->student_language_pref || $this->student_language_pref == "en-US") {
             //Set language based on preference stored in DB
@@ -1133,7 +1156,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     'student' => $this
                 ])
                 ->setFrom(['contact@studenthub.co' => 'StudentHub'])
-                ->setTo($this->student_email)
+                ->setTo($email)
                 ->setSubject('[StudentHub] Email Verification')
                 ->send();
         } else {
@@ -1148,7 +1171,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     'student' => $this
                 ])
                 ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
-                ->setTo($this->student_email)
+                ->setTo($email)
                 ->setSubject('[StudentHub] التحقق من البريد الإلكتروني')
                 ->send();
         }
