@@ -88,6 +88,22 @@ class JobController extends Controller
     }
 
     /**
+     * Return job application history 
+     */
+    public function actionApplicationHistory()
+    {
+        $applications = StudentJobApplication::find()
+            ->joinWith('job')
+            ->where([
+                'student_id' => Yii::$app->user->identity->student_id
+            ])
+            ->asArray()
+            ->all();
+
+        return $applications;
+    }
+
+    /**
      * Return job detail 
      */
     public function actionView($id)
