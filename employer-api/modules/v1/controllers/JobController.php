@@ -380,4 +380,59 @@ class JobController extends Controller
             "message" => $payment_methods
         ];
     }
+
+    /**
+     * Displays applicants for a single Job model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionApplicants($id)
+    {
+        $model = Job::findOne([
+            'job_id' => (int) $id,
+            'employer_id' => Yii::$app->user->identity->employer_id,
+        ]);
+
+        if ($model) {
+            $dataProvider = new ActiveDataProvider([
+                'query' => $model->getStudentJobApplications()
+                    ->with(['student', 'student.university', 'student.degree', 'student.majors', 'student.country']),
+            ]);
+
+            $applications = [];
+            foreach ($dataProvider->getModels() as $key => $application) {
+                $applications[$key]['meta'] = $application;
+                $applications[$key]['firstname'] = $application->student->student_firstname;
+                $applications[$key]['lastname'] = $application->student->student_lastname;
+                $applications[$key]['photo'] = $application->student->photo;
+                // $applications[$key]['university'] = $application->student->university->university_name_ar
+                $applications[$key]['university'] = $application->student->university->university_name_en;
+                // $applications[$key]['degree'] = $application->student->degree->degree_name_ar;
+                $applications[$key]['degree'] = $application->student->degree->degree_name_en;
+                $applications[$key]['enrolment'] = $application->student->student_enrolment_year;
+                foreach ($application->student->majors as $key => $major) {
+                    // $applications[$key]['majors'][] = $major->major_name_ar;
+                    $applications[$key]['majors'][] = $major->major_name_en;
+                }
+                $applications[$key]['gpa'] = Yii::$app->formatter->asDecimal($application->student->student_gpa, 2);
+                // $applications[$key]['country'] = $application->student->country->country_nationality_name_ar;
+                $applications[$key]['country'] = $application->student->country->country_nationality_name_en;
+                $applications[$key]['sport'] = $application->student->student_sport ? explode(",", $application->student->student_sport) : null;
+                $applications[$key]['club'] = $application->student->student_club ? explode(",", $application->student->student_club) : null;
+                $applications[$key]['hobby'] = $application->student->student_hobby ? explode(",", $application->student->student_hobby) : null;
+            }
+
+
+            return [
+                "operation" => "success",
+                "message" => $applications,
+            ];
+            // return Yii::getLogger()->getDbProfiling();
+        } else {
+            return [
+                "operation" => "error",
+                "message" => 'Requested data not found'
+            ];
+        }
+    }
 }
