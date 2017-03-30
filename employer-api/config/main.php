@@ -118,6 +118,8 @@ return [
                         'GET' => 'list',
                         'GET payment-methods/<id>' => 'payment-methods',
                         'GET applicants/<id>' => 'applicants',
+                        'GET shotlist' => 'shotlist',
+                        'POST shotlist' => 'shotlist-applicant',
                         'POST' => 'create',
                         'PATCH <id>' => 'update',
                         'DELETE <id>' => 'delete',
