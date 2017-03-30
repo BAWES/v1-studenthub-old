@@ -54,6 +54,68 @@ class CronController extends \yii\console\Controller {
         return self::EXIT_CODE_NORMAL;
     }
     
+    /** 
+     * Active job will be closed after 1 month since payment 
+     * if # of applicants is greater than 10
+     */
+    public function actionMonthly() {
+
+        $jobs = Job::find()
+            ->innerJoin('{{%payment}}', '{{%payment}}.job_id = {{%job}}.job_id')
+            ->where('job_status = "'.Job::STATUS_OPEN.'" AND DATE(payment_datetime) < DATE("'.date('Y-m-d', strtotime('-1 month')).'")')
+            ->all();
+
+        foreach ($jobs as $key => $job) 
+        {          
+            $applications = StudentJobApplication::find()
+                ->where(['job_id' => $job->job_id])
+                ->count();
+
+            if($applications < 10) 
+            {
+                continue;
+            }
+
+            $job->job_status = Job::STATUS_CLOSED;
+            $job->save();
+
+            /**
+             * Email to Employer notifying that his job has been forcefully closed
+             */
+            if($job->employer->employer_language_pref == "en-US"){
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = false;
+
+                //Send English Email
+                Yii::$app->mailer->compose([
+                        'html' => "employer/job-forceclosed-html",
+                            ], [
+                        'employer' => $job->employer,
+                        'job' => $job,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$job->employer->employer_email])
+                    ->setSubject("[StudentHub] Your job posting has been closed")
+                    ->send();
+            }else{
+                //Set language based on preference stored in DB
+                Yii::$app->view->params['isArabic'] = true;
+
+                //Send Arabic Email
+                Yii::$app->mailer->compose([
+                        'html' => "employer/job-forceclosed-ar-html",
+                            ], [
+                        'employer' => $job->job,
+                        'job' => $model,
+                    ])
+                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
+                    ->setTo([$job->employer->employer_email])
+                    ->setSubject("[StudentHub] تم إغلاق فرصة عملك")
+                    ->send();
+            }
+        }
+    }
+
     /**
      * Resets the demo to default state
      */
