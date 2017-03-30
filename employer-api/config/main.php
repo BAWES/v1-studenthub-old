@@ -117,6 +117,7 @@ return [
                     'patterns' => [
                         'GET' => 'list',
                         'GET payment-methods/<id>' => 'payment-methods',
+                        'GET applicants/<id>' => 'applicants',
                         'POST' => 'create',
                         'PATCH <id>' => 'update',
                         'DELETE <id>' => 'delete',
