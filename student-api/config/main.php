@@ -95,7 +95,8 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/job',
                     'patterns' => [
-                        'GET <id>' => 'view',
+                        'GET view/<id>' => 'view',
+                        'GET application-history' => 'application-history',
                         'POST filter' => 'filter',
                         'POST apply/<id>' => 'apply',
                         // OPTIONS VERBS
