@@ -6,6 +6,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use yii\helpers\ArrayHelper;
+use common\models\JobQuestion;
 
 /**
  * This is the model class for table "job".
@@ -27,7 +28,6 @@ use yii\helpers\ArrayHelper;
  *
  * @property Jobtype $jobtype
  * @property Employer $employer
- * @property Filter $filter
  * @property NotificationEmployer[] $notificationEmployers
  * @property NotificationStudent[] $notificationStudents
  * @property StudentJobApplication[] $studentJobApplications
@@ -275,6 +275,10 @@ class Job extends \yii\db\ActiveRecord
      */
     public function hasInterviewQuestions(){
         
+        $q = JobQuestion::findOne(['job_id' => $this->job_id]);
+
+        if($q)
+            return true;
 
         return false;
     }
@@ -288,30 +292,6 @@ class Job extends \yii\db\ActiveRecord
          */
         $students = Student::find()->active();
 
-        /**
-         * Add conditions based on filter values
-         */
-        $filter = $this->filter;
-        if($filter){
-            $countryList = $filter->countries;
-            $universityList = $filter->universities;
-            $languageList = $filter->languages;
-            $majorList = $filter->majors;
-
-            $students->minimumGPA($filter->filter_gpa);
-            $students->graduationYearBetween($filter->filter_graduation_year_start, $filter->filter_graduation_year_end);
-            $students->englishLevel($filter->filter_english_level);
-            $students->gender($filter->filter_gender);
-            $students->degree($filter->degree_id);
-            $students->nationalityFilter(ArrayHelper::getColumn($countryList, "country_id"));
-            $students->universityFilter(ArrayHelper::getColumn($universityList, "university_id"));
-            $students->languageFilter(ArrayHelper::getColumn($languageList, "language_id"));
-            $students->majorFilter(ArrayHelper::getColumn($majorList, "major_id"));
-            if($filter->filter_transportation){
-                $students->transportationAvailable($filter->filter_transportation);
-            }
-        }
-        
         return $students;
     }
     
@@ -335,6 +315,22 @@ class Job extends \yii\db\ActiveRecord
         return $this->hasOne(Employer::className(), ['employer_id' => 'employer_id']);
     }
     
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOffices()
+    {
+        return $this->hasMany(JobOffice::className(), ['job_id' => 'job_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuestions()
+    {
+        return $this->hasMany(JobQuestion::className(), ['job_id' => 'job_id']);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

@@ -64,7 +64,7 @@ class StudentJobApplicationQuestion extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getQuestion0()
+    public function getQuestion()
     {
         return $this->hasOne(JobQuestion::className(), ['job_question_id' => 'question_id']);
     }

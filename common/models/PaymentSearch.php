@@ -18,8 +18,8 @@ class PaymentSearch extends Payment
     public function rules()
     {
         return [
-            [['payment_id', 'payment_type_id', 'employer_id', 'job_id', 'payment_job_num_applicants', 'payment_job_num_filters'], 'integer'],
-            [['payment_job_initial_price_per_applicant', 'payment_job_filter_price_per_applicant', 'payment_job_total_price_per_applicant', 'payment_total', 'payment_employer_credit_before', 'payment_employer_credit_change', 'payment_employer_credit_after'], 'number'],
+            [['payment_id', 'payment_type_id', 'employer_id', 'job_id'], 'integer'],
+            [['payment_total', 'payment_employer_credit_before', 'payment_employer_credit_change', 'payment_employer_credit_after'], 'number'],
             [['payment_note', 'payment_datetime'], 'safe'],
         ];
     }
@@ -61,11 +61,6 @@ class PaymentSearch extends Payment
             'payment_type_id' => $this->payment_type_id,
             'employer_id' => $this->employer_id,
             'job_id' => $this->job_id,
-            'payment_job_num_applicants' => $this->payment_job_num_applicants,
-            'payment_job_num_filters' => $this->payment_job_num_filters,
-            'payment_job_initial_price_per_applicant' => $this->payment_job_initial_price_per_applicant,
-            'payment_job_filter_price_per_applicant' => $this->payment_job_filter_price_per_applicant,
-            'payment_job_total_price_per_applicant' => $this->payment_job_total_price_per_applicant,
             'payment_total' => $this->payment_total,
             'payment_employer_credit_before' => $this->payment_employer_credit_before,
             'payment_employer_credit_change' => $this->payment_employer_credit_change,

@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use common\models\StudentJobApplicationQuestion;
 
 /**
  * This is the model class for table "student_job_application".
@@ -91,5 +92,13 @@ class StudentJobApplication extends \yii\db\ActiveRecord
     public function getJob()
     {
         return $this->hasOne(Job::className(), ['job_id' => 'job_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuestions()
+    {
+        return $this->hasMany(StudentJobApplicationQuestion::className(), ['application_id' => 'application_id']);
     }
 }
