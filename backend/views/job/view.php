@@ -69,18 +69,56 @@ switch ($model->job_status){
             'job_other_qualifications:ntext',
             'job_desired_skill:ntext',
             'job_compensation',
-            'job_question_1:ntext',
-            'job_question_2:ntext',
             'job_max_applicants',
             'job_current_num_applicants',
             'studentContactedCount',
-            'job_price_per_applicant:currency',
-            'job_broadcasted:boolean',
+            'salary',
+            'salary_currency',
             'job_updated_datetime:datetime',
             'job_created_datetime:datetime',
         ],
     ]) ?>
-    
+
+    <!-- job questions -->
+
+    <?php if($model->questions) { ?>
+    <h2>Job Questions</h2>
+    <ul>
+        <?php foreach ($model->questions as $key => $value) { ?>
+        <li>
+            <?= $value->question ?>
+        </li>
+        <?php } ?>
+    </ul>
+    <?php } ?>
+
+
+    <!-- job offices -->
+
+    <?php if($model->offices) { ?>
+    <h2>Job Offices</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Office name</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php 
+
+        foreach ($model->offices as $key => $value) { 
+
+            $office = $value->office; ?>
+        <tr>
+            <td><?= $office->office_name_en ?></td>
+            <td><?= $office->office_address ?></td>
+        </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+    <?php } ?>
+
     <?php
     $jobApplications = $model->getStudentJobApplications()->with("student")->all();
     if($jobApplications){
@@ -99,12 +137,13 @@ switch ($model->job_status){
                         Remove Application + Qualification + Refund spot + Re-open if closed
                     </a>
             <ul>
-                <?php if($application->application_answer_1){ ?>
-                <li><b><?= $model->job_question_1 ?></b><br/><?= $application->application_answer_1 ?></li>
-                <?php } ?>
-                <?php if($application->application_answer_2){ ?>
-                <li><b><?= $model->job_question_2 ?></b><br/><?= $application->application_answer_2 ?></li>
-                <?php } ?>
+                <?php foreach ($application->questions as $key => $value) { ?>
+                <li>
+                    <b><?= $value->question ?></b>
+                    <br/>
+                    <?= $value->answer ?>
+                </li>
+                <?php } ?>               
             </ul>
         </li>
         <?php } ?>
@@ -141,137 +180,7 @@ switch ($model->job_status){
     
    <hr/>
     
-<?php if($model->filter){ $filter = $model->filter; ?>
-    <h2 style="margin-top:0;">Filters Applied</h2>
-    
-    <div class="row" style="margin-bottom:1em;">
-        <?php if($filter->degree){ ?>
-        <div class="col-sm-3">
-            <h4>Degree</h4>
-            <?= $filter->degree->degree_name_en ?>
-        </div>
-        <?php } ?>
-        
-        <?php if($filter->filter_gpa){ ?>
-        <div class="col-sm-3">
-            <h4>GPA</h4>
-            <?= $filter->filter_gpa ?>
-        </div>
-        <?php } ?>
-        
-        <?php if($filter->filter_graduation_year_start){ ?>
-        <div class="col-sm-3">
-            <h4>Graduation Year</h4>
-            <?= $filter->filter_graduation_year_start." - ".$filter->filter_graduation_year_end ?>
-        </div>
-        <?php } ?>
-        
-        <?php if($filter->filter_english_level !== NULL){ ?>
-        <div class="col-sm-3">
-            <h4>English Level</h4>
-            <?php
-            
-                switch($filter->filter_english_level){
-                    case \common\models\Student::ENGLISH_WEAK:
-                        echo Yii::t('register', 'Weak');
-                        break;
-                    case \common\models\Student::ENGLISH_FAIR:
-                        echo Yii::t('register', 'Fair');
-                        break;
-                    case \common\models\Student::ENGLISH_GOOD:
-                        echo Yii::t('register', 'Good');
-                        break;
-                }
-            ?>
-        </div>
-        <?php } ?>
-        
-        <?php if($filter->filter_gender !== NULL){ ?>
-        <div class="col-sm-3">
-            <h4>Gender</h4>
-            <?php
-            
-                switch($filter->filter_gender){
-                    case \common\models\Student::GENDER_MALE:
-                        echo Yii::t('register', 'Male');
-                        break;
-                    case \common\models\Student::GENDER_FEMALE:
-                        echo Yii::t('register', 'Female');
-                        break;
-                }
-            ?>
-        </div>
-        <?php } ?>
-        
-    
-        <?php if($filter->filter_transportation){ ?>
-        <div class="col-sm-3">
-            <h4>Transportation</h4>
-            <?= "Yes" ?>
-        </div>
-        <?php } ?>
-    
-        <?php if($filter->universities){ ?>
-        <div class="col-sm-3">
-            <h4>Universities</h4>
-            <ul>
-                <?php
-                foreach($filter->universities as $university){
-                    $link = Url::to(['university/view', 'id' => $university->university_id]);
-                    echo "<li><a href='$link' target='_blank'>".$university->university_name_en."</a></li>";
-                }
-                ?>
-            </ul>
-        </div>
-        <?php } ?>
-        
-        <?php if($filter->majors){ ?>
-        <div class="col-sm-3">
-            <h4>Majors</h4>
-            <ul>
-                <?php
-                foreach($filter->majors as $major){
-                    $link = Url::to(['major/view', 'id' => $major->major_id]);
-                    echo "<li><a href='$link' target='_blank'>".$major->major_name_en."</a></li>";
-                }
-                ?>
-            </ul>
-        </div>
-        <?php } ?>
-        
-        <?php if($filter->languages){ ?>
-        <div class="col-sm-3">
-            <h4>Languages</h4>
-            <ul>
-                <?php
-                foreach($filter->languages as $language){
-                    $link = Url::to(['language/view', 'id' => $language->language_id]);
-                    echo "<li><a href='$link' target='_blank'>".$language->language_name_en."</a></li>";
-                }
-                ?>
-            </ul>
-        </div>
-        <?php } ?>
-        
-        <?php if($filter->countries){ ?>
-        <div class="col-sm-3">
-            <h4>Nationalities</h4>
-            <ul>
-                <?php
-                foreach($filter->countries as $nationality){
-                    $link = Url::to(['country/view', 'id' => $nationality->country_id]);
-                    echo "<li><a href='$link' target='_blank'>".$nationality->country_nationality_name_en."</a></li>";
-                }
-                ?>
-            </ul>
-        </div>
-        <?php } ?>
-        
-    </div>
- <?php } ?>
-    
     <?php if(!($model->job_status == Job::STATUS_CLOSED || $model->job_status == Job::STATUS_DRAFT)){ ?>
         <a href="<?= Url::to(['job/display-reach', 'id' => $model->job_id]) ?>" class="btn btn-warning btn-block">View Job Reach</a>
-        <a href="<?= Url::to(['job/edit-job-filter', 'id' => $model->job_id]) ?>" class="btn btn-danger btn-block">Edit Job Filter</a>
     <?php } ?>
 </div>
