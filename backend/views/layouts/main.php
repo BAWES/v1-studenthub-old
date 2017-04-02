@@ -134,6 +134,7 @@ AppAsset::register($this);
                         'label' => 'Pre-set Controls',
                         'items' => [
                             ['label' => 'Universities', 'url' => ['/university/index']],
+                            ['label' => 'Universities Merging', 'url' => ['/university/list-merge']],
                             ['label' => 'Industries', 'url' => ['/industry/index']],
                             ['label' => 'Degrees', 'url' => ['/degree/index']],
                             ['label' => 'Majors', 'url' => ['/major/index']],
