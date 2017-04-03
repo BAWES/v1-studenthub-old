@@ -87,6 +87,7 @@ class UniversityController extends Controller
         $model = new University();
         
         $model->university_name_en = Yii::$app->request->getBodyParam("name");
+        $model->university_data_source = University::FROM_STUDENT;
 
         if (!$model->save())
         {

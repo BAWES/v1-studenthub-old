@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'university_graphic',
             'numberOfStudents',
             'numberOfVerifiedStudents',
+            'dataSource',
         ],
     ]) ?>
 

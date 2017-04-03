@@ -35,6 +35,7 @@ $this->registerJs("
                 'header' => '',
             ],
 
+            'dataSource',
             //'university_id',
             'university_name_en',
             'university_domain',
