@@ -16,6 +16,7 @@ use yii\web\UploadedFile;
  * @property string $university_id_template
  * @property string $university_logo
  * @property string $university_graphic
+ * @property string $university_data_source
  *
  * @property Filter[] $filters
  * @property Student[] $students
@@ -26,6 +27,10 @@ class University extends \yii\db\ActiveRecord {
     //This tells us if the students within the university require verification by ID
     const VERIFICATION_REQUIRED = 1;
     const VERIFICATION_NOT_REQUIRED = 0;
+    //Values available for `university_data_source`
+    //This tells us where this model source data is coming from
+    const FROM_ADMIN = 0;
+    const FROM_STUDENT = 1;
 
     /**
      * @inheritdoc
@@ -39,7 +44,7 @@ class University extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['university_require_verify'], 'integer'],
+            [['university_require_verify', 'university_data_source'], 'integer'],
             [['university_name_en', 'university_name_ar', 'university_domain'], 'string', 'max' => 255],
             // removed as student only submit only En or Ar university name
             // [['university_name_en', 'university_name_ar'], 'required'],
@@ -48,6 +53,8 @@ class University extends \yii\db\ActiveRecord {
             [['university_id_template', 'university_logo', 'university_graphic'], 'file', 'extensions' => 'png, gif, jpg'],
             //Rule for university verification requirement
             ['university_require_verify', 'in', 'range' => [self::VERIFICATION_NOT_REQUIRED, self::VERIFICATION_REQUIRED]],
+            //Rule for university data source
+            ['university_data_source', 'in', 'range' => [self::FROM_ADMIN, self::FROM_STUDENT]],
         ];
     }
 
@@ -114,6 +121,15 @@ class University extends \yii\db\ActiveRecord {
     }
 
     /**
+     * Get where this university data source was coming from
+     * @return string text saying if required or not
+     */
+    public function getDataSource(){
+        if($this->university_data_source == self::FROM_ADMIN) return "From Admin";
+        else if($this->university_data_source == self::FROM_STUDENT) return "From Student";
+    }
+
+    /**
      * @inheritdoc
      */
     public function attributeLabels() {
@@ -126,6 +142,7 @@ class University extends \yii\db\ActiveRecord {
             'university_id_template' => Yii::t('app', 'University Id Template'),
             'university_logo' => Yii::t('app', 'University Logo'),
             'university_graphic' => Yii::t('app', 'University Graphic'),
+            'university_data_source' => Yii::t('app', 'University Source Data'),
         ];
     }
 
