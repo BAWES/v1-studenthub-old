@@ -4,6 +4,8 @@ namespace studentapi\models;
 
 use Yii;
 use yii\db\Expression;
+use common\models\City;
+use common\models\Industry;
 
 /**
  * This is the model class for table "employer".
@@ -31,6 +33,39 @@ class Employer extends \common\models\Employer {
             $fields['employer_limit_email']
         );
 
+        $fields['city'] = function($model) 
+        {
+            return $this->city;
+        };
+
+        $fields['country'] = function($model) 
+        {
+            if($this->city)
+                return $this->city->country;
+        };
+
+        $fields['industry'] = function($model) 
+        {
+            return $this->industry;
+        };
+
         return $fields;
+    }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(City::className(), ['city_id' => 'city_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIndustry()
+    {
+        return $this->hasOne(Industry::className(), ['industry_id' => 'industry_id']);
     }
 }

@@ -164,20 +164,7 @@ class JobController extends Controller
 
         $job['questions'] = JobQuestion::findAll(['job_id' => $id]);
 
-        if($job)
-        {
-            return [
-                "operation" => "success",
-                "message" => $job
-            ];
-        }
-        else
-        {
-            return [
-                "operation" => "error",
-                "message" => 'Job not found!'
-            ];
-        }
+        return $job;
     }
 
     /**

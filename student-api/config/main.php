@@ -82,8 +82,8 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/university',
                     'patterns' => [
-                        'POST filter' => 'filter',
                         'POST' => 'create',
+                        'POST filter' => 'filter',
                         'POST is-exists' => 'is-exists',
                         // OPTIONS VERBS
                         'OPTIONS' => 'options',
@@ -100,7 +100,10 @@ return [
                         'GET filter' => 'filter',
                         'POST apply/<id>' => 'apply',
                         // OPTIONS VERBS
+                        'OPTIONS view/<id>' => 'options',
+                        'OPTIONS application-history' => 'options',
                         'OPTIONS filter' => 'options',
+                        'OPTIONS apply/<id>' => 'options',
                     ]
                 ],
             ],
