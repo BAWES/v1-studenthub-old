@@ -34,7 +34,12 @@ class JobController extends Controller
                 'Access-Control-Request-Headers' => ['*'],
                 'Access-Control-Allow-Credentials' => null,
                 'Access-Control-Max-Age' => 86400,
-                'Access-Control-Expose-Headers' => [],
+                'Access-Control-Expose-Headers' => [
+                    'X-Pagination-Current-Page',
+                    'X-Pagination-Page-Count',
+                    'X-Pagination-Per-Page',
+                    'X-Pagination-Total-Count'
+                ],
             ],
         ];
 
@@ -69,22 +74,41 @@ class JobController extends Controller
      */
     public function actionFilter()
     {
-        $job_title = Yii::$app->request->getBodyParam("job_title");
+        $limit = Yii::$app->params['limit'];
+        $offset = Yii::$app->request->get("offset"); 
+        $job_title = Yii::$app->request->get("job_title");
 
         // list all open job where not applied 
 
         $query = Job::find()
-            ->select('{{%job}}.*, {{%jobtype}}.jobtype_name_ar, {{%jobtype}}.jobtype_name_en')
+            ->select('
+                {{%job}}.*, 
+                {{%jobtype}}.jobtype_name_ar, 
+                {{%jobtype}}.jobtype_name_en,
+                employer_logo,
+                employer_company_name,
+                industry_name_en,
+                city_name_en,
+                city_name_ar,
+                country_name_en,
+                country_name_ar
+            ')
             ->innerJoin('{{%jobtype}}', '{{%jobtype}}.jobtype_id = {{%job}}.jobtype_id')
+            ->innerJoin('{{%employer}}', '{{%employer}}.employer_id = {{%job}}.employer_id')
+            ->innerJoin('{{%city}}', '{{%city}}.city_id = {{%employer}}.city_id')
+            ->innerJoin('{{%country}}', '{{%country}}.country_id = {{%city}}.country_id')
+            ->innerJoin('{{%industry}}', '{{%industry}}.industry_id = {{%employer}}.industry_id')
             ->where('job_status = '.Job::STATUS_OPEN.' AND job_id NOT IN (select job_id from student_job_application where student_id = "'.Yii::$app->user->getId().'")');
 
         if($job_title) {
             $query->andWhere(['job_title', 'university_name_ar', $job_title]);
         }
 
-        return new ActiveDataProvider([
-            'query' => $query->asArray()
-        ]);
+        return $query 
+            ->offset($offset)
+            ->limit($limit)
+            ->asArray()
+            ->all();
     }
 
     /**
