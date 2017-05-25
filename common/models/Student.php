@@ -1091,7 +1091,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     /**
      * Verifies the student email
      */
-    public static function verifyEmail($code)
+    public function verifyEmail($code)
     {
         //Code is his auth key, check if code is valid
         $student = static::findOne(['student_auth_key'=>$code]);

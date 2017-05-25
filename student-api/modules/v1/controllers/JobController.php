@@ -116,15 +116,22 @@ class JobController extends Controller
      */
     public function actionApplicationHistory()
     {
-        $applications = StudentJobApplication::find()
-            ->joinWith('job')
-            ->where([
-                'student_id' => Yii::$app->user->identity->student_id
-            ])
-            ->asArray()
-            ->all();
+        $jobs = Yii::$app->user->identity->studentJobApplications;
+        $applied = [];
+        foreach($jobs as $job) {
+            $applied[] = [
+                'application_id'=> $job->application_id,
+                'job_id'=> $job->job_id,
+                'application_date_apply'=> date('d M Y',strtotime($job->application_date_apply)),
+                'job_title'=>$job->job->job_title,
+                'job_responsibilites'=>$job->job->job_responsibilites,
+                'job_status'=>$job->job->job_status,
+                'employer_company_name'=>$job->job->employer->employer_company_name,
+                'employer_logo'=>$job->job->employer->employer_logo,
+            ];
 
-        return $applications;
+        }
+        return $applied;
     }
 
     /**
