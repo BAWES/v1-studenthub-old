@@ -42,7 +42,6 @@ class AuthController extends Controller
                 if ($student && $student->validatePassword($password)) {
                     return $student;
                 }
-
                 return null;
             }
         ];
