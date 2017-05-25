@@ -219,17 +219,19 @@ class JobController extends Controller
         $questions = Yii::$app->request->getBodyParam('questions');
 
         foreach ($questions as $key => $value) 
-        {            
+        {          
             $jq = JobQuestion::findOne($key); 
 
             if(!$jq)
             {
-                $transaction->rollBack();
+                continue;
+
+                /*$transaction->rollBack();
 
                 return [
                     "operation" => "error",
                     "message" => 'Question #'.$key.' not found!'
-                ];
+                ];*/
             }
 
             $jaq = new StudentJobApplicationQuestion;
