@@ -69,12 +69,17 @@ class JobController extends Controller
      */
     public function actionList()
     {
-        $query = Job::find()
-            ->where(['employer_id' => Yii::$app->user->getId()]);
-
-        return new ActiveDataProvider([
-            'query' => $query
-        ]);
+        $list = [];
+        $jobs = Yii::$app->user->identity->jobs;
+        if ($jobs) {
+            foreach ($jobs as $job) {
+                $list[] = [
+                    'job' => $job,
+                    'type' => $job->jobtype
+                ];
+            }
+        }
+        return $list;
     }
 
     /**
