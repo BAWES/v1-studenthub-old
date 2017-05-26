@@ -36,7 +36,16 @@ return [
                 //Template suggests we use version 1.11.1 of jQuery incase one of the validation plugins fails
                 //'jquery.js' => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
             ],
-        ]
+        ],
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            // Hide index.php
+            'showScriptName' => false,
+            // Use pretty URLs
+            'enablePrettyUrl' => true,
+            'rules' => [
+            ],
+        ],
     ],
     'params' => $params,
 ];

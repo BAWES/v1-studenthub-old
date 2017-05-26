@@ -4,6 +4,7 @@ namespace studentapi\models;
 
 use Yii;
 use yii\db\Expression;
+use common\models\StudentJobApplication;
 
 /**
  * This is the model class for table "student".
@@ -23,6 +24,12 @@ class Student extends \common\models\Student {
         unset($fields['student_auth_key'],
         $fields['student_password_hash'],
         $fields['student_password_reset_token']);
+
+        $fields['total_job_applied'] = function($model) {
+            return StudentJobApplication::find()
+                ->where(['student_id' => $this->student_id])
+                ->count();
+        };
 
         return $fields;
     }
