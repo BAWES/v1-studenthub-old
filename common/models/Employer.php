@@ -359,7 +359,14 @@ class Employer extends \yii\db\ActiveRecord implements IdentityInterface {
     public function getJobs() {
         return $this->hasMany(Job::className(), ['employer_id' => 'employer_id']);
     }
-    
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOffice() {
+        return $this->hasMany(EmployerOffice::className(), ['employer_id' => 'employer_id']);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
