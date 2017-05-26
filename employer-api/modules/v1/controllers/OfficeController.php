@@ -63,12 +63,7 @@ class OfficeController extends Controller
      */
     public function actionList()
     {
-        $query = EmployerOffice::find()
-            ->where(['employer_id' => Yii::$app->user->getId()]);
-
-        return new ActiveDataProvider([
-            'query' => $query
-        ]);
+        return Yii::$app->user->identity->office;
     }
 
     /**
