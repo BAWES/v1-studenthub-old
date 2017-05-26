@@ -63,7 +63,25 @@ class OfficeController extends Controller
      */
     public function actionList()
     {
-        return Yii::$app->user->identity->office;
+        $list = [];
+        $offices = Yii::$app->user->identity->office;
+        if ($offices) {
+            foreach ($offices as $office) {
+                $list[] =    [
+                "office_id"    =>  $office->office_id,
+                "employer_id"   =>  $office->employer_id,
+                "city_id"       =>  $office->city->city_name_en,
+                "office_name_en" => $office->office_name_en,
+                "office_name_ar" => $office->office_name_ar,
+                "office_longitude" => $office->office_longitude,
+                "office_latitude" => $office->office_latitude,
+                "office_address" => $office->office_address,
+                "office_created_at" => $office->office_created_at,
+                "office_updated_at" => $office->office_updated_at
+                ];
+            }
+        }
+        return $list;
     }
 
     /**
