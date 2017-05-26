@@ -31,5 +31,11 @@ return [
                 'encryption' => 'tls',
             ],
         ],
+        'urlManagerFrontend' => [
+            'class' => 'yii\web\UrlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'baseUrl' => 'http://localhost/studenthub/frontend/web',
+        ],
     ],
 ];

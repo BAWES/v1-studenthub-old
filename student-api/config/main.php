@@ -75,7 +75,7 @@ return [
                         // OPTIONS VERBS
                         'OPTIONS update' => 'options',
                         'OPTIONS update-education-info' => 'options',
-                        'OPTIONS detail' => 'detail'
+                        'OPTIONS detail' => 'options'
                     ]
                 ],
                 [ // UniversityController
