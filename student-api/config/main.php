@@ -64,6 +64,16 @@ return [
                         'OPTIONS update-password' => 'options',
                     ]
                 ],
+                [ // CvBuilderController 
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/cv-builder',
+                    'pluralize' => false,
+                    'patterns' => [
+                        'GET view' => 'view',
+                        // OPTIONS VERBS
+                        'OPTIONS view' => 'options',
+                    ]
+                ],
                 [ // AccountController
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/account',

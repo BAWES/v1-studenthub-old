@@ -62,7 +62,9 @@ class AccountController extends Controller
      */ 
     public function actionDetail()
     {
-        return Student::findOne(Yii::$app->user->getId());
+        return Student::find()
+            ->where(['student_id' => Yii::$app->user->getId()])
+            ->one();
     }
 
     /**

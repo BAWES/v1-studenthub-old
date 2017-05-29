@@ -5,6 +5,8 @@ namespace studentapi\models;
 use Yii;
 use yii\db\Expression;
 use common\models\StudentJobApplication;
+use common\models\StudentMajor;
+use common\models\StudentLanguage;
 
 /**
  * This is the model class for table "student".
