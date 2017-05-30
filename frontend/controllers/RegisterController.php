@@ -90,7 +90,7 @@ class RegisterController extends \yii\web\Controller {
                 /**
                  * Verify this student email
                  */
-                $student->verifyEmail();
+                $student->verifyStudent();
                 
                 //Log him in (if his ID is verified)
                 if($student->student_id_verification == Student::ID_VERIFIED){

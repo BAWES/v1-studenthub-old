@@ -199,7 +199,7 @@ class Student extends \common\models\Student {
     /**
      * Verifies the student email
      */
-    public function verifyEmail() {
+    public function verifyStudent() {
         //If not verified
         if($this->student_email_verification == self::EMAIL_NOT_VERIFIED){
             //Verify this students email

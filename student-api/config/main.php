@@ -87,6 +87,33 @@ return [
                         'OPTIONS update-education-info' => 'options',
                         'OPTIONS detail' => 'options'
                     ]
+                ],                
+                [ // CountryController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/country',
+                    'patterns' => [
+                        'GET' => 'list',
+                        // OPTIONS VERBS
+                        'OPTIONS' => 'options'
+                    ]    
+                ],
+                [ // MajorController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/major',
+                    'patterns' => [
+                        'GET' => 'list',
+                        // OPTIONS VERBS
+                        'OPTIONS' => 'options'
+                    ]    
+                ],
+                [ // LanguageController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/language',
+                    'patterns' => [
+                        'GET' => 'list',
+                        // OPTIONS VERBS
+                        'OPTIONS' => 'options'
+                    ]
                 ],
                 [ // UniversityController
                     'class' => 'yii\rest\UrlRule',
