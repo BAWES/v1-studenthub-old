@@ -70,8 +70,10 @@ return [
                     'pluralize' => false,
                     'patterns' => [
                         'GET view' => 'view',
+                        'POST upload-cv' => 'upload-cv',
                         // OPTIONS VERBS
                         'OPTIONS view' => 'options',
+                        'OPTIONS upload-cv' => 'options'
                     ]
                 ],
                 [ // AccountController
