@@ -211,7 +211,6 @@ class SettingController extends \yii\web\Controller {
         $hasErrors = false;
         $model = \common\models\Student::findOne(Yii::$app->user->identity->student_id);
         
-        
         if($model){
             $model->scenario = "updateCv";
             $oldCv = $model->student_cv;
