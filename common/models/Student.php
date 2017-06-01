@@ -207,8 +207,7 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             //Unique emails
             ['student_email', 'filter', 'filter' => 'trim'],
             ['student_email', 'email'],
-            ['student_email', 'unique', 'targetClass' => '\common\models\Student',
-                'message' => \Yii::t('frontend','This email address is already registered.')],
+            ['student_email', 'uninqueEmail'],
             // ['student_email', '\common\components\UniversityEmailValidator', 'universityAttribute'=>'university_id'],
 
             //Constant options
@@ -233,6 +232,19 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                 ]
             ],
         ];
+    }
+
+    public function uninqueEmail() {
+        $student = static::find()
+            ->where([
+                'student_email' => $this->student_email
+            ])
+            ->andWhere(['!=', 'student_id', $this->student_id])
+            ->one();
+        
+        if ($student) {
+            $this->addError('student_email', 'This email is already in use".');
+        }
     }
 
     /**

@@ -70,9 +70,11 @@ return [
                     'pluralize' => false,
                     'patterns' => [
                         'GET view' => 'view',
+                        'POST update' => 'update',
                         'POST upload-cv' => 'upload-cv',
                         // OPTIONS VERBS
                         'OPTIONS view' => 'options',
+                        'OPTIONS update' => 'options',
                         'OPTIONS upload-cv' => 'options'
                     ]
                 ],
@@ -121,11 +123,13 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/university',
                     'patterns' => [
+                        'GET all' => 'all',
                         'POST' => 'create',
                         'POST filter' => 'filter',
                         'POST is-exists' => 'is-exists',
                         // OPTIONS VERBS
                         'OPTIONS' => 'options',
+                        'OPTIONS all' => 'options',
                         'OPTIONS filter' => 'options',
                         'OPTIONS is-exists' => 'options',
                     ]
