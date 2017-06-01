@@ -29,7 +29,12 @@ class UniversityController extends Controller
                 'Access-Control-Request-Headers' => ['*'],
                 'Access-Control-Allow-Credentials' => null,
                 'Access-Control-Max-Age' => 86400,
-                'Access-Control-Expose-Headers' => [],
+                'Access-Control-Expose-Headers' => [
+                    'X-Pagination-Current-Page',
+                    'X-Pagination-Page-Count',
+                    'X-Pagination-Per-Page',
+                    'X-Pagination-Total-Count'
+                ],
             ],
         ];
 
@@ -83,7 +88,10 @@ class UniversityController extends Controller
         }
 
         return new ActiveDataProvider([
-            'query' => $query
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 200,
+            ],
         ]);
     }
 
