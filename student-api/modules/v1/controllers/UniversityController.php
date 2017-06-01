@@ -60,6 +60,15 @@ class UniversityController extends Controller
     }
 
     /**
+     * Return a List of Universities
+     */
+    public function actionAll()
+    {
+        return University::find()
+            ->all();
+    }
+
+    /**
      * Return a List of Universities by keyword
      */
     public function actionFilter()
