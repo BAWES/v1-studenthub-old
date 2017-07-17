@@ -115,6 +115,7 @@ class CvBuilderController extends Controller
                 'student_transportation' => Yii::$app->request->getBodyParam('transportation'),
                 'student_contact_number' => Yii::$app->request->getBodyParam('contact_number'),
                 'student_interestingfacts' => Yii::$app->request->getBodyParam('interestingfacts'),
+                'student_photo' => Yii::$app->request->getBodyParam('photo'),
                 'student_skill' => Yii::$app->request->getBodyParam('skill'),
                 'student_hobby' => Yii::$app->request->getBodyParam('hobby'),
                 'student_club' => Yii::$app->request->getBodyParam('club'),
