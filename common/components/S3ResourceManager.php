@@ -25,13 +25,19 @@ class S3ResourceManager extends AmazonS3ResourceManager {
      * [[http://docs.aws.amazon.com/aws-sdk-php/latest/class-Aws.S3.S3Client.html#_putObject]]
      * @return \Guzzle\Service\Resource\Model
      */
-    public function save($file, $name, $options = []) {
+    public function save($file, $name, $options = [], $source_file = null, $content_type = null) {
+
+        if($file) {
+            $source_file = $file->tempName;
+            $content_type = $file->type;
+        }
+
         $options = ArrayHelper::merge([
                     'Bucket' => $this->bucket,
                     'Key' => $name,
-                    'SourceFile' => $file->tempName,
-                    'ACL' => CannedAcl::PUBLIC_READ, // default to ACL public read
-                    'ContentType' => $file->type,
+                    'SourceFile' => $source_file,
+                    'ACL' => 'public-read', // default to ACL public read
+                    'ContentType' => $content_type,
                 ], $options);
 
         return $this->getClient()->putObject($options);
@@ -41,20 +47,21 @@ class S3ResourceManager extends AmazonS3ResourceManager {
      * Creates a copy of a file from old key to new key
      * @param string $oldFile old file name / path that you wish to copy
      * @param string $newFile target destination for file name / path
+     * @param string $sourceBucket the bucket to copy the file from
      * @param array $options
      * @return \Guzzle\Service\Resource\Model
      */
-    public function copy($oldFile, $newFile, $options = []) {
-        
+    public function copy($oldFile, $newFile, $sourceBucket = "", $options = []) {
+        // Set Source bucket to the components defined bucket if none specified.
+        $sourceBucket = $sourceBucket? $sourceBucket : $this->bucket;
+
         $options = ArrayHelper::merge([
                     'Bucket' => $this->bucket,
                     'Key' => $newFile,
-                    'CopySource' => Html::encode($this->bucket."/".$oldFile),
-                    'ACL' => CannedAcl::PUBLIC_READ, // default to ACL public read - allows public to open file
+                    'CopySource' => Html::encode($sourceBucket."/".$oldFile),
+                    'ACL' => 'public-read', // default to ACL public read - allows public to open file
                     ], $options);
 
         return $this->getClient()->copyObject($options);
-                        
     }
-
 }

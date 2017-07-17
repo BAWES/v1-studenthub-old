@@ -14,6 +14,17 @@ return [
              * https://studenthub.s3.amazonaws.com/folderName/fileName.jpg
              */
         ],
+        'temporaryBucketResourceManager' => [
+            'class' => 'common\components\S3ResourceManager',
+            'key' => 'AKIAIKZYNH7OERZMXZ2A',
+            'secret' => '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',
+            'bucket' => 'bawes-public'
+            /**
+             * You can access the Temporary bucket with:
+             * https://bawes-public.s3.amazonaws.com/
+             * https://bawes-public.s3.amazonaws.com/folderName/fileName.jpg
+             */
+        ],
         'log' => [
             'targets' => [
                 [
