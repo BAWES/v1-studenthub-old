@@ -1,5 +1,7 @@
-# yii console command
+# yii console commands
 /yii
+/yii_test
+/yii_test.bat
 
 # phpstorm project files
 .idea
@@ -29,6 +31,5 @@ phpunit.phar
 # local phpunit config
 /phpunit.xml
 
-# Sitemap file generated via Production Env
-employer/web/sitemap.xml
-frontend/web/sitemap.xml
+# vagrant runtime
+/.vagrant
