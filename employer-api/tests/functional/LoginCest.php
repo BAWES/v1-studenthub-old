@@ -1,8 +1,8 @@
 <?php
 
-namespace staff\tests\functional;
+namespace employerapi\tests\functional;
 
-use \staff\tests\FunctionalTester;
+use \employerapi\tests\FunctionalTester;
 use common\fixtures\User as UserFixture;
 
 /**
