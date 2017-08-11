@@ -1,4 +1,4 @@
-namespace: employer-api\tests
+namespace: employer\tests
 actor: Tester
 paths:
     tests: tests

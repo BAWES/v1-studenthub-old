@@ -1,4 +1,4 @@
-namespace: staff\tests
+namespace: student-api\tests
 actor: Tester
 paths:
     tests: tests
