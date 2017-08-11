@@ -1,5 +1,5 @@
 <?php
-namespace employerapi\tests;
+namespace backend\tests;
 
 /**
  * Inherited Methods

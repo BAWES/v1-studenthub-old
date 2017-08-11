@@ -1,5 +1,5 @@
 <?php
-namespace employerapi\tests;
+namespace employer\tests;
 
 /**
  * Inherited Methods
@@ -16,9 +16,9 @@ namespace employerapi\tests;
  *
  * @SuppressWarnings(PHPMD)
  */
-class FunctionalTester extends \Codeception\Actor
+class UnitTester extends \Codeception\Actor
 {
-    use _generated\FunctionalTesterActions;
+    use _generated\UnitTesterActions;
    /**
     * Define custom actions here
     */

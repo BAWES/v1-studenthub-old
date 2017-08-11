@@ -1,5 +1,5 @@
 <?php
-namespace staff\tests;
+namespace studentapi\tests;
 
 /**
  * Inherited Methods

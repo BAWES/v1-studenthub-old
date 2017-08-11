@@ -1,9 +1,9 @@
 <?php
 
-namespace employerapi\tests\functional;
+namespace backend\tests\functional;
 
-use \employerapi\tests\FunctionalTester;
-use common\fixtures\User as UserFixture;
+use \backend\tests\FunctionalTester;
+use common\fixtures\UserFixture as UserFixture;
 
 /**
  * Class LoginCest
