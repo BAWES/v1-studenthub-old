@@ -3,7 +3,8 @@
 namespace common\models;
 
 use Yii;
-
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 /**
  * This is the model class for table "job_question".
  *
@@ -34,10 +35,24 @@ class JobQuestion extends \yii\db\ActiveRecord
         return [
             [['job_id'], 'integer'],
             [['question_created_at', 'question_updated_at'], 'safe'],
-            [['question'], 'string', 'max' => 250],
+//            [['question'], 'string', 'max' => 250],
             [['job_id'], 'exist', 'skipOnError' => true, 'targetClass' => Job::className(), 'targetAttribute' => ['job_id' => 'job_id']],
         ];
     }
+
+	/**
+	 * @return array
+	 */
+	public function behaviors() {
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'question_created_at',
+				'updatedAtAttribute' => 'question_updated_at',
+				'value' => new Expression('NOW()'),
+			],
+		];
+	}
 
     /**
      * @inheritdoc

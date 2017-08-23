@@ -30,10 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <li>
                         <a href="<?= Url::to(['setting/update-logo']) ?>"><?= Yii::t('register', 'Update Company Logo') ?></a>
                     </li>
-                    <li>
-                        <a href="<?= Url::to(['setting/change-password']) ?>"><?= Yii::t('register', 'Change Password') ?></a>
-                    </li>
-                </ul>    
+                    <li><a href="<?= Url::to(['setting/change-password']) ?>"><?= Yii::t('register', 'Change Password') ?></a></li>
+                    <li><a href="<?= Url::to(['employer-office/index']) ?>"><?= Yii::t('register', 'Office Address') ?></a></li>
+                </ul>
             </div>
             
             <div class="col-sm-6">

@@ -31,8 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?=
         $this->render('_formStep3', [
-            'model' => $model,
-            'filter' => $filter,
+	        'model' => $model,
+	        'officeModel' => $officeModel,
         ])
         ?>
 

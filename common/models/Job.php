@@ -18,9 +18,12 @@ use common\models\JobQuestion;
  * @property integer $job_pay
  * @property string $job_startdate
  * @property string $job_responsibilites
+ * @property string $job_desired_skill
  * @property string $job_other_qualifications
  * @property string $job_compensation
  * @property integer $job_max_applicants
+ * @property integer $salary
+ * @property integer $salary_currency
  * @property integer $job_current_num_applicants
  * @property integer $job_status
  * @property string $job_updated_datetime

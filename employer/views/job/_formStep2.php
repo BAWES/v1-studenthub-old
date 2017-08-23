@@ -60,19 +60,19 @@ $form = ActiveForm::begin([
 <h3><?= Yii::t("employer", "Have a question for the applicants? (optional)") ?></h3>
 
 <?=
-$form->field($model, 'job_question_1')->textArea([
+$form->field($questionModel, 'question[]')->textArea([
     'rows' => 2,
     'class' => 'form-control js-auto-size',
     'placeholder' => Yii::t("employer", 'Which of our products have you used before, and what do you like most about them?'),
-])
+])->label('Question 1');
 ?>
 
 <?=
-$form->field($model, 'job_question_2')->textArea([
+$form->field($questionModel, 'question[]')->textArea([
     'rows' => 2,
     'class' => 'form-control js-auto-size',
-    'placeholder' => Yii::t("employer", 'Do you have experience working in social media?'),
-])
+    'placeholder' => Yii::t("employer", 'Which of our products have you used before, and what do you like most about them?'),
+])->label('Question 2');
 ?>
 
 <div class="row">

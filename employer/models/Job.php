@@ -12,17 +12,12 @@ use yii\db\Expression;
  * 
  */
 class Job extends \common\models\Job {
-    
+
     /**
      * Scenarios for validation, we have a scenario for each step in the job creation process
      */
     public function scenarios() {
         $scenarios = parent::scenarios();
-        $scenarios['step1'] = ['job_title', 'jobtype_id', 'job_pay', 'job_responsibilites', 'job_desired_skill',
-            'job_other_qualifications', 'job_startdate', 'job_compensation'];
-        $scenarios['step2'] = ['job_question_1','job_question_2'];
-        $scenarios['step3'] = ['!job_max_applicants'];
-
         return $scenarios;
     }
     

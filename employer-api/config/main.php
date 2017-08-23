@@ -132,8 +132,10 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/jobtype',
                     'patterns' => [
+                        'GET' => 'list',
                         'POST filter' => 'filter',
                         // OPTIONS VERBS
+                        'OPTIONS' => 'options',
                         'OPTIONS filter' => 'options',
                     ]
                 ],
