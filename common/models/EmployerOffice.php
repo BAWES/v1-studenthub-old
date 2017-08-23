@@ -39,6 +39,7 @@ class EmployerOffice extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['employer_id', 'city_id','office_name_en', 'office_name_ar'], 'required'],
             [['employer_id', 'city_id'], 'integer'],
             [['office_longitude', 'office_latitude'], 'number'],
             [['office_address'], 'string'],

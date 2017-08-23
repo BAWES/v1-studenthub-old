@@ -77,4 +77,13 @@ class JobtypeController extends Controller
             'query' => $query
         ]);
     }
+
+    public function actionList()
+    {
+        $query = Jobtype::find();
+
+        return new ActiveDataProvider([
+            'query' => $query
+        ]);
+    }
 }

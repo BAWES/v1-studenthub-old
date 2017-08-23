@@ -2,6 +2,8 @@
 
 namespace employer\controllers;
 
+use common\models\JobOffice;
+use common\models\JobQuestion;
 use Yii;
 use yii\helpers\Url;
 use employer\models\Job;
@@ -19,9 +21,6 @@ use common\models\CybersourcePayment;
  * JobController implements the CRUD actions for Job model.
  */
 class JobController extends Controller {
-    
-    //Disable CSRF Validation, as some employers are using old browsers
-    public $enableCsrfValidation = false;
 
     public function behaviors() {
         return [
@@ -200,8 +199,6 @@ class JobController extends Controller {
      */
     public function actionCreate() {
         $model = new Job();
-        $model->scenario = "step1";
-
         //Set default values
         $model->employer_id = Yii::$app->user->identity->employer_id;
         $model->job_status = Job::STATUS_DRAFT;
@@ -216,7 +213,7 @@ class JobController extends Controller {
 
             //Save and go to second step
             if ($model->save()) {
-                return $this->redirect(['create-step2', 'id' => $model->job_id]);
+                return $this->redirect(['questions', 'id' => $model->job_id]);
             }
         }
 
@@ -226,40 +223,46 @@ class JobController extends Controller {
         ]);
     }
 
-    /**
-     * Second Step of Job Creation
-     * If everything is valid, save and move to next step
-     * 
-     * Should user save it as draft, it will save without validation and 
-     * take him back to the dashboard
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionCreateStep2($id) {
-        $model = $this->findModel($id);
-        $model->scenario = "step2";
-        
-        //Check if editing is allowed
-        $this->checkJobEditAllowed($model);
 
-        if ($model->load(Yii::$app->request->post())) {
-            //If draft, save without validation and redirect to dashboard
-            if(Yii::$app->request->post('draft') && (Yii::$app->request->post('draft') == 'yes')){
-                $model->save(false);
-                return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
-            }
+    public function actionQuestions($id)
+    {
+    	$model = $this->findModel($id);
+        $question = new JobQuestion;
+        if ($question->load(Yii::$app->request->post()) && $question->validate()) {
+        	$jobQuestions = Yii::$app->request->post('JobQuestion');
+        	foreach ($jobQuestions['question'] as $quest) {
+		        $questionModel = new JobQuestion;
+		        $questionModel->question = $quest;
+		        $questionModel->job_id = $id;
+		        $questionModel->save();
+	        }
 
-            //Save and go to third step
-            if ($model->save()) {
-                return $this->redirect(['create-step3', 'id' => $model->job_id]);
-            }
+	        if(Yii::$app->request->post('draft') && (Yii::$app->request->post('draft') == 'yes')){
+		        $model->save(false);
+		        return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
+	        }
+
+            return $this->redirect(['offices', 'id' => $model->job_id]);
+
         }
-
         return $this->render('step2', [
             'model' => $model,
+            'questionModel' => $question,
         ]);
     }
-    
+
+
+    public function actionOffices($id)
+    {
+	    $model = $this->findModel($id);
+		$officeModel = new JobOffice();
+
+		return $this->render('step3', [
+		    'model' => $model,
+		    'officeModel' => $officeModel,
+	    ]);
+    }
+
     /**
      * Third Step of Job Creation - Selecting filters to add to your Job posting
      * If everything is valid, save and move to next step
