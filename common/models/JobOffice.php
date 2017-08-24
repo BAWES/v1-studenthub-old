@@ -30,6 +30,7 @@ class JobOffice extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['office_id'], 'required'],
             [['job_id', 'office_id'], 'integer'],
             [['job_id'], 'exist', 'skipOnError' => true, 'targetClass' => Job::className(), 'targetAttribute' => ['job_id' => 'job_id']],
             [['office_id'], 'exist', 'skipOnError' => true, 'targetClass' => EmployerOffice::className(), 'targetAttribute' => ['office_id' => 'office_id']],
