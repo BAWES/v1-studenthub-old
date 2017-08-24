@@ -152,9 +152,9 @@ class JobController extends Controller {
      * @throws \yii\web\BadRequestHttpException
      */
     public function actionUpdate($id) {
-        $model = $this->findModel($id);
-        $model->scenario = "step1";
-        
+
+    	$model = $this->findModel($id);
+
         //Check if editing is allowed, you can edit step 1 at any point as long as job not closed
         if($model->job_status == Job::STATUS_CLOSED){
             throw new \yii\web\BadRequestHttpException(Yii::t("employer", "You are not allowed to edit closed jobs"));
@@ -172,7 +172,7 @@ class JobController extends Controller {
 
             if ($model->save()) {
                 if(!$published){
-                    return $this->redirect(['create-step2', 'id' => $model->job_id]);
+                    return $this->redirect(['questions', 'id' => $model->job_id]);
                 }else{
                     //Set flash that it was saved then redirect to dashboard
                     Yii::$app->session->setFlash("warning", 
@@ -256,6 +256,16 @@ class JobController extends Controller {
     {
 	    $model = $this->findModel($id);
 		$officeModel = new JobOffice();
+		$officeModel->job_id= $id;
+
+	    if ($officeModel->load(Yii::$app->request->post()) && $officeModel->validate()) {
+	    	if ($officeModel->save(false)) {
+			    if ( Yii::$app->request->post( 'draft' ) && ( Yii::$app->request->post( 'draft' ) == 'yes' ) ) {
+				    return $this->redirect( [ 'dashboard/index', '#' => 'tab_draftJobs' ] );
+			    }
+			    return $this->redirect(['dashboard/index#tab_draftJobs'] );
+		    }
+	    }
 
 		return $this->render('step3', [
 		    'model' => $model,
@@ -263,56 +273,6 @@ class JobController extends Controller {
 	    ]);
     }
 
-    /**
-     * Third Step of Job Creation - Selecting filters to add to your Job posting
-     * If everything is valid, save and move to next step
-     * 
-     * Should user save it as draft, it will save without validation and 
-     * take him back to the dashboard
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionCreateStep3($id) {
-        $model = $this->findModel($id);
-        $model->scenario = "step3";
-        
-        //Check if editing is allowed
-        $this->checkJobEditAllowed($model);
-        
-        
-        //Load filter for this Job already if defined. Otherwise use new
-        $filter = new \employer\models\Filter();
-        if($model->filter){
-            $filter = $model->filter;
-        }
-        $filter->numberOfApplicants = $model->job_max_applicants;
-        
-        //On Form Submit
-        if ($filter->load(Yii::$app->request->post())) {
-            $model->job_max_applicants = $filter->numberOfApplicants;
-            
-            //If draft, save without validation and redirect to dashboard
-            if(Yii::$app->request->post('draft') && (Yii::$app->request->post('draft') == 'yes')){
-                
-                $filter->saveModelAndFilter($model);
-                                
-                return $this->redirect(['dashboard/index', '#' => 'tab_draftJobs']);
-            }
-
-            //Validate, Save, then go to fourth step
-            if ($filter->validate()) {
-                $filter->saveModelAndFilter($model);
-                
-                return $this->redirect(['create-step4', 'id' => $model->job_id]);
-            }
-        }
-
-        return $this->render('step3', [
-            'model' => $model,
-            'filter' => $filter,
-        ]);
-    }
-    
     /**
      * Fourth Step of Job Creation - Payment / Price Summary
      * If everything is valid, save and move to next step

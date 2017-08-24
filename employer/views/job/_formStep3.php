@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
-
+$employerOffice = \yii\helpers\ArrayHelper::map(\common\models\EmployerOffice::find()->all(),'office_id','office_name_en');
 /* @var $this yii\web\View */
 /* @var $model common\models\Job */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -55,24 +55,15 @@ $form = ActiveForm::begin([
 		],
 	],
 ]);
+echo $form->errorSummary($officeModel);
 ?>
 
-    <h3><?= Yii::t("employer", "Have a question for the applicants? (optional)") ?></h3>
-
+    <h3><?= Yii::t("employer", "Job is in which office location?") ?></h3>
 <?=
-$form->field($questionModel, 'question[]')->textArea([
-	'rows' => 2,
-	'class' => 'form-control js-auto-size',
-	'placeholder' => Yii::t("employer", 'Which of our products have you used before, and what do you like most about them?'),
-])->label('Question 1');
-?>
-
-<?=
-$form->field($questionModel, 'question[]')->textArea([
-	'rows' => 2,
-	'class' => 'form-control js-auto-size',
-	'placeholder' => Yii::t("employer", 'Which of our products have you used before, and what do you like most about them?'),
-])->label('Question 2');
+$form->field($officeModel, 'office_id')->dropDownList($employerOffice,[
+	'class' => 'form-control',
+	'prompt' => Yii::t("employer", 'Select Office address'),
+])->label('Office Address')
 ?>
 
     <div class="row">
