@@ -11,6 +11,7 @@ use yii\data\ActiveDataProvider;
 $this->title = $model->employer_company_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Employers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="employer-view">
     <div class="row">
@@ -59,12 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'employer_social_instagram',
         ],
     ]) ?>
-    
     <hr/>
-    
-    
-    
-    
     <h3>Jobs</h3>
     <?php
     $jobDataProvider = new ActiveDataProvider([
@@ -104,7 +100,23 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn', 'controller' => 'payment', 'template' => '{view}'],
         ],
     ]); ?>
-    
+
+	<?php
+	$officeDataProvider = new ActiveDataProvider([
+		'query' => $model->getOffice()->orderBy("office_id DESC"),
+	]);
+	?>
+    <?= GridView::widget([
+        'dataProvider' => $officeDataProvider,
+        'columns' => [
+            'office_name_en',
+            'office_name_ar',
+            'city.city_name_en',
+
+            ['class' => 'yii\grid\ActionColumn', 'controller' => 'employer-office', 'template' => '{view}'],
+        ],
+    ]); ?>
+
     <div class="row">
         <div class="col-md-4">
             <?= Html::a("Refund in Credits", ['refund', 'id' => $model->employer_id], [
@@ -117,5 +129,4 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]) ?>
         </div>
     </div>
-
 </div>
