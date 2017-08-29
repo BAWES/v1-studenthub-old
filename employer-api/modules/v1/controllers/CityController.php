@@ -77,4 +77,9 @@ class CityController extends Controller
             'query' => $query
         ]);
     }
+
+	public function actionCityList()
+	{
+		return City::find()->asArray()->all();
+	}
 }
