@@ -82,7 +82,9 @@ return [
                     'controller' => 'v1/city',
                     'patterns' => [
                         'POST filter' => 'filter',
+                        'GET' => 'city-list',
                         // OPTIONS VERBS
+                        'OPTIONS' => 'options',
                         'OPTIONS filter' => 'options',
                     ]
                 ],
