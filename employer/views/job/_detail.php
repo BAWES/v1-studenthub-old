@@ -87,7 +87,7 @@ use yii\helpers\Url;
         </div>
         <?php } ?>
 
-        <?php if($model->job_question_1 || $model->job_question_2){ ?>
+        <?php if ($model->questions){ ?>
         <div class="panel">
             <div class="panel-heading">
                 <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseQuestions">
@@ -97,177 +97,15 @@ use yii\helpers\Url;
             <div id="collapseQuestions" class="panel-collapse collapse">
                 <div class="panel-body">
 
-                    <?php if($model->job_question_1){ ?>
-                    <b><?= Yii::t("employer", "Question") ?></b>
-                    <div class="well">
-                        <?= Yii::$app->formatter->asNtext($model->job_question_1) ?>
-                    </div>
-                    <?php } ?>
-
-                    <?php if($model->job_question_2){ ?>
-                    <b><?= Yii::t("employer", "Question") ?></b>
-                    <div class="well">
-                        <?= Yii::$app->formatter->asNtext($model->job_question_2) ?>
-                    </div>
+                    <?php foreach ($model->questions as $query) { ?>
+                        <div class="well">
+		                    <?= Yii::$app->formatter->asNtext($query->question) ?>
+                        </div>
                     <?php } ?>
                 </div>
             </div>
         </div>
         <?php } ?>
-
-
-        <div class="panel">
-            <div class="panel-heading">
-                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseFilters">
-                    <?= Yii::t("employer", "Applied Filters") ?>
-                </a>
-            </div>
-            <div id="collapseFilters" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <?php
-                    $filter = $model->filter;
-                    if(!$filter->premiumFilterCount){
-                        echo Yii::t("employer", "No filters selected");
-                    }else{
-                        //Degree Filter
-                        if($filter->degree){
-                            echo "<p>";
-                            echo "<b>".Yii::t("employer", "Degree")."</b><br/>";
-                            echo $this->params['isArabic']?$filter->degree->degree_name_ar:$filter->degree->degree_name_en;
-                            echo "</p>";
-                        }
-
-                        //GPA Filter
-                        if($filter->filter_gpa){
-                            echo "<p>";
-                            echo "<b>".Yii::t("employer", "Minimum GPA")."</b><br/>";
-                            echo Yii::$app->formatter->asDecimal($filter->filter_gpa, 2);
-                            echo "</p>";
-                        }
-
-                        //Graduation Year Filter
-                        if($filter->filter_graduation_year_start){
-                            Yii::$app->formatter->thousandSeparator = "";
-                            echo "<p>";
-                            echo "<b>".Yii::t("employer", "Graduation Year")."</b><br/>";
-                            echo Yii::$app->formatter->asInteger($filter->filter_graduation_year_start)
-                                    ." - "
-                                    .Yii::$app->formatter->asInteger($filter->filter_graduation_year_end);
-                            echo "</p>";
-                        }
-
-                        //English Level Filter
-                        if($filter->filter_english_level !== NULL){
-                            $levelOutput = "";
-                            switch($filter->filter_english_level){
-                                case \common\models\Student::ENGLISH_WEAK:
-                                    $levelOutput = Yii::t('register', 'Weak');
-                                    break;
-                                case \common\models\Student::ENGLISH_FAIR:
-                                    $levelOutput = Yii::t('register', 'Fair');
-                                    break;
-                                case \common\models\Student::ENGLISH_GOOD:
-                                    $levelOutput = Yii::t('register', 'Good');
-                                    break;
-                            }
-
-                            echo "<p>";
-                            echo "<b>".Yii::t("employer", "English Level")."</b><br/>";
-                            echo $levelOutput;
-                            echo "</p>";
-                        }
-
-                        //Gender Filter
-                        if($filter->filter_gender !== NULL){
-                            $genderOutput = "";
-                            switch($filter->filter_gender){
-                                case \common\models\Student::GENDER_MALE:
-                                    $genderOutput = Yii::t('register', 'Male');
-                                    break;
-                                case \common\models\Student::GENDER_FEMALE:
-                                    $genderOutput = Yii::t('register', 'Female');
-                                    break;
-                            }
-
-                            echo "<p>";
-                            echo "<b>".Yii::t("register", "Gender")."</b><br/>";
-                            echo $genderOutput;
-                            echo "</p>";
-                        }
-
-                        //Transportation Filter
-                        if($filter->filter_transportation){
-                            echo "<p>";
-                            echo "<b>".Yii::t("employer", "Transportation")."</b><br/>";
-                            echo Yii::t("employer", "Student must have a method of transportation");
-                            echo "</p>";
-                        }
-
-                        //Nationality Filter
-                        if($filter->countries){
-                            echo "<p>";
-                            echo "<b>".Yii::t("employer", "Nationalities")."</b><br/>";
-                            foreach($filter->countries as $nationality){
-                                echo "- ";
-                                echo $this->params['isArabic']?$nationality->country_nationality_name_ar:$nationality->country_nationality_name_en."<br/>";
-                            }
-                            echo "</p>";
-                        }
-
-                        //Major Filter
-                        if($filter->majors){
-                            echo "<p>";
-                            echo "<b>".Yii::t("employer", "Majors")."</b><br/>";
-                            foreach($filter->majors as $major){
-                                echo "- ";
-                                echo $this->params['isArabic']?$major->major_name_ar:$major->major_name_en."<br/>";
-                            }
-                            echo "</p>";
-                        }
-
-                        //Language Filter
-                        if($filter->languages){
-                            echo "<p>";
-                            echo "<b>".Yii::t("employer", "Languages")."</b><br/>";
-                            foreach($filter->languages as $language){
-                                echo "- ";
-                                echo $this->params['isArabic']?$language->language_name_ar:$language->language_name_en."<br/>";
-                            }
-                            echo "</p>";
-                        }
-
-                    }
-                    ?>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="panel">
-            <div class="panel-heading">
-                <a class="panel-title" data-parent="#accordion" data-toggle="collapse" href="#collapseUniv">
-                    <?= Yii::t("employer", "Targeted Universities") ?>
-                </a>
-            </div>
-            <div id="collapseUniv" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <ul class="list-material">
-                        <?php foreach ($model->filter->universities as $university) { ?>
-                            <li class="has-action-left">
-                                <div class="list-action-left">
-                                    <?php if ($university->university_logo) { ?>
-                                        <img src="<?= Url::to('@web/images/universities/' . $university->university_logo) ?>" class="face-radius" alt="">
-                                    <?php } ?>
-                                </div>
-                                <div class="list-content">
-                                    <span class="title">&nbsp;<?= $this->params['isArabic'] ? $university->university_name_ar : $university->university_name_en ?></span>
-                                </div>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                </div>
-            </div>
-        </div>
 
     </div>
 </div>
