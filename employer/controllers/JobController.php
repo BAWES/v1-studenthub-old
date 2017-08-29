@@ -140,7 +140,7 @@ class JobController extends Controller {
      */
     public function actionDetail($id) {
         return $this->renderPartial('_detail', [
-                    'model' => $this->findModel($id),
+            'model' => $this->findModel($id),
         ]);
     }
     
@@ -224,6 +224,11 @@ class JobController extends Controller {
     }
 
 
+	/**
+	 * @param $id
+	 *
+	 * @return string|\yii\web\Response
+	 */
     public function actionQuestions($id)
     {
     	$model = $this->findModel($id);
@@ -252,6 +257,11 @@ class JobController extends Controller {
     }
 
 
+	/**
+	 * @param $id
+	 *
+	 * @return string|\yii\web\Response
+	 */
     public function actionOffices($id)
     {
 	    $model = $this->findModel($id);
