@@ -292,7 +292,8 @@ class JobController extends Controller
 
         return [
             "operation" => "success",
-            "message" => "Job updated successfully "
+            "message" => "Job updated successfully ",
+            "data" => $model
         ];
 
         // Check SQL Query Count and Duration
