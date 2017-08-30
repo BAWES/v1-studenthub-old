@@ -31,7 +31,7 @@ return [
             'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'baseUrl' => 'http://dev.studenthub.co',
+            'baseUrl' => 'http://localhost/studenthub/frontend/web',
         ],
     ],
 ];

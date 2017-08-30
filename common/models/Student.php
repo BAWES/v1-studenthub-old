@@ -1154,6 +1154,8 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
             $email = $this->student_email;
         }        
 
+        $verificationUrl = Yii::$app->urlManagerFrontend->createAbsoluteUrl(['register/email-verify', 'code' => $this->student_auth_key, 'verify' => $this->student_id]);
+
         if (!$this->student_language_pref || $this->student_language_pref == "en-US") {
             //Set language based on preference stored in DB
             Yii::$app->view->params['isArabic'] = false;
@@ -1163,7 +1165,8 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     'html' => 'student/verificationEmail-html',
                     'text' => 'student/verificationEmail-text',
                 ], [
-                    'student' => $this
+                    'student' => $this,
+                    'verificationUrl' => $verificationUrl
                 ])
                 ->setFrom(['contact@studenthub.co' => 'StudentHub'])
                 ->setTo($email)
@@ -1178,7 +1181,8 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
                     'html' => 'student/verificationEmail-ar-html',
                     'text' => 'student/verificationEmail-ar-text',
                 ], [
-                    'student' => $this
+                    'student' => $this,
+                    'verificationUrl' => $verificationUrl
                 ])
                 ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name ])
                 ->setTo($email)
@@ -1211,7 +1215,9 @@ class Student extends \yii\db\ActiveRecord implements IdentityInterface {
     public function signup($validate = true)
     {
         $this->setPassword($this->student_password_hash);
+        
         $this->generateAuthKey();
+
         if ($this->save($validate)) {
             $this->sendVerificationEmail();
             $this->notifyAdmin();

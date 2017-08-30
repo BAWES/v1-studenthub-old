@@ -23,6 +23,7 @@ class RegisterController extends \yii\web\Controller {
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                'only' => ['register'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -85,6 +86,7 @@ class RegisterController extends \yii\web\Controller {
     public function actionEmailVerify($code, $verify) {
         //Code is his auth key, check if code is valid
         $student = Student::findOne(['student_auth_key'=>$code, 'student_id' => (int) $verify]);
+
         if($student){
             if($student->student_email_verification == Student::EMAIL_NOT_VERIFIED){
                 /**

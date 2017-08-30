@@ -126,6 +126,7 @@ class AuthController extends Controller
             'student_email' => Yii::$app->request->getBodyParam('email'),
             'student_password_hash' => Yii::$app->request->getBodyParam('password'),
         ];
+        
         $model->setAttributes($data);
 
         if (!$model->signup(true)) {
