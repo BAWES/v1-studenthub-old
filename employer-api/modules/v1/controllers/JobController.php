@@ -67,20 +67,16 @@ class JobController extends Controller
     /**
      * Return a List of Job Accounts available.
      */
-    public function actionList()
-    {
-        $list = [];
-        $jobs = Yii::$app->user->identity->jobs;
-        if ($jobs) {
-            foreach ($jobs as $job) {
-                $list[] = [
-                    'job' => $job,
-                    'type' => $job->jobtype
-                ];
-            }
-        }
-        return $list;
-    }
+	public function actionList()
+	{
+		$user_id = Yii::$app->user->id;
+		$query = \employerapi\models\Job::find();
+		$query->where(['employer_id'=>$user_id]);
+		$query->orderBy('job_id DESC');
+		return new ActiveDataProvider([
+			'query' => $query,
+		]);
+	}
 
     /**
      * Create a job account
@@ -94,12 +90,12 @@ class JobController extends Controller
             $offices = [];
         }
 
-//        $job_question = Yii::$app->request->getBodyParam("job_questions");
-//
-//        if(!$job_question)
-//        {
-//            $job_question = [];
-//        }
+        $job_question = Yii::$app->request->getBodyParam("job_questions");
+
+        if(!$job_question)
+        {
+            $job_question = [];
+        }
 
         $transaction = Yii::$app->db->beginTransaction();
         
@@ -159,27 +155,28 @@ class JobController extends Controller
 
         //job question 
 
-//        foreach ($job_question as $key => $value) {
-//            $question = new JobQuestion;
-//            $question->job_id = $model->job_id;
-//            $question->question = $value;
-//
-//            if(!$question->save())
-//            {
-//                $transaction->rollBack();
-//
-//                return [
-//                    "operation" => "error",
-//                    "message" => $question->errors
-//                ];
-//            }
-//        }
+        foreach ($job_question as $key => $value) {
+            $question = new JobQuestion;
+            $question->job_id = $model->job_id;
+            $question->question = $value;
+
+            if(!$question->save())
+            {
+                $transaction->rollBack();
+
+                return [
+                    "operation" => "error",
+                    "message" => $question->errors
+                ];
+            }
+        }
 
         $transaction->commit();
 
         return [
             "operation" => "success",
-            "message" => "Job created successfully "
+            "message" => "Job created successfully",
+            "data" => $model
         ];
 
         // Check SQL Query Count and Duration
