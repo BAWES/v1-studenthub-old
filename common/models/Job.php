@@ -87,8 +87,9 @@ class Job extends \yii\db\ActiveRecord
             [['job_title', 'job_compensation', 'job_desired_skill'], 'string', 'max' => 255],
             
             //Date Validation
-            [['job_startdate'], 'date', 'format' => 'yyyy/MM/dd'],
-            
+//            [['job_startdate'], 'date', 'format' => 'yyyy/MM/dd'],
+//            [['job_startdate'], 'date'],
+
             //Job Type Existence Validation
             ['jobtype_id', 'exist',
                 'targetClass' => '\common\models\Jobtype',
@@ -317,13 +318,15 @@ class Job extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Employer::className(), ['employer_id' => 'employer_id']);
     }
-    
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getOffices()
+
+	/**
+	 * @param string $modelClass
+	 *
+	 * @return \yii\db\ActiveQuery
+	 */
+    public function getOffices($modelClass = "\common\models\jobOffice")
     {
-        return $this->hasMany(JobOffice::className(), ['job_id' => 'job_id']);
+        return $this->hasMany($modelClass::className(), ['job_id' => 'job_id']);
     }
 
     /**
