@@ -207,9 +207,6 @@ class Student extends \common\models\Student {
             $this->save(false);
 
             Yii::info("[Email Verified] ".$this->student_firstname." ".$this->student_lastname." has verified their email", __METHOD__);
-
-            //Link the student to currently active jobs that they qualify for
-            $this->linkToActiveQualifiedJobs();
         }
     }
 
