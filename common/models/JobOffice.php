@@ -34,6 +34,7 @@ class JobOffice extends \yii\db\ActiveRecord
             [['job_id', 'office_id'], 'integer'],
             [['job_id'], 'exist', 'skipOnError' => true, 'targetClass' => Job::className(), 'targetAttribute' => ['job_id' => 'job_id']],
             [['office_id'], 'exist', 'skipOnError' => true, 'targetClass' => EmployerOffice::className(), 'targetAttribute' => ['office_id' => 'office_id']],
+            [['office_id'], 'validateRecordExist'],
         ];
     }
 
@@ -64,4 +65,19 @@ class JobOffice extends \yii\db\ActiveRecord
     {
         return $this->hasOne(EmployerOffice::className(), ['office_id' => 'office_id']);
     }
+
+	/**
+	 * @param $attribute
+	 * @param $params
+	 */
+	public function validateRecordExist($attribute, $params)
+	{
+		$exist = \employerapi\models\JobOffice::find()
+			->where(['job_id'=>$this->job_id,'office_id'=>$this->office_id])
+			->exists();
+
+		if ($exist) {
+			$this->addError('office_id', 'office already added for this job');
+		}
+	}
 }

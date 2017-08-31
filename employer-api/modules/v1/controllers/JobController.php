@@ -580,4 +580,32 @@ class JobController extends Controller
 		return Yii::getLogger()->getDbProfiling();
 	}
 
+	/**
+	 * create job office
+	 * @return array
+	 */
+	public function actionCreateJobOffice()
+	{
+		$job_id = Yii::$app->request->getBodyParam("job_id");
+		$office_id = Yii::$app->request->getBodyParam("office_id");
+		$question = new JobOffice();
+		$question->job_id = $job_id;
+		$question->office_id = $office_id;
+
+		if(!$question->save())
+		{
+			return [
+				"operation" => "error",
+				"message" => $question->errors
+			];
+		}
+		return [
+			"operation" => "success",
+			"message" => "Job office added successfully",
+		];
+
+		// Check SQL Query Count and Duration
+		return Yii::getLogger()->getDbProfiling();
+	}
+
 }

@@ -105,12 +105,14 @@ return [
                     'controller' => 'v1/office',
                     'patterns' => [
                         'GET' => 'list',
+                        'GET all' => 'list-all',
                         'POST' => 'create',
                         'PATCH <id>' => 'update',
                         'DELETE <id>' => 'delete',
                         // OPTIONS VERBS
                         'OPTIONS' => 'options',
-                        'OPTIONS <id>' => 'options'
+                        'OPTIONS <id>' => 'options',
+                        'OPTIONS all' => 'options'
                     ]
                 ],
                 [ // JobController
@@ -124,6 +126,8 @@ return [
                         'GET shotlist' => 'shotlist',
                         'POST shotlist' => 'shotlist-applicant',
                         'POST' => 'create',
+                        'POST office' => 'create-job-office',
+                        'PATCH office/<id>' => 'update-job-office',
                         'POST question' => 'create-job-question',
                         'PATCH question/<id>' => 'update-job-question',
                         'PATCH <id>' => 'update',
@@ -132,7 +136,7 @@ return [
                         'OPTIONS' => 'options',
                         'OPTIONS <id>' => 'options',
                         'OPTIONS job' => 'options',
-                        'OPTIONS job/<id>' => 'options'
+                        'OPTIONS job/<id>' => 'options',
                         'OPTIONS question/<id>' => 'options'
                     ]
                 ],

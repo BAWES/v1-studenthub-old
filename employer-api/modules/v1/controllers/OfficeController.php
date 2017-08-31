@@ -194,4 +194,16 @@ class OfficeController extends Controller
         // Check SQL Query Count and Duration
         return Yii::getLogger()->getDbProfiling();
     }
+
+	/**
+	 * return list of all office
+	 * @return static[]
+	 */
+    public function actionListAll()
+    {
+	    return EmployerOffice::find()
+             ->where(['employer_id' => Yii::$app->user->getId()])
+             ->asArray()
+             ->all();
+    }
 }
