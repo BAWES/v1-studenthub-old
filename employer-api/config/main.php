@@ -118,16 +118,22 @@ return [
                     'controller' => 'v1/job',
                     'patterns' => [
                         'GET' => 'list',
+                        'GET <id>' => 'detail',
                         'GET payment-methods/<id>' => 'payment-methods',
                         'GET applicants/<id>' => 'applicants',
                         'GET shotlist' => 'shotlist',
                         'POST shotlist' => 'shotlist-applicant',
                         'POST' => 'create',
+                        'POST question' => 'create-job-question',
+                        'PATCH question/<id>' => 'update-job-question',
                         'PATCH <id>' => 'update',
                         'DELETE <id>' => 'delete',
                         // OPTIONS VERBS
                         'OPTIONS' => 'options',
-                        'OPTIONS <id>' => 'options'
+                        'OPTIONS <id>' => 'options',
+                        'OPTIONS job' => 'options',
+                        'OPTIONS job/<id>' => 'options'
+                        'OPTIONS question/<id>' => 'options'
                     ]
                 ],
                 [ // JobtypeController

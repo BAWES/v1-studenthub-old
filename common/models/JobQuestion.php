@@ -68,12 +68,13 @@ class JobQuestion extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getJob()
+	/**
+	 * @param string $modelClass
+	 * @return \yii\db\ActiveQuery
+	 */
+    public function getJob($modelClass = '\common\models\job')
     {
-        return $this->hasOne(Job::className(), ['job_id' => 'job_id']);
+        return $this->hasOne($modelClass::className(), ['job_id' => 'job_id']);
     }
 
     /**

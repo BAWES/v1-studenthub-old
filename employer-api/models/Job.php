@@ -2,12 +2,6 @@
 
 namespace employerapi\models;
 
-use Yii;
-use yii\behaviors\TimestampBehavior;
-use yii\db\Expression;
-use yii\helpers\ArrayHelper;
-use common\models\JobQuestion;
-
 class Job extends \common\models\Job
 {
 	public function fields() {
