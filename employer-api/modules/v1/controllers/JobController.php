@@ -7,9 +7,9 @@ use yii\rest\Controller;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\data\ActiveDataProvider;
-use common\models\Job;
-use common\models\JobOffice;
-use common\models\JobQuestion;
+use employerapi\models\Job;
+use employerapi\models\JobOffice;
+use employerapi\models\JobQuestion;
 use common\models\Payment;
 use common\models\EmployerShortlist;
 use common\models\StudentJobApplication;
@@ -70,12 +70,21 @@ class JobController extends Controller
 	public function actionList()
 	{
 		$user_id = Yii::$app->user->id;
-		$query = \employerapi\models\Job::find();
+		$query = Job::find();
 		$query->where(['employer_id'=>$user_id]);
 		$query->orderBy('job_id DESC');
 		return new ActiveDataProvider([
 			'query' => $query,
 		]);
+	}
+
+	/**
+	 * @param $id
+	 * @return static
+	 */
+	public function actionDetail($id)
+	{
+		return Job::findOne($id);
 	}
 
     /**
@@ -113,17 +122,8 @@ class JobController extends Controller
         $model->job_max_applicants = Yii::$app->request->getBodyParam("max_applicants");
         $model->salary = Yii::$app->request->getBodyParam("salary");
         $model->salary_currency = Yii::$app->request->getBodyParam("salary_currency");
-        
         $model->job_status = Job::STATUS_DRAFT;
-
-        if($model->salary > 0) 
-        {
-            $model->job_pay = 1;
-        }
-        else
-        {
-            $model->job_pay = 0;
-        }
+	    $model->job_pay = ($model->salary > 0) ? 1 : 0;
 
         //validation 
 
@@ -176,7 +176,6 @@ class JobController extends Controller
         return [
             "operation" => "success",
             "message" => "Job created successfully",
-            "data" => $model
         ];
 
         // Check SQL Query Count and Duration
@@ -228,15 +227,7 @@ class JobController extends Controller
         $model->job_status = Yii::$app->request->getBodyParam("status");
         $model->salary = Yii::$app->request->getBodyParam("salary");
         $model->salary_currency = Yii::$app->request->getBodyParam("salary_currency");
-
-        if($model->salary > 0) 
-        {
-            $model->job_pay = 1;
-        }
-        else
-        {
-            $model->job_pay = 0;
-        }
+	    $model->job_pay = ($model->salary > 0) ? 1 : 0;
 
         //validation 
 
@@ -293,7 +284,6 @@ class JobController extends Controller
         return [
             "operation" => "success",
             "message" => "Job updated successfully ",
-            "data" => $model
         ];
 
         // Check SQL Query Count and Duration
@@ -534,5 +524,60 @@ class JobController extends Controller
         ];
         
         return Yii::getLogger()->getDbProfiling();
-    } 
+    }
+
+	/**
+	 * Create a job Questions account
+	 */
+	public function actionCreateJobQuestion()
+	{
+		$job_id = Yii::$app->request->getBodyParam("job_id");
+		$question = Yii::$app->request->getBodyParam("question");
+
+		$model = new JobQuestion;
+		$model->job_id = $job_id;
+		$model->question = $question;
+
+		if(!$model->save())
+		{
+			return [
+				"operation" => "error",
+				"message" => $model->errors
+			];
+		}
+		return [
+			"operation" => "success",
+			"message" => "Job question created successfully",
+			"data" => $model->job
+		];
+
+		// Check SQL Query Count and Duration
+		return Yii::getLogger()->getDbProfiling();
+	}
+
+	/**
+	 * Create a job Questions account
+	 */
+	public function actionUpdateJobQuestion($id)
+	{
+		$question = Yii::$app->request->getBodyParam("question");
+		$model = JobQuestion::findOne($id);
+		$model->question = $question;
+
+		if (!$model->save()) {
+			return [
+				"operation" => "error",
+				"message" => $model->errors
+			];
+		}
+		return [
+			"operation" => "success",
+			"message" => "Job question updated successfully",
+			"data" => $model->job
+		];
+
+		// Check SQL Query Count and Duration
+		return Yii::getLogger()->getDbProfiling();
+	}
+
 }
