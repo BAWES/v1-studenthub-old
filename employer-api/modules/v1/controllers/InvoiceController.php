@@ -2,11 +2,10 @@
 
 namespace employerapi\modules\v1\controllers;
 
+use employerapi\models\Payment;
 use Yii;
 use yii\rest\Controller;
-use yii\helpers\ArrayHelper;
 use yii\data\ActiveDataProvider;
-use common\models\Payment;
 
 /**
  * Invoice controller 
