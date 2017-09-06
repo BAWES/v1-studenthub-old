@@ -20,6 +20,9 @@ class Job extends \common\models\Job
 		$fields['offices'] = function($model) {
 			return $model->offices;
 		};
+		$fields['job_applicants_count'] = function($model) {
+			return $model->getStudentJobApplications()->count();
+		};
 		return $fields;
 	}
 
