@@ -94,9 +94,11 @@ return [
                     'pluralize' => false,
                     'patterns' => [
                         'POST update' => 'update',
+                        'POST contact' => 'contact',
                         'GET detail' => 'detail',
                         // OPTIONS VERBS
                         'OPTIONS update' => 'options',
+                        'OPTIONS contact' => 'options',
                         'OPTIONS detail' => 'detail'
                     ]
                 ],
