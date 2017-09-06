@@ -122,7 +122,7 @@ return [
                         'GET' => 'list',
                         'GET <id>' => 'detail',
                         'GET payment-methods/<id>' => 'payment-methods',
-                        'GET applicants/<id>' => 'applicants',
+                        'GET application/<id>' => 'job-application',
                         'GET shotlist' => 'shotlist',
                         'POST shotlist' => 'shotlist-applicant',
                         'POST' => 'create',
@@ -137,7 +137,8 @@ return [
                         'OPTIONS <id>' => 'options',
                         'OPTIONS job' => 'options',
                         'OPTIONS job/<id>' => 'options',
-                        'OPTIONS question/<id>' => 'options'
+                        'OPTIONS question/<id>' => 'options',
+                        'OPTIONS application/<id>' => 'options'
                     ]
                 ],
                 [ // JobtypeController

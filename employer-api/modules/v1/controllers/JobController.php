@@ -2,6 +2,7 @@
 
 namespace employerapi\modules\v1\controllers;
 
+use employerapi\models\StudentJobApplication;
 use Yii;
 use yii\rest\Controller;
 use yii\helpers\ArrayHelper;
@@ -12,7 +13,6 @@ use employerapi\models\JobOffice;
 use employerapi\models\JobQuestion;
 use common\models\Payment;
 use common\models\EmployerShortlist;
-use common\models\StudentJobApplication;
 
 /**
  * Job controller - Manage job as Employer
@@ -75,6 +75,9 @@ class JobController extends Controller
 		$query->orderBy('job_id DESC');
 		return new ActiveDataProvider([
 			'query' => $query,
+			'pagination' => [
+                'pageSize' => 40,
+            ],
 		]);
 	}
 
@@ -467,64 +470,6 @@ class JobController extends Controller
             'query' => $query
         ]);
     }
-    
-
-    /**
-     * Displays applicants for a single Job model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionApplicants($id)
-    {
-        $model = Job::findOne([
-            'job_id' => (int) $id,
-            'employer_id' => Yii::$app->user->getId(),
-        ]);
-
-        if (!$model) {
-            return [
-                "operation" => "error",
-                "message" => 'Job not found!'
-            ];
-        }
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $model->getStudentJobApplications()
-                ->with(['student', 'student.university', 'student.degree', 'student.majors', 'student.country']),
-        ]);
-
-        $applications = [];
-        
-        foreach ($dataProvider->getModels() as $key => $application) 
-        {
-            $applications[$key]['meta'] = $application;
-            $applications[$key]['firstname'] = $application->student->student_firstname;
-            $applications[$key]['lastname'] = $application->student->student_lastname;
-            $applications[$key]['photo'] = $application->student->photo;
-            // $applications[$key]['university'] = $application->student->university->university_name_ar
-            $applications[$key]['university'] = $application->student->university->university_name_en;
-            // $applications[$key]['degree'] = $application->student->degree->degree_name_ar;
-            $applications[$key]['degree'] = $application->student->degree->degree_name_en;
-            $applications[$key]['enrolment'] = $application->student->student_enrolment_year;
-            foreach ($application->student->majors as $key => $major) {
-                // $applications[$key]['majors'][] = $major->major_name_ar;
-                $applications[$key]['majors'][] = $major->major_name_en;
-            }
-            $applications[$key]['gpa'] = Yii::$app->formatter->asDecimal($application->student->student_gpa, 2);
-            // $applications[$key]['country'] = $application->student->country->country_nationality_name_ar;
-            $applications[$key]['country'] = $application->student->country->country_nationality_name_en;
-            $applications[$key]['sport'] = $application->student->student_sport ? explode(",", $application->student->student_sport) : null;
-            $applications[$key]['club'] = $application->student->student_club ? explode(",", $application->student->student_club) : null;
-            $applications[$key]['hobby'] = $application->student->student_hobby ? explode(",", $application->student->student_hobby) : null;
-        }
-
-        return [
-            "operation" => "success",
-            "message" => $applications,
-        ];
-        
-        return Yii::getLogger()->getDbProfiling();
-    }
 
 	/**
 	 * Create a job Questions account
@@ -606,6 +551,21 @@ class JobController extends Controller
 
 		// Check SQL Query Count and Duration
 		return Yii::getLogger()->getDbProfiling();
+	}
+
+	/**
+	 * return job applications
+	 * @param $id
+	 * @return ActiveDataProvider
+	 */
+	public function actionJobApplication($id)
+	{
+		$query = StudentJobApplication::find();
+		$query->where(['job_id'=>$id]);
+		$query->orderBy('application_id DESC');
+		return new ActiveDataProvider([
+			'query' => $query,
+		]);
 	}
 
 }
