@@ -69,9 +69,20 @@ class JobController extends Controller
      */
 	public function actionList()
 	{
+		$status = Yii::$app->request->get('status');
+		$paid = Yii::$app->request->get('paid');
+
 		$user_id = Yii::$app->user->id;
 		$query = Job::find();
 		$query->where(['employer_id'=>$user_id]);
+
+		if ($status != 10) {
+			$query->andWhere(['job_status'=>$status]);
+		}
+		if ($paid != 10) {
+			$query->andWhere(['job_pay'=>$paid]);
+		}
+
 		$query->orderBy('job_id DESC');
 		return new ActiveDataProvider([
 			'query' => $query,
