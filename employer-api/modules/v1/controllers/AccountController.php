@@ -2,6 +2,7 @@
 
 namespace employerapi\modules\v1\controllers;
 
+use employerapi\models\ContactForm;
 use Yii;
 use yii\rest\Controller;
 use yii\helpers\ArrayHelper;
@@ -124,5 +125,29 @@ class AccountController extends Controller
             "operation" => "success",
             "message" => "Employer Account Info Updated Successfully"
         ];
+    }
+
+	/**
+	 * contact mail
+	 * @return array
+	 */
+    public function actionContact()
+    {
+		$model = new ContactForm();
+	    $model->message = Yii::$app->request->getBodyParam("message");
+	    $model->subject = Yii::$app->request->getBodyParam("subject");
+	    if ($model->validate()) {
+		    if ($model->sendMail()) {
+			    return [
+				    "operation" => "success",
+				    "message" => "Email sent to administrator successfully"
+			    ];
+		    }
+	    } else {
+		    return [
+			    "operation" => "error",
+			    "message" => $model->errors
+		    ];
+	    }
     }
 }
