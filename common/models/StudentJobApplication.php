@@ -78,27 +78,31 @@ class StudentJobApplication extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getStudent()
+	/**
+	 * @param string $modelClass
+	 *
+	 * @return \yii\db\ActiveQuery
+	 */
+    public function getStudent($modelClass = '\common\models\Student')
     {
-        return $this->hasOne(Student::className(), ['student_id' => 'student_id']);
+        return $this->hasOne($modelClass::className(), ['student_id' => 'student_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getJob()
+	/**
+	 * @param string $modelClass
+	 * @return \yii\db\ActiveQuery
+	 */
+    public function getJob($modelClass = '\common\models\Job')
     {
-        return $this->hasOne(Job::className(), ['job_id' => 'job_id']);
+        return $this->hasOne($modelClass::className(), ['job_id' => 'job_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getQuestions()
+	/**
+	 * @param string $modelClass
+	 * @return \yii\db\ActiveQuery
+	 */
+    public function getQuestions($modelClass = '\common\models\StudentJobApplicationQuestion')
     {
-        return $this->hasMany(StudentJobApplicationQuestion::className(), ['application_id' => 'application_id']);
+        return $this->hasMany($modelClass::className(), ['application_id' => 'application_id']);
     }
 }
