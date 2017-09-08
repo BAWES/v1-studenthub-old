@@ -72,7 +72,7 @@ class AccountController extends Controller
     public function actionUpdate()
     {
         $employer = Employer::findOne(Yii::$app->user->getId());
-        
+
         $employer->scenario = 'update';
         $employer->city_id = Yii::$app->request->getBodyParam("city_id");
         $employer->industry_id = Yii::$app->request->getBodyParam("industry_id");
