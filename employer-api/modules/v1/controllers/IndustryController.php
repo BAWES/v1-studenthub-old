@@ -77,4 +77,13 @@ class IndustryController extends Controller
             'query' => $query
         ]);
     }
+
+	/**
+	 * list all industry at once
+	 * @return array|\yii\db\ActiveRecord[]
+	 */
+	public function actionList()
+	{
+		return Industry::find()->asArray()->all();
+	}
 }

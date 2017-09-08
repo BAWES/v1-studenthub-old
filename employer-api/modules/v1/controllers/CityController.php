@@ -78,7 +78,11 @@ class CityController extends Controller
         ]);
     }
 
-	public function actionCityList()
+	/**
+	 * list all cities at once
+	 * @return array|\yii\db\ActiveRecord[]
+	 */
+	public function actionList()
 	{
 		return City::find()->asArray()->all();
 	}

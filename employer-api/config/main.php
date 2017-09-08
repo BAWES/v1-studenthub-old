@@ -72,8 +72,10 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/industry',
                     'patterns' => [
+                        'GET' => 'list',
                         'POST filter' => 'filter',
-                        // OPTIONS VERBS
+	                    // OPTIONS VERBS
+                        'OPTIONS' => 'options',
                         'OPTIONS filter' => 'options',
                     ]
                 ],
@@ -81,8 +83,8 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/city',
                     'patterns' => [
+                        'GET' => 'list',
                         'POST filter' => 'filter',
-                        'GET' => 'city-list',
                         // OPTIONS VERBS
                         'OPTIONS' => 'options',
                         'OPTIONS filter' => 'options',
@@ -99,7 +101,7 @@ return [
                         // OPTIONS VERBS
                         'OPTIONS update' => 'options',
                         'OPTIONS contact' => 'options',
-                        'OPTIONS detail' => 'detail'
+                        'OPTIONS detail' => 'options',
                     ]
                 ],
                 [ // OfficeController
