@@ -127,6 +127,31 @@ class AccountController extends Controller
         ];
     }
 
+    /**
+     * change password
+     */
+    public function actionChangePassword()
+    {
+        $employer = Employer::findOne(Yii::$app->user->getId());
+	    $password = Yii::$app->request->getBodyParam("password");
+        $employer->setPassword($password);
+
+        if(!$employer->save(false))
+        {
+           return [
+                "operation" => "error",
+                "message" => $employer->errors
+            ];
+        }
+
+        Yii::info("[Employer Account Info Updated] ".$employer->employer_email, __METHOD__);
+
+        return [
+            "operation" => "success",
+            "message" => "Employer Account Password Updated Successfully"
+        ];
+    }
+
 	/**
 	 * contact mail
 	 * @return array
