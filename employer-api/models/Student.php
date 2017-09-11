@@ -35,6 +35,9 @@ class Student extends \common\models\Student {
 		$fields['degree'] = function ($model) {
 			return $model->degree;
 		};
+		$fields['language'] = function ($model) {
+			return $model->languages;
+		};
 		return $fields;
 	}
 }

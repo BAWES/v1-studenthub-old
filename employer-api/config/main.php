@@ -167,6 +167,15 @@ return [
                         'OPTIONS <id>' => 'options'
                     ]
                 ],
+                [ // StudentController
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/student',
+                    'patterns' => [
+                        'GET <id>' => 'detail',
+                        // OPTIONS VERBS
+                        'OPTIONS <id>' => 'options'
+                    ]
+                ],
                 [ // InvoiceController
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/invoice',
