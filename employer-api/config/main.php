@@ -97,11 +97,13 @@ return [
                     'patterns' => [
                         'POST update' => 'update',
                         'POST contact' => 'contact',
+                        'POST change-password' => 'change-password',
                         'GET detail' => 'detail',
                         // OPTIONS VERBS
                         'OPTIONS update' => 'options',
                         'OPTIONS contact' => 'options',
                         'OPTIONS detail' => 'options',
+                        'OPTIONS change-password' => 'options',
                     ]
                 ],
                 [ // OfficeController
